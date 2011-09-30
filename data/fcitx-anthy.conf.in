@@ -1,0 +1,9 @@
+[Addon]
+Name=fcitx-anthy
+_GeneralName=Anthy
+_Comment=Anthy Wrapper For Fcitx
+Category=InputMethod
+Enabled=True
+Library=fcitx-anthy.so
+Type=SharedLibrary
+Dependency=fcitx-punc

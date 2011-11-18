@@ -35,11 +35,12 @@
 
 #define _(x) gettext(x)
 
-class FcitxWindowHandler;
-struct FcitxAnthyConfig {
+struct _RomajiKanaPair;
+
+typedef struct _FcitxAnthyConfig {
     GenericConfig gconfig;
     int iAnthyPriority;
-};
+} FcitxAnthyConfig;
 
 CONFIG_BINDING_DECLARE(FcitxAnthyConfig);
 __EXPORT_API void* FcitxAnthyCreate(FcitxInstance* instance);
@@ -77,6 +78,10 @@ typedef struct _FcitxAnthy {
 
     char romaji_buffer[MAX_NR_ROMAJI];
     int romaji_count;
+
+    struct _RomajiKanaPair* romaji_correction_typing_rule_pairs;
+    struct _RomajiKanaPair* romaji_typing_rule_pairs;
+    struct _RomajiKanaPair* romaji_double_consonat_typing_rule_pairs;
 } FcitxAnthy;
 
 #endif

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2010~2010 by Margaret Wang                              *
- *   pipituliuliu@gmail.com                                                *
+ *   Copyright (C) 2010~2010 by CSSlayer                                   *
+ *   wengxt@gmail.com                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -18,18 +18,9 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-#ifndef TABLES_H
-#define TABLES_H
+#include "eim.h"
 
-struct _FcitxAnthy;
-
-/* Initialize typing tables */
-int FcitxAnthyInitTypingTables(struct _FcitxAnthy* anthy);
-
-/* look up in romaji typing tables for the corresponding kana */
-int FcitxAnthyLookupKanaForRomaji(struct _FcitxAnthy* anthy, const char *romaji, const char **kana, const char **extra_romaji);
-
-/* Clear typing tables */
-int FcitxAnthyClearTypingTables(struct _FcitxAnthy* anthy);
-
-#endif
+/* USE fcitx provided macro to bind config and variable */
+CONFIG_BINDING_BEGIN(FcitxAnthyConfig)
+CONFIG_BINDING_REGISTER("Anthy", "Priority", iAnthyPriority)
+CONFIG_BINDING_END()

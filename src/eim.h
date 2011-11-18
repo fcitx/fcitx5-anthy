@@ -35,7 +35,7 @@
 
 #define _(x) gettext(x)
 
-struct _RomajiKanaPair;
+struct _FcitxAnthyTypingRule;
 
 typedef struct _FcitxAnthyConfig {
     GenericConfig gconfig;
@@ -78,10 +78,8 @@ typedef struct _FcitxAnthy {
 
     char romaji_buffer[MAX_NR_ROMAJI];
     int romaji_count;
-
-    struct _RomajiKanaPair* romaji_correction_typing_rule_pairs;
-    struct _RomajiKanaPair* romaji_typing_rule_pairs;
-    struct _RomajiKanaPair* romaji_double_consonat_typing_rule_pairs;
+    
+    struct _FcitxAnthyTypingRule* rule;
 } FcitxAnthy;
 
 #endif

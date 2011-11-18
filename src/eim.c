@@ -77,6 +77,8 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
     FcitxAnthy* anthy = (FcitxAnthy*) arg;
     FcitxInputState *input = FcitxInstanceGetInputState(anthy->owner);
     Messages *msgClientPreedit = FcitxInputStateGetClientPreedit(input);
+    
+    CleanInputWindowUp(anthy->owner);
 
     // todo: if convert key or predict key, convert or predict
 
@@ -87,7 +89,7 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
 
         if (romaji_count == MAX_NR_ROMAJI)
             romaji_count = 0;
-        romaji_buffer[romaji_count++] = sym;
+        romaji_buffer[romaji_count++] = sym & 0xff;
         romaji_buffer[romaji_count] = 0;
         FcitxAnthyLookupKanaForRomaji(anthy, romaji_buffer, &kana_buffer, &extra_romaji_buffer);
         if (kana_buffer) {
@@ -167,7 +169,7 @@ void* FcitxAnthyCreate(FcitxInstance* instance)
     bindtextdomain("fcitx-anthy", LOCALEDIR);
     anthy->owner = instance;
 
-    if (LoadAnthyConfig(&anthy->fa)) {
+    if (!LoadAnthyConfig(&anthy->fa)) {
         free(anthy);
         return NULL;
     }

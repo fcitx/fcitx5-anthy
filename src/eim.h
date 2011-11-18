@@ -36,8 +36,7 @@
 #define _(x) gettext(x)
 
 class FcitxWindowHandler;
-struct FcitxAnthyConfig
-{
+struct FcitxAnthyConfig {
     GenericConfig gconfig;
     int iAnthyPriority;
 };
@@ -46,16 +45,38 @@ CONFIG_BINDING_DECLARE(FcitxAnthyConfig);
 __EXPORT_API void* FcitxAnthyCreate(FcitxInstance* instance);
 __EXPORT_API void FcitxAnthyDestroy(void* arg);
 __EXPORT_API INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int state);
-__EXPORT_API INPUT_RETURN_VALUE FcitxAnthyGetCandWords (void *arg);
-__EXPORT_API INPUT_RETURN_VALUE FcitxAnthyGetCandWord (void *arg, CandidateWord* candWord);
+__EXPORT_API INPUT_RETURN_VALUE FcitxAnthyGetCandWords(void *arg);
+__EXPORT_API INPUT_RETURN_VALUE FcitxAnthyGetCandWord(void *arg, CandidateWord* candWord);
 __EXPORT_API boolean FcitxAnthyInit(void*);
 __EXPORT_API void ReloadConfigFcitxAnthy(void*);
 
-typedef struct _FcitxAnthy
-{
+/* Input Mode */
+typedef enum _InputMode {
+    INPUT_MODE_HIRAGANA,
+    INPUT_MODE_KATAKANA,
+    INPUT_MODE_HALF_WIDTH_KATAKANA,
+    INPUT_MODE_LATIN,
+    INPUT_MODE_WIDE_LATIN
+} InputMode;
+
+/* Typing Mode */
+typedef enum _TypingMode {
+    TYPING_MODE_ROMAJI,
+    TYPING_MODE_KANA
+} TypingMode;
+
+#define MAX_NR_ROMAJI 10
+
+typedef struct _FcitxAnthy {
     FcitxAnthyConfig fa;
     FcitxInstance* owner;
     anthy_context_t context;
+
+    InputMode input_mode;
+    TypingMode typing_mode;
+
+    char romaji_buffer[MAX_NR_ROMAJI];
+    int romaji_count;
 } FcitxAnthy;
 
 #endif

@@ -30,23 +30,25 @@
 #include <fcitx-utils/utils.h>
 #include <fcitx/instance.h>
 #include <fcitx/keys.h>
+#include <fcitx/ui.h>
 #include <string>
 #include <libintl.h>
 
 #include <anthy/anthy.h>
 
 #include "eim.h"
+#include "tables.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-FCITX_EXPORT_API
-FcitxIMClass ime = {
-    FcitxAnthyCreate,
-    FcitxAnthyDestroy
-};
-FCITX_EXPORT_API
-int ABI_VERSION = FCITX_ABI_VERSION;
+    FCITX_EXPORT_API
+    FcitxIMClass ime = {
+        FcitxAnthyCreate,
+        FcitxAnthyDestroy
+    };
+    FCITX_EXPORT_API
+    int ABI_VERSION = FCITX_ABI_VERSION;
 #ifdef __cplusplus
 }
 #endif
@@ -62,7 +64,7 @@ static void ConfigAnthy(FcitxAnthy* anthy);
  *
  **/
 __EXPORT_API
-void FcitxAnthyReset (void* arg)
+void FcitxAnthyReset(void* arg)
 {
     FcitxAnthy* anthy = (FcitxAnthy*) arg;
     anthy_reset_context(anthy->context);
@@ -80,12 +82,55 @@ __EXPORT_API
 INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int state)
 {
     FcitxAnthy* anthy = (FcitxAnthy*) arg;
+    FcitxInputState *input = FcitxInstanceGetInputState(anthy->owner);
+    Messages *msgClientPreedit = input->msgClientPreedit;
+
+    // todo: if convert key or predict key, convert or predict
+
+    if (IsHotKeySimple(sym, state)) {
+        char *kana_buffer, *extra_romaji_buffer;
+        char *romaji_buffer = anthy->romaji_buffer;
+        int romaji_count = anthy->romaji_count;
+
+        if (romaji_count == MAX_NR_ROMAJI)
+            romaji_count = 0;
+        romaji_buffer[romaji_count++] = sym;
+        romaji_buffer[romaji_count] = 0;
+        lookup_kana_for_romaji(romaji_buffer, &kana_buffer, &extra_romaji_buffer);
+        if (kana_buffer) {
+            if (romaji_count == 1)
+                AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s", kana_buffer);
+            else
+                SetMessageText(msgClientPreedit, GetMessageCount(msgClientPreedit) - 1, "%s", kana_buffer);
+            if (extra_romaji_buffer) {
+                strcpy(romaji_buffer, extra_romaji_buffer);
+                romaji_count = strlen(romaji_buffer);
+                AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s", romaji_buffer);
+            }
+        } else {
+            if (romaji_count == 1)
+                AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s", romaji_buffer);
+            else
+                MessageConcatLast(msgClientPreedit, romaji_buffer + romaji_count - 1);
+        }
+
+        anthy->romaji_count = romaji_count;
+
+        return IRV_DISPLAY_MESSAGE;
+    } else {
+
+        // todo: if is not printable character
+        return IRV_TO_PROCESS;
+    }
 
     return IRV_TO_PROCESS;
 }
 
 boolean FcitxAnthyInit(void* arg)
 {
+    FcitxAnthy* anthy = (FcitxAnthy*)arg;
+    anthy->romaji_count = 0;
+
     return true;
 }
 
@@ -99,7 +144,7 @@ boolean FcitxAnthyInit(void* arg)
 __EXPORT_API
 INPUT_RETURN_VALUE FcitxAnthyGetCandWords(void* arg)
 {
-    FcitxAnthy* anthy = (FcitxAnthy* )arg;
+    FcitxAnthy* anthy = (FcitxAnthy*)arg;
     return IRV_DISPLAY_CANDWORDS;
 }
 
@@ -110,9 +155,9 @@ INPUT_RETURN_VALUE FcitxAnthyGetCandWords(void* arg)
  * @return the string of canidate word
  **/
 __EXPORT_API
-INPUT_RETURN_VALUE FcitxAnthyGetCandWord (void* arg, CandidateWord* candWord)
+INPUT_RETURN_VALUE FcitxAnthyGetCandWord(void* arg, CandidateWord* candWord)
 {
-    FcitxAnthy* anthy = (FcitxAnthy* )arg;    
+    FcitxAnthy* anthy = (FcitxAnthy*)arg;
     return IRV_DO_NOTHING;
 }
 
@@ -123,23 +168,25 @@ INPUT_RETURN_VALUE FcitxAnthyGetCandWord (void* arg, CandidateWord* candWord)
  * @return successful or not
  **/
 __EXPORT_API
-void* FcitxAnthyCreate (FcitxInstance* instance)
+void* FcitxAnthyCreate(FcitxInstance* instance)
 {
     FcitxAnthy* anthy = (FcitxAnthy*) fcitx_malloc0(sizeof(FcitxAnthy));
     bindtextdomain("fcitx-anthy", LOCALEDIR);
     anthy->owner = instance;
-    
-    if (LoadAnthyConfig(&anthy->fa))
-    {
+
+    if (LoadAnthyConfig(&anthy->fa)) {
         free(anthy);
         return NULL;
     }
-    ConfigAnthy(anthy);
-    
+
     anthy_init();
     anthy->context = anthy_create_context();
     anthy_context_set_encoding(anthy->context, ANTHY_UTF8_ENCODING);
-    
+    anthy->input_mode = INPUT_MODE_HIRAGANA;
+    anthy->typing_mode = TYPING_MODE_ROMAJI;
+
+    ConfigAnthy(anthy);
+
     FcitxRegisterIM(instance,
                     anthy,
                     _("Anthy"),
@@ -163,9 +210,10 @@ void* FcitxAnthyCreate (FcitxInstance* instance)
  * @return int
  **/
 __EXPORT_API
-void FcitxAnthyDestroy (void* arg)
+void FcitxAnthyDestroy(void* arg)
 {
     FcitxAnthy* anthy = (FcitxAnthy*) arg;
+    clear_typing_tables();
     anthy_release_context(anthy->context);
     anthy_quit();
     free(arg);
@@ -184,8 +232,7 @@ boolean LoadAnthyConfig(FcitxAnthyConfig* fs)
 
     FILE *fp = GetXDGFileUserWithPrefix("conf", "fcitx-anthy.config", "rt", NULL);
 
-    if (!fp)
-    {
+    if (!fp) {
         if (errno == ENOENT)
             SaveAnthyConfig(fs);
     }
@@ -193,9 +240,9 @@ boolean LoadAnthyConfig(FcitxAnthyConfig* fs)
 
     FcitxAnthyConfigConfigBind(fs, cfile, configDesc);
     ConfigBindSync(&fs->gconfig);
-    
+
     if (fp)
-        fclose(fp);    
+        fclose(fp);
     return true;
 }
 

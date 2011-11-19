@@ -79,7 +79,7 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
     FcitxInputState *input = FcitxInstanceGetInputState(anthy->owner);
     Messages *msgClientPreedit = FcitxInputStateGetClientPreedit(input);
 
-    CleanInputWindowUp(anthy->owner);
+    //CleanInputWindowUp(anthy->owner);
 
     // todo: if convert key or predict key, convert or predict
 
@@ -89,10 +89,14 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
         romaji_buffer[romaji_count ++] = sym & 0xff;
         romaji_buffer[romaji_count] = '\0';
 
+        printf("input:%c\n",romaji_buffer[romaji_count-1]);
+
         FcitxAnthyConvertRomajiToKana(anthy);
 
-        romaji_buffer[romaji_count] = '\0';
-        AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s%s", anthy->input_state.input_buffer, romaji_buffer);
+        printf("Input Display should be:%s%s\n",anthy->input_state.input_buffer,anthy->input_state.romaji_buffer);
+        AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s", anthy->input_state.input_buffer);
+        if(romaji_buffer[0])
+            AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s", anthy->input_state.romaji_buffer);
 
         return IRV_DISPLAY_MESSAGE;
     } else {

@@ -37,6 +37,8 @@ int FcitxAnthyConvertRomajiToKana(struct _FcitxAnthy *anthy)
     char *romaji_buffer = anthy->input_state.romaji_buffer;
     int romaji_count = anthy->input_state.romaji_count;
 
+    printf("input_buffer:%s romaji_buffer:%s\n",input_buffer,romaji_buffer);
+
     if (checkIfCorrectionNeeded(romaji_buffer)) {
         //apply correction rule in input
         strcpy(input_buffer + input_count, "ん");
@@ -52,6 +54,7 @@ int FcitxAnthyConvertRomajiToKana(struct _FcitxAnthy *anthy)
         FcitxAnthyLookupKanaForRomaji(anthy, romaji_buffer, &kana_string, &extra_romaji_string);
 
         if (kana_string) {
+            printf("kana:%s",kana_string);
             strcpy(input_buffer + input_count, kana_string);
             input_count += strlen(kana_string);
             if (extra_romaji_string) {
@@ -68,5 +71,6 @@ int FcitxAnthyConvertRomajiToKana(struct _FcitxAnthy *anthy)
     anthy->input_state.input_count = input_count;
     anthy->input_state.romaji_count = romaji_count;
 
+    printf("input_buffer:%s romaji_buffer:%s\n",input_buffer,romaji_buffer);
     return 0;
 }

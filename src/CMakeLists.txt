@@ -10,6 +10,7 @@ include_directories (${FCITX4_FCITX_UTILS_INCLUDE_DIRS})
 set( fcitx_anthy_sources
     eim.c
     tables.c
+    convert.c
     config.c
     )
 

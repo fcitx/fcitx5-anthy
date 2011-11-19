@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-19 00:17+0800\n"
+"POT-Creation-Date: 2011-11-19 16:37+0800\n"
 "PO-Revision-Date: 2011-08-12 01:54+0800\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified <kde-i18n-doc@kde.org>\n"
@@ -18,16 +18,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 # unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/tmp/fcitx-anthy.conf.in.h:1
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/eim.cpp:145
+#: /home/pipitu/workspace/fcitx-anthy/build/po/tmp/fcitx-anthy.conf.in.h:1
+#: /home/pipitu/workspace/fcitx-anthy/build/po/../..//src/eim.c:175
 msgid "Anthy"
 msgstr "Anthy"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/tmp/fcitx-anthy.conf.in.h:2
+#: /home/pipitu/workspace/fcitx-anthy/build/po/tmp/fcitx-anthy.conf.in.h:2
 msgid "Anthy Wrapper For Fcitx"
 msgstr "Fcitx 的 Anthy 封装"
 
 # unknown
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:4
+#: /home/pipitu/workspace/fcitx-anthy/data/fcitx-anthy.desc:4
 msgid "Priority of Anthy"
 msgstr "Anthy 的优先级"

@@ -100,8 +100,6 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
         // todo: if is not printable character
         return IRV_TO_PROCESS;
     }
-
-    return IRV_TO_PROCESS;
 }
 
 boolean FcitxAnthyInit(void* arg)

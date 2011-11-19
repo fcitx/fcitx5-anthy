@@ -18,23 +18,12 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-#ifndef TABLES_H
-#define TABLES_H
+
+#ifndef CONVERT_H
+#define CONVERT_H
 
 struct _FcitxAnthy;
 
-#define MAX_NR_ROMAJI_MATCH 3
-
-/* Initialize typing tables */
-int FcitxAnthyInitTypingTables(struct _FcitxAnthy* anthy);
-
-/* look up in romaji typing tables for the corresponding kana */
-int FcitxAnthyLookupKanaForRomaji(struct _FcitxAnthy* anthy, const char *romaji, const char **kana, const char **extra_romaji);
-
-/* look up the romaji correction table for the corresponding correction */
-int FcitxAnthyLoopupRomajiCorrection(struct _FcitxAnthy *anthy, const char *romaji, const char **kana, const char **extra_romaji);
-
-/* Clear typing tables */
-int FcitxAnthyClearTypingTables(struct _FcitxAnthy* anthy);
+int FcitxAnthyConvertRomajiToKana(struct _FcitxAnthy *anthy);
 
 #endif

@@ -66,7 +66,15 @@ typedef enum _TypingMode {
     TYPING_MODE_KANA
 } TypingMode;
 
-#define MAX_NR_ROMAJI 10
+#define MAX_INPUT_COUNT 100
+#define MAX_ROMAJI_COUNT 3
+
+typedef struct _FcitxAnthyInputState {
+    char input_buffer[MAX_INPUT_COUNT];
+    char romaji_buffer[MAX_ROMAJI_COUNT + 1];
+    int input_count;
+    int romaji_count;
+} FcitxAnthyInputState;
 
 typedef struct _FcitxAnthy {
     FcitxAnthyConfig fa;
@@ -76,9 +84,8 @@ typedef struct _FcitxAnthy {
     InputMode input_mode;
     TypingMode typing_mode;
 
-    char romaji_buffer[MAX_NR_ROMAJI];
-    int romaji_count;
-    
+    FcitxAnthyInputState input_state;
+
     struct _FcitxAnthyTypingRule* rule;
 } FcitxAnthy;
 

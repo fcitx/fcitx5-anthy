@@ -24,8 +24,7 @@
 #include "tables.h"
 #include <fcitx-utils/log.h>
 
-typedef struct _FcitxAnthyTypingRule
-{
+typedef struct _FcitxAnthyTypingRule {
     struct _RomajiKanaPair* romaji_correction_typing_rule_pairs;
     struct _RomajiKanaPair* romaji_typing_rule_pairs;
     struct _RomajiKanaPair* romaji_double_consonat_typing_rule_pairs;
@@ -46,7 +45,7 @@ static const char *romaji_typing_rule[][2] = {
     {"-", "ー"},
     {"a", "あ"},
     {"i", "い"},
-    {"", "う"},
+    {"u", "う"},
     {"e", "え"},
     {"o", "お"},
     {"xa", "ぁ"},
@@ -326,9 +325,9 @@ static const char *romaji_correction_typing_rule[][3] = {
 int FcitxAnthyInitTypingTables(struct _FcitxAnthy* anthy)
 {
     int i;
-    
+
     anthy->rule = fcitx_malloc0(sizeof(FcitxAnthyTypingRule));
-    
+
     RomajiKanaPair *romaji_typing_rule_pairs = NULL;
     RomajiKanaPair *romaji_double_consonat_typing_rule_pairs = NULL;
     RomajiKanaPair *romaji_correction_typing_rule_pairs = NULL;
@@ -366,21 +365,37 @@ int FcitxAnthyLookupKanaForRomaji(struct _FcitxAnthy* anthy, const char *romaji,
 {
     RomajiKanaPair *romaji_typing_rule_pairs = anthy->rule->romaji_typing_rule_pairs;
     RomajiKanaPair *romaji_double_consonat_typing_rule_pairs = anthy->rule->romaji_double_consonat_typing_rule_pairs;
-    RomajiKanaPair *romaji_correction_typing_rule_pairs = anthy->rule->romaji_correction_typing_rule_pairs;
     RomajiKanaPair *pair = NULL;
+
+    *kana = NULL;
+    extra_romaji = NULL;
+
     HASH_FIND_STR(romaji_typing_rule_pairs, romaji, pair);
     if (pair) {
         *kana = pair->kana_value;
-        *extra_romaji = NULL;
         return 0;
     }
 
     HASH_FIND_STR(romaji_double_consonat_typing_rule_pairs, romaji, pair);
     if (!pair)
-        HASH_FIND_STR(romaji_correction_typing_rule_pairs, romaji, pair);
-    if (!pair)
         return -1;
     else {
+        *kana = pair->kana_value;
+        *extra_romaji = pair->extra_romaji_value;
+        return 0;
+    }
+}
+
+int FcitxAnthyLoopupRomajiCorrection(struct _FcitxAnthy *anthy, const char *romaji, const char **kana, const char **extra_romaji)
+{
+    RomajiKanaPair *pair = NULL;
+    RomajiKanaPair *romaji_correction_typing_rule_pairs = anthy->rule->romaji_correction_typing_rule_pairs;
+    HASH_FIND_STR(romaji_correction_typing_rule_pairs, romaji, pair);
+    if (!pair) {
+        *kana = NULL;
+        *extra_romaji = NULL;
+        return -1;
+    } else {
         *kana = pair->kana_value;
         *extra_romaji = pair->extra_romaji_value;
         return 0;
@@ -411,9 +426,9 @@ int FcitxAnthyClearTypingTables(struct _FcitxAnthy* anthy)
         HASH_DEL(romaji_correction_typing_rule_pairs, pair);
         free(pair);
     }
-    
+
     free(anthy->rule);
-    
+
     return 0;
 }
 

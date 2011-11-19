@@ -37,6 +37,7 @@
 
 #include "eim.h"
 #include "tables.h"
+#include "convert.h"
 
 FCITX_EXPORT_API
 FcitxIMClass ime = {
@@ -77,39 +78,21 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
     FcitxAnthy* anthy = (FcitxAnthy*) arg;
     FcitxInputState *input = FcitxInstanceGetInputState(anthy->owner);
     Messages *msgClientPreedit = FcitxInputStateGetClientPreedit(input);
-    
+
     CleanInputWindowUp(anthy->owner);
 
     // todo: if convert key or predict key, convert or predict
 
     if (IsHotKeySimple(sym, state)) {
-        const char *kana_buffer, *extra_romaji_buffer;
-        char *romaji_buffer = anthy->romaji_buffer;
-        int romaji_count = anthy->romaji_count;
+        char *romaji_buffer = (anthy->input_state).romaji_buffer;
+        int romaji_count = (anthy->input_state).romaji_count;
+        romaji_buffer[romaji_count ++] = sym & 0xff;
+        romaji_buffer[romaji_count] = '\0';
 
-        if (romaji_count == MAX_NR_ROMAJI)
-            romaji_count = 0;
-        romaji_buffer[romaji_count++] = sym & 0xff;
-        romaji_buffer[romaji_count] = 0;
-        FcitxAnthyLookupKanaForRomaji(anthy, romaji_buffer, &kana_buffer, &extra_romaji_buffer);
-        if (kana_buffer) {
-            if (romaji_count == 1)
-                AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s", kana_buffer);
-            else
-                SetMessageText(msgClientPreedit, GetMessageCount(msgClientPreedit) - 1, "%s", kana_buffer);
-            if (extra_romaji_buffer) {
-                strcpy(romaji_buffer, extra_romaji_buffer);
-                romaji_count = strlen(romaji_buffer);
-                AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s", romaji_buffer);
-            }
-        } else {
-            if (romaji_count == 1)
-                AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s", romaji_buffer);
-            else
-                MessageConcatLast(msgClientPreedit, romaji_buffer + romaji_count - 1);
-        }
+        FcitxAnthyConvertRomajiToKana(anthy);
 
-        anthy->romaji_count = romaji_count;
+        romaji_buffer[romaji_count] = '\0';
+        AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s%s", anthy->input_state.input_buffer, romaji_buffer);
 
         return IRV_DISPLAY_MESSAGE;
     } else {
@@ -124,7 +107,10 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
 boolean FcitxAnthyInit(void* arg)
 {
     FcitxAnthy* anthy = (FcitxAnthy*)arg;
-    anthy->romaji_count = 0;
+    anthy->input_state.input_buffer[0] = '\0';
+    anthy->input_state.input_count = 0;
+    anthy->input_state.romaji_buffer[0] = '\0';
+    anthy->input_state.romaji_count = 0;
 
     return true;
 }

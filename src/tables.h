@@ -23,16 +23,13 @@
 
 struct _FcitxAnthy;
 
-#define MAX_NR_ROMAJI_MATCH 3
+#define MAX_NR_ROMAJI_MATCH 4
 
 /* Initialize typing tables */
 int FcitxAnthyInitTypingTables(struct _FcitxAnthy* anthy);
 
 /* look up in romaji typing tables for the corresponding kana */
-int FcitxAnthyLookupKanaForRomaji(struct _FcitxAnthy* anthy, const char *romaji, const char **kana, const char **extra_romaji);
-
-/* look up the romaji correction table for the corresponding correction */
-int FcitxAnthyLoopupRomajiCorrection(struct _FcitxAnthy *anthy, const char *romaji, const char **kana, const char **extra_romaji);
+int FcitxAnthyLookupKanaForRomaji(struct _FcitxAnthy* anthy, const char *romaji, const char **kana);
 
 /* Clear typing tables */
 int FcitxAnthyClearTypingTables(struct _FcitxAnthy* anthy);

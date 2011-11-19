@@ -25,21 +25,16 @@
 #include <fcitx-utils/log.h>
 
 typedef struct _FcitxAnthyTypingRule {
-    struct _RomajiKanaPair* romaji_correction_typing_rule_pairs;
     struct _RomajiKanaPair* romaji_typing_rule_pairs;
-    struct _RomajiKanaPair* romaji_double_consonat_typing_rule_pairs;
 } FcitxAnthyTypingRule;
 
 typedef struct _RomajiKanaPair {
     const char *romaji_key;
     const char *kana_value;
-    const char *extra_romaji_value;
     UT_hash_handle hh;
 } RomajiKanaPair;
 
 #define NR_ROMAJI_TYPING_RULE (sizeof(romaji_typing_rule) / sizeof(romaji_typing_rule[0]))
-#define NR_ROMAJI_DOUBLE_CONSONAT_TYPING_RULE (sizeof(romaji_double_consonat_typing_rule) / sizeof(romaji_double_consonat_typing_rule[0]))
-#define NR_ROMAJI_CORRECTION_TYPING_RULE (sizeof(romaji_correction_typing_rule) / sizeof(romaji_correction_typing_rule[0]))
 
 static const char *romaji_typing_rule[][2] = {
     {"-", "ー"},
@@ -50,12 +45,12 @@ static const char *romaji_typing_rule[][2] = {
     {"o", "お"},
     {"xa", "ぁ"},
     {"xi", "ぃ"},
-    {"x", "ぅ"},
+    {"xu", "ぅ"},
     {"xe", "ぇ"},
     {"xo", "ぉ"},
     {"la", "ぁ"},
     {"li", "ぃ"},
-    {"l", "ぅ"},
+    {"lu", "ぅ"},
     {"le", "ぇ"},
     {"lo", "ぉ"},
     {"wha", "うぁ"},
@@ -64,12 +59,12 @@ static const char *romaji_typing_rule[][2] = {
     {"who", "うぉ"},
     {"va", "ヴぁ"},
     {"vi", "ヴぃ"},
-    {"v", "ヴ"},
+    {"vu", "ヴ"},
     {"ve", "ヴぇ"},
     {"vo", "ヴぉ"},
     {"ka", "か"},
     {"ki", "き"},
-    {"k", "く"},
+    {"ku", "く"},
     {"ke", "け"},
     {"ko", "こ"},
     {"lka", "ヵ"},
@@ -78,89 +73,89 @@ static const char *romaji_typing_rule[][2] = {
     {"xke", "ヶ"},
     {"ga", "が"},
     {"gi", "ぎ"},
-    {"g", "ぐ"},
+    {"gu", "ぐ"},
     {"ge", "げ"},
     {"go", "ご"},
     {"kya", "きゃ"},
     {"kyi", "きぃ"},
-    {"ky", "きゅ"},
+    {"kyu", "きゅ"},
     {"kye", "きぇ"},
     {"kyo", "きょ"},
     {"kwa", "くぁ"},
     {"gya", "ぎゃ"},
     {"gyi", "ぎぃ"},
-    {"gy", "ぎゅ"},
+    {"gyu", "ぎゅ"},
     {"gye", "ぎぇ"},
     {"gyo", "ぎょ"},
     {"gwa", "ぐぁ"},
     {"sa", "さ"},
     {"si", "し"},
-    {"s", "す"},
+    {"su", "す"},
     {"se", "せ"},
     {"so", "そ"},
     {"za", "ざ"},
     {"zi", "じ"},
-    {"z", "ず"},
+    {"zu", "ず"},
     {"ze", "ぜ"},
     {"zo", "ぞ"},
     {"sya", "しゃ"},
     {"syi", "しぃ"},
-    {"sy", "しゅ"},
+    {"syu", "しゅ"},
     {"sye", "しぇ"},
     {"syo", "しょ"},
     {"sha", "しゃ"},
     {"shi", "し"},
-    {"sh", "しゅ"},
+    {"shu", "しゅ"},
     {"she", "しぇ"},
     {"sho", "しょ"},
     {"zya", "じゃ"},
     {"zyi", "じぃ"},
-    {"zy", "じゅ"},
+    {"zyu", "じゅ"},
     {"zye", "じぇ"},
     {"zyo", "じょ"},
     {"ja", "じゃ"},
     {"jya", "じゃ"},
     {"ji", "じ"},
     {"jyi", "じぃ"},
-    {"j", "じゅ"},
-    {"jy", "じゅ"},
+    {"ju", "じゅ"},
+    {"jyu", "じゅ"},
     {"je", "じぇ"},
     {"jye", "じぇ"},
     {"jo", "じょ"},
     {"jyo", "じょ"},
     {"ta", "た"},
     {"ti", "ち"},
-    {"t", "つ"},
-    {"ts", "つ"},
+    {"tu", "つ"},
+    {"tsu", "つ"},
     {"te", "て"},
     {"to", "と"},
     {"da", "だ"},
     {"di", "ぢ"},
-    {"d", "づ"},
+    {"du", "づ"},
     {"de", "で"},
     {"do", "ど"},
-    {"xt", "っ"},
-    {"xts", "っ"},
-    {"lt", "っ"},
-    {"lts", "っ"},
+    {"xtu", "っ"},
+    {"xtsu", "っ"},
+    {"ltu", "っ"},
+    {"ltsu", "っ"},
     {"tya", "ちゃ"},
     {"tyi", "ちぃ"},
-    {"ty", "ちゅ"},
+    {"tyu", "ちゅ"},
     {"tye", "ちぇ"},
     {"tyo", "ちょ"},
     {"cya", "ちゃ"},
     {"cyi", "ちぃ"},
-    {"cy", "ちゅ"},
+    {"cyu", "ちゅ"},
     {"cye", "ちぇ"},
     {"cyo", "ちょ"},
     {"cha", "ちゃ"},
     {"chi", "ち"},
-    {"ch", "ちゅ"},
+    {"chu", "ちゅ"},
     {"che", "ちぇ"},
     {"cho", "ちょ"},
     {"dya", "ぢゃ"},
     {"dyi", "ぢぃ"},
-    {"dy", "ぢゅ"},
+    {"dyu", "ぢゅ"},
     {"dye", "ぢぇ"},
     {"dyo", "ぢょ"},
     {"tsa", "つぁ"},
@@ -169,94 +164,94 @@ static const char *romaji_typing_rule[][2] = {
     {"tso", "つぉ"},
     {"tha", "てゃ"},
     {"thi", "てぃ"},
-    {"th", "てゅ"},
+    {"thu", "てゅ"},
     {"the", "てぇ"},
     {"tho", "てょ"},
-    {"tw", "とぅ"},
+    {"twu", "とぅ"},
     {"dha", "でゃ"},
     {"dhi", "でぃ"},
-    {"dh", "でゅ"},
+    {"dhu", "でゅ"},
     {"dhe", "でぇ"},
     {"dho", "でょ"},
-    {"dw", "どぅ"},
+    {"dwu", "どぅ"},
     {"na", "な"},
     {"ni", "に"},
-    {"n", "ぬ"},
+    {"nu", "ぬ"},
     {"ne", "ね"},
     {"no", "の"},
     {"nya", "にゃ"},
     {"nyi", "にぃ"},
-    {"ny", "にゅ"},
+    {"nyu", "にゅ"},
     {"nye", "にぇ"},
     {"nyo", "にょ"},
     {"ha", "は"},
     {"hi", "ひ"},
-    {"h", "ふ"},
+    {"hu", "ふ"},
     {"he", "へ"},
     {"ho", "ほ"},
     {"ba", "ば"},
     {"bi", "び"},
-    {"b", "ぶ"},
+    {"bu", "ぶ"},
     {"be", "べ"},
     {"bo", "ぼ"},
     {"pa", "ぱ"},
     {"pi", "ぴ"},
-    {"p", "ぷ"},
+    {"pu", "ぷ"},
     {"pe", "ぺ"},
     {"po", "ぽ"},
     {"hya", "ひゃ"},
     {"hyi", "ひぃ"},
-    {"hy", "ひゅ"},
+    {"hyu", "ひゅ"},
     {"hye", "ひぇ"},
     {"hyo", "ひょ"},
     {"bya", "びゃ"},
     {"byi", "びぃ"},
-    {"by", "びゅ"},
+    {"byu", "びゅ"},
     {"bye", "びぇ"},
     {"byo", "びょ"},
     {"pya", "ぴゃ"},
     {"pyi", "ぴぃ"},
-    {"py", "ぴゅ"},
+    {"pyu", "ぴゅ"},
     {"pye", "ぴぇ"},
     {"pyo", "ぴょ"},
     {"fa", "ふぁ"},
     {"fi", "ふぃ"},
-    {"f", "ふ"},
+    {"fu", "ふ"},
     {"fe", "ふぇ"},
     {"fo", "ふぉ"},
     {"fya", "ふゃ"},
     {"fyi", "ふぃ"},
-    {"fy", "ふゅ"},
+    {"fyu", "ふゅ"},
     {"fye", "ふぇ"},
     {"fyo", "ふょ"},
     {"ma", "ま"},
     {"mi", "み"},
-    {"m", "む"},
+    {"mu", "む"},
     {"me", "め"},
     {"mo", "も"},
     {"mya", "みゃ"},
     {"myi", "みぃ"},
-    {"my", "みゅ"},
+    {"myu", "みゅ"},
     {"mye", "みぇ"},
     {"myo", "みょ"},
     {"ya", "や"},
     {"yi", "い"},
-    {"y", "ゆ"},
+    {"yu", "ゆ"},
     {"ye", "いぇ"},
     {"yo", "よ"},
     {"lya", "ゃ"},
     {"lyi", "ぃ"},
-    {"ly", "ゅ"},
+    {"lyu", "ゅ"},
     {"lye", "ぇ"},
     {"lyo", "ょ"},
     {"xya", "ゃ"},
     {"xyi", "ぃ"},
-    {"xy", "ゅ"},
+    {"xyu", "ゅ"},
     {"xye", "ぇ"},
     {"xyo", "ょ"},
     {"ra", "ら"},
     {"ri", "り"},
-    {"r", "る"},
+    {"ru", "る"},
     {"re", "れ"},
     {"ro", "ろ"},
     {"rya", "りゃ"},
@@ -266,61 +261,17 @@ static const char *romaji_typing_rule[][2] = {
     {"ryo", "りょ"},
     {"wa", "わ"},
     {"wi", "うぃ"},
-    {"w", "う"},
+    {"wu", "う"},
     {"we", "うぇ"},
     {"wo", "を"},
     {"lwa", "ゎ"},
     {"xwa", "ゎ"},
-    {"n'", "ん"},
+    {"n\'", "ん"},
     {"nn", "ん"},
     {"wyi", "ゐ"},
     {"wye", "ゑ"}
 };
 
-static const char *romaji_double_consonat_typing_rule[][3] = {
-    {"bb", "っ", "b"},
-    {"cc", "っ", "c"},
-    {"dd", "っ", "d"},
-    {"ff", "っ", "f"},
-    {"gg", "っ", "g"},
-    {"hh", "っ", "h"},
-    {"jj", "っ", "j"},
-    {"kk", "っ", "k"},
-    {"mm", "っ", "m"},
-    {"pp", "っ", "p"},
-    {"rr", "っ", "r"},
-    {"ss", "っ", "s"},
-    {"tt", "っ", "t"},
-    {"vv", "っ", "v"},
-    {"ww", "っ", "w"},
-    {"xx", "っ", "x"},
-    {"yy", "っ", "y"},
-    {"zz", "っ", "z"}
-};
-
-static const char *romaji_correction_typing_rule[][3] = {
-    {"nb", "ん", "b"},
-    {"nc", "ん", "c"},
-    {"nd", "ん", "d"},
-    {"nf", "ん", "f"},
-    {"ng", "ん", "g"},
-    {"nh", "ん", "h"},
-    {"nj", "ん", "j"},
-    {"nk", "ん", "k"},
-    {"nl", "ん", "l"},
-    {"nm", "ん", "m"},
-    {"np", "ん", "p"},
-    {"nr", "ん", "r"},
-    {"ns", "ん", "s"},
-    {"nt", "ん", "t"},
-    {"nv", "ん", "v"},
-    {"nw", "ん", "w"},
-    {"nx", "ん", "x"},
-    {"nz", "ん", "z"},
-    {"n\0", "ん", ""},
-    {"n,", "ん", ","},
-    {"n.", "ん", "."}
-};
 
 int FcitxAnthyInitTypingTables(struct _FcitxAnthy* anthy)
 {
@@ -329,101 +280,42 @@ int FcitxAnthyInitTypingTables(struct _FcitxAnthy* anthy)
     anthy->rule = fcitx_malloc0(sizeof(FcitxAnthyTypingRule));
 
     RomajiKanaPair *romaji_typing_rule_pairs = NULL;
-    RomajiKanaPair *romaji_double_consonat_typing_rule_pairs = NULL;
-    RomajiKanaPair *romaji_correction_typing_rule_pairs = NULL;
     FcitxLog(INFO, "%d", NR_ROMAJI_TYPING_RULE);
     for (i = 0; i < NR_ROMAJI_TYPING_RULE; i++) {
         RomajiKanaPair *pair = fcitx_malloc0(sizeof(RomajiKanaPair));
         pair->romaji_key = romaji_typing_rule[i][0];
         pair->kana_value = romaji_typing_rule[i][1];
-        pair->extra_romaji_value = NULL;
         HASH_ADD_KEYPTR(hh, romaji_typing_rule_pairs, pair->romaji_key, strlen(pair->romaji_key), pair);
-    }
-    for (i = 0; i < NR_ROMAJI_DOUBLE_CONSONAT_TYPING_RULE; i++) {
-        RomajiKanaPair *pair = fcitx_malloc0(sizeof(RomajiKanaPair));
-        pair->romaji_key = romaji_double_consonat_typing_rule[i][0];
-        pair->kana_value = romaji_double_consonat_typing_rule[i][1];
-        pair->extra_romaji_value = romaji_double_consonat_typing_rule[i][2];
-        HASH_ADD_KEYPTR(hh, romaji_double_consonat_typing_rule_pairs, pair->romaji_key, strlen(pair->romaji_key), pair);
-    }
-    for (i = 0; i < NR_ROMAJI_CORRECTION_TYPING_RULE; i++) {
-        RomajiKanaPair *pair = fcitx_malloc0(sizeof(RomajiKanaPair));
-        pair->romaji_key = romaji_correction_typing_rule[i][0];
-        pair->kana_value = romaji_correction_typing_rule[i][1];
-        pair->extra_romaji_value = romaji_correction_typing_rule[i][2];
-        HASH_ADD_KEYPTR(hh, romaji_correction_typing_rule_pairs, pair->romaji_key, strlen(pair->romaji_key), pair);
     }
 
     anthy->rule->romaji_typing_rule_pairs = romaji_typing_rule_pairs;
-    anthy->rule->romaji_double_consonat_typing_rule_pairs = romaji_double_consonat_typing_rule_pairs;
-    anthy->rule->romaji_correction_typing_rule_pairs = romaji_correction_typing_rule_pairs;
 
     return 0;
 }
 
-int FcitxAnthyLookupKanaForRomaji(struct _FcitxAnthy* anthy, const char *romaji, const char **kana, const char **extra_romaji)
+int FcitxAnthyLookupKanaForRomaji(struct _FcitxAnthy* anthy, const char *romaji, const char **kana)
 {
     RomajiKanaPair *romaji_typing_rule_pairs = anthy->rule->romaji_typing_rule_pairs;
-    RomajiKanaPair *romaji_double_consonat_typing_rule_pairs = anthy->rule->romaji_double_consonat_typing_rule_pairs;
     RomajiKanaPair *pair = NULL;
 
     *kana = NULL;
-    extra_romaji = NULL;
 
     HASH_FIND_STR(romaji_typing_rule_pairs, romaji, pair);
     if (pair) {
         *kana = pair->kana_value;
         return 0;
     }
-
-    HASH_FIND_STR(romaji_double_consonat_typing_rule_pairs, romaji, pair);
-    if (!pair)
-        return -1;
-    else {
-        *kana = pair->kana_value;
-        *extra_romaji = pair->extra_romaji_value;
-        return 0;
-    }
-}
-
-int FcitxAnthyLoopupRomajiCorrection(struct _FcitxAnthy *anthy, const char *romaji, const char **kana, const char **extra_romaji)
-{
-    RomajiKanaPair *pair = NULL;
-    RomajiKanaPair *romaji_correction_typing_rule_pairs = anthy->rule->romaji_correction_typing_rule_pairs;
-    HASH_FIND_STR(romaji_correction_typing_rule_pairs, romaji, pair);
-    if (!pair) {
-        *kana = NULL;
-        *extra_romaji = NULL;
-        return -1;
-    } else {
-        *kana = pair->kana_value;
-        *extra_romaji = pair->extra_romaji_value;
-        return 0;
-    }
+    return -1;
 }
 
 
 int FcitxAnthyClearTypingTables(struct _FcitxAnthy* anthy)
 {
     RomajiKanaPair *romaji_typing_rule_pairs = anthy->rule->romaji_typing_rule_pairs;
-    RomajiKanaPair *romaji_double_consonat_typing_rule_pairs = anthy->rule->romaji_double_consonat_typing_rule_pairs;
-    RomajiKanaPair *romaji_correction_typing_rule_pairs = anthy->rule->romaji_correction_typing_rule_pairs;
     RomajiKanaPair *pair = NULL;
     while (romaji_typing_rule_pairs) {
         pair = romaji_typing_rule_pairs;
         HASH_DEL(romaji_typing_rule_pairs, pair);
-        free(pair);
-    }
-
-    while (romaji_double_consonat_typing_rule_pairs) {
-        pair = romaji_double_consonat_typing_rule_pairs;
-        HASH_DEL(romaji_double_consonat_typing_rule_pairs, pair);
-        free(pair);
-    }
-
-    while (romaji_correction_typing_rule_pairs) {
-        pair = romaji_correction_typing_rule_pairs;
-        HASH_DEL(romaji_correction_typing_rule_pairs, pair);
         free(pair);
     }
 

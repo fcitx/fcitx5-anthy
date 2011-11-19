@@ -18,6 +18,9 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
+#include <stdio.h>
+#include <fcitx-utils/log.h>
+
 #include "tables.h"
 #include "eim.h"
 
@@ -25,8 +28,21 @@ int checkIfCorrectionNeeded(const char *buffer)
 {
     char c1 = *buffer;
     char c2 = *(buffer + 1);
-    return c1 == 'n' && (c2 != 'a' && c2 != 'i' && c2 != 'u'
+    return strlen(buffer) > 1 && c1 == 'n' && (c2 != 'a' && c2 != 'i' && c2 != 'u'
                          && c2 != 'e' && c2 != 'o' && c2 != 'n' && c2 != 'y');
+}
+
+int checkIfDoubleConsonat(const char *buffer){
+    if(buffer[0] == buffer[1]){
+        char c = buffer[0];
+        return c == 'b' || c == 'c' || c == 'd' 
+            || c == 'f' || c == 'g' || c == 'h'
+            || c == 'j' || c == 'k' || c == 'm'
+            || c == 'p' || c == 'r' || c == 's'
+            || c == 't' || c == 'v' || c == 'w'
+            || c == 'x' || c == 'y' || c == 'z';
+    }
+    return 0;
 }
 
 
@@ -37,7 +53,7 @@ int FcitxAnthyConvertRomajiToKana(struct _FcitxAnthy *anthy)
     char *romaji_buffer = anthy->input_state.romaji_buffer;
     int romaji_count = anthy->input_state.romaji_count;
 
-    printf("input_buffer:%s romaji_buffer:%s\n",input_buffer,romaji_buffer);
+    FcitxLog(INFO,"input_buffer:%s romaji_buffer:%s",input_buffer,romaji_buffer);
 
     if (checkIfCorrectionNeeded(romaji_buffer)) {
         //apply correction rule in input
@@ -49,21 +65,26 @@ int FcitxAnthyConvertRomajiToKana(struct _FcitxAnthy *anthy)
         romaji_buffer[0] = romaji_buffer[1];
         romaji_buffer[1] = '\0';
         romaji_count = 1;
-    } else {
-        const char *kana_string = NULL, *extra_romaji_string = NULL;
-        FcitxAnthyLookupKanaForRomaji(anthy, romaji_buffer, &kana_string, &extra_romaji_string);
+    } 
+    else if(checkIfDoubleConsonat(romaji_buffer)){
+        //apply double consonating rule in input
+        strcpy(input_buffer + input_count, "っ");
+        input_count += strlen("っ");
+        input_buffer[input_count] = '\0';
+
+        //update romaji buffer
+        romaji_buffer[1] = '\0';
+        romaji_count = 1;
+    }
+    else {
+        const char *kana_string = NULL;
+        FcitxAnthyLookupKanaForRomaji(anthy, romaji_buffer, &kana_string);
 
         if (kana_string) {
-            printf("kana:%s",kana_string);
             strcpy(input_buffer + input_count, kana_string);
             input_count += strlen(kana_string);
-            if (extra_romaji_string) {
-                strcpy(romaji_buffer, extra_romaji_string);
-                romaji_count = strlen(romaji_buffer);
-            } else {
-                romaji_buffer[0] = '\0';
-                romaji_count = 0;
-            }
+            romaji_buffer[0] = '\0';
+            romaji_count = 0;
         } else {
             // todo: lookup symbol table
         }
@@ -71,6 +92,6 @@ int FcitxAnthyConvertRomajiToKana(struct _FcitxAnthy *anthy)
     anthy->input_state.input_count = input_count;
     anthy->input_state.romaji_count = romaji_count;
 
-    printf("input_buffer:%s romaji_buffer:%s\n",input_buffer,romaji_buffer);
+    FcitxLog(INFO,"input_buffer:%s romaji_buffer:%s",input_buffer,romaji_buffer);
     return 0;
 }

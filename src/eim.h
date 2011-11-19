@@ -66,7 +66,7 @@ typedef enum _TypingMode {
     TYPING_MODE_KANA
 } TypingMode;
 
-#define MAX_INPUT_COUNT 100
+#define MAX_INPUT_COUNT 1000
 #define MAX_ROMAJI_COUNT 3
 
 typedef struct _FcitxAnthyInputState {

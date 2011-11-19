@@ -77,26 +77,29 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
 {
     FcitxAnthy* anthy = (FcitxAnthy*) arg;
     FcitxInputState *input = FcitxInstanceGetInputState(anthy->owner);
-    Messages *msgClientPreedit = FcitxInputStateGetClientPreedit(input);
+    Messages *msgPreedit = FcitxInputStateGetPreedit(input);
 
-    //CleanInputWindowUp(anthy->owner);
+    CleanInputWindowUp(anthy->owner);
 
     // todo: if convert key or predict key, convert or predict
 
     if (IsHotKeySimple(sym, state)) {
         char *romaji_buffer = (anthy->input_state).romaji_buffer;
         int romaji_count = (anthy->input_state).romaji_count;
+
         romaji_buffer[romaji_count ++] = sym & 0xff;
         romaji_buffer[romaji_count] = '\0';
+        (anthy->input_state).romaji_count = strlen(romaji_buffer); 
 
-        printf("input:%c\n",romaji_buffer[romaji_count-1]);
+        FcitxLog(INFO,"input:%c\n",romaji_buffer[romaji_count-1]);
 
         FcitxAnthyConvertRomajiToKana(anthy);
 
-        printf("Input Display should be:%s%s\n",anthy->input_state.input_buffer,anthy->input_state.romaji_buffer);
-        AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s", anthy->input_state.input_buffer);
+        FcitxLog(INFO,"romaji_buffer:%s count:%d\n",anthy->input_state.romaji_buffer,anthy->input_state.romaji_count);
+        FcitxLog(INFO,"Input Display should be:%s%s\n",anthy->input_state.input_buffer,anthy->input_state.romaji_buffer);
+        AddMessageAtLast(msgPreedit, MSG_INPUT, "%s", anthy->input_state.input_buffer);
         if(romaji_buffer[0])
-            AddMessageAtLast(msgClientPreedit, MSG_INPUT, "%s", anthy->input_state.romaji_buffer);
+            AddMessageAtLast(msgPreedit, MSG_INPUT, "%s", anthy->input_state.romaji_buffer);
 
         return IRV_DISPLAY_MESSAGE;
     } else {

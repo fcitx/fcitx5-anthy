@@ -67,13 +67,17 @@ typedef enum _TypingMode {
 } TypingMode;
 
 #define MAX_INPUT_COUNT 1000
-#define MAX_ROMAJI_COUNT 3
+#define MAX_ROMAJI_COUNT 4
 
 typedef struct _FcitxAnthyInputState {
     char input_buffer[MAX_INPUT_COUNT];
     char romaji_buffer[MAX_ROMAJI_COUNT + 1];
     int input_count;
     int romaji_count;
+
+    struct anthy_segment_stat segstat[MAX_INPUT_COUNT];
+    int seg_pos;
+    int input_pos;
 } FcitxAnthyInputState;
 
 typedef struct _FcitxAnthy {

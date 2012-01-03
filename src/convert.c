@@ -95,3 +95,37 @@ int FcitxAnthyConvertRomajiToKana(struct _FcitxAnthy *anthy)
     FcitxLog(INFO,"input_buffer:%s romaji_buffer:%s",input_buffer,romaji_buffer);
     return 0;
 }
+
+int FcitxAnthyConvertKanaToKanji(struct _FcitxAnthy *anthy){
+    char *input_buffer = anthy->input_state.input_buffer;
+    int input_count = anthy->input_state.input_count;
+    struct anthy_segment_stat *segstat = anthy->input_state.segstat;
+
+    anthy_set_string(anthy->context, input_buffer);
+
+    // get segment state for all segments
+    struct anthy_conv_stat conv_stat;
+    anthy_get_stat(anthy->context, &conv_stat);
+    int i;
+    for(i = 0; i < conv_stat.nr_segment; i ++)
+        anthy_get_segment_stat(anthy->context, i, segstat + i);
+
+    input_count = 0;
+    char buf[MAX_INPUT_COUNT];
+    for(i = 0; i < conv_stat.nr_segment; i ++){
+        if(anthy_get_segment(anthy->context, i, 0, buf, sizeof(buf)) > 0){
+            strcpy(input_buffer + input_count, buf);
+            input_count += strlen(buf);
+        }
+        else{
+            FcitxLog(INFO, "cannot get segment %d", i);
+            break;
+        }
+    }
+
+    anthy->input_state.seg_pos = 0;
+    anthy->input_state.input_pos = 0;
+    anthy->input_state.input_count = input_count;
+
+    return 0;
+}

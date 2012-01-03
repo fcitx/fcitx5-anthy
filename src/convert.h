@@ -25,5 +25,6 @@
 struct _FcitxAnthy;
 
 int FcitxAnthyConvertRomajiToKana(struct _FcitxAnthy *anthy);
+int FcitxAnthyConvertKanaToKanji(struct _FcitxAnthy *anthy);
 
 #endif

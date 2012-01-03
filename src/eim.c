@@ -82,6 +82,11 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
     CleanInputWindowUp(anthy->owner);
 
     // todo: if convert key or predict key, convert or predict
+    if((sym & 0xff) == ' '){
+        FcitxAnthyConvertKanaToKanji(anthy);
+        AddMessageAtLast(msgPreedit, MSG_INPUT, "%s", anthy->input_state.input_buffer);
+        return IRV_DISPLAY_MESSAGE;
+    }
 
     if (IsHotKeySimple(sym, state)) {
         char *romaji_buffer = (anthy->input_state).romaji_buffer;

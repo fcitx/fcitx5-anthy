@@ -277,12 +277,12 @@ int FcitxAnthyInitTypingTables(struct _FcitxAnthy* anthy)
 {
     int i;
 
-    anthy->rule = fcitx_malloc0(sizeof(FcitxAnthyTypingRule));
+    anthy->rule = fcitx_utils_malloc0(sizeof(FcitxAnthyTypingRule));
 
     RomajiKanaPair *romaji_typing_rule_pairs = NULL;
     FcitxLog(INFO, "%d", NR_ROMAJI_TYPING_RULE);
     for (i = 0; i < NR_ROMAJI_TYPING_RULE; i++) {
-        RomajiKanaPair *pair = fcitx_malloc0(sizeof(RomajiKanaPair));
+        RomajiKanaPair *pair = fcitx_utils_malloc0(sizeof(RomajiKanaPair));
         pair->romaji_key = romaji_typing_rule[i][0];
         pair->kana_value = romaji_typing_rule[i][1];
         HASH_ADD_KEYPTR(hh, romaji_typing_rule_pairs, pair->romaji_key, strlen(pair->romaji_key), pair);

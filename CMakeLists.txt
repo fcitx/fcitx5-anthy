@@ -2,8 +2,11 @@ cmake_minimum_required (VERSION 2.6)
 
 project(fcitx-anthy)
 
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+
 FIND_PACKAGE(Gettext REQUIRED)
 FIND_PACKAGE(Fcitx REQUIRED)
+FIND_PACKAGE(Anthy REQUIRED)
 
 # uninstall target
 configure_file(

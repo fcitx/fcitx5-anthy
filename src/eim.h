@@ -38,7 +38,7 @@
 struct _FcitxAnthyTypingRule;
 
 typedef struct _FcitxAnthyConfig {
-    GenericConfig gconfig;
+    FcitxGenericConfig gconfig;
     int iAnthyPriority;
 } FcitxAnthyConfig;
 
@@ -47,7 +47,7 @@ __EXPORT_API void* FcitxAnthyCreate(FcitxInstance* instance);
 __EXPORT_API void FcitxAnthyDestroy(void* arg);
 __EXPORT_API INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int state);
 __EXPORT_API INPUT_RETURN_VALUE FcitxAnthyGetCandWords(void *arg);
-__EXPORT_API INPUT_RETURN_VALUE FcitxAnthyGetCandWord(void *arg, CandidateWord* candWord);
+__EXPORT_API INPUT_RETURN_VALUE FcitxAnthyGetCandWord(void *arg, FcitxCandidateWord* candWord);
 __EXPORT_API boolean FcitxAnthyInit(void*);
 __EXPORT_API void ReloadConfigFcitxAnthy(void*);
 

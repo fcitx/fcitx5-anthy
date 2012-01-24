@@ -77,18 +77,18 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
 {
     FcitxAnthy* anthy = (FcitxAnthy*) arg;
     FcitxInputState *input = FcitxInstanceGetInputState(anthy->owner);
-    Messages *msgPreedit = FcitxInputStateGetPreedit(input);
+    FcitxMessages *msgPreedit = FcitxInputStateGetPreedit(input);
 
-    CleanInputWindowUp(anthy->owner);
+    FcitxInstanceCleanInputWindowUp(anthy->owner);
 
     // todo: if convert key or predict key, convert or predict
     if((sym & 0xff) == ' '){
         FcitxAnthyConvertKanaToKanji(anthy);
-        AddMessageAtLast(msgPreedit, MSG_INPUT, "%s", anthy->input_state.input_buffer);
+        FcitxMessagesAddMessageAtLast(msgPreedit, MSG_INPUT, "%s", anthy->input_state.input_buffer);
         return IRV_DISPLAY_MESSAGE;
     }
 
-    if (IsHotKeySimple(sym, state)) {
+    if (FcitxHotkeyIsHotKeySimple(sym, state)) {
         char *romaji_buffer = (anthy->input_state).romaji_buffer;
         int romaji_count = (anthy->input_state).romaji_count;
 
@@ -102,9 +102,9 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
 
         FcitxLog(INFO,"romaji_buffer:%s count:%d\n",anthy->input_state.romaji_buffer,anthy->input_state.romaji_count);
         FcitxLog(INFO,"Input Display should be:%s%s\n",anthy->input_state.input_buffer,anthy->input_state.romaji_buffer);
-        AddMessageAtLast(msgPreedit, MSG_INPUT, "%s", anthy->input_state.input_buffer);
+        FcitxMessagesAddMessageAtLast(msgPreedit, MSG_INPUT, "%s", anthy->input_state.input_buffer);
         if(romaji_buffer[0])
-            AddMessageAtLast(msgPreedit, MSG_INPUT, "%s", anthy->input_state.romaji_buffer);
+            FcitxMessagesAddMessageAtLast(msgPreedit, MSG_INPUT, "%s", anthy->input_state.romaji_buffer);
 
         return IRV_DISPLAY_MESSAGE;
     } else {
@@ -146,7 +146,7 @@ INPUT_RETURN_VALUE FcitxAnthyGetCandWords(void* arg)
  * @return the string of canidate word
  **/
 __EXPORT_API
-INPUT_RETURN_VALUE FcitxAnthyGetCandWord(void* arg, CandidateWord* candWord)
+INPUT_RETURN_VALUE FcitxAnthyGetCandWord(void* arg, FcitxCandidateWord* candWord)
 {
     FcitxAnthy* anthy = (FcitxAnthy*)arg;
     return IRV_DO_NOTHING;
@@ -161,7 +161,7 @@ INPUT_RETURN_VALUE FcitxAnthyGetCandWord(void* arg, CandidateWord* candWord)
 __EXPORT_API
 void* FcitxAnthyCreate(FcitxInstance* instance)
 {
-    FcitxAnthy* anthy = (FcitxAnthy*) fcitx_malloc0(sizeof(FcitxAnthy));
+    FcitxAnthy* anthy = (FcitxAnthy*) fcitx_utils_malloc0(sizeof(FcitxAnthy));
     bindtextdomain("fcitx-anthy", LOCALEDIR);
     anthy->owner = instance;
 
@@ -180,20 +180,23 @@ void* FcitxAnthyCreate(FcitxInstance* instance)
 
     ConfigAnthy(anthy);
 
-    FcitxRegisterIM(instance,
-                    anthy,
-                    _("Anthy"),
-                    "anthy",
-                    FcitxAnthyInit,
-                    FcitxAnthyReset,
-                    FcitxAnthyDoInput,
-                    FcitxAnthyGetCandWords,
-                    NULL,
-                    NULL,
-                    ReloadConfigFcitxAnthy,
-                    NULL,
-                    anthy->fa.iAnthyPriority
-                   );
+    FcitxInstanceRegisterIM(
+        instance,
+        anthy,
+        "anthy",
+        _("Anthy"),
+        "anthy",
+        FcitxAnthyInit,
+        FcitxAnthyReset,
+        FcitxAnthyDoInput,
+        FcitxAnthyGetCandWords,
+        NULL,
+        NULL,
+        ReloadConfigFcitxAnthy,
+        NULL,
+        anthy->fa.iAnthyPriority,
+        "ja_JP"
+    );
     return anthy;
 }
 
@@ -219,20 +222,20 @@ void FcitxAnthyDestroy(void* arg)
  **/
 boolean LoadAnthyConfig(FcitxAnthyConfig* fs)
 {
-    ConfigFileDesc *configDesc = GetAnthyConfigDesc();
+    FcitxConfigFileDesc *configDesc = GetAnthyConfigDesc();
     if (!configDesc)
         return false;
 
-    FILE *fp = GetXDGFileUserWithPrefix("conf", "fcitx-anthy.config", "rt", NULL);
+    FILE *fp = FcitxXDGGetFileUserWithPrefix("conf", "fcitx-anthy.config", "rt", NULL);
 
     if (!fp) {
         if (errno == ENOENT)
             SaveAnthyConfig(fs);
     }
-    ConfigFile *cfile = ParseConfigFileFp(fp, configDesc);
+    FcitxConfigFile *cfile = FcitxConfigParseConfigFileFp(fp, configDesc);
 
     FcitxAnthyConfigConfigBind(fs, cfile, configDesc);
-    ConfigBindSync(&fs->gconfig);
+    FcitxConfigBindSync(&fs->gconfig);
 
     if (fp)
         fclose(fp);
@@ -257,9 +260,9 @@ __EXPORT_API void ReloadConfigFcitxAnthy(void* arg)
  **/
 void SaveAnthyConfig(FcitxAnthyConfig* fa)
 {
-    ConfigFileDesc *configDesc = GetAnthyConfigDesc();
-    FILE *fp = GetXDGFileUserWithPrefix("conf", "fcitx-anthy.config", "wt", NULL);
-    SaveConfigFileFp(fp, &fa->gconfig, configDesc);
+    FcitxConfigFileDesc *configDesc = GetAnthyConfigDesc();
+    FILE *fp = FcitxXDGGetFileUserWithPrefix("conf", "fcitx-anthy.config", "wt", NULL);
+    FcitxConfigSaveConfigFileFp(fp, &fa->gconfig, configDesc);
     if (fp)
         fclose(fp);
 }

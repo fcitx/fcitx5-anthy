@@ -4,10 +4,16 @@ include_directories (${FCITX4_FCITX_CONFIG_INCLUDE_DIRS})
 include_directories (${FCITX4_FCITX_UTILS_INCLUDE_DIRS})
 
 set( fcitx_anthy_sources
-    eim.c
-    tables.c
-    convert.c
-    config.c
+     config.cpp
+     conversion.cpp
+     defaulttables.cpp
+     eim.cpp
+     kana.cpp
+     key2kana.cpp
+     key2kanatable.cpp
+     preedit.cpp
+     reading.cpp
+     utils.cpp
     )
 
 add_definitions( -DLOCALEDIR=\"${CMAKE_INSTALL_PREFIX}/share/locale\" )

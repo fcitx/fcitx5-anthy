@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-24 23:16+0800\n"
+"POT-Creation-Date: 2012-02-04 08:54+0800\n"
 "PO-Revision-Date: 2011-08-12 01:54+0800\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified <kde-i18n-doc@kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 # unknown
 #: /home/saber/Develop/fcitx-anthy/build/po/tmp/fcitx-anthy.conf.in.h:1
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/eim.c:187
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/eim.cpp:172
 msgid "Anthy"
 msgstr "Anthy"
 

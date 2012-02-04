@@ -26,6 +26,8 @@
 #include <fcitx/instance.h>
 #include <fcitx/candidate.h>
 #include <anthy/anthy.h>
+#include "common.h"
+#include "preedit.h"
 
 #ifdef __cplusplus
 #define __EXPORT_API extern "C"
@@ -35,11 +37,24 @@
 
 #define _(x) gettext(x)
 
+#define SCIM_ANTHY_CONFIG_DICT_ENCODING_DEFAULT "UTF-8"
+
 struct _FcitxAnthyTypingRule;
 
 typedef struct _FcitxAnthyConfig {
     FcitxGenericConfig gconfig;
+    char* m_kana_layout_ro_key;
+    char* m_ten_key_type;
+    FcitxHotkey m_left_thumb_keys[2];
+    FcitxHotkey m_right_thumb_keys[2];
     int iAnthyPriority;
+    boolean m_predict_on_input;
+    boolean m_learn_on_auto_commit;
+    boolean m_romaji_allow_split;
+    boolean m_close_cand_win_on_select;
+    Key2KanaTable* m_custom_nicola_table;
+    Key2KanaTable* m_custom_kana_table;
+    Key2KanaTable* m_custom_romaji_table;
 } FcitxAnthyConfig;
 
 CONFIG_BINDING_DECLARE(FcitxAnthyConfig);
@@ -51,46 +66,28 @@ __EXPORT_API INPUT_RETURN_VALUE FcitxAnthyGetCandWord(void *arg, FcitxCandidateW
 __EXPORT_API boolean FcitxAnthyInit(void*);
 __EXPORT_API void ReloadConfigFcitxAnthy(void*);
 
-/* Input Mode */
-typedef enum _InputMode {
-    INPUT_MODE_HIRAGANA,
-    INPUT_MODE_KATAKANA,
-    INPUT_MODE_HALF_WIDTH_KATAKANA,
-    INPUT_MODE_LATIN,
-    INPUT_MODE_WIDE_LATIN
-} InputMode;
-
-/* Typing Mode */
-typedef enum _TypingMode {
-    TYPING_MODE_ROMAJI,
-    TYPING_MODE_KANA
-} TypingMode;
-
 #define MAX_INPUT_COUNT 1000
 #define MAX_ROMAJI_COUNT 4
 
-typedef struct _FcitxAnthyInputState {
-    char input_buffer[MAX_INPUT_COUNT];
-    char romaji_buffer[MAX_ROMAJI_COUNT + 1];
-    int input_count;
-    int romaji_count;
+typedef enum {
+    SCIM_ANTHY_CONVERSION_MULTI_SEGMENT,
+    SCIM_ANTHY_CONVERSION_SINGLE_SEGMENT,
+    SCIM_ANTHY_CONVERSION_MULTI_SEGMENT_IMMEDIATE,
+    SCIM_ANTHY_CONVERSION_SINGLE_SEGMENT_IMMEDIATE,
+} ConversionMode;
 
-    struct anthy_segment_stat segstat[MAX_INPUT_COUNT];
-    int seg_pos;
-    int input_pos;
-} FcitxAnthyInputState;
-
-typedef struct _FcitxAnthy {
-    FcitxAnthyConfig fa;
+struct FcitxAnthy {
+    FcitxAnthyConfig config;
     FcitxInstance* owner;
-    anthy_context_t context;
 
     InputMode input_mode;
-    TypingMode typing_mode;
-
-    FcitxAnthyInputState input_state;
+    TypingMethod typing_method;
 
     struct _FcitxAnthyTypingRule* rule;
-} FcitxAnthy;
+    Preedit* preedit;
+    ConversionMode m_conv_mode;
+    
+    FcitxHotkey m_last_key[2];
+};
 
 #endif

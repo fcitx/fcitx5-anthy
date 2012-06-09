@@ -17,24 +17,36 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __SCIM_ANTHY_UTILS_H__
-#define __SCIM_ANTHY_UTILS_H__
-#include <fcitx-config/hotkey.h>
-#include <string>
+#ifndef __FCITX_ANTHY_UTILS_H__
+#define __FCITX_ANTHY_UTILS_H__
 
+#include "common.h"
+
+size_t
+util_utf8_string_length(const std::string& s);
+
+std::string
+util_utf8_string_substr(const std::string& s, size_t start, size_t len);
+
+bool util_match_key_event     (const FcitxHotkey*  list,
+                               const KeyEvent      &key,
+                               uint16_t             ignore_mask = 0);
 void util_split_string        (std::string              &str,
                                std::vector<std::string> &str_list,
                                char                *delim,
                                int                  num);
-void util_convert_to_wide (std::string & wide, const std::string & str);
+void util_convert_to_wide     (std::string          &wide,
+                               const std::string        &str);
 void util_convert_to_half     (std::string              &half,
                                const std::string    &str);
 void util_convert_to_katakana (std::string          &kata,
                                const std::string    &hira,
                                bool                 half = false);
-bool util_key_is_keypad       (FcitxKeySym sym, unsigned int state);
+
+bool util_key_is_keypad       (const KeyEvent      &key);
 void util_keypad_to_string    (std::string              &str,
-                               FcitxKeySym sym, unsigned int state);
+                               const KeyEvent      &key);
 void util_launch_program      (const char          *command);
 
-#endif /* __SCIM_ANTHY_UTILS_H__ */
+
+#endif /* __FCITX_ANTHY_UTILS_H__ */

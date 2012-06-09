@@ -20,7 +20,7 @@
 #include <string.h>
 #include "conversion.h"
 #include "utils.h"
-#include "eim.h"
+#include "imengine.h"
 
 static void rotate_case (std::string &str);
 
@@ -77,7 +77,7 @@ ConversionSegment::set_reading_length (unsigned int len)
 //
 // Conversion Class
 //
-Conversion::Conversion (FcitxAnthy *anthy, Reading &reading)
+Conversion::Conversion (AnthyInstance &anthy, Reading &reading)
     : m_anthy              (anthy),
       m_reading            (reading),
       m_anthy_context      (anthy_create_context()),
@@ -107,11 +107,14 @@ Conversion::convert (std::string source, CandidateType ctype,
 
     clear ();
 
+    std::string dest;
+
     // convert
     struct anthy_conv_stat conv_stat;
     anthy_get_stat (m_anthy_context, &conv_stat);
     if (conv_stat.nr_segment <= 0) {
-        anthy_set_string (m_anthy_context, source.c_str ());
+        dest = source;
+        anthy_set_string (m_anthy_context, dest.c_str ());
     }
 
     if (single_segment)
@@ -139,13 +142,13 @@ Conversion::convert (std::string source, CandidateType ctype,
 void
 Conversion::convert (CandidateType ctype, bool single_segment)
 {
-    convert (m_reading.get (), ctype, single_segment);
+    convert (m_reading.get_by_char (), ctype, single_segment);
 }
 
 void
 Conversion::convert (const std::string &source, bool single_segment)
 {
-    convert (source, SCIM_ANTHY_CANDIDATE_DEFAULT, single_segment);
+    convert (source, FCITX_ANTHY_CANDIDATE_DEFAULT, single_segment);
 }
 
 void
@@ -154,7 +157,10 @@ Conversion::predict (void)
     clear ();
 
 #ifdef HAS_ANTHY_PREDICTION
-    anthy_set_prediction_string (m_anthy_context, m_reading.get ().c_str());
+    std::string str;
+
+    str = m_reading.get_by_char ();
+    anthy_set_prediction_string (m_anthy_context, str.c_str ());
 
     struct anthy_prediction_stat ps;
     anthy_get_prediction_stat (m_anthy_context, &ps);
@@ -268,6 +274,47 @@ Conversion::get_length (void)
     return len;
 }
 
+unsigned int
+Conversion::get_length_by_char (void)
+{
+    unsigned int len = 0;
+    ConversionSegments::iterator it;
+    for (it = m_segments.begin (); it != m_segments.end (); it++)
+        len += util_utf8_string_length(it->get_string());
+    return len;
+}
+
+void
+Conversion::update_preedit (void)
+{
+    FcitxMessages* preedit;
+    if (m_anthy.support_client_preedit())
+        preedit = m_anthy.get_client_preedit();
+    else
+        preedit = m_anthy.get_preedit();
+    unsigned int seg_id;
+    ConversionSegments::iterator it;
+    for (it = m_segments.begin (), seg_id = 0;
+         it != m_segments.end ();
+         it++, seg_id++)
+    {
+        // create attribute for this segment
+        if (it->get_string().length () <= 0) {
+            continue;
+        }
+
+        FcitxMessageType type;
+        if ((int) seg_id == m_cur_segment) {
+            type = (FcitxMessageType) (MSG_HIGHLIGHT | MSG_CODE);
+        } else {
+            type = (FcitxMessageType) MSG_INPUT;
+        }
+        FcitxMessagesAddMessageAtLast(preedit, type, "%s", it->get_string().c_str());
+    }
+}
+
+
+
 //
 // segments of the converted sentence
 //
@@ -320,7 +367,7 @@ Conversion::get_segment_string (int segment_id, int candidate_id)
 
     int real_seg = segment_id + m_start_id;
     int cand;
-    if (candidate_id <= SCIM_ANTHY_LAST_SPECIAL_CANDIDATE)
+    if (candidate_id <= FCITX_ANTHY_LAST_SPECIAL_CANDIDATE)
         cand = m_segments[segment_id].get_candidate_id ();
     else
         cand = candidate_id;
@@ -462,13 +509,20 @@ Conversion::get_segment_position (int segment_id)
     return pos;
 }
 
-
+INPUT_RETURN_VALUE
+get_candidate(void* arg, struct _FcitxCandidateWord* candWord)
+{
+    int* i = (int*) candWord->priv;
+    AnthyInstance* anthy = (AnthyInstance*) candWord->owner;
+    anthy->select_candidate(*i);
+    return IRV_DO_NOTHING;
+}
 
 //
 // candidates for a segment or prediction
 //
 void
-Conversion::get_candidates (struct _FcitxCandidateWordList *table, int segment_id)
+Conversion::get_candidates (FcitxCandidateWordList *table, int segment_id)
 {
     FcitxCandidateWordReset(table);
 
@@ -488,15 +542,16 @@ Conversion::get_candidates (struct _FcitxCandidateWordList *table, int segment_i
             anthy_get_prediction (m_anthy_context, i, buf, len + 1);
             buf[len] = '\0';
 
-            // TODO: anthyCand value
             FcitxCandidateWord candWord;
-            FcitxAnthyCandWord* anthyCand = (FcitxAnthyCandWord*) fcitx_utils_malloc0(sizeof(FcitxAnthyCandWord));
-            candWord.strWord = strdup(buf);
-            candWord.strExtra = NULL;
-            candWord.wordType = MSG_OTHER;
+            int *p = fcitx_utils_new(int);
+            *p = i;
+            candWord.callback = get_candidate;
             candWord.extraType = MSG_OTHER;
-            candWord.owner = m_anthy;
-            candWord.priv = anthyCand;
+            candWord.owner = (void*) &m_anthy;
+            candWord.priv = (void*) p;
+            candWord.strExtra = NULL;
+            candWord.strWord = strdup(buf);
+            candWord.wordType = MSG_OTHER;
 
             FcitxCandidateWordAppend(table, &candWord);
         }
@@ -516,6 +571,7 @@ Conversion::get_candidates (struct _FcitxCandidateWordList *table, int segment_i
         }
         int real_segment_id = segment_id + m_start_id;
 
+        int selected = get_selected_candidate();
         if (real_segment_id >= conv_stat.nr_segment)
             return;
 
@@ -532,21 +588,22 @@ Conversion::get_candidates (struct _FcitxCandidateWordList *table, int segment_i
             anthy_get_segment (m_anthy_context, real_segment_id,
                                i, buf, len + 1);
 
-            // TODO: anthyCand value
             FcitxCandidateWord candWord;
-            FcitxAnthyCandWord* anthyCand = (FcitxAnthyCandWord*) fcitx_utils_malloc0(sizeof(FcitxAnthyCandWord));
-            candWord.strWord = strdup(buf);
-            candWord.strExtra = NULL;
-            candWord.wordType = MSG_OTHER;
+            int *p = fcitx_utils_new(int);
+            *p = i;
+            candWord.callback = get_candidate;
             candWord.extraType = MSG_OTHER;
-            candWord.owner = m_anthy;
-            candWord.priv = anthyCand;
+            candWord.owner = (void*) &m_anthy;
+            candWord.priv = (void*) p;
+            candWord.strExtra = NULL;
+            candWord.strWord = strdup(buf);
+            if (i == selected)
+                candWord.wordType = MSG_CANDIATE_CURSOR;
+            else
+                candWord.wordType = MSG_OTHER;
 
             FcitxCandidateWordAppend(table, &candWord);
         }
-
-        // TODO: figure out this 
-        // table.set_cursor_pos (get_selected_candidate ());
     }
 }
 
@@ -602,7 +659,7 @@ Conversion::select_candidate (int candidate_id, int segment_id)
 {
     if (is_predicting ()) {
 #ifdef HAS_ANTHY_PREDICTION
-        if (candidate_id < SCIM_ANTHY_CANDIDATE_DEFAULT)
+        if (candidate_id < FCITX_ANTHY_CANDIDATE_DEFAULT)
             return;
 
         struct anthy_prediction_stat ps;
@@ -625,7 +682,7 @@ Conversion::select_candidate (int candidate_id, int segment_id)
 #endif /* HAS_ANTHY_PREDICTION */
 
     } else if (is_converting ()) {
-        if (candidate_id <= SCIM_ANTHY_LAST_SPECIAL_CANDIDATE)
+        if (candidate_id <= FCITX_ANTHY_LAST_SPECIAL_CANDIDATE)
             return;
 
         struct anthy_conv_stat conv_stat;
@@ -648,14 +705,14 @@ Conversion::select_candidate (int candidate_id, int segment_id)
         struct anthy_segment_stat seg_stat;
         anthy_get_segment_stat (m_anthy_context, real_segment_id, &seg_stat);
 
-        if (candidate_id == SCIM_ANTHY_CANDIDATE_HALF) {
+        if (candidate_id == FCITX_ANTHY_CANDIDATE_HALF) {
             switch (m_segments[segment_id].get_candidate_id ()) {
-            case SCIM_ANTHY_CANDIDATE_LATIN:
-            case SCIM_ANTHY_CANDIDATE_WIDE_LATIN:
-                candidate_id = SCIM_ANTHY_CANDIDATE_LATIN;
+            case FCITX_ANTHY_CANDIDATE_LATIN:
+            case FCITX_ANTHY_CANDIDATE_WIDE_LATIN:
+                candidate_id = FCITX_ANTHY_CANDIDATE_LATIN;
                 break;
             default:
-                candidate_id = SCIM_ANTHY_CANDIDATE_HALF_KATAKANA;
+                candidate_id = FCITX_ANTHY_CANDIDATE_HALF_KATAKANA;
                 break;
             }
         }
@@ -667,6 +724,7 @@ Conversion::select_candidate (int candidate_id, int segment_id)
         }
     }
 }
+
 
 
 //
@@ -685,49 +743,49 @@ Conversion::get_reading_substr (std::string &string,
         prev_cand = m_segments[segment_id].get_candidate_id ();
 
     switch ((CandidateType) candidate_id) {
-    case SCIM_ANTHY_CANDIDATE_LATIN:
-        if (prev_cand == SCIM_ANTHY_CANDIDATE_LATIN) {
+    case FCITX_ANTHY_CANDIDATE_LATIN:
+        if (prev_cand == FCITX_ANTHY_CANDIDATE_LATIN) {
             std::string str = m_segments[segment_id].get_string ();
             rotate_case (str);
             string = str;
         } else {
-            string = m_reading.get (seg_start, seg_len,
-                                    SCIM_ANTHY_STRING_LATIN);
+            string = m_reading.get_by_char (seg_start, seg_len,
+                                    FCITX_ANTHY_STRING_LATIN);
         }
         break;
 
-    case SCIM_ANTHY_CANDIDATE_WIDE_LATIN:
-        if (prev_cand == SCIM_ANTHY_CANDIDATE_WIDE_LATIN) {
+    case FCITX_ANTHY_CANDIDATE_WIDE_LATIN:
+        if (prev_cand == FCITX_ANTHY_CANDIDATE_WIDE_LATIN) {
             std::string str;
             util_convert_to_half (str, m_segments[segment_id].get_string ());
             rotate_case (str);
             util_convert_to_wide (string, str);
         } else {
-            string = m_reading.get (seg_start, seg_len,
-                                    SCIM_ANTHY_STRING_WIDE_LATIN);
+            string = m_reading.get_by_char (seg_start, seg_len,
+                                    FCITX_ANTHY_STRING_WIDE_LATIN);
         }
         break;
 
-    case SCIM_ANTHY_CANDIDATE_KATAKANA:
-        string = m_reading.get (seg_start, seg_len,
-                                SCIM_ANTHY_STRING_KATAKANA);
+    case FCITX_ANTHY_CANDIDATE_KATAKANA:
+        string = m_reading.get_by_char (seg_start, seg_len,
+                                FCITX_ANTHY_STRING_KATAKANA);
         break;
 
-    case SCIM_ANTHY_CANDIDATE_HALF_KATAKANA:
-        string = m_reading.get (seg_start, seg_len,
-                                SCIM_ANTHY_STRING_HALF_KATAKANA);
+    case FCITX_ANTHY_CANDIDATE_HALF_KATAKANA:
+        string = m_reading.get_by_char (seg_start, seg_len,
+                                FCITX_ANTHY_STRING_HALF_KATAKANA);
         break;
 
-    case SCIM_ANTHY_CANDIDATE_HALF:
+    case FCITX_ANTHY_CANDIDATE_HALF:
         // shouldn't reach to this entry
-        string = m_reading.get (seg_start, seg_len,
-                                SCIM_ANTHY_STRING_HALF_KATAKANA);
+        string = m_reading.get_by_char (seg_start, seg_len,
+                                FCITX_ANTHY_STRING_HALF_KATAKANA);
         break;
 
-    case SCIM_ANTHY_CANDIDATE_HIRAGANA:
+    case FCITX_ANTHY_CANDIDATE_HIRAGANA:
     default:
-        string = m_reading.get (seg_start, seg_len,
-                                SCIM_ANTHY_STRING_HIRAGANA);
+        string = m_reading.get_by_char (seg_start, seg_len,
+                                FCITX_ANTHY_STRING_HIRAGANA);
         break;
     }
 }

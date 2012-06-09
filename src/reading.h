@@ -17,19 +17,22 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __SCIM_ANTHY_READING_H__
-#define __SCIM_ANTHY_READING_H__
+#ifndef __FCITX_ANTHY_READING_H__
+#define __FCITX_ANTHY_READING_H__
 
-#include "key2kanatable.h"
 #include "key2kana.h"
 #include "kana.h"
+#include "nicola.h"
+#include "factory.h"
+
+class AnthyInstance;
 
 typedef enum {
-    SCIM_ANTHY_STRING_LATIN,
-    SCIM_ANTHY_STRING_WIDE_LATIN,
-    SCIM_ANTHY_STRING_HIRAGANA,
-    SCIM_ANTHY_STRING_KATAKANA,
-    SCIM_ANTHY_STRING_HALF_KATAKANA,
+    FCITX_ANTHY_STRING_LATIN,
+    FCITX_ANTHY_STRING_WIDE_LATIN,
+    FCITX_ANTHY_STRING_HIRAGANA,
+    FCITX_ANTHY_STRING_KATAKANA,
+    FCITX_ANTHY_STRING_HALF_KATAKANA,
 } StringType;
 
 class Reading;
@@ -44,58 +47,71 @@ public:
     ReadingSegment (void);
     virtual ~ReadingSegment ();
 
-    const std::string& get     (void) { return kana; }
-    const std::string& get_raw (void) { return raw; }
+    const std::string & get     (void) { return kana; }
+    const std::string     & get_raw (void) { return raw; }
 
     void split (ReadingSegments &segments);
 
 private:
     std::string     raw;
-    std::string     kana;
+    std::string kana;
 };
 
 class Reading
 {
 public:
-    Reading (FcitxAnthy* anthy);
+    Reading (AnthyInstance &anthy);
     virtual ~Reading ();
 
-    bool         can_process_key_event (FcitxKeySym sym, unsigned int state);
-    bool         process_key_event     (FcitxKeySym sym, unsigned int state);
+    bool         can_process_key_event (const KeyEvent & key);
+    bool         process_key_event     (const KeyEvent & key);
     void         finish                (void);
     void         clear                 (void);
 
-    std::string   get                   (unsigned int     start  = 0,
+    std::string   get_by_char          (unsigned int     start  = 0,
                                         int              length = -1,
                                         StringType       type
-                                        = SCIM_ANTHY_STRING_HIRAGANA);
-    std::string        get_raw               (unsigned int     start  = 0,
+                                        = FCITX_ANTHY_STRING_HIRAGANA);
+    std::string       get_raw_by_char               (unsigned int     start  = 0,
                                         int              length = -1);
-    bool         append                (FcitxKeySym sym, unsigned int state,
-                                        const std::string& string);
+    bool         append                (const KeyEvent & key,
+                                        const std::string   & string);
     void         erase                 (unsigned int     start  = 0,
                                         int              length = -1,
                                         bool             allow_split = false);
 
     unsigned int get_length            (void);
+    unsigned int get_length_by_char    (void);
     unsigned int get_caret_pos         (void);
-    void         set_caret_pos         (unsigned int     pos);
+    unsigned int get_caret_pos_by_char (void);
+    void         set_caret_pos_by_char (unsigned int     pos);
     void         move_caret            (int              step,
                                         bool             allow_split = false);
 
     void         set_typing_method     (TypingMethod     method);
     TypingMethod get_typing_method     (void);
+    void         set_period_style      (PeriodStyle      style);
+    PeriodStyle  get_period_style      (void);
+    void         set_comma_style       (CommaStyle       style);
+    CommaStyle   get_comma_style       (void);
+    void         set_bracket_style     (BracketStyle     style);
+    BracketStyle get_bracket_style     (void);
+    void         set_slash_style       (SlashStyle       style);
+    SlashStyle   get_slash_style       (void);
     void         set_symbol_width      (bool             half);
     bool         get_symbol_width      (void);
     void         set_number_width      (bool             half);
     bool         get_number_width      (void);
+    void         set_pseudo_ascii_mode (int              mode);
+    bool         is_pseudo_ascii_mode  (void);
+    void         reset_pseudo_ascii_mode (void);
 
 private:
     void         reset_pending         (void);
     void         split_segment         (unsigned int     seg_id);
 
 private:
-    FcitxAnthy* m_anthy;
+    AnthyInstance         &m_anthy;
 
     // tables
     Key2KanaTableSet       m_key2kana_tables;
@@ -104,6 +120,7 @@ private:
     // convertors
     Key2KanaConvertor      m_key2kana_normal;
     KanaConvertor          m_kana;
+    NicolaConvertor        m_nicola;
     Key2KanaConvertorBase *m_key2kana;
 
     // state
@@ -112,7 +129,7 @@ private:
     unsigned int           m_caret_offset;
 };
 
-#endif /* __SCIM_ANTHY_READING_H__ */
+#endif /* __FCITX_ANTHY_READING_H__ */
 /*
 vi:ts=4:nowrap:ai:expandtab
 */

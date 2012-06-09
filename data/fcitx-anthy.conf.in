@@ -7,3 +7,4 @@ Enabled=True
 Library=fcitx-anthy.so
 Type=SharedLibrary
 Dependency=fcitx-punc
+IMRegisterMethod=ConfigFile

@@ -17,94 +17,102 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __SCIM_ANTHY_PREEDIT_H__
-#define __SCIM_ANTHY_PREEDIT_H__
+#ifndef __FCITX_ANTHY_PREEDIT_H__
+#define __FCITX_ANTHY_PREEDIT_H__
 
 #include <anthy/anthy.h>
-#include <fcitx-config/hotkey.h>
 #include "reading.h"
 #include "conversion.h"
 
-#define SCIM_ANTHY_PSEUDO_ASCII_TRIGGERED_CAPITALIZED			(1 << 0)
-#define SCIM_ANTHY_PSEUDO_ASCII_TRIGGERED_COUPLE_OF_CAPITAL		(1 << 1)
+#define FCITX_ANTHY_PSEUDO_ASCII_TRIGGERED_CAPITALIZED			(1 << 0)
+#define FCITX_ANTHY_PSEUDO_ASCII_TRIGGERED_COUPLE_OF_CAPITAL		(1 << 1)
 
-typedef enum {
-    SCIM_ANTHY_MODE_HIRAGANA,
-    SCIM_ANTHY_MODE_KATAKANA,
-    SCIM_ANTHY_MODE_HALF_KATAKANA
-} InputMode;
+class AnthyInstance;
 
 class Preedit
 {
 public:
-    Preedit (FcitxAnthy* anthy);
+    Preedit (AnthyInstance &anthy);
     virtual ~Preedit ();
 
     // getting status
-    virtual unsigned int  get_length             (void);
-    virtual std::string   get_string             (void);
-    virtual Reading      &get_reading            (void);
+    unsigned int  get_length             (void);
+    unsigned int  get_length_by_char     (void);
+    std::string   get_string             (void);
+    void          update_preedit         (void);
+    Reading      &get_reading            (void);
 
-    virtual bool          is_preediting          (void);
-    virtual bool          is_converting          (void);
-    virtual bool          is_predicting          (void);
-    virtual bool          is_reconverting        (void);
+    bool          is_preediting          (void);
+    bool          is_converting          (void);
+    bool          is_predicting          (void);
+    bool          is_reconverting        (void);
 
     // for handling the preedit string
-    virtual bool          can_process_key_event  (FcitxKeySym sym, unsigned int state);
+    bool          can_process_key_event  (const KeyEvent & key);
     // return true if commiting is needed.
-    virtual bool          process_key_event      (FcitxKeySym sym, unsigned int state);
-    virtual bool          append                 (FcitxKeySym sym, unsigned int state,
+    bool          process_key_event      (const KeyEvent & key);
+    bool          append                 (const KeyEvent & key,
                                                   const std::string   & string);
-    virtual void          erase                  (bool backward = true);
-    virtual void          finish                 (void);
+    void          erase                  (bool backward = true);
+    void          finish                 (void);
 
     // for handling the conversion string
-    virtual void          convert                (CandidateType type
-                                                  = SCIM_ANTHY_CANDIDATE_DEFAULT,
+    void          convert                (CandidateType type
+                                                  = FCITX_ANTHY_CANDIDATE_DEFAULT,
                                                   bool single_segment = false);
-    virtual void          convert                (const std::string &source,
+    void          convert                (const std::string &source,
                                                   bool single_segment = false);
-    virtual void          revert                 (void);
-    virtual void          commit                 (int  segment_id = -1,
+    void          revert                 (void);
+    void          commit                 (int  segment_id = -1,
                                                   bool lean       = true);
 
     // for prediction
-    virtual void          predict                (void);
+    void          predict                (void);
 
     // segments of the converted sentence
-    virtual int           get_nr_segments        (void);
-    virtual std::string    get_segment_string     (int segment_id = -1);
-    virtual int           get_selected_segment   (void);
-    virtual void          select_segment         (int segment_id);
-    virtual int           get_segment_size       (int segment_id = -1);
-    virtual void          resize_segment         (int relative_size,
+    int           get_nr_segments        (void);
+    std::string    get_segment_string     (int segment_id = -1);
+    int           get_selected_segment   (void);
+    void          select_segment         (int segment_id);
+    int           get_segment_size       (int segment_id = -1);
+    void          resize_segment         (int relative_size,
                                                   int segment_id = -1);
 
     // candidates for a segment
-    virtual void          get_candidates         (struct _FcitxCandidateWordList *table,
+    void          get_candidates         (FcitxCandidateWordList *table,
                                                   int segment_id = -1);
-    virtual int           get_selected_candidate (int segment_id = -1);
-    virtual void          select_candidate       (int candidate_id,
+    int           get_selected_candidate (int segment_id = -1);
+    void          select_candidate       (int candidate_id,
                                                   int segment_id = -1);
 
     // for handling the caret
-    virtual unsigned int  get_caret_pos          (void);
-    virtual void          set_caret_pos          (unsigned int   pos);
-    virtual void          move_caret             (int            len);
+    unsigned int  get_caret_pos          (void);
+    void          set_caret_pos_by_char  (unsigned int   pos);
+    void          move_caret             (int            len);
 
     // clear all or part of the string.
-    virtual void          clear                  (int segment_id = -1);
+    void          clear                  (int segment_id = -1);
 
     // preferences
-    virtual void          set_input_mode         (InputMode      mode);
-    virtual InputMode     get_input_mode         (void);
-    virtual void          set_typing_method      (TypingMethod   method);
-    virtual TypingMethod  get_typing_method      (void);
-    virtual void          set_symbol_width       (bool           half);
-    virtual bool          get_symbol_width       (void);
-    virtual void          set_number_width       (bool           half);
-    virtual bool          get_number_width       (void);
+    void          set_input_mode         (InputMode      mode);
+    InputMode     get_input_mode         (void);
+    void          set_typing_method      (TypingMethod   method);
+    TypingMethod  get_typing_method      (void);
+    void          set_period_style       (PeriodStyle    style);
+    PeriodStyle   get_period_style       (void);
+    void          set_comma_style        (CommaStyle     style);
+    CommaStyle    get_comma_style        (void);
+    void          set_bracket_style      (BracketStyle   style);
+    BracketStyle  get_bracket_style      (void);
+    void          set_slash_style        (SlashStyle     style);
+    SlashStyle    get_slash_style        (void);
+    void          set_symbol_width       (bool           half);
+    bool          get_symbol_width       (void);
+    void          set_number_width       (bool           half);
+    bool          get_number_width       (void);
+    void          set_pseudo_ascii_mode  (int            mode);
+    bool          is_pseudo_ascii_mode   (void);
+    void          reset_pseudo_ascii_mode(void);
 
 private:
     void                  get_reading_substr     (std::string   & substr,
@@ -114,7 +122,7 @@ private:
     bool                  is_comma_or_period     (const std::string & str);
 
 private:
-    FcitxAnthy* m_anthy;
+    AnthyInstance    &m_anthy;
 
     // converter objects
     Reading           m_reading;
@@ -127,7 +135,7 @@ private:
     std::string        m_source;
 };
 
-#endif /* __SCIM_ANTHY_PREEDIT_H__ */
+#endif /* __FCITX_ANTHY_PREEDIT_H__ */
 /*
 vi:ts=4:nowrap:ai:expandtab
 */

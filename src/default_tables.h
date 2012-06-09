@@ -17,8 +17,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __SCIM_ANTHY_DEFAULT_TABLES_H__
-#define __SCIM_ANTHY_DEFAULT_TABLES_H__
+#ifndef __FCITX_ANTHY_DEFAULT_TABLES_H__
+#define __FCITX_ANTHY_DEFAULT_TABLES_H__
 
 typedef struct _ConvRule
 {
@@ -117,4 +117,4 @@ extern KeyCodeToCharRule    scim_anthy_kana_table[];
 // nicola
 extern NicolaRule           scim_anthy_nicola_table[];
 
-#endif /* __SCIM_ANTHY_DEFAULT_TABLES_H__ */
+#endif /* __FCITX_ANTHY_DEFAULT_TABLES_H__ */

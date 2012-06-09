@@ -1,0 +1,377 @@
+#
+#  msime.sty - Microsoft IME like style definition file for scim-anthy.
+#  Copyright (C) 2005 Takuro Ashie <ashie@homa.ne.jp>
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2, or (at your option)
+#  any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#
+
+FormatVersion = 0.0.0
+Encoding      = EUC-JP
+Title         = Microsoft IME
+Version       = 0.0.0
+
+[KeyBindings]
+OnOffKey                 = Eisu_toggle,Zenkaku_Hankaku
+CircleKanaModeKey        = Muhenkan
+LatinModeKey             = 
+WideLatinModeKey         = 
+HiraganaModeKey          = Hiragana_Katakana
+KatakanaModeKey          = Shift+Hiragana_Katakana
+HalfKatakanaModeKey      = 
+CircleTypingMethodKey    = Alt+Romaji
+
+ConvertKey               = space,Shift+space,Henkan
+PredictKey                  = Tab
+CancelKey                = BackSpace,Control+BackSpace,Escape,Control+h,Control+z
+CommitKey                = Return,Control+Return,Control+m
+ReconvertKey             = Henkan,F13
+
+InsertSpaceKey           = space
+InsertAltSpaceKey        = Shift+space
+BackSpaceKey             = BackSpace,Control+h
+DeleteKey                = Delete,Control+g
+
+MoveCaretFirstKey        = Home,Control+Left,Down,Control+a,Control+e
+MoveCaretLastKey         = End,Control+Right,Down,Control+f,Control+n,Control+x
+MoveCaretForwardKey      = Right,Shift+Right,Control+d,Control+l
+MoveCaretBackwardKey     = Left,Shift+Left,Control+s,Control+k
+
+SelectFirstSegmentKey    = Home,Control+Left,Control+a
+SelectLastSegmentKey     = End,Control+Right,Control+f
+SelectNextSegmentKey     = Right,Control+d
+SelectPrevSegmentKey     = Left,Control+s
+ShrinkSegmentKey         = Shift+Left,Control+e,Control+k
+ExpandSegmentKey         = Shift+Right,Control+l,Control+x
+CommitFirstSegmentKey    = Shift+Down
+CommitSelectedSegmentKey = Control+Down,Control+n
+
+CandidatesPageUpKey      = Page_Up,Shift+Up
+CandidatesPageDownKey    = Page_Down,Shift+Down
+SelectFirstCandidateKey  = Home
+SelectLastCandidateKey   = End
+SelectPrevCandidateKey   = Up,Control+e,Shift+space,Shift+Henkan
+SelectNextCandidateKey   = space,Tab,Henkan,Down,Control+x
+
+SelectCandidates1Key     = 1
+SelectCandidates2Key     = 2
+SelectCandidates3Key     = 3
+SelectCandidates4Key     = 4
+SelectCandidates5Key     = 5
+SelectCandidates6Key     = 6
+SelectCandidates7Key     = 7
+SelectCandidates8Key     = 8
+SelectCandidates9Key     = 9
+SelectCandidates10Key    = 0
+
+ConvertToHiraganaKey     = Control+u,F6
+ConvertToKatakanaKey     = Control+i,F7
+ConvertToHalfKey         = Control+o,F8
+ConvertToHalfKatakanaKey = Shift+F8
+ConvertToWideLatinKey    = Control+p,F9
+ConvertToLatinKey        = Control+t,F10
+
+
+# Override fundamental table
+[RomajiTable/FundamentalTable]
+-    = ー
+#/    = ・
+#[    = 「
+#]    = 」
+la   = ぁ
+xa   = ぁ
+a    = あ
+li   = ぃ
+lyi  = ぃ
+xi   = ぃ
+xyi  = ぃ
+i    = い
+yi   = い
+ye   = いぇ
+lu   = ぅ
+xu   = ぅ
+u    = う
+whu  = う
+wu   = う
+wha  = うぁ
+whi  = うぃ
+wi   = うぃ
+we   = うぇ
+whe  = うぇ
+who  = うぉ
+le   = ぇ
+lye  = ぇ
+xe   = ぇ
+xye  = ぇ
+e    = え
+lo   = ぉ
+xo   = ぉ
+o    = お
+ca   = か
+ka   = か
+ga   = が
+ki   = き
+kyi  = きぃ
+kye  = きぇ
+kya  = きゃ
+kyu  = きゅ
+kyo  = きょ
+gi   = ぎ
+gyi  = ぎぃ
+gye  = ぎぇ
+gya  = ぎゃ
+gyu  = ぎゅ
+gyo  = ぎょ
+cu   = く
+ku   = く
+qu   = く
+kwa  = くぁ
+qa   = くぁ
+qwa  = くぁ
+qi   = くぃ
+qwi  = くぃ
+qyi  = くぃ
+qwu  = くぅ
+qe   = くぇ
+qwe  = くぇ
+qye  = くぇ
+qo   = くぉ
+qwo  = くぉ
+qya  = くゃ
+qyu  = くゅ
+qyo  = くょ
+gu   = ぐ
+gwa  = ぐぁ
+gwi  = ぐぃ
+gwu  = ぐぅ
+gwe  = ぐぇ
+gwo  = ぐぉ
+ke   = け
+ge   = げ
+co   = こ
+ko   = こ
+go   = ご
+sa   = さ
+za   = ざ
+ci   = し
+shi  = し
+si   = し
+syi  = しぃ
+she  = しぇ
+sye  = しぇ
+sha  = しゃ
+sya  = しゃ
+shu  = しゅ
+syu  = しゅ
+sho  = しょ
+syo  = しょ
+ji   = じ
+zi   = じ
+jyi  = じぃ
+zyi  = じぃ
+je   = じぇ
+jye  = じぇ
+zye  = じぇ
+ja   = じゃ
+jya  = じゃ
+zya  = じゃ
+ju   = じゅ
+jyu  = じゅ
+zyu  = じゅ
+jo   = じょ
+jyo  = じょ
+zyo  = じょ
+su   = す
+swa  = すぁ
+swi  = すぃ
+swu  = すぅ
+swe  = すぇ
+swo  = すぉ
+zu   = ず
+ce   = せ
+se   = せ
+ze   = ぜ
+so   = そ
+zo   = ぞ
+ta   = た
+da   = だ
+chi  = ち
+ti   = ち
+cyi  = ちぃ
+tyi  = ちぃ
+che  = ちぇ
+cye  = ちぇ
+tye  = ちぇ
+cha  = ちゃ
+cya  = ちゃ
+tya  = ちゃ
+chu  = ちゅ
+cyu  = ちゅ
+tyu  = ちゅ
+cho  = ちょ
+cyo  = ちょ
+tyo  = ちょ
+di   = ぢ
+dyi  = ぢぃ
+dye  = ぢぇ
+dya  = ぢゃ
+dyu  = ぢゅ
+dyo  = ぢょ
+ltsu = っ
+ltu  = っ
+xtsu = っ
+xtu  = っ
+tsu  = つ
+tu   = つ
+tsa  = つぁ
+tsi  = つぃ
+tse  = つぇ
+tso  = つぉ
+du   = づ
+te   = て
+thi  = てぃ
+the  = てぇ
+tha  = てゃ
+thu  = てゅ
+tho  = てょ
+de   = で
+dhi  = でぃ
+dhe  = でぇ
+dha  = でゃ
+dhu  = でゅ
+dho  = でょ
+to   = と
+twa  = とぁ
+twi  = とぃ
+twu  = とぅ
+twe  = とぇ
+two  = とぉ
+do   = ど
+dwa  = どぁ
+dwi  = どぃ
+dwu  = どぅ
+dwe  = どぇ
+dwo  = どぉ
+na   = な
+ni   = に
+nyi  = にぃ
+nye  = にぇ
+nya  = にゃ
+nyu  = にゅ
+nyo  = にょ
+nu   = ぬ
+ne   = ね
+no   = の
+ha   = は
+ba   = ば
+pa   = ぱ
+hi   = ひ
+hyi  = ひぃ
+hye  = ひぇ
+hya  = ひゃ
+hyu  = ひゅ
+hyo  = ひょ
+bi   = び
+byi  = びぃ
+bye  = びぇ
+bya  = びゃ
+byu  = びゅ
+byo  = びょ
+pi   = ぴ
+pyi  = ぴぃ
+pye  = ぴぇ
+pya  = ぴゃ
+pyu  = ぴゅ
+pyo  = ぴょ
+fu   = ふ
+hu   = ふ
+fa   = ふぁ
+fwa  = ふぁ
+fi   = ふぃ
+fwi  = ふぃ
+fyi  = ふぃ
+fwu  = ふぅ
+fe   = ふぇ
+fwe  = ふぇ
+fye  = ふぇ
+fo   = ふぉ
+fwo  = ふぉ
+fya  = ふゃ
+fyu  = ふゅ
+fyo  = ふょ
+bu   = ぶ
+pu   = ぷ
+he   = へ
+be   = べ
+pe   = ぺ
+ho   = ほ
+bo   = ぼ
+po   = ぽ
+ma   = ま
+mi   = み
+myi  = みぃ
+mye  = みぇ
+mya  = みゃ
+myu  = みゅ
+myo  = みょ
+mu   = む
+me   = め
+mo   = も
+lya  = ゃ
+xya  = ゃ
+ya   = や
+lyu  = ゅ
+xyu  = ゅ
+yu   = ゆ
+lyo  = ょ
+xyo  = ょ
+yo   = よ
+ra   = ら
+ri   = り
+ryi  = りぃ
+rye  = りぇ
+rya  = りゃ
+ryu  = りゅ
+ryo  = りょ
+ru   = る
+re   = れ
+ro   = ろ
+lwa  = ゎ
+xwa  = ゎ
+wa   = わ
+wo   = を
+n    = ん
+nn   = ん
+xn   = ん
+vu   = ヴ
+va   = ヴぁ
+vi   = ヴぃ
+vyi  = ヴぃ
+ve   = ヴぇ
+vye  = ヴぇ
+vo   = ヴぉ
+vya  = ヴゃ
+vyu  = ヴゅ
+vyo  = ヴょ
+lka  = ヵ
+xka  = ヵ
+lke  = ヶ
+xke  = ヶ
+
+
+[PreeditStyle]
+
+
+[Setting]
+RomajiAllowSplit = true

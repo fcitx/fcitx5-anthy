@@ -17,31 +17,25 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __SCIM_ANTHY_CONVERSION_H__
-#define __SCIM_ANTHY_CONVERSION_H__
+#ifndef __FCITX_ANTHY_CONVERSION_H__
+#define __FCITX_ANTHY_CONVERSION_H__
 
 #include <anthy/anthy.h>
 #include <fcitx/candidate.h>
-
 #include "reading.h"
 
-struct FcitxAnthy;
+class AnthyInstance;
 
 typedef enum {
-    SCIM_ANTHY_CANDIDATE_DEFAULT       = 0,
-    SCIM_ANTHY_CANDIDATE_LATIN         = -1,
-    SCIM_ANTHY_CANDIDATE_WIDE_LATIN    = -2,
-    SCIM_ANTHY_CANDIDATE_HIRAGANA      = -3,
-    SCIM_ANTHY_CANDIDATE_KATAKANA      = -4,
-    SCIM_ANTHY_CANDIDATE_HALF_KATAKANA = -5,
-    SCIM_ANTHY_CANDIDATE_HALF          = -6,
-    SCIM_ANTHY_LAST_SPECIAL_CANDIDATE  = -7,
+    FCITX_ANTHY_CANDIDATE_DEFAULT       = 0,
+    FCITX_ANTHY_CANDIDATE_LATIN         = -1,
+    FCITX_ANTHY_CANDIDATE_WIDE_LATIN    = -2,
+    FCITX_ANTHY_CANDIDATE_HIRAGANA      = -3,
+    FCITX_ANTHY_CANDIDATE_KATAKANA      = -4,
+    FCITX_ANTHY_CANDIDATE_HALF_KATAKANA = -5,
+    FCITX_ANTHY_CANDIDATE_HALF          = -6,
+    FCITX_ANTHY_LAST_SPECIAL_CANDIDATE  = -7,
 } CandidateType;
-
-struct FcitxAnthyCandWord
-{
-    int item;
-};
 
 class ConversionSegment
 {
@@ -69,7 +63,7 @@ typedef std::vector<ConversionSegment> ConversionSegments;
 class Conversion
 {
 public:
-    Conversion (FcitxAnthy *anthy, Reading &reading);
+    Conversion (AnthyInstance &anthy, Reading &reading);
     virtual ~Conversion ();
 
     // starting and finishing
@@ -77,7 +71,7 @@ public:
                                           CandidateType ctype,
                                           bool          single_segment);
     void          convert                (CandidateType type
-                                          = SCIM_ANTHY_CANDIDATE_DEFAULT,
+                                          = FCITX_ANTHY_CANDIDATE_DEFAULT,
                                           bool          single_segment = false);
     void          convert                (const std::string &source,
                                           bool          single_segment = false);
@@ -90,14 +84,16 @@ public:
     bool          is_converting          (void);
     bool          is_predicting          (void);
 
-    std::string    get                    (void);
+    std::string   get                    (void);
     unsigned int  get_length             (void);
+    unsigned int  get_length_by_char     (void);
+    void          update_preedit         (void);
 
     // segments of the converted sentence
     int           get_nr_segments        (void);
     std::string    get_segment_string     (int           segment_id = -1,
                                           int           candidate_id
-                                          = SCIM_ANTHY_LAST_SPECIAL_CANDIDATE);
+                                          = FCITX_ANTHY_LAST_SPECIAL_CANDIDATE);
     int           get_selected_segment   (void);
     void          select_segment         (int           segment_id);
     int           get_segment_size       (int           segment_id = -1);
@@ -106,7 +102,7 @@ public:
     unsigned int  get_segment_position   (int           segment_id = -1);
 
     // candidates for a segment or prediction
-    void          get_candidates         (struct _FcitxCandidateWordList *table,
+    void          get_candidates         (FcitxCandidateWordList* candList,
                                           int           segment_id = -1);
     int           get_selected_candidate (int           segment_id = -1);
     void          select_candidate       (int           candidate_id,
@@ -122,7 +118,7 @@ private:
     void          join_all_segments      (void);
 
 private:
-    FcitxAnthy      *m_anthy;
+    AnthyInstance      &m_anthy;
 
     // convertors
     Reading            &m_reading;
@@ -135,7 +131,8 @@ private:
     bool                m_predicting;
 };
 
-#endif /* __SCIM_ANTHY_READING_H__ */
+
+#endif /* __FCITX_ANTHY_READING_H__ */
 /*
 vi:ts=4:nowrap:ai:expandtab
 */

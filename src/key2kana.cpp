@@ -19,16 +19,18 @@
  */
 
 #include "key2kana.h"
-#include <fcitx/keys.h>
+#include "factory.h"
+#include "imengine.h"
 #include "utils.h"
-#include "preedit.h"
-#include "eim.h"
 
-Key2KanaConvertor::Key2KanaConvertor (FcitxAnthy* anthy, Key2KanaTableSet & tables)
-    : m_anthy(anthy),
-      m_tables                  (tables)
+Key2KanaConvertor::Key2KanaConvertor (AnthyInstance    & anthy,
+                                      Key2KanaTableSet & tables)
+    : m_anthy                   (anthy),
+      m_tables                  (tables),
+      m_is_in_pseudo_ascii_mode (false)
 {
     set_case_sensitive (false);
+    set_pseudo_ascii_mode (0);
 }
 
 Key2KanaConvertor::~Key2KanaConvertor ()
@@ -36,45 +38,58 @@ Key2KanaConvertor::~Key2KanaConvertor ()
 }
 
 bool
-Key2KanaConvertor::can_append (FcitxKeySym sym, unsigned int state,
+Key2KanaConvertor::can_append (const KeyEvent & key,
                                bool             ignore_space)
 {
+    // ignore key release.
+    if (key.is_release)
+        return false;
+
     // ignore short cut keys of apllication.
-    if (FcitxHotkeyIsHotKeyModifierCombine(sym, state))
+    if (key.state & FcitxKeyState_Ctrl ||
+        key.state & FcitxKeyState_Alt)
     {
         return false;
     }
 
-    if (FcitxHotkeyIsHotKeySimple(sym, state) &&
-        (ignore_space || !FcitxHotkeyIsHotKey(sym, state, FCITX_SPACE)))
+    if (isprint(key.get_ascii_code ()) &&
+        (ignore_space || !isspace(key.get_ascii_code ())))
         return true;
 
-    if (util_key_is_keypad (sym, state))
+    if (util_key_is_keypad (key))
         return true;
 
     return false;
 }
 
 bool
-Key2KanaConvertor::append (FcitxKeySym sym, unsigned int state,
+Key2KanaConvertor::append (const KeyEvent & key,
                            std::string & result,
                            std::string & pending,
                            std::string &raw)
 {
-    if (!can_append (sym, state))
+    if (!can_append (key))
         return false;
 
-    m_last_key.sym = sym;
-    m_last_key.state = state;
+    m_last_key = key;
 
-    util_keypad_to_string (raw, sym, state);
+    util_keypad_to_string (raw, key);
 
-    if (util_key_is_keypad (sym, state)) {
+    if (util_key_is_keypad (key)) {
         bool retval = false;
         std::string wide;
-        std::string ten_key_type = m_anthy->config.m_ten_key_type;
+        TenKeyType ten_key_type = m_anthy.get_config()->m_ten_key_type;
 
-        util_convert_to_wide (wide, raw);
+        // convert key pad string to wide
+        if ((ten_key_type == FCITX_ANTHY_TEN_KEY_TYPE_FOLLOWMODE &&
+             (m_anthy.get_input_mode () == FCITX_ANTHY_MODE_LATIN ||
+              m_anthy.get_input_mode () == FCITX_ANTHY_MODE_HALF_KATAKANA)) ||
+            ten_key_type == FCITX_ANTHY_TEN_KEY_TYPE_HALF)
+        {
+            wide = raw;
+        } else {
+            util_convert_to_wide (wide, raw);
+        }
 
         // join to previous string
         if (!m_exact_match.is_empty()) {
@@ -103,6 +118,12 @@ Key2KanaConvertor::append (FcitxKeySym sym, unsigned int state,
     }
 }
 
+static
+void split_string_list(std::vector<std::string>& str, const std::string& s)
+{
+
+}
+
 bool
 Key2KanaConvertor::append (const std::string & str,
                            std::string & result, std::string & pending)
@@ -113,6 +134,11 @@ Key2KanaConvertor::append (const std::string & str,
     bool has_partial_match = false;
     bool retval = false;
 
+    if (m_pseudo_ascii_mode != 0 && process_pseudo_ascii_mode (widestr)) {
+        m_pending += widestr;
+        pending = m_pending;
+        return false;
+    }
     if (!m_case_sensitive) {
         std::string half = matching_str;
         for (unsigned int i = 0; i < half.length (); i++)
@@ -121,19 +147,15 @@ Key2KanaConvertor::append (const std::string & str,
     }
 
     /* find matched table */
-    if ((m_anthy->typing_method == SCIM_ANTHY_TYPING_METHOD_KANA) &&
+    if ((m_anthy.get_typing_method () == FCITX_ANTHY_TYPING_METHOD_KANA) &&
         (m_last_key.state & /*SCIM_KEY_QuirkKanaRoMask*/ (1<<14)) &&
-        (strlen(m_anthy->config.m_kana_layout_ro_key) > 0))
+        (m_anthy.get_config()->m_kana_layout_ro_key[0]))
     {
         // Special treatment for Kana "Ro" key.
         // This code is a temporary solution. It doesn't care some minor cases.
         std::vector<std::string> kana_ro_result;
-        
-        UT_array* list = fcitx_utils_split_string(m_anthy->config.m_kana_layout_ro_key, ',');
-        for (int i = 0; i < utarray_len(list); i ++)
-            kana_ro_result.push_back(*(char**) utarray_eltptr(list, i));
-        
-        fcitx_utils_free_string_list(list);
+        split_string_list (kana_ro_result,
+                                m_anthy.get_config()->m_kana_layout_ro_key);
         Key2KanaRule kana_ro_rule("\\", kana_ro_result);
         result = kana_ro_rule.get_result (0);
         m_pending.clear ();
@@ -227,7 +249,7 @@ Key2KanaConvertor::clear (void)
 {
     m_pending.clear ();
     m_exact_match.clear ();
-    RESET_FCITX_HOTKEY(m_last_key);
+    m_last_key = KeyEvent ();
     reset_pseudo_ascii_mode();
 }
 
@@ -268,15 +290,37 @@ Key2KanaConvertor::flush_pending (void)
 void
 Key2KanaConvertor::reset_pending (const std::string &result, const std::string &raw)
 {
-    m_last_key.sym = FcitxKey_None;
-    m_last_key.state = FcitxKeyState_None;
+    m_last_key = KeyEvent ();
 
-    for (unsigned int i = 0; i < raw.length (); i++) {
+    for (unsigned int i = 0; i < util_utf8_string_length(raw); i++) {
         std::string res, pend;
-        append (raw.substr(i, 1), res, pend);
+        append (util_utf8_string_substr(raw, i, 1), res, pend);
     }
 }
 
+bool
+Key2KanaConvertor::process_pseudo_ascii_mode (const std::string & wstr)
+{
+    for (unsigned int i = 0; i < wstr.length (); i++) {
+        if ((wstr[i] >= 'A' && wstr[i] <= 'Z') ||
+            isspace(wstr[i]))
+        {
+            m_is_in_pseudo_ascii_mode = true;
+        } else if (wstr[i] & 0x80) {
+            m_is_in_pseudo_ascii_mode = false;
+        }
+    }
+
+    return m_is_in_pseudo_ascii_mode;
+}
+
+void
+Key2KanaConvertor::reset_pseudo_ascii_mode (void)
+{
+    if (m_is_in_pseudo_ascii_mode)
+        m_pending.clear();
+    m_is_in_pseudo_ascii_mode = false;
+}
 
 /*
 vi:ts=4:nowrap:ai:expandtab

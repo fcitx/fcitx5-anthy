@@ -17,8 +17,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include <stdlib.h>
 #include <fcitx-config/hotkey.h>
-#include "defaulttables.h"
+#include "default_tables.h"
 
 /* from Suikyo */
 ConvRule scim_anthy_romaji_typing_rule[] = {
@@ -128,9 +129,9 @@ ConvRule scim_anthy_romaji_typing_rule[] = {
 {"de",	"で",	""},
 {"do",	"ど",	""},
 {"xtu",	"っ",	""},
-{"xtsu","っ",	""},
+{"xtsu","っ"	""},
 {"ltu",	"っ",	""},
-{"ltsu","っ",	""},
+{"ltsu","っ"	""},
 {"tya",	"ちゃ",	""},
 {"tyi",	"ちぃ",	""},
 {"tyu",	"ちゅ",	""},
@@ -246,12 +247,12 @@ ConvRule scim_anthy_romaji_typing_rule[] = {
 {";u","↑",	""},
 {";d",	"↓",	""},
 {";p",	"〒",	""},
-{";e",	"€",	""},	
+{";e",	"€",	""},
 {";t",	"™",	""},
 {";s",	"®",	""},
 {";c",	"©",	""},
 #endif
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_romaji_double_consonant_rule[] = {
@@ -273,7 +274,7 @@ ConvRule scim_anthy_romaji_double_consonant_rule[] = {
 {"rr",	"っ",	"r"},
 {"ww",	"っ",	"w"},
 {"cc",	"っ",	"c"},
-{0,  0,   0},
+{NULL,  NULL,   NULL},
 };
 
 ConvRule scim_anthy_half_symbol_rule[] = {
@@ -309,7 +310,7 @@ ConvRule scim_anthy_half_symbol_rule[] = {
 {"?",	"?",	""},
 {"/",	"/",	""},
 {"_",	"_",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_wide_symbol_rule[] = {
@@ -345,7 +346,7 @@ ConvRule scim_anthy_wide_symbol_rule[] = {
 {"?",	"？",	""},
 {"/",	"／",	""},
 {"_",	"＿",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_half_number_rule[] = {
@@ -359,7 +360,7 @@ ConvRule scim_anthy_half_number_rule[] = {
 {"8", "8", ""},
 {"9", "9", ""},
 {"0", "0", ""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 
@@ -374,7 +375,7 @@ ConvRule scim_anthy_wide_number_rule[] = {
 {"8", "８", ""},
 {"9", "９", ""},
 {"0", "０", ""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_typing_rule[] = {
@@ -485,7 +486,7 @@ ConvRule scim_anthy_kana_typing_rule[] = {
 {"?",	"・",	""},
 #endif
 {"_",	"ろ",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_voiced_consonant_rule[] = {
@@ -534,111 +535,111 @@ ConvRule scim_anthy_kana_voiced_consonant_rule[] = {
 {"ふ[",	"ぷ",	""},
 {"へ[",	"ぺ",	""},
 {"ほ[",	"ぽ",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_romaji_ja_period_rule[] = {
 {".",	"。",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_romaji_ja_comma_rule[] = {
 {",",	"、",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_romaji_wide_period_rule[] = {
 {".",	"．",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_romaji_wide_comma_rule[] = {
 {",",	"，",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_romaji_half_period_rule[] = {
 {".",	".",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_romaji_half_comma_rule[] = {
 {",",	",",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_ja_period_rule[] = {
 {">",	"。",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_ja_comma_rule[] = {
 {"<",	"、",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_wide_period_rule[] = {
 {">",	"．",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_wide_comma_rule[] = {
 {"<",	"，",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_half_period_rule[] = {
 {">",	".",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_half_comma_rule[] = {
 {"<",	",",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_romaji_ja_bracket_rule[] = {
 {"[",	"「",	""},
 {"]",	"」",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_romaji_wide_bracket_rule[] = {
 {"[",	"［",	""},
 {"]",	"］",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_ja_bracket_rule[] = {
 {"{",	"「",	""},
 {"}",	"」",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_wide_bracket_rule[] = {
 {"{",	"［",	""},
 {"}",	"］",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_romaji_ja_slash_rule[] = {
 {"/",	"・",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_romaji_wide_slash_rule[] = {
 {"/",	"／",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_ja_slash_rule[] = {
 {"?",	"・",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 ConvRule scim_anthy_kana_wide_slash_rule[] = {
 {"?",	"／",	""},
-{0,	0,	0},
+{NULL,	NULL,	NULL},
 };
 
 HiraganaKatakanaRule scim_anthy_hiragana_katakana_table[] = {
@@ -710,11 +711,11 @@ HiraganaKatakanaRule scim_anthy_hiragana_katakana_table[] = {
 {"る", "ル", "ﾙ"},
 {"れ", "レ", "ﾚ"},
 {"ろ", "ロ", "ﾛ"},
- 
+
 {"わ", "ワ", "ﾜ"},
 {"を", "ヲ", "ｦ"},
 {"ん", "ン", "ﾝ"},
- 
+
 {"ぁ", "ァ", "ｧ"},
 {"ぃ", "ィ", "ｨ"},
 {"ぅ", "ゥ", "ｩ"},
@@ -736,7 +737,7 @@ HiraganaKatakanaRule scim_anthy_hiragana_katakana_table[] = {
 
 #if 1
 //{"う゛" "ヴ" "ｳﾞ"},
-{"ヴ", "ヴ", "ｳﾞ"},
+{"ヴ" "ヴ" "ｳﾞ"},
 #endif
 
 #if 1
@@ -773,7 +774,7 @@ HiraganaKatakanaRule scim_anthy_hiragana_katakana_table[] = {
 {"／",	"／",	"/"},
 {"＿",	"＿",	"_"},
 #endif
-{0,	0,	0}
+{NULL,	NULL,	NULL},
 };
 
 WideRule scim_anthy_wide_table[] = {
@@ -871,7 +872,7 @@ WideRule scim_anthy_wide_table[] = {
 {"/", "／"},
 {"_", "＿"},
 {"*", "＊"},
-{0, 0},
+{NULL, NULL},
 };
 
 VoicedConsonantRule scim_anthy_voiced_consonant_table[] = {
@@ -895,7 +896,7 @@ VoicedConsonantRule scim_anthy_voiced_consonant_table[] = {
 {"ふ",	"ぶ",	"ぷ"},
 {"へ",	"べ",	"ぺ"},
 {"ほ",	"ぼ",	"ぽ"},
-{0, 0, 0},
+{NULL, NULL, NULL},
 };
 
 KeyCodeToCharRule scim_anthy_keypad_table[] = {
@@ -916,7 +917,7 @@ KeyCodeToCharRule scim_anthy_keypad_table[] = {
 {FcitxKey_KP_7,			"7"},
 {FcitxKey_KP_8,			"8"},
 {FcitxKey_KP_9,			"9"},
-{0, 0}
+{0, NULL}
 };
 
 KeyCodeToCharRule scim_anthy_kana_table[] = {
@@ -989,7 +990,7 @@ KeyCodeToCharRule scim_anthy_kana_table[] = {
 {FcitxKey_kana_N,               "ん"},
 {FcitxKey_voicedsound,          "゛"},
 {FcitxKey_semivoicedsound,      "゜"},
-{0, 0}
+{0, NULL}
 };
 
 NicolaRule scim_anthy_nicola_table[] = {
@@ -1108,5 +1109,5 @@ NicolaRule scim_anthy_nicola_table[] = {
 {">",	"ぽ",	"ぼ",	"わ"},
 {"?",	"・",	"ゎ",	"ぉ"},
 
-{0,	0,	0,	0},
+{NULL,	NULL,	NULL,	NULL},
 };

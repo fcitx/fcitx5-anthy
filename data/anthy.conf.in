@@ -1,0 +1,7 @@
+[InputMethod]
+UniqueName=anthy
+_Name=Anthy
+IconName=anthy
+Priority=5
+LangCode=ja
+Parent=fcitx-anthy

@@ -1,7 +1,4 @@
 # List of source files which contain translatable strings.
 ./po/desc.po
 ./po/conf.po
-@REL_SOURCE_ROOT@/src/eim.cpp
-@REL_SOURCE_ROOT@/src/eim.h
-@REL_SOURCE_ROOT@/src/config.cpp
 @REL_SOURCE_ROOT@/data/fcitx-anthy.conf.in

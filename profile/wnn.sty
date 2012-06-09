@@ -1,0 +1,311 @@
+#
+#  wnn.sty - Wnn like style definition file for scim-anthy.
+#  Copyright (C) 2005 Takuro Ashie <ashie@homa.ne.jp>
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2, or (at your option)
+#  any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#
+
+FormatVersion = 0.0.0
+Encoding      = EUC-JP
+Title         = Wnn
+Version       = 0.0.0
+
+[KeyBindings]
+OnOffKey                    = Shift+space
+CircleInputModeKey          = 
+CircleKanaModeKey           = 
+LatinModeKey                = 
+WideLatinModeKey            = 
+HiraganaModeKey             = 
+KatakanaModeKey             = 
+HalfKatakanaModeKey         = 
+CircleTypingMethodKey       = 
+
+ConvertKey                  = space
+PredictKey                  = Control+q,Control+Q
+CancelKey                   = Escape,Control+g,Control+G,Alt+Down,Muhenkan
+CommitKey                   = Control+l,Control+L,Control+m,Control+M,Control+j,Control+J,Return
+
+InsertSpaceKey              = space
+InsertAltSpaceKey           = 
+BackSpaceKey                = Control+h,Backspace
+DeleteKey                   = Control+d,Delete
+
+MoveCaretBackwardKey        = Control+b,Control+B,Left
+MoveCaretForwardKey         = Control+f,Control+F,Right
+MoveCaretFirstKey           = Control+a,Control+A,Alt+Left
+MoveCaretLastKey            = Control+e,Control+E,Alt+Right
+
+SelectPrevSegmentKey        = Control+b,Control+B,Left
+SelectNextSegmentKey        = Control+f,Control+F,Right
+SelectFirstSegmentKey       = Control+a,Control+A,Alt+Left
+SelectLastSegmentKey        = Control+e,Control+E,Alt+Right
+ExpandSegmentKey            = Control+o,Control+O,F14
+ShrinkSegmentKey            = Control+i,Control+I,F13
+CommitSelectedSegmentKey    = 
+
+CandidatesPageUpKey         = Tab
+CandidatesPageDownKey       = Shift+Tab
+SelectNextCandidateKey      = space,Control+q,Control+Q,Control+p,Control+P,Up
+SelectPrevCandidateKey      = Control+n,Control+N,Down
+
+SelectCandidates1Key        = 1
+SelectCandidates2Key        = 2
+SelectCandidates3Key        = 3
+SelectCandidates4Key        = 4
+SelectCandidates5Key        = 5
+SelectCandidates6Key        = 6
+SelectCandidates7Key        = 7
+SelectCandidates8Key        = 8
+SelectCandidates9Key        = 9
+SelectCandidates10Key       = 0
+
+ConvertToHiraganaKey        = F6
+ConvertToKatakanaKey        = F7
+ConvertToHalfKey            = F8
+ConvertToHalfKatakanaKey    = 
+ConvertToWideLatinKey       = F9
+ConvertToLatinKey           = F10
+
+AddWordKey                  = 
+
+# Override fundamental table
+[RomajiTable/FundamentalTable]
+-   = ー
+#/   = ・
+#[   = 「
+#]   = 」
+z.  = …
+z-  = 〜
+a   = あ
+i   = い
+u   = う
+e   = え
+o   = お
+ka  = か
+ki  = き
+ku  = く
+ke  = け
+ko  = こ
+kya = きゃ
+kyi = きぃ
+kyu = きゅ
+kye = きぇ
+kyo = きょ
+sa  = さ
+si  = し
+su  = す
+se  = せ
+so  = そ
+sya = しゃ
+syi = しぃ
+syu = しゅ
+sye = しぇ
+syo = しょ
+sha = しゃ
+shi = し
+shu = しゅ
+she = しぇ
+sho = しょ
+ta  = た
+ti  = ち
+tu  = つ
+te  = て
+to  = と
+tya = ちゃ
+tyi = てぃ
+tyu = ちゅ
+tye = ちぇ
+tyo = ちょ
+tha = てゃ
+thi = てぃ
+thu = てゅ
+the = てぇ
+tho = てょ
+tsu = つ
+cha = ちゃ
+chi = ち
+chu = ちゅ
+che = ちぇ
+cho = ちょ
+na  = な
+ni  = に
+nu  = ぬ
+ne  = ね
+no  = の
+nya = にゃ
+nyi = にぃ
+nyu = にゅ
+nye = にぇ
+nyo = にょ
+ha  = は
+hi  = ひ
+hu  = ふ
+he  = へ
+ho  = ほ
+hya = ひゃ
+hyi = ひぃ
+hyu = ひゅ
+hye = ひぇ
+hyo = ひょ
+fa  = ふぁ
+fi  = ふぃ
+fu  = ふ
+fe  = ふぇ
+fo  = ふぉ
+fya = ふゃ
+fyi = ふぃ
+fyu = ふゅ
+fye = ふぇ
+fyo = ふょ
+ma  = ま
+mi  = み
+mu  = む
+me  = め
+mo  = も
+mya = みゃ
+myu = みゅ
+mye = みぇ
+myo = みょ
+ya  = や
+yi  = い
+yu  = ゆ
+ye  = いぇ
+yo  = よ
+ra  = ら
+ri  = り
+ru  = る
+re  = れ
+ro  = ろ
+la  = ら
+li  = り
+lu  = る
+le  = れ
+lo  = ろ
+rya = りゃ
+ryi = りぃ
+ryu = りゅ
+rye = りぇ
+ryo = りょ
+lya = りゃ
+lyi = りぃ
+lyu = りゅ
+lye = りぇ
+lyo = りょ
+wa  = わ
+wi  = ゐ
+wu  = う
+we  = ゑ
+wo  = を
+ga  = が
+gi  = ぎ
+gu  = ぐ
+ge  = げ
+go  = ご
+gya = ぎゃ
+gyi = ぎぃ
+gyu = ぎゅ
+gye = ぎぇ
+gyo = ぎょ
+za  = ざ
+zi  = じ
+zu  = ず
+ze  = ぜ
+zo  = ぞ
+zya = じゃ
+zyi = じぃ
+zyu = じゅ
+zye = じぇ
+zyo = じょ
+ja  = じゃ
+ji  = じ
+ju  = じゅ
+je  = じぇ
+jo  = じょ
+da  = だ
+di  = ぢ
+du  = づ
+de  = で
+do  = ど
+dya = ぢゃ
+dyi = でぃ
+dyu = ぢゅ
+dye = ぢぇ
+dyo = ぢょ
+dha = でゃ
+dhi = でぃ
+dhu = でゅ
+dhe = でぇ
+dho = でょ
+ba  = ば
+bi  = び
+bu  = ぶ
+be  = べ
+bo  = ぼ
+bya = びゃ
+byi = びゅ
+byu = びゅ
+bye = びぇ
+byo = びょ
+pa  = ぱ
+pi  = ぴ
+pu  = ぷ
+pe  = ぺ
+po  = ぽ
+pya = ぴゃ
+pyi = ぴぃ
+pyu = ぴゅ
+pye = ぴぇ
+pyo = ぴょ
+va  = ヴぁ
+vi  = ヴぃ
+vu  = ヴ
+ve  = ヴぇ
+vo  = ヴぉ
+kwa = くゎ
+kwi = くぃ
+kwu = く
+kwe = くぇ
+kwo = くぉ
+gwa = ぐゎ
+gwi = ぐぃ
+gwu = ぐ
+gwe = ぐぇ
+gwo = ぐぉ
+tsa = つぁ
+tsi = つぃ
+tse = つぇ
+tso = つぉ
+n   = ん
+n'  = ん
+nn  = ん
+xa  = ぁ
+xi  = ぃ
+xu  = ぅ
+xe  = ぇ
+xo  = ぉ
+xya = ゃ
+xyu = ゅ
+xyo = ょ
+xtu = っ
+xwa = ゎ
+xti = てぃ
+xdi = でぃ
+xdu = どぅ
+xde = でぇ
+xdo = どぉ
+xwi = うぃ
+xwe = うぇ
+xwo = うぉ

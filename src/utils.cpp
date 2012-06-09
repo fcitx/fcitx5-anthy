@@ -21,12 +21,34 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <string>
-#include <vector>
+#include <fcitx-utils/utf8.h>
 
 #include "utils.h"
-#include "defaulttables.h"
-#include <fcitx-config/hotkey.h>
+#include "default_tables.h"
+
+size_t
+util_utf8_string_length(const std::string& s)
+{
+    return fcitx_utf8_strlen(s.c_str());
+}
+
+std::string
+util_utf8_string_substr(const std::string& s, size_t start, size_t len)
+{
+    char* cs = strdup(s.c_str());
+    char* startp = fcitx_utf8_get_nth_char(cs, start);
+    char* endp = fcitx_utf8_get_nth_char(startp, len);
+    std::string result(startp, endp - startp);
+    free(cs);
+    return result;
+}
+
+bool
+util_match_key_event (const FcitxHotkey* hotkey, const KeyEvent &key,
+                      uint16_t ignore_mask)
+{
+    return FcitxHotkeyIsHotKey(key.sym, key.state & ~ignore_mask, hotkey);
+}
 
 void
 util_split_string (std::string &str, std::vector<std::string> &str_list,
@@ -98,7 +120,7 @@ util_convert_to_katakana (std::string & kata,
                           const std::string & hira,
                           bool half)
 {
-    for (unsigned int i = 0; i < hira.length (); i++) {
+    for (unsigned int i = 0; i < util_utf8_string_length(hira); i++) {
         std::string tmpwide;
         bool found = false;
 
@@ -106,7 +128,7 @@ util_convert_to_katakana (std::string & kata,
 
         for (unsigned int j = 0; table[j].hiragana; j++) {
             tmpwide = table[j].hiragana;
-            if (hira.substr(i, 1) == tmpwide) {
+            if (util_utf8_string_substr(hira, i, 1) == tmpwide) {
                 if (half)
                     kata += table[j].half_katakana;
                 else
@@ -120,11 +142,46 @@ util_convert_to_katakana (std::string & kata,
             kata += hira.substr(i, 1);
     }
 }
+#if 0
+void
+util_create_attributes (AttributeList &attrs,
+                        unsigned int start,
+                        unsigned int length,
+                        std::string type,
+                        unsigned int fg_color,
+                        unsigned int bg_color)
+{
+    if (type == "None") {
+        return;
+    } else if (type == "Underline") {
+        attrs.push_back (Attribute (start, length,
+                                    SCIM_ATTR_DECORATE,
+                                    SCIM_ATTR_DECORATE_UNDERLINE));
+    } else if (type == "Reverse") {
+        attrs.push_back (Attribute (start, length,
+                                    SCIM_ATTR_DECORATE,
+                                    SCIM_ATTR_DECORATE_REVERSE));
+    } else if (type == "Highlight") {
+        attrs.push_back (Attribute (start, length,
+                                    SCIM_ATTR_DECORATE,
+                                    SCIM_ATTR_DECORATE_HIGHLIGHT));
+    } else {
+        if (type == "Color" || type == "FGColor")
+            attrs.push_back (Attribute (start, length,
+                                        SCIM_ATTR_FOREGROUND,
+                                        fg_color));
+        if (type == "Color" || type == "BGColor")
+            attrs.push_back (Attribute (start, length,
+                                        SCIM_ATTR_BACKGROUND,
+                                        bg_color));
+    }
+}
+#endif
 
 bool
-util_key_is_keypad (FcitxKeySym sym, unsigned int state)
+util_key_is_keypad (const KeyEvent &key)
 {
-    switch (sym) {
+    switch (key.sym) {
     case FcitxKey_KP_Equal:
     case FcitxKey_KP_Multiply:
     case FcitxKey_KP_Add:
@@ -146,15 +203,14 @@ util_key_is_keypad (FcitxKeySym sym, unsigned int state)
     default:
         return false;
     }
-    return false;
 }
 
 void
-util_keypad_to_string (std::string &str, FcitxKeySym sym, unsigned int state)
+util_keypad_to_string (std::string &str, const KeyEvent &key)
 {
     char raw[2];
 
-    switch (sym) {
+    switch (key.sym) {
     case FcitxKey_KP_Equal:
         raw[0] = '=';
         break;
@@ -193,12 +249,12 @@ util_keypad_to_string (std::string &str, FcitxKeySym sym, unsigned int state)
     case FcitxKey_KP_7:
     case FcitxKey_KP_8:
     case FcitxKey_KP_9:
-        raw[0] = '0' + sym - FcitxKey_KP_0;
+        raw[0] = '0' + key.sym - FcitxKey_KP_0;
         break;
 
     default:
-        if (FcitxHotkeyIsHotKeySimple(sym, state))
-            raw[0] = sym & 0xff;
+        if (isprint (key.get_ascii_code()))
+            raw[0] = key.get_ascii_code();
         else
             raw[0] = '\0';
         break;

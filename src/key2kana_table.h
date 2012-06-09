@@ -17,40 +17,35 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __SCIM_ANTHY_KEY2KANA_TABLE_H__
-#define __SCIM_ANTHY_KEY2KANA_TABLE_H__
+#ifndef __FCITX_ANTHY_KEY2KANA_TABLE_H__
+#define __FCITX_ANTHY_KEY2KANA_TABLE_H__
 
-#include <string>
 #include <vector>
-#include "defaulttables.h"
+#include <string>
+#include "default_tables.h"
+#include "factory.h"
 
 typedef enum {
-    SCIM_ANTHY_PERIOD_JAPANESE,
-    SCIM_ANTHY_PERIOD_WIDE,
-    SCIM_ANTHY_PERIOD_HALF,
+    FCITX_ANTHY_PERIOD_JAPANESE,
+    FCITX_ANTHY_PERIOD_WIDE,
+    FCITX_ANTHY_PERIOD_HALF,
 } PeriodStyle;
 
 typedef enum {
-    SCIM_ANTHY_COMMA_JAPANESE,
-    SCIM_ANTHY_COMMA_WIDE,
-    SCIM_ANTHY_COMMA_HALF,
+    FCITX_ANTHY_COMMA_JAPANESE,
+    FCITX_ANTHY_COMMA_WIDE,
+    FCITX_ANTHY_COMMA_HALF,
 } CommaStyle;
 
 typedef enum {
-    SCIM_ANTHY_BRACKET_JAPANESE,
-    SCIM_ANTHY_BRACKET_WIDE,
+    FCITX_ANTHY_BRACKET_JAPANESE,
+    FCITX_ANTHY_BRACKET_WIDE,
 } BracketStyle;
 
 typedef enum {
-    SCIM_ANTHY_SLASH_JAPANESE,
-    SCIM_ANTHY_SLASH_WIDE,
+    FCITX_ANTHY_SLASH_JAPANESE,
+    FCITX_ANTHY_SLASH_WIDE,
 } SlashStyle;
-
-typedef enum {
-    SCIM_ANTHY_TYPING_METHOD_ROMAJI,
-    SCIM_ANTHY_TYPING_METHOD_KANA,
-    SCIM_ANTHY_TYPING_METHOD_CUSTOM,
-} TypingMethod;
 
 
 class Key2KanaRule;
@@ -177,7 +172,7 @@ private:
     bool         m_use_half_number;
 };
 
-#endif /* __SCIM_ANTHY_KEY2KANA_TABLE_H__ */
+#endif /* __FCITX_ANTHY_KEY2KANA_TABLE_H__ */
 /*
 vi:ts=4:nowrap:ai:expandtab
 */

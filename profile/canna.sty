@@ -1,0 +1,330 @@
+#
+#  canna.sty - Canna like style definition file for scim-anthy.
+#  Copyright (C) 2005 Takuro Ashie <ashie@homa.ne.jp>
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2, or (at your option)
+#  any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#
+
+FormatVersion = 0.0.0
+Encoding      = EUC-JP
+Title         = Canna
+Version       = 0.0.0
+
+[KeyBindings]
+OnOffKey                    = Zenkaku_Hankaku,Shift+space,Control+o,Control+backslash
+CircleInputModeKey          = 
+CircleKanaModeKey           = 
+LatinModeKey                = 
+WideLatinModeKey            = 
+HiraganaModeKey             = Hiragana_Katakana
+KatakanaModeKey             = Shift+Hiragana_Katakana
+HalfKatakanaModeKey         = 
+CircleTypingMethodKey       = Romaji,Alt+Romaji
+
+ConvertKey                  = space
+PredictKey                  = Control+q,Control+Q
+CancelKey                   = Escape,Control+g,Control+G
+CommitKey                   = Return,Control+m,Control+M
+
+InsertSpaceKey              = space
+InsertAltSpaceKey           = 
+BackSpaceKey                = BackSpace,Control+h,Control+H
+DeleteKey                   = Delete,Control+d,Control+D
+
+MoveCaretBackwardKey        = Left,Control+b,Control+B
+MoveCaretForwardKey         = Right,Control+f,Control+F
+MoveCaretFirstKey           = Control+a,Control+A
+MoveCaretLastKey            = Control+e,Control+E
+
+SelectPrevSegmentKey        = Left,Control+b,Control+B
+SelectNextSegmentKey        = Right,Control+f,Control+F
+SelectFirstSegmentKey       = Control+a,Control+A
+SelectLastSegmentKey        = Control+e,Control+E
+ExpandSegmentKey            = Control+o,Control+O
+ShrinkSegmentKey            = Tab,Control+i,Control+I
+CommitSelectedSegmentKey    = Control+k,Control+K
+
+CandidatesPageUpKey         = Up,Control+p,Control+P
+CandidatesPageDownKey       = Down,Control+n,Control+N
+SelectNextCandidateKey      = space,Control+q,Control+Q,Right,Control+f,Control+F
+SelectPrevCandidateKey      = Left,Control+b,Control+B
+
+SelectCandidates1Key        = 1
+SelectCandidates2Key        = 2
+SelectCandidates3Key        = 3
+SelectCandidates4Key        = 4
+SelectCandidates5Key        = 5
+SelectCandidates6Key        = 6
+SelectCandidates7Key        = 7
+SelectCandidates8Key        = 8
+SelectCandidates9Key        = 9
+SelectCandidates10Key       = 0
+
+ConvertCharTypeForwardKey   = Control+n,Control+N
+ConvertCharTypeBackwardKey  = Control+p,Control+P
+ConvertToHiraganaKey        = 
+ConvertToKatakanaKey        = 
+ConvertToHalfKey            = 
+ConvertToHalfKatakanaKey    = 
+ConvertToWideLatinKey       = 
+ConvertToLatinKey           = 
+# FIXME!
+#ConvertToUpperKey           = Control+u,Control+U
+#ConvertToLowerKey           = Control+l,Control+L
+
+AddWordKey                  = 
+
+# Override fundamental table
+[RomajiTable/FundamentalTable]
+a    = あ
+i    = い
+u    = う
+e    = え
+o    = お
+ka   = か
+ki   = き
+ku   = く
+ke   = け
+ko   = こ
+sa   = さ
+si   = し
+su   = す
+se   = せ
+so   = そ
+ta   = た
+ti   = ち
+tu   = つ
+te   = て
+to   = と
+na   = な
+ni   = に
+nu   = ぬ
+ne   = ね
+no   = の
+ha   = は
+hi   = ひ
+hu   = ふ
+he   = へ
+ho   = ほ
+ma   = ま
+mi   = み
+mu   = む
+me   = め
+mo   = も
+ya   = や
+yi   = い
+yu   = ゆ
+ye   = いぇ
+yo   = よ
+ra   = ら
+ri   = り
+ru   = る
+re   = れ
+ro   = ろ
+wa   = わ
+wi   = ヰ
+wu   = う
+we   = ヱ
+wo   = を
+ga   = が
+gi   = ぎ
+gu   = ぐ
+ge   = げ
+go   = ご
+za   = ざ
+zi   = じ
+zu   = ず
+ze   = ぜ
+zo   = ぞ
+da   = だ
+di   = ぢ
+du   = づ
+de   = で
+do   = ど
+ba   = ば
+bi   = び
+bu   = ぶ
+be   = べ
+bo   = ぼ
+pa   = ぱ
+pi   = ぴ
+pu   = ぷ
+pe   = ぺ
+po   = ぽ
+kya  = きゃ
+kyi  = きぃ
+kyu  = きゅ
+kye  = きぇ
+kyo  = きょ
+gya  = ぎゃ
+gyi  = ぎぃ
+gyu  = ぎゅ
+gye  = ぎぇ
+gyo  = ぎょ
+sya  = しゃ
+syi  = しぃ
+syu  = しゅ
+sye  = しぇ
+syo  = しょ
+zya  = じゃ
+zyi  = じぃ
+zyu  = じゅ
+zye  = じぇ
+zyo  = じょ
+tya  = ちゃ
+tyi  = ちぃ
+tyu  = ちゅ
+tye  = ちぇ
+tyo  = ちょ
+nya  = にゃ
+nyi  = にぃ
+nyu  = にゅ
+nye  = にぇ
+nyo  = にょ
+hya  = ひゃ
+hyi  = ひぃ
+hyu  = ひゅ
+hye  = ひぇ
+hyo  = ひょ
+bya  = びゃ
+byi  = びぃ
+byu  = びゅ
+bye  = びぇ
+byo  = びょ
+pya  = ぴゃ
+pyi  = ぴぃ
+pyu  = ぴゅ
+pye  = ぴぇ
+pyo  = ぴょ
+mya  = みゃ
+myi  = みぃ
+myu  = みゅ
+mye  = みぇ
+myo  = みょ
+rya  = りゃ
+ryi  = りぃ
+ryu  = りゅ
+rye  = りぇ
+ryo  = りょ
+tsa  = つぁ
+tyi  = つぃ
+tyu  = つ
+tye  = つぇ
+tyo  = つぉ
+sha  = しゃ
+shi  = し
+shu  = しゅ
+she  = しぇ
+sho  = しょ
+tha  = てぁ
+thi  = てぃ
+thu  = てゅ
+the  = てぇ
+tho  = てょ
+ja   = じゃ
+ji   = じ
+ju   = じゅ
+je   = じぇ
+jo   = じょ
+cha  = ちゃ
+chi  = ち
+chu  = ちゅ
+che  = ちぇ
+cho  = ちょ
+fa   = ふぁ
+fi   = ふぃ
+fu   = ふ
+fe   = ふぇ
+fo   = ふぉ
+va   = う゛ぁ
+vi   = う゛ぃ
+vu   = う゛
+ve   = う゛ぇ
+vo   = う゛ぉ
+gwa  = ぐぁ
+gwi  = ぐぃ
+gwu  = ぐぅ
+gwe  = ぐぇ
+gwo  = ぐぉ
+dya  = ぢゃ
+dyi  = ぢぃ
+dyu  = ぢゅ
+dye  = ぢぇ
+dyo  = ぢょ
+dha  = でゃ
+dhi  = でぃ
+dhu  = でゅ
+dhe  = でぇ
+dho  = でょ
+ca   = か
+cu   = く
+co   = こ
+cya  = ちゃ
+cyi  = ちぃ
+cyu  = ちぅ
+cye  = ちぇ
+cyo  = ちぉ
+jya  = じゃ
+jyi  = じぃ
+jyu  = じゅ
+jye  = じぇ
+jyo  = じょ
+la   = ら
+li   = り
+lu   = る
+le   = れ
+lo   = ろ
+lya  = りゃ
+lyi  = りぃ
+lyu  = りゅ
+lye  = りぇ
+lyo  = りょ
+xa   = ぁ
+xi   = ぃ
+xu   = ぅ
+xe   = ぇ
+xo   = ぉ
+xwa  = ゎ
+xtu  = っ
+xtsu = っ
+xya  = ゃ
+xyu  = ゅ
+xyo  = ょ
+n    = ん
+nn   = ん
+mn   = ん
+n'   = ん
+@@   = 　
+-    = ー
+#[    = 「
+#]    = 」
+#,    = 、
+#.    = 。
+@(   = （
+@)   = ）
+@{   = ｛
+@}   = ｝
+@[   = ［
+@]   = ］
+@,   = ,
+@.   = .
+@~   = 〜
+@\   = ＼
+@/   = ・
+@-   = ‐
+@2   = ‥
+@3   = …
+@||  = ‖
+@|   = ｜

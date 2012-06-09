@@ -17,25 +17,24 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __SCIM_ANTHY_KANA_H__
-#define __SCIM_ANTHY_KANA_H__
+#ifndef __FCITX_ANTHY_KANA_H__
+#define __FCITX_ANTHY_KANA_H__
 
-#include "key2kanabase.h"
-#include "defaulttables.h"
-#include "key2kanatable.h"
+#include "key2kana_base.h"
+#include "default_tables.h"
+#include "key2kana_table.h"
 
-
-struct FcitxAnthy;
+class AnthyInstance;
 
 class KanaConvertor : public Key2KanaConvertorBase
 {
 public:
-               KanaConvertor      (FcitxAnthy*    anthy);
+               KanaConvertor      (AnthyInstance    & anthy);
     virtual   ~KanaConvertor      ();
 
-    bool       can_append         (FcitxKeySym sym, unsigned int state,
+    bool       can_append         (const KeyEvent   & key,
                                    bool               ignore_space = false);
-    bool       append             (FcitxKeySym sym, unsigned int state,
+    bool       append             (const KeyEvent   & key,
                                    std::string       & result,
                                    std::string       & pending,
                                    std::string           & raw);
@@ -51,13 +50,13 @@ public:
                                    const std::string     & raw);
 
 private:
-    FcitxAnthy* m_anthy;
+    AnthyInstance &m_anthy;
 
     // state
     std::string         m_pending;
 };
 
-#endif /* __SCIM_ANTHY_KANA_H__ */
+#endif /* __FCITX_ANTHY_KANA_H__ */
 /*
 vi:ts=4:nowrap:ai:expandtab
 */

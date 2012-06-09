@@ -17,111 +17,111 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include "key2kanatable.h"
+#include "key2kana_table.h"
 
 // fundamental table
 static Key2KanaTable romaji_table (
-    std::string ("DefaultRomajiTable"),
+     ("DefaultRomajiTable"),
     scim_anthy_romaji_typing_rule);
 static Key2KanaTable romaji_double_consonant_table (
-    std::string ("DefaultRomajiDoubleConsonantTable"),
+     ("DefaultRomajiDoubleConsonantTable"),
     scim_anthy_romaji_double_consonant_rule);
 static Key2KanaTable kana_table (
-    std::string ("DefaultKanaTable"),
+     ("DefaultKanaTable"),
     scim_anthy_kana_typing_rule);
 static Key2KanaTable kana_voiced_consonant_table (
-    std::string ("DefaultKanaVoicedConsonantTable"),
+     ("DefaultKanaVoicedConsonantTable"),
     scim_anthy_kana_voiced_consonant_rule);
 static Key2KanaTable nicola_table (
-    std::string ("DefaultNICOLATable"),
+     ("DefaultNICOLATable"),
     scim_anthy_nicola_table);
 
 // symbols
 static Key2KanaTable half_symbol_table (
-    std::string ("DefaultRomajiHalfSymbolTable"),
+     ("DefaultRomajiHalfSymbolTable"),
     scim_anthy_half_symbol_rule);
 static Key2KanaTable wide_symbol_table (
-    std::string ("DefaultRomajiWideSymbolTable"),
+     ("DefaultRomajiWideSymbolTable"),
     scim_anthy_wide_symbol_rule);
 
 // numbers
 static Key2KanaTable half_number_table (
-    std::string ("DefaultRomajiHalfNumberTable"),
+     ("DefaultRomajiHalfNumberTable"),
     scim_anthy_half_number_rule);
 static Key2KanaTable wide_number_table (
-    std::string ("DefaultRomajiWideNumberTable"),
+     ("DefaultRomajiWideNumberTable"),
     scim_anthy_wide_number_rule);
 
 // period
 static Key2KanaTable romaji_ja_period_table (
-    std::string ("DefaultRomajiJaPeriodTable"),
+     ("DefaultRomajiJaPeriodTable"),
     scim_anthy_romaji_ja_period_rule);
 static Key2KanaTable romaji_wide_period_table (
-    std::string ("DefaultRomajiWidePeriodTable"),
+     ("DefaultRomajiWidePeriodTable"),
     scim_anthy_romaji_wide_period_rule);
 static Key2KanaTable romaji_half_period_table (
-    std::string ("DefaultRomajiHalfPeriodTable"),
+     ("DefaultRomajiHalfPeriodTable"),
     scim_anthy_romaji_half_period_rule);
 
 static Key2KanaTable kana_ja_period_table (
-    std::string ("DefaultKanaJaPeriodTable"),
+     ("DefaultKanaJaPeriodTable"),
     scim_anthy_kana_ja_period_rule);
 static Key2KanaTable kana_wide_period_table (
-    std::string ("DefaultKanaWidePeriodTable"),
+     ("DefaultKanaWidePeriodTable"),
     scim_anthy_kana_wide_period_rule);
 static Key2KanaTable kana_half_period_table (
-    std::string ("DefaultKanaHalfPeriodTable"),
+     ("DefaultKanaHalfPeriodTable"),
     scim_anthy_kana_half_period_rule);
 
 // comma
 static Key2KanaTable romaji_ja_comma_table (
-    std::string ("DefaultRomajiJaCommaTable"),
+     ("DefaultRomajiJaCommaTable"),
     scim_anthy_romaji_ja_comma_rule);
 static Key2KanaTable romaji_wide_comma_table (
-    std::string ("DefaultRomajiWideCommaTable"),
+     ("DefaultRomajiWideCommaTable"),
     scim_anthy_romaji_wide_comma_rule);
 static Key2KanaTable romaji_half_comma_table (
-    std::string ("DefaultRomajiHalfCommaTable"),
+     ("DefaultRomajiHalfCommaTable"),
     scim_anthy_romaji_half_comma_rule);
 
 static Key2KanaTable kana_ja_comma_table (
-    std::string ("DefaultKanaJaCommaTable"),
+     ("DefaultKanaJaCommaTable"),
     scim_anthy_kana_ja_comma_rule);
 static Key2KanaTable kana_wide_comma_table (
-    std::string ("DefaultKanaWideCommaTable"),
+     ("DefaultKanaWideCommaTable"),
     scim_anthy_kana_wide_comma_rule);
 static Key2KanaTable kana_half_comma_table (
-    std::string ("DefaultKanaHalfCommaTable"),
+     ("DefaultKanaHalfCommaTable"),
     scim_anthy_kana_half_comma_rule);
 
 // bracket
 static Key2KanaTable romaji_ja_bracket_table (
-    std::string ("DefaultRomajiJaBracketTable"),
+     ("DefaultRomajiJaBracketTable"),
     scim_anthy_romaji_ja_bracket_rule);
 static Key2KanaTable romaji_wide_bracket_table (
-    std::string ("DefaultRomajiWideBracketTable"),
+     ("DefaultRomajiWideBracketTable"),
     scim_anthy_romaji_wide_bracket_rule);
 
 static Key2KanaTable kana_ja_bracket_table (
-    std::string ("DefaultKanaJaBracketTable"),
+     ("DefaultKanaJaBracketTable"),
     scim_anthy_kana_ja_bracket_rule);
 static Key2KanaTable kana_wide_bracket_table (
-    std::string ("DefaultRomajiWideBracketTable"),
+     ("DefaultRomajiWideBracketTable"),
     scim_anthy_kana_wide_bracket_rule);
 
 // slash
 static Key2KanaTable romaji_ja_slash_table (
-    std::string ("DefaultRomajiJaSlashTable"),
+     ("DefaultRomajiJaSlashTable"),
     scim_anthy_romaji_ja_slash_rule);
 static Key2KanaTable romaji_wide_slash_table (
-    std::string ("DefaultRomajiWideSlashTable"),
+     ("DefaultRomajiWideSlashTable"),
     scim_anthy_romaji_wide_slash_rule);
 
 static Key2KanaTable kana_ja_slash_table (
-    std::string ("DefaultKanaJaSlashTable"),
+     ("DefaultKanaJaSlashTable"),
     scim_anthy_kana_ja_slash_rule);
 static Key2KanaTable kana_wide_slash_table (
-    std::string ("DefaultRomajiWideSlashTable"),
+     ("DefaultRomajiWideSlashTable"),
     scim_anthy_kana_wide_slash_rule);
 
 
@@ -250,15 +250,15 @@ Key2KanaTable::clear (void)
 }
 
 Key2KanaTableSet::Key2KanaTableSet ()
-    : m_name                   (std::string ("")),
+    : m_name                   (""),
       m_fundamental_table      (NULL),
-      m_voiced_consonant_table (Key2KanaTable (std::string ("voiced consonant table"))),
+      m_voiced_consonant_table (Key2KanaTable ("voiced consonant table")),
       m_additional_table       (NULL),
-      m_typing_method          (SCIM_ANTHY_TYPING_METHOD_ROMAJI),
-      m_period_style           (SCIM_ANTHY_PERIOD_JAPANESE),
-      m_comma_style            (SCIM_ANTHY_COMMA_JAPANESE),
-      m_bracket_style          (SCIM_ANTHY_BRACKET_JAPANESE),
-      m_slash_style            (SCIM_ANTHY_SLASH_JAPANESE),
+      m_typing_method          (FCITX_ANTHY_TYPING_METHOD_ROMAJI),
+      m_period_style           (FCITX_ANTHY_PERIOD_JAPANESE),
+      m_comma_style            (FCITX_ANTHY_COMMA_JAPANESE),
+      m_bracket_style          (FCITX_ANTHY_BRACKET_JAPANESE),
+      m_slash_style            (FCITX_ANTHY_SLASH_JAPANESE),
       m_use_half_symbol        (false),
       m_use_half_number        (false)
 {
@@ -373,8 +373,9 @@ Key2KanaTableSet::reset_tables (void)
 {
     m_all_tables.clear ();
 
-    bool is_romaji = m_typing_method == SCIM_ANTHY_TYPING_METHOD_ROMAJI;
-    bool is_kana   = m_typing_method == SCIM_ANTHY_TYPING_METHOD_KANA;
+    bool is_romaji = m_typing_method == FCITX_ANTHY_TYPING_METHOD_ROMAJI;
+    bool is_kana   = m_typing_method == FCITX_ANTHY_TYPING_METHOD_KANA;
+    bool is_nicola = m_typing_method == FCITX_ANTHY_TYPING_METHOD_NICOLA;
 
     // symbols table
     if (m_use_half_symbol)
@@ -391,19 +392,19 @@ Key2KanaTableSet::reset_tables (void)
     if (is_romaji || is_kana)
     {
         switch (m_period_style) {
-        case SCIM_ANTHY_PERIOD_JAPANESE:
+        case FCITX_ANTHY_PERIOD_JAPANESE:
             if (is_romaji)
                 m_all_tables.push_back (&romaji_ja_period_table);
             else
                 m_all_tables.push_back (&kana_ja_period_table);
             break;
-        case SCIM_ANTHY_PERIOD_WIDE:
+        case FCITX_ANTHY_PERIOD_WIDE:
             if (is_romaji)
                 m_all_tables.push_back (&romaji_wide_period_table);
             else
                 m_all_tables.push_back (&kana_wide_period_table);
             break;
-        case SCIM_ANTHY_PERIOD_HALF:
+        case FCITX_ANTHY_PERIOD_HALF:
             if (is_romaji)
                 m_all_tables.push_back (&romaji_half_period_table);
             else
@@ -417,19 +418,19 @@ Key2KanaTableSet::reset_tables (void)
     if (is_romaji || is_kana)
     {
         switch (m_comma_style) {
-        case SCIM_ANTHY_COMMA_JAPANESE:
+        case FCITX_ANTHY_COMMA_JAPANESE:
             if (is_romaji)
                 m_all_tables.push_back (&romaji_ja_comma_table);
             else
                 m_all_tables.push_back (&kana_ja_comma_table);
             break;
-        case SCIM_ANTHY_COMMA_WIDE:
+        case FCITX_ANTHY_COMMA_WIDE:
             if (is_romaji)
                 m_all_tables.push_back (&romaji_wide_comma_table);
             else
                 m_all_tables.push_back (&kana_wide_comma_table);
             break;
-        case SCIM_ANTHY_COMMA_HALF:
+        case FCITX_ANTHY_COMMA_HALF:
             if (is_romaji)
                 m_all_tables.push_back (&romaji_half_comma_table);
             else
@@ -443,13 +444,13 @@ Key2KanaTableSet::reset_tables (void)
     if (is_romaji || is_kana)
     {
         switch (m_bracket_style) {
-        case SCIM_ANTHY_BRACKET_JAPANESE:
+        case FCITX_ANTHY_BRACKET_JAPANESE:
             if (is_romaji)
                 m_all_tables.push_back (&romaji_ja_bracket_table);
             else
                 m_all_tables.push_back (&kana_ja_bracket_table);
             break;
-        case SCIM_ANTHY_BRACKET_WIDE:
+        case FCITX_ANTHY_BRACKET_WIDE:
             if (is_romaji)
                 m_all_tables.push_back (&romaji_wide_bracket_table);
             else
@@ -463,13 +464,13 @@ Key2KanaTableSet::reset_tables (void)
     if (is_romaji || is_kana)
     {
         switch (m_slash_style) {
-        case SCIM_ANTHY_SLASH_JAPANESE:
+        case FCITX_ANTHY_SLASH_JAPANESE:
             if (is_romaji)
                 m_all_tables.push_back (&romaji_ja_slash_table);
             else
                 m_all_tables.push_back (&kana_ja_slash_table);
             break;
-        case SCIM_ANTHY_SLASH_WIDE:
+        case FCITX_ANTHY_SLASH_WIDE:
             if (is_romaji)
                 m_all_tables.push_back (&romaji_wide_slash_table);
             else
@@ -489,6 +490,8 @@ Key2KanaTableSet::reset_tables (void)
                                            kana_table);
             m_all_tables.push_back (&m_voiced_consonant_table);
             m_all_tables.push_back (&kana_table);
+        } else if (is_nicola) {
+            m_all_tables.push_back (&nicola_table);
         }
     } else {
         if (is_romaji) {
@@ -498,6 +501,8 @@ Key2KanaTableSet::reset_tables (void)
             create_voiced_consonant_table (m_voiced_consonant_table,
                                            *m_fundamental_table);
             m_all_tables.push_back (&m_voiced_consonant_table);
+            m_all_tables.push_back (m_fundamental_table);
+        } else if (is_nicola) {
             m_all_tables.push_back (m_fundamental_table);
         }
     }

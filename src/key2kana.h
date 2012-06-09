@@ -18,25 +18,25 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __SCIM_ANTHY_KEY2KANA_H__
-#define __SCIM_ANTHY_KEY2KANA_H__
+#ifndef __FCITX_ANTHY_KEY2KANA_H__
+#define __FCITX_ANTHY_KEY2KANA_H__
 
-#include "key2kanabase.h"
-#include "defaulttables.h"
-#include "key2kanatable.h"
+#include "key2kana_base.h"
+#include "default_tables.h"
+#include "key2kana_table.h"
 
-struct FcitxAnthy;
+class AnthyInstance;
 
 class Key2KanaConvertor : public Key2KanaConvertorBase
 {
 public:
-    Key2KanaConvertor                        (FcitxAnthy*        m_anthy,
+    Key2KanaConvertor                        (AnthyInstance    & anthy,
                                               Key2KanaTableSet & tables);
     virtual ~Key2KanaConvertor               ();
 
-    bool       can_append                    (FcitxKeySym sym, unsigned int state,
+    bool       can_append                    (const KeyEvent   & key,
                                               bool               ignore_space = false);
-    bool       append                        (FcitxKeySym sym, unsigned int state,
+    bool       append                        (const KeyEvent   & key,
                                               std::string       & result,
                                               std::string       & pending,
                                               std::string           & raw);
@@ -47,6 +47,12 @@ public:
     std::string flush_pending                 (void);
     void       reset_pending                 (const std::string & result,
                                               const std::string     & raw);
+    void       set_pseudo_ascii_mode         (int                mode)
+        { m_pseudo_ascii_mode = mode; }
+    bool       is_pseudo_ascii_mode          (void)
+        { return m_is_in_pseudo_ascii_mode; }
+    bool       process_pseudo_ascii_mode     (const std::string & wstr);
+    void       reset_pseudo_ascii_mode       (void);
 
 private:
     bool       append             (const std::string     & str,
@@ -54,17 +60,19 @@ private:
                                    std::string       & pending);
 
 private:
-    FcitxAnthy*        m_anthy;
-    
+    AnthyInstance     &m_anthy;
     Key2KanaTableSet  &m_tables;
 
     // state
-    FcitxHotkey        m_last_key;
-    std::string        m_pending;
+    KeyEvent           m_last_key;
+    std::string         m_pending;
     Key2KanaRule       m_exact_match;
+    int                m_pseudo_ascii_mode;
+    bool               m_is_in_pseudo_ascii_mode;
+    bool               m_reset_pseudo_ascii_mode;
 };
 
-#endif /* __SCIM_ANTHY_KEY2KANA_H__ */
+#endif /* __FCITX_ANTHY_KEY2KANA_H__ */
 /*
 vi:ts=4:nowrap:ai:expandtab
 */

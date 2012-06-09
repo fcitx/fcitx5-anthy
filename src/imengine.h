@@ -1,0 +1,225 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+/*
+ *  Copyright (C) 2004 Hiroyuki Ikezoe
+ *  Copyright (C) 2004 Takuro Ashie
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2, or (at your option)
+ *  any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ */
+
+/*
+ * The original code is scim_uim_imengine.cpp in scim-uim-0.1.3.
+ * Copyright (C) 2004 James Su <suzhe@tsinghua.org.cn>
+ */
+
+#ifndef __FCITX_ANTHY_IMENGINE_H__
+#define __FCITX_ANTHY_IMENGINE_H__
+
+#include <map>
+#include <anthy/anthy.h>
+#include "preedit.h"
+#include "key2kana_table.h"
+#include "factory.h"
+
+class AnthyInstance
+{
+public:
+    AnthyInstance (FcitxInstance* instance);
+    virtual ~AnthyInstance ();
+    bool load_config();
+    void save_config();
+
+    void configure();
+
+    virtual bool process_key_event            (const KeyEvent& key);
+    virtual void move_preedit_caret           (unsigned int pos);
+    virtual void select_candidate             (unsigned int item);
+    virtual void update_lookup_table_page_size(unsigned int page_size);
+    virtual void lookup_table_page_up         (void);
+    virtual void lookup_table_page_down       (void);
+    virtual void reset                        (void);
+    virtual void focus_in                     (void);
+    virtual void trigger_property             (const std::string &property);
+    virtual void reload_config                ();
+
+public:
+    /* actions */
+    bool   action_do_nothing                  (void);
+
+    bool   action_convert                     (void);
+    bool   action_predict                     (void);
+    bool   action_revert                      (void);
+    bool   action_cancel_all                  (void);
+    bool   action_commit_follow_preference    (void);
+    bool   action_commit_reverse_preference   (void);
+    bool   action_commit_first_segment        (void);
+    bool   action_commit_selected_segment     (void);
+    bool   action_commit_first_segment_reverse_preference
+                                              (void);
+    bool   action_commit_selected_segment_reverse_preference
+                                              (void);
+    bool   action_back                        (void);
+    bool   action_delete                      (void);
+    bool   action_insert_space                (void);
+    bool   action_insert_alternative_space    (void);
+    bool   action_insert_half_space           (void);
+    bool   action_insert_wide_space           (void);
+
+    bool   action_move_caret_backward         (void);
+    bool   action_move_caret_forward          (void);
+    bool   action_move_caret_first            (void);
+    bool   action_move_caret_last             (void);
+
+    bool   action_select_prev_segment         (void);
+    bool   action_select_next_segment         (void);
+    bool   action_select_first_segment        (void);
+    bool   action_select_last_segment         (void);
+    bool   action_shrink_segment              (void);
+    bool   action_expand_segment              (void);
+
+    bool   action_select_first_candidate      (void);
+    bool   action_select_last_candidate       (void);
+    bool   action_select_next_candidate       (void);
+    bool   action_select_prev_candidate       (void);
+    bool   action_candidates_page_up          (void);
+    bool   action_candidates_page_down        (void);
+
+    bool   action_select_candidate_1          (void);
+    bool   action_select_candidate_2          (void);
+    bool   action_select_candidate_3          (void);
+    bool   action_select_candidate_4          (void);
+    bool   action_select_candidate_5          (void);
+    bool   action_select_candidate_6          (void);
+    bool   action_select_candidate_7          (void);
+    bool   action_select_candidate_8          (void);
+    bool   action_select_candidate_9          (void);
+    bool   action_select_candidate_10         (void);
+
+    bool   action_convert_to_hiragana         (void);
+    bool   action_convert_to_katakana         (void);
+    bool   action_convert_to_half             (void);
+    bool   action_convert_to_half_katakana    (void);
+    bool   action_convert_to_latin            (void);
+    bool   action_convert_to_wide_latin       (void);
+    bool   action_convert_char_type_forward   (void);
+    bool   action_convert_char_type_backward  (void);
+    bool   action_reconvert                   (void);
+
+    bool   action_on_off                      (void);
+
+    bool   action_circle_input_mode           (void);
+    bool   action_circle_kana_mode            (void);
+    bool   action_circle_typing_method        (void);
+
+    bool   action_latin_mode                  (void);
+    bool   action_wide_latin_mode             (void);
+    bool   action_hiragana_mode               (void);
+    bool   action_katakana_mode               (void);
+    bool   action_half_katakana_mode          (void);
+    bool   action_cancel_pseudo_ascii_mode    (void);
+
+    bool   action_add_word                    (void);
+    bool   action_launch_dict_admin_tool      (void);
+    /*
+    void   actoin_register_word               (void);
+    */
+
+public:
+    TypingMethod
+           get_typing_method                  (void);
+    InputMode
+           get_input_mode                     (void);
+    int    get_pseudo_ascii_mode              (void);
+    FcitxAnthyConfig* get_config() { return &m_config; }
+    FcitxInstance* get_owner()     { return m_owner; }
+    FcitxMessages* get_preedit()   { return m_preedit_msg; }
+    FcitxMessages* get_client_preedit()   { return m_client_preedit_msg; }
+    FcitxInputState* get_input()   { return m_input; }
+    FcitxProfile* get_profile()   { return m_profile; }
+    bool support_client_preedit();
+
+private:
+    /* processing key event */
+    bool   process_key_event_input            (const KeyEvent &key);
+    bool   process_key_event_lookup_keybind   (const KeyEvent &key);
+    bool   process_key_event_latin_mode       (const KeyEvent &key);
+    bool   process_key_event_wide_latin_mode  (const KeyEvent &key);
+
+    /* utility */
+    void   set_preedition                     (void);
+    void   set_aux_string                     (void);
+    void   set_lookup_table                   (void);
+    void   unset_lookup_table                 (void);
+    void   install_properties                 (void);
+    void   set_input_mode                     (InputMode      mode);
+    void   set_conversion_mode                (ConversionMode mode);
+    void   set_typing_method                  (TypingMethod   method);
+    void   set_period_style                   (PeriodStyle    period,
+                                               CommaStyle     comma);
+    void   set_symbol_style                   (BracketStyle   bracket,
+                                               SlashStyle     slash);
+    bool   is_selecting_candidates            (void);
+    void   select_candidate_no_direct         (unsigned int   item);
+    bool   convert_kana                       (CandidateType  type);
+
+    bool   action_commit                      (bool           learn);
+    bool   action_select_candidate            (unsigned int   i);
+
+    bool   is_single_segment                  (void);
+    bool   is_realtime_conversion             (void);
+
+private: // FIXME!
+    bool   is_nicola_thumb_shift_key          (const KeyEvent &key);
+    void commit_string(std::string str);
+    void update_aux_string(const std::string& str);
+
+private:
+    FcitxInstance* m_owner;
+    bool                  m_on_init;
+
+   /* for preedit */
+    Preedit               m_preedit;
+    bool                  m_preedit_string_visible;
+
+    /* for candidates window */
+    FcitxCandidateWordList*     m_lookup_table;
+    bool                        m_lookup_table_visible;
+    unsigned int                m_n_conv_key_pressed;
+
+    /* for toggling latin and wide latin */
+    InputMode             m_prev_input_mode;
+
+    /*  */
+    ConversionMode        m_conv_mode;
+
+    /* for action */
+    KeyEvent              m_last_key;
+
+    FcitxInputState* m_input;
+
+    FcitxAnthyConfig m_config;
+    FcitxMessages* m_aux_up;
+    FcitxMessages* m_aux_down;
+
+    int m_cursor_pos;
+    FcitxMessages* m_client_preedit_msg;
+    FcitxMessages* m_preedit_msg;
+
+    std::map<std::string, Action> m_actions;
+    FcitxProfile* m_profile;
+};
+#endif /* __FCITX_ANTHY_IMENGINE_H__ */
+/*
+vi:ts=4:nowrap:ai:expandtab
+*/

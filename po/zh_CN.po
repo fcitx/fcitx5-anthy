@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 08:54+0800\n"
+"POT-Creation-Date: 2012-06-07 20:28+0800\n"
 "PO-Revision-Date: 2011-08-12 01:54+0800\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified <kde-i18n-doc@kde.org>\n"
@@ -17,9 +17,12 @@ msgstr ""
 "X-Generator: Lokalize 1.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:324
+msgid "AddWordKey"
+msgstr ""
+
 # unknown
 #: /home/saber/Develop/fcitx-anthy/build/po/tmp/fcitx-anthy.conf.in.h:1
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/eim.cpp:172
 msgid "Anthy"
 msgstr "Anthy"
 
@@ -27,7 +30,262 @@ msgstr "Anthy"
 msgid "Anthy Wrapper For Fcitx"
 msgstr "Fcitx 的 Anthy 封装"
 
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:74
+msgid "BackSpaceKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:109
+msgid "CancelAllKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:104
+msgid "CancelKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:48
+msgid "CancelPseudoAsciiModeKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:217
+msgid "CandidatesPageDownKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:212
+msgid "CandidatesPageUpKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:8
+msgid "CircleInputModeKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:13
+msgid "CircleKanaModeKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:18
+msgid "CircleTypingMethodKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:171
+msgid "CommitFirstSegmentKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:181
+msgid "CommitFirstSegmentReverseLearnKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:84
+msgid "CommitKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:89
+msgid "CommitReverseLearnKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:176
+msgid "CommitSelectedSegmentKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:186
+msgid "CommitSelectedSegmentReverseLearnKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:278
+msgid "ConvertCharTypeBackwardKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:273
+msgid "ConvertCharTypeForwardKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:94
+msgid "ConvertKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:298
+msgid "ConvertToHalfKatakanaKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:293
+msgid "ConvertToHalfKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:283
+msgid "ConvertToHiraganaKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:288
+msgid "ConvertToKatakanaKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:308
+msgid "ConvertToLatinKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:303
+msgid "ConvertToWideLatinKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:79
+msgid "DeleteKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:319
+msgid "DictAdminKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:114
+msgid "DoNothingKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:166
+msgid "ExpandSegmentKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:43
+msgid "HalfKatakanaModeKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:33
+msgid "HiraganaModeKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:59
+msgid "InsertAltSpaceKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:64
+msgid "InsertHalfSpaceKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:54
+msgid "InsertSpaceKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:69
+msgid "InsertWideSpaceKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:38
+msgid "KatakanaModeKey"
+msgstr ""
+
 # unknown
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:4
-msgid "Priority of Anthy"
-msgstr "Anthy 的优先级"
+msgid "Key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:23
+msgid "LatinModeKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:135
+msgid "MoveCaretBackwardKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:120
+msgid "MoveCaretFirstKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:130
+msgid "MoveCaretForwardKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:125
+msgid "MoveCaretLastKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:3
+msgid "OnOffKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:99
+msgid "PredictKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:314
+msgid "ReconvertKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:267
+msgid "SelectCandidates10Key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:222
+msgid "SelectCandidates1Key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:227
+msgid "SelectCandidates2Key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:232
+msgid "SelectCandidates3Key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:237
+msgid "SelectCandidates4Key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:242
+msgid "SelectCandidates5Key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:247
+msgid "SelectCandidates6Key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:252
+msgid "SelectCandidates7Key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:257
+msgid "SelectCandidates8Key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:262
+msgid "SelectCandidates9Key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:192
+msgid "SelectFirstCandidateKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:141
+msgid "SelectFirstSegmentKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:197
+msgid "SelectLastCandidateKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:146
+msgid "SelectLastSegmentKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:202
+msgid "SelectNextCandidateKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:151
+msgid "SelectNextSegmentKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:207
+msgid "SelectPrevCandidateKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:156
+msgid "SelectPrevSegmentKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:161
+msgid "ShrinkSegmentKey"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:28
+msgid "WideLatinModeKey"
+msgstr ""
+
+# unknown
+#~ msgid "Priority of Anthy"
+#~ msgstr "Anthy 的优先级"

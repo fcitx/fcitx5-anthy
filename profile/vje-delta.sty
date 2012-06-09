@@ -1,0 +1,339 @@
+#
+#  vje-delta.sty - VACS VJE-Delta like style definition file for scim-anthy.
+#  Copyright (C) 2005 Takuro Ashie <ashie@homa.ne.jp>
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2, or (at your option)
+#  any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#
+
+FormatVersion = 0.0.0
+Encoding      = EUC-JP
+Title         = VJE-Delta
+Version       = 0.0.0
+
+[KeyBindings]
+OnOffKey                    = Zenkaku_Hankaku,Henkan,Control+F8,Control+Shift+l,Control+Shift+L
+CircleInputModeKey          = 
+CircleKanaModeKey           = 
+LatinModeKey                = 
+WideLatinModeKey            = 
+HiraganaModeKey             = Control+F6,Control+Shift+j,Control+Shift+J
+KatakanaModeKey             = Control+F7,Control+Shift+k,Control+Shift+K
+HalfKatakanaModeKey         = 
+CircleTypingMethodKey       = Control+F3,Control+Shift+r,Control+Shift+R
+
+ConvertKey                  = space,Henkan,Down
+CancelKey                   = Escape
+CancelAllKey                = Shift+BackSpace,Control+y,Control+Y
+CommitKey                   = Return,Muhenkan
+
+InsertSpaceKey              = space
+InsertAltSpaceKey           = Shift+space
+BackSpaceKey                = BackSpace,Control+h,Control+H
+DeleteKey                   = Delete,Control+g,Control+G
+
+MoveCaretBackwardKey        = Left,Control+s,Control+S
+MoveCaretForwardKey         = Right,Control+d,Control+D
+MoveCaretFirstKey           = 
+MoveCaretLastKey            = 
+
+SelectPrevSegmentKey        = Left,Control+s,Control+S
+SelectNextSegmentKey        = Right,Control+d,Control+D
+SelectFirstSegmentKey       = Page_Up,Control+a,Control+A
+SelectLastSegmentKey        = Page_Down,Control+f,Control+F
+ExpandSegmentKey            = Shift+Right,Control+w,Control+W
+ShrinkSegmentKey            = Shift+Left,Control+q,Control+Q
+CommitSelectedSegmentKey    = 
+
+CandidatesPageUpKey         = Shift+Up,Control+e,Control+E
+CandidatesPageDownKey       = Shift+Down,Control+x,Control+X
+SelectNextCandidateKey      = space,Henkan,Down
+SelectPrevCandidateKey      = Up
+
+SelectCandidates1Key        = 1
+SelectCandidates2Key        = 2
+SelectCandidates3Key        = 3
+SelectCandidates4Key        = 4
+SelectCandidates5Key        = 5
+SelectCandidates6Key        = 6
+SelectCandidates7Key        = 7
+SelectCandidates8Key        = 8
+SelectCandidates9Key        = 9
+SelectCandidates10Key       = 0
+
+ConvertToHiraganaKey        = F6,Control+j
+ConvertToKatakanaKey        = F7,Control+k
+ConvertToHalfKey            = F9,Control+o
+ConvertToHalfKatakanaKey    = 
+ConvertToWideLatinKey       = F8,Control+l
+ConvertToLatinKey           = 
+
+AddWordKey                  = 
+
+
+# Override fundamental table
+[RomajiTable/FundamentalTable]
+-    = ー
+#[    = 「
+#]    = 」
+a   = あ
+i   = い
+u   = う
+e   = え
+o   = お
+xa  = ぁ
+xi  = ぃ
+xu  = ぅ
+xe  = ぇ
+xo  = ぉ
+ka  = か
+ki  = き
+ku  = く
+ke  = け
+ko  = こ
+xka = ヵ
+xke = ヶ
+kya = きゃ
+kyi = きぃ
+kyu = きゅ
+cu  = きゅ
+kye = きぇ
+kyo = きょ
+kwa = くぁ
+qa  = くぁ
+kwi = くぃ
+qi  = くぃ
+kwe = くぇ
+qe  = くぇ
+kwo = くぉ
+qo  = くぉ
+qya = くゃ
+qyi = くぃ
+qyu = くゅ
+qye = くぇ
+quo = くょ
+sa  = さ
+si  = し
+shi = し
+ci  = し
+su  = す
+se  = せ
+ce  = せ
+so  = そ
+sya = しゃ
+sha = しゃ
+syi = しぃ
+syu = しゅ
+shu = しゅ
+sye = しぇ
+she = しぇ
+syo = しょ
+sho = しょ
+ta  = た
+ti  = ち
+chi = ち
+tu  = つ
+tsu = つ
+te  = て
+to  = と
+tya = ちゃ
+cya = ちゃ
+cha = ちゃ
+tyi = ちぃ
+cyi = ちぃ
+tyu = ちゅ
+cyu = ちゅ
+chu = ちゅ
+tye = ちぇ
+cye = ちぇ
+che = ちぇ
+tyo = ちょ
+cyo = ちょ
+cho = ちょ
+xtu = っ
+tsa = つぁ
+tsi = つぃ
+tse = つぇ
+tso = つぉ
+tha = てゃ
+thi = てぃ
+thu = てゅ
+the = てぇ
+tho = てょ
+twu = とぅ
+na  = な
+ni  = に
+nu  = ぬ
+ne  = ね
+no  = の
+nya = にゃ
+nyi = にぃ
+nyu = にゅ
+nye = にぇ
+nyo = にょ
+ha  = は
+hi  = ひ
+hu  = ふ
+fu  = ふ
+he  = へ
+ho  = ほ
+hya = ひゃ
+hyi = ひぃ
+hyu = ひゅ
+hye = ひぇ
+hyo = ひょ
+fa  = ふぁ
+fi  = ふぃ
+fe  = ふぇ
+fo  = ふぉ
+fya = ふゃ
+fyi = ふぃ
+fyu = ふゅ
+fye = ふぇ
+fyo = ふょ
+ma  = ま
+mi  = み
+mu  = む
+me  = め
+mo  = も
+mya = みゃ
+myi = みぃ
+myu = みゅ
+mye = みぇ
+myo = みょ
+ya  = や
+yi  = い
+yu  = ゆ
+ye  = いぇ
+yo  = よ
+xya = ゃ
+xyi = ぃ
+xyu = ゅ
+xye = ぇ
+xyo = ょ
+la  = ら
+ra  = ら
+li  = り
+ri  = り
+lu  = る
+ru  = る
+le  = れ
+re  = れ
+lo  = ろ
+ro  = ろ
+lya = りゃ
+rya = りゃ
+lyi = りぃ
+ryi = りぃ
+lyu = りゅ
+ryu = りゅ
+lye = りぇ
+rye = りぇ
+lyo = りょ
+ryo = りょ
+wa  = わ
+wi  = うぃ
+wu  = う
+we  = うぇ
+wo  = を
+xwa = ゎ
+wha = うぁ
+whi = うぃ
+whu = う
+whe = うぇ
+who = うぉ
+nn  = ん
+n'  = ん
+ga  = が
+gi  = ぎ
+gu  = ぐ
+ge  = げ
+go  = ご
+gwa = ぐぁ
+gwi = ぐぃ
+gwu = ぐゅ
+gwe = ぐぇ
+gwo = ぐぉ
+gya = ぎゃ
+gyi = ぎぃ
+gyu = ぎゅ
+gye = ぎぇ
+gyo = ぎょ
+za  = ざ
+zi  = じ
+ji  = じ
+zu  = ず
+ze  = ぜ
+zo  = ぞ
+zya = じゃ
+ja  = じゃ
+jya = じゃ
+zyi = じぃ
+ji  = じぃ
+jyi = じぃ
+zyu = じゅ
+ju  = じゅ
+jyu = じゅ
+zye = じぇ
+je  = じぇ
+jye = じぇ
+zyo = じょ
+jo  = じょ
+jyo = じょ
+da  = だ
+di  = ぢ
+du  = づ
+de  = で
+do  = ど
+dya = ぢゃ
+dyi = でぃ
+dyu = ぢゅ
+dye = ぢぇ
+dyo = ぢょ
+dha = でゃ
+dhi = でぃ
+dhu = でゅ
+dhe = でぇ
+dho = でょ
+dwu = どぅ
+ba  = ば
+bi  = び
+bu  = ぶ
+be  = べ
+bo  = ぼ
+bya = びゃ
+byi = びぃ
+byu = びゅ
+bye = びぇ
+byo = びょ
+pa  = ぱ
+pi  = ぴ
+pu  = ぷ
+pe  = ぺ
+po  = ぽ
+pya = ぴゃ
+pyi = ぴぃ
+pyu = ぴゅ
+pye = ぴぇ
+pyo = ぴょ
+va  = ヴぁ
+vi  = ヴぃ
+vu  = ヴぅ
+ve  = ヴぇ
+vo  = ヴぉ
+vya = ヴゃ
+vyi = ヴぃ
+vyu = ヴゅ
+vye = ヴぇ
+vyo = ヴょ

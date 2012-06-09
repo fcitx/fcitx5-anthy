@@ -20,9 +20,10 @@
 #include <string.h>
 
 #include "kana.h"
-#include "defaulttables.h"
+#include "factory.h"
+#include "imengine.h"
+#include "default_tables.h"
 #include "utils.h"
-#include "eim.h"
 
 static bool
 has_voiced_consonant (std::string str)
@@ -82,7 +83,7 @@ to_half_voiced_consonant (std::string str)
     return str;
 }
 
-KanaConvertor::KanaConvertor (FcitxAnthy* anthy)
+KanaConvertor::KanaConvertor (AnthyInstance &anthy)
     : m_anthy (anthy)
 {
 }
@@ -92,26 +93,31 @@ KanaConvertor::~KanaConvertor ()
 }
 
 bool
-KanaConvertor::can_append (FcitxKeySym sym, unsigned int state,
+KanaConvertor::can_append (const KeyEvent & key,
                            bool             ignore_space)
 {
+    // ignore key release.
+    if (key.is_release)
+        return false;
+
     // ignore short cut keys of apllication.
-    if (FcitxHotkeyIsHotKeyModifierCombine(sym, state))
+    if (key.state & FcitxKeyState_Ctrl ||
+        key.state & FcitxKeyState_Alt)
     {
         return false;
     }
 
-    if (sym == FcitxKey_overline ||
-        (sym >= FcitxKey_kana_fullstop &&
-         sym <= FcitxKey_semivoicedsound))
+    if (key.sym == FcitxKey_overline ||
+        (key.sym >= FcitxKey_kana_fullstop &&
+         key.sym <= FcitxKey_semivoicedsound))
     {
         return true;
     }
 
 #if 0
-    if (sym == FcitxKey_KP_Equal ||
-        (sym >= FcitxKey_KP_Multiply &&
-         sym <= FcitxKey_KP_9))
+    if (key.code == SCIM_KEY_KP_Equal ||
+        (key.code >= SCIM_KEY_KP_Multiply &&
+         key.code <= SCIM_KEY_KP_9))
     {
         return true;
     }
@@ -121,7 +127,7 @@ KanaConvertor::can_append (FcitxKeySym sym, unsigned int state,
 }
 
 bool
-KanaConvertor::append (FcitxKeySym sym, unsigned int state,
+KanaConvertor::append (const KeyEvent & key,
                        std::string & result,
                        std::string & pending,
                        std::string &raw)
@@ -129,15 +135,15 @@ KanaConvertor::append (FcitxKeySym sym, unsigned int state,
     KeyCodeToCharRule *table = scim_anthy_keypad_table;
 
     // handle keypad code
-    if (sym == FcitxKey_KP_Equal ||
-        (sym >= FcitxKey_KP_Multiply &&
-         sym <= FcitxKey_KP_9))
+    if (key.sym == FcitxKey_KP_Equal ||
+        (key.sym >= FcitxKey_KP_Multiply &&
+         key.sym <= FcitxKey_KP_9))
     {
-        std::string ten_key_type = m_anthy->config.m_ten_key_type;
+        TenKeyType ten_key_type = m_anthy.get_config()->m_ten_key_type;
 
         for (unsigned int i = 0; table[i].code; i++) {
-            if (table[i].code == sym) {
-                if (ten_key_type == "Wide")
+            if (table[i].code == key.sym) {
+                if (ten_key_type == FCITX_ANTHY_TEN_KEY_TYPE_WIDE)
                     util_convert_to_wide (result, table[i].kana);
                 else
                     result = table[i].kana;
@@ -151,28 +157,28 @@ KanaConvertor::append (FcitxKeySym sym, unsigned int state,
     table = scim_anthy_kana_table;
 
     // handle voiced sound
-    if (sym == FcitxKey_voicedsound &&
+    if (key.sym == FcitxKey_voicedsound &&
         !m_pending.empty () && has_voiced_consonant (m_pending))
     {
         result = to_voiced_consonant (m_pending);
-        raw    = sym & 0xff;
+        raw    = key.get_ascii_code ();
         m_pending = std::string ();
         return false;
     }
 
     // handle semi voiced sound
-    if (sym == FcitxKey_semivoicedsound &&
+    if (key.sym == FcitxKey_semivoicedsound &&
         !m_pending.empty () && has_half_voiced_consonant (m_pending))
     {
         result = to_half_voiced_consonant (m_pending);
-        raw    = sym & 0xff;
+        raw    = key.get_ascii_code ();
         m_pending = std::string ();
         return false;
     }
 
     // kana key code
     for (unsigned int i = 0; table[i].code; i++) {
-        if (table[i].code == sym) {
+        if (table[i].code == key.sym) {
             bool retval = m_pending.empty () ? false : true;
 
             if (has_voiced_consonant (table[i].kana)) {
@@ -183,14 +189,14 @@ KanaConvertor::append (FcitxKeySym sym, unsigned int state,
                 result = table[i].kana;
                 m_pending = std::string ();
             }
-            raw = sym & 0xff;
+            raw = key.get_ascii_code ();
 
             return retval;
         }
     }
 
     std::string s;
-    s += sym & 0xff;
+    s += key.get_ascii_code ();
     raw    = s;
 
     return append (raw, result, pending);

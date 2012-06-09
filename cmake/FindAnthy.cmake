@@ -16,7 +16,7 @@ if(ANTHY_INCLUDE_DIR AND ANTHY_LIBRARIES)
 endif(ANTHY_INCLUDE_DIR AND ANTHY_LIBRARIES)
 
 find_package(PkgConfig)
-pkg_check_modules(PC_LIBANTHY QUIET chewing)
+pkg_check_modules(PC_LIBANTHY QUIET anthy)
 
 find_path(ANTHY_MAIN_INCLUDE_DIR
           NAMES anthy.h

@@ -18,10 +18,10 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __SCIM_ANTHY_KEY2KANA_BASE_H__
-#define __SCIM_ANTHY_KEY2KANA_BASE_H__
-#include <string>
-#include <fcitx-config/hotkey.h>
+#ifndef __FCITX_ANTHY_KEY2KANA_BASE_H__
+#define __FCITX_ANTHY_KEY2KANA_BASE_H__
+
+#include "common.h"
 
 class Key2KanaConvertorBase
 {
@@ -31,9 +31,9 @@ public:
         {};
     virtual ~Key2KanaConvertorBase        () {};
 
-    virtual bool       can_append         (FcitxKeySym sym, unsigned int state,
+    virtual bool       can_append         (const KeyEvent   & key,
                                            bool               ignore_space = false) = 0;
-    virtual bool       append             (FcitxKeySym sym, unsigned int state,
+    virtual bool       append             (const KeyEvent   & key,
                                            std::string       & result,
                                            std::string       & pending,
                                            std::string           & raw)       = 0;
@@ -62,7 +62,7 @@ protected:
     bool m_case_sensitive;
 };
 
-#endif /* __SCIM_ANTHY_KEY2KANA_BASE_H__ */
+#endif /* __FCITX_ANTHY_KEY2KANA_BASE_H__ */
 /*
 vi:ts=4:nowrap:ai:expandtab
 */

@@ -30,6 +30,7 @@
 #include <fcitx/instance.h>
 #include <libintl.h>
 #include <fcitx-config/xdg.h>
+#include <fcitx/hook.h>
 #include <fcitx-utils/log.h>
 #include <errno.h>
 
@@ -50,6 +51,7 @@ static INPUT_RETURN_VALUE FcitxAnthyDoReleaseInput(void* arg, FcitxKeySym sym, u
 static void  FcitxAnthyReloadConfig(void* arg);
 static void  FcitxAnthySave(void* arg);
 static void  FcitxAnthyReset(void* arg);
+static void  FcitxAnthyResetIM(void* arg);
 
 FCITX_EXPORT_API
 FcitxIMClass ime = {
@@ -77,7 +79,7 @@ void* FcitxAnthyCreate(FcitxInstance* instance)
     FcitxIMIFace iface;
     memset(&iface, 0, sizeof(FcitxIMIFace));
     iface.Init = FcitxAnthyInit;
-    iface.ResetIM = FcitxAnthyReset;
+    iface.ResetIM = FcitxAnthyResetIM;
     iface.DoInput = FcitxAnthyDoInput;
     iface.DoReleaseInput = FcitxAnthyDoReleaseInput;
     iface.ReloadConfig = FcitxAnthyReloadConfig;
@@ -94,6 +96,11 @@ void* FcitxAnthyCreate(FcitxInstance* instance)
         "ja"
     );
 
+    FcitxIMEventHook hk;
+    hk.arg = anthy;
+    hk.func = FcitxAnthyReset;
+    FcitxInstanceRegisterResetInputHook(instance, hk);
+
     return anthy;
 }
 
@@ -108,19 +115,27 @@ void FcitxAnthyDestory(void* arg)
 boolean FcitxAnthyInit(void* arg)
 {
     AnthyInstance* anthy = (AnthyInstance*) arg;
-    anthy->focus_in();
+    anthy->init();
+    anthy->update_ui();
     return true;
+}
+
+void FcitxAnthyResetIM(void* arg)
+{
+    AnthyInstance* anthy = (AnthyInstance*) arg;
+    anthy->reset_im();
+    anthy->update_ui();
 }
 
 void FcitxAnthyReset(void* arg)
 {
     AnthyInstance* anthy = (AnthyInstance*) arg;
     anthy->reset();
+    anthy->update_ui();
 }
 
 void FcitxAnthySave(void* arg)
 {
-
 }
 
 INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int state)
@@ -131,7 +146,9 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
     event.sym = (FcitxKeySym) FcitxInputStateGetKeySym(input);
     event.is_release = false;
     event.state = FcitxInputStateGetKeyState(input);
-    if (anthy->process_key_event(event))
+    bool result = anthy->process_key_event(event);
+    anthy->update_ui();
+    if (result)
         return IRV_DO_NOTHING;
     else
         return IRV_TO_PROCESS;
@@ -145,7 +162,9 @@ INPUT_RETURN_VALUE FcitxAnthyDoReleaseInput(void* arg, FcitxKeySym sym, unsigned
     event.sym = (FcitxKeySym) FcitxInputStateGetKeySym(input);
     event.is_release = true;
     event.state = FcitxInputStateGetKeyState(input);
-    if (anthy->process_key_event(event))
+    bool result = anthy->process_key_event(event);
+    anthy->update_ui();
+    if (result)
         return IRV_DO_NOTHING;
     else
         return IRV_TO_PROCESS;
@@ -155,6 +174,8 @@ void FcitxAnthyReloadConfig(void* arg)
 {
     AnthyInstance* anthy = (AnthyInstance*) arg;
     anthy->load_config();
+    anthy->configure();
+    anthy->update_ui();
 }
 
 void
@@ -172,5 +193,6 @@ LoadAnthyConfig(AnthyInstance* anthy)
 
 void ConfigAnthy(AnthyInstance* anthy) {
     anthy->configure();
+    anthy->update_ui();
 }
 

@@ -32,6 +32,13 @@
 #include "key2kana_table.h"
 #include "factory.h"
 
+
+struct AnthyStatus {
+    const char* icon;
+    const char* label;
+    const char* description;
+};
+
 class AnthyInstance
 {
 public:
@@ -48,8 +55,9 @@ public:
     virtual void update_lookup_table_page_size(unsigned int page_size);
     virtual void lookup_table_page_up         (void);
     virtual void lookup_table_page_down       (void);
+    virtual void reset_im                     (void);
     virtual void reset                        (void);
-    virtual void focus_in                     (void);
+    virtual void init                         (void);
     virtual void trigger_property             (const std::string &property);
     virtual void reload_config                ();
 
@@ -95,17 +103,6 @@ public:
     bool   action_candidates_page_up          (void);
     bool   action_candidates_page_down        (void);
 
-    bool   action_select_candidate_1          (void);
-    bool   action_select_candidate_2          (void);
-    bool   action_select_candidate_3          (void);
-    bool   action_select_candidate_4          (void);
-    bool   action_select_candidate_5          (void);
-    bool   action_select_candidate_6          (void);
-    bool   action_select_candidate_7          (void);
-    bool   action_select_candidate_8          (void);
-    bool   action_select_candidate_9          (void);
-    bool   action_select_candidate_10         (void);
-
     bool   action_convert_to_hiragana         (void);
     bool   action_convert_to_katakana         (void);
     bool   action_convert_to_half             (void);
@@ -140,6 +137,19 @@ public:
            get_typing_method                  (void);
     InputMode
            get_input_mode                     (void);
+    ConversionMode
+           get_conversion_mode                     (void) { return m_config.m_conversion_mode; }
+    PeriodCommaStyle
+           get_period_style                     (void) { return m_config.m_period_comma_style; }
+    SymbolStyle
+           get_symbol_style                     (void) { return m_config.m_symbol_style; }
+    void   set_input_mode                     (InputMode      mode);
+    void   set_conversion_mode                (ConversionMode mode);
+    void   set_typing_method                  (TypingMethod   method);
+    void   set_period_style                   (PeriodCommaStyle period);
+    void   set_symbol_style                   (SymbolStyle symbol);
+    void   update_ui                          (void);
+
     int    get_pseudo_ascii_mode              (void);
     FcitxAnthyConfig* get_config() { return &m_config; }
     FcitxInstance* get_owner()     { return m_owner; }
@@ -148,6 +158,12 @@ public:
     FcitxInputState* get_input()   { return m_input; }
     FcitxProfile* get_profile()   { return m_profile; }
     bool support_client_preedit();
+
+    const char* get_input_mode_icon();
+    const char* get_typing_method_icon();
+    const char* get_conversion_mode_icon();
+    const char* get_period_style_icon();
+    const char* get_symbol_style_icon();
 
 private:
     /* processing key event */
@@ -162,9 +178,6 @@ private:
     void   set_lookup_table                   (void);
     void   unset_lookup_table                 (void);
     void   install_properties                 (void);
-    void   set_input_mode                     (InputMode      mode);
-    void   set_conversion_mode                (ConversionMode mode);
-    void   set_typing_method                  (TypingMethod   method);
     void   set_period_style                   (PeriodStyle    period,
                                                CommaStyle     comma);
     void   set_symbol_style                   (BracketStyle   bracket,
@@ -200,9 +213,6 @@ private:
     /* for toggling latin and wide latin */
     InputMode             m_prev_input_mode;
 
-    /*  */
-    ConversionMode        m_conv_mode;
-
     /* for action */
     KeyEvent              m_last_key;
 
@@ -218,6 +228,14 @@ private:
 
     std::map<std::string, Action> m_actions;
     FcitxProfile* m_profile;
+    bool m_status_installed;
+
+    FcitxUIMenu m_input_mode_menu;
+    FcitxUIMenu m_typing_method_menu;
+    FcitxUIMenu m_conversion_mode_menu;
+    FcitxUIMenu m_period_style_menu;
+    FcitxUIMenu m_symbol_style_menu;
+    int m_ui_update;
 };
 #endif /* __FCITX_ANTHY_IMENGINE_H__ */
 /*

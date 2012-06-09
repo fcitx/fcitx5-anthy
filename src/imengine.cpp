@@ -119,6 +119,15 @@
 #define ACTION_CONFIG_DICT_ADMIN_KEY              "DictAdminKey"
 #define ACTION_CONFIG_ADD_WORD_KEY                "AddWordKey"
 
+#define UTF8_BRACKET_CORNER_BEGIN "\xE3\x80\x8C"
+#define UTF8_BRACKET_CORNER_END   "\xE3\x80\x8D"
+#define UTF8_BRACKET_WIDE_BEGIN   "\xEF\xBC\xBB"
+#define UTF8_BRACKET_WIDE_END     "\xEF\xBC\xBD"
+#define UTF8_MIDDLE_DOT           "\xE3\x83\xBB"
+#define UTF8_SLASH_WIDE           "\xEF\xBC\x8F"
+
+#define N_(x) (x)
+
 AnthyInstance::AnthyInstance (FcitxInstance* instance) :
       m_owner(instance),
       m_on_init                (true),
@@ -127,7 +136,7 @@ AnthyInstance::AnthyInstance (FcitxInstance* instance) :
       m_lookup_table_visible   (false),
       m_n_conv_key_pressed     (0),
       m_prev_input_mode        (FCITX_ANTHY_MODE_HIRAGANA),
-      m_conv_mode              (FCITX_ANTHY_CONVERSION_MULTI_SEGMENT)
+      m_status_installed       (false)
 {
     m_input = FcitxInstanceGetInputState(instance);
     m_lookup_table = FcitxInputStateGetCandidateList(m_input);
@@ -361,6 +370,9 @@ AnthyInstance::select_candidate_no_direct (unsigned int item)
     m_preedit.select_candidate (m_cursor_pos);
     set_preedition ();
 
+    set_lookup_table();
+    FcitxCandidateWordSetFocus(m_lookup_table, m_cursor_pos);
+
     // update aux string
     if (m_config.m_show_candidates_label)
         set_aux_string ();
@@ -392,7 +404,7 @@ AnthyInstance::lookup_table_page_down ()
 }
 
 void
-AnthyInstance::reset ()
+AnthyInstance::reset_im ()
 {
     FcitxInstanceCleanInputWindow(m_owner);
 
@@ -404,34 +416,23 @@ AnthyInstance::reset ()
 }
 
 void
-AnthyInstance::focus_in ()
+AnthyInstance::init ()
 {
-#if 0
+    FcitxInstanceCleanInputWindow(m_owner);
     if (m_preedit_string_visible) {
         set_preedition ();
-        show_preedit_string ();
-    } else {
-        hide_preedit_string ();
     }
 
     if (m_lookup_table_visible && is_selecting_candidates ()) {
         if (m_config.m_show_candidates_label &&
-            m_lookup_table.number_of_candidates() > 0)
+            FcitxCandidateWordGetListSize(m_lookup_table))
         {
             set_aux_string ();
-            show_aux_string ();
-        } else {
-            hide_aux_string ();
         }
-        update_lookup_table (m_lookup_table);
-        show_lookup_table ();
-    } else {
-        hide_aux_string ();
-        hide_lookup_table ();
+        set_lookup_table ();
     }
 
     install_properties ();
-#endif
 }
 
 bool
@@ -453,7 +454,16 @@ AnthyInstance::set_preedition (void)
     FcitxInputStateSetShowCursor(m_input, true);
     FcitxInputStateSetCursorPos(m_input, m_preedit.get_caret_pos());
     FcitxInputStateSetClientCursorPos(m_input, m_preedit.get_caret_pos());
-    FcitxUIUpdateInputWindow(m_owner);
+    m_ui_update = true;
+}
+
+void
+AnthyInstance::update_ui (void)
+{
+    if (m_ui_update) {
+        m_ui_update = false;
+        FcitxUIUpdateInputWindow(m_owner);
+    }
 }
 
 void
@@ -472,7 +482,8 @@ AnthyInstance::set_lookup_table (void)
     FcitxCandidateWordSetChoose(m_lookup_table, DIGIT_STR_CHOOSE);
     FcitxCandidateWordSetPageSize(m_lookup_table, m_config.m_page_size);
 
-    if (!is_selecting_candidates ()) {
+    // if (!is_selecting_candidates ()) {
+    if (true) {
         if (is_realtime_conversion () &&
             m_preedit.get_selected_segment () < 0)
         {
@@ -512,7 +523,7 @@ AnthyInstance::set_lookup_table (void)
         FcitxCandidateWordReset(m_lookup_table);
     }
 
-    FcitxUIUpdateInputWindow(m_owner);
+    m_ui_update = true;
 }
 
 void
@@ -525,191 +536,235 @@ AnthyInstance::unset_lookup_table (void)
     FcitxMessagesSetMessageCount(m_aux_up, 0);
 }
 
+AnthyStatus input_mode_status[] = {
+    {"anthy-hiragana", N_("Hiragana"), N_("Hiragana") },
+    {"anthy-katakana", N_("Katakana"), N_("Katakana") },
+    {"anthy-half-katakana", N_("Half width katakana"), N_("Half width katakana") },
+    {"anthy-latin", N_("Latin"), N_("Direct input") },
+    {"anthy-wide-latin", N_("Wide latin"), N_("Wide latin") },
+};
+
+AnthyStatus typing_method_status[] = {
+    {"anthy-typing-romaji", N_("Romaji"), N_("Romaji") },
+    {"anthy-typing-kani", N_("Kana"), N_("Kana") },
+    {"anthy-typing-nicola", N_("Thumb shift"), N_("Thumb shift") },
+    {"anthy-typing-custom", N_("Custom"), N_("Custom") },
+};
+
+AnthyStatus conversion_mode_status[] = {
+    {"anthy-multi-seg", N_("Multi segment"), N_("Multi segment") },
+    {"anthy-single-seg", N_("Single segment"), N_("Single segment") },
+    {"anthy-multi-seg-conv", N_("Convert as you type (Multi segment)"), N_("Convert as you type (Multi segment)") },
+    {"anthy-single-seg-conv", N_("Convert as you type (Single segment)"), N_("Convert as you type (Single segment)") },
+};
+
+AnthyStatus period_style_status[] = {
+    {"anthy-period-japanese", "\xE3\x80\x81\xE3\x80\x82", "\xE3\x80\x81\xE3\x80\x82" },
+    {"anthy-period-wide-japanese", "\xEF\xBC\x8C\xE3\x80\x82", "\xEF\xBC\x8C\xE3\x80\x82" },
+    {"anthy-period-wide-latin", "\xEF\xBC\x8C\xEF\xBC\x8E", "\xEF\xBC\x8C\xEF\xBC\x8E" },
+    {"anthy-period-latin", ",.", ",." },
+};
+
+AnthyStatus symbol_style_status[] = {
+    {"anthy-hiragana", UTF8_BRACKET_CORNER_BEGIN
+                        UTF8_BRACKET_CORNER_END
+                        UTF8_MIDDLE_DOT,
+                        UTF8_BRACKET_CORNER_BEGIN
+                        UTF8_BRACKET_CORNER_END
+                        UTF8_MIDDLE_DOT },
+    {"anthy-hiragana", UTF8_BRACKET_CORNER_BEGIN
+                        UTF8_BRACKET_CORNER_END
+                        UTF8_SLASH_WIDE,
+                        UTF8_BRACKET_CORNER_BEGIN
+                        UTF8_BRACKET_CORNER_END
+                        UTF8_SLASH_WIDE },
+    {"anthy-hiragana", UTF8_BRACKET_WIDE_BEGIN
+                        UTF8_BRACKET_WIDE_END
+                        UTF8_MIDDLE_DOT,
+                        UTF8_BRACKET_WIDE_BEGIN
+                        UTF8_BRACKET_WIDE_END
+                        UTF8_MIDDLE_DOT
+    },
+    {"anthy-hiragana", UTF8_BRACKET_WIDE_BEGIN
+                        UTF8_BRACKET_WIDE_END
+                        UTF8_SLASH_WIDE,
+                        UTF8_BRACKET_WIDE_BEGIN
+                        UTF8_BRACKET_WIDE_END
+                        UTF8_SLASH_WIDE
+    },
+};
+
+const char*
+GetInputModeIconName(void* arg)
+{
+    AnthyInstance* anthy = (AnthyInstance*) arg;
+    return anthy->get_input_mode_icon();
+}
+
+const char*
+GetTypingMethodIconName(void* arg)
+{
+    AnthyInstance* anthy = (AnthyInstance*) arg;
+    return anthy->get_typing_method_icon();
+}
+
+const char*
+GetConversionModeIconName(void* arg)
+{
+    AnthyInstance* anthy = (AnthyInstance*) arg;
+    return anthy->get_conversion_mode_icon();
+}
+
+const char*
+GetPeriodStyleIconName(void* arg)
+{
+    AnthyInstance* anthy = (AnthyInstance*) arg;
+    return anthy->get_period_style_icon();
+}
+
+const char*
+GetSymbolStyleIconName(void* arg)
+{
+    AnthyInstance* anthy = (AnthyInstance*) arg;
+    return anthy->get_symbol_style_icon();
+}
+
+const char* AnthyInstance::get_input_mode_icon()
+{
+    return input_mode_status[m_config.m_input_mode].icon;
+}
+
+const char* AnthyInstance::get_typing_method_icon()
+{
+    return typing_method_status[m_config.m_typing_method].icon;
+}
+
+const char* AnthyInstance::get_conversion_mode_icon()
+{
+    return conversion_mode_status[m_config.m_conversion_mode].icon;
+}
+
+const char* AnthyInstance::get_period_style_icon()
+{
+    return period_style_status[m_config.m_period_comma_style].icon;
+}
+
+const char* AnthyInstance::get_symbol_style_icon()
+{
+    return symbol_style_status[m_config.m_symbol_style].icon;
+}
+
+#define DEFINE_MENU_ACTION(NAME, TYPE, FUNC) \
+    void Update##NAME##Menu(struct _FcitxUIMenu *menu) \
+    { \
+        AnthyInstance* anthy = (AnthyInstance*) menu->priv; \
+        menu->mark = anthy->get_##FUNC(); \
+    } \
+    boolean NAME##MenuAction(struct _FcitxUIMenu *menu, int index) \
+    { \
+        AnthyInstance* anthy = (AnthyInstance*) menu->priv; \
+        anthy->set_##FUNC((TYPE) index); \
+        anthy->save_config(); \
+        return true; \
+    }
+
+DEFINE_MENU_ACTION(InputMode, InputMode, input_mode)
+DEFINE_MENU_ACTION(TypingMethod, TypingMethod, typing_method)
+DEFINE_MENU_ACTION(ConversionMode, ConversionMode, conversion_mode)
+DEFINE_MENU_ACTION(PeriodStyle, PeriodCommaStyle, period_style)
+DEFINE_MENU_ACTION(SymbolStyle, SymbolStyle, symbol_style)
+
+void AnthyInstance::set_period_style(PeriodCommaStyle period)
+{
+    if (period == m_config.m_period_comma_style)
+        return;
+
+    m_config.m_period_comma_style = period;
+    switch (m_config.m_period_comma_style)
+    {
+        case FCITX_ANTHY_PERIOD_COMMA_WIDELATIN:
+            m_preedit.set_comma_style  (FCITX_ANTHY_COMMA_WIDE);
+            m_preedit.set_period_style (FCITX_ANTHY_PERIOD_WIDE);
+            break;
+        case FCITX_ANTHY_PERIOD_COMMA_LATIN:
+            m_preedit.set_comma_style  (FCITX_ANTHY_COMMA_HALF);
+            m_preedit.set_period_style (FCITX_ANTHY_PERIOD_HALF);
+            break;
+        case FCITX_ANTHY_PERIOD_COMMA_WIDELATIN_JAPANESE:
+            m_preedit.set_comma_style  (FCITX_ANTHY_COMMA_WIDE);
+            m_preedit.set_period_style (FCITX_ANTHY_PERIOD_JAPANESE);
+            break;
+        case FCITX_ANTHY_PERIOD_COMMA_JAPANESE:
+        default:
+            m_preedit.set_comma_style  (FCITX_ANTHY_COMMA_JAPANESE);
+            m_preedit.set_period_style (FCITX_ANTHY_PERIOD_JAPANESE);
+            break;
+    }
+}
+
+void AnthyInstance::set_symbol_style(SymbolStyle symbol)
+{
+    if (symbol == m_config.m_symbol_style)
+        return;
+
+    m_config.m_symbol_style = symbol;
+    switch (m_config.m_symbol_style)
+    {
+        case FCITX_ANTHY_SYMBOL_STYLE_WIDEBRACKET_WIDESLASH:
+            m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_WIDE);
+            m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_WIDE);
+        case FCITX_ANTHY_SYMBOL_STYLE_CORNERBRACKET_WIDESLASH:
+            m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_JAPANESE);
+            m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_WIDE);
+        case FCITX_ANTHY_SYMBOL_STYLE_WIDEBRACKET_MIDDLEDOT:
+            m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_WIDE);
+            m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_JAPANESE);
+        case FCITX_ANTHY_SYMBOL_STYLE_JAPANESE:
+        default:
+            m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_JAPANESE);
+            m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_JAPANESE);
+            break;
+    }
+}
+
+
 void
 AnthyInstance::install_properties (void)
 {
-    // TODO:
-#if 0
-    if (m_properties.size () <= 0) {
-        Property prop;
+    if (!m_status_installed) {
+        m_status_installed = true;
 
-        if (m_config.m_show_input_mode_label) {
-            prop = Property (SCIM_PROP_INPUT_MODE,
-                             "\xE3\x81\x82", std::string (""), _("Input mode"));
-            m_properties.push_back (prop);
+#define INIT_MENU(VARNAME, NAME, I18NNAME, STATUS_NAME, STATUS_ARRAY, SIZE) \
+        FcitxUIRegisterComplexStatus(m_owner, this, \
+            STATUS_NAME, \
+            I18NNAME, \
+            I18NNAME, \
+            NULL, \
+            Get##NAME##IconName \
+        ); \
+        FcitxMenuInit(&VARNAME); \
+        VARNAME.name = strdup(I18NNAME); \
+        VARNAME.candStatusBind = strdup(STATUS_NAME); \
+        VARNAME.UpdateMenu = Update##NAME##Menu; \
+        VARNAME.MenuAction = NAME##MenuAction; \
+        VARNAME.priv = this; \
+        VARNAME.isSubMenu = false; \
+        for (int i = 0; i < SIZE; i ++) \
+            FcitxMenuAddMenuItem(&VARNAME, _(STATUS_ARRAY[i].label), MENUTYPE_SIMPLE, NULL); \
+        FcitxUIRegisterMenu(m_owner, &VARNAME); \
+        FcitxUISetStatusVisable(m_owner, STATUS_NAME, false);
 
-            prop = Property (SCIM_PROP_INPUT_MODE_HIRAGANA,
-                             _("Hiragana"), std::string (""), _("Hiragana"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_INPUT_MODE_KATAKANA,
-                             _("Katakana"), std::string (""), _("Katakana"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_INPUT_MODE_HALF_KATAKANA,
-                             _("Half width katakana"), std::string (""),
-                             _("Half width katakana"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_INPUT_MODE_LATIN,
-                             _("Latin"), std::string (""), _("Direct input"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_INPUT_MODE_WIDE_LATIN,
-                             _("Wide latin"), std::string (""), _("Wide latin"));
-            m_properties.push_back (prop);
-        }
-
-        if (m_config.m_show_typing_method_label) {
-            prop = Property (SCIM_PROP_TYPING_METHOD,
-                             "\xEF\xBC\xB2", std::string (""), _("Typing method"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_TYPING_METHOD_ROMAJI,
-                             _("Romaji"), std::string (""), _("Romaji"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_TYPING_METHOD_KANA,
-                             _("Kana"), std::string (""), _("Kana"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_TYPING_METHOD_NICOLA,
-                             _("Thumb shift"), std::string (""), _("Thumb shift"));
-            m_properties.push_back (prop);
-        }
-
-        if (m_config.m_show_conv_mode_label) {
-            prop = Property (SCIM_PROP_CONV_MODE,
-                             "\xE9\x80\xA3", std::string (""),
-                             _("Conversion mode"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_CONV_MODE_MULTI_SEG,
-                             _("Multi segment"), std::string (""),
-                             _("Multi segment"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_CONV_MODE_SINGLE_SEG,
-                             _("Single segment"), std::string (""),
-                             _("Single segment"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_CONV_MODE_MULTI_REAL_TIME,
-                             _("Convert as you type (Multi segment)"),
-                             std::string (""),
-                             _("Convert as you type (Multi segment)"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_CONV_MODE_SINGLE_REAL_TIME,
-                             _("Convert as you type (Single segment)"),
-                             std::string (""),
-                             _("Convert as you type (Single segment)"));
-            m_properties.push_back (prop);
-        }
-
-        if (m_config.m_show_period_style_label) {
-            prop = Property (SCIM_PROP_PERIOD_STYLE,
-                             "\xE3\x80\x81\xE3\x80\x82", std::string (""),
-                             _("Period style"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_PERIOD_STYLE_JAPANESE,
-                             "\xE3\x80\x81\xE3\x80\x82", std::string (""),
-                             "\xE3\x80\x81\xE3\x80\x82");
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_PERIOD_STYLE_WIDE_LATIN_JAPANESE,
-                             "\xEF\xBC\x8C\xE3\x80\x82", std::string (""),
-                             "\xEF\xBC\x8C\xE3\x80\x82");
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_PERIOD_STYLE_WIDE_LATIN,
-                             "\xEF\xBC\x8C\xEF\xBC\x8E", std::string (""),
-                             "\xEF\xBC\x8C\xEF\xBC\x8E");
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_PERIOD_STYLE_LATIN,
-                             ",.", std::string (""), ",.");
-            m_properties.push_back (prop);
-        }
-
-        if (m_config.m_show_symbol_style_label) {
-            prop = Property (SCIM_PROP_SYMBOL_STYLE,
-                             UTF8_BRACKET_CORNER_BEGIN
-                             UTF8_BRACKET_CORNER_END
-                             UTF8_MIDDLE_DOT,
-                             std::string (""),
-                             _("Symbol style"));
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_SYMBOL_STYLE_JAPANESE,
-                             UTF8_BRACKET_CORNER_BEGIN
-                             UTF8_BRACKET_CORNER_END
-                             UTF8_MIDDLE_DOT,
-                             std::string (""),
-                             UTF8_BRACKET_CORNER_BEGIN
-                             UTF8_BRACKET_CORNER_END
-                             UTF8_MIDDLE_DOT);
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_SYMBOL_STYLE_CORNER_BRACKET_SLASH,
-                             UTF8_BRACKET_CORNER_BEGIN
-                             UTF8_BRACKET_CORNER_END
-                             UTF8_SLASH_WIDE,
-                             std::string (""),
-                             UTF8_BRACKET_CORNER_BEGIN
-                             UTF8_BRACKET_CORNER_END
-                             UTF8_SLASH_WIDE);
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_SYMBOL_STYLE_BRACKET_MIDDLE_DOT,
-                             UTF8_BRACKET_WIDE_BEGIN
-                             UTF8_BRACKET_WIDE_END
-                             UTF8_MIDDLE_DOT,
-                             std::string (""),
-                             UTF8_BRACKET_WIDE_BEGIN
-                             UTF8_BRACKET_WIDE_END
-                             UTF8_MIDDLE_DOT);
-            m_properties.push_back (prop);
-
-            prop = Property (SCIM_PROP_SYMBOL_STYLE_BRACKET_SLASH,
-                             UTF8_BRACKET_WIDE_BEGIN
-                             UTF8_BRACKET_WIDE_END
-                             UTF8_SLASH_WIDE,
-                             std::string (""),
-                             UTF8_BRACKET_WIDE_BEGIN
-                             UTF8_BRACKET_WIDE_END
-                             UTF8_SLASH_WIDE);
-            m_properties.push_back (prop);
-        }
-
-        if (m_config.m_show_dict_label) {
-            prop = Property (SCIM_PROP_DICT,
-                             std::string(""), //_("Dictionary"),
-                             std::string (SCIM_ICONDIR "/" "scim-anthy-dict.png"),
-                             _("Dictionary menu"));
-            m_properties.push_back (prop);
-
-            if (m_config.m_show_dict_admin_label) {
-                prop = Property (SCIM_PROP_DICT_LAUNCH_ADMIN_TOOL,
-                                 _("Edit the dictionary"),
-                                 std::string (SCIM_ICONDIR "/" "scim-anthy-dict.png"),
-                                 _("Launch the dictionary administration tool."));
-                m_properties.push_back (prop);
-            }
-
-            if (m_config.m_show_add_word_label) {
-                prop = Property (SCIM_PROP_DICT_ADD_WORD,
-                                 _("Add a word"),
-                                 std::string (SCIM_ICONDIR "/" "scim-anthy-dict.png"),
-                                 _("Add a word to the dictionary."));
-                m_properties.push_back (prop);
-            }
-        }
+        INIT_MENU(m_input_mode_menu, InputMode, _("Input Mode"), "anthy-input-mode", input_mode_status, FCITX_ANTHY_MODE_LAST);
+        INIT_MENU(m_typing_method_menu, TypingMethod, _("Typing Method"), "anthy-typing-method", typing_method_status, FCITX_ANTHY_TYPING_METHOD_LAST);
+        INIT_MENU(m_conversion_mode_menu, ConversionMode, _("Conversion Mode"), "anthy-conversion-mode", conversion_mode_status, FCITX_ANTHY_CONVERSION_MODE_LAST);
+        INIT_MENU(m_period_style_menu, PeriodStyle, _("Period Style"), "anthy-period-style", period_style_status, FCITX_ANTHY_PERIOD_COMMA_LAST);
+        INIT_MENU(m_symbol_style_menu, SymbolStyle, _("Symbol Style"), "anthy-symbol-style", symbol_style_status, FCITX_ANTHY_SYMBOL_STYLE_LAST);
     }
-#endif
+
+    if (m_config.m_show_input_mode_label )
+
     set_input_mode(get_input_mode ());
-    set_conversion_mode (m_conv_mode);
+    set_conversion_mode (m_config.m_conversion_mode);
     set_typing_method (get_typing_method ());
     set_period_style (m_preedit.get_period_style (),
                       m_preedit.get_comma_style ());
@@ -722,41 +777,15 @@ AnthyInstance::install_properties (void)
 void
 AnthyInstance::set_input_mode (InputMode mode)
 {
-    const char *label = "";
+    if (mode >= FCITX_ANTHY_MODE_LAST)
+        return;
 
-    switch (mode) {
-    case FCITX_ANTHY_MODE_HIRAGANA:
-        label = "\xE3\x81\x82";
-        break;
-    case FCITX_ANTHY_MODE_KATAKANA:
-        label = "\xE3\x82\xA2";
-        break;
-    case FCITX_ANTHY_MODE_HALF_KATAKANA:
-        label = "_\xEF\xBD\xB1";
-        break;
-    case FCITX_ANTHY_MODE_LATIN:
-        label = "_A";
-        break;
-    case FCITX_ANTHY_MODE_WIDE_LATIN:
-        label = "\xEF\xBC\xA1";
-        break;
-    default:
-        break;
-    }
-
-    if (label && *label && m_config.m_show_input_mode_label) {
-#if 0
-        PropertyList::iterator it = std::find (m_properties.begin (),
-                                               m_properties.end (),
-                                               SCIM_PROP_INPUT_MODE);
-        if (it != m_properties.end ()) {
-            it->set_label (label);
-            update_property (*it);
-        }
-#endif
-    }
-
+    FcitxUISetStatusString(m_owner,
+                            "anthy-input-mode",
+                            _(input_mode_status[mode].label),
+                            _(input_mode_status[mode].description));
     if (mode != get_input_mode ()) {
+        m_config.m_input_mode = mode;
         m_preedit.set_input_mode (mode);
         set_preedition ();
     }
@@ -765,38 +794,15 @@ AnthyInstance::set_input_mode (InputMode mode)
 void
 AnthyInstance::set_conversion_mode (ConversionMode mode)
 {
-    const char *label = "";
+    if (mode >= FCITX_ANTHY_CONVERSION_MODE_LAST)
+        return;
 
-    switch (mode) {
-    case FCITX_ANTHY_CONVERSION_MULTI_SEGMENT:
-        label = "\xE9\x80\xA3";
-        break;
-    case FCITX_ANTHY_CONVERSION_SINGLE_SEGMENT:
-        label = "\xE5\x8D\x98";
-        break;
-    case FCITX_ANTHY_CONVERSION_MULTI_SEGMENT_IMMEDIATE:
-        label = "\xE9\x80\x90 \xE9\x80\xA3";
-        break;
-    case FCITX_ANTHY_CONVERSION_SINGLE_SEGMENT_IMMEDIATE:
-        label = "\xE9\x80\x90 \xE5\x8D\x98";
-        break;
-    default:
-        break;
-    }
+    m_config.m_conversion_mode = mode;
 
-    if (label && *label /*&& m_config.m_show_input_mode_label*/) {
-#if 0
-        PropertyList::iterator it = std::find (m_properties.begin (),
-                                               m_properties.end (),
-                                               SCIM_PROP_CONV_MODE);
-        if (it != m_properties.end ()) {
-            it->set_label (label);
-            update_property (*it);
-        }
-#endif
-    }
-
-    m_conv_mode = mode;
+    FcitxUISetStatusString(m_owner,
+                            "anthy-conversion-mode",
+                            _(conversion_mode_status[mode].label),
+                            _(conversion_mode_status[mode].description));
 }
 
 void
@@ -937,11 +943,28 @@ AnthyInstance::set_symbol_style (BracketStyle bracket,
 bool
 AnthyInstance::is_selecting_candidates (void)
 {
-    if (FcitxCandidateWordPageCount(m_lookup_table))
+    if (FcitxCandidateWordGetListSize(m_lookup_table))
         return true;
     else
         return false;
 }
+
+void AnthyInstance::reset(void )
+{
+    FcitxIM* im = FcitxInstanceGetCurrentIM(m_owner);
+#define RESET_STATUS(CONFIG_NAME, STATUS_NAME) \
+    if (m_config.CONFIG_NAME &&  im && strcmp(im->uniqueName, "anthy") == 0) \
+        FcitxUISetStatusVisable(m_owner, STATUS_NAME, true); \
+    else \
+        FcitxUISetStatusVisable(m_owner, STATUS_NAME, false);
+
+    RESET_STATUS(m_show_input_mode_label, "anthy-input-mode")
+    RESET_STATUS(m_show_typing_method_label, "anthy-typing-method")
+    RESET_STATUS(m_show_conv_mode_label, "anthy-conversion-mode")
+    RESET_STATUS(m_show_period_style_label, "anthy-period-style")
+    RESET_STATUS(m_show_symbol_style_label, "anthy-symbol-style")
+}
+
 
 bool
 AnthyInstance::action_do_nothing (void)
@@ -995,7 +1018,7 @@ AnthyInstance::action_revert (void)
     if (m_preedit.is_reconverting ()) {
         m_preedit.revert ();
         commit_string (m_preedit.get_string ());
-        reset ();
+        reset_im ();
         return true;
     }
 
@@ -1003,7 +1026,7 @@ AnthyInstance::action_revert (void)
         return false;
 
     if (!m_preedit.is_converting ()) {
-        reset ();
+        reset_im ();
         return true;
     }
 
@@ -1024,7 +1047,7 @@ AnthyInstance::action_cancel_all (void)
     if (!m_preedit.is_preediting ())
         return false;
 
-    reset ();
+    reset_im ();
     return true;
 }
 
@@ -1043,7 +1066,7 @@ AnthyInstance::action_commit (bool learn)
         commit_string (m_preedit.get_string ());
     }
 
-    reset ();
+    reset_im ();
 
     return true;
 }
@@ -1082,7 +1105,7 @@ AnthyInstance::action_back (void)
         }
         set_preedition ();
     } else {
-        reset ();
+        reset_im ();
     }
 
     return true;
@@ -1110,7 +1133,7 @@ AnthyInstance::action_delete (void)
         }
         set_preedition ();
     } else {
-        reset ();
+        reset_im ();
     }
 
     return true;
@@ -1501,7 +1524,6 @@ AnthyInstance::action_select_next_candidate (void)
     else
         m_cursor_pos ++;
 
-    FcitxCandidateWordSetFocus(m_lookup_table, m_cursor_pos);
     select_candidate_no_direct (m_cursor_pos);
     return true;
 }
@@ -1531,13 +1553,9 @@ AnthyInstance::action_select_first_candidate (void)
 {
     if (!m_preedit.is_converting ()) return false;
     if (!is_selecting_candidates ()) return false;
-    // TODO:
-#if 0
-    m_lookup_table.set_cursor_pos (0);
 
-    int pos_in_page = m_lookup_table.get_cursor_pos_in_current_page ();
-    select_candidate_no_direct (pos_in_page);
-#endif
+    m_cursor_pos = 0;
+    select_candidate_no_direct (m_cursor_pos);
     return true;
 }
 
@@ -1546,14 +1564,12 @@ AnthyInstance::action_select_last_candidate (void)
 {
     if (!m_preedit.is_converting ()) return false;
     if (!is_selecting_candidates ()) return false;
-    // TODO:
-#if 0
-    int end = m_lookup_table.number_of_candidates () - 1;
-    m_lookup_table.set_cursor_pos (end);
 
-    int pos_in_page = m_lookup_table.get_cursor_pos_in_current_page ();
-    select_candidate_no_direct (pos_in_page);
-#endif
+    int end = FcitxCandidateWordGetListSize(m_lookup_table) - 1;
+    if (end < 0)
+        end = 0;
+    m_cursor_pos = 0;
+    select_candidate_no_direct (m_cursor_pos);
     return true;
 }
 
@@ -1599,93 +1615,14 @@ AnthyInstance::action_select_candidate (unsigned int i)
 }
 
 bool
-AnthyInstance::action_select_candidate_1 (void)
-{
-    return action_select_candidate (0);
-}
-
-bool
-AnthyInstance::action_select_candidate_2 (void)
-{
-    return action_select_candidate (1);
-}
-
-bool
-AnthyInstance::action_select_candidate_3 (void)
-{
-    return action_select_candidate (2);
-}
-
-bool
-AnthyInstance::action_select_candidate_4 (void)
-{
-    return action_select_candidate (3);
-}
-
-bool
-AnthyInstance::action_select_candidate_5 (void)
-{
-    return action_select_candidate (4);
-}
-
-bool
-AnthyInstance::action_select_candidate_6 (void)
-{
-    return action_select_candidate (5);
-}
-
-bool
-AnthyInstance::action_select_candidate_7 (void)
-{
-    return action_select_candidate (6);
-}
-
-
-bool
-AnthyInstance::action_select_candidate_8 (void)
-{
-    return action_select_candidate (7);
-}
-
-bool
-AnthyInstance::action_select_candidate_9 (void)
-{
-    return action_select_candidate (8);
-}
-
-bool
-AnthyInstance::action_select_candidate_10 (void)
-{
-    return action_select_candidate (9);
-}
-
-bool
 AnthyInstance::action_circle_input_mode (void)
 {
     InputMode mode = get_input_mode ();
 
-    switch (mode) {
-    case FCITX_ANTHY_MODE_HIRAGANA:
-        mode = FCITX_ANTHY_MODE_KATAKANA;
-        break;
-    case FCITX_ANTHY_MODE_KATAKANA:
-        mode = FCITX_ANTHY_MODE_HALF_KATAKANA;
-        break;
-    case FCITX_ANTHY_MODE_HALF_KATAKANA:
-        mode = FCITX_ANTHY_MODE_LATIN;
-        break;
-    case FCITX_ANTHY_MODE_LATIN:
-        mode = FCITX_ANTHY_MODE_WIDE_LATIN;
-        break;
-    case FCITX_ANTHY_MODE_WIDE_LATIN:
-        mode = FCITX_ANTHY_MODE_HIRAGANA;
-        break;
-    default:
-        mode = FCITX_ANTHY_MODE_HIRAGANA;
-        break;
-    }
+    mode = (InputMode) ((mode + 1) % FCITX_ANTHY_MODE_LAST);
 
     set_input_mode (mode);
+    save_config();
 
     return true;
 }
@@ -1696,14 +1633,10 @@ AnthyInstance::action_circle_typing_method (void)
     TypingMethod method;
 
     method = get_typing_method ();
-    if (method == FCITX_ANTHY_TYPING_METHOD_NICOLA)
-        method = FCITX_ANTHY_TYPING_METHOD_ROMAJI;
-    else if (method == FCITX_ANTHY_TYPING_METHOD_KANA)
-        method = FCITX_ANTHY_TYPING_METHOD_NICOLA;
-    else
-        method = FCITX_ANTHY_TYPING_METHOD_KANA;
+    method = (TypingMethod) ((method + 1) % FCITX_ANTHY_TYPING_METHOD_NICOLA);
 
     set_typing_method (method);
+    save_config();
 
     return true;
 }
@@ -1733,6 +1666,7 @@ AnthyInstance::action_circle_kana_mode (void)
     }
 
     set_input_mode (mode);
+    save_config();
 
     return true;
 }
@@ -1750,6 +1684,7 @@ AnthyInstance::action_on_off (void)
         set_input_mode (FCITX_ANTHY_MODE_LATIN);
         m_preedit.set_input_mode (FCITX_ANTHY_MODE_LATIN);
     }
+    save_config();
 
     return true;
 }
@@ -1758,6 +1693,7 @@ bool
 AnthyInstance::action_latin_mode (void)
 {
     set_input_mode (FCITX_ANTHY_MODE_LATIN);
+    save_config();
     return true;
 }
 
@@ -1765,6 +1701,7 @@ bool
 AnthyInstance::action_wide_latin_mode (void)
 {
     set_input_mode (FCITX_ANTHY_MODE_WIDE_LATIN);
+    save_config();
     return true;
 }
 
@@ -1772,6 +1709,7 @@ bool
 AnthyInstance::action_hiragana_mode (void)
 {
     set_input_mode (FCITX_ANTHY_MODE_HIRAGANA);
+    save_config();
     return true;
 }
 
@@ -1779,6 +1717,7 @@ bool
 AnthyInstance::action_katakana_mode (void)
 {
     set_input_mode (FCITX_ANTHY_MODE_KATAKANA);
+    save_config();
     return true;
 }
 
@@ -1786,6 +1725,7 @@ bool
 AnthyInstance::action_half_katakana_mode (void)
 {
     set_input_mode (FCITX_ANTHY_MODE_HALF_KATAKANA);
+    save_config();
     return true;
 }
 
@@ -2103,66 +2043,24 @@ AnthyInstance::reload_config ()
         m_preedit.set_pseudo_ascii_mode (get_pseudo_ascii_mode ());
     }
 
-    // set conversion mode
-    if (m_on_init || !m_config.m_show_conv_mode_label) {
-        m_conv_mode = m_config.m_conversion_mode;
-    }
-
     // set period style
     if (m_on_init || !m_config.m_show_period_style_label) {
-        switch (m_config.m_period_comma_style)
-        {
-            case FCITX_ANTHY_PERIOD_COMMA_WIDELATIN:
-                m_preedit.set_comma_style  (FCITX_ANTHY_COMMA_WIDE);
-                m_preedit.set_period_style (FCITX_ANTHY_PERIOD_WIDE);
-                break;
-            case FCITX_ANTHY_PERIOD_COMMA_LATIN:
-                m_preedit.set_comma_style  (FCITX_ANTHY_COMMA_HALF);
-                m_preedit.set_period_style (FCITX_ANTHY_PERIOD_HALF);
-                break;
-            case FCITX_ANTHY_PERIOD_COMMA_WIDELATIN_JAPANESE:
-                m_preedit.set_comma_style  (FCITX_ANTHY_COMMA_WIDE);
-                m_preedit.set_period_style (FCITX_ANTHY_PERIOD_JAPANESE);
-                break;
-            case FCITX_ANTHY_PERIOD_COMMA_JAPANESE:
-            default:
-                m_preedit.set_comma_style  (FCITX_ANTHY_COMMA_JAPANESE);
-                m_preedit.set_period_style (FCITX_ANTHY_PERIOD_JAPANESE);
-                break;
-        }
+        set_period_style(m_config.m_period_comma_style);
     }
 
     // set symbol style
     if (m_on_init || !m_config.m_show_symbol_style_label) {
-        switch (m_config.m_symbol_style)
-        {
-            case FCITX_ANTHY_SYMBOL_STYLE_WIDEBRACKET_WIDESLASH:
-                m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_WIDE);
-                m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_WIDE);
-            case FCITX_ANTHY_SYMBOL_STYLE_CORNERBRACKET_WIDESLASH:
-                m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_JAPANESE);
-                m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_WIDE);
-            case FCITX_ANTHY_SYMBOL_STYLE_WIDEBRACKET_MIDDLEDOT:
-                m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_WIDE);
-                m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_JAPANESE);
-            case FCITX_ANTHY_SYMBOL_STYLE_JAPANESE:
-            default:
-                m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_JAPANESE);
-                m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_JAPANESE);
-                break;
-        }
     }
 
     // setup toolbar
-    //m_properties.clear ();
     install_properties ();
 }
 
 bool
 AnthyInstance::is_single_segment (void)
 {
-    if (m_conv_mode == FCITX_ANTHY_CONVERSION_SINGLE_SEGMENT ||
-        m_conv_mode == FCITX_ANTHY_CONVERSION_SINGLE_SEGMENT_IMMEDIATE)
+    if (m_config.m_conversion_mode == FCITX_ANTHY_CONVERSION_SINGLE_SEGMENT ||
+        m_config.m_conversion_mode == FCITX_ANTHY_CONVERSION_SINGLE_SEGMENT_IMMEDIATE)
         return true;
     else
         return false;
@@ -2171,8 +2069,8 @@ AnthyInstance::is_single_segment (void)
 bool
 AnthyInstance::is_realtime_conversion (void)
 {
-    if (m_conv_mode == FCITX_ANTHY_CONVERSION_MULTI_SEGMENT_IMMEDIATE ||
-        m_conv_mode == FCITX_ANTHY_CONVERSION_SINGLE_SEGMENT_IMMEDIATE)
+    if (m_config.m_conversion_mode == FCITX_ANTHY_CONVERSION_MULTI_SEGMENT_IMMEDIATE ||
+        m_config.m_conversion_mode == FCITX_ANTHY_CONVERSION_SINGLE_SEGMENT_IMMEDIATE)
         return true;
     else
         return false;
@@ -2230,6 +2128,12 @@ CONFIG_BINDING_REGISTER("General", "BehaviorOnPeriod", m_behavior_on_period)
 CONFIG_BINDING_REGISTER("General", "UseDirectKeyOnPredict", m_use_direct_key_on_predict)
 CONFIG_BINDING_REGISTER("General", "NTriggersToShowCandWin", m_n_triggers_to_show_cand_win)
 CONFIG_BINDING_REGISTER("General", "ShowCandidatesLabel", m_show_candidates_label)
+
+CONFIG_BINDING_REGISTER("Interface", "ShowInputMode", m_show_input_mode_label)
+CONFIG_BINDING_REGISTER("Interface", "ShowTypingMethod", m_show_typing_method_label)
+CONFIG_BINDING_REGISTER("Interface", "ShowConversionMode", m_show_conv_mode_label)
+CONFIG_BINDING_REGISTER("Interface", "ShowPeriodStyle", m_show_period_style_label)
+CONFIG_BINDING_REGISTER("Interface", "ShowSymbolStyle", m_show_symbol_style_label)
 
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_ON_OFF_KEY, m_key_default.m_hk_ON_OFF)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CIRCLE_INPUT_MODE_KEY, m_key_default.m_hk_CIRCLE_INPUT_MODE)
@@ -2429,7 +2333,7 @@ void AnthyInstance::update_aux_string(const std::string& str)
         aux = m_aux_down;
     FcitxMessagesSetMessageCount(aux, 0);
     FcitxMessagesAddMessageAtLast(aux, MSG_TIPS, "%s", str.c_str());
-    FcitxUIUpdateInputWindow(m_owner);
+    m_ui_update = true;
 }
 
 

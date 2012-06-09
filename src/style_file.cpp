@@ -95,7 +95,7 @@ StyleLine::get_type (void)
     if (m_type != FCITX_ANTHY_STYLE_LINE_UNKNOWN)
         return m_type;
 
-    unsigned int spos, epos;
+    int spos, epos;
     for (spos = 0;
          spos < m_line.length () && isspace (m_line[spos]);
          spos++);
@@ -130,7 +130,7 @@ StyleLine::get_section (std::string &section)
     if (get_type () != FCITX_ANTHY_STYLE_LINE_SECTION)
         return false;
 
-    unsigned int spos, epos;
+    int spos, epos;
     for (spos = 0;
          spos < m_line.length () && isspace (m_line[spos]);
          spos++);
@@ -153,11 +153,11 @@ StyleLine::get_key (std::string &key)
     if (get_type () != FCITX_ANTHY_STYLE_LINE_KEY)
         return false;
 
-    unsigned int spos, epos;
+    int spos, epos;
     for (spos = 0;
          spos < m_line.length () && isspace (m_line[spos]);
          spos++);
-    bool found = false;
+
     for (epos = spos;
          epos < m_line.length ();
          epos++)
@@ -167,7 +167,6 @@ StyleLine::get_key (std::string &key)
             continue;
         }
         if (m_line[epos] == '=') {
-            found = true;
             break;
         }
     }

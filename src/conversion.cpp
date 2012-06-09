@@ -18,6 +18,7 @@
  */
 
 #include <string.h>
+#include <fcitx-utils/log.h>
 #include "conversion.h"
 #include "utils.h"
 #include "imengine.h"

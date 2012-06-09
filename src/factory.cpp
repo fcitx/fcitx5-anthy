@@ -37,12 +37,6 @@
 #include "factory.h"
 #include "imengine.h"
 
-#define SCIM_CONFIG_IMENGINE_ANTHY_UUID     "/IMEngine/Anthy/UUID-"
-
-#ifndef FCITX_ANTHY_ICON_FILE
-    #define FCITX_ANTHY_ICON_FILE           (SCIM_ICONDIR"/scim-anthy.png")
-#endif
-
 static void* FcitxAnthyCreate(FcitxInstance* instance);
 static void  FcitxAnthyDestory(void* arg);
 static boolean FcitxAnthyInit(void* arg);

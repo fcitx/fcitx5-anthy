@@ -62,59 +62,59 @@ typedef struct _NicolaRule
 } NicolaRule;
 
 // fundamental table
-extern ConvRule scim_anthy_romaji_typing_rule[];
-extern ConvRule scim_anthy_romaji_double_consonant_rule[];
-extern ConvRule scim_anthy_kana_typing_rule[];
-extern ConvRule scim_anthy_kana_voiced_consonant_rule[];
+extern ConvRule fcitx_anthy_romaji_typing_rule[];
+extern ConvRule fcitx_anthy_romaji_double_consonant_rule[];
+extern ConvRule fcitx_anthy_kana_typing_rule[];
+extern ConvRule fcitx_anthy_kana_voiced_consonant_rule[];
 
 // symbol & number
-extern ConvRule scim_anthy_half_symbol_rule[];
-extern ConvRule scim_anthy_wide_symbol_rule[];
-extern ConvRule scim_anthy_half_number_rule[];
-extern ConvRule scim_anthy_wide_number_rule[];
+extern ConvRule fcitx_anthy_half_symbol_rule[];
+extern ConvRule fcitx_anthy_wide_symbol_rule[];
+extern ConvRule fcitx_anthy_half_number_rule[];
+extern ConvRule fcitx_anthy_wide_number_rule[];
 
 // period table
-extern ConvRule scim_anthy_romaji_ja_period_rule[];
-extern ConvRule scim_anthy_romaji_wide_period_rule[];
-extern ConvRule scim_anthy_romaji_half_period_rule[];
+extern ConvRule fcitx_anthy_romaji_ja_period_rule[];
+extern ConvRule fcitx_anthy_romaji_wide_period_rule[];
+extern ConvRule fcitx_anthy_romaji_half_period_rule[];
 
-extern ConvRule scim_anthy_kana_ja_period_rule[];
-extern ConvRule scim_anthy_kana_wide_period_rule[];
-extern ConvRule scim_anthy_kana_half_period_rule[];
+extern ConvRule fcitx_anthy_kana_ja_period_rule[];
+extern ConvRule fcitx_anthy_kana_wide_period_rule[];
+extern ConvRule fcitx_anthy_kana_half_period_rule[];
 
 // comma table
-extern ConvRule scim_anthy_romaji_ja_comma_rule[];
-extern ConvRule scim_anthy_romaji_wide_comma_rule[];
-extern ConvRule scim_anthy_romaji_half_comma_rule[];
+extern ConvRule fcitx_anthy_romaji_ja_comma_rule[];
+extern ConvRule fcitx_anthy_romaji_wide_comma_rule[];
+extern ConvRule fcitx_anthy_romaji_half_comma_rule[];
 
-extern ConvRule scim_anthy_kana_ja_comma_rule[];
-extern ConvRule scim_anthy_kana_wide_comma_rule[];
-extern ConvRule scim_anthy_kana_half_comma_rule[];
+extern ConvRule fcitx_anthy_kana_ja_comma_rule[];
+extern ConvRule fcitx_anthy_kana_wide_comma_rule[];
+extern ConvRule fcitx_anthy_kana_half_comma_rule[];
 
 // bracket table
-extern ConvRule scim_anthy_romaji_ja_bracket_rule[];
-extern ConvRule scim_anthy_romaji_wide_bracket_rule[];
+extern ConvRule fcitx_anthy_romaji_ja_bracket_rule[];
+extern ConvRule fcitx_anthy_romaji_wide_bracket_rule[];
 
-extern ConvRule scim_anthy_kana_ja_bracket_rule[];
-extern ConvRule scim_anthy_kana_wide_bracket_rule[];
+extern ConvRule fcitx_anthy_kana_ja_bracket_rule[];
+extern ConvRule fcitx_anthy_kana_wide_bracket_rule[];
 
 // slash table
-extern ConvRule scim_anthy_romaji_ja_slash_rule[];
-extern ConvRule scim_anthy_romaji_wide_slash_rule[];
+extern ConvRule fcitx_anthy_romaji_ja_slash_rule[];
+extern ConvRule fcitx_anthy_romaji_wide_slash_rule[];
 
-extern ConvRule scim_anthy_kana_ja_slash_rule[];
-extern ConvRule scim_anthy_kana_wide_slash_rule[];
+extern ConvRule fcitx_anthy_kana_ja_slash_rule[];
+extern ConvRule fcitx_anthy_kana_wide_slash_rule[];
 
 // misc
-extern HiraganaKatakanaRule scim_anthy_hiragana_katakana_table[];
-extern WideRule             scim_anthy_wide_table[];
-extern VoicedConsonantRule  scim_anthy_voiced_consonant_table[];
+extern HiraganaKatakanaRule fcitx_anthy_hiragana_katakana_table[];
+extern WideRule             fcitx_anthy_wide_table[];
+extern VoicedConsonantRule  fcitx_anthy_voiced_consonant_table[];
 
 // key code
-extern KeyCodeToCharRule    scim_anthy_keypad_table[];
-extern KeyCodeToCharRule    scim_anthy_kana_table[];
+extern KeyCodeToCharRule    fcitx_anthy_keypad_table[];
+extern KeyCodeToCharRule    fcitx_anthy_kana_table[];
 
 // nicola
-extern NicolaRule           scim_anthy_nicola_table[];
+extern NicolaRule           fcitx_anthy_nicola_table[];
 
 #endif /* __FCITX_ANTHY_DEFAULT_TABLES_H__ */

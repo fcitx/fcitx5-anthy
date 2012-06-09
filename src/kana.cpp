@@ -28,7 +28,7 @@
 static bool
 has_voiced_consonant (std::string str)
 {
-    VoicedConsonantRule *table = scim_anthy_voiced_consonant_table;
+    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
 
     for (unsigned int i = 0; table[i].string; i++) {
         if (!strcmp (str.c_str (), table[i].string) &&
@@ -44,7 +44,7 @@ has_voiced_consonant (std::string str)
 static bool
 has_half_voiced_consonant (std::string str)
 {
-    VoicedConsonantRule *table = scim_anthy_voiced_consonant_table;
+    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
 
     for (unsigned int i = 0; table[i].string; i++) {
         if (!strcmp (str.c_str (), table[i].string) &&
@@ -60,7 +60,7 @@ has_half_voiced_consonant (std::string str)
 std::string
 to_voiced_consonant (std::string str)
 {
-    VoicedConsonantRule *table = scim_anthy_voiced_consonant_table;
+    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
 
     for (unsigned int i = 0; table[i].string; i++) {
         if (!strcmp (str.c_str (), table[i].string))
@@ -73,7 +73,7 @@ to_voiced_consonant (std::string str)
 std::string
 to_half_voiced_consonant (std::string str)
 {
-    VoicedConsonantRule *table = scim_anthy_voiced_consonant_table;
+    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
 
     for (unsigned int i = 0; table[i].string; i++) {
         if (!strcmp (str.c_str (), table[i].string))
@@ -132,7 +132,7 @@ KanaConvertor::append (const KeyEvent & key,
                        std::string & pending,
                        std::string &raw)
 {
-    KeyCodeToCharRule *table = scim_anthy_keypad_table;
+    KeyCodeToCharRule *table = fcitx_anthy_keypad_table;
 
     // handle keypad code
     if (key.sym == FcitxKey_KP_Equal ||
@@ -154,7 +154,7 @@ KanaConvertor::append (const KeyEvent & key,
         }
     }
 
-    table = scim_anthy_kana_table;
+    table = fcitx_anthy_kana_table;
 
     // handle voiced sound
     if (key.sym == FcitxKey_voicedsound &&

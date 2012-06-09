@@ -567,12 +567,12 @@ get_period_rule (TypingMethod method, PeriodStyle period)
     case FCITX_ANTHY_TYPING_METHOD_KANA:
         switch (period) {
         case FCITX_ANTHY_PERIOD_WIDE:
-            return scim_anthy_kana_wide_period_rule;
+            return fcitx_anthy_kana_wide_period_rule;
         case FCITX_ANTHY_PERIOD_HALF:
-            return scim_anthy_kana_half_period_rule;
+            return fcitx_anthy_kana_half_period_rule;
         case FCITX_ANTHY_PERIOD_JAPANESE:
         default:
-            return scim_anthy_kana_ja_period_rule;
+            return fcitx_anthy_kana_ja_period_rule;
         };
         break;
 
@@ -580,12 +580,12 @@ get_period_rule (TypingMethod method, PeriodStyle period)
     default:
         switch (period) {
         case FCITX_ANTHY_PERIOD_WIDE:
-            return scim_anthy_romaji_wide_period_rule;
+            return fcitx_anthy_romaji_wide_period_rule;
         case FCITX_ANTHY_PERIOD_HALF:
-            return scim_anthy_romaji_half_period_rule;
+            return fcitx_anthy_romaji_half_period_rule;
         case FCITX_ANTHY_PERIOD_JAPANESE:
         default:
-            return scim_anthy_romaji_ja_period_rule;
+            return fcitx_anthy_romaji_ja_period_rule;
         };
         break;
     };
@@ -600,12 +600,12 @@ get_comma_rule (TypingMethod method, CommaStyle period)
     case FCITX_ANTHY_TYPING_METHOD_KANA:
         switch (period) {
         case FCITX_ANTHY_PERIOD_WIDE:
-            return scim_anthy_kana_wide_comma_rule;
+            return fcitx_anthy_kana_wide_comma_rule;
         case FCITX_ANTHY_PERIOD_HALF:
-            return scim_anthy_kana_half_comma_rule;
+            return fcitx_anthy_kana_half_comma_rule;
         case FCITX_ANTHY_PERIOD_JAPANESE:
         default:
-            return scim_anthy_kana_ja_comma_rule;
+            return fcitx_anthy_kana_ja_comma_rule;
         };
         break;
 
@@ -613,12 +613,12 @@ get_comma_rule (TypingMethod method, CommaStyle period)
     default:
         switch (period) {
         case FCITX_ANTHY_PERIOD_WIDE:
-            return scim_anthy_romaji_wide_comma_rule;
+            return fcitx_anthy_romaji_wide_comma_rule;
         case FCITX_ANTHY_PERIOD_HALF:
-            return scim_anthy_romaji_half_comma_rule;
+            return fcitx_anthy_romaji_half_comma_rule;
         case FCITX_ANTHY_PERIOD_JAPANESE:
         default:
-            return scim_anthy_romaji_ja_comma_rule;
+            return fcitx_anthy_romaji_ja_comma_rule;
         };
         break;
     };

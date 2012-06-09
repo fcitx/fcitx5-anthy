@@ -36,6 +36,7 @@
 #include "imengine.h"
 #include "utils.h"
 
+#include <fcitx/context.h>
 #include <fcitx-config/xdg.h>
 #include <fcitx-config/fcitx-config.h>
 #include <fcitx-utils/log.h>
@@ -47,7 +48,6 @@
 #define UTF8_MIDDLE_DOT           "\xE3\x83\xBB"
 #define UTF8_SLASH_WIDE           "\xEF\xBC\x8F"
 
-#define ACTION_CONFIG_ON_OFF_KEY                  "OnOffKey"
 #define ACTION_CONFIG_CIRCLE_INPUT_MODE_KEY       "CircleInputModeKey"
 #define ACTION_CONFIG_CIRCLE_KANA_MODE_KEY        "CircleKanaModeKey"
 #define ACTION_CONFIG_CIRCLE_TYPING_METHOD_KEY    "CircleTypingMethodKey"
@@ -70,7 +70,6 @@
 #define ACTION_CONFIG_PREDICT_KEY                 "PredictKey"
 #define ACTION_CONFIG_CANCEL_KEY                  "CancelKey"
 #define ACTION_CONFIG_CANCEL_ALL_KEY              "CancelAllKey"
-#define ACTION_CONFIG_DO_NOTHING_KEY              "DoNothingKey"
 
 #define ACTION_CONFIG_MOVE_CARET_FIRST_KEY        "MoveCaretFirstKey"
 #define ACTION_CONFIG_MOVE_CARET_LAST_KEY         "MoveCaretLastKey"
@@ -130,7 +129,6 @@
 
 AnthyInstance::AnthyInstance (FcitxInstance* instance) :
       m_owner(instance),
-      m_on_init                (true),
       m_preedit                (*this),
       m_preedit_string_visible (false),
       m_lookup_table_visible   (false),
@@ -145,8 +143,6 @@ AnthyInstance::AnthyInstance (FcitxInstance* instance) :
     m_preedit_msg = FcitxInputStateGetPreedit(m_input);
     m_client_preedit_msg = FcitxInputStateGetClientPreedit(m_input);
     m_profile = FcitxInstanceGetProfile(m_owner);
-    reload_config ();
-    m_on_init = false;
 
 }
 
@@ -418,6 +414,10 @@ AnthyInstance::reset_im ()
 void
 AnthyInstance::init ()
 {
+    boolean flag = true;
+    FcitxInstanceSetContext(m_owner, CONTEXT_DISABLE_AUTOENG, &flag);
+    FcitxInstanceSetContext(m_owner, CONTEXT_DISABLE_QUICKPHRASE, &flag);
+    FcitxInstanceSetContext(m_owner, CONTEXT_DISABLE_FULLWIDTH, &flag);
     FcitxInstanceCleanInputWindow(m_owner);
     if (m_preedit_string_visible) {
         set_preedition ();
@@ -537,55 +537,55 @@ AnthyInstance::unset_lookup_table (void)
 }
 
 AnthyStatus input_mode_status[] = {
-    {"anthy-hiragana", N_("Hiragana"), N_("Hiragana") },
-    {"anthy-katakana", N_("Katakana"), N_("Katakana") },
-    {"anthy-half-katakana", N_("Half width katakana"), N_("Half width katakana") },
-    {"anthy-latin", N_("Latin"), N_("Direct input") },
-    {"anthy-wide-latin", N_("Wide latin"), N_("Wide latin") },
+    {"",  "\xe3\x81\x82", N_("Hiragana") },
+    {"", "\xe3\x82\xa2", N_("Katakana") },
+    {"", "\xef\xbd\xb1", N_("Half width katakana") },
+    {"", "A", N_("Direct input") },
+    {"", "\xef\xbc\xa1", N_("Wide latin") },
 };
 
 AnthyStatus typing_method_status[] = {
-    {"anthy-typing-romaji", N_("Romaji"), N_("Romaji") },
-    {"anthy-typing-kani", N_("Kana"), N_("Kana") },
-    {"anthy-typing-nicola", N_("Thumb shift"), N_("Thumb shift") },
-    {"anthy-typing-custom", N_("Custom"), N_("Custom") },
+    {"", N_("Romaji"), N_("Romaji") },
+    {"", N_("Kana"), N_("Kana") },
+    {"", N_("Nicola"), N_("Thumb shift") },
+    {"", N_("Custom"), N_("Custom") },
 };
 
 AnthyStatus conversion_mode_status[] = {
-    {"anthy-multi-seg", N_("Multi segment"), N_("Multi segment") },
-    {"anthy-single-seg", N_("Single segment"), N_("Single segment") },
-    {"anthy-multi-seg-conv", N_("Convert as you type (Multi segment)"), N_("Convert as you type (Multi segment)") },
-    {"anthy-single-seg-conv", N_("Convert as you type (Single segment)"), N_("Convert as you type (Single segment)") },
+    {"", "\xE9\x80\xA3", N_("Multi segment") },
+    {"", "\xE5\x8D\x98", N_("Single segment") },
+    {"", "\xE9\x80\x90", N_("Convert as you type (Multi segment)") },
+    {"", "\xE9\x80\x90", N_("Convert as you type (Single segment)") },
 };
 
 AnthyStatus period_style_status[] = {
-    {"anthy-period-japanese", "\xE3\x80\x81\xE3\x80\x82", "\xE3\x80\x81\xE3\x80\x82" },
-    {"anthy-period-wide-japanese", "\xEF\xBC\x8C\xE3\x80\x82", "\xEF\xBC\x8C\xE3\x80\x82" },
     {"anthy-period-wide-latin", "\xEF\xBC\x8C\xEF\xBC\x8E", "\xEF\xBC\x8C\xEF\xBC\x8E" },
     {"anthy-period-latin", ",.", ",." },
+    {"anthy-period-japanese", "\xE3\x80\x81\xE3\x80\x82", "\xE3\x80\x81\xE3\x80\x82" },
+    {"anthy-period-wide-japanese", "\xEF\xBC\x8C\xE3\x80\x82", "\xEF\xBC\x8C\xE3\x80\x82" },
 };
 
 AnthyStatus symbol_style_status[] = {
-    {"anthy-hiragana", UTF8_BRACKET_CORNER_BEGIN
+    {"anthy-symbol-japanese", UTF8_BRACKET_CORNER_BEGIN
                         UTF8_BRACKET_CORNER_END
                         UTF8_MIDDLE_DOT,
                         UTF8_BRACKET_CORNER_BEGIN
                         UTF8_BRACKET_CORNER_END
                         UTF8_MIDDLE_DOT },
-    {"anthy-hiragana", UTF8_BRACKET_CORNER_BEGIN
+    {"anthy-symbol-wbws", UTF8_BRACKET_CORNER_BEGIN
                         UTF8_BRACKET_CORNER_END
                         UTF8_SLASH_WIDE,
                         UTF8_BRACKET_CORNER_BEGIN
                         UTF8_BRACKET_CORNER_END
                         UTF8_SLASH_WIDE },
-    {"anthy-hiragana", UTF8_BRACKET_WIDE_BEGIN
+    {"anthy-symbol-cbcs", UTF8_BRACKET_WIDE_BEGIN
                         UTF8_BRACKET_WIDE_END
                         UTF8_MIDDLE_DOT,
                         UTF8_BRACKET_WIDE_BEGIN
                         UTF8_BRACKET_WIDE_END
                         UTF8_MIDDLE_DOT
     },
-    {"anthy-hiragana", UTF8_BRACKET_WIDE_BEGIN
+    {"anthy-symbol-wbmd", UTF8_BRACKET_WIDE_BEGIN
                         UTF8_BRACKET_WIDE_END
                         UTF8_SLASH_WIDE,
                         UTF8_BRACKET_WIDE_BEGIN
@@ -676,10 +676,12 @@ DEFINE_MENU_ACTION(SymbolStyle, SymbolStyle, symbol_style)
 
 void AnthyInstance::set_period_style(PeriodCommaStyle period)
 {
-    if (period == m_config.m_period_comma_style)
-        return;
-
     m_config.m_period_comma_style = period;
+    FcitxUISetStatusString(m_owner,
+                            "anthy-period-style",
+                            _(period_style_status[period].label),
+                            _(period_style_status[period].description));
+
     switch (m_config.m_period_comma_style)
     {
         case FCITX_ANTHY_PERIOD_COMMA_WIDELATIN:
@@ -704,10 +706,11 @@ void AnthyInstance::set_period_style(PeriodCommaStyle period)
 
 void AnthyInstance::set_symbol_style(SymbolStyle symbol)
 {
-    if (symbol == m_config.m_symbol_style)
-        return;
-
     m_config.m_symbol_style = symbol;
+    FcitxUISetStatusString(m_owner,
+                            "anthy-symbol-style",
+                            _(symbol_style_status[symbol].label),
+                            _(symbol_style_status[symbol].description));
     switch (m_config.m_symbol_style)
     {
         case FCITX_ANTHY_SYMBOL_STYLE_WIDEBRACKET_WIDESLASH:
@@ -766,12 +769,8 @@ AnthyInstance::install_properties (void)
     set_input_mode(get_input_mode ());
     set_conversion_mode (m_config.m_conversion_mode);
     set_typing_method (get_typing_method ());
-    set_period_style (m_preedit.get_period_style (),
-                      m_preedit.get_comma_style ());
-    set_symbol_style (m_preedit.get_bracket_style (),
-                      m_preedit.get_slash_style ());
-
-    //register_properties (m_properties);
+    set_period_style (get_period_style());
+    set_symbol_style (get_symbol_style());
 }
 
 void
@@ -779,16 +778,16 @@ AnthyInstance::set_input_mode (InputMode mode)
 {
     if (mode >= FCITX_ANTHY_MODE_LAST)
         return;
-
-    FcitxUISetStatusString(m_owner,
-                            "anthy-input-mode",
-                            _(input_mode_status[mode].label),
-                            _(input_mode_status[mode].description));
     if (mode != get_input_mode ()) {
         m_config.m_input_mode = mode;
         m_preedit.set_input_mode (mode);
         set_preedition ();
     }
+
+    FcitxUISetStatusString(m_owner,
+                            "anthy-input-mode",
+                            _(input_mode_status[mode].label),
+                            _(input_mode_status[mode].description));
 }
 
 void
@@ -808,38 +807,15 @@ AnthyInstance::set_conversion_mode (ConversionMode mode)
 void
 AnthyInstance::set_typing_method (TypingMethod method)
 {
-    const char *label = "";
-
-    switch (method) {
-    case FCITX_ANTHY_TYPING_METHOD_ROMAJI:
-        label = "\xEF\xBC\xB2";
-        break;
-    case FCITX_ANTHY_TYPING_METHOD_KANA:
-        label = "\xE3\x81\x8B";
-        break;
-    case FCITX_ANTHY_TYPING_METHOD_NICOLA:
-        label = "\xE8\xA6\xAA";
-        break;
-    default:
-        break;
-    }
-
-    if (label && *label && m_config.m_show_typing_method_label) {
-#if 0
-        PropertyList::iterator it = std::find (m_properties.begin (),
-                                               m_properties.end (),
-                                               SCIM_PROP_TYPING_METHOD);
-        if (it != m_properties.end ()) {
-            it->set_label (label);
-            update_property (*it);
-        }
-#endif
-    }
-
     if (method != get_typing_method ()) {
         m_preedit.set_typing_method (method);
         m_preedit.set_pseudo_ascii_mode (get_pseudo_ascii_mode ());
     }
+
+    FcitxUISetStatusString(m_owner,
+                            "anthy-typing-method",
+                            _(typing_method_status[method].label),
+                            _(typing_method_status[method].description));
 }
 
 void
@@ -963,13 +939,6 @@ void AnthyInstance::reset(void )
     RESET_STATUS(m_show_conv_mode_label, "anthy-conversion-mode")
     RESET_STATUS(m_show_period_style_label, "anthy-period-style")
     RESET_STATUS(m_show_symbol_style_label, "anthy-symbol-style")
-}
-
-
-bool
-AnthyInstance::action_do_nothing (void)
-{
-    return true;
 }
 
 bool
@@ -1948,114 +1917,6 @@ AnthyInstance::get_input_mode (void)
     return m_preedit.get_input_mode ();
 }
 
-void
-AnthyInstance::trigger_property (const std::string &property)
-{
-#if 0
-    std::string anthy_prop = property.substr (property.find_last_of ('/') + 1);
-
-    // input mode
-    if (property == SCIM_PROP_INPUT_MODE_HIRAGANA) {
-        set_input_mode (FCITX_ANTHY_MODE_HIRAGANA);
-    } else if (property == SCIM_PROP_INPUT_MODE_KATAKANA) {
-        set_input_mode (FCITX_ANTHY_MODE_KATAKANA);
-    } else if (property == SCIM_PROP_INPUT_MODE_HALF_KATAKANA) {
-        set_input_mode (FCITX_ANTHY_MODE_HALF_KATAKANA);
-    } else if (property == SCIM_PROP_INPUT_MODE_LATIN) {
-        set_input_mode (FCITX_ANTHY_MODE_LATIN);
-    } else if (property == SCIM_PROP_INPUT_MODE_WIDE_LATIN) {
-        set_input_mode (FCITX_ANTHY_MODE_WIDE_LATIN);
-
-    // conversion mode
-    } else if (property == SCIM_PROP_CONV_MODE_MULTI_SEG) {
-        set_conversion_mode (FCITX_ANTHY_CONVERSION_MULTI_SEGMENT);
-    } else if (property == SCIM_PROP_CONV_MODE_SINGLE_SEG) {
-        set_conversion_mode (FCITX_ANTHY_CONVERSION_SINGLE_SEGMENT);
-    } else if (property == SCIM_PROP_CONV_MODE_MULTI_REAL_TIME) {
-        set_conversion_mode (FCITX_ANTHY_CONVERSION_MULTI_SEGMENT_IMMEDIATE);
-    } else if (property == SCIM_PROP_CONV_MODE_SINGLE_REAL_TIME) {
-        set_conversion_mode (FCITX_ANTHY_CONVERSION_SINGLE_SEGMENT_IMMEDIATE);
-
-    // typing method
-    } else if (property == SCIM_PROP_TYPING_METHOD_ROMAJI) {
-        set_typing_method (FCITX_ANTHY_TYPING_METHOD_ROMAJI);
-    } else if (property == SCIM_PROP_TYPING_METHOD_KANA) {
-        set_typing_method (FCITX_ANTHY_TYPING_METHOD_KANA);
-    } else if (property == SCIM_PROP_TYPING_METHOD_NICOLA) {
-        set_typing_method (FCITX_ANTHY_TYPING_METHOD_NICOLA);
-
-    // period type
-    } else if (property == SCIM_PROP_PERIOD_STYLE_JAPANESE) {
-        set_period_style (FCITX_ANTHY_PERIOD_JAPANESE,
-                          FCITX_ANTHY_COMMA_JAPANESE);
-    } else if (property == SCIM_PROP_PERIOD_STYLE_WIDE_LATIN_JAPANESE) {
-        set_period_style (FCITX_ANTHY_PERIOD_JAPANESE,
-                          FCITX_ANTHY_COMMA_WIDE);
-    } else if (property == SCIM_PROP_PERIOD_STYLE_WIDE_LATIN) {
-        set_period_style (FCITX_ANTHY_PERIOD_WIDE,
-                          FCITX_ANTHY_COMMA_WIDE);
-    } else if (property == SCIM_PROP_PERIOD_STYLE_LATIN) {
-        set_period_style (FCITX_ANTHY_PERIOD_HALF,
-                          FCITX_ANTHY_COMMA_HALF);
-
-    // symbol type
-    } else if (property == SCIM_PROP_SYMBOL_STYLE_JAPANESE) {
-        set_symbol_style (FCITX_ANTHY_BRACKET_JAPANESE,
-                          FCITX_ANTHY_SLASH_JAPANESE);
-    } else if (property == SCIM_PROP_SYMBOL_STYLE_CORNER_BRACKET_SLASH) {
-        set_symbol_style (FCITX_ANTHY_BRACKET_JAPANESE,
-                          FCITX_ANTHY_SLASH_WIDE);
-    } else if (property == SCIM_PROP_SYMBOL_STYLE_BRACKET_MIDDLE_DOT) {
-        set_symbol_style (FCITX_ANTHY_BRACKET_WIDE,
-                          FCITX_ANTHY_SLASH_JAPANESE);
-    } else if (property == SCIM_PROP_SYMBOL_STYLE_BRACKET_SLASH) {
-        set_symbol_style (FCITX_ANTHY_BRACKET_WIDE,
-                          FCITX_ANTHY_SLASH_WIDE);
-
-    // dictionary
-    } else if (property == SCIM_PROP_DICT_ADD_WORD) {
-        action_add_word ();
-    } else if (property == SCIM_PROP_DICT_LAUNCH_ADMIN_TOOL) {
-        action_launch_dict_admin_tool ();
-    }
-#endif
-}
-
-
-void
-AnthyInstance::reload_config ()
-{
-    // set romaji settings
-    m_preedit.set_symbol_width (m_config.m_romaji_half_symbol);
-    m_preedit.set_number_width (m_config.m_romaji_half_number);
-
-    // set input mode
-    if (m_on_init || !m_config.m_show_input_mode_label) {
-        m_preedit.set_input_mode (m_config.m_input_mode);
-    }
-
-    // set typing method and pseudo ASCII mode
-    if (m_on_init || !m_config.m_show_typing_method_label) {
-        m_preedit.set_typing_method (m_config.m_typing_method);
-        m_preedit.set_pseudo_ascii_mode (get_pseudo_ascii_mode ());
-    } else {
-        m_preedit.set_typing_method (get_typing_method ());
-        m_preedit.set_pseudo_ascii_mode (get_pseudo_ascii_mode ());
-    }
-
-    // set period style
-    if (m_on_init || !m_config.m_show_period_style_label) {
-        set_period_style(m_config.m_period_comma_style);
-    }
-
-    // set symbol style
-    if (m_on_init || !m_config.m_show_symbol_style_label) {
-    }
-
-    // setup toolbar
-    install_properties ();
-}
-
 bool
 AnthyInstance::is_single_segment (void)
 {
@@ -2135,7 +1996,6 @@ CONFIG_BINDING_REGISTER("Interface", "ShowConversionMode", m_show_conv_mode_labe
 CONFIG_BINDING_REGISTER("Interface", "ShowPeriodStyle", m_show_period_style_label)
 CONFIG_BINDING_REGISTER("Interface", "ShowSymbolStyle", m_show_symbol_style_label)
 
-CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_ON_OFF_KEY, m_key_default.m_hk_ON_OFF)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CIRCLE_INPUT_MODE_KEY, m_key_default.m_hk_CIRCLE_INPUT_MODE)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CIRCLE_KANA_MODE_KEY, m_key_default.m_hk_CIRCLE_KANA_MODE)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CIRCLE_TYPING_METHOD_KEY, m_key_default.m_hk_CIRCLE_TYPING_METHOD)
@@ -2158,7 +2018,6 @@ CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CONVERT_KEY, m_key_default.m_hk_CON
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_PREDICT_KEY, m_key_default.m_hk_PREDICT)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CANCEL_KEY, m_key_default.m_hk_CANCEL)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CANCEL_ALL_KEY, m_key_default.m_hk_CANCEL_ALL)
-CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_DO_NOTHING_KEY, m_key_default.m_hk_DO_NOTHING)
 
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_MOVE_CARET_FIRST_KEY, m_key_default.m_hk_MOVE_CARET_FIRST)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_MOVE_CARET_LAST_KEY, m_key_default.m_hk_MOVE_CARET_LAST)
@@ -2303,7 +2162,6 @@ void AnthyInstance::configure()
     APPEND_ACTION (INSERT_WIDE_SPACE,       action_insert_wide_space);
 
     // mode keys
-    APPEND_ACTION (ON_OFF,                  action_on_off);
     APPEND_ACTION (CIRCLE_INPUT_MODE,       action_circle_input_mode);
     APPEND_ACTION (CIRCLE_KANA_MODE,        action_circle_kana_mode);
     APPEND_ACTION (CIRCLE_TYPING_METHOD,    action_circle_typing_method);
@@ -2320,17 +2178,31 @@ void AnthyInstance::configure()
     // reconvert
     APPEND_ACTION (RECONVERT,               action_reconvert);
 
-    // disabled key
-    APPEND_ACTION (DO_NOTHING,              action_do_nothing);
+    // set romaji settings
+    m_preedit.set_symbol_width (m_config.m_romaji_half_symbol);
+    m_preedit.set_number_width (m_config.m_romaji_half_number);
+
+    // set input mode
+    m_preedit.set_input_mode (m_config.m_input_mode);
+
+    // set typing method and pseudo ASCII mode
+    m_preedit.set_typing_method (m_config.m_typing_method);
+    m_preedit.set_pseudo_ascii_mode (get_pseudo_ascii_mode ());
+
+    // set period style
+    set_period_style(m_config.m_period_comma_style);
+
+    // set symbol style
+    set_symbol_style(m_config.m_symbol_style);
+
+    // setup toolbar
+    install_properties ();
 }
 
 void AnthyInstance::update_aux_string(const std::string& str)
 {
     FcitxMessages* aux;
-    if (support_client_preedit())
-        aux = m_aux_up;
-    else
-        aux = m_aux_down;
+    aux = m_aux_up;
     FcitxMessagesSetMessageCount(aux, 0);
     FcitxMessagesAddMessageAtLast(aux, MSG_TIPS, "%s", str.c_str());
     m_ui_update = true;

@@ -1,27 +1,27 @@
 [General/PageSize]
 Type=Integer
-Description=PageSize
+Description=Page size
 DefaultValue=10
 
 [General/NTriggersToShowCandWin]
 Type=Integer
-Description=NTriggersToShowCandWin
+Description=Number candidate of Triggers To Show Candidate Window
 DefaultValue=2
 
 [General/InputMode]
 Type=Enum
-Description=InputMode
+Description=Input mode
 DefaultValue=Hiragana
 EnumCount=5
 Enum0=Hiragana
 Enum1=Katakana
-Enum2=HalfKatakana
+Enum2=Half Katakana
 Enum3=Latin
-Enum4=WideLatin
+Enum4=Wide Latin
 
 [General/TypingMethod]
 Type=Enum
-Description=TypingMethod
+Description=Typing method
 DefaultValue=Romaji
 EnumCount=4
 Enum0=Romaji
@@ -31,364 +31,351 @@ Enum3=Custom
 
 [General/ConversionMode]
 Type=Enum
-Description=ConversionMode
-DefaultValue=Multi Segement
+Description=Conversion mode
+DefaultValue=Multi segement
 EnumCount=4
-Enum0=Multi Segement
-Enum1=Single Segement
-Enum2=Multi Segement Immediate
-Enum3=Single Segement Immediate
+Enum0=Multi segement
+Enum1=Single segement
+Enum2=Multi segement immediate
+Enum3=Single segement immediate
 
 [General/PeriodStyle]
 Type=Enum
-Description=PeriodStyle
+Description=Period style
 DefaultValue=Japanese
 EnumCount=4
-Enum0=Wide Latin
+Enum0=Wide latin
 Enum1=Latin
 Enum2=Japanese
-Enum3=Wide Latin Japanese
+Enum3=Wide latin Japanese
 
 [General/SymbolStyle]
 Type=Enum
-Description=SymbolStyle
+Description=Symbol style
 DefaultValue=Japanese
 EnumCount=4
 Enum0=Japanese
-Enum1=Wide Bracket WideSlash
-Enum2=Corner Bracket Wide Slash
-Enum3=Wide Bracket Middle Dot
+Enum1=Wide bracket and wide slash
+Enum2=Corner bracket and  wide slash
+Enum3=Wide bracket and Middle Dot
 
 [General/LearnOnManualCommit]
 Type=Boolean
-Description=LearnOnManualCommit
+Description=Learn on manual commit
 DefaultValue=True
 
 [General/LearnOnAutoCommit]
 Type=Boolean
-Description=LearnOnAutoCommit
+Description=Learn on auto commit
 DefaultValue=True
 
 [General/AllowSplit]
 Type=Boolean
-Description=AllowSplit
+Description=Allow split
 DefaultValue=True
 
 [General/UseDirectKeyOnPredict]
 Type=Boolean
-Description=UseDirectKeyOnPredict
+Description=Use direct key on predict
 DefaultValue=True
 
 [General/KeyProfile]
 Type=File
-Description=KeyProfile
+Description=Key profile
 DefaultValue=
 
 [General/ShowCandidatesLabel]
 Type=Boolean
-DefaultValue=ShowCandidatesLabel
+DefaultValue=Show candidates label
 DefaultValue=True
 
 [Interface/ShowInputMode]
 Type=Boolean
-DefaultValue=ShowInputMode
+DefaultValue=Show input mode
 DefaultValue=True
 
 [Interface/ShowTypingMethod]
 Type=Boolean
-DefaultValue=ShowTypingMethod
+DefaultValue=Show typing method
 DefaultValue=True
 
 [Interface/ShowConversionMode]
 Type=Boolean
-DefaultValue=ShowConversionMode
+DefaultValue=Show conversion mode
 DefaultValue=True
 
 [Interface/ShowPeriodStyle]
 Type=Boolean
-DefaultValue=ShowPeriodStyle
+DefaultValue=Show period style
 DefaultValue=False
 
 [Interface/ShowSymbolStyle]
 Type=Boolean
-DefaultValue=ShowSymbolStyle
+DefaultValue=Show symbol style
 DefaultValue=False
-
-[Key/OnOffKey]
-Type=Hotkey
-Description=OnOffKey
-DefaultValue=
 
 [Key/CircleInputModeKey]
 Type=Hotkey
-Description=CircleInputModeKey
+Description=Circle input mode
 DefaultValue=CTRL_, CTRL_<
 
 [Key/CircleKanaModeKey]
 Type=Hotkey
-Description=CircleKanaModeKey
+Description=Circle kana mode
 DefaultValue=CTRL_. HIRAGANAKATAKANA
 
 [Key/CircleTypingMethodKey]
 Type=Hotkey
-Description=CircleTypingMethodKey
+Description=Circle typing method
 DefaultValue=ALT_ROMAJI CTRL_/
 
 [Key/LatinModeKey]
 Type=Hotkey
-Description=LatinModeKey
+Description=Latin mode
 DefaultValue=
 
 [Key/WideLatinModeKey]
 Type=Hotkey
-Description=WideLatinModeKey
+Description=Wide latin mode
 DefaultValue=
 
 [Key/HiraganaModeKey]
 Type=Hotkey
-Description=HiraganaModeKey
+Description=Hiragana mode
 DefaultValue=
 
 [Key/KatakanaModeKey]
 Type=Hotkey
-Description=KatakanaModeKey
+Description=Katakana mode
 DefaultValue=
 
 [Key/HalfKatakanaModeKey]
 Type=Hotkey
-Description=HalfKatakanaModeKey
+Description=Half Katakana mode
 DefaultValue=
 
 [Key/CancelPseudoAsciiModeKey]
 Type=Hotkey
-Description=CancelPseudoAsciiModeKey
+Description=Cancel pseudo ascii mode
 DefaultValue=ESCAPE
 
 
 [Key/InsertSpaceKey]
 Type=Hotkey
-Description=InsertSpaceKey
+Description=Insert space
 DefaultValue=SPACE
 
 [Key/InsertAltSpaceKey]
 Type=Hotkey
-Description=InsertAltSpaceKey
+Description=Insert Alternative space
 DefaultValue=SHIFT_SPACE
 
 [Key/InsertHalfSpaceKey]
 Type=Hotkey
-Description=InsertHalfSpaceKey
+Description=Insert Half Space
 DefaultValue=
 
 [Key/InsertWideSpaceKey]
 Type=Hotkey
-Description=InsertWideSpaceKey
+Description=Insert wide space
 DefaultValue=
 
 [Key/BackSpaceKey]
 Type=Hotkey
-Description=BackSpaceKey
+Description=BackSpace
 DefaultValue=BACKSPACE CTRL_H
 
 [Key/DeleteKey]
 Type=Hotkey
-Description=DeleteKey
+Description=Delete
 DefaultValue=DELETE CTRL_D
 
 [Key/CommitKey]
 Type=Hotkey
-Description=CommitKey
+Description=Commit
 DefaultValue=ENTER CTRL_J
 
 [Key/CommitReverseLearnKey]
 Type=Hotkey
-Description=CommitReverseLearnKey
+Description=Commit Reverse Learn
 DefaultValue=SHIFT_ENTER
 
 [Key/ConvertKey]
 Type=Hotkey
-Description=ConvertKey
+Description=Convert
 DefaultValue=SPACE HENKAN
 
 [Key/PredictKey]
 Type=Hotkey
-Description=PredictKey
+Description=Predict
 DefaultValue=TAB
 
 [Key/CancelKey]
 Type=Hotkey
-Description=CancelKey
+Description=Cancel
 DefaultValue=ESCAPE CTRL_G
 
 [Key/CancelAllKey]
 Type=Hotkey
-Description=CancelAllKey
+Description=Cancel all
 DefaultValue=
-
-[Key/DoNothingKey]
-Type=Hotkey
-Description=DoNothingKey
-DefaultValue=
-
 
 [Key/MoveCaretFirstKey]
 Type=Hotkey
-Description=MoveCaretFirstKey
+Description=Move Caret First
 DefaultValue=CTRL_A HOME
 
 [Key/MoveCaretLastKey]
 Type=Hotkey
-Description=MoveCaretLastKey
+Description=Move caret last
 DefaultValue=CTRL_E END
 
 [Key/MoveCaretForwardKey]
 Type=Hotkey
-Description=MoveCaretForwardKey
+Description=Move caret forward
 DefaultValue=RIGHT CTRL_F
 
 [Key/MoveCaretBackwardKey]
 Type=Hotkey
-Description=MoveCaretBackwardKey
+Description=Move caret backward
 DefaultValue=LEFT CTRL_B
 
 
 [Key/SelectFirstSegmentKey]
 Type=Hotkey
-Description=SelectFirstSegmentKey
+Description=Select first segment
 DefaultValue=CTRL_A HOME
 
 [Key/SelectLastSegmentKey]
 Type=Hotkey
-Description=SelectLastSegmentKey
+Description=Select last segment
 DefaultValue=CTRL_E END
 
 [Key/SelectNextSegmentKey]
 Type=Hotkey
-Description=SelectNextSegmentKey
+Description=Select next segment
 DefaultValue=RIGHT CTRL_F
 
 [Key/SelectPrevSegmentKey]
 Type=Hotkey
-Description=SelectPrevSegmentKey
+Description=Select previous segment
 DefaultValue=LEFT CTRL_B
 
 [Key/ShrinkSegmentKey]
 Type=Hotkey
-Description=ShrinkSegmentKey
+Description=Shrink segment
 DefaultValue=SHIFT_LEFT CTRL_I
 
 [Key/ExpandSegmentKey]
 Type=Hotkey
-Description=ExpandSegmentKey
+Description=Expand segment
 DefaultValue=SHIFT_RIGHT CTRL_O
 
 [Key/CommitFirstSegmentKey]
 Type=Hotkey
-Description=CommitFirstSegmentKey
+Description=Commit first segment
 DefaultValue=SHIFT_DOWN
 
 [Key/CommitSelectedSegmentKey]
 Type=Hotkey
-Description=CommitSelectedSegmentKey
+Description=Commit selected segment
 DefaultValue=CTRL_DOWN
 
 [Key/CommitFirstSegmentReverseLearnKey]
 Type=Hotkey
-Description=CommitFirstSegmentReverseLearnKey
+Description=Commit first segment reverse learn
 DefaultValue=
 
 [Key/CommitSelectedSegmentReverseLearnKey]
 Type=Hotkey
-Description=CommitSelectedSegmentReverseLearnKey
+Description=Commit selected segment reverse learn
 DefaultValue=
 
 
 [Key/SelectFirstCandidateKey]
 Type=Hotkey
-Description=SelectFirstCandidateKey
+Description=Select first candidate
 DefaultValue=HOME
 
 [Key/SelectLastCandidateKey]
 Type=Hotkey
-Description=SelectLastCandidateKey
+Description=Select last candidate
 DefaultValue=END
 
 [Key/SelectNextCandidateKey]
 Type=Hotkey
-Description=SelectNextCandidateKey
+Description=Select next candidate
 DefaultValue=SPACE TAB
 
 [Key/SelectPrevCandidateKey]
 Type=Hotkey
-Description=SelectPrevCandidateKey
+Description=Select prev candidate
 DefaultValue=SHIFT_TAB
 
 [Key/CandidatesPageUpKey]
 Type=Hotkey
-Description=CandidatesPageUpKey
+Description=Candidates Page Up
 DefaultValue=PGUP
 
 [Key/CandidatesPageDownKey]
 Type=Hotkey
-Description=CandidatesPageDownKey
+Description=Candidates Page Down
 DefaultValue=PGDN
 
 [Key/ConvertCharTypeForwardKey]
 Type=Hotkey
-Description=ConvertCharTypeForwardKey
+Description=Convert char type forward
 DefaultValue=MUHENKAN
 
 [Key/ConvertCharTypeBackwardKey]
 Type=Hotkey
-Description=ConvertCharTypeBackwardKey
+Description=Convert char type backward
 DefaultValue=
 
 [Key/ConvertToHiraganaKey]
 Type=Hotkey
-Description=ConvertToHiraganaKey
+Description=Convert To Hiragana
 DefaultValue=F6
 
 [Key/ConvertToKatakanaKey]
 Type=Hotkey
-Description=ConvertToKatakanaKey
+Description=Convert To Katakana
 DefaultValue=F7
 
 [Key/ConvertToHalfKey]
 Type=Hotkey
-Description=ConvertToHalfKey
+Description=Convert To Half
 DefaultValue=F8
 
 [Key/ConvertToHalfKatakanaKey]
 Type=Hotkey
-Description=ConvertToHalfKatakanaKey
+Description=Convert To Half Katakana
 DefaultValue=SHIFT_F8
 
 [Key/ConvertToWideLatinKey]
 Type=Hotkey
-Description=ConvertToWideLatinKey
+Description=Convert To Wide Latin
 DefaultValue=F9
 
 [Key/ConvertToLatinKey]
 Type=Hotkey
-Description=ConvertToLatinKey
+Description=Convert To Latin
 DefaultValue=F10
-
 
 [Key/ReconvertKey]
 Type=Hotkey
-Description=ReconvertKey
+Description=Reconvert
 DefaultValue=SHIFT_HENKAN
 
 [Key/DictAdminKey]
 Type=Hotkey
-Description=DictAdminKey
+Description=Dict admin
 DefaultValue=F11
 
 [Key/AddWordKey]
 Type=Hotkey
-Description=AddWordKey
+Description=Add Word
 DefaultValue=F12
-
 
 [DescriptionFile]
 LocaleDomain=fcitx-anthy

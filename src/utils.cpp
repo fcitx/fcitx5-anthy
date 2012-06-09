@@ -78,11 +78,11 @@ util_convert_to_wide (std::string & wide, const std::string & str)
         char cc[2]; cc[0] = c; cc[1] = '\0';
         bool found = false;
 
-        for (unsigned int j = 0; scim_anthy_wide_table[j].code; j++) {
-            if ( scim_anthy_wide_table[j].code &&
-                *scim_anthy_wide_table[j].code == c)
+        for (unsigned int j = 0; fcitx_anthy_wide_table[j].code; j++) {
+            if ( fcitx_anthy_wide_table[j].code &&
+                *fcitx_anthy_wide_table[j].code == c)
             {
-                wide += scim_anthy_wide_table[j].wide;
+                wide += fcitx_anthy_wide_table[j].wide;
                 found = true;
                 break;
             }
@@ -100,11 +100,11 @@ util_convert_to_half (std::string & half, const std::string & str)
         std::string wide = str.substr (i, 1);
         bool found = false;
 
-        for (unsigned int j = 0; scim_anthy_wide_table[j].code; j++) {
-            if (scim_anthy_wide_table[j].wide &&
-                wide == scim_anthy_wide_table[j].wide)
+        for (unsigned int j = 0; fcitx_anthy_wide_table[j].code; j++) {
+            if (fcitx_anthy_wide_table[j].wide &&
+                wide == fcitx_anthy_wide_table[j].wide)
             {
-                half += scim_anthy_wide_table[j].code;
+                half += fcitx_anthy_wide_table[j].code;
                 found = true;
                 break;
             }
@@ -124,7 +124,7 @@ util_convert_to_katakana (std::string & kata,
         std::string tmpwide;
         bool found = false;
 
-        HiraganaKatakanaRule *table = scim_anthy_hiragana_katakana_table;
+        HiraganaKatakanaRule *table = fcitx_anthy_hiragana_katakana_table;
 
         for (unsigned int j = 0; table[j].hiragana; j++) {
             tmpwide = table[j].hiragana;

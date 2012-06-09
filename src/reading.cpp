@@ -33,7 +33,7 @@ ReadingSegment::~ReadingSegment ()
 static const char *
 find_romaji (std::string c)
 {
-    ConvRule *table = scim_anthy_romaji_typing_rule;
+    ConvRule *table = fcitx_anthy_romaji_typing_rule;
 
     for (unsigned int i = 0; table[i].string; i++) {
         std::string kana = table[i].result;
@@ -47,7 +47,7 @@ find_romaji (std::string c)
 static void
 to_half (std::string &dest, std::string &src)
 {
-    WideRule *table = scim_anthy_wide_table;
+    WideRule *table = fcitx_anthy_wide_table;
 
     for (unsigned int i = 0; i < util_utf8_string_length(src); i++) {
         bool found = false;

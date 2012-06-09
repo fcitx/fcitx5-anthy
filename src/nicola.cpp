@@ -147,7 +147,7 @@ bool
 NicolaConvertor::handle_voiced_consonant  (std::string & result,
                                            std::string & pending)
 {
-    VoicedConsonantRule *table = scim_anthy_voiced_consonant_table;
+    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
 
     if (result.empty ())
         return false;
@@ -601,7 +601,7 @@ NicolaConvertor::flush_pending (void)
 void
 NicolaConvertor::reset_pending (const std::string & result, const std::string & raw)
 {
-    VoicedConsonantRule *table = scim_anthy_voiced_consonant_table;
+    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
 
     m_pending = std::string ();
 

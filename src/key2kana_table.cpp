@@ -22,107 +22,107 @@
 // fundamental table
 static Key2KanaTable romaji_table (
      ("DefaultRomajiTable"),
-    scim_anthy_romaji_typing_rule);
+    fcitx_anthy_romaji_typing_rule);
 static Key2KanaTable romaji_double_consonant_table (
      ("DefaultRomajiDoubleConsonantTable"),
-    scim_anthy_romaji_double_consonant_rule);
+    fcitx_anthy_romaji_double_consonant_rule);
 static Key2KanaTable kana_table (
      ("DefaultKanaTable"),
-    scim_anthy_kana_typing_rule);
+    fcitx_anthy_kana_typing_rule);
 static Key2KanaTable kana_voiced_consonant_table (
      ("DefaultKanaVoicedConsonantTable"),
-    scim_anthy_kana_voiced_consonant_rule);
+    fcitx_anthy_kana_voiced_consonant_rule);
 static Key2KanaTable nicola_table (
      ("DefaultNICOLATable"),
-    scim_anthy_nicola_table);
+    fcitx_anthy_nicola_table);
 
 // symbols
 static Key2KanaTable half_symbol_table (
      ("DefaultRomajiHalfSymbolTable"),
-    scim_anthy_half_symbol_rule);
+    fcitx_anthy_half_symbol_rule);
 static Key2KanaTable wide_symbol_table (
      ("DefaultRomajiWideSymbolTable"),
-    scim_anthy_wide_symbol_rule);
+    fcitx_anthy_wide_symbol_rule);
 
 // numbers
 static Key2KanaTable half_number_table (
      ("DefaultRomajiHalfNumberTable"),
-    scim_anthy_half_number_rule);
+    fcitx_anthy_half_number_rule);
 static Key2KanaTable wide_number_table (
      ("DefaultRomajiWideNumberTable"),
-    scim_anthy_wide_number_rule);
+    fcitx_anthy_wide_number_rule);
 
 // period
 static Key2KanaTable romaji_ja_period_table (
      ("DefaultRomajiJaPeriodTable"),
-    scim_anthy_romaji_ja_period_rule);
+    fcitx_anthy_romaji_ja_period_rule);
 static Key2KanaTable romaji_wide_period_table (
      ("DefaultRomajiWidePeriodTable"),
-    scim_anthy_romaji_wide_period_rule);
+    fcitx_anthy_romaji_wide_period_rule);
 static Key2KanaTable romaji_half_period_table (
      ("DefaultRomajiHalfPeriodTable"),
-    scim_anthy_romaji_half_period_rule);
+    fcitx_anthy_romaji_half_period_rule);
 
 static Key2KanaTable kana_ja_period_table (
      ("DefaultKanaJaPeriodTable"),
-    scim_anthy_kana_ja_period_rule);
+    fcitx_anthy_kana_ja_period_rule);
 static Key2KanaTable kana_wide_period_table (
      ("DefaultKanaWidePeriodTable"),
-    scim_anthy_kana_wide_period_rule);
+    fcitx_anthy_kana_wide_period_rule);
 static Key2KanaTable kana_half_period_table (
      ("DefaultKanaHalfPeriodTable"),
-    scim_anthy_kana_half_period_rule);
+    fcitx_anthy_kana_half_period_rule);
 
 // comma
 static Key2KanaTable romaji_ja_comma_table (
      ("DefaultRomajiJaCommaTable"),
-    scim_anthy_romaji_ja_comma_rule);
+    fcitx_anthy_romaji_ja_comma_rule);
 static Key2KanaTable romaji_wide_comma_table (
      ("DefaultRomajiWideCommaTable"),
-    scim_anthy_romaji_wide_comma_rule);
+    fcitx_anthy_romaji_wide_comma_rule);
 static Key2KanaTable romaji_half_comma_table (
      ("DefaultRomajiHalfCommaTable"),
-    scim_anthy_romaji_half_comma_rule);
+    fcitx_anthy_romaji_half_comma_rule);
 
 static Key2KanaTable kana_ja_comma_table (
      ("DefaultKanaJaCommaTable"),
-    scim_anthy_kana_ja_comma_rule);
+    fcitx_anthy_kana_ja_comma_rule);
 static Key2KanaTable kana_wide_comma_table (
      ("DefaultKanaWideCommaTable"),
-    scim_anthy_kana_wide_comma_rule);
+    fcitx_anthy_kana_wide_comma_rule);
 static Key2KanaTable kana_half_comma_table (
      ("DefaultKanaHalfCommaTable"),
-    scim_anthy_kana_half_comma_rule);
+    fcitx_anthy_kana_half_comma_rule);
 
 // bracket
 static Key2KanaTable romaji_ja_bracket_table (
      ("DefaultRomajiJaBracketTable"),
-    scim_anthy_romaji_ja_bracket_rule);
+    fcitx_anthy_romaji_ja_bracket_rule);
 static Key2KanaTable romaji_wide_bracket_table (
      ("DefaultRomajiWideBracketTable"),
-    scim_anthy_romaji_wide_bracket_rule);
+    fcitx_anthy_romaji_wide_bracket_rule);
 
 static Key2KanaTable kana_ja_bracket_table (
      ("DefaultKanaJaBracketTable"),
-    scim_anthy_kana_ja_bracket_rule);
+    fcitx_anthy_kana_ja_bracket_rule);
 static Key2KanaTable kana_wide_bracket_table (
      ("DefaultRomajiWideBracketTable"),
-    scim_anthy_kana_wide_bracket_rule);
+    fcitx_anthy_kana_wide_bracket_rule);
 
 // slash
 static Key2KanaTable romaji_ja_slash_table (
      ("DefaultRomajiJaSlashTable"),
-    scim_anthy_romaji_ja_slash_rule);
+    fcitx_anthy_romaji_ja_slash_rule);
 static Key2KanaTable romaji_wide_slash_table (
      ("DefaultRomajiWideSlashTable"),
-    scim_anthy_romaji_wide_slash_rule);
+    fcitx_anthy_romaji_wide_slash_rule);
 
 static Key2KanaTable kana_ja_slash_table (
      ("DefaultKanaJaSlashTable"),
-    scim_anthy_kana_ja_slash_rule);
+    fcitx_anthy_kana_ja_slash_rule);
 static Key2KanaTable kana_wide_slash_table (
      ("DefaultRomajiWideSlashTable"),
-    scim_anthy_kana_wide_slash_rule);
+    fcitx_anthy_kana_wide_slash_rule);
 
 
 Key2KanaRule::Key2KanaRule ()
@@ -340,7 +340,7 @@ create_voiced_consonant_table (Key2KanaTable &table, Key2KanaTable &fund_table)
             half_sonant_mark_list.push_back (it->get_sequence ());
     }
 
-    VoicedConsonantRule *templ = scim_anthy_voiced_consonant_table;
+    VoicedConsonantRule *templ = fcitx_anthy_voiced_consonant_table;
 
     for (unsigned int i = 0; templ[i].string; i++) {
         if (templ[i].voiced && *templ[i].voiced) {

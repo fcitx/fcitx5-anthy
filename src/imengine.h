@@ -58,13 +58,9 @@ public:
     virtual void reset_im                     (void);
     virtual void reset                        (void);
     virtual void init                         (void);
-    virtual void trigger_property             (const std::string &property);
-    virtual void reload_config                ();
 
 public:
     /* actions */
-    bool   action_do_nothing                  (void);
-
     bool   action_convert                     (void);
     bool   action_predict                     (void);
     bool   action_revert                      (void);
@@ -199,7 +195,6 @@ private: // FIXME!
 
 private:
     FcitxInstance* m_owner;
-    bool                  m_on_init;
 
    /* for preedit */
     Preedit               m_preedit;

@@ -147,7 +147,6 @@ struct AnthyKeyProfile {
     FcitxHotkey m_hk_INSERT_WIDE_SPACE[2];
 
     // mode keys
-    FcitxHotkey m_hk_ON_OFF[2];
     FcitxHotkey m_hk_CIRCLE_INPUT_MODE[2];
     FcitxHotkey m_hk_CIRCLE_KANA_MODE[2];
     FcitxHotkey m_hk_CIRCLE_TYPING_METHOD[2];
@@ -163,9 +162,6 @@ struct AnthyKeyProfile {
 
     // reconvert
     FcitxHotkey m_hk_RECONVERT[2];
-
-    // disabled key
-    FcitxHotkey m_hk_DO_NOTHING[2];
 };
 
 struct FcitxAnthyConfig {

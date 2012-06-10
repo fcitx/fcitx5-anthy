@@ -123,7 +123,10 @@ Preedit::update_preedit (void)
             preedit = m_anthy.get_client_preedit();
         else
             preedit = m_anthy.get_preedit();
-        FcitxMessagesAddMessageAtLast(preedit, MSG_INPUT, "%s", get_string().c_str());
+
+        std::string s = get_string();
+        if (s.length() > 0)
+            FcitxMessagesAddMessageAtLast(preedit, MSG_INPUT, "%s", s.c_str());
     }
 }
 

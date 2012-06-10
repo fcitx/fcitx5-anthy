@@ -3,7 +3,7 @@ fcitx-anthy install instructions
 
 To compile and install, go in the source directory and type:
 mkdir build; cd build
-cmake .. 
+cmake ..
 (If you want to install in a different path, use instead:
 cmake .. -DCMAKE_INSTALL_PREFIX=/install/path)
 make

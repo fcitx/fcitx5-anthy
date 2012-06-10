@@ -79,11 +79,6 @@ Type=Boolean
 Description=Use direct key on predict
 DefaultValue=True
 
-[General/KeyProfile]
-Type=File
-Description=Key profile
-DefaultValue=
-
 [General/ShowCandidatesLabel]
 Type=Boolean
 DefaultValue=Show candidates label
@@ -113,6 +108,78 @@ DefaultValue=False
 Type=Boolean
 DefaultValue=Show symbol style
 DefaultValue=False
+
+[KeyProfile/KeyBindingProfile]
+Type=Enum
+DefaultValue=Default
+Description=Key binding profile
+EnumCount=7
+Enum0=Default
+Enum1=Atok
+Enum2=Canna
+Enum3=MS IME
+Enum4=Vje Delta
+Enum5=WNN
+Enum6=Custom
+
+[KeyProfile/RomajiTable]
+Type=Enum
+DefaultValue=Default
+Description=Romaji Table
+EnumCount=7
+Enum0=Default
+Enum1=Atok
+Enum2=Azik
+Enum3=Canna
+Enum4=MS IME
+Enum5=Vje Delta
+Enum6=WNN
+Enum7=Custom
+
+[KeyProfile/KanaTable]
+Type=Enum
+DefaultValue=Default
+Description=Kana Table
+EnumCount=5
+Enum0=Default
+Enum1=101kana
+Enum2=tsuki-2-203-101
+Enum3=tsuki-2-203-106
+Enum4=Custom
+
+[KeyProfile/NicolaTable]
+Type=Enum
+DefaultValue=Default
+Description=Nicola Table
+EnumCount=8
+Enum0=Default
+Enum1=Nicola-A
+Enum2=Nicola-F
+Enum3=Nicola-J
+Enum4=Oasys100J
+Enum5=Tron Dvorak
+Enum6=Tron Qwerty JP
+Enum7=Custom
+
+[KeyProfile/CustomKeyBinding]
+Type=File
+DefaultValue=
+Description=Custom Key Binding
+
+[KeyProfile/CustomRomajiTable]
+Type=File
+DefaultValue=
+Description=Custom Romaji Table
+
+[KeyProfile/CustomKanaTable]
+Type=File
+DefaultValue=
+Description=Custom Kana Table
+
+[KeyProfile/CustomNicolaTable]
+Type=File
+DefaultValue=
+Description=Custom Nicola Table
 
 [Key/CircleInputModeKey]
 Type=Hotkey
@@ -240,7 +307,6 @@ Type=Hotkey
 Description=Move caret backward
 DefaultValue=LEFT CTRL_B
 
-
 [Key/SelectFirstSegmentKey]
 Type=Hotkey
 Description=Select first segment
@@ -290,7 +356,6 @@ DefaultValue=
 Type=Hotkey
 Description=Commit selected segment reverse learn
 DefaultValue=
-
 
 [Key/SelectFirstCandidateKey]
 Type=Hotkey

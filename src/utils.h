@@ -30,7 +30,7 @@ util_utf8_string_substr(const std::string& s, size_t start, size_t len);
 
 bool util_match_key_event     (const FcitxHotkey*  list,
                                const KeyEvent      &key,
-                               uint16_t             ignore_mask = 0);
+                               uint32_t             ignore_mask = 0);
 void util_split_string        (std::string              &str,
                                std::vector<std::string> &str_list,
                                char                *delim,

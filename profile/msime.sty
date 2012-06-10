@@ -4,17 +4,17 @@
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; either version 2, or (at your option)
+#  the Free Software Foundation; either version 2  or (at your option)
 #  any later version.
 #
-#  This program is distributed in the hope that it will be useful,
+#  This program is distributed in the hope that it will be useful
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License
-#  along with this program; if not, write to the Free Software
-#  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#  along with this program; if not  write to the Free Software
+#  Foundation  Inc.  59 Temple Place - Suite 330  Boston  MA 02111-1307  USA.
 #
 
 FormatVersion = 0.0.0
@@ -23,64 +23,52 @@ Title         = Microsoft IME
 Version       = 0.0.0
 
 [KeyBindings]
-OnOffKey                 = Eisu_toggle,Zenkaku_Hankaku
-CircleKanaModeKey        = Muhenkan
-LatinModeKey             = 
-WideLatinModeKey         = 
-HiraganaModeKey          = Hiragana_Katakana
-KatakanaModeKey          = Shift+Hiragana_Katakana
-HalfKatakanaModeKey      = 
-CircleTypingMethodKey    = Alt+Romaji
+CircleKanaModeKey        = MUHENKAN
+LatinModeKey             =
+WideLatinModeKey         =
+HiraganaModeKey          = HIRAGANAKATAKANA
+KatakanaModeKey          = SHIFT_HIRAGANAKATAKANA
+HalfKatakanaModeKey      =
+CircleTypingMethodKey    = ALT_ROMAJI
 
-ConvertKey               = space,Shift+space,Henkan
-PredictKey                  = Tab
-CancelKey                = BackSpace,Control+BackSpace,Escape,Control+h,Control+z
-CommitKey                = Return,Control+Return,Control+m
-ReconvertKey             = Henkan,F13
+ConvertKey               = SPACE SHIFT_SPACE HENKAN
+PredictKey               = TAB
+CancelKey                = BACKSPACE ESCAPE
+CommitKey                = Return CTRL_ENTER
+ReconvertKey             = HENKAN F13
 
-InsertSpaceKey           = space
-InsertAltSpaceKey        = Shift+space
-BackSpaceKey             = BackSpace,Control+h
-DeleteKey                = Delete,Control+g
+InsertSpaceKey           = SPACE
+InsertAltSpaceKey        = SHIFT_SPACE
+BackSpaceKey             = BACKSPACE CTRL_H
+DeleteKey                = DELETE CTRL_G
 
-MoveCaretFirstKey        = Home,Control+Left,Down,Control+a,Control+e
-MoveCaretLastKey         = End,Control+Right,Down,Control+f,Control+n,Control+x
-MoveCaretForwardKey      = Right,Shift+Right,Control+d,Control+l
-MoveCaretBackwardKey     = Left,Shift+Left,Control+s,Control+k
+MoveCaretFirstKey        = HOME CTRL_LEFT
+MoveCaretLastKey         = END CTRL_RIGHT
+MoveCaretForwardKey      = RIGHT SHIFT_RIGHT
+MoveCaretBackwardKey     = LEFT SHIFT_LEFT
 
-SelectFirstSegmentKey    = Home,Control+Left,Control+a
-SelectLastSegmentKey     = End,Control+Right,Control+f
-SelectNextSegmentKey     = Right,Control+d
-SelectPrevSegmentKey     = Left,Control+s
-ShrinkSegmentKey         = Shift+Left,Control+e,Control+k
-ExpandSegmentKey         = Shift+Right,Control+l,Control+x
-CommitFirstSegmentKey    = Shift+Down
-CommitSelectedSegmentKey = Control+Down,Control+n
+SelectFirstSegmentKey    = HOME CTRL_LEFT
+SelectLastSegmentKey     = END CTRL_RIGHT
+SelectNextSegmentKey     = RIGHT CTRL_D
+SelectPrevSegmentKey     = LEFT CTRL_S
+ShrinkSegmentKey         = SHIFT_LEFT CTRL_E
+ExpandSegmentKey         = SHIFT_RIGHT CTRL_L
+CommitFirstSegmentKey    = SHIFT_DOWN
+CommitSelectedSegmentKey = CTRL_DOWN CTRL_N
 
-CandidatesPageUpKey      = Page_Up,Shift+Up
-CandidatesPageDownKey    = Page_Down,Shift+Down
-SelectFirstCandidateKey  = Home
-SelectLastCandidateKey   = End
-SelectPrevCandidateKey   = Up,Control+e,Shift+space,Shift+Henkan
-SelectNextCandidateKey   = space,Tab,Henkan,Down,Control+x
+CandidatesPageUpKey      = PGUP SHIFT_UP
+CandidatesPageDownKey    = PGDN SHIFT_DOWN
+SelectFirstCandidateKey  = HOME
+SelectLastCandidateKey   = END
+SelectPrevCandidateKey   = UP CTRL_E
+SelectNextCandidateKey   = SPACE TAB
 
-SelectCandidates1Key     = 1
-SelectCandidates2Key     = 2
-SelectCandidates3Key     = 3
-SelectCandidates4Key     = 4
-SelectCandidates5Key     = 5
-SelectCandidates6Key     = 6
-SelectCandidates7Key     = 7
-SelectCandidates8Key     = 8
-SelectCandidates9Key     = 9
-SelectCandidates10Key    = 0
-
-ConvertToHiraganaKey     = Control+u,F6
-ConvertToKatakanaKey     = Control+i,F7
-ConvertToHalfKey         = Control+o,F8
-ConvertToHalfKatakanaKey = Shift+F8
-ConvertToWideLatinKey    = Control+p,F9
-ConvertToLatinKey        = Control+t,F10
+ConvertToHiraganaKey     = CTRL_U F6
+ConvertToKatakanaKey     = CTRL_I F7
+ConvertToHalfKey         = CTRL_O F8
+ConvertToHalfKatakanaKey = SHIFT_F8
+ConvertToWideLatinKey    = CTRL_P F9
+ConvertToLatinKey        = CTRL_T F10
 
 
 # Override fundamental table

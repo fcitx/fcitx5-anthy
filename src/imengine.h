@@ -187,11 +187,16 @@ private:
 
     bool   is_single_segment                  (void);
     bool   is_realtime_conversion             (void);
+    char*  get_file_name(const std::string& name);
 
 private: // FIXME!
     bool   is_nicola_thumb_shift_key          (const KeyEvent &key);
     void commit_string(std::string str);
     void update_aux_string(const std::string& str);
+    std::string get_key_profile();
+    std::string get_romaji_table();
+    std::string get_kana_table();
+    std::string get_nicola_table();
 
 private:
     FcitxInstance* m_owner;

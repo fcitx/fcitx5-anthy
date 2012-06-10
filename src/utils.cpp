@@ -45,9 +45,11 @@ util_utf8_string_substr(const std::string& s, size_t start, size_t len)
 
 bool
 util_match_key_event (const FcitxHotkey* hotkey, const KeyEvent &key,
-                      uint16_t ignore_mask)
+                      uint32_t ignore_mask)
 {
-    return FcitxHotkeyIsHotKey(key.sym, key.state & ~ignore_mask, hotkey);
+    FcitxKeySym simpsym; unsigned int simpstate;
+    FcitxHotkeyGetKey(key.sym, key.state, &simpsym, &simpstate);
+    return FcitxHotkeyIsHotKey(simpsym, simpstate & ~ignore_mask, hotkey);
 }
 
 void

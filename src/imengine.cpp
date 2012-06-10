@@ -41,6 +41,8 @@
 #include <fcitx-config/fcitx-config.h>
 #include <fcitx-utils/log.h>
 
+#define ARRAY_LEN(a) (sizeof(a) / sizeof(a[0]))
+
 #define UTF8_BRACKET_CORNER_BEGIN "\xE3\x80\x8C"
 #define UTF8_BRACKET_CORNER_END   "\xE3\x80\x8D"
 #define UTF8_BRACKET_WIDE_BEGIN   "\xEF\xBC\xBB"
@@ -415,6 +417,7 @@ void
 AnthyInstance::init ()
 {
     boolean flag = true;
+    FcitxInstanceSetContext(m_owner, CONTEXT_IM_KEYBOARD_LAYOUT, "jp");
     FcitxInstanceSetContext(m_owner, CONTEXT_DISABLE_AUTOENG, &flag);
     FcitxInstanceSetContext(m_owner, CONTEXT_DISABLE_QUICKPHRASE, &flag);
     FcitxInstanceSetContext(m_owner, CONTEXT_DISABLE_FULLWIDTH, &flag);
@@ -566,26 +569,26 @@ AnthyStatus period_style_status[] = {
 };
 
 AnthyStatus symbol_style_status[] = {
-    {"anthy-symbol-japanese", UTF8_BRACKET_CORNER_BEGIN
+    {"anthy-symbol", UTF8_BRACKET_CORNER_BEGIN
                         UTF8_BRACKET_CORNER_END
                         UTF8_MIDDLE_DOT,
                         UTF8_BRACKET_CORNER_BEGIN
                         UTF8_BRACKET_CORNER_END
                         UTF8_MIDDLE_DOT },
-    {"anthy-symbol-wbws", UTF8_BRACKET_CORNER_BEGIN
+    {"anthy-symbol", UTF8_BRACKET_CORNER_BEGIN
                         UTF8_BRACKET_CORNER_END
                         UTF8_SLASH_WIDE,
                         UTF8_BRACKET_CORNER_BEGIN
                         UTF8_BRACKET_CORNER_END
                         UTF8_SLASH_WIDE },
-    {"anthy-symbol-cbcs", UTF8_BRACKET_WIDE_BEGIN
+    {"anthy-symbol", UTF8_BRACKET_WIDE_BEGIN
                         UTF8_BRACKET_WIDE_END
                         UTF8_MIDDLE_DOT,
                         UTF8_BRACKET_WIDE_BEGIN
                         UTF8_BRACKET_WIDE_END
                         UTF8_MIDDLE_DOT
     },
-    {"anthy-symbol-wbmd", UTF8_BRACKET_WIDE_BEGIN
+    {"anthy-symbol", UTF8_BRACKET_WIDE_BEGIN
                         UTF8_BRACKET_WIDE_END
                         UTF8_SLASH_WIDE,
                         UTF8_BRACKET_WIDE_BEGIN
@@ -1504,7 +1507,9 @@ AnthyInstance::action_select_prev_candidate (void)
     //if (!is_selecting_candidates ())
         set_lookup_table ();
 
-    int end = FcitxCandidateWordGetListSize(m_lookup_table);
+    int end = FcitxCandidateWordGetListSize(m_lookup_table) - 1;
+    if (end < 0)
+        end = 0;
     if (m_cursor_pos == 0)
         m_cursor_pos = end;
     else
@@ -1965,11 +1970,13 @@ void AnthyInstance::commit_string(std::string str)
         std::string str = (ACTION_CONFIG_##key##_KEY);                         \
         std::string keystr;                                                    \
         style.get_string (keystr, "KeyBindings", str);                         \
+        FcitxHotkeySetKey(keystr.c_str(), m_config.m_key_profile.m_hk_##key);  \
+        hk = m_config.m_key_profile.m_hk_##key;                                \
     } else                                                                     \
-        hk = m_config.m_key_default.m_hk_##key;                                    \
+        hk = m_config.m_key_default.m_hk_##key;                                \
     PMF f;                                                                     \
-    f = &AnthyInstance::func;                                                                     \
-    m_actions[name] = Action (name, hk, f);                                 \
+    f = &AnthyInstance::func;                                                  \
+    m_actions[name] = Action (name, hk, f);                                    \
 }
 
 CONFIG_DESC_DEFINE(GetFcitxAnthyConfigDesc, "fcitx-anthy.desc")
@@ -1980,7 +1987,6 @@ CONFIG_BINDING_REGISTER("General", "TypingMethod", m_typing_method)
 CONFIG_BINDING_REGISTER("General", "ConversionMode", m_conversion_mode)
 CONFIG_BINDING_REGISTER("General", "PeriodStyle", m_period_comma_style)
 CONFIG_BINDING_REGISTER("General", "SymbolStyle", m_symbol_style)
-CONFIG_BINDING_REGISTER("General", "KeyProfile", m_key_theme_file)
 CONFIG_BINDING_REGISTER("General", "PageSize", m_page_size)
 CONFIG_BINDING_REGISTER("General", "LearnOnManualCommit", m_learn_on_manual_commit)
 CONFIG_BINDING_REGISTER("General", "LearnOnAutoCommit", m_learn_on_auto_commit)
@@ -1995,6 +2001,15 @@ CONFIG_BINDING_REGISTER("Interface", "ShowTypingMethod", m_show_typing_method_la
 CONFIG_BINDING_REGISTER("Interface", "ShowConversionMode", m_show_conv_mode_label)
 CONFIG_BINDING_REGISTER("Interface", "ShowPeriodStyle", m_show_period_style_label)
 CONFIG_BINDING_REGISTER("Interface", "ShowSymbolStyle", m_show_symbol_style_label)
+
+CONFIG_BINDING_REGISTER("KeyProfile", "KeyBindingProfile", m_key_profile_enum)
+CONFIG_BINDING_REGISTER("KeyProfile", "RomajiTable", m_romaji_table_enum)
+CONFIG_BINDING_REGISTER("KeyProfile", "KanaTable", m_kana_table_enum)
+CONFIG_BINDING_REGISTER("KeyProfile", "NicolaTable", m_nicola_table_enum)
+CONFIG_BINDING_REGISTER("KeyProfile", "CustomKeyBindingProfile", m_key_theme_file)
+CONFIG_BINDING_REGISTER("KeyProfile", "CustomRomajiTable", m_romaji_fundamental_table)
+CONFIG_BINDING_REGISTER("KeyProfile", "CustomKanaTable", m_kana_fundamental_table)
+CONFIG_BINDING_REGISTER("KeyProfile", "CustomNicolaTable", m_nicola_fundamental_table)
 
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CIRCLE_INPUT_MODE_KEY, m_key_default.m_hk_CIRCLE_INPUT_MODE)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CIRCLE_KANA_MODE_KEY, m_key_default.m_hk_CIRCLE_KANA_MODE)
@@ -2057,7 +2072,80 @@ CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_DICT_ADMIN_KEY, m_key_default.m_hk_
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_ADD_WORD_KEY, m_key_default.m_hk_ADD_WORD)
 CONFIG_BINDING_END()
 
+std::string AnthyInstance::get_key_profile()
+{
+    const char* key_profile[] = {
+        "",
+        "atok.sty",
+        "canna.sty",
+        "msime.sty",
+        "vje-delta.sty"
+        "wnn.sty",
+        m_config.m_key_theme_file
+    };
 
+    if (m_config.m_key_profile_enum >= ARRAY_LEN(key_profile))
+        m_config.m_key_profile_enum = 0;
+
+    return key_profile[m_config.m_key_profile_enum];
+}
+
+
+std::string AnthyInstance::get_romaji_table()
+{
+    const char* key_profile[] = {
+        "",
+        "atok.sty",
+        "azik.sty",
+        "canna.sty",
+        "msime.sty",
+        "vje-delta.sty",
+        "wnn.sty",
+        m_config.m_romaji_fundamental_table
+    };
+
+    if (m_config.m_romaji_table_enum >= ARRAY_LEN(key_profile))
+        m_config.m_romaji_table_enum = 0;
+
+    return key_profile[m_config.m_romaji_table_enum];
+}
+
+
+std::string AnthyInstance::get_kana_table()
+{
+    const char* key_profile[] = {
+        "",
+        "101kana.sty",
+        "tsuki-2-203-101.sty",
+        "tsuki-2-203-106.sty",
+        m_config.m_kana_fundamental_table
+    };
+
+    if (m_config.m_kana_table_enum >= ARRAY_LEN(key_profile))
+        m_config.m_kana_table_enum = 0;
+
+    return key_profile[m_config.m_kana_table_enum];
+}
+
+
+std::string AnthyInstance::get_nicola_table()
+{
+    const char* key_profile[] = {
+        "",
+        "nicola-a.sty",
+        "nicola-f.sty",
+        "nicola-j.sty",
+        "oasys100j.sty"
+        "tron-dvorak.sty",
+        "tron-qwerty-jp.sty",
+        m_config.m_nicola_fundamental_table
+    };
+
+    if (m_config.m_nicola_table_enum >= ARRAY_LEN(key_profile))
+        m_config.m_nicola_table_enum = 0;
+
+    return key_profile[m_config.m_nicola_table_enum];
+}
 
 bool AnthyInstance::load_config()
 {
@@ -2092,6 +2180,16 @@ void AnthyInstance::save_config()
         fclose(fp);
 }
 
+char* AnthyInstance::get_file_name(const std::string& name)
+{
+    char* retFile = NULL;
+    FILE* fp = FcitxXDGGetFileWithPrefix("anthy", name.c_str(), "r", &retFile);
+    if (fp) {
+        fclose(fp);
+    }
+    return retFile;
+}
+
 void AnthyInstance::configure()
 {
     StyleFile style;
@@ -2099,8 +2197,11 @@ void AnthyInstance::configure()
     bool loaded = false;
 
     // load key bindings
-    file = m_config.m_key_theme_file;
-    loaded = style.load (file.c_str ());
+    char* filename = get_file_name(get_key_profile());
+    if (filename)
+        loaded = style.load (filename);
+
+    fcitx_utils_free(filename);
 
     // clear old actions
     m_actions.clear ();
@@ -2177,6 +2278,42 @@ void AnthyInstance::configure()
 
     // reconvert
     APPEND_ACTION (RECONVERT,               action_reconvert);
+
+    // load custom romaji table
+    if (m_config.m_custom_romaji_table) {
+        delete m_config.m_custom_romaji_table;
+        m_config.m_custom_romaji_table = NULL;
+    }
+    const char *section_romaji = "RomajiTable/FundamentalTable";
+    filename = get_file_name(get_romaji_table());
+    if (filename && style.load (filename)) {
+        m_config.m_custom_romaji_table = style.get_key2kana_table (section_romaji);
+    }
+    fcitx_utils_free(filename);
+
+    // load custom kana table
+    if (m_config.m_custom_kana_table) {
+        delete m_config.m_custom_kana_table;
+        m_config.m_custom_kana_table = NULL;
+    }
+    const char *section_kana = "KanaTable/FundamentalTable";
+    filename = get_file_name(get_kana_table());
+    if (filename && style.load (filename)) {
+        m_config.m_custom_kana_table = style.get_key2kana_table (section_kana);
+    }
+    fcitx_utils_free(filename);
+
+    // load custom NICOLA table
+    if (m_config.m_custom_nicola_table) {
+        delete m_config.m_custom_nicola_table;
+        m_config.m_custom_nicola_table = NULL;
+    }
+    const char *section_nicola = "NICOLATable/FundamentalTable";
+    filename = get_file_name(get_nicola_table());
+    if (filename && style.load (filename)) {
+        m_config.m_custom_nicola_table = style.get_key2kana_table (section_nicola);
+    }
+    fcitx_utils_free(filename);
 
     // set romaji settings
     m_preedit.set_symbol_width (m_config.m_romaji_half_symbol);

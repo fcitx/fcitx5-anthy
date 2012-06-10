@@ -129,9 +129,9 @@ ConvRule fcitx_anthy_romaji_typing_rule[] = {
 {"de",	"で",	""},
 {"do",	"ど",	""},
 {"xtu",	"っ",	""},
-{"xtsu","っ"	""},
+{"xtsu","っ",	""},
 {"ltu",	"っ",	""},
-{"ltsu","っ"	""},
+{"ltsu","っ",	""},
 {"tya",	"ちゃ",	""},
 {"tyi",	"ちぃ",	""},
 {"tyu",	"ちゅ",	""},
@@ -244,7 +244,7 @@ ConvRule fcitx_anthy_romaji_typing_rule[] = {
 {"\\.",	"・",	""},
 {";r",	"→",	""},
 {";l",	"←",	""},
-{";u","↑",	""},
+{";u",  "↑",	""},
 {";d",	"↓",	""},
 {";p",	"〒",	""},
 {";e",	"€",	""},
@@ -737,7 +737,7 @@ HiraganaKatakanaRule fcitx_anthy_hiragana_katakana_table[] = {
 
 #if 1
 //{"う゛" "ヴ" "ｳﾞ"},
-{"ヴ" "ヴ" "ｳﾞ"},
+{"ヴ", "ヴ", "ｳﾞ"},
 #endif
 
 #if 1

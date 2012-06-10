@@ -166,9 +166,9 @@ struct AnthyKeyProfile {
 
 struct FcitxAnthyConfig {
     FcitxGenericConfig gconfig;
-    const char* romaji_fundamental_table;
-    const char* kana_fundamental_table;
-    const char* nicola_fundamental_table;
+    const char* m_romaji_fundamental_table;
+    const char* m_kana_fundamental_table;
+    const char* m_nicola_fundamental_table;
     const char* m_kana_layout_ro_key;
     boolean m_predict_on_input;
     boolean m_learn_on_auto_commit;
@@ -209,6 +209,11 @@ struct FcitxAnthyConfig {
 
     AnthyKeyProfile m_key_default;
     AnthyKeyProfile m_key_profile;
+
+    int m_key_profile_enum;
+    int m_romaji_table_enum;
+    int m_kana_table_enum;
+    int m_nicola_table_enum;
 
     Key2KanaTable *m_custom_romaji_table;
     Key2KanaTable *m_custom_kana_table;

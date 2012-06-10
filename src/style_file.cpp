@@ -18,6 +18,7 @@
  */
 
 #include <fstream>
+#include <fcitx-utils/log.h>
 
 #include "style_file.h"
 #include "key2kana_table.h"
@@ -311,7 +312,7 @@ StyleFile::load (const char *filename)
         if (in_file.eof ())
             break;
 
-        std::string dest;
+        std::string dest = buf;
         StyleLine line (this, dest);
         StyleLineType type = line.get_type ();
 

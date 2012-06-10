@@ -6,5 +6,5 @@ Category=InputMethod
 Enabled=True
 Library=fcitx-anthy.so
 Type=SharedLibrary
-Dependency=fcitx-punc
+Dependency=
 IMRegisterMethod=ConfigFile

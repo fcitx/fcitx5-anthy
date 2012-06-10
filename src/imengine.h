@@ -132,11 +132,11 @@ public:
     InputMode
            get_input_mode                     (void);
     ConversionMode
-           get_conversion_mode                     (void) { return m_config.m_conversion_mode; }
+           get_conversion_mode                (void) { return m_config.m_conversion_mode; }
     PeriodCommaStyle
-           get_period_style                     (void) { return m_config.m_period_comma_style; }
+           get_period_style                   (void) { return m_config.m_period_comma_style; }
     SymbolStyle
-           get_symbol_style                     (void) { return m_config.m_symbol_style; }
+           get_symbol_style                   (void) { return m_config.m_symbol_style; }
     void   set_input_mode                     (InputMode      mode);
     void   set_conversion_mode                (ConversionMode mode);
     void   set_typing_method                  (TypingMethod   method);
@@ -189,8 +189,8 @@ private:
 
 private: // FIXME!
     bool   is_nicola_thumb_shift_key          (const KeyEvent &key);
-    void commit_string(std::string str);
-    void update_aux_string(const std::string& str);
+    void   commit_string(std::string str);
+    void   update_aux_string(const std::string& str);
     std::string get_key_profile();
     std::string get_romaji_table();
     std::string get_kana_table();
@@ -203,6 +203,8 @@ private:
     Preedit               m_preedit;
     bool                  m_preedit_string_visible;
 
+    FcitxInputState* m_input;
+
     /* for candidates window */
     FcitxCandidateWordList*     m_lookup_table;
     bool                        m_lookup_table_visible;
@@ -213,8 +215,6 @@ private:
 
     /* for action */
     KeyEvent              m_last_key;
-
-    FcitxInputState* m_input;
 
     FcitxAnthyConfig m_config;
     FcitxMessages* m_aux_up;

@@ -133,18 +133,22 @@ AnthyInstance::AnthyInstance (FcitxInstance* instance) :
       m_owner(instance),
       m_preedit                (*this),
       m_preedit_string_visible (false),
+      m_input                  (FcitxInstanceGetInputState(m_owner)),
+      m_lookup_table           (FcitxInputStateGetCandidateList(m_input)),
       m_lookup_table_visible   (false),
       m_n_conv_key_pressed     (0),
       m_prev_input_mode        (FCITX_ANTHY_MODE_HIRAGANA),
-      m_status_installed       (false)
+      m_last_key               (),
+      m_aux_up                 (FcitxInputStateGetAuxUp(m_input)),
+      m_aux_down               (FcitxInputStateGetAuxDown(m_input)),
+      m_cursor_pos             (0),
+      m_client_preedit_msg     (FcitxInputStateGetClientPreedit(m_input)),
+      m_preedit_msg            (FcitxInputStateGetPreedit(m_input)),
+      m_profile                (FcitxInstanceGetProfile(m_owner)),
+      m_status_installed       (false),
+      m_ui_update              (false)
 {
-    m_input = FcitxInstanceGetInputState(instance);
-    m_lookup_table = FcitxInputStateGetCandidateList(m_input);
-    m_aux_up = FcitxInputStateGetAuxUp(m_input);
-    m_aux_down = FcitxInputStateGetAuxDown(m_input);
-    m_preedit_msg = FcitxInputStateGetPreedit(m_input);
-    m_client_preedit_msg = FcitxInputStateGetClientPreedit(m_input);
-    m_profile = FcitxInstanceGetProfile(m_owner);
+    memset(&m_config, 0, sizeof(FcitxAnthyConfig));
 
 }
 

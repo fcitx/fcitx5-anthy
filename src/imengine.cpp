@@ -392,16 +392,6 @@ AnthyInstance::update_lookup_table_page_size (unsigned int page_size)
 }
 
 void
-AnthyInstance::lookup_table_page_up ()
-{
-}
-
-void
-AnthyInstance::lookup_table_page_down ()
-{
-}
-
-void
 AnthyInstance::reset_im ()
 {
     FcitxInstanceCleanInputWindow(m_owner);
@@ -1554,6 +1544,11 @@ AnthyInstance::action_candidates_page_up(void)
     if (!is_selecting_candidates ()) return false;
     if (!m_lookup_table_visible) return false;
 
+    if (m_cursor_pos - m_config.m_page_size >= 0) {
+        m_cursor_pos -= m_config.m_page_size;
+        select_candidate_no_direct (m_cursor_pos);
+    }
+
     return true;
 }
 
@@ -1563,6 +1558,14 @@ AnthyInstance::action_candidates_page_down (void)
     if (!m_preedit.is_converting ()) return false;
     if (!is_selecting_candidates ()) return false;
     if (!m_lookup_table_visible) return false;
+
+    int end = FcitxCandidateWordGetListSize(m_lookup_table);
+
+    if (m_cursor_pos + m_config.m_page_size < end) {
+        FcitxLog(INFO, "page down");
+        m_cursor_pos += m_config.m_page_size;
+        select_candidate_no_direct (m_cursor_pos);
+    }
 
     return true;
 }

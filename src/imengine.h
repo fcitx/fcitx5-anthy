@@ -43,21 +43,19 @@ class AnthyInstance
 {
 public:
     AnthyInstance (FcitxInstance* instance);
-    virtual ~AnthyInstance ();
+    ~AnthyInstance ();
     bool load_config();
     void save_config();
 
     void configure();
 
-    virtual bool process_key_event            (const KeyEvent& key);
-    virtual void move_preedit_caret           (unsigned int pos);
-    virtual void select_candidate             (unsigned int item);
-    virtual void update_lookup_table_page_size(unsigned int page_size);
-    virtual void lookup_table_page_up         (void);
-    virtual void lookup_table_page_down       (void);
-    virtual void reset_im                     (void);
-    virtual void reset                        (void);
-    virtual void init                         (void);
+    bool process_key_event            (const KeyEvent& key);
+    void move_preedit_caret           (unsigned int pos);
+    void select_candidate             (unsigned int item);
+    void update_lookup_table_page_size(unsigned int page_size);
+    void reset_im                     (void);
+    void reset                        (void);
+    void init                         (void);
 
 public:
     /* actions */

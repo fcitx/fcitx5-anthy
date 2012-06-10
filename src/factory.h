@@ -198,7 +198,6 @@ struct FcitxAnthyConfig {
     TenKeyType m_ten_key_type;
     PeriodBehavior m_behavior_on_period;
 
-    int m_cand_win_page_size;
     int m_n_triggers_to_show_cand_win;
 
     FcitxHotkey m_left_thumb_keys[2];

@@ -415,6 +415,7 @@ AnthyInstance::init ()
     FcitxInstanceSetContext(m_owner, CONTEXT_DISABLE_AUTOENG, &flag);
     FcitxInstanceSetContext(m_owner, CONTEXT_DISABLE_QUICKPHRASE, &flag);
     FcitxInstanceSetContext(m_owner, CONTEXT_DISABLE_FULLWIDTH, &flag);
+    FcitxInstanceSetContext(m_owner, CONTEXT_DISABLE_AUTO_FIRST_CANDIDATE_HIGHTLIGHT, &flag);
     FcitxInstanceCleanInputWindow(m_owner);
     if (m_preedit_string_visible) {
         set_preedition ();

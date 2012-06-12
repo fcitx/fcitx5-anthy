@@ -159,6 +159,8 @@ public:
     const char* get_period_style_icon();
     const char* get_symbol_style_icon();
 
+    bool   action_select_candidate            (unsigned int   i);
+    void   reset_cursor(int cursor);
 private:
     /* processing key event */
     bool   process_key_event_input            (const KeyEvent &key);
@@ -169,7 +171,7 @@ private:
     /* utility */
     void   set_preedition                     (void);
     void   set_aux_string                     (void);
-    void   set_lookup_table                   (void);
+    int    set_lookup_table                   (void);
     void   unset_lookup_table                 (void);
     void   install_properties                 (void);
     void   set_period_style                   (PeriodStyle    period,
@@ -181,7 +183,6 @@ private:
     bool   convert_kana                       (CandidateType  type);
 
     bool   action_commit                      (bool           learn);
-    bool   action_select_candidate            (unsigned int   i);
 
     bool   is_single_segment                  (void);
     bool   is_realtime_conversion             (void);

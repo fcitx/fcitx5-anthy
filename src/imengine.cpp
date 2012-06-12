@@ -253,6 +253,15 @@ AnthyInstance::process_key_event_lookup_keybind (const KeyEvent& key)
         }
     }
 
+    int choose = FcitxHotkeyCheckChooseKey(key.sym, key.state & (FcitxKeyState_Ctrl_Alt_Shift | FcitxKeyState_Super), DIGIT_STR_CHOOSE);
+    if (choose >= 0) {
+        INPUT_RETURN_VALUE retVal = FcitxCandidateWordChooseByIndex(m_lookup_table, choose);
+        if (retVal != IRV_TO_PROCESS) {
+            m_last_key = KeyEvent ();
+            return true;
+        }
+    }
+
     m_last_key = KeyEvent ();
 
     return false;
@@ -362,9 +371,6 @@ AnthyInstance::select_candidate_no_direct (unsigned int item)
     if (m_preedit.is_predicting () && !m_preedit.is_converting ())
         action_predict ();
 
-    if (!is_selecting_candidates ())
-        return;
-
     // update lookup table
     m_cursor_pos = item;
 
@@ -449,7 +455,8 @@ AnthyInstance::set_preedition (void)
 {
     FcitxInstanceCleanInputWindowUp(m_owner);
     m_preedit.update_preedit();
-    FcitxInputStateSetShowCursor(m_input, true);
+    if (!support_client_preedit())
+        FcitxInputStateSetShowCursor(m_input, true);
     FcitxInputStateSetCursorPos(m_input, m_preedit.get_caret_pos());
     FcitxInputStateSetClientCursorPos(m_input, m_preedit.get_caret_pos());
     m_ui_update = true;
@@ -467,46 +474,47 @@ AnthyInstance::update_ui (void)
 void
 AnthyInstance::set_aux_string (void)
 {
+    if (!FcitxCandidateWordGetListSize(m_lookup_table))
+        return;
+
     char buf[256];
     sprintf (buf, _("(%d / %d)"), m_cursor_pos + 1,
              FcitxCandidateWordGetListSize(m_lookup_table));
     update_aux_string (buf);
 }
 
-void
+int
 AnthyInstance::set_lookup_table (void)
 {
-    m_n_conv_key_pressed++;
     FcitxCandidateWordSetChoose(m_lookup_table, DIGIT_STR_CHOOSE);
     FcitxCandidateWordSetPageSize(m_lookup_table, m_config.m_page_size);
 
     // if (!is_selecting_candidates ()) {
-    if (true) {
-        if (is_realtime_conversion () &&
-            m_preedit.get_selected_segment () < 0)
-        {
-            // select latest segment
-            int n = m_preedit.get_nr_segments ();
-            if (n < 1)
-                return;
-            m_preedit.select_segment (n - 1);
-        }
-
-        // prepare candidates
-        m_preedit.get_candidates (m_lookup_table);
-
-        if (FcitxCandidateWordPageCount(m_lookup_table) == 0)
-            return;
-
-        // update preedit
-        m_preedit.select_candidate (m_cursor_pos);
-        set_preedition ();
-
+    if (is_realtime_conversion () &&
+        m_preedit.get_selected_segment () < 0)
+    {
+        // select latest segment
+        int n = m_preedit.get_nr_segments ();
+        if (n < 1)
+            return 0;
+        m_preedit.select_segment (n - 1);
     }
+
+    // prepare candidates
+    m_preedit.get_candidates (m_lookup_table);
+
+    if (FcitxCandidateWordPageCount(m_lookup_table) == 0)
+        return 0;
+
+    // update preedit
+    m_preedit.select_candidate (m_cursor_pos);
+    set_preedition ();
 
     bool beyond_threshold =
         m_config.m_n_triggers_to_show_cand_win > 0 &&
         (int) m_n_conv_key_pressed >= m_config.m_n_triggers_to_show_cand_win;
+
+    int len = FcitxCandidateWordGetListSize(m_lookup_table);
 
     if (!m_lookup_table_visible &&
         (m_preedit.is_predicting () || beyond_threshold))
@@ -522,6 +530,8 @@ AnthyInstance::set_lookup_table (void)
     }
 
     m_ui_update = true;
+
+    return len;
 }
 
 void
@@ -951,6 +961,7 @@ AnthyInstance::action_convert (void)
         m_preedit.convert (FCITX_ANTHY_CANDIDATE_DEFAULT,
                            is_single_segment ());
         set_preedition ();
+        m_n_conv_key_pressed++;
         set_lookup_table ();
         return true;
     }
@@ -972,6 +983,7 @@ AnthyInstance::action_predict (void)
 
     m_preedit.select_candidate (0);
     set_preedition ();
+    m_n_conv_key_pressed++;
     set_lookup_table ();
     select_candidate_no_direct (0);
 
@@ -1483,13 +1495,13 @@ AnthyInstance::action_select_next_candidate (void)
         return false;
 
     //if (!is_selecting_candidates ())
-        set_lookup_table ();
+    int end = set_lookup_table ();
 
-    int end = FcitxCandidateWordGetListSize(m_lookup_table);
     if (m_cursor_pos >= end - 1)
         m_cursor_pos = 0;
     else
         m_cursor_pos ++;
+    m_n_conv_key_pressed++;
 
     select_candidate_no_direct (m_cursor_pos);
     return true;
@@ -1500,15 +1512,15 @@ AnthyInstance::action_select_prev_candidate (void)
 {
     if (!m_preedit.is_converting ()) return false;
     //if (!is_selecting_candidates ())
-        set_lookup_table ();
+    int end = set_lookup_table ();
 
-    int end = FcitxCandidateWordGetListSize(m_lookup_table) - 1;
     if (end < 0)
         end = 0;
     if (m_cursor_pos == 0)
         m_cursor_pos = end;
     else
         m_cursor_pos --;
+    m_n_conv_key_pressed++;
 
     FcitxCandidateWordSetFocus(m_lookup_table, m_cursor_pos);
 
@@ -1524,6 +1536,7 @@ AnthyInstance::action_select_first_candidate (void)
     if (!is_selecting_candidates ()) return false;
 
     m_cursor_pos = 0;
+    m_n_conv_key_pressed++;
     select_candidate_no_direct (m_cursor_pos);
     return true;
 }
@@ -1538,6 +1551,7 @@ AnthyInstance::action_select_last_candidate (void)
     if (end < 0)
         end = 0;
     m_cursor_pos = 0;
+    m_n_conv_key_pressed++;
     select_candidate_no_direct (m_cursor_pos);
     return true;
 }
@@ -2351,6 +2365,14 @@ void AnthyInstance::update_aux_string(const std::string& str)
     FcitxMessagesSetMessageCount(aux, 0);
     FcitxMessagesAddMessageAtLast(aux, MSG_TIPS, "%s", str.c_str());
     m_ui_update = true;
+}
+
+void AnthyInstance::reset_cursor(int cursor)
+{
+    if (cursor >= 0)
+        m_cursor_pos = cursor;
+    else
+        cursor = 0;
 }
 
 

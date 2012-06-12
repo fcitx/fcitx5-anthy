@@ -408,6 +408,7 @@ Conversion::select_segment (int segment_id)
 
     if (segment_id < 0) {
         m_cur_segment = -1;
+        m_anthy.reset_cursor(0);
         return;
     }
 
@@ -416,8 +417,14 @@ Conversion::select_segment (int segment_id)
 
     int real_segment_id = segment_id + m_start_id;
 
-    if (segment_id >= 0 && real_segment_id < conv_stat.nr_segment)
-        m_cur_segment = segment_id;
+    if (segment_id >= 0 && real_segment_id < conv_stat.nr_segment) {
+        if (m_cur_segment != segment_id) {
+            if (segment_id < m_segments.size()) {
+                m_anthy.reset_cursor(m_segments[segment_id].get_candidate_id());
+            }
+            m_cur_segment = segment_id;
+        }
+    }
 }
 
 int
@@ -515,7 +522,7 @@ get_candidate(void* arg, struct _FcitxCandidateWord* candWord)
 {
     int* i = (int*) candWord->priv;
     AnthyInstance* anthy = (AnthyInstance*) candWord->owner;
-    anthy->select_candidate(*i);
+    anthy->action_select_candidate(*i);
     return IRV_DO_NOTHING;
 }
 
@@ -526,6 +533,7 @@ void
 Conversion::get_candidates (FcitxCandidateWordList *table, int segment_id)
 {
     FcitxCandidateWordReset(table);
+    int selected = get_selected_candidate();
 
     if (is_predicting ()) {
 #ifdef HAS_ANTHY_PREDICTION
@@ -552,7 +560,10 @@ Conversion::get_candidates (FcitxCandidateWordList *table, int segment_id)
             candWord.priv = (void*) p;
             candWord.strExtra = NULL;
             candWord.strWord = strdup(buf);
-            candWord.wordType = MSG_OTHER;
+            if (i == selected)
+                candWord.wordType = MSG_CANDIATE_CURSOR;
+            else
+                candWord.wordType = MSG_OTHER;
 
             FcitxCandidateWordAppend(table, &candWord);
         }
@@ -572,7 +583,6 @@ Conversion::get_candidates (FcitxCandidateWordList *table, int segment_id)
         }
         int real_segment_id = segment_id + m_start_id;
 
-        int selected = get_selected_candidate();
         if (real_segment_id >= conv_stat.nr_segment)
             return;
 

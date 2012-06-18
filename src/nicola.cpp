@@ -434,6 +434,10 @@ void
 NicolaConvertor::clear (void)
 {
     m_pending = std::string ();
+    m_prev_char_key = KeyEvent();
+    m_prev_thumb_key = KeyEvent();
+    m_repeat_char_key = KeyEvent();
+    m_repeat_thumb_key = KeyEvent();
 }
 
 bool

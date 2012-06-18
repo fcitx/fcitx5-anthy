@@ -416,7 +416,8 @@ NicolaConvertor::append (const KeyEvent & key,
 
     FcitxLog(DEBUG, "prev:%s %d %d %d", __func__, m_prev_char_key.sym, m_prev_char_key.state, m_prev_char_key.is_release);
 
-    return handle_voiced_consonant (result, pending);
+    handle_voiced_consonant (result, pending);
+    return true;
 }
 
 bool

@@ -191,22 +191,6 @@ Preedit::process_key_event (const KeyEvent & key)
         return true;
     }
 
-    // auto convert
-    unsigned int len = m_reading.get_length_by_char ();
-    if (len > 0) {
-        std::string str;
-        str = m_reading.get_raw_by_char (len - 1, 1);
-        if (is_comma_or_period (str)) {
-            if (m_anthy.get_config()->m_behavior_on_period == FCITX_ANTHY_PERIOD_BEHAVIOR_CONVERT &&
-                get_length () > 1)
-            {
-                convert ();
-            } else if (m_anthy.get_config()->m_behavior_on_period == FCITX_ANTHY_PERIOD_BEHAVIOR_COMMIT) {
-                return true;
-            }
-        }
-    }
-
     return retval;
 }
 

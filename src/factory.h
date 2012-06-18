@@ -85,11 +85,6 @@ typedef enum {
     FCITX_ANTHY_TEN_KEY_TYPE_FOLLOWMODE,
 } TenKeyType;
 
-typedef enum {
-    FCITX_ANTHY_PERIOD_BEHAVIOR_CONVERT,
-    FCITX_ANTHY_PERIOD_BEHAVIOR_COMMIT,
-} PeriodBehavior;
-
 struct AnthyKeyProfile {
 
 
@@ -196,7 +191,6 @@ struct FcitxAnthyConfig {
     ConversionMode m_conversion_mode;
     TypingMethod m_typing_method;
     TenKeyType m_ten_key_type;
-    PeriodBehavior m_behavior_on_period;
 
     int m_n_triggers_to_show_cand_win;
 

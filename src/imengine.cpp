@@ -453,7 +453,8 @@ AnthyInstance::support_client_preedit(void)
 void
 AnthyInstance::set_preedition (void)
 {
-    FcitxInstanceCleanInputWindowUp(m_owner);
+    FcitxMessagesSetMessageCount(m_preedit_msg, 0);
+    FcitxMessagesSetMessageCount(m_client_preedit_msg, 0);
     m_preedit.update_preedit();
     if (!support_client_preedit())
         FcitxInputStateSetShowCursor(m_input, true);
@@ -2021,7 +2022,6 @@ CONFIG_BINDING_REGISTER("General", "PageSize", m_page_size)
 CONFIG_BINDING_REGISTER("General", "LearnOnManualCommit", m_learn_on_manual_commit)
 CONFIG_BINDING_REGISTER("General", "LearnOnAutoCommit", m_learn_on_auto_commit)
 CONFIG_BINDING_REGISTER("General", "AllowSplit", m_romaji_allow_split)
-CONFIG_BINDING_REGISTER("General", "BehaviorOnPeriod", m_behavior_on_period)
 CONFIG_BINDING_REGISTER("General", "UseDirectKeyOnPredict", m_use_direct_key_on_predict)
 CONFIG_BINDING_REGISTER("General", "NTriggersToShowCandWin", m_n_triggers_to_show_cand_win)
 CONFIG_BINDING_REGISTER("General", "ShowCandidatesLabel", m_show_candidates_label)

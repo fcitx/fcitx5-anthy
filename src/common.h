@@ -17,6 +17,7 @@ public:
     KeyEvent() {
         sym = FcitxKey_None;
         state = FcitxKeyState_None;
+        is_release = false;
     }
 
     unsigned char get_ascii_code() const {

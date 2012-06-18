@@ -75,24 +75,10 @@ private:
     bool       is_right_thumb_key       (const KeyEvent&     key);
     NicolaShiftType
                get_thumb_key_type       (const KeyEvent&     key);
-
-    void       on_key_repeat            (const KeyEvent&     key,
-                                         std::string       & result,
-                                         std::string           & raw);
-    void       on_both_key_pressed      (const KeyEvent&     key,
-                                         std::string       & result,
-                                         std::string           & raw);
-    void       on_thumb_key_pressed     (const KeyEvent&     key,
-                                         std::string       & result,
-                                         std::string           & raw);
-    void       on_char_key_pressed      (const KeyEvent&     key,
-                                         std::string       & result,
-                                         std::string           & raw);
-    void       on_no_key_pressed        (const KeyEvent&     key);
-
-    bool       is_repeating             (void);
-    void       emit_key_event           (const KeyEvent&    key);
+    bool       emit_key_event           (const KeyEvent&    key);
     void       set_alarm                (int                time_msec);
+    bool stop();
+    int         thumb_key ( const KeyEvent& key);
 
 private:
     Key2KanaTableSet &m_tables;
@@ -101,21 +87,16 @@ private:
 
     // state
     KeyEvent          m_prev_char_key;
-    KeyEvent          m_prev_thumb_key;
 
     KeyEvent          m_repeat_char_key;
-    KeyEvent          m_repeat_thumb_key;
-    bool              m_is_repeating;
-
-    struct timeval    m_time_char;
-    struct timeval    m_time_thumb;
-
-    KeyEvent          m_through_key_event;
 
     uint32_t          m_timer_id;
     bool              m_processing_timeout;
 
     std::string        m_pending;
+    KeyEvent m_through_key_event;
+    KeyEvent m_repeat_thumb_key;
+    KeyEvent m_prev_thumb_key;
 };
 
 #endif /* __FCITX_ANTHY_NICOLA_H__ */

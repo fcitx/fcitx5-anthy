@@ -63,20 +63,12 @@ NicolaConvertor::can_append (const KeyEvent & key,
 
     if (key.is_release &&
         (key.sym != m_prev_char_key.sym &&
-         key.sym != m_prev_thumb_key.sym &&
          key.sym != m_repeat_char_key.sym &&
-         key.sym != m_repeat_thumb_key.sym))
+         key.sym != m_prev_thumb_key.sym &&
+         key.sym != m_repeat_thumb_key.sym
+        ))
     {
         return false;
-    }
-
-    if (is_repeating ()) {
-        if (!key.is_release &&
-            (key == m_repeat_char_key || key == m_repeat_thumb_key) &&
-            m_repeat_char_key.empty ())
-        {
-            return false;
-        }
     }
 
     // ignore short cut keys of apllication.
@@ -251,244 +243,13 @@ NicolaConvertor::get_thumb_key_type (const KeyEvent& key)
         return FCITX_ANTHY_NICOLA_SHIFT_NONE;
 }
 
-void
-NicolaConvertor::on_key_repeat (const KeyEvent& key,
-                                std::string &result,
-                                std::string &raw)
-{
-    FcitxLog(INFO, "%s %d %d %d", __func__, key.sym, key.state, key.is_release);
-    if (key.is_release) {
-        if (!m_repeat_char_key.empty ())
-            emit_key_event (key);
-        m_repeat_char_key  = KeyEvent ();
-        m_repeat_thumb_key = KeyEvent ();
-        m_prev_char_key    = KeyEvent ();
-#if 1
-        m_prev_thumb_key   = KeyEvent ();
-#endif
-
-    } else if (key == m_repeat_char_key || key == m_repeat_thumb_key) {
-        if (!m_repeat_char_key.empty ()) {
-            search (m_repeat_char_key, get_thumb_key_type (m_repeat_thumb_key),
-                    result, raw);
-        } else {
-            // handle by can_append ();
-        }
-
-
-    } else if (!is_thumb_key (key) && !(key == m_repeat_char_key)) {
-        m_repeat_char_key  = KeyEvent ();
-        m_repeat_thumb_key = KeyEvent ();
-        m_prev_char_key    = key;
-        m_prev_thumb_key   = KeyEvent ();
-        set_alarm (m_anthy.get_config()->m_nicola_time);
-
-    } else if (key == m_prev_thumb_key) {
-        m_repeat_char_key  = KeyEvent ();
-        m_repeat_thumb_key = KeyEvent ();
-        m_prev_char_key    = KeyEvent ();
-        m_prev_thumb_key   = key;
-        set_alarm (m_anthy.get_config()->m_nicola_time);
-
-    } else {
-        m_repeat_char_key  = KeyEvent ();
-        m_repeat_thumb_key = KeyEvent ();
-        m_prev_char_key    = KeyEvent ();
-        m_prev_thumb_key   = KeyEvent ();
-    }
-}
-
-void
-NicolaConvertor::on_both_key_pressed (const KeyEvent &key,
-                                      std::string & result,
-                                      std::string &raw)
-{
-    FcitxLog(INFO, "%s %d %d %d", __func__, key.sym, key.state, key.is_release);
-    struct timeval cur_time;
-    long diff1, diff2;
-    gettimeofday (&cur_time, NULL);
-
-    diff1 = m_time_thumb.tv_usec - m_time_char.tv_usec;
-    diff2 = cur_time.tv_usec - m_time_thumb.tv_usec;
-
-    if (!key.is_release && key == m_prev_thumb_key) {
-        search (m_prev_char_key, get_thumb_key_type (m_prev_thumb_key),
-                result, raw);
-        m_repeat_char_key  = m_prev_char_key;
-        m_repeat_thumb_key = m_prev_thumb_key;
-
-    } else if (is_char_key (key)) {
-        if (!key.is_release) {
-            if (diff2 < diff1) {
-                std::string result1, result2;
-                std::string raw1, raw2;
-                search (m_prev_char_key, FCITX_ANTHY_NICOLA_SHIFT_NONE,
-                        result1, raw1);
-                search (key, get_thumb_key_type (m_prev_thumb_key),
-                        result2, raw2);
-                result = result1 + result2;
-                raw = raw1 + raw2;
-
-                // repeat
-                m_repeat_char_key  = key;
-                m_repeat_thumb_key = m_prev_thumb_key;
-
-            } else {
-                search (m_prev_char_key, get_thumb_key_type (m_prev_thumb_key),
-                        result, raw);
-                m_prev_char_key  = key;
-#if 1
-                m_prev_thumb_key = KeyEvent ();
-#endif
-                set_alarm (m_anthy.get_config()->m_nicola_time);
-            }
-
-        } else {
-            if (diff2 < m_anthy.get_config()->m_nicola_time * 1000 &&
-                diff1 > diff2)
-            {
-                search (m_prev_char_key, FCITX_ANTHY_NICOLA_SHIFT_NONE,
-                        result, raw);
-                m_prev_char_key = KeyEvent ();
-
-            } else {
-                search (m_prev_char_key, get_thumb_key_type (m_prev_thumb_key),
-                        result, raw);
-                m_prev_char_key  = KeyEvent ();
-#if 1
-                m_prev_thumb_key = KeyEvent ();
-#endif
-            }
-        }
-
-    } else if (is_thumb_key (key)) {
-        if (!key.is_release) {
-            search (m_prev_char_key, get_thumb_key_type (m_prev_thumb_key),
-                    result, raw);
-            m_prev_char_key  = KeyEvent ();
-            m_prev_thumb_key = key;
-            gettimeofday (&m_time_thumb, NULL);
-            set_alarm (m_anthy.get_config()->m_nicola_time);
-
-        } else {
-            search (m_prev_char_key, get_thumb_key_type (m_prev_thumb_key),
-                    result, raw);
-            m_prev_char_key  = KeyEvent ();
-            m_prev_thumb_key = KeyEvent ();
-        }
-
-    } else {
-        search (m_prev_char_key, get_thumb_key_type (m_prev_thumb_key),
-                result, raw);
-        m_prev_char_key  = KeyEvent ();
-        m_prev_thumb_key = KeyEvent ();
-    }
-}
-
-void
-NicolaConvertor::on_thumb_key_pressed (const KeyEvent &key,
-                                       std::string & result,
-                                       std::string &raw)
-{
-    FcitxLog(INFO, "%s %d %d %d", __func__, key.sym, key.state, key.is_release);
-    if (!key.is_release && key == m_prev_thumb_key) {
-#if 1
-        m_repeat_thumb_key = key;
-#endif
-
-    } else if (is_thumb_key (key) && key.is_release) {
-        emit_key_event (m_prev_thumb_key); // key press event
-        emit_key_event (key);              // key release event
-        m_prev_thumb_key = KeyEvent ();
-
-    } else if (is_thumb_key (key) & !key.is_release) {
-        emit_key_event (m_prev_thumb_key);
-        m_prev_thumb_key = key;
-        gettimeofday (&m_time_thumb, NULL);
-
-    } else if (is_char_key (key) && !key.is_release) {
-        m_prev_char_key = key;
-        gettimeofday (&m_time_char, NULL);
-
-        search (m_prev_char_key, get_thumb_key_type (m_prev_thumb_key),
-                result, raw);
-
-        // repeat
-        m_repeat_char_key  = m_prev_char_key;
-        m_repeat_thumb_key = m_prev_thumb_key;
-
-    } else {
-        m_prev_thumb_key = KeyEvent ();
-    }
-}
-
-void
-NicolaConvertor::on_char_key_pressed (const KeyEvent &key,
-                                      std::string & result,
-                                      std::string &raw)
-{
-    FcitxLog(INFO, "%s %d %d %d", __func__, key.sym, key.state, key.is_release);
-    if (!key.is_release && key == m_prev_char_key) {
-        search (m_prev_char_key, FCITX_ANTHY_NICOLA_SHIFT_NONE,
-                result, raw);
-        m_repeat_char_key = m_prev_char_key;
-
-    } else if (is_char_key (key) && !key.is_release) {
-        search (m_prev_char_key, FCITX_ANTHY_NICOLA_SHIFT_NONE,
-                result, raw);
-        m_prev_char_key = key;
-        gettimeofday (&m_time_char, NULL);
-        set_alarm (m_anthy.get_config()->m_nicola_time);
-
-    } else if (is_thumb_key (key) && !key.is_release) {
-        m_prev_thumb_key = key;
-        gettimeofday (&m_time_thumb, NULL);
-        set_alarm (m_anthy.get_config()->m_nicola_time);
-
-    } else if (key.is_release && key == m_prev_char_key) {
-        search (m_prev_char_key, FCITX_ANTHY_NICOLA_SHIFT_NONE,
-                result, raw);
-        m_prev_char_key = KeyEvent ();
-
-    } else {
-        search (m_prev_char_key, FCITX_ANTHY_NICOLA_SHIFT_NONE,
-                result, raw);
-        m_prev_char_key = KeyEvent ();
-    }
-}
-
-void
-NicolaConvertor::on_no_key_pressed (const KeyEvent &key)
-{
-    FcitxLog(INFO, "%s %d %d %d", __func__, key.sym, key.state, key.is_release);
-
-    if (key.is_release)
-        return;
-
-    if (is_char_key (key)) {
-        m_prev_char_key = key;
-        gettimeofday (&m_time_char, NULL);
-        set_alarm (m_anthy.get_config()->m_nicola_time);
-    } else if (is_thumb_key (key)) {
-        m_prev_thumb_key = key;
-        gettimeofday (&m_time_thumb, NULL);
-        set_alarm (m_anthy.get_config()->m_nicola_time);
-    }
-}
-
 bool
-NicolaConvertor::is_repeating (void)
-{
-    return !m_repeat_char_key.empty () || !m_repeat_thumb_key.empty ();
-}
-
-void
 NicolaConvertor::emit_key_event (const KeyEvent & key)
 {
     m_through_key_event = key;
 
     //m_anthy.forward_key_event (key);
-    m_anthy.process_key_event (key);
+    return m_anthy.process_key_event (key);
 }
 
 void
@@ -497,7 +258,7 @@ NicolaConvertor::process_timeout (void)
     m_processing_timeout = true;
     if (!m_prev_char_key.empty ())
         m_anthy.process_key_event (m_prev_char_key);
-    else if (!m_prev_thumb_key.empty ())
+    else if (!m_prev_thumb_key.empty())
         m_anthy.process_key_event (m_prev_thumb_key);
     m_processing_timeout = false;
 }
@@ -517,13 +278,23 @@ NicolaConvertor::set_alarm (int time_msec)
 }
 
 bool
+NicolaConvertor::stop()
+{
+    return FcitxInstanceRemoveTimeoutByFunc(m_anthy.get_owner(), NicolaTimeoutFunc);
+}
+
+int
+NicolaConvertor::thumb_key(const KeyEvent& key)
+{
+    return is_left_thumb_key(key) ? 1 : 2;
+}
+
+bool
 NicolaConvertor::append (const KeyEvent & key,
                          std::string & result,
                          std::string & pending,
                          std::string &raw)
 {
-    FcitxInstanceRemoveTimeoutByFunc(m_anthy.get_owner(), NicolaTimeoutFunc);
-
     if (m_processing_timeout) {
         search (m_prev_char_key,
                 get_thumb_key_type (m_prev_thumb_key),
@@ -556,31 +327,94 @@ NicolaConvertor::append (const KeyEvent & key,
 
         result = wide;
 
-        m_repeat_char_key  = KeyEvent ();
-        m_repeat_thumb_key = KeyEvent ();
-        m_prev_char_key    = KeyEvent ();
-        m_prev_thumb_key   = KeyEvent ();
+        m_prev_char_key = m_repeat_char_key  = KeyEvent ();
+        m_prev_thumb_key = m_repeat_thumb_key = KeyEvent ();
 
         return handle_voiced_consonant (result, pending);
     }
 
-    if (is_repeating ()) {
-        on_key_repeat (key, result, raw);
-
-    } else if (!m_prev_thumb_key.empty () && !m_prev_char_key.empty ()) {
-        on_both_key_pressed (key, result, raw);
-
-    } else if (!m_prev_thumb_key.empty ()) {
-        on_thumb_key_pressed (key, result, raw);
-
-    } else if (!m_prev_char_key.empty ()) {
-        on_char_key_pressed (key, result, raw);
-
-    } else {
-        on_no_key_pressed (key);
+    if (key.is_release) {
+        if (key == m_prev_char_key) {
+            if (stop()) {
+                search (m_prev_char_key, get_thumb_key_type(m_prev_thumb_key), result, raw);
+            }
+            m_prev_char_key = KeyEvent();
+        }
+        else if (get_thumb_key_type(key) == get_thumb_key_type(m_prev_thumb_key)) {
+            if (stop())
+                emit_key_event(m_prev_thumb_key);
+            m_prev_thumb_key = KeyEvent();
+        }
+        if (is_thumb_key(key))
+            m_repeat_thumb_key = KeyEvent();
+        else if (key == m_repeat_char_key) {
+            m_repeat_char_key = KeyEvent();
+        }
+    }
+    else if (is_thumb_key(key)) {
+        if (!m_prev_thumb_key.empty()) {
+            stop();
+            emit_key_event(m_prev_thumb_key);
+            m_prev_thumb_key = key;
+            set_alarm(m_anthy.get_config()->m_nicola_time);
+        }
+        else if (!m_prev_char_key.empty()) {
+            stop();
+            m_repeat_char_key = m_prev_char_key;
+            m_repeat_thumb_key = key;
+            search (m_prev_char_key, get_thumb_key_type(m_repeat_thumb_key), result, raw);
+        }
+        else {
+            if (get_thumb_key_type(m_repeat_thumb_key) == get_thumb_key_type(key)) {
+                if (!m_repeat_char_key.empty()) {
+                    search (m_repeat_char_key, get_thumb_key_type(m_repeat_thumb_key), result, raw);
+                }
+            }
+            else {
+                m_prev_thumb_key = key;
+                set_alarm(m_anthy.get_config()->m_nicola_time);
+            }
+        }
+    }
+    else if (is_char_key (key)) {
+        if (!m_prev_char_key.empty()) {
+            stop();
+            search (m_prev_char_key, get_thumb_key_type(m_prev_thumb_key), result, raw);
+            set_alarm(m_anthy.get_config()->m_nicola_time);
+            m_prev_char_key = key;
+        }
+        else if (is_thumb_key(m_prev_thumb_key)) {
+            stop();
+            m_repeat_char_key = key;
+            m_repeat_thumb_key = m_prev_thumb_key;
+            search (key, get_thumb_key_type(m_prev_thumb_key), result, raw);
+        }
+        else {
+            if (key == m_repeat_char_key) {
+                if (!m_repeat_thumb_key.empty()) {
+                    search (m_repeat_char_key, get_thumb_key_type(m_repeat_thumb_key), result, raw);
+                }
+            }
+            else {
+                set_alarm(m_anthy.get_config()->m_nicola_time);
+                m_prev_char_key = key;
+            }
+        }
+    }
+    else {
+        if (!m_prev_char_key.empty()) {
+            stop();
+            search (m_prev_char_key, get_thumb_key_type(m_prev_thumb_key), result, raw);
+        }
+        else if (!m_prev_thumb_key.empty()) {
+            stop();
+            emit_key_event(m_prev_thumb_key);
+        }
+        if (emit_key_event(key))
+            return true;
     }
 
-    FcitxLog(INFO, "prev:%s %d %d %d", __func__, m_prev_char_key.sym, m_prev_char_key.state, m_prev_char_key.is_release);
+    FcitxLog(DEBUG, "prev:%s %d %d %d", __func__, m_prev_char_key.sym, m_prev_char_key.state, m_prev_char_key.is_release);
 
     return handle_voiced_consonant (result, pending);
 }

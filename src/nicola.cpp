@@ -22,6 +22,13 @@
 #include "factory.h"
 #include "imengine.h"
 #include "utils.h"
+#include <fcitx-utils/log.h>
+
+void NicolaTimeoutFunc(void* arg)
+{
+    NicolaConvertor* convertor = (NicolaConvertor*) arg;
+    convertor->process_timeout();
+}
 
 NicolaConvertor::NicolaConvertor (AnthyInstance &anthy,
                                   Key2KanaTableSet &tables)
@@ -34,6 +41,7 @@ NicolaConvertor::NicolaConvertor (AnthyInstance &anthy,
 
 NicolaConvertor::~NicolaConvertor ()
 {
+    FcitxInstanceRemoveTimeoutByFunc(m_anthy.get_owner(), NicolaTimeoutFunc);
 }
 
 bool
@@ -91,7 +99,7 @@ NicolaConvertor::can_append (const KeyEvent & key,
 }
 
 void
-NicolaConvertor::search (const KeyEvent key,
+NicolaConvertor::search (const KeyEvent& key,
                          NicolaShiftType shift_type,
                          std::string &result,
                          std::string &raw)
@@ -199,7 +207,7 @@ NicolaConvertor::handle_voiced_consonant  (std::string & result,
 }
 
 bool
-NicolaConvertor::is_char_key (const KeyEvent key)
+NicolaConvertor::is_char_key (const KeyEvent& key)
 {
     if (!is_thumb_key (key) && isprint (key.get_ascii_code ()))
         return true;
@@ -208,7 +216,7 @@ NicolaConvertor::is_char_key (const KeyEvent key)
 }
 
 bool
-NicolaConvertor::is_thumb_key (const KeyEvent key)
+NicolaConvertor::is_thumb_key (const KeyEvent& key)
 {
     if (is_left_thumb_key (key) || is_right_thumb_key (key))
         return true;
@@ -217,7 +225,7 @@ NicolaConvertor::is_thumb_key (const KeyEvent key)
 }
 
 bool
-NicolaConvertor::is_left_thumb_key (const KeyEvent key)
+NicolaConvertor::is_left_thumb_key (const KeyEvent& key)
 {
     return util_match_key_event (m_anthy.get_config()->m_left_thumb_keys,
                                  key,
@@ -225,7 +233,7 @@ NicolaConvertor::is_left_thumb_key (const KeyEvent key)
 }
 
 bool
-NicolaConvertor::is_right_thumb_key (const KeyEvent key)
+NicolaConvertor::is_right_thumb_key (const KeyEvent& key)
 {
     return util_match_key_event (m_anthy.get_config()->m_right_thumb_keys,
                                  key,
@@ -233,7 +241,7 @@ NicolaConvertor::is_right_thumb_key (const KeyEvent key)
 }
 
 NicolaShiftType
-NicolaConvertor::get_thumb_key_type (const KeyEvent key)
+NicolaConvertor::get_thumb_key_type (const KeyEvent& key)
 {
     if (is_left_thumb_key (key))
         return FCITX_ANTHY_NICOLA_SHIFT_LEFT;
@@ -244,10 +252,11 @@ NicolaConvertor::get_thumb_key_type (const KeyEvent key)
 }
 
 void
-NicolaConvertor::on_key_repeat (const KeyEvent key,
+NicolaConvertor::on_key_repeat (const KeyEvent& key,
                                 std::string &result,
                                 std::string &raw)
 {
+    FcitxLog(INFO, "%s %d %d %d", __func__, key.sym, key.state, key.is_release);
     if (key.is_release) {
         if (!m_repeat_char_key.empty ())
             emit_key_event (key);
@@ -290,10 +299,11 @@ NicolaConvertor::on_key_repeat (const KeyEvent key,
 }
 
 void
-NicolaConvertor::on_both_key_pressed (const KeyEvent key,
+NicolaConvertor::on_both_key_pressed (const KeyEvent &key,
                                       std::string & result,
                                       std::string &raw)
 {
+    FcitxLog(INFO, "%s %d %d %d", __func__, key.sym, key.state, key.is_release);
     struct timeval cur_time;
     long diff1, diff2;
     gettimeofday (&cur_time, NULL);
@@ -376,10 +386,11 @@ NicolaConvertor::on_both_key_pressed (const KeyEvent key,
 }
 
 void
-NicolaConvertor::on_thumb_key_pressed (const KeyEvent key,
+NicolaConvertor::on_thumb_key_pressed (const KeyEvent &key,
                                        std::string & result,
                                        std::string &raw)
 {
+    FcitxLog(INFO, "%s %d %d %d", __func__, key.sym, key.state, key.is_release);
     if (!key.is_release && key == m_prev_thumb_key) {
 #if 1
         m_repeat_thumb_key = key;
@@ -412,10 +423,11 @@ NicolaConvertor::on_thumb_key_pressed (const KeyEvent key,
 }
 
 void
-NicolaConvertor::on_char_key_pressed (const KeyEvent key,
+NicolaConvertor::on_char_key_pressed (const KeyEvent &key,
                                       std::string & result,
                                       std::string &raw)
 {
+    FcitxLog(INFO, "%s %d %d %d", __func__, key.sym, key.state, key.is_release);
     if (!key.is_release && key == m_prev_char_key) {
         search (m_prev_char_key, FCITX_ANTHY_NICOLA_SHIFT_NONE,
                 result, raw);
@@ -446,8 +458,10 @@ NicolaConvertor::on_char_key_pressed (const KeyEvent key,
 }
 
 void
-NicolaConvertor::on_no_key_pressed (const KeyEvent key)
+NicolaConvertor::on_no_key_pressed (const KeyEvent &key)
 {
+    FcitxLog(INFO, "%s %d %d %d", __func__, key.sym, key.state, key.is_release);
+
     if (key.is_release)
         return;
 
@@ -495,6 +509,11 @@ NicolaConvertor::set_alarm (int time_msec)
         time_msec = 5;
     if (time_msec > 1000)
         time_msec = 1000;
+
+    FcitxInstanceAddTimeout (m_anthy.get_owner(),
+                             time_msec,
+                             NicolaTimeoutFunc,
+                             (void *) this);
 }
 
 bool
@@ -503,6 +522,7 @@ NicolaConvertor::append (const KeyEvent & key,
                          std::string & pending,
                          std::string &raw)
 {
+    FcitxInstanceRemoveTimeoutByFunc(m_anthy.get_owner(), NicolaTimeoutFunc);
 
     if (m_processing_timeout) {
         search (m_prev_char_key,
@@ -559,6 +579,8 @@ NicolaConvertor::append (const KeyEvent & key,
     } else {
         on_no_key_pressed (key);
     }
+
+    FcitxLog(INFO, "prev:%s %d %d %d", __func__, m_prev_char_key.sym, m_prev_char_key.state, m_prev_char_key.is_release);
 
     return handle_voiced_consonant (result, pending);
 }

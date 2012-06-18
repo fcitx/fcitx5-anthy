@@ -442,5 +442,20 @@ Type=Hotkey
 Description=Add Word
 DefaultValue=F12
 
+[Key/LeftThumbKey]
+Type=Hotkey
+Description=Left thumb key
+DefaultValue=MUHENKAN
+
+[Key/RightThumbKey]
+Type=Hotkey
+Description=Right thumb key
+DefaultValue=HENKAN SPACE
+
+[Key/NicolaTime]
+Type=Integer
+Description=Nicola time
+DefaultValue=200
+
 [DescriptionFile]
 LocaleDomain=fcitx-anthy

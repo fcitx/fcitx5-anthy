@@ -14,6 +14,11 @@ public:
     unsigned int state;
     bool is_release;
 
+    KeyEvent() {
+        sym = FcitxKey_None;
+        state = FcitxKeyState_None;
+    }
+
     unsigned char get_ascii_code() const {
 
         if (sym >= FcitxKey_space && sym <= FcitxKey_asciitilde)

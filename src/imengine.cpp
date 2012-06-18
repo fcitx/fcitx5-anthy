@@ -796,6 +796,8 @@ AnthyInstance::set_input_mode (InputMode mode)
                             "anthy-input-mode",
                             _(input_mode_status[mode].label),
                             _(input_mode_status[mode].description));
+
+    save_config();
 }
 
 void
@@ -810,6 +812,8 @@ AnthyInstance::set_conversion_mode (ConversionMode mode)
                             "anthy-conversion-mode",
                             _(conversion_mode_status[mode].label),
                             _(conversion_mode_status[mode].description));
+
+    save_config();
 }
 
 void
@@ -820,10 +824,14 @@ AnthyInstance::set_typing_method (TypingMethod method)
         m_preedit.set_pseudo_ascii_mode (get_pseudo_ascii_mode ());
     }
 
+    m_config.m_typing_method = method;
+
     FcitxUISetStatusString(m_owner,
                             "anthy-typing-method",
                             _(typing_method_status[method].label),
                             _(typing_method_status[method].description));
+
+    save_config();
 }
 
 void
@@ -2092,6 +2100,9 @@ CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_RECONVERT_KEY, m_key_default.m_hk_R
 
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_DICT_ADMIN_KEY, m_key_default.m_hk_DICT_ADMIN)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_ADD_WORD_KEY, m_key_default.m_hk_ADD_WORD)
+CONFIG_BINDING_REGISTER("Key", "LeftThumbKey", m_left_thumb_keys)
+CONFIG_BINDING_REGISTER("Key", "RightThumbKey", m_right_thumb_keys)
+CONFIG_BINDING_REGISTER("Key", "NicolaTime", m_nicola_time)
 CONFIG_BINDING_END()
 
 std::string AnthyInstance::get_key_profile()

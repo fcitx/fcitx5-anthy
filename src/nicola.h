@@ -42,9 +42,9 @@ public:
                                          Key2KanaTableSet & tables);
     virtual ~NicolaConvertor            ();
 
-    bool       can_append               (const KeyEvent   & key,
-                                         bool               ignore_space = false);
-    bool       append                   (const KeyEvent   & key,
+    bool       can_append               (const KeyEvent&   key,
+                                         bool              ignore_space = false);
+    bool       append                   (const KeyEvent&   key,
                                          std::string       & result,
                                          std::string       & pending,
                                          std::string           & raw);
@@ -63,35 +63,35 @@ public:
     void       process_timeout          (void);
 
 private:
-    void       search                   (const KeyEvent     key,
+    void       search                   (const KeyEvent&     key,
                                          NicolaShiftType    shift_type,
                                          std::string       & result,
                                          std::string           & raw);
     bool       handle_voiced_consonant  (std::string       & result,
                                          std::string       & pending);
-    bool       is_char_key              (const KeyEvent     key);
-    bool       is_thumb_key             (const KeyEvent     key);
-    bool       is_left_thumb_key        (const KeyEvent     key);
-    bool       is_right_thumb_key       (const KeyEvent     key);
+    bool       is_char_key              (const KeyEvent&     key);
+    bool       is_thumb_key             (const KeyEvent&     key);
+    bool       is_left_thumb_key        (const KeyEvent&     key);
+    bool       is_right_thumb_key       (const KeyEvent&     key);
     NicolaShiftType
-               get_thumb_key_type       (const KeyEvent     key);
+               get_thumb_key_type       (const KeyEvent&     key);
 
-    void       on_key_repeat            (const KeyEvent     key,
+    void       on_key_repeat            (const KeyEvent&     key,
                                          std::string       & result,
                                          std::string           & raw);
-    void       on_both_key_pressed      (const KeyEvent     key,
+    void       on_both_key_pressed      (const KeyEvent&     key,
                                          std::string       & result,
                                          std::string           & raw);
-    void       on_thumb_key_pressed     (const KeyEvent     key,
+    void       on_thumb_key_pressed     (const KeyEvent&     key,
                                          std::string       & result,
                                          std::string           & raw);
-    void       on_char_key_pressed      (const KeyEvent     key,
+    void       on_char_key_pressed      (const KeyEvent&     key,
                                          std::string       & result,
                                          std::string           & raw);
-    void       on_no_key_pressed        (const KeyEvent     key);
+    void       on_no_key_pressed        (const KeyEvent&     key);
 
     bool       is_repeating             (void);
-    void       emit_key_event           (const KeyEvent   & key);
+    void       emit_key_event           (const KeyEvent&    key);
     void       set_alarm                (int                time_msec);
 
 private:

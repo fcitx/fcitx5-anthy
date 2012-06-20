@@ -557,7 +557,6 @@ AnthyStatus typing_method_status[] = {
     {"", N_("Romaji"), N_("Romaji") },
     {"", N_("Kana"), N_("Kana") },
     {"", N_("Nicola"), N_("Thumb shift") },
-    {"", N_("Custom"), N_("Custom") },
 };
 
 AnthyStatus conversion_mode_status[] = {

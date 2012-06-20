@@ -23,11 +23,10 @@ Enum4=Wide Latin
 Type=Enum
 Description=Typing method
 DefaultValue=Romaji
-EnumCount=4
+EnumCount=3
 Enum0=Romaji
 Enum1=Kana
 Enum2=Nicola
-Enum3=Custom
 
 [General/ConversionMode]
 Type=Enum

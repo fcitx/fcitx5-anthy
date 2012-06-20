@@ -797,8 +797,6 @@ AnthyInstance::set_input_mode (InputMode mode)
                             "anthy-input-mode",
                             _(input_mode_status[mode].label),
                             _(input_mode_status[mode].description));
-
-    save_config();
 }
 
 void
@@ -813,8 +811,6 @@ AnthyInstance::set_conversion_mode (ConversionMode mode)
                             "anthy-conversion-mode",
                             _(conversion_mode_status[mode].label),
                             _(conversion_mode_status[mode].description));
-
-    save_config();
 }
 
 void
@@ -831,8 +827,6 @@ AnthyInstance::set_typing_method (TypingMethod method)
                             "anthy-typing-method",
                             _(typing_method_status[method].label),
                             _(typing_method_status[method].description));
-
-    save_config();
 }
 
 void
@@ -1677,24 +1671,6 @@ AnthyInstance::action_circle_kana_mode (void)
 }
 
 bool
-AnthyInstance::action_on_off (void)
-{
-    if (get_input_mode () == FCITX_ANTHY_MODE_LATIN ||
-        get_input_mode () == FCITX_ANTHY_MODE_WIDE_LATIN)
-    {
-        set_input_mode (m_prev_input_mode);
-        m_preedit.set_input_mode (m_prev_input_mode);
-    } else {
-        m_prev_input_mode = get_input_mode ();
-        set_input_mode (FCITX_ANTHY_MODE_LATIN);
-        m_preedit.set_input_mode (FCITX_ANTHY_MODE_LATIN);
-    }
-    save_config();
-
-    return true;
-}
-
-bool
 AnthyInstance::action_latin_mode (void)
 {
     set_input_mode (FCITX_ANTHY_MODE_LATIN);
@@ -1921,7 +1897,7 @@ AnthyInstance::action_reconvert (void)
 bool
 AnthyInstance::action_add_word (void)
 {
-    //util_launch_program (m_config.m_add_word_command.c_str ());
+    util_launch_program (m_config.m_add_word_command);
 
     return true;
 }
@@ -1929,7 +1905,7 @@ AnthyInstance::action_add_word (void)
 bool
 AnthyInstance::action_launch_dict_admin_tool (void)
 {
-    //util_launch_program (m_config.m_dict_admin_command.c_str ());
+    util_launch_program (m_config.m_dict_admin_command);
 
     return true;
 }
@@ -2102,7 +2078,11 @@ CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_DICT_ADMIN_KEY, m_key_default.m_hk_
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_ADD_WORD_KEY, m_key_default.m_hk_ADD_WORD)
 CONFIG_BINDING_REGISTER("Key", "LeftThumbKey", m_left_thumb_keys)
 CONFIG_BINDING_REGISTER("Key", "RightThumbKey", m_right_thumb_keys)
+CONFIG_BINDING_REGISTER("Key", "KanaLayoutRoKey", m_kana_layout_ro_key)
 CONFIG_BINDING_REGISTER("Key", "NicolaTime", m_nicola_time)
+
+CONFIG_BINDING_REGISTER("Command", "AddWord", m_add_word_command)
+CONFIG_BINDING_REGISTER("Command", "DictAdmin", m_dict_admin_command)
 CONFIG_BINDING_END()
 
 std::string AnthyInstance::get_key_profile()

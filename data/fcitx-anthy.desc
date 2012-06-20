@@ -452,10 +452,25 @@ Type=Hotkey
 Description=Right thumb key
 DefaultValue=HENKAN SPACE
 
+[Key/KanaLayoutRoKey]
+Type=String
+Description=Ro key for kana layout
+DefaultValue=ろ
+
 [Key/NicolaTime]
 Type=Integer
 Description=Nicola time
 DefaultValue=200
+
+[Command/AddWord]
+Type=String
+Description=Add word
+DefaultValue=kasumi -a
+
+[Command/DictAdmin]
+Type=String
+Description=Dict admin
+DefaultValue=kasumi
 
 [DescriptionFile]
 LocaleDomain=fcitx-anthy

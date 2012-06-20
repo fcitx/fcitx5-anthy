@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: anthy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-09 23:40+0800\n"
+"POT-Creation-Date: 2012-06-20 20:49+0800\n"
 "PO-Revision-Date: 2012-06-09 23:40+0800\n"
 "Last-Translator: Weng Xuetian <wengxt@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
@@ -17,13 +17,22 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 1.4\n"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:473
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:482
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:377
+#: unknown
+msgid "101kana"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:442
 msgid "Add Word"
+msgstr "単語を追加"
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:467
+#, fuzzy
+msgid "Add word"
 msgstr "単語を追加"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:74
@@ -39,71 +48,87 @@ msgstr "Anthy"
 msgid "Anthy Wrapper For Fcitx"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:185
+#: unknown
+msgid "Atok"
+msgstr ""
+
+#: unknown
+msgid "Azik"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:252
 msgid "BackSpace"
 msgstr "バックスペース"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:215
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:282
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:220
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:287
 msgid "Cancel all"
 msgstr "全てキャンセル"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:159
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:226
 msgid "Cancel pseudo ascii mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:322
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:387
 #, fuzzy
 msgid "Candidates Page Down"
 msgstr "候補ウィンドウ"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:317
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:382
 #, fuzzy
 msgid "Candidates Page Up"
 msgstr "候補選択キー"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:119
+#: unknown
+msgid "Canna"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:186
 msgid "Circle input mode"
 msgstr "入力モード循環"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:124
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:191
 msgid "Circle kana mode"
 msgstr "かなモード循環"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:129
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:196
 msgid "Circle typing method"
 msgstr "入力方式切り替え"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:195
+#, fuzzy
+msgid "Command"
+msgstr "一般"
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:262
 msgid "Commit"
 msgstr "確定"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:200
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:267
 msgid "Commit Reverse Learn"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:276
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:342
 msgid "Commit first segment"
 msgstr "最初の文節を確定"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:286
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:352
 #, fuzzy
 msgid "Commit first segment reverse learn"
 msgstr "最初の文節を確定"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:281
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:347
 msgid "Commit selected segment"
 msgstr "選択文節を確定"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:291
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:357
 #, fuzzy
 msgid "Commit selected segment reverse learn"
 msgstr "選択文節を確定"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:762
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:771
 #, fuzzy
 msgid "Conversion Mode"
 msgstr "変換モード"
@@ -112,48 +137,48 @@ msgstr "変換モード"
 msgid "Conversion mode"
 msgstr "変換モード"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:205
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:272
 #, fuzzy
 msgid "Convert"
 msgstr "変換"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:347
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:412
 msgid "Convert To Half"
 msgstr "半角変換"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:352
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:417
 msgid "Convert To Half Katakana"
 msgstr "半角カタカナ変換"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:337
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:402
 msgid "Convert To Hiragana"
 msgstr "ひらがな変換"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:342
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:407
 msgid "Convert To Katakana"
 msgstr "カタカナ変換"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:362
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:427
 msgid "Convert To Latin"
 msgstr "英数変換"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:357
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:422
 msgid "Convert To Wide Latin"
 msgstr "全角英数変換"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:557
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:566
 msgid "Convert as you type (Multi segment)"
 msgstr "逐次変換(連文節)"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:558
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:567
 msgid "Convert as you type (Single segment)"
 msgstr "逐次変換(単文節)"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:332
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:397
 msgid "Convert char type backward"
 msgstr "前の文字種に変換"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:327
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:392
 msgid "Convert char type forward"
 msgstr "次の文字種に変換"
 
@@ -162,25 +187,50 @@ msgid "Corner bracket and  wide slash"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:551
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:560
 #, fuzzy
 msgid "Custom"
 msgstr "カスタマイズ...(_C)"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:190
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:177
+#, fuzzy
+msgid "Custom Kana Table"
+msgstr "かなレイアウトテーブルのカスタマイズ"
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:167
+#, fuzzy
+msgid "Custom Key Binding"
+msgstr "キーバインド"
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:182
+#, fuzzy
+msgid "Custom Nicola Table"
+msgstr "ローマ字テーブルのカスタマイズ"
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:172
+#, fuzzy
+msgid "Custom Romaji Table"
+msgstr "ローマ字テーブルのカスタマイズ"
+
+#: unknown
+msgid "Default"
+msgstr "標準設定"
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:257
 msgid "Delete"
 msgstr "削除"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:372
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:437
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:472
 #, fuzzy
 msgid "Dict admin"
 msgstr "辞書"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:543
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:552
 msgid "Direct input"
 msgstr "直接入力"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:271
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:337
 #, fuzzy
 msgid "Expand segment"
 msgstr "文節を広げる"
@@ -194,25 +244,25 @@ msgstr ""
 msgid "Half Katakana"
 msgstr "半角カタカナモード"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:154
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:221
 #, fuzzy
 msgid "Half Katakana mode"
 msgstr "半角カタカナモード"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:542
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:551
 msgid "Half width katakana"
 msgstr "半角カタカナ"
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:540
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:549
 msgid "Hiragana"
 msgstr "ひらがな"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:144
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:211
 msgid "Hiragana mode"
 msgstr "ひらがなモード"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:760
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:769
 #, fuzzy
 msgid "Input Mode"
 msgstr "入力モード"
@@ -221,21 +271,21 @@ msgstr "入力モード"
 msgid "Input mode"
 msgstr "入力モード"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:170
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:237
 #, fuzzy
 msgid "Insert Alternative space"
 msgstr "別幅空白を挿入"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:175
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:242
 #, fuzzy
 msgid "Insert Half Space"
 msgstr "半角空白を挿入"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:165
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:232
 msgid "Insert space"
 msgstr "空白を挿入"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:180
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:247
 msgid "Insert wide space"
 msgstr "全角空白を挿入"
 
@@ -248,31 +298,40 @@ msgid "Japanese"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:549
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:558
 msgid "Kana"
 msgstr "かな"
 
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:142
+msgid "Kana Table"
+msgstr ""
+
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:541
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:550
 msgid "Katakana"
 msgstr "カタカナ"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:149
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:216
 msgid "Katakana mode"
 msgstr "カタカナモード"
 
 msgid "Key"
 msgstr "キー"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:84
-msgid "Key profile"
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:115
+#, fuzzy
+msgid "Key binding profile"
+msgstr "キーバインド"
+
+# unknown
+msgid "KeyProfile"
 msgstr ""
 
 #: unknown
 msgid "Latin"
 msgstr "英数"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:134
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:201
 msgid "Latin mode"
 msgstr "英数モード"
 
@@ -286,19 +345,28 @@ msgstr "自動確定時に学習する(_U)"
 msgid "Learn on manual commit"
 msgstr "手動確定時に学習する(_M)"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:225
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:447
+#, fuzzy
+msgid "Left thumb key"
+msgstr "左親指シフトキー(_L):"
+
+#: unknown
+msgid "MS IME"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:292
 msgid "Move Caret First"
 msgstr "最初へ移動"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:240
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:307
 msgid "Move caret backward"
 msgstr "後方へ移動"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:235
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:302
 msgid "Move caret forward"
 msgstr "前方へ移動"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:230
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:297
 msgid "Move caret last"
 msgstr "最後へ移動"
 
@@ -311,17 +379,42 @@ msgstr "連文節"
 msgid "Multi segement immediate"
 msgstr "連文節"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:555
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:564
 msgid "Multi segment"
 msgstr "連文節"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:8
-msgid "NTriggersToShowCandWin"
+#: unknown
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:559
+msgid "Nicola"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:153
+msgid "Nicola Table"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:462
+msgid "Nicola time"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:550
-msgid "Nicola"
+msgid "Nicola-A"
+msgstr ""
+
+#: unknown
+msgid "Nicola-F"
+msgstr ""
+
+#: unknown
+msgid "Nicola-J"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:8
+#, fuzzy
+msgid "Number candidate of Triggers To Show Candidate Window"
+msgstr "1ページに表示する候補数を指定します"
+
+#: unknown
+msgid "Oasys100J"
 msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:3
@@ -329,7 +422,7 @@ msgstr ""
 msgid "Page size"
 msgstr "前のページへ移動"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:763
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:772
 #, fuzzy
 msgid "Period Style"
 msgstr "句読点のスタイル"
@@ -338,61 +431,75 @@ msgstr "句読点のスタイル"
 msgid "Period style"
 msgstr "句読点のスタイル"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:210
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:277
 #, fuzzy
 msgid "Predict"
 msgstr "予測"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:367
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:432
 msgid "Reconvert"
 msgstr "再変換"
 
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:452
+#, fuzzy
+msgid "Right thumb key"
+msgstr "右親指シフトキー(_R):"
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:457
+msgid "Ro key for kana layout"
+msgstr ""
+
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:548
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:557
 msgid "Romaji"
 msgstr "ローマ字"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:297
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:128
+#, fuzzy
+msgid "Romaji Table"
+msgstr "ローマ字テーブル(_T):"
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:362
 #, fuzzy
 msgid "Select first candidate"
 msgstr "最初の候補へ移動するキーの設定"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:246
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:312
 #, fuzzy
 msgid "Select first segment"
 msgstr "最初の文節を選択"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:302
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:367
 #, fuzzy
 msgid "Select last candidate"
 msgstr "最後の候補へ移動するキーの設定"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:251
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:317
 #, fuzzy
 msgid "Select last segment"
 msgstr "最後の文節を選択"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:307
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:372
 #, fuzzy
 msgid "Select next candidate"
 msgstr "次の候補へ移動するキーの設定"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:256
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:322
 #, fuzzy
 msgid "Select next segment"
 msgstr "次の文節を選択"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:312
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:377
 #, fuzzy
 msgid "Select prev candidate"
 msgstr "前の候補へ移動するキーの設定"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:261
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:327
 #, fuzzy
 msgid "Select previous segment"
 msgstr "前の文節を選択"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:266
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:332
 msgid "Shrink segment"
 msgstr "文節を縮める"
 
@@ -405,11 +512,11 @@ msgstr "単文節"
 msgid "Single segement immediate"
 msgstr "単文節"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:556
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:565
 msgid "Single segment"
 msgstr "単文節"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:764
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:773
 msgid "Symbol Style"
 msgstr "記号のスタイル"
 
@@ -417,11 +524,19 @@ msgstr "記号のスタイル"
 msgid "Symbol style"
 msgstr "記号のスタイル"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:550
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:559
 msgid "Thumb shift"
 msgstr "親指シフト"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:761
+#: unknown
+msgid "Tron Dvorak"
+msgstr ""
+
+#: unknown
+msgid "Tron Qwerty JP"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:770
 msgid "Typing Method"
 msgstr "入力方式"
 
@@ -432,6 +547,14 @@ msgstr "入力方式"
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:79
 msgid "Use direct key on predict"
 msgstr "予測中に直接選択キーを使用する"
+
+#: unknown
+msgid "Vje Delta"
+msgstr ""
+
+#: unknown
+msgid "WNN"
+msgstr ""
 
 #: unknown
 msgid "Wide Latin"
@@ -446,7 +569,7 @@ msgid "Wide bracket and wide slash"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:544
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:553
 msgid "Wide latin"
 msgstr "全角英数"
 
@@ -455,10 +578,18 @@ msgstr "全角英数"
 msgid "Wide latin Japanese"
 msgstr "全角英数変換:"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:139
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:206
 #, fuzzy
 msgid "Wide latin mode"
 msgstr "全角英数モード"
+
+#: unknown
+msgid "tsuki-2-203-101"
+msgstr ""
+
+#: unknown
+msgid "tsuki-2-203-106"
+msgstr ""
 
 #~ msgid "\"_Add word\" command:"
 #~ msgstr "単語追加コマンド(_A):"
@@ -729,9 +860,6 @@ msgstr "全角英数モード"
 #~ msgid "Commit the _selected segment:"
 #~ msgstr "選択文節を確定(_S):"
 
-#~ msgid "Common"
-#~ msgstr "一般"
-
 #~ msgid "Convert keys"
 #~ msgstr "変換キー"
 
@@ -748,17 +876,8 @@ msgstr "全角英数モード"
 #~ msgid "Customize NICOLA table"
 #~ msgstr "NICOLAテーブルのカスタマイズ"
 
-#~ msgid "Customize kana layout table"
-#~ msgstr "かなレイアウトテーブルのカスタマイズ"
-
-#~ msgid "Customize romaji table"
-#~ msgstr "ローマ字テーブルのカスタマイズ"
-
 #~ msgid "Customize thumb shift layout table"
 #~ msgstr "親指シフトレイアウトテーブルのカスタマイズ"
-
-#~ msgid "Default"
-#~ msgstr "標準設定"
 
 #~ msgid "Description"
 #~ msgstr "説明"
@@ -866,9 +985,6 @@ msgstr "全角英数モード"
 #~ msgid "Katakana keys:"
 #~ msgstr "カタカナ変換："
 
-#~ msgid "Key bindings"
-#~ msgstr "キーバインド"
-
 #~ msgid "Key bindings _theme:"
 #~ msgstr "キーバインドテーマ:"
 
@@ -964,9 +1080,6 @@ msgstr "全角英数モード"
 
 #~ msgid "Right thumb shift"
 #~ msgstr "右親指シフト"
-
-#~ msgid "Romaji _table:"
-#~ msgstr "ローマ字テーブル(_T):"
 
 #~ msgid "Romaji typing"
 #~ msgstr "ローマ字入力"
@@ -1199,11 +1312,6 @@ msgstr "全角英数モード"
 
 #~ msgid "Single press"
 #~ msgstr "単独打鍵"
-
-#~ msgid ""
-#~ "Specify the number of candidates to show in a page of the candidates "
-#~ "window."
-#~ msgstr "1ページに表示する候補数を指定します"
 
 #~ msgid "St_yle of comma and period: "
 #~ msgstr "句読点のスタイル(_Y): "
@@ -1521,17 +1629,11 @@ msgstr "全角英数モード"
 #~ msgid "_Launch"
 #~ msgstr "起動(_L)"
 
-#~ msgid "_Left thumb shift keys:"
-#~ msgstr "左親指シフトキー(_L):"
-
 #~ msgid "_Preedit string:"
 #~ msgstr "編集文字列(_P):"
 
 #~ msgid "_Result:"
 #~ msgstr "出力文字列(_R):"
-
-#~ msgid "_Right thumb shift keys:"
-#~ msgstr "右親指シフトキー(_R):"
 
 #~ msgid "_Sequence:"
 #~ msgstr "入力文字列(_S):"

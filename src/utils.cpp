@@ -47,7 +47,8 @@ bool
 util_match_key_event (const FcitxHotkey* hotkey, const KeyEvent &key,
                       uint32_t ignore_mask)
 {
-    FcitxKeySym simpsym; unsigned int simpstate;
+    FcitxKeySym simpsym;
+    unsigned int simpstate;
     FcitxHotkeyGetKey(key.sym, key.state, &simpsym, &simpstate);
     return FcitxHotkeyIsHotKey(simpsym, simpstate & ~ignore_mask, hotkey);
 }
@@ -77,12 +78,14 @@ util_convert_to_wide (std::string & wide, const std::string & str)
 {
     for (unsigned int i = 0; i < str.length (); i++) {
         int c = str[i];
-        char cc[2]; cc[0] = c; cc[1] = '\0';
+        char cc[2];
+        cc[0] = c;
+        cc[1] = '\0';
         bool found = false;
 
         for (unsigned int j = 0; fcitx_anthy_wide_table[j].code; j++) {
             if ( fcitx_anthy_wide_table[j].code &&
-                *fcitx_anthy_wide_table[j].code == c)
+                    *fcitx_anthy_wide_table[j].code == c)
             {
                 wide += fcitx_anthy_wide_table[j].wide;
                 found = true;
@@ -104,7 +107,7 @@ util_convert_to_half (std::string & half, const std::string & str)
 
         for (unsigned int j = 0; fcitx_anthy_wide_table[j].code; j++) {
             if (fcitx_anthy_wide_table[j].wide &&
-                wide == fcitx_anthy_wide_table[j].wide)
+                    wide == fcitx_anthy_wide_table[j].wide)
             {
                 half += fcitx_anthy_wide_table[j].code;
                 found = true;
@@ -144,41 +147,6 @@ util_convert_to_katakana (std::string & kata,
             kata += hira.substr(i, 1);
     }
 }
-#if 0
-void
-util_create_attributes (AttributeList &attrs,
-                        unsigned int start,
-                        unsigned int length,
-                        std::string type,
-                        unsigned int fg_color,
-                        unsigned int bg_color)
-{
-    if (type == "None") {
-        return;
-    } else if (type == "Underline") {
-        attrs.push_back (Attribute (start, length,
-                                    SCIM_ATTR_DECORATE,
-                                    SCIM_ATTR_DECORATE_UNDERLINE));
-    } else if (type == "Reverse") {
-        attrs.push_back (Attribute (start, length,
-                                    SCIM_ATTR_DECORATE,
-                                    SCIM_ATTR_DECORATE_REVERSE));
-    } else if (type == "Highlight") {
-        attrs.push_back (Attribute (start, length,
-                                    SCIM_ATTR_DECORATE,
-                                    SCIM_ATTR_DECORATE_HIGHLIGHT));
-    } else {
-        if (type == "Color" || type == "FGColor")
-            attrs.push_back (Attribute (start, length,
-                                        SCIM_ATTR_FOREGROUND,
-                                        fg_color));
-        if (type == "Color" || type == "BGColor")
-            attrs.push_back (Attribute (start, length,
-                                        SCIM_ATTR_BACKGROUND,
-                                        bg_color));
-    }
-}
-#endif
 
 bool
 util_key_is_keypad (const KeyEvent &key)
@@ -299,27 +267,27 @@ util_launch_program (const char *command)
 
 
     /* exec command */
-	pid_t child_pid;
+    pid_t child_pid;
 
-	child_pid = fork();
-	if (child_pid < 0) {
-		perror("fork");
-	} else if (child_pid == 0) {		 /* child process  */
-		pid_t grandchild_pid;
+    child_pid = fork();
+    if (child_pid < 0) {
+        perror("fork");
+    } else if (child_pid == 0) {		 /* child process  */
+        pid_t grandchild_pid;
 
-		grandchild_pid = fork();
-		if (grandchild_pid < 0) {
-			perror("fork");
-			_exit(1);
-		} else if (grandchild_pid == 0) { /* grandchild process  */
-			execvp(args[0], args);
-			perror("execvp");
-			_exit(1);
-		} else {
-			_exit(0);
-		}
-	} else {                              /* parent process */
-		int status;
-		waitpid(child_pid, &status, 0);
-	}
+        grandchild_pid = fork();
+        if (grandchild_pid < 0) {
+            perror("fork");
+            _exit(1);
+        } else if (grandchild_pid == 0) { /* grandchild process  */
+            execvp(args[0], args);
+            perror("execvp");
+            _exit(1);
+        } else {
+            _exit(0);
+        }
+    } else {                              /* parent process */
+        int status;
+        waitpid(child_pid, &status, 0);
+    }
 }

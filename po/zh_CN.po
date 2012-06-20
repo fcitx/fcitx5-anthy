@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-09 23:40+0800\n"
+"POT-Creation-Date: 2012-06-20 20:49+0800\n"
 "PO-Revision-Date: 2012-06-09 23:46+0800\n"
 "Last-Translator: Weng Xuetian <wengxt@gmail.com>\n"
 "Language-Team: Chinese Simplified <kde-i18n-doc@kde.org>\n"
@@ -17,13 +17,22 @@ msgstr ""
 "X-Generator: Lokalize 1.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:473
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:482
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:377
+#: unknown
+msgid "101kana"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:442
 msgid "Add Word"
+msgstr "添加词组"
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:467
+#, fuzzy
+msgid "Add word"
 msgstr "添加词组"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:74
@@ -40,67 +49,83 @@ msgstr "Anthy"
 msgid "Anthy Wrapper For Fcitx"
 msgstr "Fcitx 的 Anthy 封装"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:185
+#: unknown
+msgid "Atok"
+msgstr ""
+
+#: unknown
+msgid "Azik"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:252
 msgid "BackSpace"
 msgstr "退格"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:215
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:282
 msgid "Cancel"
 msgstr "取消"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:220
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:287
 msgid "Cancel all"
 msgstr "取消所有"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:159
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:226
 msgid "Cancel pseudo ascii mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:322
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:387
 msgid "Candidates Page Down"
 msgstr "候选词下一页"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:317
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:382
 msgid "Candidates Page Up"
 msgstr "候选词上一页"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:119
+#: unknown
+msgid "Canna"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:186
 msgid "Circle input mode"
 msgstr "循环输入模式"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:124
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:191
 msgid "Circle kana mode"
 msgstr "循环假名模式"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:129
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:196
 msgid "Circle typing method"
 msgstr "循环输入方案"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:195
+#, fuzzy
+msgid "Command"
+msgstr "提交"
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:262
 msgid "Commit"
 msgstr "提交"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:200
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:267
 msgid "Commit Reverse Learn"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:276
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:342
 msgid "Commit first segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:286
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:352
 msgid "Commit first segment reverse learn"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:281
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:347
 msgid "Commit selected segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:291
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:357
 msgid "Commit selected segment reverse learn"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:762
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:771
 msgid "Conversion Mode"
 msgstr "转换模式"
 
@@ -108,47 +133,47 @@ msgstr "转换模式"
 msgid "Conversion mode"
 msgstr "转换模式"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:205
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:272
 msgid "Convert"
 msgstr "转换"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:347
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:412
 msgid "Convert To Half"
 msgstr "转换到半角"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:352
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:417
 msgid "Convert To Half Katakana"
 msgstr "转换到半角片假名"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:337
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:402
 msgid "Convert To Hiragana"
 msgstr "转换到平假名"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:342
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:407
 msgid "Convert To Katakana"
 msgstr "转换到片假名"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:362
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:427
 msgid "Convert To Latin"
 msgstr "转换到英文"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:357
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:422
 msgid "Convert To Wide Latin"
 msgstr "转换到全角英文"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:557
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:566
 msgid "Convert as you type (Multi segment)"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:558
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:567
 msgid "Convert as you type (Single segment)"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:332
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:397
 msgid "Convert char type backward"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:327
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:392
 msgid "Convert char type forward"
 msgstr ""
 
@@ -157,23 +182,44 @@ msgid "Corner bracket and  wide slash"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:551
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:560
 msgid "Custom"
 msgstr "自定义"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:190
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:177
+msgid "Custom Kana Table"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:167
+msgid "Custom Key Binding"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:182
+msgid "Custom Nicola Table"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:172
+msgid "Custom Romaji Table"
+msgstr ""
+
+#: unknown
+msgid "Default"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:257
 msgid "Delete"
 msgstr "删除"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:372
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:437
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:472
 msgid "Dict admin"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:543
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:552
 msgid "Direct input"
 msgstr "直接输入"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:271
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:337
 msgid "Expand segment"
 msgstr ""
 
@@ -185,24 +231,24 @@ msgstr "常规"
 msgid "Half Katakana"
 msgstr "半角片假名"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:154
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:221
 msgid "Half Katakana mode"
 msgstr "半角片假名模式"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:542
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:551
 msgid "Half width katakana"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:540
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:549
 msgid "Hiragana"
 msgstr "平假名"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:144
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:211
 msgid "Hiragana mode"
 msgstr "平假名模式"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:760
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:769
 msgid "Input Mode"
 msgstr "输入模式"
 
@@ -210,19 +256,19 @@ msgstr "输入模式"
 msgid "Input mode"
 msgstr "输入模式"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:170
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:237
 msgid "Insert Alternative space"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:175
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:242
 msgid "Insert Half Space"
 msgstr "插入半角空格"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:165
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:232
 msgid "Insert space"
 msgstr "插入空格"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:180
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:247
 msgid "Insert wide space"
 msgstr "插入全角空格"
 
@@ -235,16 +281,20 @@ msgid "Japanese"
 msgstr "日语"
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:549
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:558
 msgid "Kana"
 msgstr "假名"
 
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:142
+msgid "Kana Table"
+msgstr ""
+
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:541
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:550
 msgid "Katakana"
 msgstr "片假名"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:149
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:216
 msgid "Katakana mode"
 msgstr "片假名模式"
 
@@ -252,15 +302,20 @@ msgstr "片假名模式"
 msgid "Key"
 msgstr "按键"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:84
-msgid "Key profile"
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:115
+#, fuzzy
+msgid "Key binding profile"
+msgstr "按键配置"
+
+#, fuzzy
+msgid "KeyProfile"
 msgstr "按键配置"
 
 #: unknown
 msgid "Latin"
 msgstr "英文"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:134
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:201
 msgid "Latin mode"
 msgstr "英文模式"
 
@@ -272,19 +327,27 @@ msgstr ""
 msgid "Learn on manual commit"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:225
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:447
+msgid "Left thumb key"
+msgstr ""
+
+#: unknown
+msgid "MS IME"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:292
 msgid "Move Caret First"
 msgstr "移动光标至开头"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:240
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:307
 msgid "Move caret backward"
 msgstr "向后移动光标"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:235
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:302
 msgid "Move caret forward"
 msgstr "向前移动光标"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:230
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:297
 msgid "Move caret last"
 msgstr "移动光标至结尾"
 
@@ -296,24 +359,48 @@ msgstr ""
 msgid "Multi segement immediate"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:555
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:564
 msgid "Multi segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:8
-msgid "NTriggersToShowCandWin"
+#: unknown
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:559
+msgid "Nicola"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:153
+msgid "Nicola Table"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:462
+msgid "Nicola time"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:550
-msgid "Nicola"
+msgid "Nicola-A"
+msgstr ""
+
+#: unknown
+msgid "Nicola-F"
+msgstr ""
+
+#: unknown
+msgid "Nicola-J"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:8
+msgid "Number candidate of Triggers To Show Candidate Window"
+msgstr ""
+
+#: unknown
+msgid "Oasys100J"
 msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:3
 msgid "Page size"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:763
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:772
 msgid "Period Style"
 msgstr ""
 
@@ -321,52 +408,65 @@ msgstr ""
 msgid "Period style"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:210
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:277
 msgid "Predict"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:367
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:432
 msgid "Reconvert"
 msgstr ""
 
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:452
+msgid "Right thumb key"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:457
+msgid "Ro key for kana layout"
+msgstr ""
+
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:548
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:557
 msgid "Romaji"
 msgstr "罗马音"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:297
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:128
+#, fuzzy
+msgid "Romaji Table"
+msgstr "罗马音"
+
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:362
 msgid "Select first candidate"
 msgstr "选择第一个候选词"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:246
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:312
 msgid "Select first segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:302
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:367
 msgid "Select last candidate"
 msgstr "选择最后一个候选词"
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:251
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:317
 msgid "Select last segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:307
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:372
 msgid "Select next candidate"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:256
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:322
 msgid "Select next segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:312
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:377
 msgid "Select prev candidate"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:261
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:327
 msgid "Select previous segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:266
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:332
 msgid "Shrink segment"
 msgstr ""
 
@@ -378,11 +478,11 @@ msgstr ""
 msgid "Single segement immediate"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:556
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:565
 msgid "Single segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:764
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:773
 msgid "Symbol Style"
 msgstr "符号样式"
 
@@ -390,11 +490,19 @@ msgstr "符号样式"
 msgid "Symbol style"
 msgstr "符号样式"
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:550
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:559
 msgid "Thumb shift"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:761
+#: unknown
+msgid "Tron Dvorak"
+msgstr ""
+
+#: unknown
+msgid "Tron Qwerty JP"
+msgstr ""
+
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:770
 msgid "Typing Method"
 msgstr "输入方案"
 
@@ -404,6 +512,14 @@ msgstr "输入方案"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:79
 msgid "Use direct key on predict"
+msgstr ""
+
+#: unknown
+msgid "Vje Delta"
+msgstr ""
+
+#: unknown
+msgid "WNN"
 msgstr ""
 
 #: unknown
@@ -419,7 +535,7 @@ msgid "Wide bracket and wide slash"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:544
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:553
 msgid "Wide latin"
 msgstr "全角英文"
 
@@ -427,9 +543,17 @@ msgstr "全角英文"
 msgid "Wide latin Japanese"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:139
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:206
 msgid "Wide latin mode"
 msgstr "全角英文模式"
+
+#: unknown
+msgid "tsuki-2-203-101"
+msgstr ""
+
+#: unknown
+msgid "tsuki-2-203-106"
+msgstr ""
 
 # unknown
 #~ msgid "Priority of Anthy"

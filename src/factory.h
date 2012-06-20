@@ -161,10 +161,12 @@ struct AnthyKeyProfile {
 
 struct FcitxAnthyConfig {
     FcitxGenericConfig gconfig;
-    const char* m_romaji_fundamental_table;
-    const char* m_kana_fundamental_table;
-    const char* m_nicola_fundamental_table;
-    const char* m_kana_layout_ro_key;
+    char* m_romaji_fundamental_table;
+    char* m_kana_fundamental_table;
+    char* m_nicola_fundamental_table;
+    char* m_kana_layout_ro_key;
+    char* m_add_word_command;
+    char* m_dict_admin_command;
     boolean m_predict_on_input;
     boolean m_learn_on_auto_commit;
     boolean m_romaji_pseudo_ascii_blank_behavior;

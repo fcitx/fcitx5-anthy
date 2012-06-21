@@ -101,8 +101,8 @@ util_convert_to_wide (std::string & wide, const std::string & str)
 void
 util_convert_to_half (std::string & half, const std::string & str)
 {
-    for (unsigned int i = 0; i < str.length (); i++) {
-        std::string wide = str.substr (i, 1);
+    for (unsigned int i = 0; i < util_utf8_string_length(str); i++) {
+        std::string wide = util_utf8_string_substr(str, i, 1);
         bool found = false;
 
         for (unsigned int j = 0; fcitx_anthy_wide_table[j].code; j++) {
@@ -144,7 +144,7 @@ util_convert_to_katakana (std::string & kata,
         }
 
         if (!found)
-            kata += hira.substr(i, 1);
+            kata += util_utf8_string_substr(hira, i, 1);
     }
 }
 

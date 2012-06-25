@@ -261,33 +261,11 @@ util_launch_program (const char *command)
     if (array.size () <= 0) return;
     array.push_back (NULL);
 
-    char *args[array.size()];
+    char **args = (char**) fcitx_utils_malloc0(sizeof(char*) * array.size());
     for (unsigned int i = 0; i < array.size (); i++)
         args[i] = array[i];
 
+    fcitx_utils_start_process(args);
 
-    /* exec command */
-    pid_t child_pid;
-
-    child_pid = fork();
-    if (child_pid < 0) {
-        perror("fork");
-    } else if (child_pid == 0) {		 /* child process  */
-        pid_t grandchild_pid;
-
-        grandchild_pid = fork();
-        if (grandchild_pid < 0) {
-            perror("fork");
-            _exit(1);
-        } else if (grandchild_pid == 0) { /* grandchild process  */
-            execvp(args[0], args);
-            perror("execvp");
-            _exit(1);
-        } else {
-            _exit(0);
-        }
-    } else {                              /* parent process */
-        int status;
-        waitpid(child_pid, &status, 0);
-    }
+    free(args);
 }

@@ -1,21 +1,24 @@
-# translation of scim-anthy to Japanese
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) 2004 Takuro Ashie <ashie@homa.ne.jp>.
+#
+# Translators:
+# mongrelP＠一応求職中 木村 <kimi.nicoco@gmail.com>, 2012.
 # Weng Xuetian <wengxt@gmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: anthy\n"
+"Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-20 20:49+0800\n"
-"PO-Revision-Date: 2012-06-09 23:40+0800\n"
-"Last-Translator: Weng Xuetian <wengxt@gmail.com>\n"
-"Language-Team: Japanese <ja@li.org>\n"
+"PO-Revision-Date: 2012-07-25 13:08+0000\n"
+"Last-Translator: mongrelP＠一応求職中 木村 <kimi.nicoco@gmail.com>\n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/fcitx/language/"
+"ja/)\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:482
 #, c-format
@@ -31,13 +34,12 @@ msgid "Add Word"
 msgstr "単語を追加"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:467
-#, fuzzy
 msgid "Add word"
-msgstr "単語を追加"
+msgstr "単語の追加"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:74
 msgid "Allow split"
-msgstr ""
+msgstr "分割を許可"
 
 #: /home/saber/Develop/fcitx-anthy/build/po/tmp/fcitx-anthy.conf.in.h:1
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/factory.cpp:86
@@ -46,15 +48,15 @@ msgstr "Anthy"
 
 #: /home/saber/Develop/fcitx-anthy/build/po/tmp/fcitx-anthy.conf.in.h:2
 msgid "Anthy Wrapper For Fcitx"
-msgstr ""
+msgstr "FCITX向けのAnthyラッパー"
 
 #: unknown
 msgid "Atok"
-msgstr ""
+msgstr "ATOK"
 
 #: unknown
 msgid "Azik"
-msgstr ""
+msgstr "AZIK"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:252
 msgid "BackSpace"
@@ -70,21 +72,19 @@ msgstr "全てキャンセル"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:226
 msgid "Cancel pseudo ascii mode"
-msgstr ""
+msgstr "擬似アスキーモードをやめる"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:387
-#, fuzzy
 msgid "Candidates Page Down"
-msgstr "候補ウィンドウ"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:382
-#, fuzzy
 msgid "Candidates Page Up"
-msgstr "候補選択キー"
+msgstr ""
 
 #: unknown
 msgid "Canna"
-msgstr ""
+msgstr "Canna"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:186
 msgid "Circle input mode"
@@ -98,9 +98,9 @@ msgstr "かなモード循環"
 msgid "Circle typing method"
 msgstr "入力方式切り替え"
 
-#, fuzzy
+# unknown
 msgid "Command"
-msgstr "一般"
+msgstr "コマンド"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:262
 msgid "Commit"
@@ -115,30 +115,26 @@ msgid "Commit first segment"
 msgstr "最初の文節を確定"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:352
-#, fuzzy
 msgid "Commit first segment reverse learn"
-msgstr "最初の文節を確定"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:347
 msgid "Commit selected segment"
 msgstr "選択文節を確定"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:357
-#, fuzzy
 msgid "Commit selected segment reverse learn"
-msgstr "選択文節を確定"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:771
-#, fuzzy
 msgid "Conversion Mode"
-msgstr "変換モード"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:34
 msgid "Conversion mode"
 msgstr "変換モード"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:272
-#, fuzzy
 msgid "Convert"
 msgstr "変換"
 
@@ -188,29 +184,24 @@ msgstr ""
 
 #: unknown
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:560
-#, fuzzy
 msgid "Custom"
-msgstr "カスタマイズ...(_C)"
+msgstr "カスタマイズ"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:177
-#, fuzzy
 msgid "Custom Kana Table"
-msgstr "かなレイアウトテーブルのカスタマイズ"
+msgstr "かな配列を変更"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:167
-#, fuzzy
 msgid "Custom Key Binding"
-msgstr "キーバインド"
+msgstr "キー設定を変更"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:182
-#, fuzzy
 msgid "Custom Nicola Table"
-msgstr "ローマ字テーブルのカスタマイズ"
+msgstr "Nicola配列を変更"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:172
-#, fuzzy
 msgid "Custom Romaji Table"
-msgstr "ローマ字テーブルのカスタマイズ"
+msgstr "ローマ字配列を変更"
 
 #: unknown
 msgid "Default"
@@ -222,30 +213,26 @@ msgstr "削除"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:437
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:472
-#, fuzzy
 msgid "Dict admin"
-msgstr "辞書"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:552
 msgid "Direct input"
 msgstr "直接入力"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:337
-#, fuzzy
 msgid "Expand segment"
-msgstr "文節を広げる"
+msgstr ""
 
 # unknown
 msgid "General"
-msgstr ""
+msgstr "全般"
 
 #: unknown
-#, fuzzy
 msgid "Half Katakana"
-msgstr "半角カタカナモード"
+msgstr "半角カタカナ"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:221
-#, fuzzy
 msgid "Half Katakana mode"
 msgstr "半角カタカナモード"
 
@@ -263,7 +250,6 @@ msgid "Hiragana mode"
 msgstr "ひらがなモード"
 
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:769
-#, fuzzy
 msgid "Input Mode"
 msgstr "入力モード"
 
@@ -272,14 +258,12 @@ msgid "Input mode"
 msgstr "入力モード"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:237
-#, fuzzy
 msgid "Insert Alternative space"
-msgstr "別幅空白を挿入"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:242
-#, fuzzy
 msgid "Insert Half Space"
-msgstr "半角空白を挿入"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:232
 msgid "Insert space"
@@ -295,7 +279,7 @@ msgstr ""
 
 #: unknown
 msgid "Japanese"
-msgstr ""
+msgstr "日本語"
 
 #: unknown
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:558
@@ -304,7 +288,7 @@ msgstr "かな"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:142
 msgid "Kana Table"
-msgstr ""
+msgstr "カナ配列"
 
 #: unknown
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:550
@@ -315,13 +299,13 @@ msgstr "カタカナ"
 msgid "Katakana mode"
 msgstr "カタカナモード"
 
+# unknown
 msgid "Key"
 msgstr "キー"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:115
-#, fuzzy
 msgid "Key binding profile"
-msgstr "キーバインド"
+msgstr ""
 
 # unknown
 msgid "KeyProfile"
@@ -336,23 +320,20 @@ msgid "Latin mode"
 msgstr "英数モード"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:69
-#, fuzzy
 msgid "Learn on auto commit"
-msgstr "自動確定時に学習する(_U)"
+msgstr "自動学習"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:64
-#, fuzzy
 msgid "Learn on manual commit"
-msgstr "手動確定時に学習する(_M)"
+msgstr "手動学習"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:447
-#, fuzzy
 msgid "Left thumb key"
-msgstr "左親指シフトキー(_L):"
+msgstr ""
 
 #: unknown
 msgid "MS IME"
-msgstr ""
+msgstr "MS IME"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:292
 msgid "Move Caret First"
@@ -375,9 +356,8 @@ msgid "Multi segement"
 msgstr "連文節"
 
 #: unknown
-#, fuzzy
 msgid "Multi segement immediate"
-msgstr "連文節"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:564
 msgid "Multi segment"
@@ -386,11 +366,11 @@ msgstr "連文節"
 #: unknown
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:559
 msgid "Nicola"
-msgstr ""
+msgstr "ニコラ"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:153
 msgid "Nicola Table"
-msgstr ""
+msgstr "ニコラ配列"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:462
 msgid "Nicola time"
@@ -398,52 +378,47 @@ msgstr ""
 
 #: unknown
 msgid "Nicola-A"
-msgstr ""
+msgstr "Nicola-A"
 
 #: unknown
 msgid "Nicola-F"
-msgstr ""
+msgstr "Nicola-F"
 
 #: unknown
 msgid "Nicola-J"
-msgstr ""
+msgstr "Nicola-J"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:8
-#, fuzzy
 msgid "Number candidate of Triggers To Show Candidate Window"
-msgstr "1ページに表示する候補数を指定します"
+msgstr ""
 
 #: unknown
 msgid "Oasys100J"
-msgstr ""
+msgstr "Oasys100J"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:3
-#, fuzzy
 msgid "Page size"
-msgstr "前のページへ移動"
+msgstr "ページサイズ"
 
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:772
-#, fuzzy
 msgid "Period Style"
-msgstr "句読点のスタイル"
+msgstr "区点の設定"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:44
 msgid "Period style"
 msgstr "句読点のスタイル"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:277
-#, fuzzy
 msgid "Predict"
-msgstr "予測"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:432
 msgid "Reconvert"
 msgstr "再変換"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:452
-#, fuzzy
 msgid "Right thumb key"
-msgstr "右親指シフトキー(_R):"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:457
 msgid "Ro key for kana layout"
@@ -455,49 +430,40 @@ msgid "Romaji"
 msgstr "ローマ字"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:128
-#, fuzzy
 msgid "Romaji Table"
-msgstr "ローマ字テーブル(_T):"
+msgstr "ローマ字配列"
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:362
-#, fuzzy
 msgid "Select first candidate"
-msgstr "最初の候補へ移動するキーの設定"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:312
-#, fuzzy
 msgid "Select first segment"
-msgstr "最初の文節を選択"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:367
-#, fuzzy
 msgid "Select last candidate"
-msgstr "最後の候補へ移動するキーの設定"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:317
-#, fuzzy
 msgid "Select last segment"
-msgstr "最後の文節を選択"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:372
-#, fuzzy
 msgid "Select next candidate"
-msgstr "次の候補へ移動するキーの設定"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:322
-#, fuzzy
 msgid "Select next segment"
-msgstr "次の文節を選択"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:377
-#, fuzzy
 msgid "Select prev candidate"
-msgstr "前の候補へ移動するキーの設定"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:327
-#, fuzzy
 msgid "Select previous segment"
-msgstr "前の文節を選択"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:332
 msgid "Shrink segment"
@@ -508,9 +474,8 @@ msgid "Single segement"
 msgstr "単文節"
 
 #: unknown
-#, fuzzy
 msgid "Single segement immediate"
-msgstr "単文節"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:565
 msgid "Single segment"
@@ -530,11 +495,11 @@ msgstr "親指シフト"
 
 #: unknown
 msgid "Tron Dvorak"
-msgstr ""
+msgstr "Tron Dvorak"
 
 #: unknown
 msgid "Tron Qwerty JP"
-msgstr ""
+msgstr "Tron Qwerty JP"
 
 #: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:770
 msgid "Typing Method"
@@ -550,11 +515,11 @@ msgstr "予測中に直接選択キーを使用する"
 
 #: unknown
 msgid "Vje Delta"
-msgstr ""
+msgstr "Vje Delta"
 
 #: unknown
 msgid "WNN"
-msgstr ""
+msgstr "WNN"
 
 #: unknown
 msgid "Wide Latin"
@@ -574,1078 +539,17 @@ msgid "Wide latin"
 msgstr "全角英数"
 
 #: unknown
-#, fuzzy
 msgid "Wide latin Japanese"
-msgstr "全角英数変換:"
+msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:206
-#, fuzzy
 msgid "Wide latin mode"
-msgstr "全角英数モード"
+msgstr "全角英字モ－ド"
 
 #: unknown
 msgid "tsuki-2-203-101"
-msgstr ""
+msgstr "tsuki-2-203-101"
 
 #: unknown
 msgid "tsuki-2-203-106"
-msgstr ""
-
-#~ msgid "\"_Add word\" command:"
-#~ msgstr "単語追加コマンド(_A):"
-
-#~ msgid "\"_Edit dictionary\" command:"
-#~ msgstr "辞書編集コマンド(_E):"
-
-#~ msgid ""
-#~ "1. Switch input mode:\n"
-#~ "  You can switch on/off Japanese input mode by pressing Zenkaku_Hankaku "
-#~ "key\n"
-#~ "  or Control+J. Or you can rotate all input modes by pressing Control+,\n"
-#~ "  (comma).\n"
-#~ "  \n"
-#~ msgstr ""
-#~ "1. 入力モードの切り替え:\n"
-#~ "  全角/半角キーあるいはControl+Jキーを押すことで、日本語モードをON/OFFす"
-#~ "る\n"
-#~ "  ことができます。あるいは、Conrol+,(コンマ)を押すことで、全ての入力モード"
-#~ "に\n"
-#~ "  順次切り替えることができます。\n"
-#~ "  \n"
-
-#~ msgid "10th candidate"
-#~ msgstr "10番目の候補"
-
-#~ msgid "1st candidate"
-#~ msgstr "1番目の候補"
-
-#~ msgid ""
-#~ "2. Input Japanese hiragana and katakana:\n"
-#~ "  You can input Japanese hiragana and katakana by inputting romaji.\n"
-#~ "  The Romaji table can be found out from the \"Anthy\" section of the "
-#~ "setup\n"
-#~ "  window in SCIM or SKIM.\n"
-#~ "  If you want to hiragana and katakana directly by using Japanese "
-#~ "keyboard,\n"
-#~ "  please press Alt + Romaji key or Conrol+\\ key to switch typing "
-#~ "method.\n"
-#~ "  \n"
-#~ msgstr ""
-#~ "2. ひらがな及びカタカナの入力:\n"
-#~ "  ローマ字を入力することで、ひらがな及びカタカナを入力することができま"
-#~ "す。\n"
-#~ "  ローマ字表は、SCIMあるいはSKIM設定ウィンドウの「Anthy」セクションで見る"
-#~ "こ\n"
-#~ "  とができます。日本語キーボードを使ってひらがなやカタカナを直接入力した"
-#~ "い\n"
-#~ "  場合は、Alt+ローマ字キーあるいはConrol+\\キーを押して、入力方式を切り替"
-#~ "えて\n"
-#~ "  下さい。\n"
-#~ "  \n"
-
-#~ msgid "2nd candidate"
-#~ msgstr "2番目の候補"
-
-#~ msgid ""
-#~ "3. Convert hiragana or katakana to Japanese kanji\n"
-#~ "  After inputting hiragana or katakana, you can convert it to Japanese\n"
-#~ "  kanji by pressing Space key. Then it will show some candidates. You "
-#~ "can\n"
-#~ "  select the next candidate by pressing Space key, and can commit it by\n"
-#~ "  pressing Enter key.\n"
-#~ "  If you input a sentense, Anthy will split it to some segments. You can\n"
-#~ "  select the next or previous segment by pressing left or right cursor "
-#~ "key,\n"
-#~ "  and can extend or shrink the selected segment by pressing Shift + left "
-#~ "or\n"
-#~ "  right cursor key.\n"
-#~ "  \n"
-#~ msgstr ""
-#~ "3. ひらがなやカタカナを漢字に変換する\n"
-#~ "  ひらがなやカタカナを入力後、スペースキーを押すことで漢字に変換すること"
-#~ "が\n"
-#~ "  できます。この際、複数の候補が表示されるでしょう。更にスペースキーを押"
-#~ "す\n"
-#~ "  ことで、次の候補を選択することができます。Enterキーを押すと確定しま"
-#~ "す。\n"
-#~ "  文章を入力した場合、Anthyはそれを複数の文節に分けます。この際、左あるい"
-#~ "は\n"
-#~ "  右カーソルキーを押すことで、前後の文節を選択することができます。また、\n"
-#~ "  Shift+左あるいは右カーソルキーを押すことで、文節を伸ばしたり縮めたりす"
-#~ "る\n"
-#~ "  ことができます。\n"
-#~ "  \n"
-
-#~ msgid "3rd candidate"
-#~ msgstr "3番目の候補"
-
-#~ msgid ""
-#~ "4. Other key bindings:\n"
-#~ "  You can find out all key bindings definition of scim-anthy from \"Anthy"
-#~ "\"\n"
-#~ "  section on setup window of SCIM or SKIM.\n"
-#~ msgstr ""
-#~ "4. その他のキーバインド:\n"
-#~ "  その他の全てのscim-anthyのキー定義は、SCIMあるいはSKIM設定ウィンドウの\n"
-#~ "  「Anthy」セクションで見ることができます。\n"
-
-#~ msgid "4th candidate"
-#~ msgstr "4番目の候補"
-
-#~ msgid "5th candidate"
-#~ msgstr "5番目の候補"
-
-#~ msgid "6th candidate"
-#~ msgstr "6番目の候補"
-
-#~ msgid "7th candidate"
-#~ msgstr "7番目の候補"
-
-#~ msgid "8th candidate"
-#~ msgstr "8番目の候補"
-
-#~ msgid "9th candidate"
-#~ msgstr "9番目の候補"
-
-#~ msgid "<b>Enable/Disable learning</b>"
-#~ msgstr "<b>学習の有効/無効</b>"
-
-#~ msgid "<b>JIS Kana Layout</b>"
-#~ msgstr "<b>JISかな配列</b>"
-
-#~ msgid "<b>Key preferences to commit with reversing learning preference</b>"
-#~ msgstr "<b>学習設定とは逆の方法で確定するキーの設定</b>"
-
-#~ msgid "<b>NICOLA Layout</b>"
-#~ msgstr "<b>NICOLA配列</b>"
-
-#~ msgid "<b>Thumb Shift Layout</b>"
-#~ msgstr "<b>親指シフト配列</b>"
-
-#~ msgid ""
-#~ "<span size=\"20000\">%s-%s</span>\n"
-#~ "\n"
-#~ "<span size=\"16000\" style=\"italic\">A Japanese input method module\n"
-#~ "for SCIM using Anthy</span>\n"
-#~ "\n"
-#~ "\n"
-#~ "\n"
-#~ "<span size=\"12000\">Copyright 2005-2006, Takuro Ashie &lt;ashie@homa.ne."
-#~ "jp&gt;</span>"
-#~ msgstr ""
-#~ "<span size=\"20000\">%s-%s</span>\n"
-#~ "\n"
-#~ "<span size=\"16000\" style=\"italic\">Anthyを利用した\n"
-#~ "SCIM用日本語入力モジュール</span>\n"
-#~ "\n"
-#~ "\n"
-#~ "\n"
-#~ "<span size=\"12000\">Copyright 2005-2006, Takuro Ashie &lt;ashie@homa.ne."
-#~ "jp&gt;</span>"
-
-#~ msgid "A_llow spliting romaji on editing preedit string"
-#~ msgstr "文字列編集時にローマ字を分割できるようにする(_L)"
-
-#~ msgid "About"
-#~ msgstr "情報"
-
-#~ msgid "Add a word keys:"
-#~ msgstr "単語追加:"
-
-#~ msgid "Add a word to the dictionary."
-#~ msgstr "単語を辞書に追加"
-
-#~ msgid "An Anthy IMEngine Module."
-#~ msgstr "Anthy IMEngineモジュール"
-
-#~ msgid "Appearance"
-#~ msgstr "外観"
-
-#~ msgid ""
-#~ "Art work:\n"
-#~ "  SHIMODA Hiroshi <piro@p.club.ne.jp>\n"
-#~ "\n"
-#~ "Translation:\n"
-#~ "  Gerrit Sangel <z0idberg@gmx.de>\n"
-#~ "Special thanks:\n"
-#~ "  UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
-#~ "  Yukiko Bando <ybando@k6.dion.ne.jp>\n"
-#~ "  Mike Fabian <mfabian@suse.de>\n"
-#~ "  David Oftedal <david@start.no>\n"
-#~ "  Ryo Dairiki <ryo-dairiki@users.sourceforge.net>\n"
-#~ "  Seiichi SATO\n"
-#~ "  AWASHIRO Ikuya <ikuya@oooug.jp>\n"
-#~ "  Hatuka*nezumi <nezumi@jca.apc.org>\n"
-#~ "  Teppei Tamra <tam-t@par.odn.ne.jp>\n"
-#~ "  Akira TAGOH <at@gclab.org>\n"
-#~ "  Tatsuki Sugiura <sugi@nemui.org>\n"
-#~ "  Takashi Nakamoto <bluedwarf@bpost.plala.or.jp>"
-#~ msgstr ""
-#~ "Art work:\n"
-#~ "  SHIMODA Hiroshi <piro@p.club.ne.jp>\n"
-#~ "Translation:\n"
-#~ "  Gerrit Sangel <z0idberg@gmx.de>\n"
-#~ "Special thanks:\n"
-#~ "  UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
-#~ "  Yukiko Bando <ybando@k6.dion.ne.jp>\n"
-#~ "  Mike Fabian <mfabian@suse.de>\n"
-#~ "  David Oftedal <david@start.no>\n"
-#~ "  Ryo Dairiki <ryo-dairiki@users.sourceforge.net>\n"
-#~ "  Seiichi SATO\n"
-#~ "  AWASHIRO Ikuya <ikuya@oooug.jp>\n"
-#~ "  Hatuka*nezumi <nezumi@jca.apc.org>\n"
-#~ "  Teppei Tamra <tam-t@par.odn.ne.jp>\n"
-#~ "  Akira TAGOH <at@gclab.org>\n"
-#~ "  Tatsuki Sugiura <sugi@nemui.org>\n"
-#~ "  Takashi Nakamoto <bluedwarf@bpost.plala.or.jp>"
-
-#~ msgid ""
-#~ "Authors of scim-anthy:\n"
-#~ "  Copyright (C) 2004,2005 Takuro Ashie <ashie@homa.ne.jp>\n"
-#~ "  Copyright (C) 2004,2005 Hiroyuki Ikezoe <poincare@ikezoe.net>\n"
-#~ "  \n"
-#~ "Authors of Anthy:\n"
-#~ "  Copyright (C) 2000-2005 Yusuke TABATA <yusuke@w5.dion.ne.jp>\n"
-#~ "  Copyright (C) 2004-2005 Yuichi YOSHIDA <oxy@kmc.gr.jp>\n"
-#~ "  You can find out all credits of Anthy from AUTHORS file in Anthy "
-#~ "package.\n"
-#~ msgstr ""
-#~ "scim-anthyの作者:\n"
-#~ "  Copyright (C) 2004,2005 Takuro Ashie <ashie@homa.ne.jp>\n"
-#~ "  Copyright (C) 2004,2005 Hiroyuki Ikezoe <poincare@ikezoe.net>\n"
-#~ "  \n"
-#~ "Anthyの作者:\n"
-#~ "  Copyright (C) 2000-2005 Yusuke TABATA <yusuke@w5.dion.ne.jp>\n"
-#~ "  Copyright (C) 2004-2005 Yuichi YOSHIDA <oxy@kmc.gr.jp>\n"
-#~ "  Anthyの全てのクレジットはAnthyパッケージのAUTHORSファイルを参照して下さ"
-#~ "い。\n"
-
-#~ msgid "BG color"
-#~ msgstr "背景色"
-
-#~ msgid "Background color"
-#~ msgstr "背景色"
-
-#~ msgid ""
-#~ "Basic operation:\n"
-#~ "  \n"
-#~ msgstr ""
-#~ "基本操作:\n"
-#~ "  \n"
-
-#~ msgid "Both color"
-#~ msgstr "文字色/背景色"
-
-#~ msgid "Candidates (%d/%d)"
-#~ msgstr "候補一覧 (%d/%d)"
-
-#~ msgid "Candidates keys (Direct select)"
-#~ msgstr "候補選択キー (直接選択)"
-
-#~ msgid "Caret keys"
-#~ msgstr "キャレットキー"
-
-#~ msgid "Clear"
-#~ msgstr "クリア"
-
-#~ msgid "Close candidate window when select a candidate _directly"
-#~ msgstr "候補を直接選択した時に候補ウィンドウを閉じる(_D)"
-
-#~ msgid "Color:"
-#~ msgstr "色:"
-
-#~ msgid "Commit the _first segment:"
-#~ msgstr "最初の文節を確定(_F):"
-
-#~ msgid "Commit the _selected segment:"
-#~ msgstr "選択文節を確定(_S):"
-
-#~ msgid "Convert keys"
-#~ msgstr "変換キー"
-
-#~ msgid "Convert keys:"
-#~ msgstr "変換:"
-
-#~ msgid ""
-#~ "Copyright (C) 2004,2005 Takuro Ashie <ashie@homa.ne.jp>\n"
-#~ "Copyright (C) 2004,2005 Hiroyuki Ikezoe <poincare@ikezoe.net>"
-#~ msgstr ""
-#~ "Copyright (C) 2004,2005 Takuro Ashie <ashie@homa.ne.jp>\n"
-#~ "Copyright (C) 2004,2005 Hiroyuki Ikezoe <poincare@ikezoe.net>"
-
-#~ msgid "Customize NICOLA table"
-#~ msgstr "NICOLAテーブルのカスタマイズ"
-
-#~ msgid "Customize thumb shift layout table"
-#~ msgstr "親指シフトレイアウトテーブルのカスタマイズ"
-
-#~ msgid "Description"
-#~ msgstr "説明"
-
-#~ msgid "Dictionary keys"
-#~ msgstr "辞書関連キー"
-
-#~ msgid "Dictionary menu"
-#~ msgstr "辞書メニュー"
-
-#~ msgid "Direct select keys"
-#~ msgstr "直接選択キー"
-
-#~ msgid "Do nothing"
-#~ msgstr "なにもしない"
-
-#~ msgid "EUC-JP"
-#~ msgstr "EUC-JP"
-
-#~ msgid "EUC-JP-MS"
-#~ msgstr "EUC-JP-MS"
-
-#~ msgid "Edit dictionary"
-#~ msgstr "辞書を編集"
-
-#~ msgid "Edit dictionary keys:"
-#~ msgstr "辞書編集:"
-
-#~ msgid "Edit keys"
-#~ msgstr "編集キー"
-
-#~ msgid "Edit the dictionary"
-#~ msgstr "辞書を編集"
-
-#~ msgid "En_coding of dictionary:"
-#~ msgstr "辞書のエンコーディング(_C):"
-
-#~ msgid "Feature"
-#~ msgstr "機能"
-
-#~ msgid "First candidate"
-#~ msgstr "最初の候補"
-
-#~ msgid "First segment keys:"
-#~ msgstr "最初の文節:"
-
-#~ msgid "Follow input mode"
-#~ msgstr "入力モードに従う"
-
-#~ msgid "Foreground color"
-#~ msgstr "前景色"
-
-#~ msgid "Half"
-#~ msgstr "半角"
-
-#~ msgid "Half width keys:"
-#~ msgstr "半角カタカナ変換:"
-
-#~ msgid "Highlight"
-#~ msgstr "強調"
-
-#~ msgid "Hiragana keys:"
-#~ msgstr "ひらがな変換："
-
-#~ msgid ""
-#~ "If this check is enabled, a blank key will works to insert a blank when "
-#~ "entering the pseudo ASCII input mode."
-#~ msgstr ""
-#~ "このチェックが入っている場合、一時ASCIIモード時に空白キーで空白を入力でき"
-#~ "るようになります。"
-
-#~ msgid ""
-#~ "If this check is enabled, capital letters will becomes a trigger to enter "
-#~ "the pseudo ASCII input mode."
-#~ msgstr ""
-#~ "このチェックが入っている場合、大文字の入力は一時ASCIIモードへの切り替えの"
-#~ "トリガーになります。"
-
-#~ msgid "If this check is enabled, you can delete each letter."
-#~ msgstr ""
-#~ "このチェックが入っている場合，各文字単位で文字を削除することができます。"
-
-#~ msgid ""
-#~ "If you choose \"EUC-JP-MS\", interoperatability of documents created on "
-#~ "this system with Microsoft Windows may improve, but it depends on the "
-#~ "implementation of your operating system and actual encoding of your "
-#~ "dictionary."
-#~ msgstr ""
-#~ "\"EUC-JP-MS\"を選択すると、このシステムで作成されたドキュメントの"
-#~ "Microsoft Windowsとの相互運用性が向上するかもしれません。しかし、これはオ"
-#~ "ペレーティングシステムの実装と、辞書の実際のエンコーディングに依存します。"
-
-#~ msgid "Input from _ten key: "
-#~ msgstr "テンキーからの入力(_T):"
-
-#~ msgid "Insert a _blank with a blank key."
-#~ msgstr "空白キーで空白を挿入する(_B)"
-
-#~ msgid "Kana typing"
-#~ msgstr "かな入力"
-
-#~ msgid "Kana typing method"
-#~ msgstr "かな入力方式"
-
-#~ msgid "Katakana keys:"
-#~ msgstr "カタカナ変換："
-
-#~ msgid "Key bindings _theme:"
-#~ msgstr "キーバインドテーマ:"
-
-#~ msgid "La_yout (Not implemented yet):"
-#~ msgstr "レイアウト(未実装)(_Y):"
-
-#~ msgid "La_yout:"
-#~ msgstr "レイアウト(_Y):"
-
-#~ msgid "Last candidate"
-#~ msgstr "最後の候補"
-
-#~ msgid "Last segment keys:"
-#~ msgstr "最後の文節:"
-
-#~ msgid "Latin keys:"
-#~ msgstr "英数変換:"
-
-#~ msgid "Launch the dictionary administration tool."
-#~ msgstr "辞書管理ツールを起動"
-
-#~ msgid "Layout _table:"
-#~ msgstr "レイアウトテーブル(_T):"
-
-#~ msgid "Learning"
-#~ msgstr "学習"
-
-#~ msgid "Left thumb shift"
-#~ msgstr "左親指シフト"
-
-#~ msgid "Mode keys"
-#~ msgstr "モードキー"
-
-#~ msgid "NICOLA _table:"
-#~ msgstr "NICOLAテーブル(_T):"
-
-#~ msgid "NICOLA time"
-#~ msgstr "NICOLAタイム"
-
-#~ msgid "NICOLA time:"
-#~ msgstr "NICOLAタイム:"
-
-#~ msgid "Next candidate"
-#~ msgstr "次の候補"
-
-#~ msgid "Next keys:"
-#~ msgstr "次へ移動:"
-
-#~ msgid "Next segment keys:"
-#~ msgstr "次の文節:"
-
-#~ msgid "No decoration"
-#~ msgstr "装飾無し"
-
-#~ msgid "None"
-#~ msgstr "なし"
-
-#~ msgid "Number of _triggers until show:"
-#~ msgstr "表示開始までの変換キー押下数(_T):"
-
-#~ msgid "Number of candidates to show in a _page:"
-#~ msgstr "1ページに表示する候補数(_P):"
-
-#~ msgid "Options"
-#~ msgstr "オプション"
-
-#~ msgid "Page down"
-#~ msgstr "次のページへ移動"
-
-#~ msgid "Pending"
-#~ msgstr "保留文字列"
-
-#~ msgid "Prediction"
-#~ msgstr "予測"
-
-#~ msgid "Previous candidate"
-#~ msgstr "前の候補"
-
-#~ msgid "Previous keys:"
-#~ msgstr "前へ移動:"
-
-#~ msgid "Previous segment keys:"
-#~ msgstr "前の文節:"
-
-#~ msgid "Pseudo ASCII mode cancel"
-#~ msgstr "一時ASCIIモードキャンセル"
-
-#~ msgid "Result"
-#~ msgstr "出力文字列"
-
-#~ msgid "Reverse"
-#~ msgstr "反転"
-
-#~ msgid "Right thumb shift"
-#~ msgstr "右親指シフト"
-
-#~ msgid "Romaji typing"
-#~ msgstr "ローマ字入力"
-
-#~ msgid "Romaji typing method"
-#~ msgstr "ローマ字入力方式"
-
-#~ msgid "Rotate character type backward."
-#~ msgstr "前の文字種に変換"
-
-#~ msgid "Rotate character type forward."
-#~ msgstr "文字種を次に変換"
-
-#~ msgid "Search by key"
-#~ msgstr "キーで検索"
-
-#~ msgid "Segments keys"
-#~ msgstr "文節キー"
-
-#~ msgid "Select Latin mode keys"
-#~ msgstr "英数モードキーの設定"
-
-#~ msgid "Select add a word keys"
-#~ msgstr "単語追加キーの設定"
-
-#~ msgid "Select backspace keys"
-#~ msgstr "バックスペースキーの設定"
-
-#~ msgid "Select cancel all keys"
-#~ msgstr "全てをキャンセルするキーの設定"
-
-#~ msgid "Select cancel keys"
-#~ msgstr "キャンセルキーの設定"
-
-#~ msgid "Select circle input mode keys"
-#~ msgstr "入力モード循環キーの設定"
-
-#~ msgid "Select circle kana mode keys"
-#~ msgstr "かなモード循環キーの設定"
-
-#~ msgid "Select circle typing method keys"
-#~ msgstr "入力方式切り替えキーの設定"
-
-#~ msgid "Select commit keys"
-#~ msgstr "確定キーの設定"
-
-#~ msgid "Select commiting the first segment keys"
-#~ msgstr "最初の文節を確定するキーの設定"
-
-#~ msgid "Select convert keys"
-#~ msgstr "変換キーの設定"
-
-#~ msgid "Select delete keys"
-#~ msgstr "削除キーの設定"
-
-#~ msgid "Select do nothing keys"
-#~ msgstr "なにもしないキーの設定"
-
-#~ msgid "Select edit dictionary keys"
-#~ msgstr "辞書編集キーの設定"
-
-#~ msgid "Select half katakana mode keys"
-#~ msgstr "半角カタカナモードキーの設定"
-
-#~ msgid "Select hiragana mode keys"
-#~ msgstr "ひらがなモードキーの設定"
-
-#~ msgid "Select inserting alternative space keys"
-#~ msgstr "別幅空白を挿入するキーの設定"
-
-#~ msgid "Select inserting half width space keys"
-#~ msgstr "半角空白を挿入するキーの設定"
-
-#~ msgid "Select inserting space keys"
-#~ msgstr "空白を挿入するキーの設定"
-
-#~ msgid "Select inserting wide space keys"
-#~ msgstr "全角空白を挿入するキーの設定"
-
-#~ msgid "Select katakana mode keys"
-#~ msgstr "カタカナモードキーの設定"
-
-#~ msgid "Select keys to commit the first segment"
-#~ msgstr "最初の文節を確定するキーイベント"
-
-#~ msgid "Select keys to commit the selected segment"
-#~ msgstr "選択文節を確定するキーイベント"
-
-#~ msgid "Select keys to convert character type backward"
-#~ msgstr "前の文字種に変換するキーの設定"
-
-#~ msgid "Select keys to convert character type forward"
-#~ msgstr "次の文字種に変換するキーの設定"
-
-#~ msgid "Select keys to convert to half width"
-#~ msgstr "半角変換キーの設定"
-
-#~ msgid "Select keys to convert to half width katakana"
-#~ msgstr "半角カタカナ変換キーの設定"
-
-#~ msgid "Select keys to convert to hiragana"
-#~ msgstr "ひらがな変換キーの設定"
-
-#~ msgid "Select keys to convert to katakana"
-#~ msgstr "カタカナ変換キーの設定"
-
-#~ msgid "Select keys to convert to latin"
-#~ msgstr "英数変換キーの設定"
-
-#~ msgid "Select keys to convert to wide latin"
-#~ msgstr "全角英数変換キーの設定"
-
-#~ msgid "Select keys to expand the segment"
-#~ msgstr "文節を広げるキーの設定"
-
-#~ msgid "Select keys to select 10th candidate"
-#~ msgstr "10番目の候補を選択するキーの設定"
-
-#~ msgid "Select keys to select 1st candidate"
-#~ msgstr "1番目の候補を選択するキーの設定"
-
-#~ msgid "Select keys to select 2nd candidate"
-#~ msgstr "2番目の候補を選択するキーの設定"
-
-#~ msgid "Select keys to select 3rd candidate"
-#~ msgstr "3番目の候補を選択するキーの設定"
-
-#~ msgid "Select keys to select 4th candidate"
-#~ msgstr "4番目の候補を選択するキーの設定"
-
-#~ msgid "Select keys to select 5th candidate"
-#~ msgstr "5番目の候補を選択するキーの設定"
-
-#~ msgid "Select keys to select 6th candidate"
-#~ msgstr "6番目の候補を選択するキーの設定"
-
-#~ msgid "Select keys to select 7th candidate"
-#~ msgstr "7番目の候補を選択するキーの設定"
-
-#~ msgid "Select keys to select 8th candidate"
-#~ msgstr "8番目の候補を選択するキーの設定"
-
-#~ msgid "Select keys to select 9th candidate"
-#~ msgstr "9番目の候補を選択するキーの設定"
-
-#~ msgid "Select keys to select the first segment"
-#~ msgstr "最初の文節を選択するキーの設定"
-
-#~ msgid "Select keys to select the last segment"
-#~ msgstr "最後の文節を選択するキーの設定"
-
-#~ msgid "Select keys to select the next segment"
-#~ msgstr "次の文節を選択するキーの設定"
-
-#~ msgid "Select keys to select the previous segment"
-#~ msgstr "前の文節を選択するキーの設定"
-
-#~ msgid "Select keys to shrink the segment"
-#~ msgstr "文節を縮めるキーの設定"
-
-#~ msgid "Select move caret backward keys"
-#~ msgstr "後方へ移動するキーの設定"
-
-#~ msgid "Select move caret forward keys"
-#~ msgstr "前方へ移動するキーの設定"
-
-#~ msgid "Select move caret to first keys"
-#~ msgstr "最初へ移動するキーの設定"
-
-#~ msgid "Select move caret to last keys"
-#~ msgstr "最後へ移動するキーの設定"
-
-#~ msgid "Select page down candidates keys"
-#~ msgstr "次の候補ページへ移動するキーの設定"
-
-#~ msgid "Select page up candidates keys"
-#~ msgstr "前の候補ページへ移動するキーの設定"
-
-#~ msgid "Select predict keys"
-#~ msgstr "予測キーの設定"
-
-#~ msgid "Select pseudo ASCII mode cancel key"
-#~ msgstr "一時ASCIIモードキャンセルキーの設定"
-
-#~ msgid "Select reconvert keys"
-#~ msgstr "再変換キーの設定"
-
-#~ msgid "Select toggle on/off keys"
-#~ msgstr "ON/OFFキーの設定"
-
-#~ msgid "Select wide Latin mode keys"
-#~ msgstr "全角英数モードキーの設定"
-
-#, fuzzy
-#~ msgid "SelectPrevSegmentKey"
-#~ msgstr "選択文節(_S):"
-
-#~ msgid "Sequence"
-#~ msgstr "入力文字列"
-
-#~ msgid "Set key filter"
-#~ msgstr "キ-フィルタ-をセット"
-
-#~ msgid "Show \"_Candidates\" label"
-#~ msgstr "「候補一覧」ラベルを表示(_C)"
-
-#~ msgid "Show _add word label"
-#~ msgstr "単語追加ラベルを表示(_A)"
-
-#~ msgid "Show _conversion mode label"
-#~ msgstr "変換モードラベルを表示(_C)"
-
-#~ msgid "Show _dictionary menu label"
-#~ msgstr "辞書メニューラベルを表示(_D)"
-
-#~ msgid "Show _edit dictionary label"
-#~ msgstr "辞書編集ラベルを表示(_E)"
-
-#~ msgid "Show _input mode label"
-#~ msgstr "入力モードラベルを表示(_I)"
-
-#~ msgid "Show _period style label"
-#~ msgstr "句読点スタイルラベルを表示(_P)"
-
-#~ msgid "Show _symbol style label"
-#~ msgstr "記号スタイルラベルを表示(_S)"
-
-#~ msgid "Show _typing method label"
-#~ msgstr "入力方式ラベルを表示(_T)"
-
-#~ msgid "Single press"
-#~ msgstr "単独打鍵"
-
-#~ msgid "St_yle of comma and period: "
-#~ msgstr "句読点のスタイル(_Y): "
-
-#~ msgid "Start conversion"
-#~ msgstr "変換を開始する"
-
-#~ msgid "String color"
-#~ msgstr "文字色"
-
-#~ msgid "Style of preedit:"
-#~ msgstr "編集文字列のスタイル:"
-
-#~ msgid "Style of selected segment:"
-#~ msgstr "選択文節のスタイル:"
-
-#~ msgid "Symb_ol input style: "
-#~ msgstr "記号のスタイル(_O):"
-
-#~ msgid "Symbols"
-#~ msgstr "記号等"
-
-#~ msgid "The color of conversion text"
-#~ msgstr "変換文字列の色"
-
-#~ msgid "The color of preediting text"
-#~ msgstr "編集文字列の色"
-
-#~ msgid "The color of preediting text in the preedition"
-#~ msgstr "編集文字列の色"
-
-#~ msgid "The color of selected segment text"
-#~ msgstr "選択文節の色"
-
-#~ msgid "The color of selected segment text in the conversion text"
-#~ msgstr "変換文字列内の選択文節の色"
-
-#~ msgid "The key events to cancel preediting or converting. "
-#~ msgstr "文字変換や文字入力をキャンセルするキーイベント"
-
-#~ msgid "The key events to cancel the pseudo ASCII mode."
-#~ msgstr "一時ASCIIモードをキャンセルするキーイベント"
-
-#~ msgid "The key events to circle input mode. "
-#~ msgstr "次の入力モードを選択するキーイベント"
-
-#~ msgid "The key events to circle kana mode. "
-#~ msgstr "次のかなモードを選択するキーイベント"
-
-#~ msgid "The key events to circle typing method. "
-#~ msgstr "入力方式を切り替えるキーイベント"
-
-#~ msgid ""
-#~ "The key events to commit the first segment with reversing the preference "
-#~ "of learning. "
-#~ msgstr "学習設定とは逆の方法で最初の文節を確定するキーイベント"
-
-#~ msgid "The key events to commit the first segment. "
-#~ msgstr "最初の文節を確定するキーイベント"
-
-#~ msgid ""
-#~ "The key events to commit the preedit string with reversing the preference "
-#~ "of learning. "
-#~ msgstr "学習設定とは逆の方法で文字列を確定するキーイベント"
-
-#~ msgid "The key events to commit the preedit string. "
-#~ msgstr "文字列を確定するキーイベント"
-
-#~ msgid ""
-#~ "The key events to commit the selected segment with reversing the "
-#~ "preference of learning. "
-#~ msgstr "学習設定とは逆の方法で選択文節を確定するキーイベント"
-
-#~ msgid "The key events to commit the selected segment. "
-#~ msgstr "選択文節を確定するキーイベント"
-
-#~ msgid ""
-#~ "The key events to convert the preedit string to half width katakana. "
-#~ msgstr "文字列を半角カタカナへ変換するキーイベント"
-
-#~ msgid "The key events to convert the preedit string to half width. "
-#~ msgstr "文字列を半角へ変換するキーイベント"
-
-#~ msgid "The key events to convert the preedit string to hiragana. "
-#~ msgstr "文字列をひらがなへ変換するキーイベント"
-
-#~ msgid "The key events to convert the preedit string to kanji. "
-#~ msgstr "文字列を漢字に変換するキーイベント"
-
-#~ msgid "The key events to convert the preedit string to katakana. "
-#~ msgstr "文字列をカタカナへ変換するキーイベント"
-
-#~ msgid "The key events to convert the preedit string to latin. "
-#~ msgstr "文字列を英数へ変換するキーイベント"
-
-#~ msgid "The key events to convert the preedit string to wide latin. "
-#~ msgstr "文字列を全角英数へ変換するキーイベント"
-
-#~ msgid "The key events to delete a character after caret. "
-#~ msgstr "キャレットの後の文字を削除するキーイベント"
-
-#~ msgid "The key events to delete a character before caret. "
-#~ msgstr "キャレットの前の文字を削除するキーイベント"
-
-#~ msgid ""
-#~ "The key events to eat and do nothing anymore. For example, it can be used "
-#~ "to disable space key completely."
-#~ msgstr ""
-#~ "アプリケーションに渡さず、それ以上何もしないキーイベント。例えば、スペース"
-#~ "キーを完全に無効にしたいときに指定します。"
-
-#~ msgid "The key events to expand the selected segment. "
-#~ msgstr "文節を広げるキーイベント"
-
-#~ msgid "The key events to insert a alternative space. "
-#~ msgstr "別幅空白を挿入するキーイベント"
-
-#~ msgid "The key events to insert a half width space. "
-#~ msgstr "半角空白を挿入するキーイベント"
-
-#~ msgid "The key events to insert a space. "
-#~ msgstr "空白を挿入するキーイベント"
-
-#~ msgid "The key events to insert a wide space. "
-#~ msgstr "全角空白を挿入するキーイベント"
-
-#~ msgid "The key events to launch dictionary administration tool. "
-#~ msgstr "辞書管理ツールを起動するキーイベント"
-
-#~ msgid "The key events to launch the tool to add a word. "
-#~ msgstr "単語追加ツールを起動するキーイベント"
-
-#~ msgid "The key events to move the caret backward. "
-#~ msgstr "キャレットを後方へ移動するキーイベント"
-
-#~ msgid "The key events to move the caret forward. "
-#~ msgstr "キャレットを前方に移動するキーイベント"
-
-#~ msgid "The key events to move the caret to the first of preedit string. "
-#~ msgstr "キャレットを文字列の先頭に移動するキーイベント"
-
-#~ msgid "The key events to move the caret to the last of the preedit string. "
-#~ msgstr "キャレットを文字列の最後に移動するキーイベント"
-
-#~ msgid ""
-#~ "The key events to predict a word or sentence from already inserted text. "
-#~ msgstr "入力された文字列から単語や文を予測するキーイベント"
-
-#~ msgid "The key events to reconvert the commited string in selection. "
-#~ msgstr "セレクション内の確定済み文字列を再変換するキーイベント"
-
-#~ msgid "The key events to return to initial state. "
-#~ msgstr "初期状態へ戻るキーイベント"
-
-#~ msgid "The key events to select page down candidates. "
-#~ msgstr "次の候補ページへ移動するキーイベント"
-
-#~ msgid "The key events to select page up candidates. "
-#~ msgstr "前の候補ページへ移動するキーイベント"
-
-#~ msgid "The key events to select the 10th candidate. "
-#~ msgstr "10番目の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the 1st candidate. "
-#~ msgstr "1番目の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the 2nd candidate. "
-#~ msgstr "2番得目の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the 3rd candidate. "
-#~ msgstr "3番得目の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the 4th candidate. "
-#~ msgstr "4番目の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the 5th candidate. "
-#~ msgstr "5番目の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the 6th candidate. "
-#~ msgstr "6番目の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the 7th candidate. "
-#~ msgstr "7番目の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the 8th candidate. "
-#~ msgstr "8番目の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the 9th candidate. "
-#~ msgstr "9番目の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the first candidate. "
-#~ msgstr "最初の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the first segment. "
-#~ msgstr "最初の文節を選択するキーイベント"
-
-#~ msgid "The key events to select the next candidate. "
-#~ msgstr "次の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the next segment. "
-#~ msgstr "次の文節を選択するキーイベント"
-
-#~ msgid "The key events to select the previous candidate. "
-#~ msgstr "前の候補を選択するキーイベント"
-
-#~ msgid "The key events to select the previous segment. "
-#~ msgstr "前の文節を選択するキーイベント"
-
-#~ msgid "The key events to select the the last segment. "
-#~ msgstr "最後の文節を選択するキーイベント"
-
-#~ msgid "The key events to shrink the selected segment. "
-#~ msgstr "文節を縮めるキーイベント"
-
-#~ msgid "The key events to switch candidates page down. "
-#~ msgstr "次の候補ページへ移動するキーイベント"
-
-#~ msgid "The key events to switch candidates page up. "
-#~ msgstr "前の候補ページへ移動するキーイベント"
-
-#~ msgid "The key events to switch input mode to Latin. "
-#~ msgstr "英数モードへ切り替えるキーイベント"
-
-#~ msgid "The key events to switch input mode to half katakana. "
-#~ msgstr "半角カタカナモードキーへ切り替えるキーイベント"
-
-#~ msgid "The key events to switch input mode to hiragana. "
-#~ msgstr "ひらがなモードへ切り替えるキーイベント"
-
-#~ msgid "The key events to switch input mode to katakana. "
-#~ msgstr "カタカナモードキーへ切り替えるキーイベント"
-
-#~ msgid "The key events to switch input mode to wide Latin. "
-#~ msgstr "全角英数モードへ切り替えるキーイベント"
-
-#~ msgid "The key events to the select last candidate. "
-#~ msgstr "最後の候補を選択するキーイベント"
-
-#~ msgid "The key events to toggle on/off Japanese mode. "
-#~ msgstr "日本語モードをオン/オフするキーイベント"
-
-#~ msgid "The key events to toggle wide latin mode. "
-#~ msgstr "全角英数モードをオン/オフするキーイベント"
-
-#~ msgid ""
-#~ "The number of times to press a conversion key until show the candidates "
-#~ "window.Specify 0 to never show it."
-#~ msgstr ""
-#~ "候補ウィンドウを表示するまでに必要な変換キーの押下数です。0を指定すると候"
-#~ "補ウィンドウを一切表示しません。"
-
-#~ msgid "Thumb shift typing method"
-#~ msgstr "親指シフト入力方式"
-
-#~ msgid "Time to regard as simultaneous key pressing."
-#~ msgstr "同時打鍵とみなす時間"
-
-#~ msgid "Toggle on/off"
-#~ msgstr "ON/OFF切り替え"
-
-#~ msgid "Toolbar"
-#~ msgstr "ツールバー"
-
-#~ msgid "Typing _method: "
-#~ msgstr "入力方式(_M): "
-
-#~ msgid "Underline"
-#~ msgstr "下線"
-
-#~ msgid "Use half-width characters for _numbers"
-#~ msgstr "数字は半角で入力する(_N)"
-
-#~ msgid "Use half-width characters for _symbols"
-#~ msgstr "記号は半角で入力する(_S)"
-
-#~ msgid "User defined"
-#~ msgstr "ユーザー定義"
-
-#~ msgid "Wide"
-#~ msgstr "全角"
-
-#~ msgid "[msec]"
-#~ msgstr "[ミリ秒]"
-
-#~ msgid "[times]"
-#~ msgstr "[回]"
-
-#~ msgid "_Behavior on a comma or a period:"
-#~ msgstr "句読点入力時の挙動(_B):"
-
-#~ msgid "_Behavior on focus out:"
-#~ msgstr "フォーカスアウト時の挙動(_B):"
-
-#~ msgid "_Choose keys..."
-#~ msgstr "キーを設定...(_C)"
-
-#~ msgid "_Commit:"
-#~ msgstr "確定(_C):"
-
-#~ msgid "_Conversion mode: "
-#~ msgstr "変換モード(_C):"
-
-#~ msgid "_Conversion string:"
-#~ msgstr "変換文字列(_C):"
-
-#~ msgid "_Entering the pseudo ASCII input mode with capital letters."
-#~ msgstr "大文字入力時に一時ASCIIモードに切り替える(_E)"
-
-#~ msgid "_Group:"
-#~ msgstr "グループ(_G):"
-
-#~ msgid "_Input mode: "
-#~ msgstr "入力モード(_I):"
-
-#~ msgid "_Launch"
-#~ msgstr "起動(_L)"
-
-#~ msgid "_Preedit string:"
-#~ msgstr "編集文字列(_P):"
-
-#~ msgid "_Result:"
-#~ msgstr "出力文字列(_R):"
-
-#~ msgid "_Sequence:"
-#~ msgstr "入力文字列(_S):"
-
-#~ msgid "_Show predicted candidates while inputting letters"
-#~ msgstr "文字入力中に予測候補を表示する(_S)"
-
-#~ msgid "_Simultaneous pressing time:"
-#~ msgstr "同時打鍵時間(_S):"
-
-#~ msgid "_Space type: "
-#~ msgstr "空白のタイプ(_S): "
-
-#~ msgid "all"
-#~ msgstr "全て"
+msgstr "tsuki-2-203-106"

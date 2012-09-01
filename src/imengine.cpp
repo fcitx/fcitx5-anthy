@@ -542,6 +542,7 @@ AnthyInstance::unset_lookup_table (void)
     FcitxCandidateWordReset(m_lookup_table);
     m_lookup_table_visible = false;
     m_n_conv_key_pressed = 0;
+    m_cursor_pos = 0;
 
     FcitxMessagesSetMessageCount(m_aux_up, 0);
 }

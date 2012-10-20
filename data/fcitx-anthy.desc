@@ -31,12 +31,12 @@ Enum2=Nicola
 [General/ConversionMode]
 Type=Enum
 Description=Conversion mode
-DefaultValue=Multi segement
+DefaultValue=Multi segment
 EnumCount=4
-Enum0=Multi segement
-Enum1=Single segement
-Enum2=Multi segement immediate
-Enum3=Single segement immediate
+Enum0=Multi segment
+Enum1=Single segment
+Enum2=Multi segment immediate
+Enum3=Single segment immediate
 
 [General/PeriodStyle]
 Type=Enum

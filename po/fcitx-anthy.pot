@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-20 20:49+0800\n"
+"POT-Creation-Date: 2012-10-20 14:34-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,292 +33,292 @@ msgstr ""
 msgid "Typing method"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:34
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:33
 msgid "Conversion mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:44
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:43
 msgid "Period style"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:54
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:53
 msgid "Symbol style"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:64
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:63
 msgid "Learn on manual commit"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:69
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:68
 msgid "Learn on auto commit"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:74
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:73
 msgid "Allow split"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:79
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:78
 msgid "Use direct key on predict"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:115
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:114
 msgid "Key binding profile"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:128
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:127
 msgid "Romaji Table"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:142
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:141
 msgid "Kana Table"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:153
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:152
 msgid "Nicola Table"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:167
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:166
 msgid "Custom Key Binding"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:172
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:171
 msgid "Custom Romaji Table"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:177
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:176
 msgid "Custom Kana Table"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:182
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:181
 msgid "Custom Nicola Table"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:186
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:185
 msgid "Circle input mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:191
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:190
 msgid "Circle kana mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:196
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:195
 msgid "Circle typing method"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:201
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:200
 msgid "Latin mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:206
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:205
 msgid "Wide latin mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:211
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:210
 msgid "Hiragana mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:216
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:215
 msgid "Katakana mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:221
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:220
 msgid "Half Katakana mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:226
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:225
 msgid "Cancel pseudo ascii mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:232
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:231
 msgid "Insert space"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:237
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:236
 msgid "Insert Alternative space"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:242
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:241
 msgid "Insert Half Space"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:247
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:246
 msgid "Insert wide space"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:252
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:251
 msgid "BackSpace"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:257
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:256
 msgid "Delete"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:262
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:261
 msgid "Commit"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:267
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:266
 msgid "Commit Reverse Learn"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:272
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:271
 msgid "Convert"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:277
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:276
 msgid "Predict"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:282
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:281
 msgid "Cancel"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:287
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:286
 msgid "Cancel all"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:292
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:291
 msgid "Move Caret First"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:297
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:296
 msgid "Move caret last"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:302
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:301
 msgid "Move caret forward"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:307
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:306
 msgid "Move caret backward"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:312
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:311
 msgid "Select first segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:317
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:316
 msgid "Select last segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:322
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:321
 msgid "Select next segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:327
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:326
 msgid "Select previous segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:332
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:331
 msgid "Shrink segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:337
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:336
 msgid "Expand segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:342
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:341
 msgid "Commit first segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:347
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:346
 msgid "Commit selected segment"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:352
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:351
 msgid "Commit first segment reverse learn"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:357
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:356
 msgid "Commit selected segment reverse learn"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:362
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:361
 msgid "Select first candidate"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:367
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:366
 msgid "Select last candidate"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:372
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:371
 msgid "Select next candidate"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:377
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:376
 msgid "Select prev candidate"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:382
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:381
 msgid "Candidates Page Up"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:387
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:386
 msgid "Candidates Page Down"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:392
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:391
 msgid "Convert char type forward"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:397
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:396
 msgid "Convert char type backward"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:402
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:401
 msgid "Convert To Hiragana"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:407
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:406
 msgid "Convert To Katakana"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:412
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:411
 msgid "Convert To Half"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:417
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:416
 msgid "Convert To Half Katakana"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:422
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:421
 msgid "Convert To Wide Latin"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:427
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:426
 msgid "Convert To Latin"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:432
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:431
 msgid "Reconvert"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:437
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:472
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:436
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:471
 msgid "Dict admin"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:442
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:441
 msgid "Add Word"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:447
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:446
 msgid "Left thumb key"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:452
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:451
 msgid "Right thumb key"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:457
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:456
 msgid "Ro key for kana layout"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:462
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:461
 msgid "Nicola time"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:467
+#: /home/saber/Develop/fcitx-anthy/data/fcitx-anthy.desc:466
 msgid "Add word"
 msgstr ""
 
@@ -363,7 +363,6 @@ msgid "Corner bracket and  wide slash"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:560
 msgid "Custom"
 msgstr ""
 
@@ -376,7 +375,7 @@ msgid "Half Katakana"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:549
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:551
 msgid "Hiragana"
 msgstr ""
 
@@ -385,12 +384,12 @@ msgid "Japanese"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:558
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:560
 msgid "Kana"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:550
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:552
 msgid "Katakana"
 msgstr ""
 
@@ -403,15 +402,16 @@ msgid "MS IME"
 msgstr ""
 
 #: unknown
-msgid "Multi segement"
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:565
+msgid "Multi segment"
 msgstr ""
 
 #: unknown
-msgid "Multi segement immediate"
+msgid "Multi segment immediate"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:559
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:561
 msgid "Nicola"
 msgstr ""
 
@@ -432,16 +432,17 @@ msgid "Oasys100J"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:557
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:559
 msgid "Romaji"
 msgstr ""
 
 #: unknown
-msgid "Single segement"
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:566
+msgid "Single segment"
 msgstr ""
 
 #: unknown
-msgid "Single segement immediate"
+msgid "Single segment immediate"
 msgstr ""
 
 #: unknown
@@ -473,7 +474,7 @@ msgid "Wide bracket and wide slash"
 msgstr ""
 
 #: unknown
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:553
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:555
 msgid "Wide latin"
 msgstr ""
 
@@ -490,7 +491,7 @@ msgid "WNN"
 msgstr ""
 
 #: /home/saber/Develop/fcitx-anthy/build/po/tmp/fcitx-anthy.conf.in.h:1
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/factory.cpp:86
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/factory.cpp:87
 msgid "Anthy"
 msgstr ""
 
@@ -498,55 +499,47 @@ msgstr ""
 msgid "Anthy Wrapper For Fcitx"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:482
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:483
 #, c-format
 msgid "(%d / %d)"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:551
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:553
 msgid "Half width katakana"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:552
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:554
 msgid "Direct input"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:559
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:561
 msgid "Thumb shift"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:564
-msgid "Multi segment"
-msgstr ""
-
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:565
-msgid "Single segment"
-msgstr ""
-
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:566
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:567
 msgid "Convert as you type (Multi segment)"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:567
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:568
 msgid "Convert as you type (Single segment)"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:769
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:770
 msgid "Input Mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:770
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:771
 msgid "Typing Method"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:771
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:772
 msgid "Conversion Mode"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:772
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:773
 msgid "Period Style"
 msgstr ""
 
-#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:773
+#: /home/saber/Develop/fcitx-anthy/build/po/../..//src/imengine.cpp:774
 msgid "Symbol Style"
 msgstr ""

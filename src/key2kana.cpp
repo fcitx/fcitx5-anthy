@@ -47,8 +47,9 @@ Key2KanaConvertor::can_append (const KeyEvent & key,
         return false;
 
     // ignore short cut keys of apllication.
-    if (key.state & FcitxKeyState_Ctrl ||
-        key.state & FcitxKeyState_Alt)
+    if ((key.state & FcitxKeyState_Ctrl) ||
+        (key.state & FcitxKeyState_Alt) ||
+        (key.state & FcitxKeyState_Super))
     {
         return false;
     }

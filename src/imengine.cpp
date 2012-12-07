@@ -2367,6 +2367,20 @@ void AnthyInstance::reset_cursor(int cursor)
         cursor = 0;
 }
 
+void AnthyInstance::auto_commit(FcitxIMCloseEventType type)
+{
+    if (type == CET_LostFocus) {
+        action_commit(m_config.m_learn_on_auto_commit);
+    } else if (type == CET_ChangeByUser) {
+        reset_im();
+    } else if (type == CET_ChangeByInactivate) {
+        FcitxGlobalConfig* config = FcitxInstanceGetGlobalConfig(m_owner);
+        if (config->bSendTextWhenSwitchEng)
+            action_commit(m_config.m_learn_on_manual_commit);
+        else
+            reset_im();
+    }
+}
 
 /*
 vi:ts=4:nowrap:ai:expandtab

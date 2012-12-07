@@ -22,5 +22,5 @@ set( fcitx_anthy_sources
 
 add_definitions( -DLOCALEDIR=\"${CMAKE_INSTALL_PREFIX}/share/locale\" )
 
-fcitx_add_addon(fcitx-anthy ${fcitx_anthy_sources} )
-target_link_libraries (fcitx-anthy ${ANTHY_LIBRARIES})
+fcitx_add_addon_full(anthy SOURCES ${fcitx_anthy_sources}
+  LINK_LIBS ${ANTHY_LIBRARIES})

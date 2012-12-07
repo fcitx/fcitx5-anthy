@@ -5,7 +5,7 @@ project(fcitx-anthy)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
 FIND_PACKAGE(Gettext REQUIRED)
-FIND_PACKAGE(Fcitx 4.2.5 REQUIRED)
+FIND_PACKAGE(Fcitx 4.2.7 REQUIRED)
 FIND_PACKAGE(Anthy REQUIRED)
 
 # uninstall target
@@ -30,8 +30,7 @@ set(HAVE_CONFIG_H)
 
 set(libdir ${LIB_INSTALL_DIR})
 
-add_subdirectory(src)
-add_subdirectory(data)
 add_subdirectory(po)
+add_subdirectory(src)
 add_subdirectory(icon)
 add_subdirectory(profile)

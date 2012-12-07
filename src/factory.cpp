@@ -47,6 +47,7 @@ static void  FcitxAnthyReloadConfig(void* arg);
 static void  FcitxAnthySave(void* arg);
 static void  FcitxAnthyReset(void* arg);
 static void  FcitxAnthyResetIM(void* arg);
+static boolean  FcitxAnthyOnClose(void* arg, FcitxIMCloseEventType event);
 
 FCITX_EXPORT_API
 FcitxIMClass ime = {
@@ -79,6 +80,7 @@ void* FcitxAnthyCreate(FcitxInstance* instance)
     iface.DoReleaseInput = FcitxAnthyDoReleaseInput;
     iface.ReloadConfig = FcitxAnthyReloadConfig;
     iface.Save = FcitxAnthySave;
+    iface.OnClose = FcitxAnthyOnClose;
 
     FcitxInstanceRegisterIMv2(
         instance,
@@ -172,6 +174,14 @@ void FcitxAnthyReloadConfig(void* arg)
     anthy->configure();
     anthy->update_ui();
 }
+
+boolean FcitxAnthyOnClose(void* arg, FcitxIMCloseEventType event)
+{
+    AnthyInstance* anthy = (AnthyInstance*) arg;
+    anthy->auto_commit(event);
+    return false;
+}
+
 
 void
 SaveAnthyConfig(AnthyInstance* anthy)

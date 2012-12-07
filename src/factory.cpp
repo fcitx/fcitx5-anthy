@@ -47,7 +47,7 @@ static void  FcitxAnthyReloadConfig(void* arg);
 static void  FcitxAnthySave(void* arg);
 static void  FcitxAnthyReset(void* arg);
 static void  FcitxAnthyResetIM(void* arg);
-static boolean  FcitxAnthyOnClose(void* arg, FcitxIMCloseEventType event);
+static void FcitxAnthyOnClose(void* arg, FcitxIMCloseEventType event);
 
 FCITX_EXPORT_API
 FcitxIMClass ime = {
@@ -175,11 +175,10 @@ void FcitxAnthyReloadConfig(void* arg)
     anthy->update_ui();
 }
 
-boolean FcitxAnthyOnClose(void* arg, FcitxIMCloseEventType event)
+void FcitxAnthyOnClose(void* arg, FcitxIMCloseEventType event)
 {
     AnthyInstance* anthy = (AnthyInstance*) arg;
     anthy->auto_commit(event);
-    return false;
 }
 
 

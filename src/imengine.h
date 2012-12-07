@@ -182,7 +182,7 @@ private:
     void   select_candidate_no_direct         (unsigned int   item);
     bool   convert_kana                       (CandidateType  type);
 
-    bool   action_commit                      (bool           learn);
+    bool   action_commit                      (bool           learn, bool do_real_commit = true);
 
     bool   is_single_segment                  (void);
     bool   is_realtime_conversion             (void);

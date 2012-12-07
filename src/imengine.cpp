@@ -1035,18 +1035,20 @@ AnthyInstance::action_cancel_all (void)
 }
 
 bool
-AnthyInstance::action_commit (bool learn)
+AnthyInstance::action_commit (bool learn, bool do_real_commit)
 {
     if (!m_preedit.is_preediting ())
         return false;
 
     if (m_preedit.is_converting ()) {
-        commit_string (m_preedit.get_string ());
+        if (do_real_commit)
+            commit_string (m_preedit.get_string ());
         if (learn)
             m_preedit.commit ();
     } else {
         m_preedit.finish ();
-        commit_string (m_preedit.get_string ());
+        if (do_real_commit)
+            commit_string (m_preedit.get_string ());
     }
 
     reset_im ();
@@ -2370,7 +2372,7 @@ void AnthyInstance::reset_cursor(int cursor)
 void AnthyInstance::auto_commit(FcitxIMCloseEventType type)
 {
     if (type == CET_LostFocus) {
-        action_commit(m_config.m_learn_on_auto_commit);
+        action_commit(m_config.m_learn_on_auto_commit, false);
     } else if (type == CET_ChangeByUser) {
         reset_im();
     } else if (type == CET_ChangeByInactivate) {

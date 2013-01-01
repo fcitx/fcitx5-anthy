@@ -46,7 +46,7 @@ msgstr "Anthy"
 
 #: src/fcitx-anthy.conf.in:4
 msgid "Anthy Wrapper For Fcitx"
-msgstr "Fcitx 的Anthy 封裝"
+msgstr "Fcitx 的 Anthy 封裝"
 
 #: src/fcitx-anthy.desc:117 src/fcitx-anthy.desc:130
 msgid "Atok"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2012-12-07 16:12-0500\n"
-"PO-Revision-Date: 2012-07-25 13:08+0000\n"
+"POT-Creation-Date: 2013-01-18 15:08-0500\n"
+"PO-Revision-Date: 2012-12-09 08:55+0000\n"
 "Last-Translator: mongrelP＠一応求職中 木村 <kimi.nicoco@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/fcitx/language/"
 "ja/)\n"
@@ -18,7 +18,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/imengine.cpp:483
 #, c-format
@@ -97,7 +97,6 @@ msgstr "かなモード循環"
 msgid "Circle typing method"
 msgstr "入力方式切り替え"
 
-# unknown
 #: src/fcitx-anthy.desc:464 src/fcitx-anthy.desc:469
 msgid "Command"
 msgstr "コマンド"
@@ -107,27 +106,24 @@ msgid "Commit"
 msgstr "確定"
 
 #: src/fcitx-anthy.desc:266
-#, fuzzy
 msgid "Commit Reverse Learn"
-msgstr "選択文節を確定"
+msgstr ""
 
 #: src/fcitx-anthy.desc:341
 msgid "Commit first segment"
 msgstr "最初の文節を確定"
 
 #: src/fcitx-anthy.desc:351
-#, fuzzy
 msgid "Commit first segment reverse learn"
-msgstr "最初の文節を確定"
+msgstr ""
 
 #: src/fcitx-anthy.desc:346
 msgid "Commit selected segment"
 msgstr "選択文節を確定"
 
 #: src/fcitx-anthy.desc:356
-#, fuzzy
 msgid "Commit selected segment reverse learn"
-msgstr "選択文節を確定"
+msgstr ""
 
 #: src/imengine.cpp:772
 msgid "Conversion Mode"
@@ -224,11 +220,9 @@ msgid "Direct input"
 msgstr "直接入力"
 
 #: src/fcitx-anthy.desc:336
-#, fuzzy
 msgid "Expand segment"
-msgstr "単文節"
+msgstr ""
 
-# unknown
 #: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:11
 #: src/fcitx-anthy.desc:22 src/fcitx-anthy.desc:31 src/fcitx-anthy.desc:41
 #: src/fcitx-anthy.desc:51 src/fcitx-anthy.desc:61 src/fcitx-anthy.desc:66
@@ -265,14 +259,12 @@ msgid "Input mode"
 msgstr "入力モード"
 
 #: src/fcitx-anthy.desc:236
-#, fuzzy
 msgid "Insert Alternative space"
-msgstr "全角空白を挿入"
+msgstr ""
 
 #: src/fcitx-anthy.desc:241
-#, fuzzy
 msgid "Insert Half Space"
-msgstr "空白を挿入"
+msgstr ""
 
 #: src/fcitx-anthy.desc:231
 msgid "Insert space"
@@ -307,7 +299,6 @@ msgstr "カタカナ"
 msgid "Katakana mode"
 msgstr "カタカナモード"
 
-# unknown
 #: src/fcitx-anthy.desc:183 src/fcitx-anthy.desc:188 src/fcitx-anthy.desc:193
 #: src/fcitx-anthy.desc:198 src/fcitx-anthy.desc:203 src/fcitx-anthy.desc:208
 #: src/fcitx-anthy.desc:213 src/fcitx-anthy.desc:218 src/fcitx-anthy.desc:223
@@ -385,9 +376,8 @@ msgid "Multi segment"
 msgstr "連文節"
 
 #: src/fcitx-anthy.desc:38
-#, fuzzy
 msgid "Multi segment immediate"
-msgstr "連文節"
+msgstr ""
 
 #: src/imengine.cpp:561 src/fcitx-anthy.desc:29
 msgid "Nicola"
@@ -398,9 +388,8 @@ msgid "Nicola Table"
 msgstr "ニコラ配列"
 
 #: src/fcitx-anthy.desc:461
-#, fuzzy
 msgid "Nicola time"
-msgstr "ニコラ"
+msgstr ""
 
 #: src/fcitx-anthy.desc:155
 msgid "Nicola-A"
@@ -463,36 +452,32 @@ msgid "Select first candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:311
-#, fuzzy
 msgid "Select first segment"
-msgstr "最初の文節を確定"
+msgstr ""
 
 #: src/fcitx-anthy.desc:366
 msgid "Select last candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:316
-#, fuzzy
 msgid "Select last segment"
-msgstr "単文節"
+msgstr ""
 
 #: src/fcitx-anthy.desc:371
 msgid "Select next candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:321
-#, fuzzy
 msgid "Select next segment"
-msgstr "選択文節を確定"
+msgstr ""
 
 #: src/fcitx-anthy.desc:376
 msgid "Select prev candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:326
-#, fuzzy
 msgid "Select previous segment"
-msgstr "連文節"
+msgstr ""
 
 #: src/fcitx-anthy.desc:331
 msgid "Shrink segment"
@@ -503,9 +488,8 @@ msgid "Single segment"
 msgstr "単文節"
 
 #: src/fcitx-anthy.desc:39
-#, fuzzy
 msgid "Single segment immediate"
-msgstr "単文節"
+msgstr ""
 
 #: src/imengine.cpp:774
 msgid "Symbol Style"
@@ -564,9 +548,8 @@ msgid "Wide latin"
 msgstr "全角英数"
 
 #: src/fcitx-anthy.desc:49
-#, fuzzy
 msgid "Wide latin Japanese"
-msgstr "全角英字モ－ド"
+msgstr ""
 
 #: src/fcitx-anthy.desc:205
 msgid "Wide latin mode"
@@ -579,9 +562,3 @@ msgstr "tsuki-2-203-101"
 #: src/fcitx-anthy.desc:146
 msgid "tsuki-2-203-106"
 msgstr "tsuki-2-203-106"
-
-#~ msgid "Multi segement"
-#~ msgstr "連文節"
-
-#~ msgid "Single segement"
-#~ msgstr "単文節"

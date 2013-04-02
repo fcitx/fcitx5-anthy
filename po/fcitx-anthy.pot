@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-01-18 15:08-0500\n"
+"POT-Creation-Date: 2013-04-01 22:55-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,11 @@ msgstr ""
 msgid "(%d / %d)"
 msgstr ""
 
-#: src/imengine.cpp:551 src/fcitx-anthy.desc:16
+#: src/imengine.cpp:551 src/fcitx-anthy.desc:25
 msgid "Hiragana"
 msgstr ""
 
-#: src/imengine.cpp:552 src/fcitx-anthy.desc:17
+#: src/imengine.cpp:552 src/fcitx-anthy.desc:26
 msgid "Katakana"
 msgstr ""
 
@@ -42,19 +42,19 @@ msgstr ""
 msgid "Direct input"
 msgstr ""
 
-#: src/imengine.cpp:555 src/fcitx-anthy.desc:46
+#: src/imengine.cpp:555 src/fcitx-anthy.desc:55
 msgid "Wide latin"
 msgstr ""
 
-#: src/imengine.cpp:559 src/fcitx-anthy.desc:27
+#: src/imengine.cpp:559 src/fcitx-anthy.desc:36
 msgid "Romaji"
 msgstr ""
 
-#: src/imengine.cpp:560 src/fcitx-anthy.desc:28
+#: src/imengine.cpp:560 src/fcitx-anthy.desc:37
 msgid "Kana"
 msgstr ""
 
-#: src/imengine.cpp:561 src/fcitx-anthy.desc:29
+#: src/imengine.cpp:561 src/fcitx-anthy.desc:38
 msgid "Nicola"
 msgstr ""
 
@@ -62,11 +62,11 @@ msgstr ""
 msgid "Thumb shift"
 msgstr ""
 
-#: src/imengine.cpp:565 src/fcitx-anthy.desc:36
+#: src/imengine.cpp:565 src/fcitx-anthy.desc:45
 msgid "Multi segment"
 msgstr ""
 
-#: src/imengine.cpp:566 src/fcitx-anthy.desc:37
+#: src/imengine.cpp:566 src/fcitx-anthy.desc:46
 msgid "Single segment"
 msgstr ""
 
@@ -102,10 +102,11 @@ msgstr ""
 msgid "Anthy Wrapper For Fcitx"
 msgstr ""
 
-#: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:11
-#: src/fcitx-anthy.desc:22 src/fcitx-anthy.desc:31 src/fcitx-anthy.desc:41
-#: src/fcitx-anthy.desc:51 src/fcitx-anthy.desc:61 src/fcitx-anthy.desc:66
-#: src/fcitx-anthy.desc:71 src/fcitx-anthy.desc:76 src/fcitx-anthy.desc:81
+#: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:15
+#: src/fcitx-anthy.desc:20 src/fcitx-anthy.desc:31 src/fcitx-anthy.desc:40
+#: src/fcitx-anthy.desc:50 src/fcitx-anthy.desc:60 src/fcitx-anthy.desc:70
+#: src/fcitx-anthy.desc:75 src/fcitx-anthy.desc:80 src/fcitx-anthy.desc:85
+#: src/fcitx-anthy.desc:90
 msgid "General"
 msgstr ""
 
@@ -114,448 +115,464 @@ msgid "Page size"
 msgstr ""
 
 #: src/fcitx-anthy.desc:8
+msgid "Candidate List Layout"
+msgstr ""
+
+#: src/fcitx-anthy.desc:10
+msgid "Global"
+msgstr ""
+
+#: src/fcitx-anthy.desc:11
+msgid "Vertical"
+msgstr ""
+
+#: src/fcitx-anthy.desc:12
+msgid "Horizontal"
+msgstr ""
+
+#: src/fcitx-anthy.desc:17
 msgid "Number candidate of Triggers To Show Candidate Window"
 msgstr ""
 
-#: src/fcitx-anthy.desc:13
+#: src/fcitx-anthy.desc:22
 msgid "Input mode"
 msgstr ""
 
-#: src/fcitx-anthy.desc:18
+#: src/fcitx-anthy.desc:27
 msgid "Half Katakana"
 msgstr ""
 
-#: src/fcitx-anthy.desc:19 src/fcitx-anthy.desc:47
+#: src/fcitx-anthy.desc:28 src/fcitx-anthy.desc:56
 msgid "Latin"
 msgstr ""
 
-#: src/fcitx-anthy.desc:20
+#: src/fcitx-anthy.desc:29
 msgid "Wide Latin"
 msgstr ""
 
-#: src/fcitx-anthy.desc:24
+#: src/fcitx-anthy.desc:33
 msgid "Typing method"
 msgstr ""
 
-#: src/fcitx-anthy.desc:33
+#: src/fcitx-anthy.desc:42
 msgid "Conversion mode"
 msgstr ""
 
-#: src/fcitx-anthy.desc:38
+#: src/fcitx-anthy.desc:47
 msgid "Multi segment immediate"
 msgstr ""
 
-#: src/fcitx-anthy.desc:39
+#: src/fcitx-anthy.desc:48
 msgid "Single segment immediate"
 msgstr ""
 
-#: src/fcitx-anthy.desc:43
+#: src/fcitx-anthy.desc:52
 msgid "Period style"
 msgstr ""
 
-#: src/fcitx-anthy.desc:48 src/fcitx-anthy.desc:56
+#: src/fcitx-anthy.desc:57 src/fcitx-anthy.desc:65
 msgid "Japanese"
 msgstr ""
 
-#: src/fcitx-anthy.desc:49
+#: src/fcitx-anthy.desc:58
 msgid "Wide latin Japanese"
 msgstr ""
 
-#: src/fcitx-anthy.desc:53
+#: src/fcitx-anthy.desc:62
 msgid "Symbol style"
 msgstr ""
 
-#: src/fcitx-anthy.desc:57
+#: src/fcitx-anthy.desc:66
 msgid "Wide bracket and wide slash"
 msgstr ""
 
-#: src/fcitx-anthy.desc:58
+#: src/fcitx-anthy.desc:67
 msgid "Corner bracket and  wide slash"
 msgstr ""
 
-#: src/fcitx-anthy.desc:59
+#: src/fcitx-anthy.desc:68
 msgid "Wide bracket and Middle Dot"
 msgstr ""
 
-#: src/fcitx-anthy.desc:63
+#: src/fcitx-anthy.desc:72
 msgid "Learn on manual commit"
 msgstr ""
 
-#: src/fcitx-anthy.desc:68
+#: src/fcitx-anthy.desc:77
 msgid "Learn on auto commit"
 msgstr ""
 
-#: src/fcitx-anthy.desc:73
+#: src/fcitx-anthy.desc:82
 msgid "Allow split"
 msgstr ""
 
-#: src/fcitx-anthy.desc:78
+#: src/fcitx-anthy.desc:87
 msgid "Use direct key on predict"
 msgstr ""
 
-#: src/fcitx-anthy.desc:86 src/fcitx-anthy.desc:91 src/fcitx-anthy.desc:96
-#: src/fcitx-anthy.desc:101 src/fcitx-anthy.desc:106
+#: src/fcitx-anthy.desc:95 src/fcitx-anthy.desc:100 src/fcitx-anthy.desc:105
+#: src/fcitx-anthy.desc:110 src/fcitx-anthy.desc:115
 msgid "Interface"
 msgstr ""
 
-#: src/fcitx-anthy.desc:111 src/fcitx-anthy.desc:124 src/fcitx-anthy.desc:138
-#: src/fcitx-anthy.desc:149 src/fcitx-anthy.desc:163 src/fcitx-anthy.desc:168
-#: src/fcitx-anthy.desc:173 src/fcitx-anthy.desc:178
+#: src/fcitx-anthy.desc:120 src/fcitx-anthy.desc:133 src/fcitx-anthy.desc:147
+#: src/fcitx-anthy.desc:158 src/fcitx-anthy.desc:172 src/fcitx-anthy.desc:177
+#: src/fcitx-anthy.desc:182 src/fcitx-anthy.desc:187
 msgid "KeyProfile"
 msgstr ""
 
-#: src/fcitx-anthy.desc:114
+#: src/fcitx-anthy.desc:123
 msgid "Key binding profile"
 msgstr ""
 
-#: src/fcitx-anthy.desc:116 src/fcitx-anthy.desc:129 src/fcitx-anthy.desc:143
-#: src/fcitx-anthy.desc:154
+#: src/fcitx-anthy.desc:125 src/fcitx-anthy.desc:138 src/fcitx-anthy.desc:152
+#: src/fcitx-anthy.desc:163
 msgid "Default"
 msgstr ""
 
-#: src/fcitx-anthy.desc:117 src/fcitx-anthy.desc:130
+#: src/fcitx-anthy.desc:126 src/fcitx-anthy.desc:139
 msgid "Atok"
 msgstr ""
 
-#: src/fcitx-anthy.desc:118 src/fcitx-anthy.desc:132
+#: src/fcitx-anthy.desc:127 src/fcitx-anthy.desc:141
 msgid "Canna"
 msgstr ""
 
-#: src/fcitx-anthy.desc:119 src/fcitx-anthy.desc:133
+#: src/fcitx-anthy.desc:128 src/fcitx-anthy.desc:142
 msgid "MS IME"
 msgstr ""
 
-#: src/fcitx-anthy.desc:120 src/fcitx-anthy.desc:134
+#: src/fcitx-anthy.desc:129 src/fcitx-anthy.desc:143
 msgid "Vje Delta"
 msgstr ""
 
-#: src/fcitx-anthy.desc:121 src/fcitx-anthy.desc:135
+#: src/fcitx-anthy.desc:130 src/fcitx-anthy.desc:144
 msgid "WNN"
 msgstr ""
 
-#: src/fcitx-anthy.desc:122 src/fcitx-anthy.desc:136 src/fcitx-anthy.desc:147
-#: src/fcitx-anthy.desc:161
+#: src/fcitx-anthy.desc:131 src/fcitx-anthy.desc:145 src/fcitx-anthy.desc:156
+#: src/fcitx-anthy.desc:170
 msgid "Custom"
 msgstr ""
 
-#: src/fcitx-anthy.desc:127
+#: src/fcitx-anthy.desc:136
 msgid "Romaji Table"
 msgstr ""
 
-#: src/fcitx-anthy.desc:131
+#: src/fcitx-anthy.desc:140
 msgid "Azik"
 msgstr ""
 
-#: src/fcitx-anthy.desc:141
+#: src/fcitx-anthy.desc:150
 msgid "Kana Table"
 msgstr ""
 
-#: src/fcitx-anthy.desc:144
+#: src/fcitx-anthy.desc:153
 msgid "101kana"
 msgstr ""
 
-#: src/fcitx-anthy.desc:145
+#: src/fcitx-anthy.desc:154
 msgid "tsuki-2-203-101"
 msgstr ""
 
-#: src/fcitx-anthy.desc:146
+#: src/fcitx-anthy.desc:155
 msgid "tsuki-2-203-106"
 msgstr ""
 
-#: src/fcitx-anthy.desc:152
+#: src/fcitx-anthy.desc:161
 msgid "Nicola Table"
 msgstr ""
 
-#: src/fcitx-anthy.desc:155
+#: src/fcitx-anthy.desc:164
 msgid "Nicola-A"
 msgstr ""
 
-#: src/fcitx-anthy.desc:156
+#: src/fcitx-anthy.desc:165
 msgid "Nicola-F"
 msgstr ""
 
-#: src/fcitx-anthy.desc:157
+#: src/fcitx-anthy.desc:166
 msgid "Nicola-J"
 msgstr ""
 
-#: src/fcitx-anthy.desc:158
+#: src/fcitx-anthy.desc:167
 msgid "Oasys100J"
 msgstr ""
 
-#: src/fcitx-anthy.desc:159
+#: src/fcitx-anthy.desc:168
 msgid "Tron Dvorak"
 msgstr ""
 
-#: src/fcitx-anthy.desc:160
+#: src/fcitx-anthy.desc:169
 msgid "Tron Qwerty JP"
 msgstr ""
 
-#: src/fcitx-anthy.desc:166
+#: src/fcitx-anthy.desc:175
 msgid "Custom Key Binding"
 msgstr ""
 
-#: src/fcitx-anthy.desc:171
+#: src/fcitx-anthy.desc:180
 msgid "Custom Romaji Table"
 msgstr ""
 
-#: src/fcitx-anthy.desc:176
+#: src/fcitx-anthy.desc:185
 msgid "Custom Kana Table"
 msgstr ""
 
-#: src/fcitx-anthy.desc:181
+#: src/fcitx-anthy.desc:190
 msgid "Custom Nicola Table"
 msgstr ""
 
-#: src/fcitx-anthy.desc:183 src/fcitx-anthy.desc:188 src/fcitx-anthy.desc:193
-#: src/fcitx-anthy.desc:198 src/fcitx-anthy.desc:203 src/fcitx-anthy.desc:208
-#: src/fcitx-anthy.desc:213 src/fcitx-anthy.desc:218 src/fcitx-anthy.desc:223
-#: src/fcitx-anthy.desc:229 src/fcitx-anthy.desc:234 src/fcitx-anthy.desc:239
-#: src/fcitx-anthy.desc:244 src/fcitx-anthy.desc:249 src/fcitx-anthy.desc:254
-#: src/fcitx-anthy.desc:259 src/fcitx-anthy.desc:264 src/fcitx-anthy.desc:269
-#: src/fcitx-anthy.desc:274 src/fcitx-anthy.desc:279 src/fcitx-anthy.desc:284
-#: src/fcitx-anthy.desc:289 src/fcitx-anthy.desc:294 src/fcitx-anthy.desc:299
-#: src/fcitx-anthy.desc:304 src/fcitx-anthy.desc:309 src/fcitx-anthy.desc:314
-#: src/fcitx-anthy.desc:319 src/fcitx-anthy.desc:324 src/fcitx-anthy.desc:329
-#: src/fcitx-anthy.desc:334 src/fcitx-anthy.desc:339 src/fcitx-anthy.desc:344
-#: src/fcitx-anthy.desc:349 src/fcitx-anthy.desc:354 src/fcitx-anthy.desc:359
-#: src/fcitx-anthy.desc:364 src/fcitx-anthy.desc:369 src/fcitx-anthy.desc:374
-#: src/fcitx-anthy.desc:379 src/fcitx-anthy.desc:384 src/fcitx-anthy.desc:389
-#: src/fcitx-anthy.desc:394 src/fcitx-anthy.desc:399 src/fcitx-anthy.desc:404
-#: src/fcitx-anthy.desc:409 src/fcitx-anthy.desc:414 src/fcitx-anthy.desc:419
-#: src/fcitx-anthy.desc:424 src/fcitx-anthy.desc:429 src/fcitx-anthy.desc:434
-#: src/fcitx-anthy.desc:439 src/fcitx-anthy.desc:444 src/fcitx-anthy.desc:449
-#: src/fcitx-anthy.desc:454 src/fcitx-anthy.desc:459
+#: src/fcitx-anthy.desc:192 src/fcitx-anthy.desc:197 src/fcitx-anthy.desc:202
+#: src/fcitx-anthy.desc:207 src/fcitx-anthy.desc:212 src/fcitx-anthy.desc:217
+#: src/fcitx-anthy.desc:222 src/fcitx-anthy.desc:227 src/fcitx-anthy.desc:232
+#: src/fcitx-anthy.desc:238 src/fcitx-anthy.desc:243 src/fcitx-anthy.desc:248
+#: src/fcitx-anthy.desc:253 src/fcitx-anthy.desc:258 src/fcitx-anthy.desc:263
+#: src/fcitx-anthy.desc:268 src/fcitx-anthy.desc:273 src/fcitx-anthy.desc:278
+#: src/fcitx-anthy.desc:283 src/fcitx-anthy.desc:288 src/fcitx-anthy.desc:293
+#: src/fcitx-anthy.desc:298 src/fcitx-anthy.desc:303 src/fcitx-anthy.desc:308
+#: src/fcitx-anthy.desc:313 src/fcitx-anthy.desc:318 src/fcitx-anthy.desc:323
+#: src/fcitx-anthy.desc:328 src/fcitx-anthy.desc:333 src/fcitx-anthy.desc:338
+#: src/fcitx-anthy.desc:343 src/fcitx-anthy.desc:348 src/fcitx-anthy.desc:353
+#: src/fcitx-anthy.desc:358 src/fcitx-anthy.desc:363 src/fcitx-anthy.desc:368
+#: src/fcitx-anthy.desc:373 src/fcitx-anthy.desc:378 src/fcitx-anthy.desc:383
+#: src/fcitx-anthy.desc:388 src/fcitx-anthy.desc:393 src/fcitx-anthy.desc:398
+#: src/fcitx-anthy.desc:403 src/fcitx-anthy.desc:408 src/fcitx-anthy.desc:413
+#: src/fcitx-anthy.desc:418 src/fcitx-anthy.desc:423 src/fcitx-anthy.desc:428
+#: src/fcitx-anthy.desc:433 src/fcitx-anthy.desc:438 src/fcitx-anthy.desc:443
+#: src/fcitx-anthy.desc:448 src/fcitx-anthy.desc:453 src/fcitx-anthy.desc:458
+#: src/fcitx-anthy.desc:463 src/fcitx-anthy.desc:468
 msgid "Key"
 msgstr ""
 
-#: src/fcitx-anthy.desc:185
+#: src/fcitx-anthy.desc:194
 msgid "Circle input mode"
 msgstr ""
 
-#: src/fcitx-anthy.desc:190
+#: src/fcitx-anthy.desc:199
 msgid "Circle kana mode"
 msgstr ""
 
-#: src/fcitx-anthy.desc:195
+#: src/fcitx-anthy.desc:204
 msgid "Circle typing method"
 msgstr ""
 
-#: src/fcitx-anthy.desc:200
+#: src/fcitx-anthy.desc:209
 msgid "Latin mode"
 msgstr ""
 
-#: src/fcitx-anthy.desc:205
+#: src/fcitx-anthy.desc:214
 msgid "Wide latin mode"
 msgstr ""
 
-#: src/fcitx-anthy.desc:210
+#: src/fcitx-anthy.desc:219
 msgid "Hiragana mode"
 msgstr ""
 
-#: src/fcitx-anthy.desc:215
+#: src/fcitx-anthy.desc:224
 msgid "Katakana mode"
 msgstr ""
 
-#: src/fcitx-anthy.desc:220
+#: src/fcitx-anthy.desc:229
 msgid "Half Katakana mode"
 msgstr ""
 
-#: src/fcitx-anthy.desc:225
+#: src/fcitx-anthy.desc:234
 msgid "Cancel pseudo ascii mode"
 msgstr ""
 
-#: src/fcitx-anthy.desc:231
+#: src/fcitx-anthy.desc:240
 msgid "Insert space"
 msgstr ""
 
-#: src/fcitx-anthy.desc:236
+#: src/fcitx-anthy.desc:245
 msgid "Insert Alternative space"
 msgstr ""
 
-#: src/fcitx-anthy.desc:241
+#: src/fcitx-anthy.desc:250
 msgid "Insert Half Space"
 msgstr ""
 
-#: src/fcitx-anthy.desc:246
+#: src/fcitx-anthy.desc:255
 msgid "Insert wide space"
 msgstr ""
 
-#: src/fcitx-anthy.desc:251
+#: src/fcitx-anthy.desc:260
 msgid "BackSpace"
 msgstr ""
 
-#: src/fcitx-anthy.desc:256
+#: src/fcitx-anthy.desc:265
 msgid "Delete"
 msgstr ""
 
-#: src/fcitx-anthy.desc:261
+#: src/fcitx-anthy.desc:270
 msgid "Commit"
 msgstr ""
 
-#: src/fcitx-anthy.desc:266
+#: src/fcitx-anthy.desc:275
 msgid "Commit Reverse Learn"
 msgstr ""
 
-#: src/fcitx-anthy.desc:271
+#: src/fcitx-anthy.desc:280
 msgid "Convert"
 msgstr ""
 
-#: src/fcitx-anthy.desc:276
+#: src/fcitx-anthy.desc:285
 msgid "Predict"
 msgstr ""
 
-#: src/fcitx-anthy.desc:281
+#: src/fcitx-anthy.desc:290
 msgid "Cancel"
 msgstr ""
 
-#: src/fcitx-anthy.desc:286
+#: src/fcitx-anthy.desc:295
 msgid "Cancel all"
 msgstr ""
 
-#: src/fcitx-anthy.desc:291
+#: src/fcitx-anthy.desc:300
 msgid "Move Caret First"
 msgstr ""
 
-#: src/fcitx-anthy.desc:296
+#: src/fcitx-anthy.desc:305
 msgid "Move caret last"
 msgstr ""
 
-#: src/fcitx-anthy.desc:301
+#: src/fcitx-anthy.desc:310
 msgid "Move caret forward"
 msgstr ""
 
-#: src/fcitx-anthy.desc:306
+#: src/fcitx-anthy.desc:315
 msgid "Move caret backward"
 msgstr ""
 
-#: src/fcitx-anthy.desc:311
+#: src/fcitx-anthy.desc:320
 msgid "Select first segment"
 msgstr ""
 
-#: src/fcitx-anthy.desc:316
+#: src/fcitx-anthy.desc:325
 msgid "Select last segment"
 msgstr ""
 
-#: src/fcitx-anthy.desc:321
+#: src/fcitx-anthy.desc:330
 msgid "Select next segment"
 msgstr ""
 
-#: src/fcitx-anthy.desc:326
+#: src/fcitx-anthy.desc:335
 msgid "Select previous segment"
 msgstr ""
 
-#: src/fcitx-anthy.desc:331
+#: src/fcitx-anthy.desc:340
 msgid "Shrink segment"
 msgstr ""
 
-#: src/fcitx-anthy.desc:336
+#: src/fcitx-anthy.desc:345
 msgid "Expand segment"
 msgstr ""
 
-#: src/fcitx-anthy.desc:341
+#: src/fcitx-anthy.desc:350
 msgid "Commit first segment"
 msgstr ""
 
-#: src/fcitx-anthy.desc:346
+#: src/fcitx-anthy.desc:355
 msgid "Commit selected segment"
 msgstr ""
 
-#: src/fcitx-anthy.desc:351
+#: src/fcitx-anthy.desc:360
 msgid "Commit first segment reverse learn"
 msgstr ""
 
-#: src/fcitx-anthy.desc:356
+#: src/fcitx-anthy.desc:365
 msgid "Commit selected segment reverse learn"
 msgstr ""
 
-#: src/fcitx-anthy.desc:361
+#: src/fcitx-anthy.desc:370
 msgid "Select first candidate"
 msgstr ""
 
-#: src/fcitx-anthy.desc:366
+#: src/fcitx-anthy.desc:375
 msgid "Select last candidate"
 msgstr ""
 
-#: src/fcitx-anthy.desc:371
+#: src/fcitx-anthy.desc:380
 msgid "Select next candidate"
 msgstr ""
 
-#: src/fcitx-anthy.desc:376
+#: src/fcitx-anthy.desc:385
 msgid "Select prev candidate"
 msgstr ""
 
-#: src/fcitx-anthy.desc:381
+#: src/fcitx-anthy.desc:390
 msgid "Candidates Page Up"
 msgstr ""
 
-#: src/fcitx-anthy.desc:386
+#: src/fcitx-anthy.desc:395
 msgid "Candidates Page Down"
 msgstr ""
 
-#: src/fcitx-anthy.desc:391
+#: src/fcitx-anthy.desc:400
 msgid "Convert char type forward"
 msgstr ""
 
-#: src/fcitx-anthy.desc:396
+#: src/fcitx-anthy.desc:405
 msgid "Convert char type backward"
 msgstr ""
 
-#: src/fcitx-anthy.desc:401
+#: src/fcitx-anthy.desc:410
 msgid "Convert To Hiragana"
 msgstr ""
 
-#: src/fcitx-anthy.desc:406
+#: src/fcitx-anthy.desc:415
 msgid "Convert To Katakana"
 msgstr ""
 
-#: src/fcitx-anthy.desc:411
+#: src/fcitx-anthy.desc:420
 msgid "Convert To Half"
 msgstr ""
 
-#: src/fcitx-anthy.desc:416
+#: src/fcitx-anthy.desc:425
 msgid "Convert To Half Katakana"
 msgstr ""
 
-#: src/fcitx-anthy.desc:421
+#: src/fcitx-anthy.desc:430
 msgid "Convert To Wide Latin"
 msgstr ""
 
-#: src/fcitx-anthy.desc:426
+#: src/fcitx-anthy.desc:435
 msgid "Convert To Latin"
 msgstr ""
 
-#: src/fcitx-anthy.desc:431
+#: src/fcitx-anthy.desc:440
 msgid "Reconvert"
 msgstr ""
 
-#: src/fcitx-anthy.desc:436 src/fcitx-anthy.desc:471
+#: src/fcitx-anthy.desc:445 src/fcitx-anthy.desc:480
 msgid "Dict admin"
 msgstr ""
 
-#: src/fcitx-anthy.desc:441
+#: src/fcitx-anthy.desc:450
 msgid "Add Word"
 msgstr ""
 
-#: src/fcitx-anthy.desc:446
+#: src/fcitx-anthy.desc:455
 msgid "Left thumb key"
 msgstr ""
 
-#: src/fcitx-anthy.desc:451
+#: src/fcitx-anthy.desc:460
 msgid "Right thumb key"
 msgstr ""
 
-#: src/fcitx-anthy.desc:456
+#: src/fcitx-anthy.desc:465
 msgid "Ro key for kana layout"
 msgstr ""
 
-#: src/fcitx-anthy.desc:461
+#: src/fcitx-anthy.desc:470
 msgid "Nicola time"
 msgstr ""
 
-#: src/fcitx-anthy.desc:464 src/fcitx-anthy.desc:469
+#: src/fcitx-anthy.desc:473 src/fcitx-anthy.desc:478
 msgid "Command"
 msgstr ""
 
-#: src/fcitx-anthy.desc:466
+#: src/fcitx-anthy.desc:475
 msgid "Add word"
 msgstr ""

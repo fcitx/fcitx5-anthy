@@ -534,6 +534,7 @@ void
 Conversion::get_candidates (FcitxCandidateWordList *table, int segment_id)
 {
     FcitxCandidateWordReset(table);
+    FcitxCandidateWordSetLayoutHint(table, m_anthy.get_config()->m_candidate_layout);
     int selected = get_selected_candidate();
 
     if (is_predicting ()) {

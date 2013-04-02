@@ -3,6 +3,15 @@ Type=Integer
 Description=Page size
 DefaultValue=10
 
+[General/CandidateLayout]
+Type=Enum
+Description=Candidate List Layout
+EnumCount=3
+Enum0=Global
+Enum1=Vertical
+Enum2=Horizontal
+DefaultValue=Vertical
+
 [General/NTriggersToShowCandWin]
 Type=Integer
 Description=Number candidate of Triggers To Show Candidate Window

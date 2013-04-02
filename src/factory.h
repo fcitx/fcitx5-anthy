@@ -29,6 +29,7 @@
 
 #include <anthy/anthy.h>
 #include <fcitx/instance.h>
+#include <fcitx/candidate.h>
 #include "action.h"
 #include "style_file.h"
 
@@ -186,6 +187,7 @@ struct FcitxAnthyConfig {
 
     int     m_nicola_time;
 
+    FcitxCandidateLayoutHint m_candidate_layout;
     SpaceType m_space_type;
     InputMode m_input_mode;
     SymbolStyle m_symbol_style;

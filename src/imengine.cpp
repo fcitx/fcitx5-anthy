@@ -1587,7 +1587,6 @@ AnthyInstance::action_candidates_page_down (void)
     int end = FcitxCandidateWordGetListSize(m_lookup_table);
 
     if (m_cursor_pos + m_config.m_page_size < end) {
-        FcitxLog(INFO, "page down");
         m_cursor_pos += m_config.m_page_size;
         select_candidate_no_direct (m_cursor_pos);
     }
@@ -1992,6 +1991,7 @@ void AnthyInstance::commit_string(std::string str)
 CONFIG_DESC_DEFINE(GetFcitxAnthyConfigDesc, "fcitx-anthy.desc")
 
 CONFIG_BINDING_BEGIN(FcitxAnthyConfig)
+CONFIG_BINDING_REGISTER("General", "CandidateLayout", m_candidate_layout)
 CONFIG_BINDING_REGISTER("General", "InputMode", m_input_mode)
 CONFIG_BINDING_REGISTER("General", "TypingMethod", m_typing_method)
 CONFIG_BINDING_REGISTER("General", "ConversionMode", m_conversion_mode)

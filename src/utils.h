@@ -50,4 +50,13 @@ void util_keypad_to_string    (std::string              &str,
 void util_launch_program      (const char          *command);
 
 
+
+bool util_surrounding_get_safe_delta(uint from, uint to, int32_t *delta);
+
+bool util_surrounding_get_anchor_pos_from_selection(
+    const std::string &surrounding_text,
+    const std::string &selected_text,
+    uint cursor_pos,
+    uint *anchor_pos);
+
 #endif /* __FCITX_ANTHY_UTILS_H__ */

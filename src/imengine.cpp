@@ -41,6 +41,7 @@
 #include <fcitx-config/xdg.h>
 #include <fcitx-config/fcitx-config.h>
 #include <fcitx-utils/log.h>
+#include <fcitx/module/clipboard/fcitx-clipboard.h>
 
 #define ARRAY_LEN(a) (sizeof(a) / sizeof(a[0]))
 
@@ -1892,6 +1893,58 @@ AnthyInstance::action_reconvert (void)
 {
     if (m_preedit.is_preediting ())
         return false;
+
+    FcitxInputContext* ic = FcitxInstanceGetCurrentIC(m_owner);
+
+    if (!ic || !(ic->contextCaps & CAPACITY_SURROUNDING_TEXT)) {
+        return true;
+    }
+    uint cursor_pos = 0;
+    uint anchor_pos = 0;
+    int32_t relative_selected_length = 0;
+
+    char* str = NULL;
+    if (!FcitxInstanceGetSurroundingText(m_owner, ic, &str, &cursor_pos, &anchor_pos)) {
+        return true;
+    }
+
+    const std::string surrounding_text(str);
+
+    if (cursor_pos == anchor_pos) {
+        const char* primary = NULL;
+
+        if ((primary = FcitxClipboardGetPrimarySelection(m_owner, NULL)) != NULL) {
+            uint new_anchor_pos = 0;
+            const std::string primary_text(primary);
+            if (util_surrounding_get_anchor_pos_from_selection(
+                    surrounding_text, primary_text,
+                    cursor_pos, &new_anchor_pos)) {
+                anchor_pos = new_anchor_pos;
+            } else {
+                return true;
+            }
+        } else {
+            // There is no selection text.
+            return true;
+        }
+    }
+
+    if (!util_surrounding_get_safe_delta(cursor_pos, anchor_pos,
+                                         &relative_selected_length)) {
+        return true;
+    }
+
+    const uint32_t selection_start = std::min(cursor_pos, anchor_pos);
+    const uint32_t selection_length = abs(relative_selected_length);
+    std::string text = util_utf8_string_substr(surrounding_text, selection_start, selection_length);
+
+    FcitxInstanceDeleteSurroundingText(m_owner, ic,
+                                       cursor_pos > anchor_pos ? -relative_selected_length : 0,
+                                       relative_selected_length);
+
+    m_preedit.convert(text);
+    set_preedition ();
+    set_lookup_table ();
 
     return true;
 }

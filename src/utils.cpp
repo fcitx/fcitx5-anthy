@@ -23,6 +23,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <fcitx-utils/utf8.h>
+#include <limits>
 
 #include "utils.h"
 #include "default_tables.h"
@@ -269,4 +270,102 @@ util_launch_program (const char *command)
     fcitx_utils_start_process(args);
 
     free(args);
+}
+
+bool util_surrounding_get_safe_delta(uint from, uint to, int32_t *delta) {
+    const int64_t kInt32AbsMax =
+        llabs(static_cast<int64_t>(std::numeric_limits<int32_t>::max()));
+    const int64_t kInt32AbsMin =
+        llabs(static_cast<int64_t>(std::numeric_limits<int32_t>::min()));
+    const int64_t kInt32SafeAbsMax =
+        std::min(kInt32AbsMax, kInt32AbsMin);
+
+    const int64_t diff = static_cast<int64_t>(from) - static_cast<int64_t>(to);
+    if (llabs(diff) > kInt32SafeAbsMax) {
+        return false;
+    }
+
+    *delta = static_cast<int32_t>(diff);
+    return true;
+}
+
+// Returns true if |surrounding_text| contains |selected_text|
+// from |cursor_pos| to |*anchor_pos|.
+// Otherwise returns false.
+static bool search_anchor_pos_forward(
+    const std::string &surrounding_text,
+    const std::string &selected_text,
+    size_t selected_chars_len,
+    uint cursor_pos,
+    uint *anchor_pos) {
+
+    size_t len = fcitx_utf8_strlen(surrounding_text.c_str());
+    if (len < cursor_pos) {
+        return false;
+    }
+
+    size_t offset = fcitx_utf8_get_nth_char(surrounding_text.c_str(), cursor_pos) - surrounding_text.c_str();
+
+    std::string new_start = surrounding_text.substr(offset);
+
+    if (new_start.compare(0, new_start.size(), selected_text) != 0) {
+        return false;
+    }
+    *anchor_pos = cursor_pos + selected_chars_len;
+    return true;
+}
+
+// Returns true if |surrounding_text| contains |selected_text|
+// from |*anchor_pos| to |cursor_pos|.
+// Otherwise returns false.
+bool search_anchor_pos_backward(
+    const std::string &surrounding_text,
+    const std::string &selected_text,
+    size_t selected_chars_len,
+    uint cursor_pos,
+    uint *anchor_pos) {
+    if (cursor_pos < selected_chars_len) {
+        return false;
+    }
+
+    // Skip |iter| to (potential) anchor pos.
+    const uint skip_count = cursor_pos - selected_chars_len;
+    if (skip_count > cursor_pos) {
+        return false;
+    }
+    size_t offset = fcitx_utf8_get_nth_char(surrounding_text.c_str(), skip_count) - surrounding_text.c_str();
+
+    std::string new_start = surrounding_text.substr(offset);
+
+    if (new_start.compare(0, new_start.size(), selected_text) != 0) {
+        return false;
+    }
+    *anchor_pos = skip_count;
+    return true;
+}
+
+bool util_surrounding_get_anchor_pos_from_selection(
+    const std::string &surrounding_text,
+    const std::string &selected_text,
+    uint cursor_pos,
+    uint *anchor_pos) {
+    if (surrounding_text.empty()) {
+        return false;
+    }
+
+    if (selected_text.empty()) {
+        return false;
+    }
+
+    const size_t selected_chars_len = fcitx_utf8_strlen(selected_text.c_str());
+
+    if (search_anchor_pos_forward(surrounding_text, selected_text,
+                                  selected_chars_len,
+                                  cursor_pos, anchor_pos)) {
+        return true;
+    }
+
+    return search_anchor_pos_backward(surrounding_text, selected_text,
+                                      selected_chars_len,
+                                      cursor_pos, anchor_pos);
 }

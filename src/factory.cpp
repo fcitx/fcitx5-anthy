@@ -49,14 +49,16 @@ static void  FcitxAnthyReset(void* arg);
 static void  FcitxAnthyResetIM(void* arg);
 static void FcitxAnthyOnClose(void* arg, FcitxIMCloseEventType event);
 
-FCITX_EXPORT_API
-FcitxIMClass ime = {
+FCITX_DEFINE_PLUGIN(fcitx_anthy, ime2, FcitxIMClass2) = {
     FcitxAnthyCreate,
-    FcitxAnthyDestory
+    FcitxAnthyDestory,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
 };
-
-FCITX_EXPORT_API
-int ABI_VERSION = FCITX_ABI_VERSION;
 
 void* FcitxAnthyCreate(FcitxInstance* instance)
 {

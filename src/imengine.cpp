@@ -156,6 +156,35 @@ AnthyInstance::AnthyInstance (FcitxInstance* instance) :
 
 AnthyInstance::~AnthyInstance ()
 {
+    FcitxConfigFree(&m_config.gconfig);
+    if (m_status_installed) {
+#define FINALIZE_MENU(VARNAME) \
+        FcitxUIUnRegisterMenu(m_owner, &VARNAME); \
+        fcitx_utils_free(VARNAME.name); \
+        fcitx_utils_free(VARNAME.candStatusBind); \
+        FcitxMenuFinalize(&VARNAME);
+
+        FINALIZE_MENU(m_input_mode_menu);
+        FINALIZE_MENU(m_typing_method_menu);
+        FINALIZE_MENU(m_conversion_mode_menu);
+        FINALIZE_MENU(m_period_style_menu);
+        FINALIZE_MENU(m_symbol_style_menu);
+    }
+
+    if (m_config.m_custom_romaji_table) {
+        delete m_config.m_custom_romaji_table;
+        m_config.m_custom_romaji_table = NULL;
+    }
+
+    if (m_config.m_custom_kana_table) {
+        delete m_config.m_custom_kana_table;
+        m_config.m_custom_kana_table = NULL;
+    }
+
+    if (m_config.m_custom_nicola_table) {
+        delete m_config.m_custom_nicola_table;
+        m_config.m_custom_nicola_table = NULL;
+    }
 }
 
 // FIXME!
@@ -2028,6 +2057,7 @@ void AnthyInstance::commit_string(std::string str)
 {                                                                              \
     FcitxHotkey* hk = NULL;                                                    \
     std::string name = #key;                                                   \
+    FcitxHotkeyFree(m_config.m_key_profile.m_hk_##key);                        \
     if (loaded) {                                                              \
         std::string str = (ACTION_CONFIG_##key##_KEY);                         \
         std::string keystr;                                                    \

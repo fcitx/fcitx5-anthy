@@ -48,10 +48,8 @@ public:
         return m_name < b.m_name;
     }
 
-private:
     bool match_key_event (const KeyEvent &key);
 
-private:
     std::string         m_name;
     std::string         m_desc;
     PMF            m_pmf;

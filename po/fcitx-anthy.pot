@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-04-01 22:55-0400\n"
+"POT-Creation-Date: 2013-04-11 15:09-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,84 +17,84 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/factory.cpp:89 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
+#: src/factory.cpp:91 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
 msgid "Anthy"
 msgstr ""
 
-#: src/imengine.cpp:483
+#: src/imengine.cpp:513
 #, c-format
 msgid "(%d / %d)"
 msgstr ""
 
-#: src/imengine.cpp:551 src/fcitx-anthy.desc:25
+#: src/imengine.cpp:581 src/fcitx-anthy.desc:25
 msgid "Hiragana"
 msgstr ""
 
-#: src/imengine.cpp:552 src/fcitx-anthy.desc:26
+#: src/imengine.cpp:582 src/fcitx-anthy.desc:26
 msgid "Katakana"
 msgstr ""
 
-#: src/imengine.cpp:553
+#: src/imengine.cpp:583
 msgid "Half width katakana"
 msgstr ""
 
-#: src/imengine.cpp:554
+#: src/imengine.cpp:584
 msgid "Direct input"
 msgstr ""
 
-#: src/imengine.cpp:555 src/fcitx-anthy.desc:55
+#: src/imengine.cpp:585 src/fcitx-anthy.desc:55
 msgid "Wide latin"
 msgstr ""
 
-#: src/imengine.cpp:559 src/fcitx-anthy.desc:36
+#: src/imengine.cpp:589 src/fcitx-anthy.desc:36
 msgid "Romaji"
 msgstr ""
 
-#: src/imengine.cpp:560 src/fcitx-anthy.desc:37
+#: src/imengine.cpp:590 src/fcitx-anthy.desc:37
 msgid "Kana"
 msgstr ""
 
-#: src/imengine.cpp:561 src/fcitx-anthy.desc:38
+#: src/imengine.cpp:591 src/fcitx-anthy.desc:38
 msgid "Nicola"
 msgstr ""
 
-#: src/imengine.cpp:561
+#: src/imengine.cpp:591
 msgid "Thumb shift"
 msgstr ""
 
-#: src/imengine.cpp:565 src/fcitx-anthy.desc:45
+#: src/imengine.cpp:595 src/fcitx-anthy.desc:45
 msgid "Multi segment"
 msgstr ""
 
-#: src/imengine.cpp:566 src/fcitx-anthy.desc:46
+#: src/imengine.cpp:596 src/fcitx-anthy.desc:46
 msgid "Single segment"
 msgstr ""
 
-#: src/imengine.cpp:567
+#: src/imengine.cpp:597
 msgid "Convert as you type (Multi segment)"
 msgstr ""
 
-#: src/imengine.cpp:568
+#: src/imengine.cpp:598
 msgid "Convert as you type (Single segment)"
 msgstr ""
 
-#: src/imengine.cpp:770
+#: src/imengine.cpp:800
 msgid "Input Mode"
 msgstr ""
 
-#: src/imengine.cpp:771
+#: src/imengine.cpp:801
 msgid "Typing Method"
 msgstr ""
 
-#: src/imengine.cpp:772
+#: src/imengine.cpp:802
 msgid "Conversion Mode"
 msgstr ""
 
-#: src/imengine.cpp:773
+#: src/imengine.cpp:803
 msgid "Period Style"
 msgstr ""
 
-#: src/imengine.cpp:774
+#: src/imengine.cpp:804
 msgid "Symbol Style"
 msgstr ""
 

@@ -16,6 +16,8 @@ DefaultValue=Vertical
 Type=Integer
 Description=Number candidate of Triggers To Show Candidate Window
 DefaultValue=2
+Min=0
+Max=7
 
 [General/InputMode]
 Type=Enum

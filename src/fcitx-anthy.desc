@@ -91,7 +91,7 @@ DefaultValue=True
 
 [General/ShowCandidatesLabel]
 Type=Boolean
-DefaultValue=Show candidates label
+Description=Show candidates label
 DefaultValue=True
 
 [Interface/ShowInputMode]

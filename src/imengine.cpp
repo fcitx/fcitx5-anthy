@@ -1553,7 +1553,7 @@ AnthyInstance::action_select_prev_candidate (void)
     if (end < 0)
         end = 0;
     if (m_cursor_pos == 0)
-        m_cursor_pos = end;
+        m_cursor_pos = end - 1;
     else
         m_cursor_pos --;
     m_n_conv_key_pressed++;

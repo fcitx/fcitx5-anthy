@@ -307,7 +307,7 @@ Conversion::update_preedit (void)
 
         FcitxMessageType type;
         if ((int) seg_id == m_cur_segment) {
-            type = (FcitxMessageType) (MSG_HIGHLIGHT | MSG_CODE);
+            type = (FcitxMessageType) (MSG_HIGHLIGHT | MSG_FIRSTCAND);
         } else {
             type = (FcitxMessageType) MSG_INPUT;
         }

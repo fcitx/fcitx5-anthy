@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-04-18 15:36-0400\n"
+"POT-Creation-Date: 2013-04-20 13:24-0400\n"
 "PO-Revision-Date: 2013-04-02 15:06+0000\n"
 "Last-Translator: いくや あわしろ <ikunya@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/fcitx/language/"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/imengine.cpp:513
+#: src/imengine.cpp:515
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -29,17 +29,27 @@ msgstr "(%d / %d)"
 msgid "101kana"
 msgstr "101カナ"
 
-#: src/fcitx-anthy.desc:452
+#: src/fcitx-anthy.desc:462
 msgid "Add Word"
 msgstr "単語を追加"
 
-#: src/fcitx-anthy.desc:477
+#: src/fcitx-anthy.desc:487
 msgid "Add word"
 msgstr "単語の追加"
 
 #: src/fcitx-anthy.desc:84
 msgid "Allow split"
 msgstr "分割を許可"
+
+#: src/fcitx-anthy.desc:387
+#, fuzzy
+msgid "Alternative Select next candidate"
+msgstr "次の候補に移動"
+
+#: src/fcitx-anthy.desc:397
+#, fuzzy
+msgid "Alternative Select prev candidate"
+msgstr "前の候補に移動"
 
 #: src/factory.cpp:91 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
 msgid "Anthy"
@@ -77,11 +87,11 @@ msgstr "一時アスキーモードをやめる"
 msgid "Candidate List Layout"
 msgstr "候補リストのレイアウト"
 
-#: src/fcitx-anthy.desc:397
+#: src/fcitx-anthy.desc:407
 msgid "Candidates Page Down"
 msgstr "前のページへ"
 
-#: src/fcitx-anthy.desc:392
+#: src/fcitx-anthy.desc:402
 msgid "Candidates Page Up"
 msgstr "次のページへ"
 
@@ -101,7 +111,7 @@ msgstr "かなモード循環"
 msgid "Circle typing method"
 msgstr "入力方式循環"
 
-#: src/fcitx-anthy.desc:475 src/fcitx-anthy.desc:480
+#: src/fcitx-anthy.desc:485 src/fcitx-anthy.desc:490
 msgid "Command"
 msgstr "コマンド"
 
@@ -129,7 +139,7 @@ msgstr "選択文節を確定"
 msgid "Commit selected segment reverse learn"
 msgstr "再変換した選択済み文節を確定"
 
-#: src/imengine.cpp:802
+#: src/imengine.cpp:804
 msgid "Conversion Mode"
 msgstr "変換モード"
 
@@ -141,43 +151,43 @@ msgstr "変換モード"
 msgid "Convert"
 msgstr "変換"
 
-#: src/fcitx-anthy.desc:422
+#: src/fcitx-anthy.desc:432
 msgid "Convert To Half"
 msgstr "半角変換"
 
-#: src/fcitx-anthy.desc:427
+#: src/fcitx-anthy.desc:437
 msgid "Convert To Half Katakana"
 msgstr "半角カタカナ変換"
 
-#: src/fcitx-anthy.desc:412
+#: src/fcitx-anthy.desc:422
 msgid "Convert To Hiragana"
 msgstr "ひらがな変換"
 
-#: src/fcitx-anthy.desc:417
+#: src/fcitx-anthy.desc:427
 msgid "Convert To Katakana"
 msgstr "カタカナ変換"
 
-#: src/fcitx-anthy.desc:437
+#: src/fcitx-anthy.desc:447
 msgid "Convert To Latin"
 msgstr "英数変換"
 
-#: src/fcitx-anthy.desc:432
+#: src/fcitx-anthy.desc:442
 msgid "Convert To Wide Latin"
 msgstr "全角英数変換"
 
-#: src/imengine.cpp:597
+#: src/imengine.cpp:599
 msgid "Convert as you type (Multi segment)"
 msgstr "逐次変換(連文節)"
 
-#: src/imengine.cpp:598
+#: src/imengine.cpp:600
 msgid "Convert as you type (Single segment)"
 msgstr "逐次変換(単文節)"
 
-#: src/fcitx-anthy.desc:407
+#: src/fcitx-anthy.desc:417
 msgid "Convert char type backward"
 msgstr "前の文字種に変換"
 
-#: src/fcitx-anthy.desc:402
+#: src/fcitx-anthy.desc:412
 msgid "Convert char type forward"
 msgstr "次の文字種に変換"
 
@@ -215,11 +225,11 @@ msgstr "既定"
 msgid "Delete"
 msgstr "削除"
 
-#: src/fcitx-anthy.desc:447 src/fcitx-anthy.desc:482
+#: src/fcitx-anthy.desc:457 src/fcitx-anthy.desc:492
 msgid "Dict admin"
 msgstr "辞書の編集"
 
-#: src/imengine.cpp:584
+#: src/imengine.cpp:586
 msgid "Direct input"
 msgstr "直接入力"
 
@@ -247,11 +257,11 @@ msgstr "半角カタカナ"
 msgid "Half Katakana mode"
 msgstr "半角カタカナモード"
 
-#: src/imengine.cpp:583
+#: src/imengine.cpp:585
 msgid "Half width katakana"
 msgstr "半角カタカナ"
 
-#: src/imengine.cpp:581 src/fcitx-anthy.desc:27
+#: src/imengine.cpp:583 src/fcitx-anthy.desc:27
 msgid "Hiragana"
 msgstr "ひらがな"
 
@@ -263,7 +273,7 @@ msgstr "ひらがなモード"
 msgid "Horizontal"
 msgstr "水平"
 
-#: src/imengine.cpp:800
+#: src/imengine.cpp:802
 msgid "Input Mode"
 msgstr "入力モード"
 
@@ -296,7 +306,7 @@ msgstr "インターフェイス"
 msgid "Japanese"
 msgstr "日本語"
 
-#: src/imengine.cpp:590 src/fcitx-anthy.desc:39
+#: src/imengine.cpp:592 src/fcitx-anthy.desc:39
 msgid "Kana"
 msgstr "かな"
 
@@ -304,7 +314,7 @@ msgstr "かな"
 msgid "Kana Table"
 msgstr "カナ配列"
 
-#: src/imengine.cpp:582 src/fcitx-anthy.desc:28
+#: src/imengine.cpp:584 src/fcitx-anthy.desc:28
 msgid "Katakana"
 msgstr "カタカナ"
 
@@ -330,7 +340,8 @@ msgstr "カタカナモード"
 #: src/fcitx-anthy.desc:420 src/fcitx-anthy.desc:425 src/fcitx-anthy.desc:430
 #: src/fcitx-anthy.desc:435 src/fcitx-anthy.desc:440 src/fcitx-anthy.desc:445
 #: src/fcitx-anthy.desc:450 src/fcitx-anthy.desc:455 src/fcitx-anthy.desc:460
-#: src/fcitx-anthy.desc:465 src/fcitx-anthy.desc:470
+#: src/fcitx-anthy.desc:465 src/fcitx-anthy.desc:470 src/fcitx-anthy.desc:475
+#: src/fcitx-anthy.desc:480
 msgid "Key"
 msgstr "キー"
 
@@ -360,7 +371,7 @@ msgstr "自動学習"
 msgid "Learn on manual commit"
 msgstr "手動学習"
 
-#: src/fcitx-anthy.desc:457
+#: src/fcitx-anthy.desc:467
 msgid "Left thumb key"
 msgstr "左親指キー"
 
@@ -384,7 +395,7 @@ msgstr "前方へ移動"
 msgid "Move caret last"
 msgstr "最後へ移動"
 
-#: src/imengine.cpp:595 src/fcitx-anthy.desc:47
+#: src/imengine.cpp:597 src/fcitx-anthy.desc:47
 msgid "Multi segment"
 msgstr "連文節"
 
@@ -392,7 +403,7 @@ msgstr "連文節"
 msgid "Multi segment immediate"
 msgstr "逐次変換 (連文節)"
 
-#: src/imengine.cpp:591 src/fcitx-anthy.desc:40
+#: src/imengine.cpp:593 src/fcitx-anthy.desc:40
 msgid "Nicola"
 msgstr "Nicola"
 
@@ -400,7 +411,7 @@ msgstr "Nicola"
 msgid "Nicola Table"
 msgstr "Nicola配列"
 
-#: src/fcitx-anthy.desc:472
+#: src/fcitx-anthy.desc:482
 msgid "Nicola time"
 msgstr "Nicola時間"
 
@@ -428,7 +439,7 @@ msgstr "Oasys100J"
 msgid "Page size"
 msgstr "候補ウィンドウの項目数"
 
-#: src/imengine.cpp:803
+#: src/imengine.cpp:805
 msgid "Period Style"
 msgstr "句読点のスタイル"
 
@@ -440,19 +451,19 @@ msgstr "句読点のスタイル"
 msgid "Predict"
 msgstr "予測"
 
-#: src/fcitx-anthy.desc:442
+#: src/fcitx-anthy.desc:452
 msgid "Reconvert"
 msgstr "再変換"
 
-#: src/fcitx-anthy.desc:462
+#: src/fcitx-anthy.desc:472
 msgid "Right thumb key"
 msgstr "右親指キー"
 
-#: src/fcitx-anthy.desc:467
+#: src/fcitx-anthy.desc:477
 msgid "Ro key for kana layout"
 msgstr "かなレイアウト用の「ろ」キー"
 
-#: src/imengine.cpp:589 src/fcitx-anthy.desc:38
+#: src/imengine.cpp:591 src/fcitx-anthy.desc:38
 msgid "Romaji"
 msgstr "ローマ字"
 
@@ -484,7 +495,7 @@ msgstr "次の候補に移動"
 msgid "Select next segment"
 msgstr "次の文節を選択"
 
-#: src/fcitx-anthy.desc:387
+#: src/fcitx-anthy.desc:392
 msgid "Select prev candidate"
 msgstr "前の候補に移動"
 
@@ -492,11 +503,41 @@ msgstr "前の候補に移動"
 msgid "Select previous segment"
 msgstr "前の文節を選択"
 
+#: src/fcitx-anthy.desc:94
+#, fuzzy
+msgid "Show candidates label"
+msgstr "次のページへ"
+
+#: src/fcitx-anthy.desc:109
+#, fuzzy
+msgid "Show conversion mode"
+msgstr "変換モード"
+
+#: src/fcitx-anthy.desc:99
+#, fuzzy
+msgid "Show input mode"
+msgstr "入力モード"
+
+#: src/fcitx-anthy.desc:114
+#, fuzzy
+msgid "Show period style"
+msgstr "句読点のスタイル"
+
+#: src/fcitx-anthy.desc:119
+#, fuzzy
+msgid "Show symbol style"
+msgstr "記号のスタイル"
+
+#: src/fcitx-anthy.desc:104
+#, fuzzy
+msgid "Show typing method"
+msgstr "入力方式"
+
 #: src/fcitx-anthy.desc:342
 msgid "Shrink segment"
 msgstr "文節を縮める"
 
-#: src/imengine.cpp:596 src/fcitx-anthy.desc:48
+#: src/imengine.cpp:598 src/fcitx-anthy.desc:48
 msgid "Single segment"
 msgstr "単文節"
 
@@ -504,7 +545,7 @@ msgstr "単文節"
 msgid "Single segment immediate"
 msgstr "逐次変換 (単文節)"
 
-#: src/imengine.cpp:804
+#: src/imengine.cpp:806
 msgid "Symbol Style"
 msgstr "記号のスタイル"
 
@@ -512,7 +553,7 @@ msgstr "記号のスタイル"
 msgid "Symbol style"
 msgstr "記号のスタイル"
 
-#: src/imengine.cpp:591
+#: src/imengine.cpp:593
 msgid "Thumb shift"
 msgstr "親指シフト"
 
@@ -524,7 +565,7 @@ msgstr "Tron Dvorak"
 msgid "Tron Qwerty JP"
 msgstr "Tron Qwerty JP"
 
-#: src/imengine.cpp:801
+#: src/imengine.cpp:803
 msgid "Typing Method"
 msgstr "入力方式"
 
@@ -560,7 +601,7 @@ msgstr "全角かぎかっこと中点"
 msgid "Wide bracket and wide slash"
 msgstr "全角かぎかっことスラッシュ"
 
-#: src/imengine.cpp:585 src/fcitx-anthy.desc:57
+#: src/imengine.cpp:587 src/fcitx-anthy.desc:57
 msgid "Wide latin"
 msgstr "全角英数"
 

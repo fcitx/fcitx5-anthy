@@ -96,27 +96,27 @@ DefaultValue=True
 
 [Interface/ShowInputMode]
 Type=Boolean
-DefaultValue=Show input mode
+Description=Show input mode
 DefaultValue=True
 
 [Interface/ShowTypingMethod]
 Type=Boolean
-DefaultValue=Show typing method
+Description=Show typing method
 DefaultValue=True
 
 [Interface/ShowConversionMode]
 Type=Boolean
-DefaultValue=Show conversion mode
+Description=Show conversion mode
 DefaultValue=True
 
 [Interface/ShowPeriodStyle]
 Type=Boolean
-DefaultValue=Show period style
+Description=Show period style
 DefaultValue=False
 
 [Interface/ShowSymbolStyle]
 Type=Boolean
-DefaultValue=Show symbol style
+Description=Show symbol style
 DefaultValue=False
 
 [KeyProfile/KeyBindingProfile]

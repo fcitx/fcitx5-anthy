@@ -2182,7 +2182,7 @@ std::string AnthyInstance::get_key_profile()
         "atok.sty",
         "canna.sty",
         "msime.sty",
-        "vje-delta.sty"
+        "vje-delta.sty",
         "wnn.sty",
         m_config.m_key_theme_file
     };
@@ -2190,7 +2190,7 @@ std::string AnthyInstance::get_key_profile()
     if (m_config.m_key_profile_enum >= ARRAY_LEN(key_profile))
         m_config.m_key_profile_enum = 0;
 
-    return key_profile[m_config.m_key_profile_enum];
+    return key_profile[m_config.m_key_profile_enum] ? key_profile[m_config.m_key_profile_enum] : "" ;
 }
 
 

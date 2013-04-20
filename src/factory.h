@@ -98,6 +98,8 @@ struct AnthyKeyProfile {
     FcitxHotkey m_hk_SELECT_LAST_CANDIDATE[2];
     FcitxHotkey m_hk_SELECT_NEXT_CANDIDATE[2];
     FcitxHotkey m_hk_SELECT_PREV_CANDIDATE[2];
+    FcitxHotkey m_hk_SELECT_NEXT_CANDIDATE_ALTER[2];
+    FcitxHotkey m_hk_SELECT_PREV_CANDIDATE_ALTER[2];
 
     // segment keys
     FcitxHotkey m_hk_SELECT_FIRST_SEGMENT[2];

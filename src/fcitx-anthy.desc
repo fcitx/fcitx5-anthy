@@ -382,10 +382,20 @@ Type=Hotkey
 Description=Select next candidate
 DefaultValue=SPACE TAB
 
+[Key/SelectNextCandidateKeyAlter]
+Type=Hotkey
+Description=Alternative Select next candidate
+DefaultValue=HENKAN DOWN
+
 [Key/SelectPrevCandidateKey]
 Type=Hotkey
 Description=Select prev candidate
-DefaultValue=SHIFT_TAB
+DefaultValue=SHIFT_TAB UP
+
+[Key/SelectPrevCandidateKeyAlter]
+Type=Hotkey
+Description=Alternative Select prev candidate
+DefaultValue=
 
 [Key/CandidatesPageUpKey]
 Type=Hotkey

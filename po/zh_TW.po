@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-#   <alisha.4m@gmail.com>, 2012.
-# Alisha <alisha.4m@gmail.com>, 2012.
+# Alisha <alisha.4m@gmail.com>, 2012
+# Alisha <alisha.4m@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-04-20 13:24-0400\n"
-"PO-Revision-Date: 2013-04-02 09:08+0000\n"
-"Last-Translator: Alisha <alisha.4m@gmail.com>\n"
+"POT-Creation-Date: 2013-04-21 20:16-0400\n"
+"PO-Revision-Date: 2013-04-20 17:26+0000\n"
+"Last-Translator: Xuetian Weng <wengxt@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/fcitx/"
 "language/zh_TW/)\n"
 "Language: zh_TW\n"
@@ -42,14 +42,12 @@ msgid "Allow split"
 msgstr "允許分割"
 
 #: src/fcitx-anthy.desc:387
-#, fuzzy
 msgid "Alternative Select next candidate"
-msgstr "選擇下一個候選詞"
+msgstr ""
 
 #: src/fcitx-anthy.desc:397
-#, fuzzy
 msgid "Alternative Select prev candidate"
-msgstr "選擇前一個候選詞"
+msgstr ""
 
 #: src/factory.cpp:91 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
 msgid "Anthy"
@@ -504,34 +502,28 @@ msgid "Select previous segment"
 msgstr "選擇上一段"
 
 #: src/fcitx-anthy.desc:94
-#, fuzzy
 msgid "Show candidates label"
-msgstr "候選字上一頁"
+msgstr ""
 
 #: src/fcitx-anthy.desc:109
-#, fuzzy
 msgid "Show conversion mode"
-msgstr "轉換模式"
+msgstr ""
 
 #: src/fcitx-anthy.desc:99
-#, fuzzy
 msgid "Show input mode"
-msgstr "輸入模式"
+msgstr ""
 
 #: src/fcitx-anthy.desc:114
-#, fuzzy
 msgid "Show period style"
-msgstr "逗號風格"
+msgstr ""
 
 #: src/fcitx-anthy.desc:119
-#, fuzzy
 msgid "Show symbol style"
-msgstr "符號樣式"
+msgstr ""
 
 #: src/fcitx-anthy.desc:104
-#, fuzzy
 msgid "Show typing method"
-msgstr "輸入方案"
+msgstr ""
 
 #: src/fcitx-anthy.desc:342
 msgid "Shrink segment"

@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# mongrelP＠一応求職中 木村 <kimi.nicoco@gmail.com>, 2012.
-# Weng Xuetian <wengxt@gmail.com>, 2012.
+# mongrelP＠一応求職中 木村 <kimi.nicoco@gmail.com>, 2012
+# Xuetian Weng <wengxt@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-04-20 13:24-0400\n"
-"PO-Revision-Date: 2013-04-02 15:06+0000\n"
-"Last-Translator: いくや あわしろ <ikunya@gmail.com>\n"
+"POT-Creation-Date: 2013-04-21 20:16-0400\n"
+"PO-Revision-Date: 2013-04-20 17:26+0000\n"
+"Last-Translator: Xuetian Weng <wengxt@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/fcitx/language/"
 "ja/)\n"
 "Language: ja\n"
@@ -42,14 +42,12 @@ msgid "Allow split"
 msgstr "分割を許可"
 
 #: src/fcitx-anthy.desc:387
-#, fuzzy
 msgid "Alternative Select next candidate"
-msgstr "次の候補に移動"
+msgstr ""
 
 #: src/fcitx-anthy.desc:397
-#, fuzzy
 msgid "Alternative Select prev candidate"
-msgstr "前の候補に移動"
+msgstr ""
 
 #: src/factory.cpp:91 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
 msgid "Anthy"
@@ -504,34 +502,28 @@ msgid "Select previous segment"
 msgstr "前の文節を選択"
 
 #: src/fcitx-anthy.desc:94
-#, fuzzy
 msgid "Show candidates label"
-msgstr "次のページへ"
+msgstr ""
 
 #: src/fcitx-anthy.desc:109
-#, fuzzy
 msgid "Show conversion mode"
-msgstr "変換モード"
+msgstr ""
 
 #: src/fcitx-anthy.desc:99
-#, fuzzy
 msgid "Show input mode"
-msgstr "入力モード"
+msgstr ""
 
 #: src/fcitx-anthy.desc:114
-#, fuzzy
 msgid "Show period style"
-msgstr "句読点のスタイル"
+msgstr ""
 
 #: src/fcitx-anthy.desc:119
-#, fuzzy
 msgid "Show symbol style"
-msgstr "記号のスタイル"
+msgstr ""
 
 #: src/fcitx-anthy.desc:104
-#, fuzzy
 msgid "Show typing method"
-msgstr "入力方式"
+msgstr ""
 
 #: src/fcitx-anthy.desc:342
 msgid "Shrink segment"

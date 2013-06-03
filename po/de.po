@@ -1,0 +1,613 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+# mar well <marwell.1980@freenet.de>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: fcitx\n"
+"Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
+"POT-Creation-Date: 2013-06-03 14:02-0400\n"
+"PO-Revision-Date: 2013-05-22 06:30+0000\n"
+"Last-Translator: mar well <marwell.1980@freenet.de>\n"
+"Language-Team: German (http://www.transifex.com/projects/p/fcitx/language/"
+"de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/imengine.cpp:515
+#, c-format
+msgid "(%d / %d)"
+msgstr ""
+
+#: src/fcitx-anthy.desc:155
+msgid "101kana"
+msgstr ""
+
+#: src/fcitx-anthy.desc:462
+msgid "Add Word"
+msgstr ""
+
+#: src/fcitx-anthy.desc:487
+msgid "Add word"
+msgstr ""
+
+#: src/fcitx-anthy.desc:84
+msgid "Allow split"
+msgstr ""
+
+#: src/fcitx-anthy.desc:387
+msgid "Alternative Select next candidate"
+msgstr ""
+
+#: src/fcitx-anthy.desc:397
+msgid "Alternative Select prev candidate"
+msgstr ""
+
+#: src/factory.cpp:91 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
+msgid "Anthy"
+msgstr ""
+
+#: src/fcitx-anthy.conf.in:4
+msgid "Anthy Wrapper For Fcitx"
+msgstr ""
+
+#: src/fcitx-anthy.desc:128 src/fcitx-anthy.desc:141
+msgid "Atok"
+msgstr ""
+
+#: src/fcitx-anthy.desc:142
+msgid "Azik"
+msgstr ""
+
+#: src/fcitx-anthy.desc:262
+msgid "BackSpace"
+msgstr ""
+
+#: src/fcitx-anthy.desc:292
+msgid "Cancel"
+msgstr ""
+
+#: src/fcitx-anthy.desc:297
+msgid "Cancel all"
+msgstr ""
+
+#: src/fcitx-anthy.desc:236
+msgid "Cancel pseudo ascii mode"
+msgstr ""
+
+#: src/fcitx-anthy.desc:8
+msgid "Candidate List Layout"
+msgstr ""
+
+#: src/fcitx-anthy.desc:407
+msgid "Candidates Page Down"
+msgstr ""
+
+#: src/fcitx-anthy.desc:402
+msgid "Candidates Page Up"
+msgstr ""
+
+#: src/fcitx-anthy.desc:129 src/fcitx-anthy.desc:143
+msgid "Canna"
+msgstr ""
+
+#: src/fcitx-anthy.desc:196
+msgid "Circle input mode"
+msgstr ""
+
+#: src/fcitx-anthy.desc:201
+msgid "Circle kana mode"
+msgstr ""
+
+#: src/fcitx-anthy.desc:206
+msgid "Circle typing method"
+msgstr ""
+
+#: src/fcitx-anthy.desc:485 src/fcitx-anthy.desc:490
+msgid "Command"
+msgstr ""
+
+#: src/fcitx-anthy.desc:272
+msgid "Commit"
+msgstr ""
+
+#: src/fcitx-anthy.desc:277
+msgid "Commit Reverse Learn"
+msgstr ""
+
+#: src/fcitx-anthy.desc:352
+msgid "Commit first segment"
+msgstr ""
+
+#: src/fcitx-anthy.desc:362
+msgid "Commit first segment reverse learn"
+msgstr ""
+
+#: src/fcitx-anthy.desc:357
+msgid "Commit selected segment"
+msgstr ""
+
+#: src/fcitx-anthy.desc:367
+msgid "Commit selected segment reverse learn"
+msgstr ""
+
+#: src/imengine.cpp:804
+msgid "Conversion Mode"
+msgstr ""
+
+#: src/fcitx-anthy.desc:44
+msgid "Conversion mode"
+msgstr "Umwandlungsmodus"
+
+#: src/fcitx-anthy.desc:282
+msgid "Convert"
+msgstr ""
+
+#: src/fcitx-anthy.desc:432
+msgid "Convert To Half"
+msgstr ""
+
+#: src/fcitx-anthy.desc:437
+msgid "Convert To Half Katakana"
+msgstr ""
+
+#: src/fcitx-anthy.desc:422
+msgid "Convert To Hiragana"
+msgstr ""
+
+#: src/fcitx-anthy.desc:427
+msgid "Convert To Katakana"
+msgstr ""
+
+#: src/fcitx-anthy.desc:447
+msgid "Convert To Latin"
+msgstr ""
+
+#: src/fcitx-anthy.desc:442
+msgid "Convert To Wide Latin"
+msgstr ""
+
+#: src/imengine.cpp:599
+msgid "Convert as you type (Multi segment)"
+msgstr ""
+
+#: src/imengine.cpp:600
+msgid "Convert as you type (Single segment)"
+msgstr ""
+
+#: src/fcitx-anthy.desc:417
+msgid "Convert char type backward"
+msgstr ""
+
+#: src/fcitx-anthy.desc:412
+msgid "Convert char type forward"
+msgstr ""
+
+#: src/fcitx-anthy.desc:69
+msgid "Corner bracket and  wide slash"
+msgstr ""
+
+#: src/fcitx-anthy.desc:133 src/fcitx-anthy.desc:147 src/fcitx-anthy.desc:158
+#: src/fcitx-anthy.desc:172
+msgid "Custom"
+msgstr ""
+
+#: src/fcitx-anthy.desc:187
+msgid "Custom Kana Table"
+msgstr ""
+
+#: src/fcitx-anthy.desc:177
+msgid "Custom Key Binding"
+msgstr ""
+
+#: src/fcitx-anthy.desc:192
+msgid "Custom Nicola Table"
+msgstr ""
+
+#: src/fcitx-anthy.desc:182
+msgid "Custom Romaji Table"
+msgstr ""
+
+#: src/fcitx-anthy.desc:127 src/fcitx-anthy.desc:140 src/fcitx-anthy.desc:154
+#: src/fcitx-anthy.desc:165
+msgid "Default"
+msgstr ""
+
+#: src/fcitx-anthy.desc:267
+msgid "Delete"
+msgstr ""
+
+#: src/fcitx-anthy.desc:457 src/fcitx-anthy.desc:492
+msgid "Dict admin"
+msgstr ""
+
+#: src/imengine.cpp:586
+msgid "Direct input"
+msgstr ""
+
+#: src/fcitx-anthy.desc:347
+msgid "Expand segment"
+msgstr ""
+
+#: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:15
+#: src/fcitx-anthy.desc:22 src/fcitx-anthy.desc:33 src/fcitx-anthy.desc:42
+#: src/fcitx-anthy.desc:52 src/fcitx-anthy.desc:62 src/fcitx-anthy.desc:72
+#: src/fcitx-anthy.desc:77 src/fcitx-anthy.desc:82 src/fcitx-anthy.desc:87
+#: src/fcitx-anthy.desc:92
+msgid "General"
+msgstr ""
+
+#: src/fcitx-anthy.desc:10
+msgid "Global"
+msgstr ""
+
+#: src/fcitx-anthy.desc:29
+msgid "Half Katakana"
+msgstr ""
+
+#: src/fcitx-anthy.desc:231
+msgid "Half Katakana mode"
+msgstr ""
+
+#: src/imengine.cpp:585
+msgid "Half width katakana"
+msgstr ""
+
+#: src/imengine.cpp:583 src/fcitx-anthy.desc:27
+msgid "Hiragana"
+msgstr ""
+
+#: src/fcitx-anthy.desc:221
+msgid "Hiragana mode"
+msgstr ""
+
+#: src/fcitx-anthy.desc:12
+msgid "Horizontal"
+msgstr ""
+
+#: src/imengine.cpp:802
+msgid "Input Mode"
+msgstr ""
+
+#: src/fcitx-anthy.desc:24
+msgid "Input mode"
+msgstr "Eingabemodus"
+
+#: src/fcitx-anthy.desc:247
+msgid "Insert Alternative space"
+msgstr ""
+
+#: src/fcitx-anthy.desc:252
+msgid "Insert Half Space"
+msgstr ""
+
+#: src/fcitx-anthy.desc:242
+msgid "Insert space"
+msgstr ""
+
+#: src/fcitx-anthy.desc:257
+msgid "Insert wide space"
+msgstr ""
+
+#: src/fcitx-anthy.desc:97 src/fcitx-anthy.desc:102 src/fcitx-anthy.desc:107
+#: src/fcitx-anthy.desc:112 src/fcitx-anthy.desc:117
+msgid "Interface"
+msgstr ""
+
+#: src/fcitx-anthy.desc:59 src/fcitx-anthy.desc:67
+msgid "Japanese"
+msgstr ""
+
+#: src/imengine.cpp:592 src/fcitx-anthy.desc:39
+msgid "Kana"
+msgstr ""
+
+#: src/fcitx-anthy.desc:152
+msgid "Kana Table"
+msgstr ""
+
+#: src/imengine.cpp:584 src/fcitx-anthy.desc:28
+msgid "Katakana"
+msgstr ""
+
+#: src/fcitx-anthy.desc:226
+msgid "Katakana mode"
+msgstr ""
+
+#: src/fcitx-anthy.desc:194 src/fcitx-anthy.desc:199 src/fcitx-anthy.desc:204
+#: src/fcitx-anthy.desc:209 src/fcitx-anthy.desc:214 src/fcitx-anthy.desc:219
+#: src/fcitx-anthy.desc:224 src/fcitx-anthy.desc:229 src/fcitx-anthy.desc:234
+#: src/fcitx-anthy.desc:240 src/fcitx-anthy.desc:245 src/fcitx-anthy.desc:250
+#: src/fcitx-anthy.desc:255 src/fcitx-anthy.desc:260 src/fcitx-anthy.desc:265
+#: src/fcitx-anthy.desc:270 src/fcitx-anthy.desc:275 src/fcitx-anthy.desc:280
+#: src/fcitx-anthy.desc:285 src/fcitx-anthy.desc:290 src/fcitx-anthy.desc:295
+#: src/fcitx-anthy.desc:300 src/fcitx-anthy.desc:305 src/fcitx-anthy.desc:310
+#: src/fcitx-anthy.desc:315 src/fcitx-anthy.desc:320 src/fcitx-anthy.desc:325
+#: src/fcitx-anthy.desc:330 src/fcitx-anthy.desc:335 src/fcitx-anthy.desc:340
+#: src/fcitx-anthy.desc:345 src/fcitx-anthy.desc:350 src/fcitx-anthy.desc:355
+#: src/fcitx-anthy.desc:360 src/fcitx-anthy.desc:365 src/fcitx-anthy.desc:370
+#: src/fcitx-anthy.desc:375 src/fcitx-anthy.desc:380 src/fcitx-anthy.desc:385
+#: src/fcitx-anthy.desc:390 src/fcitx-anthy.desc:395 src/fcitx-anthy.desc:400
+#: src/fcitx-anthy.desc:405 src/fcitx-anthy.desc:410 src/fcitx-anthy.desc:415
+#: src/fcitx-anthy.desc:420 src/fcitx-anthy.desc:425 src/fcitx-anthy.desc:430
+#: src/fcitx-anthy.desc:435 src/fcitx-anthy.desc:440 src/fcitx-anthy.desc:445
+#: src/fcitx-anthy.desc:450 src/fcitx-anthy.desc:455 src/fcitx-anthy.desc:460
+#: src/fcitx-anthy.desc:465 src/fcitx-anthy.desc:470 src/fcitx-anthy.desc:475
+#: src/fcitx-anthy.desc:480
+msgid "Key"
+msgstr ""
+
+#: src/fcitx-anthy.desc:125
+msgid "Key binding profile"
+msgstr ""
+
+#: src/fcitx-anthy.desc:122 src/fcitx-anthy.desc:135 src/fcitx-anthy.desc:149
+#: src/fcitx-anthy.desc:160 src/fcitx-anthy.desc:174 src/fcitx-anthy.desc:179
+#: src/fcitx-anthy.desc:184 src/fcitx-anthy.desc:189
+msgid "KeyProfile"
+msgstr ""
+
+#: src/fcitx-anthy.desc:30 src/fcitx-anthy.desc:58
+msgid "Latin"
+msgstr ""
+
+#: src/fcitx-anthy.desc:211
+msgid "Latin mode"
+msgstr ""
+
+#: src/fcitx-anthy.desc:79
+msgid "Learn on auto commit"
+msgstr ""
+
+#: src/fcitx-anthy.desc:74
+msgid "Learn on manual commit"
+msgstr ""
+
+#: src/fcitx-anthy.desc:467
+msgid "Left thumb key"
+msgstr ""
+
+#: src/fcitx-anthy.desc:130 src/fcitx-anthy.desc:144
+msgid "MS IME"
+msgstr ""
+
+#: src/fcitx-anthy.desc:302
+msgid "Move Caret First"
+msgstr ""
+
+#: src/fcitx-anthy.desc:317
+msgid "Move caret backward"
+msgstr ""
+
+#: src/fcitx-anthy.desc:312
+msgid "Move caret forward"
+msgstr ""
+
+#: src/fcitx-anthy.desc:307
+msgid "Move caret last"
+msgstr ""
+
+#: src/imengine.cpp:597 src/fcitx-anthy.desc:47
+msgid "Multi segment"
+msgstr ""
+
+#: src/fcitx-anthy.desc:49
+msgid "Multi segment immediate"
+msgstr ""
+
+#: src/imengine.cpp:593 src/fcitx-anthy.desc:40
+msgid "Nicola"
+msgstr ""
+
+#: src/fcitx-anthy.desc:163
+msgid "Nicola Table"
+msgstr ""
+
+#: src/fcitx-anthy.desc:482
+msgid "Nicola time"
+msgstr ""
+
+#: src/fcitx-anthy.desc:166
+msgid "Nicola-A"
+msgstr ""
+
+#: src/fcitx-anthy.desc:167
+msgid "Nicola-F"
+msgstr ""
+
+#: src/fcitx-anthy.desc:168
+msgid "Nicola-J"
+msgstr ""
+
+#: src/fcitx-anthy.desc:17
+msgid "Number candidate of Triggers To Show Candidate Window"
+msgstr ""
+
+#: src/fcitx-anthy.desc:169
+msgid "Oasys100J"
+msgstr ""
+
+#: src/fcitx-anthy.desc:3
+msgid "Page size"
+msgstr ""
+
+#: src/imengine.cpp:805
+msgid "Period Style"
+msgstr ""
+
+#: src/fcitx-anthy.desc:54
+msgid "Period style"
+msgstr ""
+
+#: src/fcitx-anthy.desc:287
+msgid "Predict"
+msgstr ""
+
+#: src/fcitx-anthy.desc:452
+msgid "Reconvert"
+msgstr ""
+
+#: src/fcitx-anthy.desc:472
+msgid "Right thumb key"
+msgstr ""
+
+#: src/fcitx-anthy.desc:477
+msgid "Ro key for kana layout"
+msgstr ""
+
+#: src/imengine.cpp:591 src/fcitx-anthy.desc:38
+msgid "Romaji"
+msgstr ""
+
+#: src/fcitx-anthy.desc:138
+msgid "Romaji Table"
+msgstr ""
+
+#: src/fcitx-anthy.desc:372
+msgid "Select first candidate"
+msgstr ""
+
+#: src/fcitx-anthy.desc:322
+msgid "Select first segment"
+msgstr ""
+
+#: src/fcitx-anthy.desc:377
+msgid "Select last candidate"
+msgstr ""
+
+#: src/fcitx-anthy.desc:327
+msgid "Select last segment"
+msgstr ""
+
+#: src/fcitx-anthy.desc:382
+msgid "Select next candidate"
+msgstr ""
+
+#: src/fcitx-anthy.desc:332
+msgid "Select next segment"
+msgstr ""
+
+#: src/fcitx-anthy.desc:392
+msgid "Select prev candidate"
+msgstr ""
+
+#: src/fcitx-anthy.desc:337
+msgid "Select previous segment"
+msgstr ""
+
+#: src/fcitx-anthy.desc:94
+msgid "Show candidates label"
+msgstr ""
+
+#: src/fcitx-anthy.desc:109
+msgid "Show conversion mode"
+msgstr ""
+
+#: src/fcitx-anthy.desc:99
+msgid "Show input mode"
+msgstr ""
+
+#: src/fcitx-anthy.desc:114
+msgid "Show period style"
+msgstr ""
+
+#: src/fcitx-anthy.desc:119
+msgid "Show symbol style"
+msgstr ""
+
+#: src/fcitx-anthy.desc:104
+msgid "Show typing method"
+msgstr ""
+
+#: src/fcitx-anthy.desc:342
+msgid "Shrink segment"
+msgstr ""
+
+#: src/imengine.cpp:598 src/fcitx-anthy.desc:48
+msgid "Single segment"
+msgstr ""
+
+#: src/fcitx-anthy.desc:50
+msgid "Single segment immediate"
+msgstr ""
+
+#: src/imengine.cpp:806
+msgid "Symbol Style"
+msgstr ""
+
+#: src/fcitx-anthy.desc:64
+msgid "Symbol style"
+msgstr "Stil Symbol"
+
+#: src/imengine.cpp:593
+msgid "Thumb shift"
+msgstr ""
+
+#: src/fcitx-anthy.desc:170
+msgid "Tron Dvorak"
+msgstr ""
+
+#: src/fcitx-anthy.desc:171
+msgid "Tron Qwerty JP"
+msgstr ""
+
+#: src/imengine.cpp:803
+msgid "Typing Method"
+msgstr ""
+
+#: src/fcitx-anthy.desc:35
+msgid "Typing method"
+msgstr "Schreibmethode"
+
+#: src/fcitx-anthy.desc:89
+msgid "Use direct key on predict"
+msgstr ""
+
+#: src/fcitx-anthy.desc:11
+msgid "Vertical"
+msgstr ""
+
+#: src/fcitx-anthy.desc:131 src/fcitx-anthy.desc:145
+msgid "Vje Delta"
+msgstr ""
+
+#: src/fcitx-anthy.desc:132 src/fcitx-anthy.desc:146
+msgid "WNN"
+msgstr ""
+
+#: src/fcitx-anthy.desc:31
+msgid "Wide Latin"
+msgstr ""
+
+#: src/fcitx-anthy.desc:70
+msgid "Wide bracket and Middle Dot"
+msgstr ""
+
+#: src/fcitx-anthy.desc:68
+msgid "Wide bracket and wide slash"
+msgstr ""
+
+#: src/imengine.cpp:587 src/fcitx-anthy.desc:57
+msgid "Wide latin"
+msgstr ""
+
+#: src/fcitx-anthy.desc:60
+msgid "Wide latin Japanese"
+msgstr ""
+
+#: src/fcitx-anthy.desc:216
+msgid "Wide latin mode"
+msgstr ""
+
+#: src/fcitx-anthy.desc:156
+msgid "tsuki-2-203-101"
+msgstr ""
+
+#: src/fcitx-anthy.desc:157
+msgid "tsuki-2-203-106"
+msgstr ""

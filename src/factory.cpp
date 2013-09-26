@@ -73,6 +73,7 @@ void* FcitxAnthyCreate(FcitxInstance* instance)
     }
 
     bindtextdomain("fcitx-anthy", LOCALEDIR);
+    bind_textdomain_codeset("fcitx-anthy", "UTF-8");
 
     FcitxIMIFace iface;
     memset(&iface, 0, sizeof(FcitxIMIFace));

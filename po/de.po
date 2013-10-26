@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Seneca, 2013
 # mar well <marwell.1980@freenet.de>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-06-03 14:02-0400\n"
-"PO-Revision-Date: 2013-05-22 06:30+0000\n"
-"Last-Translator: mar well <marwell.1980@freenet.de>\n"
+"POT-Creation-Date: 2013-10-26 14:42-0400\n"
+"PO-Revision-Date: 2013-10-17 07:26+0000\n"
+"Last-Translator: Seneca\n"
 "Language-Team: German (http://www.transifex.com/projects/p/fcitx/language/"
 "de/)\n"
 "Language: de\n"
@@ -48,7 +49,7 @@ msgstr ""
 msgid "Alternative Select prev candidate"
 msgstr ""
 
-#: src/factory.cpp:91 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
+#: src/factory.cpp:92 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
 msgid "Anthy"
 msgstr ""
 
@@ -66,19 +67,19 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:262
 msgid "BackSpace"
-msgstr ""
+msgstr "Backspace"
 
 #: src/fcitx-anthy.desc:292
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: src/fcitx-anthy.desc:297
 msgid "Cancel all"
-msgstr ""
+msgstr "Alle abbrechen"
 
 #: src/fcitx-anthy.desc:236
 msgid "Cancel pseudo ascii mode"
-msgstr ""
+msgstr "Pseudo-ASCII-Modus beenden"
 
 #: src/fcitx-anthy.desc:8
 msgid "Candidate List Layout"
@@ -86,11 +87,11 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:407
 msgid "Candidates Page Down"
-msgstr ""
+msgstr "Nächste Kandidaten"
 
 #: src/fcitx-anthy.desc:402
 msgid "Candidates Page Up"
-msgstr ""
+msgstr "Vorherige Kandidaten"
 
 #: src/fcitx-anthy.desc:129 src/fcitx-anthy.desc:143
 msgid "Canna"
@@ -98,15 +99,15 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:196
 msgid "Circle input mode"
-msgstr ""
+msgstr "Zwischen Eingabemodi wechseln"
 
 #: src/fcitx-anthy.desc:201
 msgid "Circle kana mode"
-msgstr ""
+msgstr "Zwischen Kana-Modi wechseln"
 
 #: src/fcitx-anthy.desc:206
 msgid "Circle typing method"
-msgstr ""
+msgstr "Zwischen Eingabemethoden wechseln"
 
 #: src/fcitx-anthy.desc:485 src/fcitx-anthy.desc:490
 msgid "Command"
@@ -114,27 +115,27 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:272
 msgid "Commit"
-msgstr ""
+msgstr "Übernehmen"
 
 #: src/fcitx-anthy.desc:277
 msgid "Commit Reverse Learn"
-msgstr ""
+msgstr "Übernehmen und aus dem Wörterbuch löschen"
 
 #: src/fcitx-anthy.desc:352
 msgid "Commit first segment"
-msgstr ""
+msgstr "Erstes Segment übernehmen"
 
 #: src/fcitx-anthy.desc:362
 msgid "Commit first segment reverse learn"
-msgstr ""
+msgstr "Erstes Segment übernehmen und aus dem Wörterbuch löschen"
 
 #: src/fcitx-anthy.desc:357
 msgid "Commit selected segment"
-msgstr ""
+msgstr "Ausgewähltes Segment übernehmen"
 
 #: src/fcitx-anthy.desc:367
 msgid "Commit selected segment reverse learn"
-msgstr ""
+msgstr "Ausgewähltes Segment übernehmen und aus dem Wörterbuch löschen"
 
 #: src/imengine.cpp:804
 msgid "Conversion Mode"
@@ -146,7 +147,7 @@ msgstr "Umwandlungsmodus"
 
 #: src/fcitx-anthy.desc:282
 msgid "Convert"
-msgstr ""
+msgstr "Transkribieren"
 
 #: src/fcitx-anthy.desc:432
 msgid "Convert To Half"
@@ -220,7 +221,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:267
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: src/fcitx-anthy.desc:457 src/fcitx-anthy.desc:492
 msgid "Dict admin"
@@ -232,7 +233,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:347
 msgid "Expand segment"
-msgstr ""
+msgstr "Segment vergrößern"
 
 #: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:15
 #: src/fcitx-anthy.desc:22 src/fcitx-anthy.desc:33 src/fcitx-anthy.desc:42
@@ -252,7 +253,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:231
 msgid "Half Katakana mode"
-msgstr ""
+msgstr "Katakana-Modus (halbläufig)"
 
 #: src/imengine.cpp:585
 msgid "Half width katakana"
@@ -264,7 +265,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:221
 msgid "Hiragana mode"
-msgstr ""
+msgstr "Hiragana-Modus"
 
 #: src/fcitx-anthy.desc:12
 msgid "Horizontal"
@@ -280,19 +281,19 @@ msgstr "Eingabemodus"
 
 #: src/fcitx-anthy.desc:247
 msgid "Insert Alternative space"
-msgstr ""
+msgstr "Alternatives Leerzeichen einfügen"
 
 #: src/fcitx-anthy.desc:252
 msgid "Insert Half Space"
-msgstr ""
+msgstr "Halbes Leerzeichen einfügen"
 
 #: src/fcitx-anthy.desc:242
 msgid "Insert space"
-msgstr ""
+msgstr "Leerzeichen einfügen"
 
 #: src/fcitx-anthy.desc:257
 msgid "Insert wide space"
-msgstr ""
+msgstr "Weites Leerzeichen einfügen"
 
 #: src/fcitx-anthy.desc:97 src/fcitx-anthy.desc:102 src/fcitx-anthy.desc:107
 #: src/fcitx-anthy.desc:112 src/fcitx-anthy.desc:117
@@ -317,7 +318,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:226
 msgid "Katakana mode"
-msgstr ""
+msgstr "Katakana-Modus"
 
 #: src/fcitx-anthy.desc:194 src/fcitx-anthy.desc:199 src/fcitx-anthy.desc:204
 #: src/fcitx-anthy.desc:209 src/fcitx-anthy.desc:214 src/fcitx-anthy.desc:219
@@ -358,7 +359,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:211
 msgid "Latin mode"
-msgstr ""
+msgstr "Lateinisches Alphabet"
 
 #: src/fcitx-anthy.desc:79
 msgid "Learn on auto commit"
@@ -442,11 +443,11 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:54
 msgid "Period style"
-msgstr ""
+msgstr "Interpunktionsstil"
 
 #: src/fcitx-anthy.desc:287
 msgid "Predict"
-msgstr ""
+msgstr "Transkription vorschlagen"
 
 #: src/fcitx-anthy.desc:452
 msgid "Reconvert"
@@ -470,35 +471,35 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:372
 msgid "Select first candidate"
-msgstr ""
+msgstr "Ersten Kandidaten auswählen"
 
 #: src/fcitx-anthy.desc:322
 msgid "Select first segment"
-msgstr ""
+msgstr "Erstes Segment auswählen"
 
 #: src/fcitx-anthy.desc:377
 msgid "Select last candidate"
-msgstr ""
+msgstr "Letzten Kanditaten auswählen"
 
 #: src/fcitx-anthy.desc:327
 msgid "Select last segment"
-msgstr ""
+msgstr "Letztes Segment auswählen"
 
 #: src/fcitx-anthy.desc:382
 msgid "Select next candidate"
-msgstr ""
+msgstr "Nächsten Kanditaten auswählen"
 
 #: src/fcitx-anthy.desc:332
 msgid "Select next segment"
-msgstr ""
+msgstr "Nächstes Segment auswählen"
 
 #: src/fcitx-anthy.desc:392
 msgid "Select prev candidate"
-msgstr ""
+msgstr "Vorherigen Kanditaten auswählen"
 
 #: src/fcitx-anthy.desc:337
 msgid "Select previous segment"
-msgstr ""
+msgstr "Vorheriges Segment auswählen"
 
 #: src/fcitx-anthy.desc:94
 msgid "Show candidates label"
@@ -526,7 +527,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:342
 msgid "Shrink segment"
-msgstr ""
+msgstr "Segment verkleinern"
 
 #: src/imengine.cpp:598 src/fcitx-anthy.desc:48
 msgid "Single segment"
@@ -602,7 +603,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:216
 msgid "Wide latin mode"
-msgstr ""
+msgstr "Weitläufiges lateinisches Alphabet"
 
 #: src/fcitx-anthy.desc:156
 msgid "tsuki-2-203-101"

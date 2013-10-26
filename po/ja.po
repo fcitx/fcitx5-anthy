@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-04-26 00:44-0400\n"
-"PO-Revision-Date: 2013-04-25 14:33+0000\n"
+"POT-Creation-Date: 2013-10-26 14:42-0400\n"
+"PO-Revision-Date: 2013-10-26 16:21+0000\n"
 "Last-Translator: いくや あわしろ <ikunya@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/fcitx/language/"
 "ja/)\n"
@@ -51,7 +51,7 @@ msgstr "次の候補に移動する別のキー"
 msgid "Alternative Select prev candidate"
 msgstr "前の候補に移動する別のキー"
 
-#: src/factory.cpp:91 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
+#: src/factory.cpp:92 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
 msgid "Anthy"
 msgstr "Anthy"
 
@@ -271,7 +271,7 @@ msgstr "ひらがなモード"
 
 #: src/fcitx-anthy.desc:12
 msgid "Horizontal"
-msgstr "水平"
+msgstr "横"
 
 #: src/imengine.cpp:802
 msgid "Input Mode"
@@ -573,7 +573,7 @@ msgstr "予測中に直接選択キーを使用する"
 
 #: src/fcitx-anthy.desc:11
 msgid "Vertical"
-msgstr "垂直"
+msgstr "縦"
 
 #: src/fcitx-anthy.desc:131 src/fcitx-anthy.desc:145
 msgid "Vje Delta"

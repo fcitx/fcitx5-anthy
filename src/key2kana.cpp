@@ -19,6 +19,7 @@
  *  Foundation, 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+#include <fcitx/module/xkb/fcitx-xkb.h>
 #include "key2kana.h"
 #include "factory.h"
 #include "imengine.h"
@@ -121,9 +122,45 @@ Key2KanaConvertor::append (const KeyEvent & key,
 }
 
 static
-void split_string_list(std::vector<std::string>& str, const std::string& s)
+int split_string_list(std::vector<std::string>& vec, const std::string& str)
 {
+    int count = 0;
 
+    std::string temp;
+    std::string::const_iterator bg, ed;
+
+    vec.clear ();
+
+    bg = str.begin ();
+    ed = str.begin ();
+
+    while (bg != str.end () && ed != str.end ()) {
+        for (; ed != str.end (); ++ed) {
+            if (*ed == ',')
+                break;
+        }
+        temp.assign (bg, ed);
+        vec.push_back (temp);
+        ++count;
+
+        if (ed != str.end ())
+            bg = ++ ed;
+    }
+    return count;
+}
+
+static inline bool CheckLayout(FcitxInstance* instance)
+{
+    char *layout = NULL, *variant = NULL;
+    bool layout_is_jp = false;
+    FcitxXkbGetCurrentLayout(instance, &layout, &variant);
+    if (layout && strcmp(layout, "jp") == 0)
+        layout_is_jp = true;
+
+    fcitx_utils_free(layout);
+    fcitx_utils_free(variant);
+
+    return layout_is_jp;
 }
 
 bool
@@ -150,7 +187,9 @@ Key2KanaConvertor::append (const std::string & str,
 
     /* find matched table */
     if ((m_anthy.get_typing_method () == FCITX_ANTHY_TYPING_METHOD_KANA) &&
-        (m_last_key.keycode == 132 || m_last_key.keycode == 133) &&
+        (CheckLayout(m_anthy.get_owner())) &&
+        (m_last_key.sym == FcitxKey_backslash) &&
+        (!(m_last_key.keycode == 132 || m_last_key.keycode == 133)) &&
         (m_anthy.get_config()->m_kana_layout_ro_key[0]))
     {
         // Special treatment for Kana "Ro" key.

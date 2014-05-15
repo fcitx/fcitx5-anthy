@@ -145,6 +145,7 @@ INPUT_RETURN_VALUE FcitxAnthyDoInput(void* arg, FcitxKeySym sym, unsigned int st
     FcitxInputState* input = FcitxInstanceGetInputState(anthy->get_owner());
     event.sym = (FcitxKeySym) FcitxInputStateGetKeySym(input);
     event.is_release = false;
+    event.keycode = FcitxInputStateGetKeyCode(input);
     event.state = FcitxInputStateGetKeyState(input) & FcitxKeyState_SimpleMask;
     bool result = anthy->process_key_event(event);
     anthy->update_ui();
@@ -160,6 +161,7 @@ INPUT_RETURN_VALUE FcitxAnthyDoReleaseInput(void* arg, FcitxKeySym sym, unsigned
     KeyEvent event;
     FcitxInputState* input = FcitxInstanceGetInputState(anthy->get_owner());
     event.sym = (FcitxKeySym) FcitxInputStateGetKeySym(input);
+    event.keycode = FcitxInputStateGetKeyCode(input);
     event.is_release = true;
     event.state = FcitxInputStateGetKeyState(input) & FcitxKeyState_SimpleMask;
     bool result = anthy->process_key_event(event);

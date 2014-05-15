@@ -150,7 +150,7 @@ Key2KanaConvertor::append (const std::string & str,
 
     /* find matched table */
     if ((m_anthy.get_typing_method () == FCITX_ANTHY_TYPING_METHOD_KANA) &&
-        (m_last_key.state & /*SCIM_KEY_QuirkKanaRoMask*/ (1<<14)) &&
+        (m_last_key.keycode == 132 || m_last_key.keycode == 133) &&
         (m_anthy.get_config()->m_kana_layout_ro_key[0]))
     {
         // Special treatment for Kana "Ro" key.

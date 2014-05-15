@@ -31,6 +31,7 @@ class KeyEvent {
 public:
     FcitxKeySym sym;
     unsigned int state;
+    unsigned int keycode;
     bool is_release;
 
     KeyEvent() {

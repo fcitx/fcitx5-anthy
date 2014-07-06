@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2014-07-06 10:02+0200\n"
-"PO-Revision-Date: 2013-04-20 17:26+0000\n"
-"Last-Translator: Xuetian Weng <wengxt@gmail.com>\n"
+"POT-Creation-Date: 2014-07-06 10:09+0200\n"
+"PO-Revision-Date: 2013-04-29 10:03+0000\n"
+"Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/fcitx/"
 "language/zh_TW/)\n"
 "Language: zh_TW\n"
@@ -42,14 +42,12 @@ msgid "Allow split"
 msgstr "允許分割"
 
 #: src/fcitx-anthy.desc:387
-#, fuzzy
 msgid "Alternative Select next candidate"
-msgstr "選擇下一個候選詞"
+msgstr ""
 
 #: src/fcitx-anthy.desc:397
-#, fuzzy
 msgid "Alternative Select prev candidate"
-msgstr "選擇前一個候選詞"
+msgstr ""
 
 #: src/factory.cpp:92 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
 msgid "Anthy"
@@ -84,9 +82,8 @@ msgid "Cancel pseudo ascii mode"
 msgstr "取消偽 ascii 模式"
 
 #: src/fcitx-anthy.desc:8
-#, fuzzy
 msgid "Candidate List Layout"
-msgstr "候選字下一頁"
+msgstr ""
 
 #: src/fcitx-anthy.desc:407
 msgid "Candidates Page Down"
@@ -401,9 +398,8 @@ msgid "Multi segment"
 msgstr "多段"
 
 #: src/fcitx-anthy.desc:49
-#, fuzzy
 msgid "Multi segment immediate"
-msgstr "多段"
+msgstr ""
 
 #: src/imengine.cpp:593 src/fcitx-anthy.desc:40
 msgid "Nicola"
@@ -417,20 +413,17 @@ msgstr "尼古拉表"
 msgid "Nicola time"
 msgstr "尼古拉時間"
 
-#: src/fcitx-anthy.desc:69 src/fcitx-anthy.desc:166
-#, fuzzy
+#: src/fcitx-anthy.desc:166
 msgid "Nicola-A"
-msgstr "尼古拉"
+msgstr ""
 
 #: src/fcitx-anthy.desc:167
-#, fuzzy
 msgid "Nicola-F"
-msgstr "尼古拉"
+msgstr ""
 
 #: src/fcitx-anthy.desc:168
-#, fuzzy
 msgid "Nicola-J"
-msgstr "尼古拉"
+msgstr ""
 
 #: src/fcitx-anthy.desc:17
 msgid "Number candidate of Triggers To Show Candidate Window"
@@ -509,34 +502,28 @@ msgid "Select previous segment"
 msgstr "選擇上一段"
 
 #: src/fcitx-anthy.desc:94
-#, fuzzy
 msgid "Show candidates label"
-msgstr "候選字上一頁"
+msgstr ""
 
 #: src/fcitx-anthy.desc:109
-#, fuzzy
 msgid "Show conversion mode"
-msgstr "轉換模式"
+msgstr ""
 
 #: src/fcitx-anthy.desc:99
-#, fuzzy
 msgid "Show input mode"
-msgstr "輸入模式"
+msgstr ""
 
 #: src/fcitx-anthy.desc:114
-#, fuzzy
 msgid "Show period style"
-msgstr "逗號風格"
+msgstr ""
 
 #: src/fcitx-anthy.desc:119
-#, fuzzy
 msgid "Show symbol style"
-msgstr "符號樣式"
+msgstr ""
 
 #: src/fcitx-anthy.desc:104
-#, fuzzy
 msgid "Show typing method"
-msgstr "輸入方案"
+msgstr ""
 
 #: src/fcitx-anthy.desc:342
 msgid "Shrink segment"
@@ -547,9 +534,8 @@ msgid "Single segment"
 msgstr "單段"
 
 #: src/fcitx-anthy.desc:50
-#, fuzzy
 msgid "Single segment immediate"
-msgstr "單段"
+msgstr ""
 
 #: src/imengine.cpp:806
 msgid "Symbol Style"

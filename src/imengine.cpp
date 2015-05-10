@@ -1708,12 +1708,12 @@ AnthyInstance::action_circle_kana_mode (void)
 bool
 AnthyInstance::action_circle_latin_hiragana_mode (void)
 {
-    InputMode mode;
+    InputMode mode = get_input_mode ();
 
-    if (get_input_mode () == FCITX_ANTHY_MODE_LATIN)
+    if (mode == FCITX_ANTHY_MODE_LATIN)
     {
         mode = FCITX_ANTHY_MODE_HIRAGANA;
-    } else if (get_input_mode () == FCITX_ANTHY_MODE_HIRAGANA)
+    } else if (mode == FCITX_ANTHY_MODE_HIRAGANA)
     {
         mode = FCITX_ANTHY_MODE_LATIN;
     }

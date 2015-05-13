@@ -35,7 +35,6 @@ public:
 
     Action();
     Action  (const std::string &name, FcitxHotkey* hotkey, PMF pmf);
-    ~Action ();
 
 public:
     bool perform (AnthyInstance  *performer);

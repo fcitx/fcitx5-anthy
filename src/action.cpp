@@ -39,12 +39,6 @@ Action::Action (const std::string &name, FcitxHotkey* hotkey, PMF pmf)
 {
 }
 
-Action::~Action (void)
-{
-    if (m_key_bindings)
-        FcitxHotkeyFree(m_key_bindings);
-}
-
 bool
 Action::perform (AnthyInstance *performer)
 {

@@ -66,8 +66,8 @@ DefaultValue=Japanese
 EnumCount=4
 Enum0=Japanese
 Enum1=Wide bracket and wide slash
-Enum2=Corner bracket and  wide slash
-Enum3=Wide bracket and Middle Dot
+Enum2=Corner bracket and wide slash
+Enum3=Corner bracket and Middle Dot
 
 [General/LearnOnManualCommit]
 Type=Boolean

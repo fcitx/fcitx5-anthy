@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-04-25 00:01-0400\n"
+"POT-Creation-Date: 2015-05-13 19:26+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -187,11 +187,11 @@ msgid "Wide bracket and wide slash"
 msgstr ""
 
 #: src/fcitx-anthy.desc:69
-msgid "Corner bracket and  wide slash"
+msgid "Corner bracket and wide slash"
 msgstr ""
 
 #: src/fcitx-anthy.desc:70
-msgid "Wide bracket and Middle Dot"
+msgid "Corner bracket and Middle Dot"
 msgstr ""
 
 #: src/fcitx-anthy.desc:74

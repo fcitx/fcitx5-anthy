@@ -749,14 +749,17 @@ void AnthyInstance::set_symbol_style(SymbolStyle symbol)
     switch (m_config.m_symbol_style)
     {
         case FCITX_ANTHY_SYMBOL_STYLE_WIDEBRACKET_WIDESLASH:
-            m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_WIDE);
-            m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_WIDE);
-        case FCITX_ANTHY_SYMBOL_STYLE_CORNERBRACKET_WIDESLASH:
             m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_JAPANESE);
             m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_WIDE);
-        case FCITX_ANTHY_SYMBOL_STYLE_WIDEBRACKET_MIDDLEDOT:
+            break;
+        case FCITX_ANTHY_SYMBOL_STYLE_CORNERBRACKET_WIDESLASH:
+            m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_WIDE);
+            m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_WIDE);
+            break;
+        case FCITX_ANTHY_SYMBOL_STYLE_CORNERBRACKET_MIDDLEDOT:
             m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_WIDE);
             m_preedit.set_slash_style   (FCITX_ANTHY_SLASH_JAPANESE);
+            break;
         case FCITX_ANTHY_SYMBOL_STYLE_JAPANESE:
         default:
             m_preedit.set_bracket_style (FCITX_ANTHY_BRACKET_JAPANESE);

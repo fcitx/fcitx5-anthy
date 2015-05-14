@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2015-05-14 12:01+0200\n"
-"PO-Revision-Date: 2013-04-29 10:03+0000\n"
+"POT-Creation-Date: 2015-05-14 18:01+0200\n"
+"PO-Revision-Date: 2015-05-14 10:02+0000\n"
 "Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/fcitx/"
 "language/zh_CN/)\n"
@@ -192,14 +192,12 @@ msgid "Convert char type forward"
 msgstr "向前转换字符类型"
 
 #: src/fcitx-anthy.desc:69
-#, fuzzy
 msgid "Corner bracket and Middle Dot"
-msgstr "宽括号和中位点"
+msgstr ""
 
 #: src/fcitx-anthy.desc:70
-#, fuzzy
 msgid "Corner bracket and wide slash"
-msgstr "角括号和宽斜杠"
+msgstr ""
 
 #: src/fcitx-anthy.desc:133 src/fcitx-anthy.desc:147 src/fcitx-anthy.desc:158
 #: src/fcitx-anthy.desc:172

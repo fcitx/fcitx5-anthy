@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2015-05-14 12:01+0200\n"
-"PO-Revision-Date: 2014-03-01 16:10+0000\n"
-"Last-Translator: yuwash <yuwash@yandex.com>\n"
+"POT-Creation-Date: 2015-05-14 18:01+0200\n"
+"PO-Revision-Date: 2015-05-14 10:02+0000\n"
+"Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/fcitx/language/"
 "de/)\n"
 "Language: de\n"
@@ -191,14 +191,12 @@ msgid "Convert char type forward"
 msgstr "Zeichentyp vorwärts umwandeln"
 
 #: src/fcitx-anthy.desc:69
-#, fuzzy
 msgid "Corner bracket and Middle Dot"
-msgstr "Breite Klammern und Mittelpunkt"
+msgstr ""
 
 #: src/fcitx-anthy.desc:70
-#, fuzzy
 msgid "Corner bracket and wide slash"
-msgstr "Eckige Klammern und breiter Schrägstrich"
+msgstr ""
 
 #: src/fcitx-anthy.desc:133 src/fcitx-anthy.desc:147 src/fcitx-anthy.desc:158
 #: src/fcitx-anthy.desc:172

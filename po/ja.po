@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2015-05-14 12:01+0200\n"
-"PO-Revision-Date: 2015-05-06 00:26+0000\n"
+"POT-Creation-Date: 2015-05-14 18:01+0200\n"
+"PO-Revision-Date: 2015-05-14 11:02+0000\n"
 "Last-Translator: AWASHIRO Ikuya <ikunya@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/fcitx/language/"
 "ja/)\n"
@@ -193,12 +193,10 @@ msgid "Convert char type forward"
 msgstr "次の文字種に変換"
 
 #: src/fcitx-anthy.desc:69
-#, fuzzy
 msgid "Corner bracket and Middle Dot"
-msgstr "全角かぎかっこと中点"
+msgstr "中括弧と中点"
 
 #: src/fcitx-anthy.desc:70
-#, fuzzy
 msgid "Corner bracket and wide slash"
 msgstr "中括弧とスラッシュ"
 

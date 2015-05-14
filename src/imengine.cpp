@@ -124,13 +124,6 @@
 #define ACTION_CONFIG_DICT_ADMIN_KEY              "DictAdminKey"
 #define ACTION_CONFIG_ADD_WORD_KEY                "AddWordKey"
 
-#define UTF8_BRACKET_CORNER_BEGIN "\xE3\x80\x8C"
-#define UTF8_BRACKET_CORNER_END   "\xE3\x80\x8D"
-#define UTF8_BRACKET_WIDE_BEGIN   "\xEF\xBC\xBB"
-#define UTF8_BRACKET_WIDE_END     "\xEF\xBC\xBD"
-#define UTF8_MIDDLE_DOT           "\xE3\x83\xBB"
-#define UTF8_SLASH_WIDE           "\xEF\xBC\x8F"
-
 #define N_(x) (x)
 
 AnthyInstance::AnthyInstance (FcitxInstance* instance) :

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2015-05-06 06:01+0200\n"
+"POT-Creation-Date: 2015-05-14 12:01+0200\n"
 "PO-Revision-Date: 2015-05-06 00:26+0000\n"
 "Last-Translator: AWASHIRO Ikuya <ikunya@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/fcitx/language/"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/imengine.cpp:515
+#: src/imengine.cpp:508
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -140,7 +140,7 @@ msgstr "選択文節を確定"
 msgid "Commit selected segment reverse learn"
 msgstr "再変換した選択済み文節を確定"
 
-#: src/imengine.cpp:804
+#: src/imengine.cpp:800
 msgid "Conversion Mode"
 msgstr "変換モード"
 
@@ -176,11 +176,11 @@ msgstr "英数変換"
 msgid "Convert To Wide Latin"
 msgstr "全角英数変換"
 
-#: src/imengine.cpp:599
+#: src/imengine.cpp:592
 msgid "Convert as you type (Multi segment)"
 msgstr "逐次変換(連文節)"
 
-#: src/imengine.cpp:600
+#: src/imengine.cpp:593
 msgid "Convert as you type (Single segment)"
 msgstr "逐次変換(単文節)"
 
@@ -193,7 +193,13 @@ msgid "Convert char type forward"
 msgstr "次の文字種に変換"
 
 #: src/fcitx-anthy.desc:69
-msgid "Corner bracket and  wide slash"
+#, fuzzy
+msgid "Corner bracket and Middle Dot"
+msgstr "全角かぎかっこと中点"
+
+#: src/fcitx-anthy.desc:70
+#, fuzzy
+msgid "Corner bracket and wide slash"
 msgstr "中括弧とスラッシュ"
 
 #: src/fcitx-anthy.desc:133 src/fcitx-anthy.desc:147 src/fcitx-anthy.desc:158
@@ -230,7 +236,7 @@ msgstr "削除"
 msgid "Dict admin"
 msgstr "辞書の編集"
 
-#: src/imengine.cpp:586
+#: src/imengine.cpp:579
 msgid "Direct input"
 msgstr "直接入力"
 
@@ -258,11 +264,11 @@ msgstr "半角カタカナ"
 msgid "Half Katakana mode"
 msgstr "半角カタカナモード"
 
-#: src/imengine.cpp:585
+#: src/imengine.cpp:578
 msgid "Half width katakana"
 msgstr "半角カタカナ"
 
-#: src/imengine.cpp:583 src/fcitx-anthy.desc:27
+#: src/imengine.cpp:576 src/fcitx-anthy.desc:27
 msgid "Hiragana"
 msgstr "ひらがな"
 
@@ -274,7 +280,7 @@ msgstr "ひらがなモード"
 msgid "Horizontal"
 msgstr "横"
 
-#: src/imengine.cpp:802
+#: src/imengine.cpp:798
 msgid "Input Mode"
 msgstr "入力モード"
 
@@ -307,7 +313,7 @@ msgstr "インターフェイス"
 msgid "Japanese"
 msgstr "日本語"
 
-#: src/imengine.cpp:592 src/fcitx-anthy.desc:39
+#: src/imengine.cpp:585 src/fcitx-anthy.desc:39
 msgid "Kana"
 msgstr "かな"
 
@@ -315,7 +321,7 @@ msgstr "かな"
 msgid "Kana Table"
 msgstr "カナ配列"
 
-#: src/imengine.cpp:584 src/fcitx-anthy.desc:28
+#: src/imengine.cpp:577 src/fcitx-anthy.desc:28
 msgid "Katakana"
 msgstr "カタカナ"
 
@@ -396,7 +402,7 @@ msgstr "前方へ移動"
 msgid "Move caret last"
 msgstr "最後へ移動"
 
-#: src/imengine.cpp:597 src/fcitx-anthy.desc:47
+#: src/imengine.cpp:590 src/fcitx-anthy.desc:47
 msgid "Multi segment"
 msgstr "連文節"
 
@@ -404,7 +410,7 @@ msgstr "連文節"
 msgid "Multi segment immediate"
 msgstr "逐次変換 (連文節)"
 
-#: src/imengine.cpp:593 src/fcitx-anthy.desc:40
+#: src/imengine.cpp:586 src/fcitx-anthy.desc:40
 msgid "Nicola"
 msgstr "Nicola"
 
@@ -440,7 +446,7 @@ msgstr "Oasys100J"
 msgid "Page size"
 msgstr "候補ウィンドウの項目数"
 
-#: src/imengine.cpp:805
+#: src/imengine.cpp:801
 msgid "Period Style"
 msgstr "句読点のスタイル"
 
@@ -464,7 +470,7 @@ msgstr "右親指キー"
 msgid "Ro key for kana layout"
 msgstr "かなレイアウト用の「ろ」キー"
 
-#: src/imengine.cpp:591 src/fcitx-anthy.desc:38
+#: src/imengine.cpp:584 src/fcitx-anthy.desc:38
 msgid "Romaji"
 msgstr "ローマ字"
 
@@ -532,7 +538,7 @@ msgstr "入力方式を表示"
 msgid "Shrink segment"
 msgstr "文節を縮める"
 
-#: src/imengine.cpp:598 src/fcitx-anthy.desc:48
+#: src/imengine.cpp:591 src/fcitx-anthy.desc:48
 msgid "Single segment"
 msgstr "単文節"
 
@@ -540,7 +546,7 @@ msgstr "単文節"
 msgid "Single segment immediate"
 msgstr "逐次変換 (単文節)"
 
-#: src/imengine.cpp:806
+#: src/imengine.cpp:802
 msgid "Symbol Style"
 msgstr "記号のスタイル"
 
@@ -548,7 +554,7 @@ msgstr "記号のスタイル"
 msgid "Symbol style"
 msgstr "記号のスタイル"
 
-#: src/imengine.cpp:593
+#: src/imengine.cpp:586
 msgid "Thumb shift"
 msgstr "親指シフト"
 
@@ -560,7 +566,7 @@ msgstr "Tron Dvorak"
 msgid "Tron Qwerty JP"
 msgstr "Tron Qwerty JP"
 
-#: src/imengine.cpp:803
+#: src/imengine.cpp:799
 msgid "Typing Method"
 msgstr "入力方式"
 
@@ -588,15 +594,11 @@ msgstr "Wnn"
 msgid "Wide Latin"
 msgstr "全角英数"
 
-#: src/fcitx-anthy.desc:70
-msgid "Wide bracket and Middle Dot"
-msgstr "全角かぎかっこと中点"
-
 #: src/fcitx-anthy.desc:68
 msgid "Wide bracket and wide slash"
 msgstr "全角かぎかっことスラッシュ"
 
-#: src/imengine.cpp:587 src/fcitx-anthy.desc:57
+#: src/imengine.cpp:580 src/fcitx-anthy.desc:57
 msgid "Wide latin"
 msgstr "全角英数"
 

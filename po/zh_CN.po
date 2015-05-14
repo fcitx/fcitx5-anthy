@@ -5,15 +5,15 @@
 # Translators:
 # Christopher Meng <cickumqt@gmail.com>, 2012
 # marguerite su <i@marguerite.su>, 2012
-# Xuetian Weng <wengxt@gmail.com>, 2013
-# Xuetian Weng <wengxt@gmail.com>, 2010-2012
+# csslayer <wengxt@gmail.com>, 2013
+# csslayer <wengxt@gmail.com>, 2010-2012
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2013-10-26 14:42-0400\n"
+"POT-Creation-Date: 2015-05-14 12:01+0200\n"
 "PO-Revision-Date: 2013-04-29 10:03+0000\n"
-"Last-Translator: Xuetian Weng <wengxt@gmail.com>\n"
+"Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/fcitx/"
 "language/zh_CN/)\n"
 "Language: zh_CN\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/imengine.cpp:515
+#: src/imengine.cpp:508
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -139,7 +139,7 @@ msgstr "提交选中段"
 msgid "Commit selected segment reverse learn"
 msgstr "提交选中段逆向学习"
 
-#: src/imengine.cpp:804
+#: src/imengine.cpp:800
 msgid "Conversion Mode"
 msgstr "转换模式"
 
@@ -175,11 +175,11 @@ msgstr "转换到英文"
 msgid "Convert To Wide Latin"
 msgstr "转换到全角英文"
 
-#: src/imengine.cpp:599
+#: src/imengine.cpp:592
 msgid "Convert as you type (Multi segment)"
 msgstr "输入时转换 (多段)"
 
-#: src/imengine.cpp:600
+#: src/imengine.cpp:593
 msgid "Convert as you type (Single segment)"
 msgstr "输入时转换 (单段)"
 
@@ -192,7 +192,13 @@ msgid "Convert char type forward"
 msgstr "向前转换字符类型"
 
 #: src/fcitx-anthy.desc:69
-msgid "Corner bracket and  wide slash"
+#, fuzzy
+msgid "Corner bracket and Middle Dot"
+msgstr "宽括号和中位点"
+
+#: src/fcitx-anthy.desc:70
+#, fuzzy
+msgid "Corner bracket and wide slash"
 msgstr "角括号和宽斜杠"
 
 #: src/fcitx-anthy.desc:133 src/fcitx-anthy.desc:147 src/fcitx-anthy.desc:158
@@ -229,7 +235,7 @@ msgstr "删除"
 msgid "Dict admin"
 msgstr "词典管理"
 
-#: src/imengine.cpp:586
+#: src/imengine.cpp:579
 msgid "Direct input"
 msgstr "直接输入"
 
@@ -257,11 +263,11 @@ msgstr "半角片假名"
 msgid "Half Katakana mode"
 msgstr "半角片假名模式"
 
-#: src/imengine.cpp:585
+#: src/imengine.cpp:578
 msgid "Half width katakana"
 msgstr "半角片假名"
 
-#: src/imengine.cpp:583 src/fcitx-anthy.desc:27
+#: src/imengine.cpp:576 src/fcitx-anthy.desc:27
 msgid "Hiragana"
 msgstr "平假名"
 
@@ -273,7 +279,7 @@ msgstr "平假名模式"
 msgid "Horizontal"
 msgstr "横向"
 
-#: src/imengine.cpp:802
+#: src/imengine.cpp:798
 msgid "Input Mode"
 msgstr "输入模式"
 
@@ -306,7 +312,7 @@ msgstr "界面"
 msgid "Japanese"
 msgstr "日语"
 
-#: src/imengine.cpp:592 src/fcitx-anthy.desc:39
+#: src/imengine.cpp:585 src/fcitx-anthy.desc:39
 msgid "Kana"
 msgstr "假名"
 
@@ -314,7 +320,7 @@ msgstr "假名"
 msgid "Kana Table"
 msgstr "假名表"
 
-#: src/imengine.cpp:584 src/fcitx-anthy.desc:28
+#: src/imengine.cpp:577 src/fcitx-anthy.desc:28
 msgid "Katakana"
 msgstr "片假名"
 
@@ -395,7 +401,7 @@ msgstr "向前移动光标"
 msgid "Move caret last"
 msgstr "移动光标至结尾"
 
-#: src/imengine.cpp:597 src/fcitx-anthy.desc:47
+#: src/imengine.cpp:590 src/fcitx-anthy.desc:47
 msgid "Multi segment"
 msgstr "多段"
 
@@ -403,7 +409,7 @@ msgstr "多段"
 msgid "Multi segment immediate"
 msgstr "立即多段"
 
-#: src/imengine.cpp:593 src/fcitx-anthy.desc:40
+#: src/imengine.cpp:586 src/fcitx-anthy.desc:40
 msgid "Nicola"
 msgstr "尼古拉"
 
@@ -439,7 +445,7 @@ msgstr "Oasys100J 键盘布局"
 msgid "Page size"
 msgstr "页面大小"
 
-#: src/imengine.cpp:805
+#: src/imengine.cpp:801
 msgid "Period Style"
 msgstr "逗号风格"
 
@@ -463,7 +469,7 @@ msgstr "右拇指键"
 msgid "Ro key for kana layout"
 msgstr "假名布局的 \"ロ\" 键"
 
-#: src/imengine.cpp:591 src/fcitx-anthy.desc:38
+#: src/imengine.cpp:584 src/fcitx-anthy.desc:38
 msgid "Romaji"
 msgstr "罗马音"
 
@@ -531,7 +537,7 @@ msgstr "显示输入方案"
 msgid "Shrink segment"
 msgstr "收起段落"
 
-#: src/imengine.cpp:598 src/fcitx-anthy.desc:48
+#: src/imengine.cpp:591 src/fcitx-anthy.desc:48
 msgid "Single segment"
 msgstr "单段"
 
@@ -539,7 +545,7 @@ msgstr "单段"
 msgid "Single segment immediate"
 msgstr "立即单段"
 
-#: src/imengine.cpp:806
+#: src/imengine.cpp:802
 msgid "Symbol Style"
 msgstr "符号样式"
 
@@ -547,7 +553,7 @@ msgstr "符号样式"
 msgid "Symbol style"
 msgstr "符号样式"
 
-#: src/imengine.cpp:593
+#: src/imengine.cpp:586
 msgid "Thumb shift"
 msgstr "移位拇指"
 
@@ -559,7 +565,7 @@ msgstr "实时操作系统核心德沃夏克键盘布局 (Tron Dvorak)"
 msgid "Tron Qwerty JP"
 msgstr "实时操作系统核心日语快蹄布局 (Tron Qwerty JP) "
 
-#: src/imengine.cpp:803
+#: src/imengine.cpp:799
 msgid "Typing Method"
 msgstr "输入方案"
 
@@ -587,15 +593,11 @@ msgstr "我的名字叫中野 (WNN)"
 msgid "Wide Latin"
 msgstr "全角英文"
 
-#: src/fcitx-anthy.desc:70
-msgid "Wide bracket and Middle Dot"
-msgstr "宽括号和中位点"
-
 #: src/fcitx-anthy.desc:68
 msgid "Wide bracket and wide slash"
 msgstr "宽括号和宽斜杠"
 
-#: src/imengine.cpp:587 src/fcitx-anthy.desc:57
+#: src/imengine.cpp:580 src/fcitx-anthy.desc:57
 msgid "Wide latin"
 msgstr "全角英文"
 

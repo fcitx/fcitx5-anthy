@@ -2238,6 +2238,7 @@ std::string AnthyInstance::get_kana_table()
         "101kana.sty",
         "tsuki-2-203-101.sty",
         "tsuki-2-203-106.sty",
+        "qkana.sty",
         m_config.m_kana_fundamental_table
     };
 

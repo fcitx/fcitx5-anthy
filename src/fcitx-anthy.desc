@@ -150,12 +150,13 @@ Enum7=Custom
 Type=Enum
 DefaultValue=Default
 Description=Kana Table
-EnumCount=5
+EnumCount=6
 Enum0=Default
 Enum1=101kana
 Enum2=tsuki-2-203-101
 Enum3=tsuki-2-203-106
-Enum4=Custom
+Enum4=Quick Kana
+Enum5=Custom
 
 [KeyProfile/NicolaTable]
 Type=Enum

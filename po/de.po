@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2015-05-16 18:01+0200\n"
-"PO-Revision-Date: 2015-05-14 10:02+0000\n"
+"POT-Creation-Date: 2015-05-17 00:01+0200\n"
+"PO-Revision-Date: 2015-05-16 16:02+0000\n"
 "Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/fcitx/language/"
 "de/)\n"
@@ -107,9 +107,8 @@ msgid "Circle kana mode"
 msgstr "Zwischen Kana-Modi wechseln"
 
 #: src/fcitx-anthy.desc:207
-#, fuzzy
 msgid "Circle latin and hiragana mode"
-msgstr "Zwischen Kana-Modi wechseln"
+msgstr ""
 
 #: src/fcitx-anthy.desc:212
 msgid "Circle typing method"

@@ -201,6 +201,11 @@ Type=Hotkey
 Description=Circle kana mode
 DefaultValue=CTRL_. HIRAGANAKATAKANA
 
+[Key/CircleLatinHiraganaModeKey]
+Type=Hotkey
+Description=Circle latin and hiragana mode
+DefaultValue=
+
 [Key/CircleTypingMethodKey]
 Type=Hotkey
 Description=Circle typing method

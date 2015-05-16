@@ -54,6 +54,7 @@
 
 #define ACTION_CONFIG_CIRCLE_INPUT_MODE_KEY       "CircleInputModeKey"
 #define ACTION_CONFIG_CIRCLE_KANA_MODE_KEY        "CircleKanaModeKey"
+#define ACTION_CONFIG_CIRCLE_LATIN_HIRAGANA_MODE_KEY  "CircleLatinHiraganaModeKey"
 #define ACTION_CONFIG_CIRCLE_TYPING_METHOD_KEY    "CircleTypingMethodKey"
 #define ACTION_CONFIG_LATIN_MODE_KEY              "LatinModeKey"
 #define ACTION_CONFIG_WIDE_LATIN_MODE_KEY         "WideLatinModeKey"
@@ -1701,6 +1702,25 @@ AnthyInstance::action_circle_kana_mode (void)
 }
 
 bool
+AnthyInstance::action_circle_latin_hiragana_mode (void)
+{
+    InputMode mode = get_input_mode ();
+
+    if (mode == FCITX_ANTHY_MODE_LATIN)
+    {
+        mode = FCITX_ANTHY_MODE_HIRAGANA;
+    } else if (mode == FCITX_ANTHY_MODE_HIRAGANA)
+    {
+        mode = FCITX_ANTHY_MODE_LATIN;
+    }
+
+    set_input_mode (mode);
+    save_config();
+
+    return true;
+}
+
+bool
 AnthyInstance::action_latin_mode (void)
 {
     set_input_mode (FCITX_ANTHY_MODE_LATIN);
@@ -2103,6 +2123,7 @@ CONFIG_BINDING_REGISTER("KeyProfile", "CustomNicolaTable", m_nicola_fundamental_
 
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CIRCLE_INPUT_MODE_KEY, m_key_default.m_hk_CIRCLE_INPUT_MODE)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CIRCLE_KANA_MODE_KEY, m_key_default.m_hk_CIRCLE_KANA_MODE)
+CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CIRCLE_LATIN_HIRAGANA_MODE_KEY, m_key_default.m_hk_CIRCLE_LATIN_HIRAGANA_MODE)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_CIRCLE_TYPING_METHOD_KEY, m_key_default.m_hk_CIRCLE_TYPING_METHOD)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_LATIN_MODE_KEY, m_key_default.m_hk_LATIN_MODE)
 CONFIG_BINDING_REGISTER("Key", ACTION_CONFIG_WIDE_LATIN_MODE_KEY, m_key_default.m_hk_WIDE_LATIN_MODE)
@@ -2366,6 +2387,7 @@ void AnthyInstance::configure()
     // mode keys
     APPEND_ACTION (CIRCLE_INPUT_MODE,       action_circle_input_mode);
     APPEND_ACTION (CIRCLE_KANA_MODE,        action_circle_kana_mode);
+    APPEND_ACTION (CIRCLE_LATIN_HIRAGANA_MODE,action_circle_latin_hiragana_mode);
     APPEND_ACTION (CIRCLE_TYPING_METHOD,    action_circle_typing_method);
     APPEND_ACTION (LATIN_MODE,              action_latin_mode);
     APPEND_ACTION (WIDE_LATIN_MODE,         action_wide_latin_mode);

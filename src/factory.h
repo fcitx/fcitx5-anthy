@@ -147,6 +147,7 @@ struct AnthyKeyProfile {
     // mode keys
     FcitxHotkey m_hk_CIRCLE_INPUT_MODE[2];
     FcitxHotkey m_hk_CIRCLE_KANA_MODE[2];
+    FcitxHotkey m_hk_CIRCLE_LATIN_HIRAGANA_MODE[2];
     FcitxHotkey m_hk_CIRCLE_TYPING_METHOD[2];
     FcitxHotkey m_hk_LATIN_MODE[2];
     FcitxHotkey m_hk_WIDE_LATIN_MODE[2];

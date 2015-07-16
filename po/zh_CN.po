@@ -7,13 +7,14 @@
 # marguerite su <i@marguerite.su>, 2012
 # csslayer <wengxt@gmail.com>, 2013
 # csslayer <wengxt@gmail.com>, 2010-2012
+# wwj402 <wwj402@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2015-07-08 18:01+0200\n"
-"PO-Revision-Date: 2015-05-16 16:02+0000\n"
-"Last-Translator: csslayer <wengxt@gmail.com>\n"
+"POT-Creation-Date: 2015-07-17 00:01+0200\n"
+"PO-Revision-Date: 2015-07-16 17:33+0000\n"
+"Last-Translator: wwj402 <wwj402@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/p/fcitx/language/"
 "zh_CN/)\n"
 "Language: zh_CN\n"
@@ -109,7 +110,7 @@ msgstr "循环假名模式"
 
 #: src/fcitx-anthy.desc:207
 msgid "Circle latin and hiragana mode"
-msgstr ""
+msgstr "循环拉丁语和平假名模式"
 
 #: src/fcitx-anthy.desc:212
 msgid "Circle typing method"
@@ -197,11 +198,11 @@ msgstr "向前转换字符类型"
 
 #: src/fcitx-anthy.desc:69
 msgid "Corner bracket and Middle Dot"
-msgstr ""
+msgstr "角括号和中位点"
 
 #: src/fcitx-anthy.desc:70
 msgid "Corner bracket and wide slash"
-msgstr ""
+msgstr "角括号和宽斜杠"
 
 #: src/fcitx-anthy.desc:133 src/fcitx-anthy.desc:147 src/fcitx-anthy.desc:159
 #: src/fcitx-anthy.desc:173
@@ -461,7 +462,7 @@ msgstr "预测"
 
 #: src/fcitx-anthy.desc:158
 msgid "Quick Kana"
-msgstr ""
+msgstr "快速的假名"
 
 #: src/fcitx-anthy.desc:458
 msgid "Reconvert"

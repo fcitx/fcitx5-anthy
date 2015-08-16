@@ -5,14 +5,15 @@
 # Translators:
 # Alisha <alisha.4m@gmail.com>, 2012
 # Alisha <alisha.4m@gmail.com>, 2012
+# Gerald Du <frozenmouse@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2015-07-21 12:01+0200\n"
-"PO-Revision-Date: 2015-05-16 16:02+0000\n"
-"Last-Translator: csslayer <wengxt@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/fcitx/"
+"POT-Creation-Date: 2015-08-16 12:01+0200\n"
+"PO-Revision-Date: 2015-08-16 07:43+0000\n"
+"Last-Translator: Gerald Du <frozenmouse@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/fcitx/fcitx/"
 "language/zh_TW/)\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +84,7 @@ msgstr "取消偽 ascii 模式"
 
 #: src/fcitx-anthy.desc:8
 msgid "Candidate List Layout"
-msgstr ""
+msgstr "候選詞清單配置"
 
 #: src/fcitx-anthy.desc:413
 msgid "Candidates Page Down"
@@ -253,7 +254,7 @@ msgstr "一般"
 
 #: src/fcitx-anthy.desc:10
 msgid "Global"
-msgstr ""
+msgstr "全域"
 
 #: src/fcitx-anthy.desc:29
 msgid "Half Katakana"
@@ -277,7 +278,7 @@ msgstr "平假名模式"
 
 #: src/fcitx-anthy.desc:12
 msgid "Horizontal"
-msgstr ""
+msgstr "橫向"
 
 #: src/imengine.cpp:799
 msgid "Input Mode"
@@ -583,7 +584,7 @@ msgstr "使用預編輯直接發送鍵"
 
 #: src/fcitx-anthy.desc:11
 msgid "Vertical"
-msgstr ""
+msgstr "縱向"
 
 #: src/fcitx-anthy.desc:131 src/fcitx-anthy.desc:145
 msgid "Vje Delta"

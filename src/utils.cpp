@@ -306,9 +306,7 @@ static bool search_anchor_pos_forward(
 
     size_t offset = fcitx_utf8_get_nth_char(surrounding_text.c_str(), cursor_pos) - surrounding_text.c_str();
 
-    std::string new_start = surrounding_text.substr(offset);
-
-    if (new_start.compare(0, new_start.size(), selected_text) != 0) {
+    if (surrounding_text.compare(offset, selected_text.size(), selected_text) != 0) {
         return false;
     }
     *anchor_pos = cursor_pos + selected_chars_len;
@@ -335,9 +333,7 @@ bool search_anchor_pos_backward(
     }
     size_t offset = fcitx_utf8_get_nth_char(surrounding_text.c_str(), skip_count) - surrounding_text.c_str();
 
-    std::string new_start = surrounding_text.substr(offset);
-
-    if (new_start.compare(0, new_start.size(), selected_text) != 0) {
+    if (surrounding_text.compare(offset, selected_text.size(), selected_text) != 0) {
         return false;
     }
     *anchor_pos = skip_count;

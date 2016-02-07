@@ -1987,7 +1987,7 @@ AnthyInstance::action_reconvert (void)
 
     FcitxInstanceDeleteSurroundingText(m_owner, ic,
                                        cursor_pos > anchor_pos ? -relative_selected_length : 0,
-                                       relative_selected_length);
+                                       selection_length);
 
     m_preedit.convert(text);
     set_preedition ();

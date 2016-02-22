@@ -186,6 +186,7 @@ struct FcitxAnthyConfig {
     boolean m_show_add_word_label;
     boolean m_use_direct_key_on_predict;
     boolean m_show_candidates_label;
+    boolean m_show_input_mode_on_focus;
     boolean m_romaji_allow_split;
 
     int     m_nicola_time;

@@ -4,7 +4,7 @@ project(fcitx-anthy)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
-FIND_PACKAGE(Fcitx 4.2.8 REQUIRED)
+FIND_PACKAGE(Fcitx 4.2.9.2 REQUIRED)
 FIND_PACKAGE(Anthy REQUIRED)
 
 _fcitx_add_uninstall_target()

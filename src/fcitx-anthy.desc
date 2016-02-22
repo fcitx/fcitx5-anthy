@@ -94,6 +94,11 @@ Type=Boolean
 Description=Show candidates label
 DefaultValue=True
 
+[General/ShowInputMode]
+Type=Boolean
+Description=Show input mode in input window when focus changes
+DefaultValue=True
+
 [Interface/ShowInputMode]
 Type=Boolean
 Description=Show input mode

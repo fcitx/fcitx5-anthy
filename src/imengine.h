@@ -159,6 +159,8 @@ public:
     const char* get_period_style_icon();
     const char* get_symbol_style_icon();
 
+    const char* get_input_mode_name();
+
     bool   action_select_candidate            (unsigned int   i);
     void   reset_cursor(int cursor);
     void   auto_commit(FcitxIMCloseEventType type);

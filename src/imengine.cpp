@@ -690,6 +690,12 @@ const char* AnthyInstance::get_symbol_style_icon()
     return symbol_style_status[m_config.m_symbol_style].icon;
 }
 
+const char * AnthyInstance::get_input_mode_name()
+{
+    return _(input_mode_status[m_config.m_input_mode].description);
+}
+
+
 #define DEFINE_MENU_ACTION(NAME, TYPE, FUNC) \
     void Update##NAME##Menu(struct _FcitxUIMenu *menu) \
     { \
@@ -827,6 +833,8 @@ AnthyInstance::set_input_mode (InputMode mode)
                             "anthy-input-mode",
                             _(input_mode_status[mode].label),
                             _(input_mode_status[mode].description));
+
+    FcitxInstanceShowCurrentIMInfo(m_owner);
 }
 
 void
@@ -2105,6 +2113,7 @@ CONFIG_BINDING_REGISTER("General", "AllowSplit", m_romaji_allow_split)
 CONFIG_BINDING_REGISTER("General", "UseDirectKeyOnPredict", m_use_direct_key_on_predict)
 CONFIG_BINDING_REGISTER("General", "NTriggersToShowCandWin", m_n_triggers_to_show_cand_win)
 CONFIG_BINDING_REGISTER("General", "ShowCandidatesLabel", m_show_candidates_label)
+CONFIG_BINDING_REGISTER("General", "ShowInputMode", m_show_input_mode_on_focus)
 
 CONFIG_BINDING_REGISTER("Interface", "ShowInputMode", m_show_input_mode_label)
 CONFIG_BINDING_REGISTER("Interface", "ShowTypingMethod", m_show_typing_method_label)

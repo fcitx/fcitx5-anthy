@@ -46,8 +46,10 @@ static INPUT_RETURN_VALUE FcitxAnthyDoReleaseInput(void* arg, FcitxKeySym sym, u
 static void  FcitxAnthyReloadConfig(void* arg);
 static void  FcitxAnthySave(void* arg);
 static void  FcitxAnthyReset(void* arg);
+static void  FcitxAnthyFocusIn(void* arg);
 static void  FcitxAnthyResetIM(void* arg);
 static void FcitxAnthyOnClose(void* arg, FcitxIMCloseEventType event);
+static const char * FcitxAnthyGetSubModeName(void* arg);
 
 FCITX_DEFINE_PLUGIN(fcitx_anthy, ime2, FcitxIMClass2) = {
     FcitxAnthyCreate,
@@ -84,6 +86,7 @@ void* FcitxAnthyCreate(FcitxInstance* instance)
     iface.ReloadConfig = FcitxAnthyReloadConfig;
     iface.Save = FcitxAnthySave;
     iface.OnClose = FcitxAnthyOnClose;
+    iface.GetSubModeName = FcitxAnthyGetSubModeName;
 
     FcitxInstanceRegisterIMv2(
         instance,
@@ -100,6 +103,8 @@ void* FcitxAnthyCreate(FcitxInstance* instance)
     hk.arg = anthy;
     hk.func = FcitxAnthyReset;
     FcitxInstanceRegisterResetInputHook(instance, hk);
+    hk.func = FcitxAnthyFocusIn;
+    FcitxInstanceRegisterInputFocusHook(instance, hk);
 
     return anthy;
 }
@@ -132,6 +137,40 @@ void FcitxAnthyReset(void* arg)
     AnthyInstance* anthy = (AnthyInstance*) arg;
     anthy->reset();
     anthy->update_ui();
+}
+
+void FcitxAnthyShowIMInfo(void* arg)
+{
+    AnthyInstance* anthy = (AnthyInstance*) arg;
+    static FcitxInputContext* ic;
+
+    // don't show the info again if ic is not changed, this is annoying
+    // when cursor jumps within same application.
+    FcitxInputContext* newic = FcitxInstanceGetCurrentIC(anthy->get_owner());
+    if (newic == ic) {
+        return;
+    }
+
+    ic = newic;
+    if (!ic) {
+        return;
+    }
+
+    FcitxIM* im = FcitxInstanceGetCurrentIM(anthy->get_owner());
+    if (im && strcmp(im->uniqueName, "anthy") == 0) {
+        FcitxInstanceShowCurrentIMInfo(anthy->get_owner());
+    }
+}
+
+void FcitxAnthyFocusIn(void* arg)
+{
+    AnthyInstance* anthy = (AnthyInstance*) arg;
+    FcitxInstance* instance = anthy->get_owner();
+
+    if (anthy->get_config()->m_show_input_mode_on_focus &&
+        !FcitxInstanceCheckTimeoutByFunc(instance, FcitxAnthyShowIMInfo)) {
+        FcitxInstanceAddTimeout(instance, 100, FcitxAnthyShowIMInfo, anthy);
+    }
 }
 
 void FcitxAnthySave(void* arg)
@@ -186,6 +225,12 @@ void FcitxAnthyOnClose(void* arg, FcitxIMCloseEventType event)
     anthy->auto_commit(event);
 }
 
+const char * FcitxAnthyGetSubModeName(void *arg)
+{
+    AnthyInstance* anthy = (AnthyInstance*) arg;
+    return anthy->get_input_mode_name();
+}
+
 
 void
 SaveAnthyConfig(AnthyInstance* anthy)
@@ -204,4 +249,3 @@ void ConfigAnthy(AnthyInstance* anthy) {
     anthy->configure();
     anthy->update_ui();
 }
-

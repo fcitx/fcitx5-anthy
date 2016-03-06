@@ -8,13 +8,14 @@
 # csslayer <wengxt@gmail.com>, 2013
 # csslayer <wengxt@gmail.com>, 2010-2012
 # wwj402 <wwj402@gmail.com>, 2015
+# 白铭骢 <jeffbai@aosc.xyz>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2016-02-22 10:02-0800\n"
-"PO-Revision-Date: 2015-07-16 17:33+0000\n"
-"Last-Translator: wwj402 <wwj402@gmail.com>\n"
+"POT-Creation-Date: 2016-03-06 08:02-0800\n"
+"PO-Revision-Date: 2016-03-06 15:38+0000\n"
+"Last-Translator: 白铭骢 <jeffbai@aosc.xyz>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/fcitx/fcitx/"
 "language/zh_CN/)\n"
 "Language: zh_CN\n"
@@ -530,7 +531,7 @@ msgstr "显示输入模式"
 
 #: src/fcitx-anthy.desc:99
 msgid "Show input mode in input window when focus changes"
-msgstr ""
+msgstr "焦点改变时在输入窗口显示输入模式"
 
 #: src/fcitx-anthy.desc:119
 msgid "Show period style"

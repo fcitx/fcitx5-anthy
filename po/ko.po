@@ -1,0 +1,625 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Bon Keun Seo <scobyseo@gmail.com>, 2017
+# heavyuser <heavyuser73@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: fcitx\n"
+"Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
+"POT-Creation-Date: 2016-02-22 10:02-0800\n"
+"PO-Revision-Date: 2017-07-15 16:00+0000\n"
+"Last-Translator: Bon Keun Seo <scobyseo@gmail.com>\n"
+"Language-Team: Korean (http://www.transifex.com/fcitx/fcitx/language/ko/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/factory.cpp:95 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
+msgid "Anthy"
+msgstr "Anthy"
+
+#: src/imengine.cpp:509
+#, c-format
+msgid "(%d / %d)"
+msgstr "(%d / %d)"
+
+#: src/imengine.cpp:577 src/fcitx-anthy.desc:27
+msgid "Hiragana"
+msgstr "히라가나"
+
+#: src/imengine.cpp:578 src/fcitx-anthy.desc:28
+msgid "Katakana"
+msgstr "가타가나"
+
+#: src/imengine.cpp:579
+msgid "Half width katakana"
+msgstr "반각 가타가나"
+
+#: src/imengine.cpp:580
+msgid "Direct input"
+msgstr "직접 입력"
+
+#: src/imengine.cpp:581 src/fcitx-anthy.desc:57
+msgid "Wide latin"
+msgstr "전각 로마자"
+
+#: src/imengine.cpp:585 src/fcitx-anthy.desc:38
+msgid "Romaji"
+msgstr "로마자"
+
+#: src/imengine.cpp:586 src/fcitx-anthy.desc:39
+msgid "Kana"
+msgstr "카나"
+
+#: src/imengine.cpp:587 src/fcitx-anthy.desc:40
+msgid "Nicola"
+msgstr "니콜라"
+
+#: src/imengine.cpp:587
+msgid "Thumb shift"
+msgstr "엄지 시프트"
+
+#: src/imengine.cpp:591 src/fcitx-anthy.desc:47
+msgid "Multi segment"
+msgstr "다중 세그먼트"
+
+#: src/imengine.cpp:592 src/fcitx-anthy.desc:48
+msgid "Single segment"
+msgstr "단일 세그먼트"
+
+#: src/imengine.cpp:593
+msgid "Convert as you type (Multi segment)"
+msgstr "입력 중 변환 (다중 세그먼트)"
+
+#: src/imengine.cpp:594
+msgid "Convert as you type (Single segment)"
+msgstr "입력 중 변환 (단일 세그먼트)"
+
+#: src/imengine.cpp:805
+msgid "Input Mode"
+msgstr "입력 모드"
+
+#: src/imengine.cpp:806
+msgid "Typing Method"
+msgstr "타이핑 방식"
+
+#: src/imengine.cpp:807
+msgid "Conversion Mode"
+msgstr "변환 모드"
+
+#: src/imengine.cpp:808
+msgid "Period Style"
+msgstr "문장부호 스타일"
+
+#: src/imengine.cpp:809
+msgid "Symbol Style"
+msgstr "기호 스타일"
+
+#: src/fcitx-anthy.conf.in:4
+msgid "Anthy Wrapper For Fcitx"
+msgstr "Fcitx를 위한 Anthy 입력기"
+
+#: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:15
+#: src/fcitx-anthy.desc:22 src/fcitx-anthy.desc:33 src/fcitx-anthy.desc:42
+#: src/fcitx-anthy.desc:52 src/fcitx-anthy.desc:62 src/fcitx-anthy.desc:72
+#: src/fcitx-anthy.desc:77 src/fcitx-anthy.desc:82 src/fcitx-anthy.desc:87
+#: src/fcitx-anthy.desc:92 src/fcitx-anthy.desc:97
+msgid "General"
+msgstr "일반"
+
+#: src/fcitx-anthy.desc:3
+msgid "Page size"
+msgstr "페이지 크기"
+
+#: src/fcitx-anthy.desc:8
+msgid "Candidate List Layout"
+msgstr "후보 목록 모양"
+
+#: src/fcitx-anthy.desc:10
+msgid "Global"
+msgstr "전역"
+
+#: src/fcitx-anthy.desc:11
+msgid "Vertical"
+msgstr "세로"
+
+#: src/fcitx-anthy.desc:12
+msgid "Horizontal"
+msgstr "가로"
+
+#: src/fcitx-anthy.desc:17
+msgid "Number candidate of Triggers To Show Candidate Window"
+msgstr "후보 창을 보이기 위한 후보의 수"
+
+#: src/fcitx-anthy.desc:24
+msgid "Input mode"
+msgstr "입력 모드"
+
+#: src/fcitx-anthy.desc:29
+msgid "Half Katakana"
+msgstr "반각 가타가나"
+
+#: src/fcitx-anthy.desc:30 src/fcitx-anthy.desc:58
+msgid "Latin"
+msgstr "로마자"
+
+#: src/fcitx-anthy.desc:31
+msgid "Wide Latin"
+msgstr "전각 로마자"
+
+#: src/fcitx-anthy.desc:35
+msgid "Typing method"
+msgstr "타이핑 방식"
+
+#: src/fcitx-anthy.desc:44
+msgid "Conversion mode"
+msgstr "변환 모드"
+
+#: src/fcitx-anthy.desc:49
+msgid "Multi segment immediate"
+msgstr "다중 세그먼트 즉시 입력"
+
+#: src/fcitx-anthy.desc:50
+msgid "Single segment immediate"
+msgstr "단일 세그먼트 즉시 입력"
+
+#: src/fcitx-anthy.desc:54
+msgid "Period style"
+msgstr "문장부호 스타일"
+
+#: src/fcitx-anthy.desc:59 src/fcitx-anthy.desc:67
+msgid "Japanese"
+msgstr "일본어"
+
+#: src/fcitx-anthy.desc:60
+msgid "Wide latin Japanese"
+msgstr "전각 로마자 일본어"
+
+#: src/fcitx-anthy.desc:64
+msgid "Symbol style"
+msgstr "기호 스타일"
+
+#: src/fcitx-anthy.desc:68
+msgid "Wide bracket and wide slash"
+msgstr "전자 괄호와 전자 슬래시"
+
+#: src/fcitx-anthy.desc:69
+msgid "Corner bracket and Middle Dot"
+msgstr "구석 괄호와 가운데점"
+
+#: src/fcitx-anthy.desc:70
+msgid "Corner bracket and wide slash"
+msgstr "구석 괄호와 전자 슬래시"
+
+#: src/fcitx-anthy.desc:74
+msgid "Learn on manual commit"
+msgstr "수동 입력 완료 방법 배우기"
+
+#: src/fcitx-anthy.desc:79
+msgid "Learn on auto commit"
+msgstr "자동 입력 완료 방법 배우기"
+
+#: src/fcitx-anthy.desc:84
+msgid "Allow split"
+msgstr "나누기 허용"
+
+#: src/fcitx-anthy.desc:89
+msgid "Use direct key on predict"
+msgstr "예측 시 방향키 사용"
+
+#: src/fcitx-anthy.desc:94
+msgid "Show candidates label"
+msgstr "후보 레이블 보이기"
+
+#: src/fcitx-anthy.desc:99
+msgid "Show input mode in input window when focus changes"
+msgstr "포커스 변경 시 입력창에 입력 모드 보이기"
+
+#: src/fcitx-anthy.desc:102 src/fcitx-anthy.desc:107 src/fcitx-anthy.desc:112
+#: src/fcitx-anthy.desc:117 src/fcitx-anthy.desc:122
+msgid "Interface"
+msgstr "인터페이스"
+
+#: src/fcitx-anthy.desc:104
+msgid "Show input mode"
+msgstr "입력 모드 보이기"
+
+#: src/fcitx-anthy.desc:109
+msgid "Show typing method"
+msgstr "타이핑 방식 보이기"
+
+#: src/fcitx-anthy.desc:114
+msgid "Show conversion mode"
+msgstr "변환 모드 보이기"
+
+#: src/fcitx-anthy.desc:119
+msgid "Show period style"
+msgstr "문장부호 스타일 보이기"
+
+#: src/fcitx-anthy.desc:124
+msgid "Show symbol style"
+msgstr "기호 스타일 보이기"
+
+#: src/fcitx-anthy.desc:127 src/fcitx-anthy.desc:140 src/fcitx-anthy.desc:154
+#: src/fcitx-anthy.desc:166 src/fcitx-anthy.desc:180 src/fcitx-anthy.desc:185
+#: src/fcitx-anthy.desc:190 src/fcitx-anthy.desc:195
+msgid "KeyProfile"
+msgstr "키 프로파일"
+
+#: src/fcitx-anthy.desc:130
+msgid "Key binding profile"
+msgstr "키 바인딩 프로파일"
+
+#: src/fcitx-anthy.desc:132 src/fcitx-anthy.desc:145 src/fcitx-anthy.desc:159
+#: src/fcitx-anthy.desc:171
+msgid "Default"
+msgstr "기본값"
+
+#: src/fcitx-anthy.desc:133 src/fcitx-anthy.desc:146
+msgid "Atok"
+msgstr "ATOK"
+
+#: src/fcitx-anthy.desc:134 src/fcitx-anthy.desc:148
+msgid "Canna"
+msgstr "칸나"
+
+#: src/fcitx-anthy.desc:135 src/fcitx-anthy.desc:149
+msgid "MS IME"
+msgstr "마이크로소프트 IME"
+
+#: src/fcitx-anthy.desc:136 src/fcitx-anthy.desc:150
+msgid "Vje Delta"
+msgstr "VACS 일본어입력기 삼각주판 (VJE Delta)"
+
+#: src/fcitx-anthy.desc:137 src/fcitx-anthy.desc:151
+msgid "WNN"
+msgstr "WNN 일본어 입력기"
+
+#: src/fcitx-anthy.desc:138 src/fcitx-anthy.desc:152 src/fcitx-anthy.desc:164
+#: src/fcitx-anthy.desc:178
+msgid "Custom"
+msgstr "사용자 설정"
+
+#: src/fcitx-anthy.desc:143
+msgid "Romaji Table"
+msgstr "로마자 표"
+
+#: src/fcitx-anthy.desc:147
+msgid "Azik"
+msgstr "Azik"
+
+#: src/fcitx-anthy.desc:157
+msgid "Kana Table"
+msgstr "가나 표"
+
+#: src/fcitx-anthy.desc:160
+msgid "101kana"
+msgstr "101가나"
+
+#: src/fcitx-anthy.desc:161
+msgid "tsuki-2-203-101"
+msgstr "tsuki-2-203-101"
+
+#: src/fcitx-anthy.desc:162
+msgid "tsuki-2-203-106"
+msgstr "tsuki-2-203-106"
+
+#: src/fcitx-anthy.desc:163
+msgid "Quick Kana"
+msgstr "빠른 가나"
+
+#: src/fcitx-anthy.desc:169
+msgid "Nicola Table"
+msgstr "니콜라 표"
+
+#: src/fcitx-anthy.desc:172
+msgid "Nicola-A"
+msgstr "니콜라-A"
+
+#: src/fcitx-anthy.desc:173
+msgid "Nicola-F"
+msgstr "니콜라-F"
+
+#: src/fcitx-anthy.desc:174
+msgid "Nicola-J"
+msgstr "니콜라-J"
+
+#: src/fcitx-anthy.desc:175
+msgid "Oasys100J"
+msgstr "Oasys100J"
+
+#: src/fcitx-anthy.desc:176
+msgid "Tron Dvorak"
+msgstr "Tron 드보락"
+
+#: src/fcitx-anthy.desc:177
+msgid "Tron Qwerty JP"
+msgstr "Tron 쿼티 일본판"
+
+#: src/fcitx-anthy.desc:183
+msgid "Custom Key Binding"
+msgstr "사용자 키 바인딩"
+
+#: src/fcitx-anthy.desc:188
+msgid "Custom Romaji Table"
+msgstr "사용자 로마자 표"
+
+#: src/fcitx-anthy.desc:193
+msgid "Custom Kana Table"
+msgstr "사용자 카나 표"
+
+#: src/fcitx-anthy.desc:198
+msgid "Custom Nicola Table"
+msgstr "사용자 니콜라 표"
+
+#: src/fcitx-anthy.desc:200 src/fcitx-anthy.desc:205 src/fcitx-anthy.desc:210
+#: src/fcitx-anthy.desc:215 src/fcitx-anthy.desc:220 src/fcitx-anthy.desc:225
+#: src/fcitx-anthy.desc:230 src/fcitx-anthy.desc:235 src/fcitx-anthy.desc:240
+#: src/fcitx-anthy.desc:245 src/fcitx-anthy.desc:251 src/fcitx-anthy.desc:256
+#: src/fcitx-anthy.desc:261 src/fcitx-anthy.desc:266 src/fcitx-anthy.desc:271
+#: src/fcitx-anthy.desc:276 src/fcitx-anthy.desc:281 src/fcitx-anthy.desc:286
+#: src/fcitx-anthy.desc:291 src/fcitx-anthy.desc:296 src/fcitx-anthy.desc:301
+#: src/fcitx-anthy.desc:306 src/fcitx-anthy.desc:311 src/fcitx-anthy.desc:316
+#: src/fcitx-anthy.desc:321 src/fcitx-anthy.desc:326 src/fcitx-anthy.desc:331
+#: src/fcitx-anthy.desc:336 src/fcitx-anthy.desc:341 src/fcitx-anthy.desc:346
+#: src/fcitx-anthy.desc:351 src/fcitx-anthy.desc:356 src/fcitx-anthy.desc:361
+#: src/fcitx-anthy.desc:366 src/fcitx-anthy.desc:371 src/fcitx-anthy.desc:376
+#: src/fcitx-anthy.desc:381 src/fcitx-anthy.desc:386 src/fcitx-anthy.desc:391
+#: src/fcitx-anthy.desc:396 src/fcitx-anthy.desc:401 src/fcitx-anthy.desc:406
+#: src/fcitx-anthy.desc:411 src/fcitx-anthy.desc:416 src/fcitx-anthy.desc:421
+#: src/fcitx-anthy.desc:426 src/fcitx-anthy.desc:431 src/fcitx-anthy.desc:436
+#: src/fcitx-anthy.desc:441 src/fcitx-anthy.desc:446 src/fcitx-anthy.desc:451
+#: src/fcitx-anthy.desc:456 src/fcitx-anthy.desc:461 src/fcitx-anthy.desc:466
+#: src/fcitx-anthy.desc:471 src/fcitx-anthy.desc:476 src/fcitx-anthy.desc:481
+#: src/fcitx-anthy.desc:486 src/fcitx-anthy.desc:491
+msgid "Key"
+msgstr "키"
+
+#: src/fcitx-anthy.desc:202
+msgid "Circle input mode"
+msgstr "입력 모드 순환"
+
+#: src/fcitx-anthy.desc:207
+msgid "Circle kana mode"
+msgstr "가나 모드 순환"
+
+#: src/fcitx-anthy.desc:212
+msgid "Circle latin and hiragana mode"
+msgstr "로마자 및 히라가나 모드 순환"
+
+#: src/fcitx-anthy.desc:217
+msgid "Circle typing method"
+msgstr "입력 방식 순환"
+
+#: src/fcitx-anthy.desc:222
+msgid "Latin mode"
+msgstr "로마자 모드"
+
+#: src/fcitx-anthy.desc:227
+msgid "Wide latin mode"
+msgstr "전각 로마자 모드"
+
+#: src/fcitx-anthy.desc:232
+msgid "Hiragana mode"
+msgstr "히라가나 모드"
+
+#: src/fcitx-anthy.desc:237
+msgid "Katakana mode"
+msgstr "가타가나 모드"
+
+#: src/fcitx-anthy.desc:242
+msgid "Half Katakana mode"
+msgstr "반각 가타가나 모드"
+
+#: src/fcitx-anthy.desc:247
+msgid "Cancel pseudo ascii mode"
+msgstr "가상 아스키 모드 취소"
+
+#: src/fcitx-anthy.desc:253
+msgid "Insert space"
+msgstr "공백 입력"
+
+#: src/fcitx-anthy.desc:258
+msgid "Insert Alternative space"
+msgstr "대체 공백 입력"
+
+#: src/fcitx-anthy.desc:263
+msgid "Insert Half Space"
+msgstr "반각 공백 입력"
+
+#: src/fcitx-anthy.desc:268
+msgid "Insert wide space"
+msgstr "전각 공백 입력"
+
+#: src/fcitx-anthy.desc:273
+msgid "BackSpace"
+msgstr "백스페이스"
+
+#: src/fcitx-anthy.desc:278
+msgid "Delete"
+msgstr "삭제"
+
+#: src/fcitx-anthy.desc:283
+msgid "Commit"
+msgstr "입력완료"
+
+#: src/fcitx-anthy.desc:288
+msgid "Commit Reverse Learn"
+msgstr "재변환 확인"
+
+#: src/fcitx-anthy.desc:293
+msgid "Convert"
+msgstr "변환"
+
+#: src/fcitx-anthy.desc:298
+msgid "Predict"
+msgstr "예측"
+
+#: src/fcitx-anthy.desc:303
+msgid "Cancel"
+msgstr "취소"
+
+#: src/fcitx-anthy.desc:308
+msgid "Cancel all"
+msgstr "모두 취소"
+
+#: src/fcitx-anthy.desc:313
+msgid "Move Caret First"
+msgstr "커서를 먼저 옮기기"
+
+#: src/fcitx-anthy.desc:318
+msgid "Move caret last"
+msgstr "커서를 나중에 옮기기"
+
+#: src/fcitx-anthy.desc:323
+msgid "Move caret forward"
+msgstr "커서를 맨앞으로 옮기기"
+
+#: src/fcitx-anthy.desc:328
+msgid "Move caret backward"
+msgstr "커서를 맨뒤로 옮기기"
+
+#: src/fcitx-anthy.desc:333
+msgid "Select first segment"
+msgstr "첫번째 세그먼트 선택"
+
+#: src/fcitx-anthy.desc:338
+msgid "Select last segment"
+msgstr "마지막 세그먼트 선택"
+
+#: src/fcitx-anthy.desc:343
+msgid "Select next segment"
+msgstr "다음 세그먼트 선택"
+
+#: src/fcitx-anthy.desc:348
+msgid "Select previous segment"
+msgstr "이전 세그먼트 선택"
+
+#: src/fcitx-anthy.desc:353
+msgid "Shrink segment"
+msgstr "세그먼트 줄이기"
+
+#: src/fcitx-anthy.desc:358
+msgid "Expand segment"
+msgstr "세그먼트 늘이기"
+
+#: src/fcitx-anthy.desc:363
+msgid "Commit first segment"
+msgstr "첫 세그먼트 입력"
+
+#: src/fcitx-anthy.desc:368
+msgid "Commit selected segment"
+msgstr "선택한 세그먼트 입력"
+
+#: src/fcitx-anthy.desc:373
+msgid "Commit first segment reverse learn"
+msgstr "첫 세그먼트 원래 문자열 입력"
+
+#: src/fcitx-anthy.desc:378
+msgid "Commit selected segment reverse learn"
+msgstr "선택한 세그먼트 원래 문자열 입력"
+
+#: src/fcitx-anthy.desc:383
+msgid "Select first candidate"
+msgstr "첫 후보 선택"
+
+#: src/fcitx-anthy.desc:388
+msgid "Select last candidate"
+msgstr "마지막 후보 선택"
+
+#: src/fcitx-anthy.desc:393
+msgid "Select next candidate"
+msgstr "다음 후보 선택"
+
+#: src/fcitx-anthy.desc:398
+msgid "Alternative Select next candidate"
+msgstr "다음 후보 대체 선택"
+
+#: src/fcitx-anthy.desc:403
+msgid "Select prev candidate"
+msgstr "이전 후보 선택"
+
+#: src/fcitx-anthy.desc:408
+msgid "Alternative Select prev candidate"
+msgstr "이전 후보 대체 선택"
+
+#: src/fcitx-anthy.desc:413
+msgid "Candidates Page Up"
+msgstr "후보 페이지 위로"
+
+#: src/fcitx-anthy.desc:418
+msgid "Candidates Page Down"
+msgstr "후보 페이지 아래로"
+
+#: src/fcitx-anthy.desc:423
+msgid "Convert char type forward"
+msgstr "다음 문자형식으로 변환"
+
+#: src/fcitx-anthy.desc:428
+msgid "Convert char type backward"
+msgstr "이전 문자형식으로 변환"
+
+#: src/fcitx-anthy.desc:433
+msgid "Convert To Hiragana"
+msgstr "히라가나로 변환"
+
+#: src/fcitx-anthy.desc:438
+msgid "Convert To Katakana"
+msgstr "가타가나로 변환"
+
+#: src/fcitx-anthy.desc:443
+msgid "Convert To Half"
+msgstr "반각으로 변환"
+
+#: src/fcitx-anthy.desc:448
+msgid "Convert To Half Katakana"
+msgstr "반각 가타가나로 변환"
+
+#: src/fcitx-anthy.desc:453
+msgid "Convert To Wide Latin"
+msgstr "전각 로마자로 변환"
+
+#: src/fcitx-anthy.desc:458
+msgid "Convert To Latin"
+msgstr "로마자로 변환"
+
+#: src/fcitx-anthy.desc:463
+msgid "Reconvert"
+msgstr "재변환"
+
+#: src/fcitx-anthy.desc:468 src/fcitx-anthy.desc:503
+msgid "Dict admin"
+msgstr "사전 관리"
+
+#: src/fcitx-anthy.desc:473
+msgid "Add Word"
+msgstr "단어 추가"
+
+#: src/fcitx-anthy.desc:478
+msgid "Left thumb key"
+msgstr "왼쪽 엄지 키"
+
+#: src/fcitx-anthy.desc:483
+msgid "Right thumb key"
+msgstr "오른쪽 엄지 키"
+
+#: src/fcitx-anthy.desc:488
+msgid "Ro key for kana layout"
+msgstr "가나 배열 용 Ro 키"
+
+#: src/fcitx-anthy.desc:493
+msgid "Nicola time"
+msgstr "니콜라 시간"
+
+#: src/fcitx-anthy.desc:496 src/fcitx-anthy.desc:501
+msgid "Command"
+msgstr "명령"
+
+#: src/fcitx-anthy.desc:498
+msgid "Add word"
+msgstr "단어 추가"

@@ -5,14 +5,15 @@
 # Translators:
 # Lucius Annaeus Seneca, 2013
 # mar well <m.wellendorf@gmx.de>, 2013
+# mar well <m.wellendorf@gmx.de>, 2017
 # yuwash <yuwash@yandex.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2016-02-22 10:02-0800\n"
-"PO-Revision-Date: 2015-05-16 16:02+0000\n"
-"Last-Translator: csslayer <wengxt@gmail.com>\n"
+"POT-Creation-Date: 2017-07-28 06:02-0700\n"
+"PO-Revision-Date: 2017-07-28 12:33+0000\n"
+"Last-Translator: mar well <m.wellendorf@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/fcitx/fcitx/language/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +68,7 @@ msgstr "Azik"
 
 #: src/fcitx-anthy.desc:273
 msgid "BackSpace"
-msgstr "Backspace"
+msgstr "Rücktaste"
 
 #: src/fcitx-anthy.desc:303
 msgid "Cancel"

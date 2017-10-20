@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-10-19 08:02-0700\n"
-"PO-Revision-Date: 2017-10-19 14:19+0000\n"
+"POT-Creation-Date: 2017-10-20 00:02-0700\n"
+"PO-Revision-Date: 2017-10-19 23:35+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/fcitx/fcitx/language/da/)\n"
 "Language: da\n"
@@ -85,11 +85,11 @@ msgstr "Layout for kandidatliste"
 
 #: src/fcitx-anthy.desc:418
 msgid "Candidates Page Down"
-msgstr "Kandidaters Page Down"
+msgstr "Page Down for kandidater"
 
 #: src/fcitx-anthy.desc:413
 msgid "Candidates Page Up"
-msgstr "Kandidaters Page Up"
+msgstr "Page Up for kandidater"
 
 #: src/fcitx-anthy.desc:134 src/fcitx-anthy.desc:148
 msgid "Canna"

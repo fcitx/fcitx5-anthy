@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-10-20 00:02-0700\n"
-"PO-Revision-Date: 2017-10-19 23:35+0000\n"
+"POT-Creation-Date: 2017-11-10 16:02-0800\n"
+"PO-Revision-Date: 2017-11-10 22:11+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/fcitx/fcitx/language/da/)\n"
 "Language: da\n"
@@ -117,27 +117,27 @@ msgstr "Kommando"
 
 #: src/fcitx-anthy.desc:283
 msgid "Commit"
-msgstr "Begå"
+msgstr "Udfør"
 
 #: src/fcitx-anthy.desc:288
 msgid "Commit Reverse Learn"
-msgstr "Begå omvendt lær"
+msgstr "Udfør omvendt lær"
 
 #: src/fcitx-anthy.desc:363
 msgid "Commit first segment"
-msgstr "Begå første segment"
+msgstr "Udfør første segment"
 
 #: src/fcitx-anthy.desc:373
 msgid "Commit first segment reverse learn"
-msgstr "Begå første segment omvendt lær"
+msgstr "Udfør første segment omvendt lær"
 
 #: src/fcitx-anthy.desc:368
 msgid "Commit selected segment"
-msgstr "Begå valgte segment"
+msgstr "Udfør valgte segment"
 
 #: src/fcitx-anthy.desc:378
 msgid "Commit selected segment reverse learn"
-msgstr "Begå valgte segment omvendt lær"
+msgstr "Udfør valgte segment omvendt lær"
 
 #: src/imengine.cpp:807
 msgid "Conversion Mode"
@@ -369,11 +369,11 @@ msgstr "Latinsk tilstand"
 
 #: src/fcitx-anthy.desc:79
 msgid "Learn on auto commit"
-msgstr "Lær ved automatisk begå"
+msgstr "Lær ved automatisk udfør"
 
 #: src/fcitx-anthy.desc:74
 msgid "Learn on manual commit"
-msgstr "Lær ved manuel begå"
+msgstr "Lær ved manuel udfør"
 
 #: src/fcitx-anthy.desc:478
 msgid "Left thumb key"

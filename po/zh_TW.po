@@ -5,14 +5,15 @@
 # Translators:
 # Alisha <alisha.4m@gmail.com>, 2012
 # Alisha <alisha.4m@gmail.com>, 2012
+# PHLin <Cypressyew@gmail.com>, 2017
 # Gerald Du <frozenmouse@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2016-02-22 10:02-0800\n"
-"PO-Revision-Date: 2015-08-16 07:43+0000\n"
-"Last-Translator: Gerald Du <frozenmouse@gmail.com>\n"
+"POT-Creation-Date: 2017-11-23 00:02-0800\n"
+"PO-Revision-Date: 2017-11-23 02:52+0000\n"
+"Last-Translator: PHLin <Cypressyew@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/fcitx/fcitx/"
 "language/zh_TW/)\n"
 "Language: zh_TW\n"
@@ -568,11 +569,11 @@ msgstr "移位拇指"
 
 #: src/fcitx-anthy.desc:176
 msgid "Tron Dvorak"
-msgstr ""
+msgstr "Tron Dvorak"
 
 #: src/fcitx-anthy.desc:177
 msgid "Tron Qwerty JP"
-msgstr ""
+msgstr "Tron Qwerty JP"
 
 #: src/imengine.cpp:806
 msgid "Typing Method"

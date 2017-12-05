@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-11-10 16:02-0800\n"
-"PO-Revision-Date: 2017-11-10 22:11+0000\n"
-"Last-Translator: scootergrisen\n"
+"POT-Creation-Date: 2017-12-05 00:02-0800\n"
+"PO-Revision-Date: 2017-12-04 08:04+0000\n"
+"Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/fcitx/fcitx/language/da/)\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -29,11 +29,11 @@ msgstr "101kana"
 
 #: src/fcitx-anthy.desc:473
 msgid "Add Word"
-msgstr "Tilføj ord"
+msgstr ""
 
 #: src/fcitx-anthy.desc:498
 msgid "Add word"
-msgstr "Tilføj ord"
+msgstr ""
 
 #: src/fcitx-anthy.desc:84
 msgid "Allow split"
@@ -41,11 +41,11 @@ msgstr "Tillad opdeling"
 
 #: src/fcitx-anthy.desc:398
 msgid "Alternative Select next candidate"
-msgstr "Alternative vælg næste kandidat"
+msgstr ""
 
 #: src/fcitx-anthy.desc:408
 msgid "Alternative Select prev candidate"
-msgstr "Alternative vælg forrige kandidat"
+msgstr ""
 
 #: src/factory.cpp:95 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
 msgid "Anthy"
@@ -65,15 +65,15 @@ msgstr "Azik"
 
 #: src/fcitx-anthy.desc:273
 msgid "BackSpace"
-msgstr "BackSpace"
+msgstr ""
 
 #: src/fcitx-anthy.desc:303
 msgid "Cancel"
-msgstr "Annuller"
+msgstr ""
 
 #: src/fcitx-anthy.desc:308
 msgid "Cancel all"
-msgstr "Annuller alt"
+msgstr ""
 
 #: src/fcitx-anthy.desc:247
 msgid "Cancel pseudo ascii mode"
@@ -84,12 +84,14 @@ msgid "Candidate List Layout"
 msgstr "Layout for kandidatliste"
 
 #: src/fcitx-anthy.desc:418
+#, fuzzy
 msgid "Candidates Page Down"
-msgstr "Page Down for kandidater"
+msgstr "Layout for kandidatliste"
 
 #: src/fcitx-anthy.desc:413
+#, fuzzy
 msgid "Candidates Page Up"
-msgstr "Page Up for kandidater"
+msgstr "Vis kandidatetiket"
 
 #: src/fcitx-anthy.desc:134 src/fcitx-anthy.desc:148
 msgid "Canna"
@@ -113,31 +115,32 @@ msgstr "Cirkel skrivemetode"
 
 #: src/fcitx-anthy.desc:496 src/fcitx-anthy.desc:501
 msgid "Command"
-msgstr "Kommando"
+msgstr ""
 
 #: src/fcitx-anthy.desc:283
 msgid "Commit"
-msgstr "Udfør"
+msgstr ""
 
 #: src/fcitx-anthy.desc:288
 msgid "Commit Reverse Learn"
-msgstr "Udfør omvendt lær"
+msgstr ""
 
 #: src/fcitx-anthy.desc:363
+#, fuzzy
 msgid "Commit first segment"
-msgstr "Udfør første segment"
+msgstr "Multisegment"
 
 #: src/fcitx-anthy.desc:373
 msgid "Commit first segment reverse learn"
-msgstr "Udfør første segment omvendt lær"
+msgstr ""
 
 #: src/fcitx-anthy.desc:368
 msgid "Commit selected segment"
-msgstr "Udfør valgte segment"
+msgstr ""
 
 #: src/fcitx-anthy.desc:378
 msgid "Commit selected segment reverse learn"
-msgstr "Udfør valgte segment omvendt lær"
+msgstr ""
 
 #: src/imengine.cpp:807
 msgid "Conversion Mode"
@@ -149,31 +152,33 @@ msgstr "Konverteringstilstand"
 
 #: src/fcitx-anthy.desc:293
 msgid "Convert"
-msgstr "Konverter"
+msgstr ""
 
 #: src/fcitx-anthy.desc:443
 msgid "Convert To Half"
-msgstr "Konverter til halv"
+msgstr ""
 
 #: src/fcitx-anthy.desc:448
+#, fuzzy
 msgid "Convert To Half Katakana"
-msgstr "Konverter til halv Katakana"
+msgstr "Halv Katakana"
 
 #: src/fcitx-anthy.desc:433
 msgid "Convert To Hiragana"
-msgstr "Konverter til Hiragana"
+msgstr ""
 
 #: src/fcitx-anthy.desc:438
 msgid "Convert To Katakana"
-msgstr "Konverter til Katakana"
+msgstr ""
 
 #: src/fcitx-anthy.desc:458
 msgid "Convert To Latin"
-msgstr "Konverter til latinsk"
+msgstr ""
 
 #: src/fcitx-anthy.desc:453
+#, fuzzy
 msgid "Convert To Wide Latin"
-msgstr "Konverter til bred latinsk"
+msgstr "Bred latinsk"
 
 #: src/imengine.cpp:593
 msgid "Convert as you type (Multi segment)"
@@ -185,11 +190,11 @@ msgstr "Konverter efterhånden som du skriver (ét segment)"
 
 #: src/fcitx-anthy.desc:428
 msgid "Convert char type backward"
-msgstr "Konverter tegntype baglæns"
+msgstr ""
 
 #: src/fcitx-anthy.desc:423
 msgid "Convert char type forward"
-msgstr "Konverter tegntype fremad"
+msgstr ""
 
 #: src/fcitx-anthy.desc:69
 msgid "Corner bracket and Middle Dot"
@@ -227,19 +232,20 @@ msgstr "Standard"
 
 #: src/fcitx-anthy.desc:278
 msgid "Delete"
-msgstr "Slet"
+msgstr ""
 
 #: src/fcitx-anthy.desc:468 src/fcitx-anthy.desc:503
 msgid "Dict admin"
-msgstr "Ordsbogsadministration"
+msgstr ""
 
 #: src/imengine.cpp:580
 msgid "Direct input"
 msgstr "Direkte input"
 
 #: src/fcitx-anthy.desc:358
+#, fuzzy
 msgid "Expand segment"
-msgstr "Forstør segment"
+msgstr "Ét segment"
 
 #: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:15
 #: src/fcitx-anthy.desc:22 src/fcitx-anthy.desc:33 src/fcitx-anthy.desc:42
@@ -287,19 +293,19 @@ msgstr "Inputtilstand"
 
 #: src/fcitx-anthy.desc:258
 msgid "Insert Alternative space"
-msgstr "Indsæt alternativt mellemrum"
+msgstr ""
 
 #: src/fcitx-anthy.desc:263
 msgid "Insert Half Space"
-msgstr "Indsæt halvt mellemrum"
+msgstr ""
 
 #: src/fcitx-anthy.desc:253
 msgid "Insert space"
-msgstr "Indsæt mellemrum"
+msgstr ""
 
 #: src/fcitx-anthy.desc:268
 msgid "Insert wide space"
-msgstr "Indsæt bredt mellemrum"
+msgstr ""
 
 #: src/fcitx-anthy.desc:102 src/fcitx-anthy.desc:107 src/fcitx-anthy.desc:112
 #: src/fcitx-anthy.desc:117 src/fcitx-anthy.desc:122
@@ -377,7 +383,7 @@ msgstr "Lær ved manuel udfør"
 
 #: src/fcitx-anthy.desc:478
 msgid "Left thumb key"
-msgstr "Tast til venstre tommelfinger"
+msgstr ""
 
 #: src/fcitx-anthy.desc:135 src/fcitx-anthy.desc:149
 msgid "MS IME"
@@ -385,19 +391,19 @@ msgstr "MS IME"
 
 #: src/fcitx-anthy.desc:313
 msgid "Move Caret First"
-msgstr "Flyt indsætningstegn først"
+msgstr ""
 
 #: src/fcitx-anthy.desc:328
 msgid "Move caret backward"
-msgstr "Flyt markør baglæns"
+msgstr ""
 
 #: src/fcitx-anthy.desc:323
 msgid "Move caret forward"
-msgstr "Flyt markør fremad"
+msgstr ""
 
 #: src/fcitx-anthy.desc:318
 msgid "Move caret last"
-msgstr "Flyt indsætningstegn sidste"
+msgstr ""
 
 #: src/imengine.cpp:591 src/fcitx-anthy.desc:47
 msgid "Multi segment"
@@ -416,8 +422,9 @@ msgid "Nicola Table"
 msgstr "Nicola-tabel"
 
 #: src/fcitx-anthy.desc:493
+#, fuzzy
 msgid "Nicola time"
-msgstr "Nicola-tid"
+msgstr "Nicola"
 
 #: src/fcitx-anthy.desc:172
 msgid "Nicola-A"
@@ -453,7 +460,7 @@ msgstr "Punktumstil"
 
 #: src/fcitx-anthy.desc:298
 msgid "Predict"
-msgstr "Forudse"
+msgstr ""
 
 #: src/fcitx-anthy.desc:163
 msgid "Quick Kana"
@@ -461,15 +468,15 @@ msgstr "Hurtig Kana"
 
 #: src/fcitx-anthy.desc:463
 msgid "Reconvert"
-msgstr "Konverter igen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:483
 msgid "Right thumb key"
-msgstr "Tast til højre tommelfinger"
+msgstr ""
 
 #: src/fcitx-anthy.desc:488
 msgid "Ro key for kana layout"
-msgstr "Ro-tast til kana-layout"
+msgstr ""
 
 #: src/imengine.cpp:585 src/fcitx-anthy.desc:38
 msgid "Romaji"
@@ -481,35 +488,39 @@ msgstr "Romaji-tabel"
 
 #: src/fcitx-anthy.desc:383
 msgid "Select first candidate"
-msgstr "Vælg første kandidat"
+msgstr ""
 
 #: src/fcitx-anthy.desc:333
+#, fuzzy
 msgid "Select first segment"
-msgstr "Vælg første segment"
+msgstr "Multisegment"
 
 #: src/fcitx-anthy.desc:388
 msgid "Select last candidate"
-msgstr "Vælg sidste kandidat"
+msgstr ""
 
 #: src/fcitx-anthy.desc:338
+#, fuzzy
 msgid "Select last segment"
-msgstr "Vælg sidste segment"
+msgstr "Ét segment"
 
 #: src/fcitx-anthy.desc:393
 msgid "Select next candidate"
-msgstr "Vælg næste kandidat"
+msgstr ""
 
 #: src/fcitx-anthy.desc:343
+#, fuzzy
 msgid "Select next segment"
-msgstr "Vælg næste segment"
+msgstr "Ét segment"
 
 #: src/fcitx-anthy.desc:403
 msgid "Select prev candidate"
-msgstr "Vælg forrige kandidat"
+msgstr ""
 
 #: src/fcitx-anthy.desc:348
+#, fuzzy
 msgid "Select previous segment"
-msgstr "Vælg forrige segment"
+msgstr "Multisegment"
 
 #: src/fcitx-anthy.desc:94
 msgid "Show candidates label"
@@ -540,8 +551,9 @@ msgid "Show typing method"
 msgstr "Vis skrivemetode"
 
 #: src/fcitx-anthy.desc:353
+#, fuzzy
 msgid "Shrink segment"
-msgstr "Sammentræk segment"
+msgstr "Ét segment"
 
 #: src/imengine.cpp:592 src/fcitx-anthy.desc:48
 msgid "Single segment"

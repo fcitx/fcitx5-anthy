@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-07-28 06:02-0700\n"
-"PO-Revision-Date: 2017-07-28 12:33+0000\n"
-"Last-Translator: mar well <m.wellendorf@gmx.de>\n"
+"POT-Creation-Date: 2017-12-05 00:02-0800\n"
+"PO-Revision-Date: 2017-12-04 08:04+0000\n"
+"Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/fcitx/fcitx/language/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -32,11 +32,11 @@ msgstr "101kana"
 
 #: src/fcitx-anthy.desc:473
 msgid "Add Word"
-msgstr "Wort hinzufügen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:498
 msgid "Add word"
-msgstr "Wort hinzufügen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:84
 msgid "Allow split"
@@ -44,11 +44,11 @@ msgstr "Aufteilen erlauben"
 
 #: src/fcitx-anthy.desc:398
 msgid "Alternative Select next candidate"
-msgstr "Alternative Auswahl nächster Kandidat"
+msgstr ""
 
 #: src/fcitx-anthy.desc:408
 msgid "Alternative Select prev candidate"
-msgstr "Alternative Auswahl vorheriger Kandidat"
+msgstr ""
 
 #: src/factory.cpp:95 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
 msgid "Anthy"
@@ -68,15 +68,15 @@ msgstr "Azik"
 
 #: src/fcitx-anthy.desc:273
 msgid "BackSpace"
-msgstr "Rücktaste"
+msgstr ""
 
 #: src/fcitx-anthy.desc:303
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:308
 msgid "Cancel all"
-msgstr "Alle abbrechen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:247
 msgid "Cancel pseudo ascii mode"
@@ -87,12 +87,14 @@ msgid "Candidate List Layout"
 msgstr "Layout der Kandidatenliste"
 
 #: src/fcitx-anthy.desc:418
+#, fuzzy
 msgid "Candidates Page Down"
-msgstr "Nächste Kandidaten"
+msgstr "Layout der Kandidatenliste"
 
 #: src/fcitx-anthy.desc:413
+#, fuzzy
 msgid "Candidates Page Up"
-msgstr "Vorherige Kandidaten"
+msgstr "Kandidatenbeschriftung anzeigen"
 
 #: src/fcitx-anthy.desc:134 src/fcitx-anthy.desc:148
 msgid "Canna"
@@ -116,31 +118,32 @@ msgstr "Zwischen Eingabemethoden wechseln"
 
 #: src/fcitx-anthy.desc:496 src/fcitx-anthy.desc:501
 msgid "Command"
-msgstr "Befehl"
+msgstr ""
 
 #: src/fcitx-anthy.desc:283
 msgid "Commit"
-msgstr "Übernehmen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:288
 msgid "Commit Reverse Learn"
-msgstr "Übernehmen und aus dem Wörterbuch löschen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:363
+#, fuzzy
 msgid "Commit first segment"
-msgstr "Erstes Segment übernehmen"
+msgstr "Multi Segment"
 
 #: src/fcitx-anthy.desc:373
 msgid "Commit first segment reverse learn"
-msgstr "Erstes Segment übernehmen und aus dem Wörterbuch löschen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:368
 msgid "Commit selected segment"
-msgstr "Ausgewähltes Segment übernehmen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:378
 msgid "Commit selected segment reverse learn"
-msgstr "Ausgewähltes Segment übernehmen und aus dem Wörterbuch löschen"
+msgstr ""
 
 #: src/imengine.cpp:807
 msgid "Conversion Mode"
@@ -152,31 +155,33 @@ msgstr "Umwandlungsmodus"
 
 #: src/fcitx-anthy.desc:293
 msgid "Convert"
-msgstr "Transkribieren"
+msgstr ""
 
 #: src/fcitx-anthy.desc:443
 msgid "Convert To Half"
-msgstr "Umwandeln in Halbbreit"
+msgstr ""
 
 #: src/fcitx-anthy.desc:448
+#, fuzzy
 msgid "Convert To Half Katakana"
-msgstr "Umwandeln in Halbbreite Katakana"
+msgstr "Halbbreite Katakana"
 
 #: src/fcitx-anthy.desc:433
 msgid "Convert To Hiragana"
-msgstr "In Hiragana umwandeln"
+msgstr ""
 
 #: src/fcitx-anthy.desc:438
 msgid "Convert To Katakana"
-msgstr "In Katakana umwandeln"
+msgstr ""
 
 #: src/fcitx-anthy.desc:458
 msgid "Convert To Latin"
-msgstr "Umwandeln in Latin"
+msgstr ""
 
 #: src/fcitx-anthy.desc:453
+#, fuzzy
 msgid "Convert To Wide Latin"
-msgstr "Umwandeln in Wide-Latin"
+msgstr "Breites Lateinisch"
 
 #: src/imengine.cpp:593
 msgid "Convert as you type (Multi segment)"
@@ -188,11 +193,11 @@ msgstr "Beim Schreiben umwandeln (Einfach Segment)"
 
 #: src/fcitx-anthy.desc:428
 msgid "Convert char type backward"
-msgstr "Zeichentyp rückwärts umwandeln"
+msgstr ""
 
 #: src/fcitx-anthy.desc:423
 msgid "Convert char type forward"
-msgstr "Zeichentyp vorwärts umwandeln"
+msgstr ""
 
 #: src/fcitx-anthy.desc:69
 msgid "Corner bracket and Middle Dot"
@@ -230,19 +235,20 @@ msgstr "Standard"
 
 #: src/fcitx-anthy.desc:278
 msgid "Delete"
-msgstr "Löschen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:468 src/fcitx-anthy.desc:503
 msgid "Dict admin"
-msgstr "Wörterbuch Admin"
+msgstr ""
 
 #: src/imengine.cpp:580
 msgid "Direct input"
 msgstr "Direkte Eingabe"
 
 #: src/fcitx-anthy.desc:358
+#, fuzzy
 msgid "Expand segment"
-msgstr "Segment vergrößern"
+msgstr "Einfach Segment"
 
 #: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:15
 #: src/fcitx-anthy.desc:22 src/fcitx-anthy.desc:33 src/fcitx-anthy.desc:42
@@ -290,19 +296,19 @@ msgstr "Eingabemodus"
 
 #: src/fcitx-anthy.desc:258
 msgid "Insert Alternative space"
-msgstr "Alternatives Leerzeichen einfügen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:263
 msgid "Insert Half Space"
-msgstr "Halbes Leerzeichen einfügen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:253
 msgid "Insert space"
-msgstr "Leerzeichen einfügen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:268
 msgid "Insert wide space"
-msgstr "Weites Leerzeichen einfügen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:102 src/fcitx-anthy.desc:107 src/fcitx-anthy.desc:112
 #: src/fcitx-anthy.desc:117 src/fcitx-anthy.desc:122
@@ -380,7 +386,7 @@ msgstr "Lernen per manueller Übergabe"
 
 #: src/fcitx-anthy.desc:478
 msgid "Left thumb key"
-msgstr "Linke Daumentaste"
+msgstr ""
 
 #: src/fcitx-anthy.desc:135 src/fcitx-anthy.desc:149
 msgid "MS IME"
@@ -388,19 +394,19 @@ msgstr "MS IME"
 
 #: src/fcitx-anthy.desc:313
 msgid "Move Caret First"
-msgstr "Eingabemarke ganz vorne"
+msgstr ""
 
 #: src/fcitx-anthy.desc:328
 msgid "Move caret backward"
-msgstr "Eingabemarke nach hinten"
+msgstr ""
 
 #: src/fcitx-anthy.desc:323
 msgid "Move caret forward"
-msgstr "Eingabemarke nach vorn"
+msgstr ""
 
 #: src/fcitx-anthy.desc:318
 msgid "Move caret last"
-msgstr "Eingabemarke ganz hinten"
+msgstr ""
 
 #: src/imengine.cpp:591 src/fcitx-anthy.desc:47
 msgid "Multi segment"
@@ -419,8 +425,9 @@ msgid "Nicola Table"
 msgstr "Nicola-Tabelle"
 
 #: src/fcitx-anthy.desc:493
+#, fuzzy
 msgid "Nicola time"
-msgstr "Nicola-Zeit"
+msgstr "Nicola"
 
 #: src/fcitx-anthy.desc:172
 msgid "Nicola-A"
@@ -456,7 +463,7 @@ msgstr "Interpunktionsstil"
 
 #: src/fcitx-anthy.desc:298
 msgid "Predict"
-msgstr "Transkription vorschlagen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:163
 msgid "Quick Kana"
@@ -464,15 +471,15 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:463
 msgid "Reconvert"
-msgstr "Umwandeln zurücknehmen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:483
 msgid "Right thumb key"
-msgstr "Rechte Daumentaste"
+msgstr ""
 
 #: src/fcitx-anthy.desc:488
 msgid "Ro key for kana layout"
-msgstr "Ro-Taste für Kana-Belegung"
+msgstr ""
 
 #: src/imengine.cpp:585 src/fcitx-anthy.desc:38
 msgid "Romaji"
@@ -484,35 +491,39 @@ msgstr "Romaji-Tabelle"
 
 #: src/fcitx-anthy.desc:383
 msgid "Select first candidate"
-msgstr "Ersten Kandidaten auswählen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:333
+#, fuzzy
 msgid "Select first segment"
-msgstr "Erstes Segment auswählen"
+msgstr "Multi Segment"
 
 #: src/fcitx-anthy.desc:388
 msgid "Select last candidate"
-msgstr "Letzten Kanditaten auswählen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:338
+#, fuzzy
 msgid "Select last segment"
-msgstr "Letztes Segment auswählen"
+msgstr "Einfach Segment"
 
 #: src/fcitx-anthy.desc:393
 msgid "Select next candidate"
-msgstr "Nächsten Kanditaten auswählen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:343
+#, fuzzy
 msgid "Select next segment"
-msgstr "Nächstes Segment auswählen"
+msgstr "Einfach Segment"
 
 #: src/fcitx-anthy.desc:403
 msgid "Select prev candidate"
-msgstr "Vorherigen Kanditaten auswählen"
+msgstr ""
 
 #: src/fcitx-anthy.desc:348
+#, fuzzy
 msgid "Select previous segment"
-msgstr "Vorheriges Segment auswählen"
+msgstr "Multi Segment"
 
 #: src/fcitx-anthy.desc:94
 msgid "Show candidates label"
@@ -543,8 +554,9 @@ msgid "Show typing method"
 msgstr "Schreibmethode anzeigen"
 
 #: src/fcitx-anthy.desc:353
+#, fuzzy
 msgid "Shrink segment"
-msgstr "Segment verkleinern"
+msgstr "Einfach Segment"
 
 #: src/imengine.cpp:592 src/fcitx-anthy.desc:48
 msgid "Single segment"

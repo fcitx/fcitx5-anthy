@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-12-05 00:02-0800\n"
-"PO-Revision-Date: 2017-12-04 08:04+0000\n"
+"POT-Creation-Date: 2017-12-06 00:02-0800\n"
+"PO-Revision-Date: 2017-12-05 08:04+0000\n"
 "Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/fcitx/fcitx/language/da/)\n"
 "Language: da\n"
@@ -84,14 +84,12 @@ msgid "Candidate List Layout"
 msgstr "Layout for kandidatliste"
 
 #: src/fcitx-anthy.desc:418
-#, fuzzy
 msgid "Candidates Page Down"
-msgstr "Layout for kandidatliste"
+msgstr ""
 
 #: src/fcitx-anthy.desc:413
-#, fuzzy
 msgid "Candidates Page Up"
-msgstr "Vis kandidatetiket"
+msgstr ""
 
 #: src/fcitx-anthy.desc:134 src/fcitx-anthy.desc:148
 msgid "Canna"
@@ -126,9 +124,8 @@ msgid "Commit Reverse Learn"
 msgstr ""
 
 #: src/fcitx-anthy.desc:363
-#, fuzzy
 msgid "Commit first segment"
-msgstr "Multisegment"
+msgstr ""
 
 #: src/fcitx-anthy.desc:373
 msgid "Commit first segment reverse learn"
@@ -159,9 +156,8 @@ msgid "Convert To Half"
 msgstr ""
 
 #: src/fcitx-anthy.desc:448
-#, fuzzy
 msgid "Convert To Half Katakana"
-msgstr "Halv Katakana"
+msgstr ""
 
 #: src/fcitx-anthy.desc:433
 msgid "Convert To Hiragana"
@@ -176,9 +172,8 @@ msgid "Convert To Latin"
 msgstr ""
 
 #: src/fcitx-anthy.desc:453
-#, fuzzy
 msgid "Convert To Wide Latin"
-msgstr "Bred latinsk"
+msgstr ""
 
 #: src/imengine.cpp:593
 msgid "Convert as you type (Multi segment)"
@@ -243,9 +238,8 @@ msgid "Direct input"
 msgstr "Direkte input"
 
 #: src/fcitx-anthy.desc:358
-#, fuzzy
 msgid "Expand segment"
-msgstr "Ét segment"
+msgstr ""
 
 #: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:15
 #: src/fcitx-anthy.desc:22 src/fcitx-anthy.desc:33 src/fcitx-anthy.desc:42
@@ -422,9 +416,8 @@ msgid "Nicola Table"
 msgstr "Nicola-tabel"
 
 #: src/fcitx-anthy.desc:493
-#, fuzzy
 msgid "Nicola time"
-msgstr "Nicola"
+msgstr ""
 
 #: src/fcitx-anthy.desc:172
 msgid "Nicola-A"
@@ -491,36 +484,32 @@ msgid "Select first candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:333
-#, fuzzy
 msgid "Select first segment"
-msgstr "Multisegment"
+msgstr ""
 
 #: src/fcitx-anthy.desc:388
 msgid "Select last candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:338
-#, fuzzy
 msgid "Select last segment"
-msgstr "Ét segment"
+msgstr ""
 
 #: src/fcitx-anthy.desc:393
 msgid "Select next candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:343
-#, fuzzy
 msgid "Select next segment"
-msgstr "Ét segment"
+msgstr ""
 
 #: src/fcitx-anthy.desc:403
 msgid "Select prev candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:348
-#, fuzzy
 msgid "Select previous segment"
-msgstr "Multisegment"
+msgstr ""
 
 #: src/fcitx-anthy.desc:94
 msgid "Show candidates label"
@@ -551,9 +540,8 @@ msgid "Show typing method"
 msgstr "Vis skrivemetode"
 
 #: src/fcitx-anthy.desc:353
-#, fuzzy
 msgid "Shrink segment"
-msgstr "Ét segment"
+msgstr ""
 
 #: src/imengine.cpp:592 src/fcitx-anthy.desc:48
 msgid "Single segment"

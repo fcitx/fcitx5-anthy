@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-12-05 00:02-0800\n"
-"PO-Revision-Date: 2017-12-04 08:04+0000\n"
+"POT-Creation-Date: 2017-12-06 00:02-0800\n"
+"PO-Revision-Date: 2017-12-05 08:04+0000\n"
 "Last-Translator: csslayer <wengxt@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/fcitx/fcitx/"
 "language/zh_CN/)\n"
@@ -90,14 +90,12 @@ msgid "Candidate List Layout"
 msgstr "候选词列表方向"
 
 #: src/fcitx-anthy.desc:418
-#, fuzzy
 msgid "Candidates Page Down"
-msgstr "候选词列表方向"
+msgstr ""
 
 #: src/fcitx-anthy.desc:413
-#, fuzzy
 msgid "Candidates Page Up"
-msgstr "显示候选词标签"
+msgstr ""
 
 #: src/fcitx-anthy.desc:134 src/fcitx-anthy.desc:148
 msgid "Canna"
@@ -132,9 +130,8 @@ msgid "Commit Reverse Learn"
 msgstr ""
 
 #: src/fcitx-anthy.desc:363
-#, fuzzy
 msgid "Commit first segment"
-msgstr "多段"
+msgstr ""
 
 #: src/fcitx-anthy.desc:373
 msgid "Commit first segment reverse learn"
@@ -165,9 +162,8 @@ msgid "Convert To Half"
 msgstr ""
 
 #: src/fcitx-anthy.desc:448
-#, fuzzy
 msgid "Convert To Half Katakana"
-msgstr "半角片假名"
+msgstr ""
 
 #: src/fcitx-anthy.desc:433
 msgid "Convert To Hiragana"
@@ -182,9 +178,8 @@ msgid "Convert To Latin"
 msgstr ""
 
 #: src/fcitx-anthy.desc:453
-#, fuzzy
 msgid "Convert To Wide Latin"
-msgstr "全角英文"
+msgstr ""
 
 #: src/imengine.cpp:593
 msgid "Convert as you type (Multi segment)"
@@ -249,9 +244,8 @@ msgid "Direct input"
 msgstr "直接输入"
 
 #: src/fcitx-anthy.desc:358
-#, fuzzy
 msgid "Expand segment"
-msgstr "单段"
+msgstr ""
 
 #: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:15
 #: src/fcitx-anthy.desc:22 src/fcitx-anthy.desc:33 src/fcitx-anthy.desc:42
@@ -428,9 +422,8 @@ msgid "Nicola Table"
 msgstr "尼古拉表"
 
 #: src/fcitx-anthy.desc:493
-#, fuzzy
 msgid "Nicola time"
-msgstr "尼古拉"
+msgstr ""
 
 #: src/fcitx-anthy.desc:172
 msgid "Nicola-A"
@@ -497,36 +490,32 @@ msgid "Select first candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:333
-#, fuzzy
 msgid "Select first segment"
-msgstr "多段"
+msgstr ""
 
 #: src/fcitx-anthy.desc:388
 msgid "Select last candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:338
-#, fuzzy
 msgid "Select last segment"
-msgstr "单段"
+msgstr ""
 
 #: src/fcitx-anthy.desc:393
 msgid "Select next candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:343
-#, fuzzy
 msgid "Select next segment"
-msgstr "单段"
+msgstr ""
 
 #: src/fcitx-anthy.desc:403
 msgid "Select prev candidate"
 msgstr ""
 
 #: src/fcitx-anthy.desc:348
-#, fuzzy
 msgid "Select previous segment"
-msgstr "多段"
+msgstr ""
 
 #: src/fcitx-anthy.desc:94
 msgid "Show candidates label"
@@ -557,9 +546,8 @@ msgid "Show typing method"
 msgstr "显示输入方案"
 
 #: src/fcitx-anthy.desc:353
-#, fuzzy
 msgid "Shrink segment"
-msgstr "单段"
+msgstr ""
 
 #: src/imengine.cpp:592 src/fcitx-anthy.desc:48
 msgid "Single segment"

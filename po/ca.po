@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2017
 # Walter Garcia-Fontes <walter.garcia@upf.edu>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-12-06 00:02-0800\n"
-"PO-Revision-Date: 2017-12-05 08:04+0000\n"
-"Last-Translator: csslayer <wengxt@gmail.com>\n"
+"POT-Creation-Date: 2017-12-09 00:02-0800\n"
+"PO-Revision-Date: 2017-12-08 22:24+0000\n"
+"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/fcitx/fcitx/language/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -29,11 +30,11 @@ msgstr "101kana"
 
 #: src/fcitx-anthy.desc:473
 msgid "Add Word"
-msgstr ""
+msgstr "Afegeix una paraula"
 
 #: src/fcitx-anthy.desc:498
 msgid "Add word"
-msgstr ""
+msgstr "Afegeix una parula"
 
 #: src/fcitx-anthy.desc:84
 msgid "Allow split"
@@ -53,7 +54,7 @@ msgstr "Anthy"
 
 #: src/fcitx-anthy.conf.in:4
 msgid "Anthy Wrapper For Fcitx"
-msgstr "Contenidor anthy per al fcitx"
+msgstr "Contenidor anthy per a fcitx"
 
 #: src/fcitx-anthy.desc:133 src/fcitx-anthy.desc:146
 msgid "Atok"
@@ -65,15 +66,15 @@ msgstr "Azik"
 
 #: src/fcitx-anthy.desc:273
 msgid "BackSpace"
-msgstr ""
+msgstr "Retrocés"
 
 #: src/fcitx-anthy.desc:303
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·la"
 
 #: src/fcitx-anthy.desc:308
 msgid "Cancel all"
-msgstr ""
+msgstr "Cancel·la-ho tot"
 
 #: src/fcitx-anthy.desc:247
 msgid "Cancel pseudo ascii mode"
@@ -113,7 +114,7 @@ msgstr "Mètode d'escriptura cercle"
 
 #: src/fcitx-anthy.desc:496 src/fcitx-anthy.desc:501
 msgid "Command"
-msgstr ""
+msgstr "Ordre"
 
 #: src/fcitx-anthy.desc:283
 msgid "Commit"
@@ -125,7 +126,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:363
 msgid "Commit first segment"
-msgstr ""
+msgstr "Envia el primer segment"
 
 #: src/fcitx-anthy.desc:373
 msgid "Commit first segment reverse learn"
@@ -133,7 +134,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:368
 msgid "Commit selected segment"
-msgstr ""
+msgstr "Envia el segment seleccionat"
 
 #: src/fcitx-anthy.desc:378
 msgid "Commit selected segment reverse learn"
@@ -149,39 +150,39 @@ msgstr "Mode de conversió"
 
 #: src/fcitx-anthy.desc:293
 msgid "Convert"
-msgstr ""
+msgstr "Converteix"
 
 #: src/fcitx-anthy.desc:443
 msgid "Convert To Half"
-msgstr ""
+msgstr "Converteix a mig"
 
 #: src/fcitx-anthy.desc:448
 msgid "Convert To Half Katakana"
-msgstr ""
+msgstr "Converteix a mig katakana"
 
 #: src/fcitx-anthy.desc:433
 msgid "Convert To Hiragana"
-msgstr ""
+msgstr "Converteix a hiragana"
 
 #: src/fcitx-anthy.desc:438
 msgid "Convert To Katakana"
-msgstr ""
+msgstr "Converteix a katakana"
 
 #: src/fcitx-anthy.desc:458
 msgid "Convert To Latin"
-msgstr ""
+msgstr "Converteix a llatí"
 
 #: src/fcitx-anthy.desc:453
 msgid "Convert To Wide Latin"
-msgstr ""
+msgstr "Converteix a llatí ample"
 
 #: src/imengine.cpp:593
 msgid "Convert as you type (Multi segment)"
-msgstr "Convertiu quan escriviu (Segment múltiple)"
+msgstr "Converteix mentre escriviu (segment múltiple)"
 
 #: src/imengine.cpp:594
 msgid "Convert as you type (Single segment)"
-msgstr "Converteix a mesura que escriviu (Segment únic)"
+msgstr "Converteix mentre escriviu (segment únic)"
 
 #: src/fcitx-anthy.desc:428
 msgid "Convert char type backward"
@@ -239,7 +240,7 @@ msgstr "Entrada directa"
 
 #: src/fcitx-anthy.desc:358
 msgid "Expand segment"
-msgstr ""
+msgstr "Expandeix el segment"
 
 #: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:15
 #: src/fcitx-anthy.desc:22 src/fcitx-anthy.desc:33 src/fcitx-anthy.desc:42
@@ -295,7 +296,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:253
 msgid "Insert space"
-msgstr ""
+msgstr "Insereix un espai"
 
 #: src/fcitx-anthy.desc:268
 msgid "Insert wide space"
@@ -385,19 +386,19 @@ msgstr "MS IME"
 
 #: src/fcitx-anthy.desc:313
 msgid "Move Caret First"
-msgstr ""
+msgstr "Mou el cursor al primer"
 
 #: src/fcitx-anthy.desc:328
 msgid "Move caret backward"
-msgstr ""
+msgstr "Mou el cursor enrere"
 
 #: src/fcitx-anthy.desc:323
 msgid "Move caret forward"
-msgstr ""
+msgstr "Mou el cursor endavant"
 
 #: src/fcitx-anthy.desc:318
 msgid "Move caret last"
-msgstr ""
+msgstr "Mou el cursor a l'últim"
 
 #: src/imengine.cpp:591 src/fcitx-anthy.desc:47
 msgid "Multi segment"
@@ -453,7 +454,7 @@ msgstr "Estil de punt"
 
 #: src/fcitx-anthy.desc:298
 msgid "Predict"
-msgstr ""
+msgstr "Prediu"
 
 #: src/fcitx-anthy.desc:163
 msgid "Quick Kana"
@@ -481,27 +482,27 @@ msgstr "Taula Romaji"
 
 #: src/fcitx-anthy.desc:383
 msgid "Select first candidate"
-msgstr ""
+msgstr "Selecciona la primera candidata"
 
 #: src/fcitx-anthy.desc:333
 msgid "Select first segment"
-msgstr ""
+msgstr "Selecciona el primer segment"
 
 #: src/fcitx-anthy.desc:388
 msgid "Select last candidate"
-msgstr ""
+msgstr "Selecciona l'última candidata"
 
 #: src/fcitx-anthy.desc:338
 msgid "Select last segment"
-msgstr ""
+msgstr "Selecciona l'últim segment"
 
 #: src/fcitx-anthy.desc:393
 msgid "Select next candidate"
-msgstr ""
+msgstr "Selecciona la candidata següent"
 
 #: src/fcitx-anthy.desc:343
 msgid "Select next segment"
-msgstr ""
+msgstr "Selecciona el segment següent"
 
 #: src/fcitx-anthy.desc:403
 msgid "Select prev candidate"
@@ -509,7 +510,7 @@ msgstr ""
 
 #: src/fcitx-anthy.desc:348
 msgid "Select previous segment"
-msgstr ""
+msgstr "Selecciona el segment anterior"
 
 #: src/fcitx-anthy.desc:94
 msgid "Show candidates label"
@@ -541,7 +542,7 @@ msgstr "Mostra el mètode d'escriptura"
 
 #: src/fcitx-anthy.desc:353
 msgid "Shrink segment"
-msgstr ""
+msgstr "Contreu el segment"
 
 #: src/imengine.cpp:592 src/fcitx-anthy.desc:48
 msgid "Single segment"
@@ -581,7 +582,7 @@ msgstr "Mètode d'escriptura"
 
 #: src/fcitx-anthy.desc:89
 msgid "Use direct key on predict"
-msgstr "Usa la tecla directa a la predicció"
+msgstr "UUtilitza la tecla directa amb la predicció"
 
 #: src/fcitx-anthy.desc:11
 msgid "Vertical"

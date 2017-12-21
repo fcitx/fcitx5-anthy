@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-12-06 00:02-0800\n"
-"PO-Revision-Date: 2017-12-05 08:04+0000\n"
-"Last-Translator: csslayer <wengxt@gmail.com>\n"
+"POT-Creation-Date: 2017-12-21 00:02-0800\n"
+"PO-Revision-Date: 2017-12-21 03:44+0000\n"
+"Last-Translator: Bon Keun Seo <scobyseo@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/fcitx/fcitx/language/ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -30,11 +30,11 @@ msgstr "101가나"
 
 #: src/fcitx-anthy.desc:473
 msgid "Add Word"
-msgstr ""
+msgstr "단어 추가"
 
 #: src/fcitx-anthy.desc:498
 msgid "Add word"
-msgstr ""
+msgstr "단어 추가"
 
 #: src/fcitx-anthy.desc:84
 msgid "Allow split"
@@ -42,11 +42,11 @@ msgstr "나누기 허용"
 
 #: src/fcitx-anthy.desc:398
 msgid "Alternative Select next candidate"
-msgstr ""
+msgstr "다음 후보 대체 선택"
 
 #: src/fcitx-anthy.desc:408
 msgid "Alternative Select prev candidate"
-msgstr ""
+msgstr "이전 후보 대체 선택"
 
 #: src/factory.cpp:95 src/anthy.conf.in:3 src/fcitx-anthy.conf.in:3
 msgid "Anthy"
@@ -66,15 +66,15 @@ msgstr "Azik"
 
 #: src/fcitx-anthy.desc:273
 msgid "BackSpace"
-msgstr ""
+msgstr "백스페이스"
 
 #: src/fcitx-anthy.desc:303
 msgid "Cancel"
-msgstr ""
+msgstr "취소"
 
 #: src/fcitx-anthy.desc:308
 msgid "Cancel all"
-msgstr ""
+msgstr "모두 취소"
 
 #: src/fcitx-anthy.desc:247
 msgid "Cancel pseudo ascii mode"
@@ -86,11 +86,11 @@ msgstr "후보 목록 모양"
 
 #: src/fcitx-anthy.desc:418
 msgid "Candidates Page Down"
-msgstr ""
+msgstr "다음 후보 페이지"
 
 #: src/fcitx-anthy.desc:413
 msgid "Candidates Page Up"
-msgstr ""
+msgstr "이전 후보 페이지"
 
 #: src/fcitx-anthy.desc:134 src/fcitx-anthy.desc:148
 msgid "Canna"
@@ -114,31 +114,31 @@ msgstr "입력 방식 순환"
 
 #: src/fcitx-anthy.desc:496 src/fcitx-anthy.desc:501
 msgid "Command"
-msgstr ""
+msgstr "명령"
 
 #: src/fcitx-anthy.desc:283
 msgid "Commit"
-msgstr ""
+msgstr "입력완료"
 
 #: src/fcitx-anthy.desc:288
 msgid "Commit Reverse Learn"
-msgstr ""
+msgstr "재변환 확인"
 
 #: src/fcitx-anthy.desc:363
 msgid "Commit first segment"
-msgstr ""
+msgstr "첫 세그먼트 입력"
 
 #: src/fcitx-anthy.desc:373
 msgid "Commit first segment reverse learn"
-msgstr ""
+msgstr "첫 세그먼트 원래 문자열 입력"
 
 #: src/fcitx-anthy.desc:368
 msgid "Commit selected segment"
-msgstr ""
+msgstr "선택한 세그먼트 입력"
 
 #: src/fcitx-anthy.desc:378
 msgid "Commit selected segment reverse learn"
-msgstr ""
+msgstr "선택한 세그먼트 원래 문자열 입력"
 
 #: src/imengine.cpp:807
 msgid "Conversion Mode"
@@ -150,31 +150,31 @@ msgstr "변환 모드"
 
 #: src/fcitx-anthy.desc:293
 msgid "Convert"
-msgstr ""
+msgstr "변환"
 
 #: src/fcitx-anthy.desc:443
 msgid "Convert To Half"
-msgstr ""
+msgstr "반각으로 변환"
 
 #: src/fcitx-anthy.desc:448
 msgid "Convert To Half Katakana"
-msgstr ""
+msgstr "반각 가타가나로 변환"
 
 #: src/fcitx-anthy.desc:433
 msgid "Convert To Hiragana"
-msgstr ""
+msgstr "히라가나로 변환"
 
 #: src/fcitx-anthy.desc:438
 msgid "Convert To Katakana"
-msgstr ""
+msgstr "가타가나로 변환"
 
 #: src/fcitx-anthy.desc:458
 msgid "Convert To Latin"
-msgstr ""
+msgstr "로마자로 변환"
 
 #: src/fcitx-anthy.desc:453
 msgid "Convert To Wide Latin"
-msgstr ""
+msgstr "전각 로마자로 변환"
 
 #: src/imengine.cpp:593
 msgid "Convert as you type (Multi segment)"
@@ -186,11 +186,11 @@ msgstr "입력 중 변환 (단일 세그먼트)"
 
 #: src/fcitx-anthy.desc:428
 msgid "Convert char type backward"
-msgstr ""
+msgstr "이전 문자형식으로 변환"
 
 #: src/fcitx-anthy.desc:423
 msgid "Convert char type forward"
-msgstr ""
+msgstr "다음 문자형식으로 변환"
 
 #: src/fcitx-anthy.desc:69
 msgid "Corner bracket and Middle Dot"
@@ -228,11 +228,11 @@ msgstr "기본값"
 
 #: src/fcitx-anthy.desc:278
 msgid "Delete"
-msgstr ""
+msgstr "지우기"
 
 #: src/fcitx-anthy.desc:468 src/fcitx-anthy.desc:503
 msgid "Dict admin"
-msgstr ""
+msgstr "사전 관리"
 
 #: src/imengine.cpp:580
 msgid "Direct input"
@@ -240,7 +240,7 @@ msgstr "직접 입력"
 
 #: src/fcitx-anthy.desc:358
 msgid "Expand segment"
-msgstr ""
+msgstr "세그먼트 늘이기"
 
 #: src/fcitx-anthy.desc:1 src/fcitx-anthy.desc:6 src/fcitx-anthy.desc:15
 #: src/fcitx-anthy.desc:22 src/fcitx-anthy.desc:33 src/fcitx-anthy.desc:42
@@ -288,19 +288,19 @@ msgstr "입력 모드"
 
 #: src/fcitx-anthy.desc:258
 msgid "Insert Alternative space"
-msgstr ""
+msgstr "대체 공백 입력"
 
 #: src/fcitx-anthy.desc:263
 msgid "Insert Half Space"
-msgstr ""
+msgstr "반각 공백 입력"
 
 #: src/fcitx-anthy.desc:253
 msgid "Insert space"
-msgstr ""
+msgstr "공백 입력"
 
 #: src/fcitx-anthy.desc:268
 msgid "Insert wide space"
-msgstr ""
+msgstr "전각 공백 입력"
 
 #: src/fcitx-anthy.desc:102 src/fcitx-anthy.desc:107 src/fcitx-anthy.desc:112
 #: src/fcitx-anthy.desc:117 src/fcitx-anthy.desc:122
@@ -378,7 +378,7 @@ msgstr "수동 입력 완료 방법 배우기"
 
 #: src/fcitx-anthy.desc:478
 msgid "Left thumb key"
-msgstr ""
+msgstr "왼쪽 엄지 키"
 
 #: src/fcitx-anthy.desc:135 src/fcitx-anthy.desc:149
 msgid "MS IME"
@@ -386,19 +386,19 @@ msgstr "마이크로소프트 IME"
 
 #: src/fcitx-anthy.desc:313
 msgid "Move Caret First"
-msgstr ""
+msgstr "커서를 맨 앞으로 옮기기"
 
 #: src/fcitx-anthy.desc:328
 msgid "Move caret backward"
-msgstr ""
+msgstr "커서를 뒤로 옮기기"
 
 #: src/fcitx-anthy.desc:323
 msgid "Move caret forward"
-msgstr ""
+msgstr "커서를 앞으로 옮기기"
 
 #: src/fcitx-anthy.desc:318
 msgid "Move caret last"
-msgstr ""
+msgstr "커서를 맨 뒤로 옮기기"
 
 #: src/imengine.cpp:591 src/fcitx-anthy.desc:47
 msgid "Multi segment"
@@ -418,7 +418,7 @@ msgstr "니콜라 표"
 
 #: src/fcitx-anthy.desc:493
 msgid "Nicola time"
-msgstr ""
+msgstr "니콜라 시간"
 
 #: src/fcitx-anthy.desc:172
 msgid "Nicola-A"
@@ -454,7 +454,7 @@ msgstr "문장부호 스타일"
 
 #: src/fcitx-anthy.desc:298
 msgid "Predict"
-msgstr ""
+msgstr "예측"
 
 #: src/fcitx-anthy.desc:163
 msgid "Quick Kana"
@@ -462,15 +462,15 @@ msgstr "빠른 가나"
 
 #: src/fcitx-anthy.desc:463
 msgid "Reconvert"
-msgstr ""
+msgstr "재변환"
 
 #: src/fcitx-anthy.desc:483
 msgid "Right thumb key"
-msgstr ""
+msgstr "오른쪽 엄지 키"
 
 #: src/fcitx-anthy.desc:488
 msgid "Ro key for kana layout"
-msgstr ""
+msgstr "가나 배열 용 Ro 키"
 
 #: src/imengine.cpp:585 src/fcitx-anthy.desc:38
 msgid "Romaji"
@@ -482,35 +482,35 @@ msgstr "로마자 표"
 
 #: src/fcitx-anthy.desc:383
 msgid "Select first candidate"
-msgstr ""
+msgstr "첫 후보 선택"
 
 #: src/fcitx-anthy.desc:333
 msgid "Select first segment"
-msgstr ""
+msgstr "첫번째 세그먼트 선택"
 
 #: src/fcitx-anthy.desc:388
 msgid "Select last candidate"
-msgstr ""
+msgstr "마지막 후보 선택"
 
 #: src/fcitx-anthy.desc:338
 msgid "Select last segment"
-msgstr ""
+msgstr "마지막 세그먼트 선택"
 
 #: src/fcitx-anthy.desc:393
 msgid "Select next candidate"
-msgstr ""
+msgstr "다음 후보 선택"
 
 #: src/fcitx-anthy.desc:343
 msgid "Select next segment"
-msgstr ""
+msgstr "다음 세그먼트 선택"
 
 #: src/fcitx-anthy.desc:403
 msgid "Select prev candidate"
-msgstr ""
+msgstr "이전 후보 선택"
 
 #: src/fcitx-anthy.desc:348
 msgid "Select previous segment"
-msgstr ""
+msgstr "이전 세그먼트 선택"
 
 #: src/fcitx-anthy.desc:94
 msgid "Show candidates label"
@@ -542,7 +542,7 @@ msgstr "타이핑 방식 보이기"
 
 #: src/fcitx-anthy.desc:353
 msgid "Shrink segment"
-msgstr ""
+msgstr "세그먼트 줄이기"
 
 #: src/imengine.cpp:592 src/fcitx-anthy.desc:48
 msgid "Single segment"

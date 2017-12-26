@@ -113,7 +113,7 @@ bool KanaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
     // handle keypad code
     if (sym == FcitxKey_KP_Equal ||
         (sym >= FcitxKey_KP_Multiply && sym <= FcitxKey_KP_9)) {
-        TenKeyType ten_key_type = *config().m_general->m_ten_key_type;
+        TenKeyType ten_key_type = *config().general->tenKeyType;
 
         for (unsigned int i = 0; table[i].code; i++) {
             if (table[i].code == sym) {

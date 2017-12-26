@@ -191,12 +191,12 @@ bool NicolaConvertor::isThumbKey(const fcitx::Key &key) {
 }
 
 bool NicolaConvertor::isLeftThumbKey(const fcitx::Key &key) {
-    return util::match_key_event(*config().m_key->m_left_thumb_keys, key,
+    return util::match_key_event(*config().key->leftThumbKeys, key,
                                  fcitx::KeyStates(0xFFFF));
 }
 
 bool NicolaConvertor::isRightThumbKey(const fcitx::Key &key) {
-    return util::match_key_event(*config().m_key->m_right_thumb_keys, key,
+    return util::match_key_event(*config().key->rightThumbKeys, key,
                                  fcitx::KeyStates(0xFFFF));
 }
 
@@ -276,7 +276,7 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
 
         // convert key pad string to wide
         std::string wide;
-        TenKeyType ten_key_type = *config().m_general->m_ten_key_type;
+        TenKeyType ten_key_type = *config().general->tenKeyType;
         if ((ten_key_type == TenKeyType::FOLLOWMODE &&
              (state_.inputMode() == InputMode::LATIN ||
               state_.inputMode() == InputMode::WIDE_LATIN)) ||
@@ -316,7 +316,7 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
             stop();
             emitKeyEvent(prevThumbKey_);
             prevThumbKey_ = key.rawKey();
-            setAlarm(*config().m_key->m_nicola_time);
+            setAlarm(*config().key->nicolaTime);
         } else if (prevCharKey_.isValid()) {
             stop();
             repeatCharKey_ = prevCharKey_;
@@ -330,14 +330,14 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
                 }
             } else {
                 prevThumbKey_ = key.rawKey();
-                setAlarm(*config().m_key->m_nicola_time);
+                setAlarm(*config().key->nicolaTime);
             }
         }
     } else if (isCharKey(key)) {
         if (prevCharKey_.isValid()) {
             stop();
             search(prevCharKey_, thumbKeyType(prevThumbKey_), result, raw);
-            setAlarm(*config().m_key->m_nicola_time);
+            setAlarm(*config().key->nicolaTime);
             prevCharKey_ = key.rawKey();
         } else if (isThumbKey(prevThumbKey_)) {
             stop();
@@ -351,7 +351,7 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
                            result, raw);
                 }
             } else {
-                setAlarm(*config().m_key->m_nicola_time);
+                setAlarm(*config().key->nicolaTime);
                 prevCharKey_ = key.rawKey();
             }
         }
@@ -367,8 +367,7 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
             return true;
     }
 
-    //     FcitxLog(DEBUG, "prev:%s %d %d %d", __func__, m_prev_char_key.sym,
-    //              m_prev_char_key.state, m_prev_char_key.is_release);
+    FCITX_ANTHY_DEBUG() << "prev: " << prevCharKey_;
 
     handleVoicedConsonant(result, pending);
     return true;

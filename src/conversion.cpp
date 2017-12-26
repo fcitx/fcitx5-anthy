@@ -442,9 +442,9 @@ private:
 std::unique_ptr<fcitx::CommonCandidateList>
 Conversion::candidates(int segment_id) {
     auto table = std::make_unique<fcitx::CommonCandidateList>();
-    table->setLayoutHint(*state_.config().m_general->m_candidate_layout);
-    auto pageSize = *state_.config().m_general->m_page_size;
-    table->setPageSize(*state_.config().m_general->m_page_size);
+    table->setLayoutHint(*state_.config().general->candidateLayout);
+    auto pageSize = *state_.config().general->pageSize;
+    table->setPageSize(*state_.config().general->pageSize);
     int selected = selectedCandidate();
 
     if (isPredicting()) {

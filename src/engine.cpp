@@ -268,17 +268,15 @@ void AnthyEngine::keyEvent(const fcitx::InputMethodEntry &,
 }
 
 std::string AnthyEngine::keyProfileName() {
-    const std::string key_profile[] = {
-        "",
-        "atok.sty",
-        "canna.sty",
-        "msime.sty",
-        "vje-delta.sty",
-        "wnn.sty",
-        *config().m_key_profile->m_key_theme_file};
+    const std::string key_profile[] = {"",
+                                       "atok.sty",
+                                       "canna.sty",
+                                       "msime.sty",
+                                       "vje-delta.sty",
+                                       "wnn.sty",
+                                       *config().keyProfile->keyThemeFile};
 
-    auto profile =
-        static_cast<int>(*config().m_key_profile->m_key_profile_enum);
+    auto profile = static_cast<int>(*config().keyProfile->keyProfileEnum);
     return key_profile[profile];
 }
 
@@ -287,10 +285,9 @@ std::string AnthyEngine::romajiTableName() {
         "",          "atok.sty",
         "azik.sty",  "canna.sty",
         "msime.sty", "vje-delta.sty",
-        "wnn.sty",   *config().m_key_profile->m_romaji_fundamental_table};
+        "wnn.sty",   *config().keyProfile->romajiFundamentalTable};
 
-    auto profile =
-        static_cast<int>(*config().m_key_profile->m_romaji_table_enum);
+    auto profile = static_cast<int>(*config().keyProfile->romajiTableEnum);
 
     return key_profile[profile];
 }
@@ -302,9 +299,9 @@ std::string AnthyEngine::kanaTableName() {
         "tsuki-2-203-101.sty",
         "tsuki-2-203-106.sty",
         "qkana.sty",
-        *config().m_key_profile->m_kana_fundamental_table};
+        *config().keyProfile->kanaFundamentalTable};
 
-    auto profile = static_cast<int>(*config().m_key_profile->m_kana_table_enum);
+    auto profile = static_cast<int>(*config().keyProfile->kanaTableEnum);
 
     return key_profile[profile];
 }
@@ -318,10 +315,9 @@ std::string AnthyEngine::nicolaTableName() {
         "oasys100j.sty"
         "tron-dvorak.sty",
         "tron-qwerty-jp.sty",
-        *config().m_key_profile->m_nicola_fundamental_table};
+        *config().keyProfile->nicolaFundamentalTable};
 
-    auto profile =
-        static_cast<int>(*config().m_key_profile->m_nicola_table_enum);
+    auto profile = static_cast<int>(*config().keyProfile->nicolaTableEnum);
 
     return key_profile[profile];
 }
@@ -351,7 +347,7 @@ void AnthyEngine::reloadConfig() {
         std::string str = (ACTION_CONFIG_##key##_KEY);                         \
         std::string keystr;                                                    \
         style.getString(keystr, "KeyBindings", str);                           \
-        keyProfile_.m_hk_##key = fcitx::Key::keyListFromString(keystr);        \
+        keyProfile_.hk_##key = fcitx::Key::keyListFromString(keystr);          \
     } while (0)
 #include "action_defs.h"
 #undef FOREACH_ACTION
@@ -407,23 +403,23 @@ std::string AnthyEngine::subMode(const fcitx::InputMethodEntry &,
 void AnthyEngine::activate(const fcitx::InputMethodEntry &,
                            fcitx::InputContextEvent &event) {
     // Setup action.
-    if (*config_.m_interface->m_show_input_mode_label) {
+    if (*config_.interface->showInputModeLabel) {
         event.inputContext()->statusArea().addAction(
             fcitx::StatusGroup::InputMethod, inputModeAction_.get());
     }
-    if (*config_.m_interface->m_show_typing_method_label) {
+    if (*config_.interface->showTypingMethodLabel) {
         event.inputContext()->statusArea().addAction(
             fcitx::StatusGroup::InputMethod, typingMethodAction_.get());
     }
-    if (*config_.m_interface->m_show_conv_mode_label) {
+    if (*config_.interface->showConvModeLabel) {
         event.inputContext()->statusArea().addAction(
             fcitx::StatusGroup::InputMethod, conversionModeAction_.get());
     }
-    if (*config_.m_interface->m_show_period_style_label) {
+    if (*config_.interface->showPeriodStyleLabel) {
         event.inputContext()->statusArea().addAction(
             fcitx::StatusGroup::InputMethod, periodStyleAction_.get());
     }
-    if (*config_.m_interface->m_show_symbol_style_label) {
+    if (*config_.interface->showSymbolStyleLabel) {
         event.inputContext()->statusArea().addAction(
             fcitx::StatusGroup::InputMethod, symbolStyleAction_.get());
     }

@@ -123,12 +123,12 @@ public:
     TypingMethod typingMethod();
     InputMode inputMode();
     ConversionMode conversionMode() {
-        return *config().m_general->m_conversion_mode;
+        return *config().general->conversionMode;
     }
     PeriodCommaStyle periodCommaStyle() {
-        return *config().m_general->m_period_comma_style;
+        return *config().general->periodCommaStyle;
     }
-    SymbolStyle symbolStyle() { return *config().m_general->m_symbol_style; }
+    SymbolStyle symbolStyle() { return *config().general->symbolStyle; }
     void setInputMode(InputMode mode);
     void setConversionMode(ConversionMode mode);
     void setTypingMethod(TypingMethod method);

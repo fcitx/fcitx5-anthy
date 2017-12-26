@@ -71,7 +71,7 @@ bool Key2KanaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
     if (util::key_is_keypad(key.rawKey())) {
         bool retval = false;
         std::string wide;
-        TenKeyType ten_key_type = *config().m_general->m_ten_key_type;
+        TenKeyType ten_key_type = *config().general->tenKeyType;
 
         // convert key pad string to wide
         if ((ten_key_type == TenKeyType::FOLLOWMODE &&
@@ -166,12 +166,11 @@ bool Key2KanaConvertor::append(const std::string &str, std::string &result,
         (CheckLayout(state_.instance())) &&
         (lastKey_.sym() == FcitxKey_backslash) &&
         (!(lastKey_.code() == 132 || lastKey_.code() == 133)) &&
-        (!config().m_key->m_kana_layout_ro_key->empty())) {
+        (!config().key->kanaLayoutRoKey->empty())) {
         // Special treatment for Kana "Ro" key.
         // This code is a temporary solution. It doesn't care some minor cases.
         std::vector<std::string> kana_ro_result;
-        split_string_list(kana_ro_result,
-                          *config().m_key->m_kana_layout_ro_key);
+        split_string_list(kana_ro_result, *config().key->kanaLayoutRoKey);
         Key2KanaRule kana_ro_rule;
         kana_ro_rule.load("\\", kana_ro_result);
         result = kana_ro_rule.result(0);

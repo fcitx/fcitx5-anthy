@@ -83,9 +83,7 @@ void ReadingSegment::split(ReadingSegments &segments) {
 }
 
 Reading::Reading(AnthyState &anthy)
-    : state_(anthy),
-      // m_key2kana_tables (tables),
-      key2kanaNormal_(anthy, key2kanaTables_), kana_(anthy),
+    : state_(anthy), key2kanaNormal_(anthy, key2kanaTables_), kana_(anthy),
       nicola_(anthy, nicolaTables_), key2kana_(&key2kanaNormal_),
       segmentPos_(0), caretOffset_(0) {
     nicolaTables_.setTypingMethod(TypingMethod::NICOLA);

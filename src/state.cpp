@@ -60,9 +60,9 @@ bool AnthyState::isNicolaThumbShiftKey(const fcitx::KeyEvent &key) {
     if (typingMethod() != TypingMethod::NICOLA)
         return false;
 
-    if (util::match_key_event(*config().m_key->m_left_thumb_keys, key.rawKey(),
+    if (util::match_key_event(*config().key->leftThumbKeys, key.rawKey(),
                               fcitx::KeyStates(0xFFFF)) ||
-        util::match_key_event(*config().m_key->m_right_thumb_keys, key.rawKey(),
+        util::match_key_event(*config().key->rightThumbKeys, key.rawKey(),
                               fcitx::KeyStates(0xFFFF))) {
         return true;
     }
@@ -72,7 +72,7 @@ bool AnthyState::isNicolaThumbShiftKey(const fcitx::KeyEvent &key) {
 
 bool AnthyState::processKeyEventInput(const fcitx::KeyEvent &key) {
     // prediction while typing
-    if (*config().m_general->m_predict_on_input && key.isRelease() &&
+    if (*config().general->predictOnInput && key.isRelease() &&
         preedit_.isPreediting() && !preedit_.isConverting()) {
         preedit_.predict();
         preedit_.candidates();
@@ -86,7 +86,7 @@ bool AnthyState::processKeyEventInput(const fcitx::KeyEvent &key) {
         if (isRealtimeConversion()) {
             action_revert();
         } else if (!isNicolaThumbShiftKey(key)) {
-            action_commit(*config().m_general->m_learn_on_auto_commit);
+            action_commit(*config().general->learnOnAutoCommit);
         }
     }
 
@@ -97,7 +97,7 @@ bool AnthyState::processKeyEventInput(const fcitx::KeyEvent &key) {
             inputMode() != InputMode::WIDE_LATIN) {
             preedit_.convert(FCITX_ANTHY_CANDIDATE_DEFAULT, isSingleSegment());
         }
-        action_commit(*config().m_general->m_learn_on_auto_commit);
+        action_commit(*config().general->learnOnAutoCommit);
     } else {
         if (isRealtimeConversion()) {
             preedit_.convert(FCITX_ANTHY_CANDIDATE_DEFAULT, isSingleSegment());
@@ -123,7 +123,7 @@ bool AnthyState::processKeyEventLookupKeybind(const fcitx::KeyEvent &key) {
      * when entering the pseudo ascii mode.
      */
     if (pseudoAsciiMode() != 0 &&
-        *config().m_general->m_romaji_pseudo_ascii_blank_behavior &&
+        *config().general->romajiPseudoAsciiBlankBehavior &&
         preedit_.isPseudoAsciiMode()) {
         it = std::find_if(actions_.begin(), actions_.end(),
                           [](const Action &action) {
@@ -163,7 +163,7 @@ bool AnthyState::processKeyEventLatinMode(const fcitx::KeyEvent &key) {
     if (util::key_is_keypad(key.rawKey())) {
         std::string wide;
         auto str = util::keypad_to_string(key);
-        if (*config().m_general->m_ten_key_type == TenKeyType::WIDE)
+        if (*config().general->tenKeyType == TenKeyType::WIDE)
             wide = util::convert_to_wide(str);
         else
             wide = str;
@@ -186,7 +186,7 @@ bool AnthyState::processKeyEventWideLatinMode(const fcitx::KeyEvent &key) {
     std::string wide;
     auto str = util::keypad_to_string(key);
     if (util::key_is_keypad(key.rawKey()) &&
-        *config().m_general->m_ten_key_type == TenKeyType::HALF) {
+        *config().general->tenKeyType == TenKeyType::HALF) {
         wide = str;
     } else {
         wide = util::convert_to_wide(str);
@@ -258,13 +258,12 @@ void AnthyState::selectCandidateNoDirect(unsigned int item) {
             auto commonCandList =
                 static_cast<fcitx::CommonCandidateList *>(candList);
             commonCandList->setGlobalCursorIndex(cursorPos_);
-            commonCandList->setPage(cursorPos_ /
-                                    *config().m_general->m_page_size);
+            commonCandList->setPage(cursorPos_ / *config().general->pageSize);
         }
     }
 
     // update aux string
-    if (*config().m_general->m_show_candidates_label)
+    if (*config().general->showCandidatesLabel)
         setAuxString();
 }
 
@@ -292,7 +291,7 @@ void AnthyState::init() {
     }
 
     if (lookupTableVisible_ && isSelectingCandidates()) {
-        if (*config().m_general->m_show_candidates_label) {
+        if (*config().general->showCandidatesLabel) {
             setAuxString();
         }
         setLookupTable();
@@ -353,9 +352,8 @@ int AnthyState::setLookupTable() {
     setPreedition();
 
     bool beyond_threshold =
-        *config().m_general->m_n_triggers_to_show_cand_win > 0 &&
-        (int)nConvKeyPressed_ >=
-            *config().m_general->m_n_triggers_to_show_cand_win;
+        *config().general->nTriggersToShowCandWin > 0 &&
+        (int)nConvKeyPressed_ >= *config().general->nTriggersToShowCandWin;
 
     int len = candList->totalSize();
 
@@ -363,7 +361,7 @@ int AnthyState::setLookupTable() {
         lookupTableVisible_ = true;
         nConvKeyPressed_ = 0;
 
-        if (*config().m_general->m_show_candidates_label) {
+        if (*config().general->showCandidatesLabel) {
             setAuxString();
         }
     } else if (!lookupTableVisible_) {
@@ -386,7 +384,7 @@ void AnthyState::unsetLookupTable() {
 }
 
 void AnthyState::setPeriodCommaStyle(PeriodCommaStyle period) {
-    config().m_general.mutableValue()->m_period_comma_style.setValue(period);
+    config().general.mutableValue()->periodCommaStyle.setValue(period);
     engine_->periodStyleAction()->update(ic_);
 
     switch (period) {
@@ -411,7 +409,7 @@ void AnthyState::setPeriodCommaStyle(PeriodCommaStyle period) {
 }
 
 void AnthyState::setSymbolStyle(SymbolStyle symbol) {
-    config().m_general.mutableValue()->m_symbol_style.setValue(symbol);
+    config().general.mutableValue()->symbolStyle.setValue(symbol);
     engine_->symbolStyleAction()->update(ic_);
     switch (symbol) {
     case SymbolStyle::WIDEBRACKET_WIDESLASH:
@@ -435,10 +433,10 @@ void AnthyState::setSymbolStyle(SymbolStyle symbol) {
 }
 
 void AnthyState::installProperties() {
-    if (*config().m_general->m_show_candidates_label) {
+    if (*config().general->showCandidatesLabel) {
         setInputMode(inputMode());
     }
-    setConversionMode(*config().m_general->m_conversion_mode);
+    setConversionMode(*config().general->conversionMode);
     setTypingMethod(typingMethod());
     setPeriodCommaStyle(periodCommaStyle());
     setSymbolStyle(symbolStyle());
@@ -446,7 +444,7 @@ void AnthyState::installProperties() {
 
 void AnthyState::setInputMode(InputMode mode) {
     if (mode != inputMode()) {
-        config().m_general.mutableValue()->m_input_mode.setValue(mode);
+        config().general.mutableValue()->inputMode.setValue(mode);
         preedit_.setInputMode(mode);
         setPreedition();
     }
@@ -461,7 +459,7 @@ void AnthyState::setInputMode(InputMode mode) {
 }
 
 void AnthyState::setConversionMode(ConversionMode mode) {
-    config().m_general.mutableValue()->m_conversion_mode.setValue(mode);
+    config().general.mutableValue()->conversionMode.setValue(mode);
 
     engine_->conversionModeAction()->update(ic_);
 }
@@ -472,7 +470,7 @@ void AnthyState::setTypingMethod(TypingMethod method) {
         preedit_.setPseudoAsciiMode(pseudoAsciiMode());
     }
 
-    config().m_general.mutableValue()->m_typing_method.setValue(method);
+    config().general.mutableValue()->typingMethod.setValue(method);
     engine_->typingMethodAction()->update(ic_);
 }
 
@@ -505,18 +503,6 @@ void AnthyState::setPeriodStyle(PeriodStyle period, CommaStyle comma) {
         break;
     default:
         break;
-    }
-
-    if (!label.empty()) {
-#if 0
-        PropertyList::iterator it = std::find (m_properties.begin (),
-                                               m_properties.end (),
-                                               SCIM_PROP_PERIOD_STYLE);
-        if (it != m_properties.end ()) {
-            it->set_label (label.c_str ());
-            update_property (*it);
-        }
-#endif
     }
 
     if (period != preedit_.periodStyle()) {
@@ -637,11 +623,11 @@ bool AnthyState::action_commit(bool learn, bool do_real_commit) {
 }
 
 bool AnthyState::action_commit_follow_preference() {
-    return action_commit(*config().m_general->m_learn_on_manual_commit);
+    return action_commit(*config().general->learnOnManualCommit);
 }
 
 bool AnthyState::action_commit_reverse_preference() {
-    return action_commit(!*config().m_general->m_learn_on_manual_commit);
+    return action_commit(!*config().general->learnOnManualCommit);
 }
 
 bool AnthyState::action_back() {
@@ -699,10 +685,10 @@ bool AnthyState::action_insert_space() {
     bool is_wide = false, retval = false;
 
     if (preedit_.isPreediting() &&
-        !*config().m_general->m_romaji_pseudo_ascii_blank_behavior)
+        !*config().general->romajiPseudoAsciiBlankBehavior)
         return false;
 
-    if (*config().m_general->m_space_type == SpaceType::FOLLOWMODE) {
+    if (*config().general->spaceType == SpaceType::FOLLOWMODE) {
         InputMode mode = inputMode();
         if (mode == InputMode::LATIN || mode == InputMode::HALF_KATAKANA ||
             preedit_.isPseudoAsciiMode()) {
@@ -710,7 +696,7 @@ bool AnthyState::action_insert_space() {
         } else {
             is_wide = true;
         }
-    } else if (*config().m_general->m_space_type == SpaceType::WIDE) {
+    } else if (*config().general->spaceType == SpaceType::WIDE) {
         is_wide = true;
     }
 
@@ -746,14 +732,14 @@ bool AnthyState::action_insert_alternative_space() {
     if (preedit_.isPreediting())
         return false;
 
-    if (*config().m_general->m_space_type == SpaceType::FOLLOWMODE) {
+    if (*config().general->spaceType == SpaceType::FOLLOWMODE) {
         InputMode mode = inputMode();
         if (mode == InputMode::LATIN || mode == InputMode::HALF_KATAKANA) {
             is_wide = true;
         } else {
             is_wide = false;
         }
-    } else if (*config().m_general->m_space_type != SpaceType::WIDE) {
+    } else if (*config().general->spaceType != SpaceType::WIDE) {
         is_wide = true;
     }
 
@@ -939,7 +925,7 @@ bool AnthyState::action_expand_segment() {
 bool AnthyState::action_commit_first_segment() {
     if (!preedit_.isConverting()) {
         if (preedit_.isPreediting()) {
-            return action_commit(*config().m_general->m_learn_on_manual_commit);
+            return action_commit(*config().general->learnOnManualCommit);
         } else {
             return false;
         }
@@ -948,7 +934,7 @@ bool AnthyState::action_commit_first_segment() {
     unsetLookupTable();
 
     commitString(preedit_.segmentString(0));
-    if (*config().m_general->m_learn_on_manual_commit)
+    if (*config().general->learnOnManualCommit)
         preedit_.commit(0);
     else
         preedit_.clear(0);
@@ -961,7 +947,7 @@ bool AnthyState::action_commit_first_segment() {
 bool AnthyState::action_commit_selected_segment() {
     if (!preedit_.isConverting()) {
         if (preedit_.isPreediting()) {
-            return action_commit(*config().m_general->m_learn_on_manual_commit);
+            return action_commit(*config().general->learnOnManualCommit);
         } else {
             return false;
         }
@@ -971,7 +957,7 @@ bool AnthyState::action_commit_selected_segment() {
 
     for (int i = 0; i <= preedit_.selectedSegment(); i++)
         commitString(preedit_.segmentString(i));
-    if (*config().m_general->m_learn_on_manual_commit)
+    if (*config().general->learnOnManualCommit)
         preedit_.commit(preedit_.selectedSegment());
     else
         preedit_.clear(preedit_.selectedSegment());
@@ -984,8 +970,7 @@ bool AnthyState::action_commit_selected_segment() {
 bool AnthyState::action_commit_first_segment_reverse_preference() {
     if (!preedit_.isConverting()) {
         if (preedit_.isPreediting()) {
-            return action_commit(
-                !*config().m_general->m_learn_on_manual_commit);
+            return action_commit(!*config().general->learnOnManualCommit);
         } else {
             return false;
         }
@@ -994,7 +979,7 @@ bool AnthyState::action_commit_first_segment_reverse_preference() {
     unsetLookupTable();
 
     commitString(preedit_.segmentString(0));
-    if (!*config().m_general->m_learn_on_manual_commit)
+    if (!*config().general->learnOnManualCommit)
         preedit_.commit(0);
     else
         preedit_.clear(0);
@@ -1007,8 +992,7 @@ bool AnthyState::action_commit_first_segment_reverse_preference() {
 bool AnthyState::action_commit_selected_segment_reverse_preference() {
     if (!preedit_.isConverting()) {
         if (preedit_.isPreediting()) {
-            return action_commit(
-                !*config().m_general->m_learn_on_manual_commit);
+            return action_commit(!*config().general->learnOnManualCommit);
         } else {
             return false;
         }
@@ -1018,7 +1002,7 @@ bool AnthyState::action_commit_selected_segment_reverse_preference() {
 
     for (int i = 0; i <= preedit_.selectedSegment(); i++)
         commitString(preedit_.segmentString(i));
-    if (!*config().m_general->m_learn_on_manual_commit)
+    if (!*config().general->learnOnManualCommit)
         preedit_.commit(preedit_.selectedSegment());
     else
         preedit_.clear(preedit_.selectedSegment());
@@ -1064,8 +1048,7 @@ bool AnthyState::action_select_prev_candidate() {
             auto commonCandList =
                 static_cast<fcitx::CommonCandidateList *>(candList);
             commonCandList->setGlobalCursorIndex(cursorPos_);
-            commonCandList->setPage(cursorPos_ /
-                                    *config().m_general->m_page_size);
+            commonCandList->setPage(cursorPos_ / *config().general->pageSize);
         }
     }
 
@@ -1109,8 +1092,8 @@ bool AnthyState::action_candidates_page_up() {
     if (!lookupTableVisible_)
         return false;
 
-    if (cursorPos_ - *config().m_general->m_page_size >= 0) {
-        cursorPos_ -= *config().m_general->m_page_size;
+    if (cursorPos_ - *config().general->pageSize >= 0) {
+        cursorPos_ -= *config().general->pageSize;
         selectCandidateNoDirect(cursorPos_);
     }
 
@@ -1127,8 +1110,8 @@ bool AnthyState::action_candidates_page_down() {
 
     int end = ic_->inputPanel().candidateList()->toBulk()->totalSize();
 
-    if (cursorPos_ + *config().m_general->m_page_size < end) {
-        cursorPos_ += *config().m_general->m_page_size;
+    if (cursorPos_ + *config().general->pageSize < end) {
+        cursorPos_ += *config().general->pageSize;
         selectCandidateNoDirect(cursorPos_);
     }
 
@@ -1141,7 +1124,7 @@ bool AnthyState::actionSelectCandidate(unsigned int i) {
         return false;
 
     if (preedit_.isPredicting() && !preedit_.isConverting() &&
-        *config().m_general->m_use_direct_key_on_predict) {
+        *config().general->useDirectKeyOnPredict) {
         ic_->inputPanel().setCandidateList(preedit_.candidates());
         selectCandidate(i);
         return true;
@@ -1462,13 +1445,13 @@ bool AnthyState::action_reconvert() {
 }
 
 bool AnthyState::action_add_word() {
-    util::launch_program(*config().m_command->m_add_word_command);
+    util::launch_program(*config().command->addWordCommand);
 
     return true;
 }
 
 bool AnthyState::action_launch_dict_admin_tool() {
-    util::launch_program(*config().m_command->m_dict_admin_command);
+    util::launch_program(*config().command->dictAdminCommand);
 
     return true;
 }
@@ -1492,7 +1475,7 @@ int AnthyState::pseudoAsciiMode() {
     TypingMethod m = typingMethod();
 
     if (m == TypingMethod::ROMAJI) {
-        if (*config().m_general->m_romaji_pseudo_ascii_mode)
+        if (*config().general->romajiPseudoAsciiMode)
             retval |= FCITX_ANTHY_PSEUDO_ASCII_TRIGGERED_CAPITALIZED;
     }
 
@@ -1511,10 +1494,10 @@ void AnthyState::commitString(const std::string &str) {
             std::string str = (ACTION_CONFIG_##key##_KEY);                     \
             std::string keystr;                                                \
             style.getString(keystr, "KeyBindings", str);                       \
-            key_profile().m_hk_##key = fcitx::Key::keyListFromString(keystr);  \
-            hk = &key_profile().m_hk_##key;                                    \
+            key_profile().hk_##key = fcitx::Key::keyListFromString(keystr);    \
+            hk = &key_profile().hk_##key;                                      \
         } else                                                                 \
-            hk = &*config().m_key->m_hk_##key;                                 \
+            hk = &*config().m_key->hk_##key;                                   \
         PMF f;                                                                 \
         f = &AnthyState::func;                                                 \
         actions_[name] = Action(name, *hk, f);                                 \
@@ -1525,15 +1508,14 @@ void AnthyState::configure() {
 
     // clear old actions
     actions_.clear();
-// convert key
-#define FOREACH_ACTION(key, func)                                              \
+#define FOREACH_ACTION(KEY, func)                                              \
     {                                                                          \
-        std::string name = #key;                                               \
+        std::string name = #KEY;                                               \
         const fcitx::KeyList *hk;                                              \
         if (keyProfile) {                                                      \
-            hk = &keyProfile->m_hk_##key;                                      \
+            hk = &keyProfile->hk_##KEY;                                        \
         } else                                                                 \
-            hk = &*config().m_key->m_hk_##key;                                 \
+            hk = &*config().key->hk_##KEY;                                     \
         PMF f;                                                                 \
         f = &AnthyState::func;                                                 \
         actions_.emplace_back(name, *hk, f);                                   \
@@ -1542,21 +1524,21 @@ void AnthyState::configure() {
 #undef FOREACH_ACTION
 
     // set romaji settings
-    preedit_.setSymbolHalf(*config().m_general->m_romaji_half_symbol);
-    preedit_.setNumberHalf(*config().m_general->m_romaji_half_number);
+    preedit_.setSymbolHalf(*config().general->romajiHalfSymbol);
+    preedit_.setNumberHalf(*config().general->romajiHalfNumber);
 
     // set input mode
-    preedit_.setInputMode(*config().m_general->m_input_mode);
+    preedit_.setInputMode(*config().general->inputMode);
 
     // set typing method and pseudo ASCII mode
-    preedit_.setTypingMethod(*config().m_general->m_typing_method);
+    preedit_.setTypingMethod(*config().general->typingMethod);
     preedit_.setPseudoAsciiMode(pseudoAsciiMode());
 
     // set period style
-    setPeriodCommaStyle(*config().m_general->m_period_comma_style);
+    setPeriodCommaStyle(*config().general->periodCommaStyle);
 
     // set symbol style
-    setSymbolStyle(*config().m_general->m_symbol_style);
+    setSymbolStyle(*config().general->symbolStyle);
 
     // setup toolbar
     installProperties();
@@ -1578,10 +1560,10 @@ void AnthyState::resetCursor(int cursor) {
 
 void AnthyState::autoCommit(fcitx::InputContextEvent &event) {
     if (event.type() == fcitx::EventType::InputContextFocusOut) {
-        action_commit(*config().m_general->m_learn_on_auto_commit, false);
+        action_commit(*config().general->learnOnAutoCommit, false);
     } else if (event.type() ==
                fcitx::EventType::InputContextSwitchInputMethod) {
-        action_commit(*config().m_general->m_learn_on_auto_commit);
+        action_commit(*config().general->learnOnAutoCommit);
     }
     reset();
 }

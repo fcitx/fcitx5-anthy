@@ -28,9 +28,7 @@ static ConvRule *get_period_rule(TypingMethod method, PeriodStyle period);
 static ConvRule *get_comma_rule(TypingMethod method, CommaStyle period);
 
 Preedit::Preedit(AnthyState &anthy)
-    : state_(anthy),
-      // m_key2kana_tables    (tables),
-      reading_(anthy), conversion_(state_, reading_),
+    : state_(anthy), reading_(anthy), conversion_(state_, reading_),
       inputMode_(InputMode::HIRAGANA) {}
 
 Preedit::~Preedit() {}
@@ -158,7 +156,7 @@ void Preedit::erase(bool backward) {
     // erase
     TypingMethod method = typingMethod();
     bool allow_split = method == TypingMethod::ROMAJI &&
-                       *state_.config().m_general->m_romaji_allow_split;
+                       *state_.config().general->romajiAllowSplit;
     if (backward && reading_.caretPosByChar() == 0)
         return;
     if (!backward && reading_.caretPosByChar() >= reading_.utf8Length())
@@ -262,7 +260,7 @@ void Preedit::moveCaret(int step) {
 
     TypingMethod method = typingMethod();
     bool allow_split = method == TypingMethod::ROMAJI &&
-                       *state_.config().m_general->m_romaji_allow_split;
+                       *state_.config().general->romajiAllowSplit;
 
     reading_.moveCaret(step, allow_split);
 }

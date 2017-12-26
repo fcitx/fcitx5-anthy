@@ -452,7 +452,12 @@ void AnthyState::setInputMode(InputMode mode) {
     }
 
     engine_->inputModeAction()->update(ic_);
-    // Show im info??
+    if (!engine_->constructed()) {
+        return;
+    }
+    if (ic_->hasFocus() && instance_->inputMethod(ic_) == "anthy") {
+        instance_->showInputMethodInformation(ic_);
+    }
 }
 
 void AnthyState::setConversionMode(ConversionMode mode) {

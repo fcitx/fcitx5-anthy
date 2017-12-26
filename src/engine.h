@@ -75,6 +75,7 @@ public:
 
     FCITX_ADDON_DEPENDENCY_LOADER(clipboard, instance_->addonManager());
 
+    bool constructed() { return constructed_; }
     auto inputModeAction() { return inputModeAction_.get(); }
     auto typingMethodAction() { return typingMethodAction_.get(); }
     auto conversionModeAction() { return conversionModeAction_.get(); }
@@ -88,6 +89,7 @@ private:
     std::string nicolaTableName();
     std::string fullFileName(const std::string &name);
 
+    bool constructed_ = false;
     fcitx::Instance *instance_;
     fcitx::FactoryFor<AnthyState> factory_;
     AnthyConfig config_;

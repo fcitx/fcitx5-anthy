@@ -251,6 +251,8 @@ AnthyEngine::AnthyEngine(fcitx::Instance *instance)
                 "anthy-symbol-cornerbracket-wideslash");
 
     instance_->inputContextManager().registerProperty("anthyState", &factory_);
+
+    constructed_ = true;
 }
 
 AnthyEngine::~AnthyEngine() { anthy_quit(); }

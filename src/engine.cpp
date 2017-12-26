@@ -331,7 +331,7 @@ std::string AnthyEngine::fullFileName(const std::string &name) {
         return {};
     }
     return fcitx::StandardPath::global().locate(
-        fcitx::StandardPath::Type::Config,
+        fcitx::StandardPath::Type::PkgData,
         fcitx::stringutils::joinPath("anthy", name));
 }
 

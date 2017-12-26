@@ -46,6 +46,6 @@ bool Action::perform(AnthyState *performer, const fcitx::KeyEvent &key) {
 }
 
 bool Action::matchKeyEvent(const fcitx::KeyEvent &key) {
-    return util::match_key_event(*keyBindings_, key.rawKey(),
+    return util::match_key_event(*keyBindings_, key.key(),
                                  fcitx::KeyState::CapsLock);
 }

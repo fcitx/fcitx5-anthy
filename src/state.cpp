@@ -1581,8 +1581,9 @@ void AnthyState::autoCommit(fcitx::InputContextEvent &event) {
         action_commit(*config().m_general->m_learn_on_auto_commit, false);
     } else if (event.type() ==
                fcitx::EventType::InputContextSwitchInputMethod) {
-        reset();
+        action_commit(*config().m_general->m_learn_on_auto_commit);
     }
+    reset();
 }
 
 /*

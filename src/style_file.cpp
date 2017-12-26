@@ -95,7 +95,12 @@ bool StyleLine::get_section(std::string &section) {
         return false;
     }
 
-    section = fcitx::stringutils::trim(line_);
+    auto result = fcitx::stringutils::trim(line_);
+    // remove [ and ]
+    result.pop_back();
+    result = result.substr(1);
+    section = std::move(result);
+
     return true;
 }
 

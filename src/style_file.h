@@ -1,130 +1,89 @@
-/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
-/*
- *  Copyright (C) 2005 Takuro Ashie
- *  Copyright (C) 2012 CSSlayer
- *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2, or (at your option)
- *  any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
- */
+//
+// Copyright (C) 2005 Takuro Ashie
+// Copyright (C) 2017~2017 by CSSlayer
+// wengxt@gmail.com
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+#ifndef _FCITX5_ANTHY_STYLE_FILE_H_
+#define _FCITX5_ANTHY_STYLE_FILE_H_
 
-#ifndef __FCITX_ANTHY_STYLE_FILE_H__
-#define __FCITX_ANTHY_STYLE_FILE_H__
-
-#include <vector>
 #include <string>
+#include <vector>
 
 class Key2KanaTable;
 class StyleLine;
 class StyleSection;
 class StyleFile;
 
-typedef std::vector<StyleLine>  StyleLines;
+typedef std::vector<StyleLine> StyleLines;
 typedef std::vector<StyleLines> StyleSections;
-typedef std::vector<StyleFile>  StyleFiles;
+typedef std::vector<StyleFile> StyleFiles;
 
-typedef enum {
-    FCITX_ANTHY_STYLE_LINE_UNKNOWN,
-    FCITX_ANTHY_STYLE_LINE_SPACE,
-    FCITX_ANTHY_STYLE_LINE_COMMENT,
-    FCITX_ANTHY_STYLE_LINE_SECTION,
-    FCITX_ANTHY_STYLE_LINE_KEY,
-} StyleLineType;
-
-class StyleLine
-{
-public:
-    StyleLine (StyleFile  *style_file,
-               std::string      line);
-    StyleLine (StyleFile  *style_file,
-               std::string      key,
-               std::string      value);
-    StyleLine (StyleFile  *style_file,
-               std::string      key,
-               std::vector<std::string> &value);
-    ~StyleLine ();
-
-public:
-    StyleLineType get_type        (void);
-    void          get_line        (std::string     &line) { line = m_line; }
-    bool          get_section     (std::string     &section);
-    bool          get_key         (std::string     &key);
-    bool          get_value       (std::string     &value);
-    void          set_value       (std::string      value);
-    bool          get_value_array (std::vector<std::string> &value);
-    void          set_value_array (std::vector<std::string> &value);
-
-private:
-    StyleFile     *m_style_file;
-    std::string         m_line;
-    StyleLineType  m_type;
+enum class StyleLineType {
+    UNKNOWN,
+    SPACE,
+    COMMENT,
+    SECTION,
+    KEY,
 };
 
-class StyleFile
-{
+class StyleLine {
 public:
-    StyleFile ();
-    ~StyleFile ();
+    StyleLine(StyleFile *style_file, std::string line);
+    ~StyleLine();
 
 public:
-    bool   load                  (const char *filename);
-    bool   save                  (const char *filename);
+    StyleLineType type();
+    std::string line() { return line_; }
+    bool get_section(std::string &section);
+    bool get_key(std::string &key);
+    bool get_value(std::string &value);
+    bool get_value_array(std::vector<std::string> &value);
 
-    std::string get_title             (void);
-    std::string get_file_name         (void);
+private:
+    StyleFile *styleFile_;
+    std::string line_;
+    StyleLineType type_;
+};
 
-    bool   get_section_list      (StyleSections &sections);
-    bool   get_entry_list        (StyleLines    &lines,
-                                  std::string         section);
-    bool   get_key_list          (std::vector<std::string> &keys,
-                                  std::string         section);
-    bool   get_string            (std::string        &value,
-                                  std::string         section,
-                                  std::string         key);
-    bool   get_string_array      (std::vector<std::string> &value,
-                                  std::string         section,
-                                  std::string         key);
+class StyleFile {
+public:
+    StyleFile();
+    FCITX_INLINE_DEFINE_DEFAULT_DTOR_AND_MOVE_WITHOUT_SPEC(StyleFile);
 
-    void   set_string            (std::string         section,
-                                  std::string         key,
-                                  std::string         value);
-    void   set_string_array      (std::string         section,
-                                  std::string         key,
-                                  std::vector<std::string> &value);
+public:
+    bool load(const std::string &filename);
 
-    void   delete_key            (std::string         section,
-                                  std::string         key);
-    void   delete_section        (std::string         section);
+    const std::string &title() const;
+
+    bool getKeyList(std::vector<std::string> &keys, std::string section);
+    bool getString(std::string &value, std::string section, std::string key);
+    bool getStringArray(std::vector<std::string> &value, std::string section,
+                        std::string key);
 
 public: // for getting specific data
-    Key2KanaTable *
-           get_key2kana_table    (std::string         section);
+    Key2KanaTable key2kanaTable(std::string section);
 
 private:
-    void   clear                 (void);
-    void   setup_default_entries (void);
-    StyleLines *
-           find_section          (const std::string  &section);
-    StyleLines &
-           append_new_section    (const std::string  &section);
+    void clear();
+    void setupDefaultEntries();
+    StyleLines *findSection(const std::string &section);
 
 private:
-    std::string        m_filename;
-    std::string        m_format_version;
-    std::string        m_title;
-    std::string        m_version;
-
-    StyleSections m_sections;
+    std::string title_;
+    StyleSections sections_;
 };
 
-#endif /* __FCITX_ANTHY_STYLE_FILE_H__ */
+#endif // _FCITX5_ANTHY_STYLE_FILE_H_

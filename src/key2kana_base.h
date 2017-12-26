@@ -1,69 +1,61 @@
-/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
-/*
- *  Copyright (C) 2004 Hiroyuki Ikezoe
- *  Copyright (C) 2004 Takuro Ashie
- *  Copyright (C) 2012 CSSlayer
- *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2, or (at your option)
- *  any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
- */
+//
+// Copyright (C) 2004 Hiroyuki Ikezoe
+// Copyright (C) 2004 Takuro Ashie
+// Copyright (C) 2012~2017 by CSSlayer
+// wengxt@gmail.com
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+#ifndef _FCITX5_ANTHY_KEY2KANA_BASE_H_
+#define _FCITX5_ANTHY_KEY2KANA_BASE_H_
 
-#ifndef __FCITX_ANTHY_KEY2KANA_BASE_H__
-#define __FCITX_ANTHY_KEY2KANA_BASE_H__
+#include <fcitx/event.h>
 
-#include "common.h"
+class AnthyState;
+class AnthyConfig;
 
-class Key2KanaConvertorBase
-{
+class Key2KanaConvertorBase {
 public:
-    Key2KanaConvertorBase                 ()
-        : m_case_sensitive (true)
-        {};
-    virtual ~Key2KanaConvertorBase        () {};
+    Key2KanaConvertorBase(AnthyState &state)
+        : state_(state), caseSensitive_(true){};
+    virtual ~Key2KanaConvertorBase() = default;
 
-    virtual bool       can_append         (const KeyEvent   & key,
-                                           bool               ignore_space = false) = 0;
-    virtual bool       append             (const KeyEvent   & key,
-                                           std::string       & result,
-                                           std::string       & pending,
-                                           std::string           & raw)       = 0;
-    virtual bool       append             (const std::string     & raw,
-                                           std::string       & result,
-                                           std::string       & pending)   = 0;
-    virtual void       clear              (void)                         = 0;
+    virtual bool canAppend(const fcitx::KeyEvent &key,
+                           bool ignore_space = false) = 0;
+    virtual bool append(const fcitx::KeyEvent &key, std::string &result,
+                        std::string &pending, std::string &raw) = 0;
+    virtual bool append(const std::string &raw, std::string &result,
+                        std::string &pending) = 0;
+    virtual void clear() = 0;
 
-    virtual bool       is_pending         (void)                         = 0;
-    virtual std::string get_pending        (void)                         = 0;
-    virtual std::string flush_pending      (void)                         = 0;
-    virtual void       reset_pending      (const std::string & result,
-                                           const std::string     & raw)       = 0;
+    virtual bool isPending() const = 0;
+    virtual std::string pending() const = 0;
+    virtual std::string flushPending() = 0;
+    virtual void resetPending(const std::string &result,
+                              const std::string &raw) = 0;
 
-    virtual void       reset_pseudo_ascii_mode       (void)
-        {}
-    virtual bool       process_pseudo_ascii_mode     (const std::string & wstr)
-        { return false; }
+    virtual void resetPseudoAsciiMode() {}
+    virtual bool processPseudoAsciiMode(const std::string &) { return false; }
 
-    virtual void       set_case_sensitive (bool               sensitive)
-        { m_case_sensitive = sensitive; }
-    virtual bool       get_case_sensitive (void)
-        { return m_case_sensitive; }
+    void setCaseSensitive(bool sensitive) { caseSensitive_ = sensitive; }
+    bool isCaseSensitive() { return caseSensitive_; }
 
 protected:
-    bool m_case_sensitive;
+    AnthyConfig &config();
+
+    AnthyState &state_;
+    bool caseSensitive_;
 };
 
-#endif /* __FCITX_ANTHY_KEY2KANA_BASE_H__ */
-/*
-vi:ts=4:nowrap:ai:expandtab
-*/
+#endif // _FCITX5_ANTHY_KEY2KANA_BASE_H_

@@ -1,142 +1,124 @@
-/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
-/*
- *  Copyright (C) 2004 Takuro Ashie
- *  Copyright (C) 2012 CSSlayer
- *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2, or (at your option)
- *  any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
- */
+//
+// Copyright (C) 2004 Takuro Ashie
+// Copyright (C) 2017~2017 by CSSlayer
+// wengxt@gmail.com
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+#ifndef _FCITX5_ANTHY_PREEDIT_H_
+#define _FCITX5_ANTHY_PREEDIT_H_
 
-#ifndef __FCITX_ANTHY_PREEDIT_H__
-#define __FCITX_ANTHY_PREEDIT_H__
-
-#include <anthy/anthy.h>
-#include "reading.h"
 #include "conversion.h"
+#include "reading.h"
+#include <anthy/anthy.h>
+#include <fcitx/candidatelist.h>
 
-#define FCITX_ANTHY_PSEUDO_ASCII_TRIGGERED_CAPITALIZED			(1 << 0)
-#define FCITX_ANTHY_PSEUDO_ASCII_TRIGGERED_COUPLE_OF_CAPITAL		(1 << 1)
+#define FCITX_ANTHY_PSEUDO_ASCII_TRIGGERED_CAPITALIZED (1 << 0)
+#define FCITX_ANTHY_PSEUDO_ASCII_TRIGGERED_COUPLE_OF_CAPITAL (1 << 1)
 
-class AnthyInstance;
+class AnthyState;
 
-class Preedit
-{
+class Preedit {
 public:
-    Preedit (AnthyInstance &anthy);
-    virtual ~Preedit ();
+    Preedit(AnthyState &anthy);
+    virtual ~Preedit();
 
     // getting status
-    unsigned int  get_length             (void);
-    unsigned int  get_length_by_char     (void);
-    std::string   get_string             (void);
-    void          update_preedit         (void);
-    Reading      &get_reading            (void);
+    unsigned int length();
+    unsigned int utf8Length();
+    std::string string();
+    void updatePreedit();
 
-    bool          is_preediting          (void);
-    bool          is_converting          (void);
-    bool          is_predicting          (void);
-    bool          is_reconverting        (void);
+    bool isPreediting();
+    bool isConverting();
+    bool isPredicting();
+    bool isReconverting();
 
     // for handling the preedit string
-    bool          can_process_key_event  (const KeyEvent & key);
+    bool canProcessKeyEvent(const fcitx::KeyEvent &key);
     // return true if commiting is needed.
-    bool          process_key_event      (const KeyEvent & key);
-    bool          append                 (const KeyEvent & key,
-                                                  const std::string   & string);
-    void          erase                  (bool backward = true);
-    void          finish                 (void);
+    bool processKeyEvent(const fcitx::KeyEvent &key);
+    bool append(const fcitx::KeyEvent &key, const std::string &string);
+    bool append(const fcitx::Key &key, const std::string &string);
+    void erase(bool backward = true);
+    void finish();
 
     // for handling the conversion string
-    void          convert                (CandidateType type
-                                                  = FCITX_ANTHY_CANDIDATE_DEFAULT,
-                                                  bool single_segment = false);
-    void          convert                (const std::string &source,
-                                                  bool single_segment = false);
-    void          revert                 (void);
-    void          commit                 (int  segment_id = -1,
-                                                  bool lean       = true);
+    void convert(CandidateType type = FCITX_ANTHY_CANDIDATE_DEFAULT,
+                 bool single_segment = false);
+    void convert(const std::string &source, bool single_segment = false);
+    void revert();
+    void commit(int segment_id = -1, bool lean = true);
 
     // for prediction
-    void          predict                (void);
+    void predict();
 
     // segments of the converted sentence
-    int           get_nr_segments        (void);
-    std::string    get_segment_string     (int segment_id = -1);
-    int           get_selected_segment   (void);
-    void          select_segment         (int segment_id);
-    int           get_segment_size       (int segment_id = -1);
-    void          resize_segment         (int relative_size,
-                                                  int segment_id = -1);
+    int nrSegments();
+    std::string segmentString(int segment_id = -1);
+    int selectedSegment();
+    void selectSegment(int segment_id);
+    int segmentSize(int segment_id = -1);
+    void resizeSegment(int relative_size, int segment_id = -1);
 
     // candidates for a segment
-    void          get_candidates         (FcitxCandidateWordList *table,
-                                                  int segment_id = -1);
-    int           get_selected_candidate (int segment_id = -1);
-    void          select_candidate       (int candidate_id,
-                                                  int segment_id = -1);
+    std::unique_ptr<fcitx::CommonCandidateList> candidates(int segment_id = -1);
+    int selectedCandidate(int segment_id = -1);
+    void selectCandidate(int candidate_id, int segment_id = -1);
 
     // for handling the caret
-    unsigned int  get_caret_pos          (void);
-    void          set_caret_pos_by_char  (unsigned int   pos);
-    void          move_caret             (int            len);
+    unsigned int caretPos();
+    void setCaretPosByChar(unsigned int pos);
+    void moveCaret(int len);
 
     // clear all or part of the string.
-    void          clear                  (int segment_id = -1);
+    void clear(int segment_id = -1);
 
     // preferences
-    void          set_input_mode         (InputMode      mode);
-    InputMode     get_input_mode         (void);
-    void          set_typing_method      (TypingMethod   method);
-    TypingMethod  get_typing_method      (void);
-    void          set_period_style       (PeriodStyle    style);
-    PeriodStyle   get_period_style       (void);
-    void          set_comma_style        (CommaStyle     style);
-    CommaStyle    get_comma_style        (void);
-    void          set_bracket_style      (BracketStyle   style);
-    BracketStyle  get_bracket_style      (void);
-    void          set_slash_style        (SlashStyle     style);
-    SlashStyle    get_slash_style        (void);
-    void          set_symbol_width       (bool           half);
-    bool          get_symbol_width       (void);
-    void          set_number_width       (bool           half);
-    bool          get_number_width       (void);
-    void          set_pseudo_ascii_mode  (int            mode);
-    bool          is_pseudo_ascii_mode   (void);
-    void          reset_pseudo_ascii_mode(void);
+    void setInputMode(InputMode mode);
+    InputMode inputMode();
+    void setTypingMethod(TypingMethod method);
+    TypingMethod typingMethod();
+    void setPeriodStyle(PeriodStyle style);
+    PeriodStyle periodStyle();
+    void setCommaStyle(CommaStyle style);
+    CommaStyle commaStyle();
+    void setBracketStyle(BracketStyle style);
+    BracketStyle bracketStyle();
+    void setSlashStyle(SlashStyle style);
+    SlashStyle slashStyle();
+    void setSymbolHalf(bool half);
+    void setNumberHalf(bool half);
+    void setPseudoAsciiMode(int mode);
+    bool isPseudoAsciiMode();
+    void resetPseudoAsciiMode();
 
 private:
-    void                  get_reading_substr     (std::string   & substr,
-                                                  unsigned int   start,
-                                                  unsigned int   len,
-                                                  CandidateType  type);
-    bool                  is_comma_or_period     (const std::string & str);
+    bool isCommaOrPeriod(const std::string &str);
 
 private:
-    AnthyInstance    &m_anthy;
+    AnthyState &state_;
 
     // converter objects
-    Reading           m_reading;
-    Conversion        m_conversion;
+    Reading reading_;
+    Conversion conversion_;
 
     // mode flags
-    InputMode         m_input_mode;
+    InputMode inputMode_;
 
     // source string for reconversion
-    std::string        m_source;
+    std::string source_;
 };
 
-#endif /* __FCITX_ANTHY_PREEDIT_H__ */
-/*
-vi:ts=4:nowrap:ai:expandtab
-*/
+#endif // _FCITX5_ANTHY_PREEDIT_H_

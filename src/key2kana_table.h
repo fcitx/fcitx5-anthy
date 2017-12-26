@@ -1,53 +1,50 @@
-/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
-/*
- *  Copyright (C) 2005 Takuro Ashie
- *  Copyright (C) 2012 CSSlayer
- *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2, or (at your option)
- *  any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
- */
+//
+// Copyright (C) 2005 Takuro Ashie
+// Copyright (C) 2017~2017 by CSSlayer
+// wengxt@gmail.com
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+#ifndef _FCITX5_ANTHY_KEY2KANA_TABLE_H_
+#define _FCITX5_ANTHY_KEY2KANA_TABLE_H_
 
-#ifndef __FCITX_ANTHY_KEY2KANA_TABLE_H__
-#define __FCITX_ANTHY_KEY2KANA_TABLE_H__
-
-#include <vector>
-#include <string>
+#include "config.h"
 #include "default_tables.h"
-#include "factory.h"
+#include <string>
+#include <vector>
 
-typedef enum {
-    FCITX_ANTHY_PERIOD_JAPANESE,
-    FCITX_ANTHY_PERIOD_WIDE,
-    FCITX_ANTHY_PERIOD_HALF,
-} PeriodStyle;
+enum class PeriodStyle {
+    JAPANESE,
+    WIDE,
+    HALF,
+};
 
-typedef enum {
-    FCITX_ANTHY_COMMA_JAPANESE,
-    FCITX_ANTHY_COMMA_WIDE,
-    FCITX_ANTHY_COMMA_HALF,
-} CommaStyle;
+enum class CommaStyle {
+    JAPANESE,
+    WIDE,
+    HALF,
+};
 
-typedef enum {
-    FCITX_ANTHY_BRACKET_JAPANESE,
-    FCITX_ANTHY_BRACKET_WIDE,
-} BracketStyle;
+enum class BracketStyle {
+    JAPANESE,
+    WIDE,
+};
 
-typedef enum {
-    FCITX_ANTHY_SLASH_JAPANESE,
-    FCITX_ANTHY_SLASH_WIDE,
-} SlashStyle;
-
+enum class SlashStyle {
+    JAPANESE,
+    WIDE,
+};
 
 class Key2KanaRule;
 class Key2KanaTable;
@@ -55,125 +52,89 @@ class Key2KanaTableSet;
 
 typedef std::vector<Key2KanaRule> Key2KanaRules;
 
-
-class Key2KanaRule
-{
+class Key2KanaRule {
 public:
-    Key2KanaRule ();
-    Key2KanaRule (std::string sequence,
-                  const std::vector<std::string> &result);
-    virtual ~Key2KanaRule ();
+    Key2KanaRule();
+    virtual ~Key2KanaRule();
 
-    std::string get_sequence        (void);
-    std::string get_result          (unsigned int idx);
+    void load(std::string sequence, std::vector<std::string> result);
 
-    void   clear               (void);
+    const std::string &sequence() const;
+    std::string result(unsigned int idx);
 
-    bool   is_empty            (void);
+    void clear();
+
+    bool isEmpty();
 
 private:
-    std::string              m_sequence;
-    std::vector<std::string> m_result;
+    std::string sequence_;
+    std::vector<std::string> result_;
 };
 
-
-class Key2KanaTable
-{
+class Key2KanaTable {
 public:
-    Key2KanaTable (std::string  name);
-    Key2KanaTable (std::string  name,
-                   ConvRule   *table);
-    Key2KanaTable (std::string  name,
-                   NicolaRule *table);
-    virtual ~Key2KanaTable ();
+    Key2KanaTable(std::string name);
+    Key2KanaTable(std::string name, ConvRule *table);
+    Key2KanaTable(std::string name, NicolaRule *table);
+    FCITX_INLINE_DEFINE_DEFAULT_DTOR_AND_MOVE_WITHOUT_SPEC(Key2KanaTable)
 
-    Key2KanaRules & get_table   (void) { return m_rules; }
+    Key2KanaRules &table() { return rules_; }
 
-    void            append_rule (std::string sequence,
-                                 const std::vector<std::string> &result);
-    void            append_rule (std::string sequence,
-                                 std::string result,
-                                 std::string cont);
-    void            append_rule (std::string sequence,
-                                 std::string normal,
-                                 std::string left_shift,
-                                 std::string right_shift);
-    void            clear       (void);
+    void appendRule(std::string sequence, std::vector<std::string> result);
+    void appendRule(std::string sequence, std::string result, std::string cont);
+    void appendRule(std::string sequence, std::string normal,
+                    std::string left_shift, std::string right_shift);
+    void clear();
 
 private:
-    std::string    m_name;
-    Key2KanaRules m_rules;
+    std::string name_;
+    Key2KanaRules rules_;
 };
 
-
-class Key2KanaTableSet
-{
+class Key2KanaTableSet {
 public:
-    Key2KanaTableSet ();
-    virtual ~Key2KanaTableSet ();
+    Key2KanaTableSet();
+    virtual ~Key2KanaTableSet();
 
-    std::vector<Key2KanaTable*> &
-         get_tables (void) { return m_all_tables; };
+    std::vector<Key2KanaTable *> &get_tables() { return allTables_; };
 
-    void set_typing_method       (TypingMethod   method,
-                                  Key2KanaTable *fundamental_table = NULL);
-    void set_symbol_width        (bool           half);
-    void set_number_width        (bool           half);
-    void set_period_style        (PeriodStyle    style);
-    void set_comma_style         (CommaStyle     style);
-    void set_bracket_style       (BracketStyle   style);
-    void set_slash_style         (SlashStyle     style);
+    void setTypingMethod(TypingMethod method,
+                         Key2KanaTable *fundamental_table = nullptr);
+    void setSymbolHalf(bool half);
+    void setNumberHalf(bool half);
+    void set_period_style(PeriodStyle style);
+    void set_comma_style(CommaStyle style);
+    void set_bracket_style(BracketStyle style);
+    void setSlashStyle(SlashStyle style);
 
-    TypingMethod
-         get_typing_method       (void) { return m_typing_method; }
-    bool symbol_is_half          (void) { return m_use_half_symbol; }
-    bool number_is_half          (void) { return m_use_half_number;}
-    PeriodStyle
-         get_period_style        (void) { return m_period_style; }
-    CommaStyle
-         get_comma_style         (void) { return m_comma_style; }
-    BracketStyle
-         get_bracket_style       (void) { return m_bracket_style; }
-    SlashStyle
-         get_slash_style         (void) { return m_slash_style; }
-
-#if 0
-    void set_use_consonant_table (bool use);
-    void set_use_symbol_table    (bool use);
-    void set_use_number_table    (bool use);
-    void set_use_period_table    (bool use);
-    void set_use_comma_table     (bool use);
-
-    bool get_use_consonant_table (void);
-    bool get_use_symbol_table    (void);
-    bool get_use_number_table    (void);
-    bool get_use_period_table    (void);
-    bool get_use_comma_table     (void);
-#endif
+    TypingMethod typingMethod() { return typingMethod_; }
+    bool symbol_is_half() { return useHalfSymbol_; }
+    bool isNumberHalf() { return useHalfNumber_; }
+    PeriodStyle get_period_style() { return periodStyle_; }
+    CommaStyle get_comma_style() { return commaStyle_; }
+    BracketStyle bracketStyle() { return bracketStyle_; }
+    SlashStyle slashStyle() { return slashStyle_; }
 
 private:
-    void reset_tables            (void);
+    void reset_tables();
 
 private:
-    std::string m_name;
+    std::string name_;
 
     // tables
-    Key2KanaTable               *m_fundamental_table;
-    Key2KanaTable                m_voiced_consonant_table;
-    std::vector<Key2KanaTable*> *m_additional_table;
-    std::vector<Key2KanaTable*>  m_all_tables;
+    Key2KanaTable *fundamentalTable_;
+    Key2KanaTable voicedConsonantTable_;
+    std::vector<Key2KanaTable *> *additionalTable_;
+    std::vector<Key2KanaTable *> allTables_;
 
     // flags
-    TypingMethod m_typing_method;
-    PeriodStyle  m_period_style;
-    CommaStyle   m_comma_style;
-    BracketStyle m_bracket_style;
-    SlashStyle   m_slash_style;
-    bool         m_use_half_symbol;
-    bool         m_use_half_number;
+    TypingMethod typingMethod_;
+    PeriodStyle periodStyle_;
+    CommaStyle commaStyle_;
+    BracketStyle bracketStyle_;
+    SlashStyle slashStyle_;
+    bool useHalfSymbol_;
+    bool useHalfNumber_;
 };
 
-#endif /* __FCITX_ANTHY_KEY2KANA_TABLE_H__ */
-/*
-vi:ts=4:nowrap:ai:expandtab
-*/
+#endif // _FCITX5_ANTHY_KEY2KANA_TABLE_H_

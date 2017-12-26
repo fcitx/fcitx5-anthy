@@ -21,12 +21,12 @@
 #ifndef __FCITX_ANTHY_READING_H__
 #define __FCITX_ANTHY_READING_H__
 
-#include "key2kana.h"
+#include "engine.h"
 #include "kana.h"
+#include "key2kana.h"
 #include "nicola.h"
-#include "factory.h"
 
-class AnthyInstance;
+class AnthyState;
 
 typedef enum {
     FCITX_ANTHY_STRING_LATIN,
@@ -40,94 +40,86 @@ class Reading;
 class ReadingSegment;
 typedef std::vector<ReadingSegment> ReadingSegments;
 
-class ReadingSegment
-{
+class ReadingSegment {
     friend class Reading;
 
 public:
-    ReadingSegment (void);
-    virtual ~ReadingSegment ();
+    ReadingSegment();
+    virtual ~ReadingSegment();
 
-    const std::string & get     (void) { return kana; }
-    const std::string     & get_raw (void) { return raw; }
+    const std::string &get() { return kana; }
+    const std::string &get_raw() { return raw; }
 
-    void split (ReadingSegments &segments);
+    void split(ReadingSegments &segments);
 
 private:
-    std::string     raw;
+    std::string raw;
     std::string kana;
 };
 
-class Reading
-{
+class Reading {
 public:
-    Reading (AnthyInstance &anthy);
-    virtual ~Reading ();
+    Reading(AnthyState &anthy);
+    virtual ~Reading();
 
-    bool         can_process_key_event (const KeyEvent & key);
-    bool         process_key_event     (const KeyEvent & key);
-    void         finish                (void);
-    void         clear                 (void);
+    bool canProcesKeyEvent(const fcitx::KeyEvent &key);
+    bool processKeyEvent(const fcitx::KeyEvent &key);
+    void finish();
+    void clear();
 
-    std::string   get_by_char          (unsigned int     start  = 0,
-                                        int              length = -1,
-                                        StringType       type
-                                        = FCITX_ANTHY_STRING_HIRAGANA);
-    std::string       get_raw_by_char               (unsigned int     start  = 0,
-                                        int              length = -1);
-    bool         append                (const KeyEvent & key,
-                                        const std::string   & string);
-    void         erase                 (unsigned int     start  = 0,
-                                        int              length = -1,
-                                        bool             allow_split = false);
+    std::string getByChar(unsigned int start = 0, int length = -1,
+                          StringType type = FCITX_ANTHY_STRING_HIRAGANA);
+    std::string getRawByChar(unsigned int start = 0, int length = -1);
+    bool append(const fcitx::KeyEvent &key, const std::string &string);
+    void erase(unsigned int start = 0, int length = -1,
+               bool allow_split = false);
 
-    unsigned int get_length            (void);
-    unsigned int get_length_by_char    (void);
-    unsigned int get_caret_pos         (void);
-    unsigned int get_caret_pos_by_char (void);
-    void         set_caret_pos_by_char (unsigned int     pos);
-    void         move_caret            (int              step,
-                                        bool             allow_split = false);
+    unsigned int length();
+    unsigned int utf8Length();
+    unsigned int caretPos();
+    unsigned int caretPosByChar();
+    void setCaretPosByChar(unsigned int pos);
+    void moveCaret(int step, bool allow_split = false);
 
-    void         set_typing_method     (TypingMethod     method);
-    TypingMethod get_typing_method     (void);
-    void         set_period_style      (PeriodStyle      style);
-    PeriodStyle  get_period_style      (void);
-    void         set_comma_style       (CommaStyle       style);
-    CommaStyle   get_comma_style       (void);
-    void         set_bracket_style     (BracketStyle     style);
-    BracketStyle get_bracket_style     (void);
-    void         set_slash_style       (SlashStyle       style);
-    SlashStyle   get_slash_style       (void);
-    void         set_symbol_width      (bool             half);
-    bool         get_symbol_width      (void);
-    void         set_number_width      (bool             half);
-    bool         get_number_width      (void);
-    void         set_pseudo_ascii_mode (int              mode);
-    bool         is_pseudo_ascii_mode  (void);
-    void         reset_pseudo_ascii_mode (void);
+    void setTypingMethod(TypingMethod method);
+    TypingMethod typingMethod();
+    void setPeriodStyle(PeriodStyle style);
+    PeriodStyle periodStyle();
+    void setCommaStyle(CommaStyle style);
+    CommaStyle commaStyle();
+    void setBracketStyle(BracketStyle style);
+    BracketStyle bracketStyle();
+    void setSlashStyle(SlashStyle style);
+    SlashStyle slashStyle();
+    void setSymbolHalf(bool half);
+    bool isSymbolHalf();
+    void setNumberHalf(bool half);
+    bool isNumberHalf();
+    void setPseudoAsciiMode(int mode);
+    bool isPseudoAsciiMode();
+    void resetPseudoAsciiMode();
 
 private:
-    void         reset_pending         (void);
-    void         split_segment         (unsigned int     seg_id);
+    void resetPending();
+    void splitSegment(unsigned int seg_id);
 
 private:
-    AnthyInstance         &m_anthy;
+    AnthyState &state_;
 
     // tables
-    Key2KanaTableSet       m_key2kana_tables;
-    Key2KanaTableSet       m_nicola_tables;
+    Key2KanaTableSet key2kanaTables_;
+    Key2KanaTableSet nicolaTables_;
 
     // convertors
-    Key2KanaConvertor      m_key2kana_normal;
-    KanaConvertor          m_kana;
-    NicolaConvertor        m_nicola;
-    Key2KanaConvertorBase *m_key2kana;
+    Key2KanaConvertor key2kanaNormal_;
+    KanaConvertor kana_;
+    NicolaConvertor nicola_;
+    Key2KanaConvertorBase *key2kana_;
 
     // state
-    ReadingSegments        m_segments;
-    unsigned int           m_segment_pos;
-    unsigned int           m_caret_offset;
+    ReadingSegments segments_;
+    unsigned int segmentPos_;
+    unsigned int caretOffset_;
 };
 
 #endif /* __FCITX_ANTHY_READING_H__ */

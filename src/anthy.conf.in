@@ -1,7 +1,7 @@
 [InputMethod]
-UniqueName=anthy
-_Name=Anthy
-IconName=anthy
-Priority=5
+Name=Anthy
+Icon=fcitx-anthy
 LangCode=ja
-Parent=fcitx-anthy
+Addon=anthy
+Configurable=True
+Label=あ

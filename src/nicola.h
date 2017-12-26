@@ -22,13 +22,14 @@
 #ifndef __FCITX_ANTHY_NICOLA_H__
 #define __FCITX_ANTHY_NICOLA_H__
 
-#include <sys/time.h>
+#include <fcitx-utils/event.h>
 #include <stdint.h>
+#include <sys/time.h>
 
 #include "key2kana_base.h"
 #include "key2kana_table.h"
 
-class AnthyInstance;
+class AnthyState;
 
 typedef enum {
     FCITX_ANTHY_NICOLA_SHIFT_NONE,
@@ -36,68 +37,58 @@ typedef enum {
     FCITX_ANTHY_NICOLA_SHIFT_RIGHT,
 } NicolaShiftType;
 
-class NicolaConvertor : public Key2KanaConvertorBase
-{
+class NicolaConvertor : public Key2KanaConvertorBase {
 public:
-    NicolaConvertor                     (AnthyInstance    & anthy,
-                                         Key2KanaTableSet & tables);
-    virtual ~NicolaConvertor            ();
+    NicolaConvertor(AnthyState &anthy, Key2KanaTableSet &tables);
+    virtual ~NicolaConvertor();
 
-    bool       can_append               (const KeyEvent&   key,
-                                         bool              ignore_space = false);
-    bool       append                   (const KeyEvent&   key,
-                                         std::string       & result,
-                                         std::string       & pending,
-                                         std::string           & raw);
-    bool       append                   (const std::string     & raw,
-                                         std::string       & result,
-                                         std::string       & pending);
-    void       clear                    (void);
+    bool canAppend(const fcitx::KeyEvent &key,
+                   bool ignore_space = false) override;
+    bool append(const fcitx::KeyEvent &key, std::string &result,
+                std::string &pending, std::string &raw) override;
+    bool append(const std::string &raw, std::string &result,
+                std::string &pending) override;
+    void clear() override;
 
-    bool       is_pending               (void);
-    std::string get_pending              (void);
-    std::string flush_pending            (void);
-    void       reset_pending            (const std::string & result,
-                                         const std::string     & raw);
+    bool isPending() const override;
+    std::string pending() const override;
+    std::string flushPending() override;
+    void resetPending(const std::string &result,
+                      const std::string &raw) override;
 
 public:
-    void       process_timeout          (void);
+    void processTimeout();
 
 private:
-    void       search                   (const KeyEvent&     key,
-                                         NicolaShiftType    shift_type,
-                                         std::string       & result,
-                                         std::string           & raw);
-    bool       handle_voiced_consonant  (std::string       & result,
-                                         std::string       & pending);
-    bool       is_char_key              (const KeyEvent&     key);
-    bool       is_thumb_key             (const KeyEvent&     key);
-    bool       is_left_thumb_key        (const KeyEvent&     key);
-    bool       is_right_thumb_key       (const KeyEvent&     key);
-    NicolaShiftType
-               get_thumb_key_type       (const KeyEvent&     key);
-    bool       emit_key_event           (const KeyEvent&    key);
-    void       set_alarm                (int                time_msec);
+    void search(const fcitx::Key &key, NicolaShiftType shift_type,
+                std::string &result, std::string &raw);
+    bool handleVoicedConsonant(std::string &result, std::string &pending);
+    bool isCharKey(const fcitx::KeyEvent &key);
+    bool isThumbKey(const fcitx::Key &key);
+    bool isLeftThumbKey(const fcitx::Key &key);
+    bool isRightThumbKey(const fcitx::Key &key);
+    NicolaShiftType thumbKeyType(const fcitx::Key &key);
+    bool emitKeyEvent(const fcitx::Key &key);
+    bool emitKeyEvent(const fcitx::KeyEvent &key);
+    void setAlarm(int time_msec);
     bool stop();
-    int         thumb_key ( const KeyEvent& key);
+    int thumbKey(const fcitx::KeyEvent &key);
 
 private:
-    Key2KanaTableSet &m_tables;
-
-    AnthyInstance    &m_anthy;
+    Key2KanaTableSet &tables_;
 
     // state
-    KeyEvent          m_prev_char_key;
+    fcitx::Key prevCharKey_;
 
-    KeyEvent          m_repeat_char_key;
+    fcitx::Key repeatCharKey_;
 
-    uint32_t          m_timer_id;
-    bool              m_processing_timeout;
+    std::unique_ptr<fcitx::EventSourceTime> timer_;
+    bool processingTimeout_;
 
-    std::string        m_pending;
-    KeyEvent m_through_key_event;
-    KeyEvent m_repeat_thumb_key;
-    KeyEvent m_prev_thumb_key;
+    std::string pending_;
+    fcitx::Key throughKeyEvent;
+    fcitx::Key repeatThumbKey_;
+    fcitx::Key prevThumbKey_;
 };
 
 #endif /* __FCITX_ANTHY_NICOLA_H__ */

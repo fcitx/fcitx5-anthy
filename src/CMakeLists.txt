@@ -1,27 +1,27 @@
-include_directories (${ANTHY_INCLUDE_DIR})
-include_directories (${FCITX4_FCITX_INCLUDE_DIRS})
-include_directories (${FCITX4_FCITX_CONFIG_INCLUDE_DIRS})
-include_directories (${FCITX4_FCITX_UTILS_INCLUDE_DIRS})
-
 set( fcitx_anthy_sources
      action.cpp
      style_file.cpp
      conversion.cpp
      default_tables.cpp
-     factory.cpp
+     engine.cpp
      kana.cpp
      key2kana.cpp
+     key2kana_base.cpp
      key2kana_table.cpp
      preedit.cpp
      reading.cpp
      utils.cpp
      conversion.cpp
-     imengine.cpp
+     state.cpp
      nicola.cpp
     )
 
-add_definitions( -DLOCALEDIR=\"${CMAKE_INSTALL_PREFIX}/share/locale\" )
-
-fcitx_add_addon_full(anthy DESC SOURCES ${fcitx_anthy_sources}
-  IM_CONFIG anthy.conf
-  LINK_LIBS ${ANTHY_LIBRARIES})
+add_library(anthy MODULE ${fcitx_anthy_sources})
+target_link_libraries(anthy Fcitx5::Core Fcitx5::Config PkgConfig::Anthy Fcitx5::Module::Clipboard)
+target_include_directories(anthy PRIVATE ${PROJECT_BINARY_DIR})
+set_target_properties(anthy PROPERTIES PREFIX "")
+install(TARGETS anthy DESTINATION "${CMAKE_INSTALL_LIBDIR}/fcitx5")
+fcitx5_translate_desktop_file(anthy.conf.in anthy.conf)
+fcitx5_translate_desktop_file(anthy-addon.conf.in anthy-addon.conf)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/anthy.conf" DESTINATION "${FCITX_INSTALL_PKGDATADIR}/inputmethod")
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/anthy-addon.conf" RENAME anthy.conf DESTINATION "${FCITX_INSTALL_PKGDATADIR}/addon")

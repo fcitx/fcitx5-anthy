@@ -18,525 +18,340 @@
  *  Foundation, 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
-  #include <config.h>
-#endif
-
-#include <string.h>
-
-#include "factory.h"
-#include "imengine.h"
 #include "preedit.h"
+#include "engine.h"
+#include "state.h"
 #include "utils.h"
-#include <fcitx/candidate.h>
+#include <fcitx/inputpanel.h>
 
-static ConvRule *get_period_rule              (TypingMethod method,
-                                               PeriodStyle  period);
-static ConvRule *get_comma_rule               (TypingMethod method,
-                                               CommaStyle   period);
+static ConvRule *get_period_rule(TypingMethod method, PeriodStyle period);
+static ConvRule *get_comma_rule(TypingMethod method, CommaStyle period);
 
-Preedit::Preedit (AnthyInstance &anthy)
-    : m_anthy              (anthy),
-      //m_key2kana_tables    (tables),
-      m_reading            (anthy),
-      m_conversion         (m_anthy, m_reading),
-      m_input_mode         (FCITX_ANTHY_MODE_HIRAGANA)
-{
-}
+Preedit::Preedit(AnthyState &anthy)
+    : state_(anthy),
+      // m_key2kana_tables    (tables),
+      reading_(anthy), conversion_(state_, reading_),
+      inputMode_(InputMode::HIRAGANA) {}
 
-Preedit::~Preedit ()
-{
-}
-
+Preedit::~Preedit() {}
 
 /*
  * getting status
  */
-unsigned int
-Preedit::get_length (void)
-{
-    if (is_converting ())
-        return m_conversion.get_length ();
+unsigned int Preedit::length() {
+    if (isConverting())
+        return conversion_.length();
     else
-        return m_reading.get_length ();
+        return reading_.length();
 
     return 0;
 }
-
 
 /*
  * getting status
  */
-unsigned int
-Preedit::get_length_by_char (void)
-{
-    if (is_converting ())
-        return m_conversion.get_length_by_char ();
+unsigned int Preedit::utf8Length() {
+    if (isConverting())
+        return conversion_.utf8Length();
     else
-        return m_reading.get_length_by_char ();
+        return reading_.utf8Length();
 
     return 0;
 }
 
-std::string
-Preedit::get_string (void)
-{
-    if (is_converting ()) {
-        return m_conversion.get ();
-    } else if (!m_source.empty ()) {
-        return m_source;
+std::string Preedit::string() {
+    if (isConverting()) {
+        return conversion_.get();
+    } else if (!source_.empty()) {
+        return source_;
     } else {
-        std::string widestr;
-        switch (m_input_mode) {
-        case FCITX_ANTHY_MODE_KATAKANA:
-            util_convert_to_katakana (widestr, m_reading.get_by_char ());
-            return widestr;
+        switch (inputMode_) {
+        case InputMode::KATAKANA:
+            return util::convert_to_katakana(reading_.getByChar());
 
-        case FCITX_ANTHY_MODE_HALF_KATAKANA:
-            util_convert_to_katakana (widestr, m_reading.get_by_char (), true);
-            return widestr;
+        case InputMode::HALF_KATAKANA:
+            return util::convert_to_katakana(reading_.getByChar(), true);
 
-        case FCITX_ANTHY_MODE_LATIN:
-            return m_reading.get_raw_by_char ();
+        case InputMode::LATIN:
+            return reading_.getRawByChar();
 
-        case FCITX_ANTHY_MODE_WIDE_LATIN:
-            util_convert_to_wide (widestr, m_reading.get_raw_by_char ());
-            return widestr;
+        case InputMode::WIDE_LATIN:
+            return util::convert_to_wide(reading_.getRawByChar());
 
-        case FCITX_ANTHY_MODE_HIRAGANA:
+        case InputMode::HIRAGANA:
         default:
-            return m_reading.get_by_char ();
+            return reading_.getByChar();
         }
     }
 
-    return std::string ();
+    return std::string();
 }
 
-void
-Preedit::update_preedit (void)
-{
-    if (is_converting ())
-    {
-        m_conversion.update_preedit ();
+void Preedit::updatePreedit() {
+    if (isConverting()) {
+        conversion_.updatePreedit();
     } else {
-        FcitxMessages* preedit;
-        if (m_anthy.support_client_preedit())
-            preedit = m_anthy.get_client_preedit();
-        else
-            preedit = m_anthy.get_preedit();
+        fcitx::Text preedit;
 
-        std::string s = get_string();
-        if (s.length() > 0)
-            FcitxMessagesAddMessageAtLast(preedit, MSG_INPUT, "%s", s.c_str());
+        std::string s = string();
+        if (!s.empty())
+            preedit.append(s);
+
+        if (state_.supportClientPreedit()) {
+            state_.inputContext()->inputPanel().setClientPreedit(preedit);
+        } else {
+            state_.inputContext()->inputPanel().setPreedit(preedit);
+        }
     }
 }
 
-Reading &
-Preedit::get_reading (void)
-{
-    return m_reading;
-}
-
-bool
-Preedit::is_preediting (void)
-{
-    if (m_reading.get_length () > 0 ||
-        m_conversion.is_converting () ||
-        !m_source.empty ())
-    {
+bool Preedit::isPreediting() {
+    if (reading_.length() > 0 || conversion_.isConverting() ||
+        !source_.empty()) {
         return true;
     } else {
         return false;
     }
 }
 
-bool
-Preedit::is_converting (void)
-{
-    return m_conversion.is_converting ();
-}
+bool Preedit::isConverting() { return conversion_.isConverting(); }
 
-bool
-Preedit::is_predicting (void)
-{
-    return m_conversion.is_predicting ();
-}
+bool Preedit::isPredicting() { return conversion_.isPredicting(); }
 
-bool
-Preedit::is_reconverting (void)
-{
-    return !m_source.empty ();
-}
-
+bool Preedit::isReconverting() { return !source_.empty(); }
 
 /*
  * manipulating the preedit string
  */
-bool
-Preedit::can_process_key_event (const KeyEvent & key)
-{
-    return m_reading.can_process_key_event (key);
+bool Preedit::canProcessKeyEvent(const fcitx::KeyEvent &key) {
+    return reading_.canProcesKeyEvent(key);
 }
 
-bool
-Preedit::process_key_event (const KeyEvent & key)
-{
-    if (!m_reading.can_process_key_event (key))
+bool Preedit::processKeyEvent(const fcitx::KeyEvent &key) {
+    if (!reading_.canProcesKeyEvent(key))
         return false;
 
-    bool retval = m_reading.process_key_event (key);
+    bool retval = reading_.processKeyEvent(key);
 
-    if (m_input_mode == FCITX_ANTHY_MODE_LATIN ||
-        m_input_mode == FCITX_ANTHY_MODE_WIDE_LATIN)
-    {
+    if (inputMode_ == InputMode::LATIN || inputMode_ == InputMode::WIDE_LATIN) {
         return true;
     }
 
     return retval;
 }
 
-bool
-Preedit::append (const KeyEvent & key,
-                 const std::string   & string)
-{
-    return m_reading.append (key, string);
+bool Preedit::append(const fcitx::KeyEvent &key, const std::string &string) {
+    return reading_.append(key, string);
+}
+bool Preedit::append(const fcitx::Key &key, const std::string &string) {
+    fcitx::KeyEvent event(state_.inputContext(), key);
+    return reading_.append(event, string);
 }
 
-void
-Preedit::erase (bool backward)
-{
-    if (m_reading.get_length_by_char () <= 0)
+void Preedit::erase(bool backward) {
+    if (reading_.utf8Length() <= 0)
         return;
 
     // cancel conversion
-    revert ();
+    revert();
 
     // erase
-    TypingMethod method = get_typing_method ();
-    bool allow_split
-        = method == FCITX_ANTHY_TYPING_METHOD_ROMAJI &&
-          m_anthy.get_config()->m_romaji_allow_split;
-    if (backward && m_reading.get_caret_pos_by_char () == 0)
+    TypingMethod method = typingMethod();
+    bool allow_split = method == TypingMethod::ROMAJI &&
+                       *state_.config().m_general->m_romaji_allow_split;
+    if (backward && reading_.caretPosByChar() == 0)
         return;
-    if (!backward && m_reading.get_caret_pos_by_char () >= m_reading.get_length_by_char ())
+    if (!backward && reading_.caretPosByChar() >= reading_.utf8Length())
         return;
     if (backward)
-        m_reading.move_caret (-1, allow_split);
-    m_reading.erase (m_reading.get_caret_pos_by_char (), 1, allow_split);
+        reading_.moveCaret(-1, allow_split);
+    reading_.erase(reading_.caretPosByChar(), 1, allow_split);
 }
 
-void
-Preedit::finish (void)
-{
-    m_reading.finish ();
-}
-
+void Preedit::finish() { reading_.finish(); }
 
 /*
  * manipulating conversion string
  */
-void
-Preedit::convert (CandidateType type, bool single_segment)
-{
-    if (m_source.empty ())
-        m_conversion.convert (type, single_segment);
+void Preedit::convert(CandidateType type, bool single_segment) {
+    if (source_.empty())
+        conversion_.convert(type, single_segment);
     else
-        m_conversion.convert (m_source, single_segment);
+        conversion_.convert(source_, single_segment);
 }
 
-void
-Preedit::convert (const std::string &source, bool single_segment)
-{
-    m_conversion.convert (source, single_segment);
-    m_source = source;
+void Preedit::convert(const std::string &source, bool single_segment) {
+    conversion_.convert(source, single_segment);
+    source_ = source;
 }
 
-void
-Preedit::revert (void)
-{
-    m_conversion.clear ();
+void Preedit::revert() { conversion_.clear(); }
+
+void Preedit::commit(int segment_id, bool learn) {
+    if (conversion_.isConverting())
+        conversion_.commit(segment_id, learn);
+    if (!conversion_.isConverting())
+        clear();
 }
 
-void
-Preedit::commit (int segment_id, bool learn)
-{
-    if (m_conversion.is_converting ())
-        m_conversion.commit (segment_id, learn);
-    if (!m_conversion.is_converting ())
-        clear ();
+int Preedit::nrSegments() { return conversion_.nrSegments(); }
+
+std::string Preedit::segmentString(int segment_id) {
+    return conversion_.segmentString(segment_id);
 }
 
-int
-Preedit::get_nr_segments (void)
-{
-    return m_conversion.get_nr_segments ();
+int Preedit::selectedSegment() { return conversion_.selectedSegment(); }
+
+void Preedit::selectSegment(int segment_id) {
+    conversion_.selectSegment(segment_id);
 }
 
-std::string
-Preedit::get_segment_string (int segment_id)
-{
-    return m_conversion.get_segment_string (segment_id);
+int Preedit::segmentSize(int segment_id) {
+    return conversion_.segmentSize(segment_id);
 }
 
-int
-Preedit::get_selected_segment (void)
-{
-    return m_conversion.get_selected_segment ();
+void Preedit::resizeSegment(int relative_size, int segment_id) {
+    conversion_.resizeSegment(relative_size, segment_id);
 }
-
-void
-Preedit::select_segment (int segment_id)
-{
-    m_conversion.select_segment (segment_id);
-}
-
-int
-Preedit::get_segment_size (int segment_id)
-{
-    return m_conversion.get_segment_size (segment_id);
-}
-
-void
-Preedit::resize_segment (int relative_size, int segment_id)
-{
-    m_conversion.resize_segment (relative_size, segment_id);
-}
-
 
 /*
  * candidates for a segment
  */
-void
-Preedit::get_candidates (FcitxCandidateWordList *table, int segment_id)
-{
-    m_conversion.get_candidates (table, segment_id);
+std::unique_ptr<fcitx::CommonCandidateList>
+Preedit::candidates(int segment_id) {
+    return conversion_.candidates(segment_id);
 }
 
-int
-Preedit::get_selected_candidate (int segment_id)
-{
-    return m_conversion.get_selected_candidate (segment_id);
+int Preedit::selectedCandidate(int segment_id) {
+    return conversion_.selectedCandidate(segment_id);
 }
 
-void
-Preedit::select_candidate (int candidate_id, int segment_id)
-{
-    m_conversion.select_candidate (candidate_id, segment_id);
+void Preedit::selectCandidate(int candidate_id, int segment_id) {
+    conversion_.selectCandidate(candidate_id, segment_id);
 }
 
 /*
  * manipulating the caret
  */
-unsigned int
-Preedit::get_caret_pos (void)
-{
-    if (is_converting ()) {
-        return m_conversion.get_segment_position ();
+unsigned int Preedit::caretPos() {
+    if (isConverting()) {
+        return conversion_.segmentPosition();
     } else {
-        if (get_input_mode () == FCITX_ANTHY_MODE_HALF_KATAKANA) {
+        if (inputMode() == InputMode::HALF_KATAKANA) {
             // FIXME! It's ad-hoc
             std::string substr;
-            substr = m_reading.get_by_char (0, m_reading.get_caret_pos_by_char (),
-                                    FCITX_ANTHY_STRING_HALF_KATAKANA);
-            return substr.length ();
+            substr = reading_.getByChar(0, reading_.caretPosByChar(),
+                                        FCITX_ANTHY_STRING_HALF_KATAKANA);
+            return substr.length();
         } else {
-            return m_reading.get_caret_pos ();
+            return reading_.caretPos();
         }
     }
 }
 
-void
-Preedit::set_caret_pos_by_char (unsigned int pos)
-{
-    if (is_converting ())
+void Preedit::setCaretPosByChar(unsigned int pos) {
+    if (isConverting())
         return;
 
-    m_reading.set_caret_pos_by_char (pos);
+    reading_.setCaretPosByChar(pos);
 }
 
-void
-Preedit::move_caret (int step)
-{
-    if (is_converting ())
+void Preedit::moveCaret(int step) {
+    if (isConverting())
         return;
 
-    TypingMethod method = get_typing_method ();
-    bool allow_split
-        = method == FCITX_ANTHY_TYPING_METHOD_ROMAJI &&
-          m_anthy.get_config()->m_romaji_allow_split;
+    TypingMethod method = typingMethod();
+    bool allow_split = method == TypingMethod::ROMAJI &&
+                       *state_.config().m_general->m_romaji_allow_split;
 
-    m_reading.move_caret (step, allow_split);
+    reading_.moveCaret(step, allow_split);
 }
 
-void
-Preedit::predict (void)
-{
-    m_conversion.predict ();
-}
-
+void Preedit::predict() { conversion_.predict(); }
 
 /*
  * clear all string
  */
-void
-Preedit::clear (int segment_id)
-{
+void Preedit::clear(int segment_id) {
     // FIXME! We should add implementation not only for conversion string but
     // also for reading string.
 
-    if (!is_converting ()) {
-        m_reading.clear ();
-        m_conversion.clear ();
-        m_source = std::string ();
+    if (!isConverting()) {
+        reading_.clear();
+        conversion_.clear();
+        source_ = std::string();
         return;
     }
 
-    m_conversion.clear (segment_id);
-    if (m_conversion.get_nr_segments () <= 0) {
-        m_reading.clear ();
-        m_source = std::string ();
+    conversion_.clear(segment_id);
+    if (conversion_.nrSegments() <= 0) {
+        reading_.clear();
+        source_ = std::string();
     }
 }
-
 
 /*
  * preference
  */
-void
-Preedit::set_input_mode (InputMode mode)
-{
-    m_input_mode = mode;
+void Preedit::setInputMode(InputMode mode) { inputMode_ = mode; }
+
+InputMode Preedit::inputMode() { return inputMode_; }
+
+void Preedit::setTypingMethod(TypingMethod method) {
+    reading_.setTypingMethod(method);
 }
 
-InputMode
-Preedit::get_input_mode (void)
-{
-    return m_input_mode;
+TypingMethod Preedit::typingMethod() { return reading_.typingMethod(); }
+
+void Preedit::setPeriodStyle(PeriodStyle style) {
+    reading_.setPeriodStyle(style);
 }
 
-void
-Preedit::set_typing_method (TypingMethod method)
-{
-    m_reading.set_typing_method (method);
+PeriodStyle Preedit::periodStyle() { return reading_.periodStyle(); }
+
+void Preedit::setCommaStyle(CommaStyle style) { reading_.setCommaStyle(style); }
+
+CommaStyle Preedit::commaStyle() { return reading_.commaStyle(); }
+
+void Preedit::setBracketStyle(BracketStyle style) {
+    reading_.setBracketStyle(style);
 }
 
-TypingMethod
-Preedit::get_typing_method (void)
-{
-    return m_reading.get_typing_method ();
+BracketStyle Preedit::bracketStyle() { return reading_.bracketStyle(); }
+
+void Preedit::setSlashStyle(SlashStyle style) { reading_.setSlashStyle(style); }
+
+SlashStyle Preedit::slashStyle() { return reading_.slashStyle(); }
+
+void Preedit::setSymbolHalf(bool half) { reading_.setSymbolHalf(half); }
+
+void Preedit::setNumberHalf(bool half) { reading_.setNumberHalf(half); }
+
+void Preedit::setPseudoAsciiMode(int mode) {
+    reading_.setPseudoAsciiMode(mode);
 }
 
-void
-Preedit::set_period_style (PeriodStyle style)
-{
-    m_reading.set_period_style (style);
-}
+bool Preedit::isPseudoAsciiMode() { return reading_.isPseudoAsciiMode(); }
 
-PeriodStyle
-Preedit::get_period_style (void)
-{
-    return m_reading.get_period_style ();
-}
+void Preedit::resetPseudoAsciiMode() { reading_.resetPseudoAsciiMode(); }
 
-void
-Preedit::set_comma_style (CommaStyle style)
-{
-    m_reading.set_comma_style (style);
-}
+bool Preedit::isCommaOrPeriod(const std::string &str) {
+    TypingMethod typing = typingMethod();
+    PeriodStyle period = periodStyle();
+    CommaStyle comma = commaStyle();
 
-CommaStyle
-Preedit::get_comma_style (void)
-{
-    return m_reading.get_comma_style ();
-}
-
-void
-Preedit::set_bracket_style (BracketStyle style)
-{
-    m_reading.set_bracket_style (style);
-}
-
-BracketStyle
-Preedit::get_bracket_style (void)
-{
-    return m_reading.get_bracket_style ();
-}
-
-void
-Preedit::set_slash_style (SlashStyle style)
-{
-    m_reading.set_slash_style (style);
-}
-
-SlashStyle
-Preedit::get_slash_style (void)
-{
-    return m_reading.get_slash_style ();
-}
-
-void
-Preedit::set_symbol_width (bool half)
-{
-    m_reading.set_symbol_width (half);
-}
-
-bool
-Preedit::get_symbol_width (void)
-{
-    return m_reading.get_symbol_width ();
-}
-
-void
-Preedit::set_number_width (bool half)
-{
-    m_reading.set_number_width (half);
-}
-
-bool
-Preedit::get_number_width (void)
-{
-    return m_reading.get_number_width ();
-}
-
-void
-Preedit::set_pseudo_ascii_mode (int mode)
-{
-    m_reading.set_pseudo_ascii_mode (mode);
-}
-
-bool
-Preedit::is_pseudo_ascii_mode (void)
-{
-    return m_reading.is_pseudo_ascii_mode ();
-}
-
-void
-Preedit::reset_pseudo_ascii_mode (void)
-{
-    m_reading.reset_pseudo_ascii_mode ();
-}
-
-bool
-Preedit::is_comma_or_period (const std::string & str)
-{
-    TypingMethod typing = get_typing_method ();
-    PeriodStyle  period = get_period_style ();
-    CommaStyle   comma  = get_comma_style ();
-
-    ConvRule *period_rule = get_period_rule (typing, period);
-    ConvRule *comma_rule  = get_comma_rule  (typing, comma);
+    ConvRule *period_rule = get_period_rule(typing, period);
+    ConvRule *comma_rule = get_comma_rule(typing, comma);
 
     for (unsigned int i = 0; period_rule && period_rule[i].string; i++) {
         if (period_rule[i].string &&
-            !strcmp (period_rule[i].string, str.c_str ()))
-        {
+            !strcmp(period_rule[i].string, str.c_str())) {
             return true;
         }
     }
     for (unsigned int i = 0; comma_rule && comma_rule[i].string; i++) {
         if (comma_rule[i].string &&
-            !strcmp (comma_rule[i].string, str.c_str ()))
-        {
+            !strcmp(comma_rule[i].string, str.c_str())) {
             return true;
         }
     }
@@ -544,74 +359,69 @@ Preedit::is_comma_or_period (const std::string & str)
     return false;
 }
 
-
 /*
  * utilities
  */
-static ConvRule *
-get_period_rule (TypingMethod method, PeriodStyle period)
-{
+static ConvRule *get_period_rule(TypingMethod method, PeriodStyle period) {
     switch (method) {
-    case FCITX_ANTHY_TYPING_METHOD_KANA:
+    case TypingMethod::KANA:
         switch (period) {
-        case FCITX_ANTHY_PERIOD_WIDE:
+        case PeriodStyle::WIDE:
             return fcitx_anthy_kana_wide_period_rule;
-        case FCITX_ANTHY_PERIOD_HALF:
+        case PeriodStyle::HALF:
             return fcitx_anthy_kana_half_period_rule;
-        case FCITX_ANTHY_PERIOD_JAPANESE:
+        case PeriodStyle::JAPANESE:
         default:
             return fcitx_anthy_kana_ja_period_rule;
         };
         break;
 
-    case FCITX_ANTHY_TYPING_METHOD_ROMAJI:
+    case TypingMethod::ROMAJI:
     default:
         switch (period) {
-        case FCITX_ANTHY_PERIOD_WIDE:
+        case PeriodStyle::WIDE:
             return fcitx_anthy_romaji_wide_period_rule;
-        case FCITX_ANTHY_PERIOD_HALF:
+        case PeriodStyle::HALF:
             return fcitx_anthy_romaji_half_period_rule;
-        case FCITX_ANTHY_PERIOD_JAPANESE:
+        case PeriodStyle::JAPANESE:
         default:
             return fcitx_anthy_romaji_ja_period_rule;
         };
         break;
     };
 
-    return NULL;
+    return nullptr;
 }
 
-static ConvRule *
-get_comma_rule (TypingMethod method, CommaStyle period)
-{
+static ConvRule *get_comma_rule(TypingMethod method, CommaStyle period) {
     switch (method) {
-    case FCITX_ANTHY_TYPING_METHOD_KANA:
+    case TypingMethod::KANA:
         switch (period) {
-        case FCITX_ANTHY_PERIOD_WIDE:
+        case CommaStyle::WIDE:
             return fcitx_anthy_kana_wide_comma_rule;
-        case FCITX_ANTHY_PERIOD_HALF:
+        case CommaStyle::HALF:
             return fcitx_anthy_kana_half_comma_rule;
-        case FCITX_ANTHY_PERIOD_JAPANESE:
+        case CommaStyle::JAPANESE:
         default:
             return fcitx_anthy_kana_ja_comma_rule;
         };
         break;
 
-    case FCITX_ANTHY_TYPING_METHOD_ROMAJI:
+    case TypingMethod::ROMAJI:
     default:
         switch (period) {
-        case FCITX_ANTHY_PERIOD_WIDE:
+        case CommaStyle::WIDE:
             return fcitx_anthy_romaji_wide_comma_rule;
-        case FCITX_ANTHY_PERIOD_HALF:
+        case CommaStyle::HALF:
             return fcitx_anthy_romaji_half_comma_rule;
-        case FCITX_ANTHY_PERIOD_JAPANESE:
+        case CommaStyle::JAPANESE:
         default:
             return fcitx_anthy_romaji_ja_comma_rule;
         };
         break;
     };
 
-    return NULL;
+    return nullptr;
 }
 /*
 vi:ts=4:nowrap:ai:expandtab

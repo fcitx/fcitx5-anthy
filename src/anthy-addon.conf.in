@@ -1,0 +1,7 @@
+[Addon]
+Name=Anthy
+Category=InputMethod
+Library=anthy
+Type=SharedLibrary
+OnDemand=True
+Configurable=True

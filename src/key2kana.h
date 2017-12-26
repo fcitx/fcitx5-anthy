@@ -1,79 +1,65 @@
-/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
-/*
- *  Copyright (C) 2004 Hiroyuki Ikezoe
- *  Copyright (C) 2004 Takuro Ashie
- *  Copyright (C) 2012 CSSlayer
- *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2, or (at your option)
- *  any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
- */
+//
+// Copyright (C) 2004 Hiroyuki Ikezoe
+// Copyright (C) 2004 Takuro Ashie
+// Copyright (C) 2012~2017 by CSSlayer
+// wengxt@gmail.com
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+#ifndef _FCITX5_ANTHY_KEY2KANA_H_
+#define _FCITX5_ANTHY_KEY2KANA_H_
 
-#ifndef __FCITX_ANTHY_KEY2KANA_H__
-#define __FCITX_ANTHY_KEY2KANA_H__
-
-#include "key2kana_base.h"
 #include "default_tables.h"
+#include "key2kana_base.h"
 #include "key2kana_table.h"
 
-class AnthyInstance;
+class AnthyState;
 
-class Key2KanaConvertor : public Key2KanaConvertorBase
-{
+class Key2KanaConvertor : public Key2KanaConvertorBase {
 public:
-    Key2KanaConvertor                        (AnthyInstance    & anthy,
-                                              Key2KanaTableSet & tables);
-    virtual ~Key2KanaConvertor               ();
+    Key2KanaConvertor(AnthyState &anthy, Key2KanaTableSet &tables);
+    virtual ~Key2KanaConvertor();
 
-    bool       can_append                    (const KeyEvent   & key,
-                                              bool               ignore_space = false);
-    bool       append                        (const KeyEvent   & key,
-                                              std::string       & result,
-                                              std::string       & pending,
-                                              std::string           & raw);
-    void       clear                         (void);
+    bool canAppend(const fcitx::KeyEvent &key,
+                   bool ignore_space = false) override;
+    bool append(const fcitx::KeyEvent &key, std::string &result,
+                std::string &pending, std::string &raw) override;
+    void clear() override;
 
-    bool       is_pending                    (void);
-    std::string get_pending                   (void);
-    std::string flush_pending                 (void);
-    void       reset_pending                 (const std::string & result,
-                                              const std::string     & raw);
-    void       set_pseudo_ascii_mode         (int                mode)
-        { m_pseudo_ascii_mode = mode; }
-    bool       is_pseudo_ascii_mode          (void)
-        { return m_is_in_pseudo_ascii_mode; }
-    bool       process_pseudo_ascii_mode     (const std::string & wstr);
-    void       reset_pseudo_ascii_mode       (void);
+    bool isPending() const override;
+    std::string pending() const override;
+    std::string flushPending() override;
+    void resetPending(const std::string &result,
+                      const std::string &raw) override;
+    void setPseudoAsciiMode(int mode) { pseudoAsciiMode_ = mode; }
+    bool isPseudoAsciiMode() { return isInPseudoAsciiMode_; }
+    bool processPseudoAsciiMode(const std::string &wstr) override;
+    void resetPseudoAsciiMode() override;
 
 private:
-    bool       append             (const std::string     & str,
-                                   std::string       & result,
-                                   std::string       & pending);
+    bool append(const std::string &str, std::string &result,
+                std::string &pending) override;
 
 private:
-    AnthyInstance     &m_anthy;
-    Key2KanaTableSet  &m_tables;
+    Key2KanaTableSet &tables_;
 
     // state
-    KeyEvent           m_last_key;
-    std::string         m_pending;
-    Key2KanaRule       m_exact_match;
-    int                m_pseudo_ascii_mode;
-    bool               m_is_in_pseudo_ascii_mode;
-    bool               m_reset_pseudo_ascii_mode;
+    fcitx::Key lastKey_;
+    std::string pending_;
+    Key2KanaRule exactMatch_;
+    int pseudoAsciiMode_;
+    bool isInPseudoAsciiMode_;
 };
 
-#endif /* __FCITX_ANTHY_KEY2KANA_H__ */
-/*
-vi:ts=4:nowrap:ai:expandtab
-*/
+#endif // _FCITX5_ANTHY_KEY2KANA_H_

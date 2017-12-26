@@ -19,21 +19,16 @@
  */
 
 #include "reading.h"
-#include "factory.h"
-#include "imengine.h"
+#include "engine.h"
+#include "state.h"
 #include "utils.h"
+#include <fcitx-utils/utf8.h>
 
-ReadingSegment::ReadingSegment ()
-{
-}
+ReadingSegment::ReadingSegment() {}
 
-ReadingSegment::~ReadingSegment ()
-{
-}
+ReadingSegment::~ReadingSegment() {}
 
-static const char *
-find_romaji (std::string c)
-{
+static const char *find_romaji(std::string c) {
     ConvRule *table = fcitx_anthy_romaji_typing_rule;
 
     for (unsigned int i = 0; table[i].string; i++) {
@@ -45,14 +40,12 @@ find_romaji (std::string c)
     return "";
 }
 
-static void
-to_half (std::string &dest, std::string &src)
-{
+static void to_half(std::string &dest, std::string &src) {
     WideRule *table = fcitx_anthy_wide_table;
 
-    for (unsigned int i = 0; i < util_utf8_string_length(src); i++) {
+    for (unsigned int i = 0; i < fcitx::utf8::length(src); i++) {
         bool found = false;
-        std::string kana1 = util_utf8_string_substr(src, i, 1);
+        std::string kana1 = util::utf8_string_substr(src, i, 1);
         for (unsigned int i = 0; table[i].code; i++) {
             std::string kana2 = table[i].wide;
             if (kana1 == kana2) {
@@ -68,172 +61,153 @@ to_half (std::string &dest, std::string &src)
 
 // Only a romaji string can be splited with raw key string.
 // Other typing method aren't supported splitting raw key string.
-void
-ReadingSegment::split (ReadingSegments &segments)
-{
-    if (util_utf8_string_length(kana) <= 1)
-        segments.push_back (*this);
+void ReadingSegment::split(ReadingSegments &segments) {
+    if (fcitx::utf8::length(kana) <= 1)
+        segments.push_back(*this);
 
     std::string half;
-    to_half (half, kana);
+    to_half(half, kana);
     bool same_with_raw = half == raw;
 
     std::string::iterator it;
-    for (unsigned int i = 0; i < util_utf8_string_length(kana); i++) {
-        std::string c = util_utf8_string_substr(kana, i, 1);
+    for (unsigned int i = 0; i < fcitx::utf8::length(kana); i++) {
+        std::string c = util::utf8_string_substr(kana, i, 1);
         ReadingSegment seg;
         seg.kana = c;
         if (same_with_raw)
-            to_half (seg.raw, c);
+            to_half(seg.raw, c);
         else
-            seg.raw = find_romaji (c);
-        segments.push_back (seg);
+            seg.raw = find_romaji(c);
+        segments.push_back(seg);
     }
 }
 
-
-
-Reading::Reading (AnthyInstance &anthy)
-    : m_anthy           (anthy),
-      //m_key2kana_tables (tables),
-      m_key2kana_normal (anthy, m_key2kana_tables),
-      m_kana            (anthy),
-      m_nicola          (anthy, m_nicola_tables),
-      m_key2kana        (&m_key2kana_normal),
-      m_segment_pos     (0),
-      m_caret_offset    (0)
-{
-    m_nicola_tables.set_typing_method (FCITX_ANTHY_TYPING_METHOD_NICOLA);
+Reading::Reading(AnthyState &anthy)
+    : state_(anthy),
+      // m_key2kana_tables (tables),
+      key2kanaNormal_(anthy, key2kanaTables_), kana_(anthy),
+      nicola_(anthy, nicolaTables_), key2kana_(&key2kanaNormal_),
+      segmentPos_(0), caretOffset_(0) {
+    nicolaTables_.setTypingMethod(TypingMethod::NICOLA);
 }
 
-Reading::~Reading ()
-{
-}
+Reading::~Reading() {}
 
-bool
-Reading::can_process_key_event (const KeyEvent & key)
-{
-    if (m_kana.can_append (key))
+bool Reading::canProcesKeyEvent(const fcitx::KeyEvent &key) {
+    if (kana_.canAppend(key))
         return true;
 
-    return m_key2kana->can_append (key);
+    return key2kana_->canAppend(key);
 }
 
-bool
-Reading::process_key_event (const KeyEvent & key)
-{
-    if (!can_process_key_event (key))
+bool Reading::processKeyEvent(const fcitx::KeyEvent &key) {
+    if (!canProcesKeyEvent(key))
         return false;
 
-    if (m_caret_offset != 0) {
-        split_segment (m_segment_pos);
-        reset_pending ();
+    if (caretOffset_ != 0) {
+        splitSegment(segmentPos_);
+        resetPending();
     }
 
     bool was_pending;
-    if (m_kana.can_append (key))
-        was_pending = m_kana.is_pending ();
+    if (kana_.canAppend(key))
+        was_pending = kana_.isPending();
     else
-        was_pending = m_key2kana->is_pending ();
+        was_pending = key2kana_->isPending();
 
     std::string raw;
     std::string result, pending;
     bool need_commiting;
-    if (m_kana.can_append (key))
-        need_commiting = m_kana.append (key, result, pending, raw);
+    if (kana_.canAppend(key))
+        need_commiting = kana_.append(key, result, pending, raw);
     else
-        need_commiting = m_key2kana->append (key, result, pending, raw);
+        need_commiting = key2kana_->append(key, result, pending, raw);
 
-    ReadingSegments::iterator begin = m_segments.begin ();
+    ReadingSegments::iterator begin = segments_.begin();
 
     // fix previous segment and prepare next segment if needed
-    if (!result.empty () || !pending.empty ()) {
-        if (!was_pending ||  // previous segment was already fixed
-            need_commiting)  // previous segment has been fixed
+    if (!result.empty() || !pending.empty()) {
+        if (!was_pending || // previous segment was already fixed
+            need_commiting) // previous segment has been fixed
         {
             ReadingSegment c;
-            m_segments.insert (begin + m_segment_pos, c);
-            m_segment_pos++;
+            segments_.insert(begin + segmentPos_, c);
+            segmentPos_++;
         }
     }
 
     // fill segment
-    if (result.length() > 0 && pending.length () > 0) {
-        m_segments[m_segment_pos - 1].kana = result;
+    if (!result.empty() && !pending.empty()) {
+        segments_[segmentPos_ - 1].kana = result;
 
         ReadingSegment c;
         c.raw += raw;
         c.kana = pending;
-        m_segments.insert (begin + m_segment_pos, c);
-        m_segment_pos++;
+        segments_.insert(begin + segmentPos_, c);
+        segmentPos_++;
 
-    } else if (result.length () > 0) {
-        m_segments[m_segment_pos - 1].raw += raw;
-        m_segments[m_segment_pos - 1].kana = result;
+    } else if (!result.empty()) {
+        segments_[segmentPos_ - 1].raw += raw;
+        segments_[segmentPos_ - 1].kana = result;
 
-    } else if (pending.length () > 0) {
-        m_segments[m_segment_pos - 1].raw += raw;
-        m_segments[m_segment_pos - 1].kana = pending;
+    } else if (!pending.empty()) {
+        segments_[segmentPos_ - 1].raw += raw;
+        segments_[segmentPos_ - 1].kana = pending;
 
     } else {
-
     }
 
     return false;
 }
 
-void
-Reading::finish (void)
-{
-    if (!m_key2kana->is_pending ()) return;
+void Reading::finish() {
+    if (!key2kana_->isPending())
+        return;
 
-    std::string result;
-    result = m_key2kana->flush_pending ();
-    if (result.length () > 0)
-        m_segments[m_segment_pos - 1].kana = result;
+    std::string result = key2kana_->flushPending();
+    if (!result.empty()) {
+        segments_[segmentPos_ - 1].kana = result;
+    }
 }
 
-void
-Reading::clear (void)
-{
-    m_key2kana_normal.clear ();
-    m_kana.clear ();
-    m_nicola.clear ();
-    m_segments.clear ();
-    m_segment_pos  = 0;
-    m_caret_offset = 0;
+void Reading::clear() {
+    key2kanaNormal_.clear();
+    kana_.clear();
+    nicola_.clear();
+    segments_.clear();
+    segmentPos_ = 0;
+    caretOffset_ = 0;
 }
 
-std::string
-Reading::get_by_char (unsigned int start, int len, StringType type)
-{
+std::string Reading::getByChar(unsigned int start, int len, StringType type) {
     std::string str;
-    unsigned int pos = 0, end = len > 0 ? start + len : get_length_by_char () - start;
+    unsigned int pos = 0, end = len > 0 ? start + len : utf8Length() - start;
     std::string kana;
     std::string raw;
 
     if (start >= end)
         return str;
-    if (start >= get_length_by_char ())
+    if (start >= utf8Length())
         return str;
 
     switch (type) {
     case FCITX_ANTHY_STRING_LATIN:
-        raw = get_raw_by_char (start, len);
+        raw = getRawByChar(start, len);
         str = raw;
         return str;
 
     case FCITX_ANTHY_STRING_WIDE_LATIN:
-        raw = get_raw_by_char (start, len);
-        util_convert_to_wide (str, raw);
+        raw = getRawByChar(start, len);
+        str = util::convert_to_wide(raw);
         return str;
 
     default:
         break;
     }
 
-    for (unsigned int i = 0; i < m_segments.size (); i++) {
-        if (pos >= start || pos +  util_utf8_string_length(m_segments[i].kana) > start) {
+    for (unsigned int i = 0; i < segments_.size(); i++) {
+        if (pos >= start ||
+            pos + fcitx::utf8::length(segments_[i].kana) > start) {
             unsigned int startstart = 0, len;
 
             if (pos >= start)
@@ -241,15 +215,16 @@ Reading::get_by_char (unsigned int start, int len, StringType type)
             else
                 startstart = pos - start;
 
-            if (pos + util_utf8_string_length(m_segments[i].kana) > end)
+            if (pos + fcitx::utf8::length(segments_[i].kana) > end)
                 len = end - start;
             else
-                len = util_utf8_string_length(m_segments[i].kana);
+                len = fcitx::utf8::length(segments_[i].kana);
 
-            kana += util_utf8_string_substr(m_segments[i].kana, startstart, len);
+            kana +=
+                util::utf8_string_substr(segments_[i].kana, startstart, len);
         }
 
-        pos += util_utf8_string_length(m_segments[i].kana);
+        pos += fcitx::utf8::length(segments_[i].kana);
         if (pos >= end)
             break;
     }
@@ -260,11 +235,11 @@ Reading::get_by_char (unsigned int start, int len, StringType type)
         break;
 
     case FCITX_ANTHY_STRING_KATAKANA:
-        util_convert_to_katakana (str, kana);
+        str = util::convert_to_katakana(kana);
         break;
 
     case FCITX_ANTHY_STRING_HALF_KATAKANA:
-        util_convert_to_katakana (str, kana, true);
+        str = util::convert_to_katakana(kana, true);
         break;
 
     default:
@@ -274,22 +249,21 @@ Reading::get_by_char (unsigned int start, int len, StringType type)
     return str;
 }
 
-std::string
-Reading::get_raw_by_char (unsigned int start, int len)
-{
+std::string Reading::getRawByChar(unsigned int start, int len) {
     std::string str;
-    unsigned int pos = 0, end = len > 0 ? start + len : get_length_by_char () - start;
+    unsigned int pos = 0, end = len > 0 ? start + len : utf8Length() - start;
 
     if (start >= end)
         return str;
 
-    for (unsigned int i = 0; i < m_segments.size (); i++) {
-        if (pos >= start || pos + util_utf8_string_length(m_segments[i].kana) > start) {
+    for (unsigned int i = 0; i < segments_.size(); i++) {
+        if (pos >= start ||
+            pos + fcitx::utf8::length(segments_[i].kana) > start) {
             // FIXME!
-            str += m_segments[i].raw;
+            str += segments_[i].raw;
         }
 
-        pos += util_utf8_string_length(m_segments[i].kana);
+        pos += fcitx::utf8::length(segments_[i].kana);
 
         if (pos >= end)
             break;
@@ -298,144 +272,134 @@ Reading::get_raw_by_char (unsigned int start, int len)
     return str;
 }
 
-void
-Reading::split_segment (unsigned int seg_id)
-{
-    if (seg_id >= m_segments.size ())
+void Reading::splitSegment(unsigned int seg_id) {
+    if (seg_id >= segments_.size())
         return;
 
     unsigned int pos = 0;
-    for (unsigned int i = 0; i < seg_id && i < m_segments.size (); i++)
-        pos += m_segments[i].kana.length ();
+    for (unsigned int i = 0; i < seg_id && i < segments_.size(); i++)
+        pos += segments_[i].kana.length();
 
-    unsigned int caret = get_caret_pos ();
-    unsigned int seg_len = m_segments[seg_id].kana.length ();
+    unsigned int caret = caretPos();
+    unsigned int seg_len = segments_[seg_id].kana.length();
     bool caret_was_in_the_segment = false;
     if (caret > pos && caret < pos + seg_len)
         caret_was_in_the_segment = true;
 
     ReadingSegments segments;
-    m_segments[seg_id].split (segments);
-    m_segments.erase (m_segments.begin () + seg_id);
-    for (int j = segments.size () - 1; j >= 0; j--) {
-        m_segments.insert (m_segments.begin () + seg_id, segments[j]);
-        if (m_segment_pos > seg_id)
-            m_segment_pos++;
+    segments_[seg_id].split(segments);
+    segments_.erase(segments_.begin() + seg_id);
+    for (int j = segments.size() - 1; j >= 0; j--) {
+        segments_.insert(segments_.begin() + seg_id, segments[j]);
+        if (segmentPos_ > seg_id)
+            segmentPos_++;
     }
 
     if (caret_was_in_the_segment) {
-        m_segment_pos += m_caret_offset;
-        m_caret_offset = 0;
+        segmentPos_ += caretOffset_;
+        caretOffset_ = 0;
     }
 }
 
-bool
-Reading::append (const KeyEvent & key,
-                 const std::string   & string)
-{
+bool Reading::append(const fcitx::KeyEvent &key, const std::string &string) {
     bool was_pending;
     std::string result, pending;
     bool need_commiting;
 
-    if (!m_kana.can_append (key, true) &&
-        !m_key2kana->can_append (key, true))
+    if (!kana_.canAppend(key, true) && !key2kana_->canAppend(key, true))
         return false;
 
-    if (m_caret_offset != 0) {
-        split_segment (m_segment_pos);
-        reset_pending ();
+    if (caretOffset_ != 0) {
+        splitSegment(segmentPos_);
+        resetPending();
     }
 
-    if (m_kana.can_append (key))
-        was_pending = m_kana.is_pending ();
+    if (kana_.canAppend(key))
+        was_pending = kana_.isPending();
     else
-        was_pending = m_key2kana->is_pending ();
+        was_pending = key2kana_->isPending();
 
-    if (m_kana.can_append (key))
-        need_commiting = m_kana.append (string, result, pending);
+    if (kana_.canAppend(key))
+        need_commiting = kana_.append(string, result, pending);
     else
-        need_commiting = m_key2kana->append (string, result, pending);
+        need_commiting = key2kana_->append(string, result, pending);
 
-    ReadingSegments::iterator begin = m_segments.begin ();
+    ReadingSegments::iterator begin = segments_.begin();
 
     // fix previous segment and prepare next segment if needed
-    if (!result.empty () || !pending.empty ()) {
-        if (!was_pending ||  // previous segment was already fixed
-            need_commiting)  // previous segment has been fixed
+    if (!result.empty() || !pending.empty()) {
+        if (!was_pending || // previous segment was already fixed
+            need_commiting) // previous segment has been fixed
         {
             ReadingSegment c;
-            m_segments.insert (begin + m_segment_pos, c);
-            m_segment_pos++;
+            segments_.insert(begin + segmentPos_, c);
+            segmentPos_++;
         }
     }
 
     // fill segment
-    if (result.length() > 0 && pending.length () > 0) {
-        m_segments[m_segment_pos - 1].kana = result;
+    if (!result.empty() && !pending.empty()) {
+        segments_[segmentPos_ - 1].kana = result;
 
         ReadingSegment c;
         c.raw += string;
         c.kana = pending;
-        m_segments.insert (begin + m_segment_pos, c);
-        m_segment_pos++;
+        segments_.insert(begin + segmentPos_, c);
+        segmentPos_++;
 
-    } else if (result.length () > 0) {
-        m_segments[m_segment_pos - 1].raw += string;
-        m_segments[m_segment_pos - 1].kana = result;
+    } else if (!result.empty()) {
+        segments_[segmentPos_ - 1].raw += string;
+        segments_[segmentPos_ - 1].kana = result;
 
-    } else if (pending.length () > 0) {
-        m_segments[m_segment_pos - 1].raw += string;
-        m_segments[m_segment_pos - 1].kana = pending;
+    } else if (!pending.empty()) {
+        segments_[segmentPos_ - 1].raw += string;
+        segments_[segmentPos_ - 1].kana = pending;
 
     } else {
-
     }
 
     return false;
 }
 
-void
-Reading::erase (unsigned int start, int len, bool allow_split)
-{
-    if (m_segments.size () <= 0)
+void Reading::erase(unsigned int start, int len, bool allow_split) {
+    if (segments_.size() <= 0)
         return;
 
-    if (get_length_by_char () < start)
+    if (utf8Length() < start)
         return;
 
     if (len < 0)
-        len = get_length_by_char () - start;
+        len = utf8Length() - start;
 
     // erase
     unsigned int pos = 0;
-    for (int i = 0; i <= (int) m_segments.size (); i++) {
+    for (int i = 0; i <= (int)segments_.size(); i++) {
         if (pos < start) {
             // we have not yet reached start position.
 
-            if (i == (int) m_segments.size ())
+            if (i == (int)segments_.size())
                 break;
 
-            pos += util_utf8_string_length(m_segments[i].kana);
+            pos += fcitx::utf8::length(segments_[i].kana);
 
         } else if (pos == start) {
             // we have reached start position.
 
-            if (i == (int) m_segments.size ())
+            if (i == (int)segments_.size())
                 break;
 
             if (allow_split &&
-                pos + util_utf8_string_length(m_segments[i].kana) > start + len)
-            {
+                pos + fcitx::utf8::length(segments_[i].kana) > start + len) {
                 // we have overshooted the end position!
                 // we have to split this segment
-                split_segment (i);
+                splitSegment(i);
 
             } else {
                 // This segment is completely in the rage, erase it!
-                len -= util_utf8_string_length(m_segments[i].kana);
-                m_segments.erase (m_segments.begin () + i);
-                if ((int) m_segment_pos > i)
-                    m_segment_pos--;
+                len -= fcitx::utf8::length(segments_[i].kana);
+                segments_.erase(segments_.begin() + i);
+                if ((int)segmentPos_ > i)
+                    segmentPos_--;
             }
 
             // retry from the same position
@@ -445,8 +409,8 @@ Reading::erase (unsigned int start, int len, bool allow_split)
             // we have overshooted the start position!
 
             if (allow_split) {
-                pos -= util_utf8_string_length(m_segments[i - 1].kana);
-                split_segment (i - 1);
+                pos -= fcitx::utf8::length(segments_[i - 1].kana);
+                splitSegment(i - 1);
 
                 // retry from the previous position
                 i -= 2;
@@ -456,10 +420,10 @@ Reading::erase (unsigned int start, int len, bool allow_split)
                 // allowed to split the segment.
                 // So remove all string of previous segment.
                 len -= pos - start;
-                pos -= util_utf8_string_length(m_segments[i - 1].kana);
-                m_segments.erase (m_segments.begin () + i - 1);
-                if ((int) m_segment_pos > i - 1)
-                    m_segment_pos--;
+                pos -= fcitx::utf8::length(segments_[i - 1].kana);
+                segments_.erase(segments_.begin() + i - 1);
+                if ((int)segmentPos_ > i - 1)
+                    segmentPos_--;
 
                 // retry from the previous position
                 i -= 2;
@@ -473,310 +437,239 @@ Reading::erase (unsigned int start, int len, bool allow_split)
     }
 
     // reset values
-    if (m_segments.size () <= 0) {
-        clear ();
+    if (segments_.size() <= 0) {
+        clear();
     } else {
-        reset_pending ();
+        resetPending();
     }
 }
 
-void
-Reading::reset_pending (void)
-{
-    if (m_key2kana->is_pending ())
-        m_key2kana->clear ();
-    if (m_kana.is_pending ())
-        m_kana.clear ();
+void Reading::resetPending() {
+    if (key2kana_->isPending())
+        key2kana_->clear();
+    if (kana_.isPending())
+        kana_.clear();
 
-    if (m_segment_pos <= 0)
+    if (segmentPos_ <= 0)
         return;
 
-    m_key2kana->reset_pending (m_segments[m_segment_pos - 1].kana,
-                               m_segments[m_segment_pos - 1].raw);
-    m_kana.reset_pending (m_segments[m_segment_pos - 1].kana,
-                          m_segments[m_segment_pos - 1].raw);
+    key2kana_->resetPending(segments_[segmentPos_ - 1].kana,
+                            segments_[segmentPos_ - 1].raw);
+    kana_.resetPending(segments_[segmentPos_ - 1].kana,
+                       segments_[segmentPos_ - 1].raw);
 
     // FIXME! this code breaks pending state on normal input mode.
-    m_key2kana->reset_pseudo_ascii_mode();
-    for (unsigned int i = 0; i < m_segment_pos; i++)
-        m_key2kana->process_pseudo_ascii_mode(m_segments[i].kana);
+    key2kana_->resetPseudoAsciiMode();
+    for (unsigned int i = 0; i < segmentPos_; i++) {
+        key2kana_->processPseudoAsciiMode(segments_[i].kana);
+    }
 }
 
-unsigned int
-Reading::get_length (void)
-{
+unsigned int Reading::length() {
     unsigned int len = 0;
-    for (unsigned int i = 0; i < m_segments.size (); i++)
-        len += m_segments[i].kana.length();
+    for (unsigned int i = 0; i < segments_.size(); i++)
+        len += segments_[i].kana.length();
     return len;
 }
 
-unsigned int
-Reading::get_length_by_char (void)
-{
+unsigned int Reading::utf8Length() {
     unsigned int len = 0;
-    for (unsigned int i = 0; i < m_segments.size (); i++)
-        len += util_utf8_string_length(m_segments[i].kana);
+    for (unsigned int i = 0; i < segments_.size(); i++)
+        len += fcitx::utf8::length(segments_[i].kana);
     return len;
 }
 
-unsigned int
-Reading::get_caret_pos_by_char (void)
-{
+unsigned int Reading::caretPosByChar() {
     unsigned int pos = 0;
 
     unsigned int i;
-    for (i = 0;
-         i < m_segment_pos && i < m_segments.size ();
-         i++)
-    {
-        pos += util_utf8_string_length(m_segments[i].kana);
+    for (i = 0; i < segmentPos_ && i < segments_.size(); i++) {
+        pos += fcitx::utf8::length(segments_[i].kana);
     }
 
-    pos += m_caret_offset;
+    pos += caretOffset_;
 
     return pos;
 }
 
-unsigned int
-Reading::get_caret_pos (void)
-{
+unsigned int Reading::caretPos() {
     unsigned int pos = 0;
 
     unsigned int i;
-    for (i = 0;
-         i < m_segment_pos && i < m_segments.size ();
-         i++)
-    {
-        pos += m_segments[i].kana.length();
+    for (i = 0; i < segmentPos_ && i < segments_.size(); i++) {
+        pos += segments_[i].kana.length();
     }
 
-    if (i < m_segments.size() && m_caret_offset) {
-        char* temp = strdup(m_segments[i].kana.c_str());
-        char* nth = fcitx_utf8_get_nth_char(temp, m_caret_offset);
-        pos += (nth - temp);
-        free(temp);
+    if (i < segments_.size() && caretOffset_) {
+        auto iter = segments_[i].kana.begin();
+        pos += fcitx::utf8::ncharByteLength(iter, caretOffset_);
     }
 
     return pos;
 }
 
 // FIXME! add "allow_split" argument.
-void
-Reading::set_caret_pos_by_char (unsigned int pos)
-{
-    if (pos == get_caret_pos_by_char ())
+void Reading::setCaretPosByChar(unsigned int pos) {
+    if (pos == caretPosByChar())
         return;
 
-    m_key2kana->clear ();
-    m_kana.clear ();
+    key2kana_->clear();
+    kana_.clear();
 
-    if (pos >= get_length_by_char ()) {
-        m_segment_pos = m_segments.size ();
+    if (pos >= utf8Length()) {
+        segmentPos_ = segments_.size();
 
-    } else if (pos == 0 ||  m_segments.size () <= 0) {
-        m_segment_pos = 0;
+    } else if (pos == 0 || segments_.size() <= 0) {
+        segmentPos_ = 0;
 
     } else {
         unsigned int i, tmp_pos = 0;
 
         for (i = 0; tmp_pos <= pos; i++)
-            tmp_pos += util_utf8_string_length(m_segments[i].kana);
+            tmp_pos += fcitx::utf8::length(segments_[i].kana);
 
         if (tmp_pos == pos) {
-            m_segment_pos = i + 1;
-        } else if (tmp_pos < get_caret_pos_by_char ()) {
-            m_segment_pos = i;
-        } else if (tmp_pos > get_caret_pos_by_char ()) {
-            m_segment_pos = i + 1;
+            segmentPos_ = i + 1;
+        } else if (tmp_pos < caretPosByChar()) {
+            segmentPos_ = i;
+        } else if (tmp_pos > caretPosByChar()) {
+            segmentPos_ = i + 1;
         }
     }
 
-    reset_pending ();
+    resetPending();
 }
 
-void
-Reading::move_caret (int step, bool allow_split)
-{
+void Reading::moveCaret(int step, bool allow_split) {
     if (step == 0)
         return;
 
-    m_key2kana->clear ();
-    m_kana.clear ();
+    key2kana_->clear();
+    kana_.clear();
 
     if (allow_split) {
-        unsigned int pos = get_caret_pos_by_char ();
-        if (step < 0 && pos < (int) abs (step)) {
+        unsigned int pos = caretPosByChar();
+        if (step < 0 && pos < static_cast<unsigned int>(abs(step))) {
             // lower limit
-            m_segment_pos = 0;
+            segmentPos_ = 0;
 
-        } else if (step > 0 && pos + step > get_length_by_char ()) {
+        } else if (step > 0 && pos + step > utf8Length()) {
             // upper limit
-            m_segment_pos = m_segments.size ();
+            segmentPos_ = segments_.size();
 
         } else {
             unsigned int new_pos = pos + step;
             ReadingSegments::iterator it;
             pos = 0;
-            m_segment_pos = 0;
-            m_caret_offset = 0;
-            for (it = m_segments.begin (); pos < new_pos; it++) {
-                if (pos + util_utf8_string_length(it->kana) > new_pos) {
-                    m_caret_offset = new_pos - pos;
+            segmentPos_ = 0;
+            caretOffset_ = 0;
+            for (it = segments_.begin(); pos < new_pos; it++) {
+                if (pos + fcitx::utf8::length(it->kana) > new_pos) {
+                    caretOffset_ = new_pos - pos;
                     break;
                 } else {
-                    m_segment_pos++;
-                    pos += util_utf8_string_length(it->kana);
+                    segmentPos_++;
+                    pos += fcitx::utf8::length(it->kana);
                 }
             }
         }
 
     } else {
-        if (step < 0 && m_segment_pos < (int) abs (step)) {
+        if (step < 0 && segmentPos_ < static_cast<unsigned int>(abs(step))) {
             // lower limit
-            m_segment_pos = 0;
+            segmentPos_ = 0;
 
-        } else if (step > 0 && m_segment_pos + step > m_segments.size ()) {
+        } else if (step > 0 && segmentPos_ + step > segments_.size()) {
             // upper limit
-            m_segment_pos = m_segments.size ();
+            segmentPos_ = segments_.size();
 
         } else {
             // other
-            m_segment_pos += step;
+            segmentPos_ += step;
         }
     }
 
-    reset_pending ();
+    resetPending();
 }
 
-void
-Reading::set_typing_method (TypingMethod method)
-{
-    Key2KanaTable *fundamental_table = NULL;
+void Reading::setTypingMethod(TypingMethod method) {
+    Key2KanaTable *fundamental_table = nullptr;
 
-    if (method == FCITX_ANTHY_TYPING_METHOD_NICOLA) {
-        fundamental_table = m_anthy.get_config()->m_custom_nicola_table;
-        m_key2kana = &m_nicola;
-        m_nicola_tables.set_typing_method (method, fundamental_table);
-        m_nicola.set_case_sensitive (true);
-    } else if (method == FCITX_ANTHY_TYPING_METHOD_KANA) {
-        fundamental_table = m_anthy.get_config()->m_custom_kana_table;
-        m_key2kana = &m_key2kana_normal;
-        m_key2kana_tables.set_typing_method (method, fundamental_table);
-        m_key2kana_normal.set_case_sensitive (true);
+    if (method == TypingMethod::NICOLA) {
+        fundamental_table = state_.engine()->customNicolaTable();
+        key2kana_ = &nicola_;
+        nicolaTables_.setTypingMethod(method, fundamental_table);
+        nicola_.setCaseSensitive(true);
+    } else if (method == TypingMethod::KANA) {
+        fundamental_table = state_.engine()->customKanaTable();
+        key2kana_ = &key2kanaNormal_;
+        key2kanaTables_.setTypingMethod(method, fundamental_table);
+        key2kanaNormal_.setCaseSensitive(true);
     } else {
-        fundamental_table = m_anthy.get_config()->m_custom_romaji_table;
-        m_key2kana = &m_key2kana_normal;
-        m_key2kana_tables.set_typing_method (method, fundamental_table);
-        m_key2kana_normal.set_case_sensitive (false);
+        fundamental_table = state_.engine()->customRomajiTable();
+        key2kana_ = &key2kanaNormal_;
+        key2kanaTables_.setTypingMethod(method, fundamental_table);
+        key2kanaNormal_.setCaseSensitive(false);
     }
 }
 
-TypingMethod
-Reading::get_typing_method (void)
-{
-    if (m_key2kana == &m_nicola)
-        return FCITX_ANTHY_TYPING_METHOD_NICOLA;
+TypingMethod Reading::typingMethod() {
+    if (key2kana_ == &nicola_)
+        return TypingMethod::NICOLA;
     else
-        return m_key2kana_tables.get_typing_method ();
+        return key2kanaTables_.typingMethod();
 }
 
-void
-Reading::set_period_style (PeriodStyle style)
-{
-    m_key2kana_tables.set_period_style (style);
+void Reading::setPeriodStyle(PeriodStyle style) {
+    key2kanaTables_.set_period_style(style);
 }
 
-PeriodStyle
-Reading::get_period_style (void)
-{
-    return m_key2kana_tables.get_period_style ();
+PeriodStyle Reading::periodStyle() {
+    return key2kanaTables_.get_period_style();
 }
 
-void
-Reading::set_comma_style (CommaStyle style)
-{
-    m_key2kana_tables.set_comma_style (style);
+void Reading::setCommaStyle(CommaStyle style) {
+    key2kanaTables_.set_comma_style(style);
 }
 
-CommaStyle
-Reading::get_comma_style (void)
-{
-    return m_key2kana_tables.get_comma_style ();
+CommaStyle Reading::commaStyle() { return key2kanaTables_.get_comma_style(); }
+
+void Reading::setBracketStyle(BracketStyle style) {
+    key2kanaTables_.set_bracket_style(style);
 }
 
-void
-Reading::set_bracket_style (BracketStyle style)
-{
-    m_key2kana_tables.set_bracket_style (style);
+BracketStyle Reading::bracketStyle() { return key2kanaTables_.bracketStyle(); }
+
+void Reading::setSlashStyle(SlashStyle style) {
+    key2kanaTables_.setSlashStyle(style);
 }
 
-BracketStyle
-Reading::get_bracket_style (void)
-{
-    return m_key2kana_tables.get_bracket_style ();
+SlashStyle Reading::slashStyle() { return key2kanaTables_.slashStyle(); }
+
+void Reading::setSymbolHalf(bool half) { key2kanaTables_.setSymbolHalf(half); }
+
+bool Reading::isSymbolHalf() { return key2kanaTables_.symbol_is_half(); }
+
+void Reading::setNumberHalf(bool half) { key2kanaTables_.setNumberHalf(half); }
+
+bool Reading::isNumberHalf() { return key2kanaTables_.isNumberHalf(); }
+
+void Reading::setPseudoAsciiMode(int mode) {
+    key2kanaNormal_.setPseudoAsciiMode(mode);
 }
 
-void
-Reading::set_slash_style (SlashStyle style)
-{
-    m_key2kana_tables.set_slash_style (style);
+bool Reading::isPseudoAsciiMode() {
+    return key2kanaNormal_.isPseudoAsciiMode();
 }
 
-SlashStyle
-Reading::get_slash_style (void)
-{
-    return m_key2kana_tables.get_slash_style ();
-}
-
-void
-Reading::set_symbol_width (bool half)
-{
-    m_key2kana_tables.set_symbol_width (half);
-}
-
-bool
-Reading::get_symbol_width (void)
-{
-    return m_key2kana_tables.symbol_is_half ();
-}
-
-void
-Reading::set_number_width (bool half)
-{
-    m_key2kana_tables.set_number_width (half);
-}
-
-bool
-Reading::get_number_width (void)
-{
-    return m_key2kana_tables.number_is_half ();
-}
-
-void
-Reading::set_pseudo_ascii_mode (int mode)
-{
-    m_key2kana_normal.set_pseudo_ascii_mode (mode);
-}
-
-bool
-Reading::is_pseudo_ascii_mode (void)
-{
-    return m_key2kana_normal.is_pseudo_ascii_mode ();
-}
-
-void
-Reading::reset_pseudo_ascii_mode (void)
-{
-    if (m_key2kana_normal.is_pseudo_ascii_mode () &&
-        m_key2kana_normal.is_pending ())
-    {
+void Reading::resetPseudoAsciiMode() {
+    if (key2kanaNormal_.isPseudoAsciiMode() && key2kanaNormal_.isPending()) {
         ReadingSegment c;
-        ReadingSegments::iterator it = m_segments.begin ();
+        ReadingSegments::iterator it = segments_.begin();
 
         /* separate to another segment */
-        m_key2kana_normal.reset_pseudo_ascii_mode ();
-        m_segments.insert (it + m_segment_pos, c);
-        m_segment_pos++;
+        key2kanaNormal_.resetPseudoAsciiMode();
+        segments_.insert(it + segmentPos_, c);
+        segmentPos_++;
     }
 }

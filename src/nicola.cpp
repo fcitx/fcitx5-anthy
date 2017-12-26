@@ -1,138 +1,115 @@
-/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
-/*
- *  Copyright (C) 2004 Hiroyuki Ikezoe
- *  Copyright (C) 2004 Takuro Ashie
- *  Copyright (C) 2012 CSSlayer
- *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2, or (at your option)
- *  any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
- */
+//
+// Copyright (C) 2004 Hiroyuki Ikezoe
+// Copyright (C) 2004 Takuro Ashie
+// Copyright (C) 2012~2017 CSSlayer
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 #include "nicola.h"
-#include "factory.h"
-#include "imengine.h"
+#include "engine.h"
+#include "state.h"
 #include "utils.h"
+#include <fcitx-utils/charutils.h>
 #include <fcitx-utils/log.h>
 
-void NicolaTimeoutFunc(void* arg)
-{
-    NicolaConvertor* convertor = (NicolaConvertor*) arg;
-    convertor->process_timeout();
+void NicolaTimeoutFunc(void *arg) {
+    NicolaConvertor *convertor = (NicolaConvertor *)arg;
+    convertor->processTimeout();
 }
 
-NicolaConvertor::NicolaConvertor (AnthyInstance &anthy,
-                                  Key2KanaTableSet &tables)
-    : m_tables            (tables),
-      m_anthy             (anthy),
-      m_timer_id          (0),
-      m_processing_timeout(false)
-{
+NicolaConvertor::NicolaConvertor(AnthyState &anthy, Key2KanaTableSet &tables)
+    : Key2KanaConvertorBase(anthy), tables_(tables), processingTimeout_(false) {
 }
 
-NicolaConvertor::~NicolaConvertor ()
-{
-    FcitxInstanceRemoveTimeoutByFunc(m_anthy.get_owner(), NicolaTimeoutFunc);
-}
+NicolaConvertor::~NicolaConvertor() { timer_.reset(); }
 
-bool
-NicolaConvertor::can_append (const KeyEvent & key,
-                             bool             ignore_space)
-{
-    if (key == m_through_key_event) {
-        m_through_key_event = KeyEvent ();
+bool NicolaConvertor::canAppend(const fcitx::KeyEvent &key, bool ignore_space) {
+    if (key.rawKey() == throughKeyEvent) {
+        throughKeyEvent = fcitx::Key();
         return false;
     }
 
-    if (m_processing_timeout &&
-        m_prev_char_key.empty () && !m_prev_thumb_key.empty())
-    {
-        emit_key_event (m_prev_thumb_key);
-        m_prev_thumb_key = KeyEvent ();
+    if (processingTimeout_ && !prevCharKey_.isValid() &&
+        prevThumbKey_.isValid()) {
+        const fcitx::KeyEvent event(key.inputContext(), prevThumbKey_);
+        emitKeyEvent(event);
+        prevThumbKey_ = fcitx::Key();
         return false;
     }
 
-    if (key.is_release &&
-        (key.sym != m_prev_char_key.sym &&
-         key.sym != m_repeat_char_key.sym &&
-         key.sym != m_prev_thumb_key.sym &&
-         key.sym != m_repeat_thumb_key.sym
-        ))
-    {
+    auto sym = key.rawKey().sym();
+    if (key.isRelease() &&
+        (sym != prevCharKey_.sym() && sym != repeatCharKey_.sym() &&
+         sym != prevThumbKey_.sym() && sym != repeatThumbKey_.sym())) {
         return false;
     }
 
     // ignore short cut keys of apllication.
-    if ((key.state & FcitxKeyState_Ctrl) ||
-        (key.state & FcitxKeyState_Alt) ||
-        (key.state & FcitxKeyState_Super))
-    {
+    auto states = key.rawKey().states();
+    if ((states & fcitx::KeyState::Ctrl) || (states & fcitx::KeyState::Alt) ||
+        (states & fcitx::KeyState::Super)) {
         return false;
     }
 
-    if (isprint (key.get_ascii_code ()) &&
-        (ignore_space || !isspace (key.get_ascii_code ())))
-    {
+    auto chr = util::get_ascii_code(key);
+    if (fcitx::charutils::isprint(chr) &&
+        (ignore_space || !fcitx::charutils::isspace(chr))) {
         return true;
     }
 
-    if (is_thumb_key (key))
+    if (isThumbKey(key.rawKey()))
         return true;
 
     return false;
 }
 
-void
-NicolaConvertor::search (const KeyEvent& key,
-                         NicolaShiftType shift_type,
-                         std::string &result,
-                         std::string &raw)
-{
-    raw = key.get_ascii_code ();
+void NicolaConvertor::search(const fcitx::Key &key, NicolaShiftType shift_type,
+                             std::string &result, std::string &raw) {
+    raw = util::get_ascii_code(key);
 
     std::string str1;
-    if (get_case_sensitive ())
+    if (isCaseSensitive())
         str1 = raw;
     else
-        str1 = tolower (key.get_ascii_code ());
+        str1 = fcitx::charutils::tolower(util::get_ascii_code(key));
 
-    std::vector<Key2KanaTable*> &tables = m_tables.get_tables();
-    for (unsigned int j = 0; j < tables.size (); j++) {
+    std::vector<Key2KanaTable *> &tables = tables_.get_tables();
+    for (unsigned int j = 0; j < tables.size(); j++) {
         if (!tables[j])
             continue;
 
-        Key2KanaRules &rules = tables[j]->get_table ();
+        Key2KanaRules &rules = tables[j]->table();
 
-        for (unsigned int i = 0; i < rules.size (); i++) {
-            std::string str2 = rules[i].get_sequence ();
+        for (unsigned int i = 0; i < rules.size(); i++) {
+            std::string str2 = rules[i].sequence();
 
-            for (unsigned int k = 0;
-                 !get_case_sensitive () && k < str2.length ();
-                 k++)
-            {
-                str2[k] = tolower (str2[k]);
+            for (unsigned int k = 0; !isCaseSensitive() && k < str2.length();
+                 k++) {
+                str2[k] = fcitx::charutils::tolower(str2[k]);
             }
 
             if (str1 == str2) {
                 switch (shift_type) {
                 case FCITX_ANTHY_NICOLA_SHIFT_RIGHT:
-                    result = rules[i].get_result (2);
+                    result = rules[i].result(2);
                     break;
                 case FCITX_ANTHY_NICOLA_SHIFT_LEFT:
-                    result = rules[i].get_result (1);
+                    result = rules[i].result(1);
                     break;
                 default:
-                    result = rules[i].get_result (0);
+                    result = rules[i].result(0);
                     break;
                 }
                 break;
@@ -140,25 +117,23 @@ NicolaConvertor::search (const KeyEvent& key,
         }
     }
 
-    if (result.empty ()) {
+    if (result.empty()) {
         result = raw;
     }
 }
 
-bool
-NicolaConvertor::handle_voiced_consonant  (std::string & result,
-                                           std::string & pending)
-{
+bool NicolaConvertor::handleVoicedConsonant(std::string &result,
+                                            std::string &pending) {
     VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
 
-    if (result.empty ())
+    if (result.empty())
         return false;
 
-    if (m_pending.empty ()) {
+    if (pending_.empty()) {
         for (unsigned int i = 0; table[i].string; i++) {
             if (result == table[i].string) {
-                pending = m_pending = result;
-                result = std::string ();
+                pending = pending_ = result;
+                result = std::string();
                 return false;
             }
         }
@@ -166,9 +141,9 @@ NicolaConvertor::handle_voiced_consonant  (std::string & result,
     } else if (result == "\xE3\x82\x9B") {
         // voiced consonant
         for (unsigned int i = 0; table[i].string; i++) {
-            if (m_pending == table[i].string) {
+            if (pending_ == table[i].string) {
                 result = table[i].voiced;
-                m_pending = std::string ();
+                pending_ = std::string();
                 return false;
             }
         }
@@ -177,20 +152,20 @@ NicolaConvertor::handle_voiced_consonant  (std::string & result,
     } else if (result == "\xE3\x82\x9C") {
         // half voiced consonant
         for (unsigned int i = 0; table[i].string; i++) {
-            if (m_pending == table[i].string) {
+            if (pending_ == table[i].string) {
                 result = table[i].half_voiced;
-                m_pending = std::string ();
+                pending_ = std::string();
                 return false;
             }
         }
         return true;
 
     } else {
-        m_pending = std::string ();
+        pending_ = std::string();
         for (unsigned int i = 0; table[i].string; i++) {
             if (result == table[i].string) {
-                pending = m_pending = result;
-                result = std::string ();
+                pending = pending_ = result;
+                result = std::string();
                 return true;
             }
         }
@@ -200,277 +175,236 @@ NicolaConvertor::handle_voiced_consonant  (std::string & result,
     return false;
 }
 
-bool
-NicolaConvertor::is_char_key (const KeyEvent& key)
-{
-    if (!is_thumb_key (key) && isprint (key.get_ascii_code ()))
+bool NicolaConvertor::isCharKey(const fcitx::KeyEvent &key) {
+    if (!isThumbKey(key.rawKey()) &&
+        fcitx::charutils::isprint(util::get_ascii_code(key)))
         return true;
     else
         return false;
 }
 
-bool
-NicolaConvertor::is_thumb_key (const KeyEvent& key)
-{
-    if (is_left_thumb_key (key) || is_right_thumb_key (key))
+bool NicolaConvertor::isThumbKey(const fcitx::Key &key) {
+    if (isLeftThumbKey(key) || isRightThumbKey(key))
         return true;
 
     return false;
 }
 
-bool
-NicolaConvertor::is_left_thumb_key (const KeyEvent& key)
-{
-    return util_match_key_event (m_anthy.get_config()->m_left_thumb_keys,
-                                 key,
-                                 0xFFFF);
+bool NicolaConvertor::isLeftThumbKey(const fcitx::Key &key) {
+    return util::match_key_event(*config().m_key->m_left_thumb_keys, key,
+                                 fcitx::KeyStates(0xFFFF));
 }
 
-bool
-NicolaConvertor::is_right_thumb_key (const KeyEvent& key)
-{
-    return util_match_key_event (m_anthy.get_config()->m_right_thumb_keys,
-                                 key,
-                                 0xFFFF);
+bool NicolaConvertor::isRightThumbKey(const fcitx::Key &key) {
+    return util::match_key_event(*config().m_key->m_right_thumb_keys, key,
+                                 fcitx::KeyStates(0xFFFF));
 }
 
-NicolaShiftType
-NicolaConvertor::get_thumb_key_type (const KeyEvent& key)
-{
-    if (is_left_thumb_key (key))
+NicolaShiftType NicolaConvertor::thumbKeyType(const fcitx::Key &key) {
+    if (isLeftThumbKey(key))
         return FCITX_ANTHY_NICOLA_SHIFT_LEFT;
-    else if (is_right_thumb_key (key))
+    else if (isRightThumbKey(key))
         return FCITX_ANTHY_NICOLA_SHIFT_RIGHT;
     else
         return FCITX_ANTHY_NICOLA_SHIFT_NONE;
 }
 
-bool
-NicolaConvertor::emit_key_event (const KeyEvent & key)
-{
-    m_through_key_event = key;
-
-    //m_anthy.forward_key_event (key);
-    return m_anthy.process_key_event (key);
+bool NicolaConvertor::emitKeyEvent(const fcitx::Key &key) {
+    fcitx::KeyEvent keyEvent(state_.inputContext(), key);
+    return emitKeyEvent(keyEvent);
 }
 
-void
-NicolaConvertor::process_timeout (void)
-{
-    m_processing_timeout = true;
-    if (!m_prev_char_key.empty ())
-        m_anthy.process_key_event (m_prev_char_key);
-    else if (!m_prev_thumb_key.empty())
-        m_anthy.process_key_event (m_prev_thumb_key);
-    m_processing_timeout = false;
+bool NicolaConvertor::emitKeyEvent(const fcitx::KeyEvent &key) {
+    throughKeyEvent = key.rawKey();
+
+    // state_.forward_key_event (key);
+    return state_.processKeyEvent(key);
 }
 
-void
-NicolaConvertor::set_alarm (int time_msec)
-{
+void NicolaConvertor::processTimeout() {
+    processingTimeout_ = true;
+    if (prevCharKey_.isValid()) {
+        fcitx::KeyEvent keyEvent(state_.inputContext(), prevCharKey_);
+        state_.processKeyEvent(keyEvent);
+    } else if (prevThumbKey_.isValid()) {
+        fcitx::KeyEvent keyEvent(state_.inputContext(), prevThumbKey_);
+        state_.processKeyEvent(keyEvent);
+    }
+    processingTimeout_ = false;
+}
+
+void NicolaConvertor::setAlarm(int time_msec) {
     if (time_msec < 5)
         time_msec = 5;
     if (time_msec > 1000)
         time_msec = 1000;
 
-    FcitxInstanceAddTimeout (m_anthy.get_owner(),
-                             time_msec,
-                             NicolaTimeoutFunc,
-                             (void *) this);
+    timer_ = state_.instance()->eventLoop().addTimeEvent(
+        CLOCK_MONOTONIC, fcitx::now(CLOCK_MONOTONIC) + time_msec * 1000, 0,
+        [this](fcitx::EventSourceTime *, uint64_t) {
+            processTimeout();
+            return true;
+        });
 }
 
-bool
-NicolaConvertor::stop()
-{
-    return FcitxInstanceRemoveTimeoutByFunc(m_anthy.get_owner(), NicolaTimeoutFunc);
+bool NicolaConvertor::stop() {
+    bool hasTimer = timer_.get();
+    timer_.reset();
+    return hasTimer;
 }
 
-int
-NicolaConvertor::thumb_key(const KeyEvent& key)
-{
-    return is_left_thumb_key(key) ? 1 : 2;
+int NicolaConvertor::thumbKey(const fcitx::KeyEvent &key) {
+    return isLeftThumbKey(key.rawKey()) ? 1 : 2;
 }
 
-bool
-NicolaConvertor::append (const KeyEvent & key,
-                         std::string & result,
-                         std::string & pending,
-                         std::string &raw)
-{
-    if (m_processing_timeout) {
-        search (m_prev_char_key,
-                get_thumb_key_type (m_prev_thumb_key),
-                result, raw);
-        if (m_prev_thumb_key.empty ()) {
-            m_prev_char_key  = KeyEvent ();
-            m_prev_thumb_key = KeyEvent ();
+bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
+                             std::string &pending, std::string &raw) {
+    if (processingTimeout_) {
+        search(prevCharKey_, thumbKeyType(prevThumbKey_), result, raw);
+        if (!prevThumbKey_.isValid()) {
+            prevCharKey_ = fcitx::Key();
+            prevThumbKey_ = fcitx::Key();
         } else {
-            m_repeat_char_key  = m_prev_char_key;
-            m_repeat_thumb_key = m_prev_thumb_key;
+            repeatCharKey_ = prevCharKey_;
+            repeatThumbKey_ = prevThumbKey_;
         }
-        return handle_voiced_consonant (result, pending);
+        return handleVoicedConsonant(result, pending);
     }
 
-    if (!key.is_release && util_key_is_keypad (key)) {
-        util_keypad_to_string (raw, key);
+    if (!key.isRelease() && util::key_is_keypad(key.rawKey())) {
+        raw = util::keypad_to_string(key);
 
         // convert key pad string to wide
         std::string wide;
-        TenKeyType ten_key_type = m_anthy.get_config()->m_ten_key_type;
-        if ((ten_key_type == FCITX_ANTHY_TEN_KEY_TYPE_FOLLOWMODE &&
-             (m_anthy.get_input_mode () == FCITX_ANTHY_MODE_LATIN ||
-              m_anthy.get_input_mode () == FCITX_ANTHY_MODE_HALF_KATAKANA)) ||
-            ten_key_type == FCITX_ANTHY_TEN_KEY_TYPE_HALF)
-        {
+        TenKeyType ten_key_type = *config().m_general->m_ten_key_type;
+        if ((ten_key_type == TenKeyType::FOLLOWMODE &&
+             (state_.inputMode() == InputMode::LATIN ||
+              state_.inputMode() == InputMode::WIDE_LATIN)) ||
+            ten_key_type == TenKeyType::HALF) {
             wide = raw;
         } else {
-            util_convert_to_wide (wide, raw);
+            wide = util::convert_to_wide(raw);
         }
 
         result = wide;
 
-        m_prev_char_key = m_repeat_char_key  = KeyEvent ();
-        m_prev_thumb_key = m_repeat_thumb_key = KeyEvent ();
+        prevCharKey_ = repeatCharKey_ = fcitx::Key();
+        prevThumbKey_ = repeatThumbKey_ = fcitx::Key();
 
-        return handle_voiced_consonant (result, pending);
+        return handleVoicedConsonant(result, pending);
     }
 
-    if (key.is_release) {
-        if (key == m_prev_char_key) {
+    if (key.isRelease()) {
+        if (key.rawKey() == prevCharKey_) {
             if (stop()) {
-                search (m_prev_char_key, get_thumb_key_type(m_prev_thumb_key), result, raw);
+                search(prevCharKey_, thumbKeyType(prevThumbKey_), result, raw);
             }
-            m_prev_char_key = KeyEvent();
+            prevCharKey_ = fcitx::Key();
+        } else if (thumbKeyType(key.rawKey()) == thumbKeyType(prevThumbKey_)) {
+            if (stop()) {
+                emitKeyEvent(prevThumbKey_);
+            }
+            prevThumbKey_ = fcitx::Key();
         }
-        else if (get_thumb_key_type(key) == get_thumb_key_type(m_prev_thumb_key)) {
-            if (stop())
-                emit_key_event(m_prev_thumb_key);
-            m_prev_thumb_key = KeyEvent();
+        if (isThumbKey(key.rawKey()))
+            repeatThumbKey_ = fcitx::Key();
+        else if (key.rawKey() == repeatCharKey_) {
+            repeatCharKey_ = fcitx::Key();
         }
-        if (is_thumb_key(key))
-            m_repeat_thumb_key = KeyEvent();
-        else if (key == m_repeat_char_key) {
-            m_repeat_char_key = KeyEvent();
-        }
-    }
-    else if (is_thumb_key(key)) {
-        if (!m_prev_thumb_key.empty()) {
+    } else if (isThumbKey(key.rawKey())) {
+        if (prevThumbKey_.isValid()) {
             stop();
-            emit_key_event(m_prev_thumb_key);
-            m_prev_thumb_key = key;
-            set_alarm(m_anthy.get_config()->m_nicola_time);
-        }
-        else if (!m_prev_char_key.empty()) {
+            emitKeyEvent(prevThumbKey_);
+            prevThumbKey_ = key.rawKey();
+            setAlarm(*config().m_key->m_nicola_time);
+        } else if (prevCharKey_.isValid()) {
             stop();
-            m_repeat_char_key = m_prev_char_key;
-            m_repeat_thumb_key = key;
-            search (m_prev_char_key, get_thumb_key_type(m_repeat_thumb_key), result, raw);
-        }
-        else {
-            if (get_thumb_key_type(m_repeat_thumb_key) == get_thumb_key_type(key)) {
-                if (!m_repeat_char_key.empty()) {
-                    search (m_repeat_char_key, get_thumb_key_type(m_repeat_thumb_key), result, raw);
+            repeatCharKey_ = prevCharKey_;
+            repeatThumbKey_ = key.rawKey();
+            search(prevCharKey_, thumbKeyType(repeatThumbKey_), result, raw);
+        } else {
+            if (thumbKeyType(repeatThumbKey_) == thumbKeyType(key.rawKey())) {
+                if (repeatCharKey_.isValid()) {
+                    search(repeatCharKey_, thumbKeyType(repeatThumbKey_),
+                           result, raw);
                 }
+            } else {
+                prevThumbKey_ = key.rawKey();
+                setAlarm(*config().m_key->m_nicola_time);
             }
-            else {
-                m_prev_thumb_key = key;
-                set_alarm(m_anthy.get_config()->m_nicola_time);
-            }
         }
-    }
-    else if (is_char_key (key)) {
-        if (!m_prev_char_key.empty()) {
+    } else if (isCharKey(key)) {
+        if (prevCharKey_.isValid()) {
             stop();
-            search (m_prev_char_key, get_thumb_key_type(m_prev_thumb_key), result, raw);
-            set_alarm(m_anthy.get_config()->m_nicola_time);
-            m_prev_char_key = key;
-        }
-        else if (is_thumb_key(m_prev_thumb_key)) {
+            search(prevCharKey_, thumbKeyType(prevThumbKey_), result, raw);
+            setAlarm(*config().m_key->m_nicola_time);
+            prevCharKey_ = key.rawKey();
+        } else if (isThumbKey(prevThumbKey_)) {
             stop();
-            m_repeat_char_key = key;
-            m_repeat_thumb_key = m_prev_thumb_key;
-            search (key, get_thumb_key_type(m_prev_thumb_key), result, raw);
-        }
-        else {
-            if (key == m_repeat_char_key) {
-                if (!m_repeat_thumb_key.empty()) {
-                    search (m_repeat_char_key, get_thumb_key_type(m_repeat_thumb_key), result, raw);
+            repeatCharKey_ = key.rawKey();
+            repeatThumbKey_ = prevThumbKey_;
+            search(key.rawKey(), thumbKeyType(prevThumbKey_), result, raw);
+        } else {
+            if (key.rawKey() == repeatCharKey_) {
+                if (repeatThumbKey_.isValid()) {
+                    search(repeatCharKey_, thumbKeyType(repeatThumbKey_),
+                           result, raw);
                 }
+            } else {
+                setAlarm(*config().m_key->m_nicola_time);
+                prevCharKey_ = key.rawKey();
             }
-            else {
-                set_alarm(m_anthy.get_config()->m_nicola_time);
-                m_prev_char_key = key;
-            }
         }
-    }
-    else {
-        if (!m_prev_char_key.empty()) {
+    } else {
+        if (prevCharKey_.isValid()) {
             stop();
-            search (m_prev_char_key, get_thumb_key_type(m_prev_thumb_key), result, raw);
-        }
-        else if (!m_prev_thumb_key.empty()) {
+            search(prevCharKey_, thumbKeyType(prevThumbKey_), result, raw);
+        } else if (prevThumbKey_.isValid()) {
             stop();
-            emit_key_event(m_prev_thumb_key);
+            emitKeyEvent(prevThumbKey_);
         }
-        if (emit_key_event(key))
+        if (emitKeyEvent(key))
             return true;
     }
 
-    FcitxLog(DEBUG, "prev:%s %d %d %d", __func__, m_prev_char_key.sym, m_prev_char_key.state, m_prev_char_key.is_release);
+    //     FcitxLog(DEBUG, "prev:%s %d %d %d", __func__, m_prev_char_key.sym,
+    //              m_prev_char_key.state, m_prev_char_key.is_release);
 
-    handle_voiced_consonant (result, pending);
+    handleVoicedConsonant(result, pending);
     return true;
 }
 
-bool
-NicolaConvertor::append (const std::string & str,
-                         std::string   & result,
-                         std::string   & pending)
-{
+bool NicolaConvertor::append(const std::string &str, std::string &result,
+                             std::string &) {
     result = str;
-    m_pending = std::string ();
+    pending_ = std::string();
 
     return false;
 }
 
-void
-NicolaConvertor::clear (void)
-{
-    m_pending = std::string ();
-    m_prev_char_key = KeyEvent();
-    m_prev_thumb_key = KeyEvent();
-    m_repeat_char_key = KeyEvent();
-    m_repeat_thumb_key = KeyEvent();
+void NicolaConvertor::clear() {
+    pending_ = std::string();
+    prevCharKey_ = fcitx::Key();
+    prevThumbKey_ = fcitx::Key();
+    repeatCharKey_ = fcitx::Key();
+    repeatThumbKey_ = fcitx::Key();
 }
 
-bool
-NicolaConvertor::is_pending (void)
-{
-    return !m_pending.empty ();
-}
+bool NicolaConvertor::isPending() const { return !pending_.empty(); }
 
-std::string
-NicolaConvertor::get_pending (void)
-{
-    return m_pending;
-}
+std::string NicolaConvertor::pending() const { return pending_; }
 
-std::string
-NicolaConvertor::flush_pending (void)
-{
-    return std::string ();
-}
+std::string NicolaConvertor::flushPending() { return std::string(); }
 
-void
-NicolaConvertor::reset_pending (const std::string & result, const std::string & raw)
-{
+void NicolaConvertor::resetPending(const std::string &result,
+                                   const std::string &) {
     VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
 
-    m_pending = std::string ();
+    pending_ = std::string();
 
     for (unsigned int i = 0; table[i].string; i++) {
         if (result == table[i].string) {
-            m_pending = result;
+            pending_ = result;
             return;
         }
     }

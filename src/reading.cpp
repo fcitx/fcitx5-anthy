@@ -619,21 +619,19 @@ TypingMethod Reading::typingMethod() {
 }
 
 void Reading::setPeriodStyle(PeriodStyle style) {
-    key2kanaTables_.set_period_style(style);
+    key2kanaTables_.setPeriodStyle(style);
 }
 
-PeriodStyle Reading::periodStyle() {
-    return key2kanaTables_.get_period_style();
-}
+PeriodStyle Reading::periodStyle() { return key2kanaTables_.periodStyle(); }
 
 void Reading::setCommaStyle(CommaStyle style) {
-    key2kanaTables_.set_comma_style(style);
+    key2kanaTables_.setCommaStyle(style);
 }
 
-CommaStyle Reading::commaStyle() { return key2kanaTables_.get_comma_style(); }
+CommaStyle Reading::commaStyle() { return key2kanaTables_.commaStyle(); }
 
 void Reading::setBracketStyle(BracketStyle style) {
-    key2kanaTables_.set_bracket_style(style);
+    key2kanaTables_.setBracketStyle(style);
 }
 
 BracketStyle Reading::bracketStyle() { return key2kanaTables_.bracketStyle(); }

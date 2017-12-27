@@ -206,37 +206,37 @@ void Key2KanaTableSet::setTypingMethod(TypingMethod method,
                                        Key2KanaTable *fundamental_table) {
     typingMethod_ = method;
     fundamentalTable_ = fundamental_table;
-    reset_tables();
+    resetTables();
 }
 
 void Key2KanaTableSet::setSymbolHalf(bool half) {
     useHalfSymbol_ = half;
-    reset_tables();
+    resetTables();
 }
 
 void Key2KanaTableSet::setNumberHalf(bool half) {
     useHalfNumber_ = half;
-    reset_tables();
+    resetTables();
 }
 
-void Key2KanaTableSet::set_period_style(PeriodStyle style) {
+void Key2KanaTableSet::setPeriodStyle(PeriodStyle style) {
     periodStyle_ = style;
-    reset_tables();
+    resetTables();
 }
 
-void Key2KanaTableSet::set_comma_style(CommaStyle style) {
+void Key2KanaTableSet::setCommaStyle(CommaStyle style) {
     commaStyle_ = style;
-    reset_tables();
+    resetTables();
 }
 
-void Key2KanaTableSet::set_bracket_style(BracketStyle style) {
+void Key2KanaTableSet::setBracketStyle(BracketStyle style) {
     bracketStyle_ = style;
-    reset_tables();
+    resetTables();
 }
 
 void Key2KanaTableSet::setSlashStyle(SlashStyle style) {
     slashStyle_ = style;
-    reset_tables();
+    resetTables();
 }
 
 static void create_voiced_consonant_table(Key2KanaTable &table,
@@ -281,7 +281,7 @@ static void create_voiced_consonant_table(Key2KanaTable &table,
     }
 }
 
-void Key2KanaTableSet::reset_tables() {
+void Key2KanaTableSet::resetTables() {
     allTables_.clear();
 
     bool is_romaji = typingMethod_ == TypingMethod::ROMAJI;

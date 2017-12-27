@@ -102,21 +102,21 @@ public:
                          Key2KanaTable *fundamental_table = nullptr);
     void setSymbolHalf(bool half);
     void setNumberHalf(bool half);
-    void set_period_style(PeriodStyle style);
-    void set_comma_style(CommaStyle style);
-    void set_bracket_style(BracketStyle style);
+    void setPeriodStyle(PeriodStyle style);
+    void setCommaStyle(CommaStyle style);
+    void setBracketStyle(BracketStyle style);
     void setSlashStyle(SlashStyle style);
 
     TypingMethod typingMethod() { return typingMethod_; }
     bool symbol_is_half() { return useHalfSymbol_; }
     bool isNumberHalf() { return useHalfNumber_; }
-    PeriodStyle get_period_style() { return periodStyle_; }
-    CommaStyle get_comma_style() { return commaStyle_; }
+    PeriodStyle periodStyle() { return periodStyle_; }
+    CommaStyle commaStyle() { return commaStyle_; }
     BracketStyle bracketStyle() { return bracketStyle_; }
     SlashStyle slashStyle() { return slashStyle_; }
 
 private:
-    void reset_tables();
+    void resetTables();
 
 private:
     std::string name_;

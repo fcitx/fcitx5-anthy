@@ -433,4 +433,10 @@ void AnthyEngine::deactivate(const fcitx::InputMethodEntry &,
         fcitx::StatusGroup::InputMethod);
 }
 
+void AnthyEngine::reset(const fcitx::InputMethodEntry &,
+                        fcitx::InputContextEvent &event) {
+    auto anthy = event.inputContext()->propertyFor(&factory_);
+    anthy->reset();
+}
+
 FCITX_ADDON_FACTORY(AnthyFactory);

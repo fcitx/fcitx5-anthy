@@ -50,6 +50,8 @@ public:
                   fcitx::InputContextEvent &) override;
     void deactivate(const fcitx::InputMethodEntry &entry,
                     fcitx::InputContextEvent &event) override;
+    void reset(const fcitx::InputMethodEntry &,
+               fcitx::InputContextEvent &) override;
 
     const fcitx::Configuration *getConfig() const override { return &config_; }
     void setConfig(const fcitx::RawConfig &config) override {

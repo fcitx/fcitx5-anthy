@@ -4,13 +4,14 @@
 #
 # Translators:
 # csslayer <wengxt@gmail.com>, 2017
+# Jeff Huang <s8321414@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-12-26 00:01-0800\n"
+"POT-Creation-Date: 2017-12-27 00:01-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: csslayer <wengxt@gmail.com>, 2017\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>, 2017\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/fcitx/teams/12005/"
 "zh_TW/)\n"
 "Language: zh_TW\n"
@@ -19,24 +20,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/state.cpp:328
+#: src/state.cpp:327
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
 
 #: src/config.h:275
 msgid "101kana"
-msgstr ""
+msgstr "101kana"
 
-#: src/config.h:637
+#: src/config.h:636
 msgid "Add Word"
 msgstr "新增單字"
 
-#: src/config.h:659
+#: src/config.h:657
 msgid "Add word"
 msgstr "新增單字"
 
-#: src/config.h:219
+#: src/config.h:218
 msgid "Allow split"
 msgstr "允許分割"
 
@@ -46,25 +47,25 @@ msgstr "Anthy"
 
 #: src/config.h:247 src/config.h:262
 msgid "Atok"
-msgstr ""
+msgstr "Atok"
 
 #: src/config.h:263
 msgid "Azik"
-msgstr ""
+msgstr "Azik"
 
-#: src/config.h:408
+#: src/config.h:407
 msgid "BackSpace"
 msgstr "倒退鍵"
 
-#: src/config.h:444
+#: src/config.h:443
 msgid "Cancel"
 msgstr "取消"
 
-#: src/config.h:450
+#: src/config.h:449
 msgid "Cancel all"
 msgstr "取消全部"
 
-#: src/config.h:378
+#: src/config.h:377
 msgid "Cancel pseudo ascii mode"
 msgstr "取消偽 ascii 模式"
 
@@ -72,11 +73,11 @@ msgstr "取消偽 ascii 模式"
 msgid "Candidate List Layout"
 msgstr "候選詞清單配置"
 
-#: src/config.h:571
+#: src/config.h:570
 msgid "Candidates Page Down"
 msgstr "候選字下一頁"
 
-#: src/config.h:565
+#: src/config.h:564
 msgid "Candidates Page Up"
 msgstr "候選字上一頁"
 
@@ -84,47 +85,47 @@ msgstr "候選字上一頁"
 msgid "Canna"
 msgstr "美人蕉（Canna）"
 
-#: src/config.h:324
+#: src/config.h:323
 msgid "Circle input mode"
 msgstr "循環輸入模式"
 
-#: src/config.h:330
+#: src/config.h:329
 msgid "Circle kana mode"
 msgstr "循環假名模式"
 
-#: src/config.h:336
+#: src/config.h:335
 msgid "Circle latin and hiragana mode"
-msgstr ""
+msgstr "圓圈拉丁與平假名模式"
 
-#: src/config.h:342
+#: src/config.h:341
 msgid "Circle typing method"
 msgstr "循環輸入方案"
 
-#: src/config.h:672
+#: src/config.h:669
 msgid "Command"
 msgstr "指令"
 
-#: src/config.h:420
+#: src/config.h:419
 msgid "Commit"
 msgstr "提交"
 
-#: src/config.h:426
+#: src/config.h:425
 msgid "Commit Reverse Learn"
 msgstr "提交逆向學習"
 
-#: src/config.h:528
+#: src/config.h:527
 msgid "Commit first segement reverse learn"
-msgstr ""
+msgstr "提交第一段逆向學習"
 
-#: src/config.h:516
+#: src/config.h:515
 msgid "Commit first segment"
 msgstr "提交第一段"
 
-#: src/config.h:534
+#: src/config.h:533
 msgid "Commit selected segement reverse learn"
-msgstr ""
+msgstr "提交選中段逆向學習"
 
-#: src/config.h:522
+#: src/config.h:521
 msgid "Commit selected segment"
 msgstr "提交選中段"
 
@@ -132,31 +133,31 @@ msgstr "提交選中段"
 msgid "Conversion mode"
 msgstr "轉換模式"
 
-#: src/config.h:432
+#: src/config.h:431
 msgid "Convert"
 msgstr "轉換"
 
-#: src/config.h:601
+#: src/config.h:600
 msgid "Convert To Half"
 msgstr "轉換到半形"
 
-#: src/config.h:607
+#: src/config.h:606
 msgid "Convert To Half Katakana"
 msgstr "轉換到半形片假名"
 
-#: src/config.h:589
+#: src/config.h:588
 msgid "Convert To Hiragana"
 msgstr "轉換到平假名"
 
-#: src/config.h:595
+#: src/config.h:594
 msgid "Convert To Katakana"
 msgstr "轉換到片假名"
 
-#: src/config.h:619
+#: src/config.h:618
 msgid "Convert To Latin"
 msgstr "轉換到英文"
 
-#: src/config.h:613
+#: src/config.h:612
 msgid "Convert To Wide Latin"
 msgstr "轉換到全形英文"
 
@@ -168,11 +169,11 @@ msgstr "輸入時轉換（多段）"
 msgid "Convert as you type (Single segment)"
 msgstr "輸入時轉換（單段）"
 
-#: src/config.h:583
+#: src/config.h:582
 msgid "Convert char type backward"
 msgstr "向後轉換字元類型"
 
-#: src/config.h:577
+#: src/config.h:576
 msgid "Convert char type forward"
 msgstr "向前轉換字元類型"
 
@@ -188,19 +189,19 @@ msgstr ""
 msgid "Custom"
 msgstr "自訂"
 
-#: src/config.h:315
+#: src/config.h:314
 msgid "Custom Kana Table"
 msgstr "自訂假名表"
 
-#: src/config.h:311
+#: src/config.h:310
 msgid "Custom Key Binding"
 msgstr "自訂按鍵綁定"
 
-#: src/config.h:317
+#: src/config.h:316
 msgid "Custom Nicola Table"
 msgstr "自訂尼古拉表"
 
-#: src/config.h:313
+#: src/config.h:312
 msgid "Custom Romaji Table"
 msgstr "自訂羅馬字表"
 
@@ -208,11 +209,11 @@ msgstr "自訂羅馬字表"
 msgid "Default"
 msgstr "預設"
 
-#: src/config.h:414
+#: src/config.h:413
 msgid "Delete"
 msgstr "刪除"
 
-#: src/config.h:631 src/config.h:661
+#: src/config.h:630 src/config.h:659
 msgid "Dict admin"
 msgstr "詞典管理"
 
@@ -224,7 +225,7 @@ msgstr "直接輸入"
 msgid "Entering the pseudo ASCII input mode with capital letters"
 msgstr ""
 
-#: src/config.h:510
+#: src/config.h:509
 msgid "Expand segment"
 msgstr "展開段落"
 
@@ -232,7 +233,7 @@ msgstr "展開段落"
 msgid "Follow mode"
 msgstr ""
 
-#: src/config.h:665
+#: src/config.h:663
 msgid "General"
 msgstr "一般"
 
@@ -244,7 +245,7 @@ msgstr ""
 msgid "Half Katakana"
 msgstr "半形片假名"
 
-#: src/config.h:372
+#: src/config.h:371
 msgid "Half Katakana mode"
 msgstr "半形片假名模式"
 
@@ -256,7 +257,7 @@ msgstr "半形片假名"
 msgid "Hiragana"
 msgstr "平假名"
 
-#: src/config.h:360
+#: src/config.h:359
 msgid "Hiragana mode"
 msgstr "平假名模式"
 
@@ -268,11 +269,11 @@ msgstr "橫向"
 msgid "Input mode"
 msgstr "輸入模式"
 
-#: src/config.h:390
+#: src/config.h:389
 msgid "Insert Alternative space"
 msgstr "插入替代的空格"
 
-#: src/config.h:396
+#: src/config.h:395
 msgid "Insert Half Space"
 msgstr "插入半形空格"
 
@@ -280,15 +281,15 @@ msgstr "插入半形空格"
 msgid "Insert a blank with a blank key"
 msgstr ""
 
-#: src/config.h:384
+#: src/config.h:383
 msgid "Insert space"
 msgstr "插入空格"
 
-#: src/config.h:402
+#: src/config.h:401
 msgid "Insert wide space"
 msgstr "插入全形空格"
 
-#: src/config.h:667
+#: src/config.h:665
 msgid "Interface"
 msgstr "介面"
 
@@ -308,15 +309,15 @@ msgstr "假名表"
 msgid "Katakana"
 msgstr "片假名"
 
-#: src/config.h:366
+#: src/config.h:365
 msgid "Katakana mode"
 msgstr "片假名模式"
 
-#: src/config.h:670
+#: src/config.h:668
 msgid "Key"
 msgstr "按鍵"
 
-#: src/config.h:669
+#: src/config.h:667
 msgid "Key Profile"
 msgstr ""
 
@@ -328,7 +329,7 @@ msgstr "按鍵綁定方案"
 msgid "Latin"
 msgstr "英文"
 
-#: src/config.h:348
+#: src/config.h:347
 msgid "Latin mode"
 msgstr "英文模式"
 
@@ -340,7 +341,7 @@ msgstr "自動提交時記錄輸入歷史"
 msgid "Learn on manual commit"
 msgstr "手動提交時記錄輸入歷史"
 
-#: src/config.h:643
+#: src/config.h:642
 msgid "Left thumb key"
 msgstr "左拇指鍵"
 
@@ -348,19 +349,19 @@ msgstr "左拇指鍵"
 msgid "MS IME"
 msgstr "微軟輸入法引擎"
 
-#: src/config.h:474
+#: src/config.h:473
 msgid "Move caret backword"
 msgstr ""
 
-#: src/config.h:456
+#: src/config.h:455
 msgid "Move caret first"
 msgstr ""
 
-#: src/config.h:468
+#: src/config.h:467
 msgid "Move caret forward"
 msgstr "向前移動插入符號"
 
-#: src/config.h:462
+#: src/config.h:461
 msgid "Move caret last"
 msgstr "移動插入符號到結尾"
 
@@ -376,11 +377,11 @@ msgstr ""
 msgid "Nicola"
 msgstr "尼古拉"
 
-#: src/config.h:308
+#: src/config.h:307
 msgid "Nicola Table"
 msgstr "尼古拉表"
 
-#: src/config.h:654
+#: src/config.h:653
 msgid "Nicola time"
 msgstr "尼古拉時間"
 
@@ -416,7 +417,7 @@ msgstr "頁面大小"
 msgid "Period style"
 msgstr "逗號風格"
 
-#: src/config.h:438
+#: src/config.h:437
 msgid "Predict"
 msgstr "預測"
 
@@ -428,15 +429,15 @@ msgstr ""
 msgid "Quick Kana"
 msgstr ""
 
-#: src/config.h:625
+#: src/config.h:624
 msgid "Reconvert"
 msgstr "重新轉換"
 
-#: src/config.h:649
+#: src/config.h:648
 msgid "Right thumb key"
 msgstr "右拇指鍵"
 
-#: src/config.h:653
+#: src/config.h:652
 msgid "Ro key for kana layout"
 msgstr "假名佈局的 ロ 鍵"
 
@@ -448,35 +449,35 @@ msgstr "羅馬音"
 msgid "Romaji Table"
 msgstr "羅馬字表"
 
-#: src/config.h:540
+#: src/config.h:539
 msgid "Select first candidate"
 msgstr "選擇第一個候選詞"
 
-#: src/config.h:480
+#: src/config.h:479
 msgid "Select first segment"
 msgstr "選擇第一段"
 
-#: src/config.h:546
+#: src/config.h:545
 msgid "Select last candidate"
 msgstr "選擇最後一個候選詞"
 
-#: src/config.h:486
+#: src/config.h:485
 msgid "Select last segment"
 msgstr "選擇最後一段"
 
-#: src/config.h:552
+#: src/config.h:551
 msgid "Select next candidate"
 msgstr "選擇下一個候選詞"
 
-#: src/config.h:492
+#: src/config.h:491
 msgid "Select next segment"
 msgstr "選擇下一段"
 
-#: src/config.h:559
+#: src/config.h:558
 msgid "Select prev candidate"
 msgstr "選擇前一個候選詞"
 
-#: src/config.h:498
+#: src/config.h:497
 msgid "Select prev segment"
 msgstr ""
 
@@ -500,7 +501,7 @@ msgstr ""
 msgid "Show typing method"
 msgstr ""
 
-#: src/config.h:504
+#: src/config.h:503
 msgid "Shrink segment"
 msgstr "收起段落"
 
@@ -584,7 +585,7 @@ msgstr "全形英文"
 msgid "Wide latin Japanese"
 msgstr "全形拉丁日語"
 
-#: src/config.h:354
+#: src/config.h:353
 msgid "Wide latin mode"
 msgstr "全形英文模式"
 

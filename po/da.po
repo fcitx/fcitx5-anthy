@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-12-28 00:01-0800\n"
+"POT-Creation-Date: 2017-12-30 00:01-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>, 2017\n"
 "Language-Team: Danish (https://www.transifex.com/fcitx/teams/12005/da/)\n"
@@ -229,7 +229,7 @@ msgstr "Forstør segment"
 
 #: src/config.h:82 src/config.h:91
 msgid "Follow mode"
-msgstr ""
+msgstr "Følg tilstand"
 
 #: src/config.h:663
 msgid "General"
@@ -349,19 +349,19 @@ msgstr "MS IME"
 
 #: src/config.h:473
 msgid "Move caret backword"
-msgstr ""
+msgstr "Flyt markør baglæns"
 
 #: src/config.h:455
 msgid "Move caret first"
-msgstr ""
+msgstr "Flyt markør forrest"
 
 #: src/config.h:467
 msgid "Move caret forward"
-msgstr ""
+msgstr "Flyt markør fremad"
 
 #: src/config.h:461
 msgid "Move caret last"
-msgstr ""
+msgstr "Flyt markør sidst"
 
 #: src/engine.cpp:73 src/config.h:70
 msgid "Multi segment"
@@ -545,15 +545,15 @@ msgstr "Brug direkte tast ved forudse"
 
 #: src/config.h:192
 msgid "Use half-width characters for numbers"
-msgstr ""
+msgstr "Brug tegn med halv bredde til tal"
 
 #: src/config.h:189
 msgid "Use half-width characters for symbols"
-msgstr ""
+msgstr "Brug tegn med halv bredde til symboler"
 
 #: src/config.h:28
 msgid "Vertial"
-msgstr ""
+msgstr "Lodret"
 
 #: src/config.h:248 src/config.h:264
 msgid "Vje Delta"

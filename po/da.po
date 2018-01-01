@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-12-30 00:01-0800\n"
+"POT-Creation-Date: 2018-01-01 00:01-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>, 2017\n"
 "Language-Team: Danish (https://www.transifex.com/fcitx/teams/12005/da/)\n"
@@ -85,7 +85,7 @@ msgstr "Canna"
 
 #: src/config.h:323
 msgid "Circle input mode"
-msgstr "Cirkel input-tilstand"
+msgstr "Cirkel inputtilstand"
 
 #: src/config.h:329
 msgid "Circle kana mode"
@@ -221,7 +221,7 @@ msgstr "Direkte input"
 
 #: src/config.h:187
 msgid "Entering the pseudo ASCII input mode with capital letters"
-msgstr ""
+msgstr "Indtaster pseudo-ASCII-inputtilstanden med store bogstaver"
 
 #: src/config.h:509
 msgid "Expand segment"
@@ -277,7 +277,7 @@ msgstr "Indsæt halvt mellemrum"
 
 #: src/config.h:184
 msgid "Insert a blank with a blank key"
-msgstr ""
+msgstr "Indsæt en tom med en tom tast"
 
 #: src/config.h:383
 msgid "Insert space"
@@ -317,7 +317,7 @@ msgstr "Tast"
 
 #: src/config.h:667
 msgid "Key Profile"
-msgstr ""
+msgstr "Nøgleprofil"
 
 #: src/config.h:299
 msgid "Key binding profile"
@@ -421,7 +421,7 @@ msgstr "Forudse"
 
 #: src/config.h:181
 msgid "Predict on input"
-msgstr ""
+msgstr "Forudse ved input"
 
 #: src/config.h:277
 msgid "Quick Kana"
@@ -521,7 +521,7 @@ msgstr "Symbolstil"
 
 #: src/config.h:212
 msgid "Ten key type"
-msgstr ""
+msgstr "Ten-tastetype"
 
 #: src/engine.cpp:69
 msgid "Thumb shift"
@@ -573,7 +573,7 @@ msgstr "Bred latinsk"
 
 #: src/config.h:53
 msgid "Wide bracket and wide slash"
-msgstr ""
+msgstr "Bred parentes og bred skråstreg"
 
 #: src/engine.cpp:63 src/config.h:59
 msgid "Wide latin"

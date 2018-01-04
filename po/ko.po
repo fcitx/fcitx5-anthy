@@ -5,13 +5,14 @@
 # Translators:
 # csslayer <wengxt@gmail.com>, 2017
 # Bon Keun Seo <scobyseo@gmail.com>, 2017
+# heavyuser <heavyuser73@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-12-27 00:01-0800\n"
+"POT-Creation-Date: 2018-01-04 00:02-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Bon Keun Seo <scobyseo@gmail.com>, 2017\n"
+"Last-Translator: heavyuser <heavyuser73@gmail.com>, 2018\n"
 "Language-Team: Korean (https://www.transifex.com/fcitx/teams/12005/ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -230,7 +231,7 @@ msgstr "세그먼트 늘이기"
 
 #: src/config.h:82 src/config.h:91
 msgid "Follow mode"
-msgstr ""
+msgstr "팔로우 모드"
 
 #: src/config.h:663
 msgid "General"
@@ -278,7 +279,7 @@ msgstr "반각 공백 입력"
 
 #: src/config.h:184
 msgid "Insert a blank with a blank key"
-msgstr ""
+msgstr "공백 키로 공백 삽입"
 
 #: src/config.h:383
 msgid "Insert space"

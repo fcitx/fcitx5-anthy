@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-12-27 00:01-0800\n"
+"POT-Creation-Date: 2018-02-06 00:02-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mingcong Bai <jeffbai@aosc.xyz>, 2017\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/fcitx/teams/12005/"
@@ -523,7 +523,7 @@ msgstr "符号样式"
 
 #: src/config.h:212
 msgid "Ten key type"
-msgstr ""
+msgstr "十键类型"
 
 #: src/engine.cpp:69
 msgid "Thumb shift"

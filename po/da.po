@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the fcitx5-anthy package.
 #
 # Translators:
-# scootergrisen, 2017
+# scootergrisen, 2019
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2018-11-28 00:01-0800\n"
+"POT-Creation-Date: 2019-11-05 00:01-0800\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: scootergrisen, 2017\n"
+"Last-Translator: scootergrisen, 2019\n"
 "Language-Team: Danish (https://www.transifex.com/fcitx/teams/12005/da/)\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -370,7 +370,7 @@ msgstr "Multisegment"
 
 #: src/config.h:72
 msgid "Multi segment immediate"
-msgstr "Multi segment umiddelbart"
+msgstr "Multisegment immediate"
 
 #: src/engine.cpp:69 src/config.h:78
 msgid "Nicola"
@@ -510,7 +510,7 @@ msgstr "Ét segment"
 
 #: src/config.h:73
 msgid "Single segment immediate"
-msgstr "Ét segment umiddelbart"
+msgstr "Ét segment immediate"
 
 #: src/config.h:210
 msgid "Space type"

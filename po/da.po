@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# scootergrisen, 2017
+# scootergrisen, 2017,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2017-12-09 00:02-0800\n"
-"PO-Revision-Date: 2017-12-08 20:29+0000\n"
+"POT-Creation-Date: 2019-11-05 00:02-0800\n"
+"PO-Revision-Date: 2019-11-04 08:35+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/fcitx/fcitx/language/da/)\n"
 "Language: da\n"
@@ -405,7 +405,7 @@ msgstr "Multisegment"
 
 #: src/fcitx-anthy.desc:49
 msgid "Multi segment immediate"
-msgstr "Multi segment umiddelbart"
+msgstr "Multisegment immediate"
 
 #: src/imengine.cpp:587 src/fcitx-anthy.desc:40
 msgid "Nicola"
@@ -549,7 +549,7 @@ msgstr "Ét segment"
 
 #: src/fcitx-anthy.desc:50
 msgid "Single segment immediate"
-msgstr "Ét segment umiddelbart"
+msgstr "Ét segment immediate"
 
 #: src/imengine.cpp:809
 msgid "Symbol Style"

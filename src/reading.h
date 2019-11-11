@@ -29,11 +29,11 @@
 class AnthyState;
 
 typedef enum {
-    FCITX_ANTHY_STRING_LATIN,
-    FCITX_ANTHY_STRING_WIDE_LATIN,
-    FCITX_ANTHY_STRING_HIRAGANA,
-    FCITX_ANTHY_STRING_KATAKANA,
-    FCITX_ANTHY_STRING_HALF_KATAKANA,
+  FCITX_ANTHY_STRING_LATIN,
+  FCITX_ANTHY_STRING_WIDE_LATIN,
+  FCITX_ANTHY_STRING_HIRAGANA,
+  FCITX_ANTHY_STRING_KATAKANA,
+  FCITX_ANTHY_STRING_HALF_KATAKANA,
 } StringType;
 
 class Reading;
@@ -41,85 +41,84 @@ class ReadingSegment;
 typedef std::vector<ReadingSegment> ReadingSegments;
 
 class ReadingSegment {
-    friend class Reading;
+  friend class Reading;
 
 public:
-    ReadingSegment();
-    virtual ~ReadingSegment();
+  ReadingSegment();
+  virtual ~ReadingSegment();
 
-    const std::string &get() { return kana; }
-    const std::string &get_raw() { return raw; }
+  const std::string &get() { return kana; }
+  const std::string &get_raw() { return raw; }
 
-    void split(ReadingSegments &segments);
+  void split(ReadingSegments &segments);
 
 private:
-    std::string raw;
-    std::string kana;
+  std::string raw;
+  std::string kana;
 };
 
 class Reading {
 public:
-    Reading(AnthyState &anthy);
-    virtual ~Reading();
+  Reading(AnthyState &anthy);
+  virtual ~Reading();
 
-    bool canProcesKeyEvent(const fcitx::KeyEvent &key);
-    bool processKeyEvent(const fcitx::KeyEvent &key);
-    void finish();
-    void clear();
+  bool canProcesKeyEvent(const fcitx::KeyEvent &key);
+  bool processKeyEvent(const fcitx::KeyEvent &key);
+  void finish();
+  void clear();
 
-    std::string getByChar(unsigned int start = 0, int length = -1,
-                          StringType type = FCITX_ANTHY_STRING_HIRAGANA);
-    std::string getRawByChar(unsigned int start = 0, int length = -1);
-    bool append(const fcitx::KeyEvent &key, const std::string &string);
-    void erase(unsigned int start = 0, int length = -1,
-               bool allow_split = false);
+  std::string getByChar(unsigned int start = 0, int length = -1,
+                        StringType type = FCITX_ANTHY_STRING_HIRAGANA);
+  std::string getRawByChar(unsigned int start = 0, int length = -1);
+  bool append(const fcitx::KeyEvent &key, const std::string &string);
+  void erase(unsigned int start = 0, int length = -1, bool allow_split = false);
 
-    unsigned int length();
-    unsigned int utf8Length();
-    unsigned int caretPos();
-    unsigned int caretPosByChar();
-    void setCaretPosByChar(unsigned int pos);
-    void moveCaret(int step, bool allow_split = false);
+  unsigned int length();
+  unsigned int utf8Length();
+  unsigned int caretPos();
+  unsigned int caretPosByChar();
+  void setCaretPosByChar(unsigned int pos);
+  void moveCaret(int step, bool allow_split = false);
 
-    void setTypingMethod(TypingMethod method);
-    TypingMethod typingMethod();
-    void setPeriodStyle(PeriodStyle style);
-    PeriodStyle periodStyle();
-    void setCommaStyle(CommaStyle style);
-    CommaStyle commaStyle();
-    void setBracketStyle(BracketStyle style);
-    BracketStyle bracketStyle();
-    void setSlashStyle(SlashStyle style);
-    SlashStyle slashStyle();
-    void setSymbolHalf(bool half);
-    bool isSymbolHalf();
-    void setNumberHalf(bool half);
-    bool isNumberHalf();
-    void setPseudoAsciiMode(int mode);
-    bool isPseudoAsciiMode();
-    void resetPseudoAsciiMode();
-
-private:
-    void resetPending();
-    void splitSegment(unsigned int seg_id);
+  void setTypingMethod(TypingMethod method);
+  TypingMethod typingMethod();
+  void setPeriodStyle(PeriodStyle style);
+  PeriodStyle periodStyle();
+  void setCommaStyle(CommaStyle style);
+  CommaStyle commaStyle();
+  void setBracketStyle(BracketStyle style);
+  BracketStyle bracketStyle();
+  void setSlashStyle(SlashStyle style);
+  SlashStyle slashStyle();
+  void setSymbolHalf(bool half);
+  bool isSymbolHalf();
+  void setNumberHalf(bool half);
+  bool isNumberHalf();
+  void setPseudoAsciiMode(int mode);
+  bool isPseudoAsciiMode();
+  void resetPseudoAsciiMode();
 
 private:
-    AnthyState &state_;
+  void resetPending();
+  void splitSegment(unsigned int seg_id);
 
-    // tables
-    Key2KanaTableSet key2kanaTables_;
-    Key2KanaTableSet nicolaTables_;
+private:
+  AnthyState &state_;
 
-    // convertors
-    Key2KanaConvertor key2kanaNormal_;
-    KanaConvertor kana_;
-    NicolaConvertor nicola_;
-    Key2KanaConvertorBase *key2kana_;
+  // tables
+  Key2KanaTableSet key2kanaTables_;
+  Key2KanaTableSet nicolaTables_;
 
-    // state
-    ReadingSegments segments_;
-    unsigned int segmentPos_;
-    unsigned int caretOffset_;
+  // convertors
+  Key2KanaConvertor key2kanaNormal_;
+  KanaConvertor kana_;
+  NicolaConvertor nicola_;
+  Key2KanaConvertorBase *key2kana_;
+
+  // state
+  ReadingSegments segments_;
+  unsigned int segmentPos_;
+  unsigned int caretOffset_;
 };
 
 #endif /* __FCITX_ANTHY_READING_H__ */

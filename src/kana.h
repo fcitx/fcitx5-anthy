@@ -27,26 +27,25 @@ class AnthyState;
 
 class KanaConvertor : public Key2KanaConvertorBase {
 public:
-    KanaConvertor(AnthyState &anthy);
-    virtual ~KanaConvertor();
+  KanaConvertor(AnthyState &anthy);
+  virtual ~KanaConvertor();
 
-    bool canAppend(const fcitx::KeyEvent &key,
-                   bool ignore_space = false) override;
-    bool append(const fcitx::KeyEvent &key, std::string &result,
-                std::string &pending, std::string &raw) override;
-    bool append(const std::string &raw, std::string &result,
-                std::string &pending) override;
-    void clear() override;
+  bool canAppend(const fcitx::KeyEvent &key,
+                 bool ignore_space = false) override;
+  bool append(const fcitx::KeyEvent &key, std::string &result,
+              std::string &pending, std::string &raw) override;
+  bool append(const std::string &raw, std::string &result,
+              std::string &pending) override;
+  void clear() override;
 
-    bool isPending() const override;
-    std::string pending() const override;
-    std::string flushPending() override;
-    void resetPending(const std::string &result,
-                      const std::string &raw) override;
+  bool isPending() const override;
+  std::string pending() const override;
+  std::string flushPending() override;
+  void resetPending(const std::string &result, const std::string &raw) override;
 
 private:
-    // state
-    std::string pending_;
+  // state
+  std::string pending_;
 };
 
 #endif // _FCITX5_ANTHY_KANA_H_

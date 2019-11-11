@@ -26,7 +26,7 @@
 #define ACTION_CONFIG_CIRCLE_INPUT_MODE_KEY "CircleInputModeKey"
 #define ACTION_CONFIG_CIRCLE_KANA_MODE_KEY "CircleKanaModeKey"
 #define ACTION_CONFIG_CIRCLE_LATIN_HIRAGANA_MODE_KEY                           \
-    "CircleLatinHiraganaModeKey"
+  "CircleLatinHiraganaModeKey"
 #define ACTION_CONFIG_CIRCLE_TYPING_METHOD_KEY "CircleTypingMethodKey"
 #define ACTION_CONFIG_LATIN_MODE_KEY "LatinModeKey"
 #define ACTION_CONFIG_WIDE_LATIN_MODE_KEY "WideLatinModeKey"
@@ -62,18 +62,18 @@
 #define ACTION_CONFIG_COMMIT_FIRST_SEGMENT_KEY "CommitFirstSegmentKey"
 #define ACTION_CONFIG_COMMIT_SELECTED_SEGMENT_KEY "CommitSelectedSegmentKey"
 #define ACTION_CONFIG_COMMIT_FIRST_SEGMENT_REVERSE_LEARN_KEY                   \
-    "CommitFirstSegmentReverseLearnKey"
+  "CommitFirstSegmentReverseLearnKey"
 #define ACTION_CONFIG_COMMIT_SELECTED_SEGMENT_REVERSE_LEARN_KEY                \
-    "CommitSelectedSegmentReverseLearnKey"
+  "CommitSelectedSegmentReverseLearnKey"
 
 #define ACTION_CONFIG_SELECT_FIRST_CANDIDATE_KEY "SelectFirstCandidateKey"
 #define ACTION_CONFIG_SELECT_LAST_CANDIDATE_KEY "SelectLastCandidateKey"
 #define ACTION_CONFIG_SELECT_NEXT_CANDIDATE_KEY "SelectNextCandidateKey"
 #define ACTION_CONFIG_SELECT_PREV_CANDIDATE_KEY "SelectPrevCandidateKey"
 #define ACTION_CONFIG_SELECT_NEXT_CANDIDATE_ALTER_KEY                          \
-    "SelectNextCandidateKeyAlter"
+  "SelectNextCandidateKeyAlter"
 #define ACTION_CONFIG_SELECT_PREV_CANDIDATE_ALTER_KEY                          \
-    "SelectPrevCandidateKeyAlter"
+  "SelectPrevCandidateKeyAlter"
 #define ACTION_CONFIG_CANDIDATES_PAGE_UP_KEY "CandidatesPageUpKey"
 #define ACTION_CONFIG_CANDIDATES_PAGE_DOWN_KEY "CandidatesPageDownKey"
 #define ACTION_CONFIG_SELECT_CANDIDATE_1_KEY "SelectCandidates1Key"
@@ -108,24 +108,24 @@ typedef bool (AnthyState::*PMF)();
 class Action {
 
 public:
-    Action();
-    Action(const std::string &name, const fcitx::KeyList &hotkey, PMF pmf);
-    FCITX_INLINE_DEFINE_DEFAULT_DTOR_AND_MOVE_WITHOUT_SPEC(Action);
+  Action();
+  Action(const std::string &name, const fcitx::KeyList &hotkey, PMF pmf);
+  FCITX_INLINE_DEFINE_DEFAULT_DTOR_AND_MOVE_WITHOUT_SPEC(Action);
 
 public:
-    bool perform(AnthyState *performer);
-    bool perform(AnthyState *performer, const fcitx::KeyEvent &key);
+  bool perform(AnthyState *performer);
+  bool perform(AnthyState *performer, const fcitx::KeyEvent &key);
 
-    // bool operator<(const Action &b) { return name_ < b.name_; }
+  // bool operator<(const Action &b) { return name_ < b.name_; }
 
-    bool matchKeyEvent(const fcitx::KeyEvent &key);
+  bool matchKeyEvent(const fcitx::KeyEvent &key);
 
-    const auto &name() const { return name_; }
+  const auto &name() const { return name_; }
 
 private:
-    std::string name_;
-    PMF performFunction_;
-    const fcitx::KeyList *keyBindings_;
+  std::string name_;
+  PMF performFunction_;
+  const fcitx::KeyList *keyBindings_;
 };
 
 #endif // _FCITX5_ANTHY_ACTION_H_

@@ -222,10 +222,9 @@ void Conversion::updatePreedit() {
             continue;
         }
 
-        preedit.append(it->string(),
-                       static_cast<int>(seg_id) == curSegment_
-                           ? fcitx::TextFormatFlag::HighLight
-                           : fcitx::TextFormatFlag::None);
+        preedit.append(it->string(), static_cast<int>(seg_id) == curSegment_
+                                         ? fcitx::TextFormatFlag::HighLight
+                                         : fcitx::TextFormatFlag::None);
     }
 
     if (state_.supportClientPreedit()) {
@@ -463,7 +462,7 @@ Conversion::candidates(int segment_id) {
             buf.resize(len + 1);
             anthy_get_prediction(anthyContext_.get(), i, buf.data(), len + 1);
             buf[len] = '\0';
-            table->append(new AnthyCandidate(&state_, buf.data(), i));
+            table->append<AnthyCandidate>(&state_, buf.data(), i);
         }
 #endif /* HAS_ANTHY_PREDICTION */
     } else if (isConverting()) {
@@ -499,7 +498,7 @@ Conversion::candidates(int segment_id) {
                               buf.data(), len + 1);
             buf[len] = '\0';
 
-            table->append(new AnthyCandidate(&state_, buf.data(), i));
+            table->append<AnthyCandidate>(&state_, buf.data(), i);
         }
     }
     if (selected >= 0 && selected < table->totalSize()) {

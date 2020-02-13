@@ -60,7 +60,7 @@ std::string unescape(const std::string &str) {
 
     return dest;
 }
-}
+} // namespace
 
 StyleLine::StyleLine(StyleFile *style_file, std::string line)
     : styleFile_(style_file), line_(std::move(line)),

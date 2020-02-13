@@ -145,7 +145,7 @@ bool AnthyState::processKeyEventLookupKeybind(const fcitx::KeyEvent &key) {
     if (choose >= 0) {
         auto candList = ic_->inputPanel().candidateList();
         if (candList && candList->size() > choose) {
-            candList->candidate(choose)->select(ic_);
+            candList->candidate(choose).select(ic_);
             lastKey_ = fcitx::Key();
             return true;
         }

@@ -451,83 +451,107 @@ ConvRule fcitx_anthy_kana_voiced_consonant_rule[] = {
 };
 
 ConvRule fcitx_anthy_romaji_ja_period_rule[] = {
-    {".", "。", ""}, {nullptr, nullptr, nullptr},
+    {".", "。", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_romaji_ja_comma_rule[] = {
-    {",", "、", ""}, {nullptr, nullptr, nullptr},
+    {",", "、", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_romaji_wide_period_rule[] = {
-    {".", "．", ""}, {nullptr, nullptr, nullptr},
+    {".", "．", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_romaji_wide_comma_rule[] = {
-    {",", "，", ""}, {nullptr, nullptr, nullptr},
+    {",", "，", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_romaji_half_period_rule[] = {
-    {".", ".", ""}, {nullptr, nullptr, nullptr},
+    {".", ".", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_romaji_half_comma_rule[] = {
-    {",", ",", ""}, {nullptr, nullptr, nullptr},
+    {",", ",", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_kana_ja_period_rule[] = {
-    {">", "。", ""}, {nullptr, nullptr, nullptr},
+    {">", "。", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_kana_ja_comma_rule[] = {
-    {"<", "、", ""}, {nullptr, nullptr, nullptr},
+    {"<", "、", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_kana_wide_period_rule[] = {
-    {">", "．", ""}, {nullptr, nullptr, nullptr},
+    {">", "．", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_kana_wide_comma_rule[] = {
-    {"<", "，", ""}, {nullptr, nullptr, nullptr},
+    {"<", "，", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_kana_half_period_rule[] = {
-    {">", ".", ""}, {nullptr, nullptr, nullptr},
+    {">", ".", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_kana_half_comma_rule[] = {
-    {"<", ",", ""}, {nullptr, nullptr, nullptr},
+    {"<", ",", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_romaji_ja_bracket_rule[] = {
-    {"[", "「", ""}, {"]", "」", ""}, {nullptr, nullptr, nullptr},
+    {"[", "「", ""},
+    {"]", "」", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_romaji_wide_bracket_rule[] = {
-    {"[", "［", ""}, {"]", "］", ""}, {nullptr, nullptr, nullptr},
+    {"[", "［", ""},
+    {"]", "］", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_kana_ja_bracket_rule[] = {
-    {"{", "「", ""}, {"}", "」", ""}, {nullptr, nullptr, nullptr},
+    {"{", "「", ""},
+    {"}", "」", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_kana_wide_bracket_rule[] = {
-    {"{", "［", ""}, {"}", "］", ""}, {nullptr, nullptr, nullptr},
+    {"{", "［", ""},
+    {"}", "］", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_romaji_ja_slash_rule[] = {
-    {"/", "・", ""}, {nullptr, nullptr, nullptr},
+    {"/", "・", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_romaji_wide_slash_rule[] = {
-    {"/", "／", ""}, {nullptr, nullptr, nullptr},
+    {"/", "／", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_kana_ja_slash_rule[] = {
-    {"?", "・", ""}, {nullptr, nullptr, nullptr},
+    {"?", "・", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 ConvRule fcitx_anthy_kana_wide_slash_rule[] = {
-    {"?", "／", ""}, {nullptr, nullptr, nullptr},
+    {"?", "／", ""},
+    {nullptr, nullptr, nullptr},
 };
 
 HiraganaKatakanaRule fcitx_anthy_hiragana_katakana_table[] = {

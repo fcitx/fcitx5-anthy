@@ -6,13 +6,15 @@
 # csslayer <wengxt@gmail.com>, 2017
 # Bon Keun Seo <scobyseo@gmail.com>, 2017
 # heavyuser <heavyuser73@gmail.com>, 2018
+# MarongHappy <daemul72@gmail.com>, 2020
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2018-01-04 00:02-0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: heavyuser <heavyuser73@gmail.com>, 2018\n"
+"POT-Creation-Date: 2020-03-25 00:02-0700\n"
+"PO-Revision-Date: 2017-12-26 07:08+0000\n"
+"Last-Translator: MarongHappy <daemul72@gmail.com>, 2020\n"
 "Language-Team: Korean (https://www.transifex.com/fcitx/teams/12005/ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +73,7 @@ msgstr "가상 아스키 모드 취소"
 
 #: src/config.h:174
 msgid "Candidate List Layout"
-msgstr "후보 목록 모양"
+msgstr "후보 목록 자판"
 
 #: src/config.h:570
 msgid "Candidates Page Down"
@@ -99,7 +101,7 @@ msgstr "로마자 및 히라가나 모드 순환"
 
 #: src/config.h:341
 msgid "Circle typing method"
-msgstr "입력 방식 순환"
+msgstr "원형 입력 방식"
 
 #: src/config.h:669
 msgid "Command"
@@ -223,7 +225,7 @@ msgstr "직접 입력"
 
 #: src/config.h:187
 msgid "Entering the pseudo ASCII input mode with capital letters"
-msgstr "대문자로 구성된 가상 아스키 입력 방식을 시작합니다"
+msgstr "대문자로 가상 ASCII 입력 모드 들어가기"
 
 #: src/config.h:509
 msgid "Expand segment"
@@ -319,11 +321,11 @@ msgstr "키"
 
 #: src/config.h:667
 msgid "Key Profile"
-msgstr "키 프로파일"
+msgstr "키 프로필"
 
 #: src/config.h:299
 msgid "Key binding profile"
-msgstr "키 바인딩 프로파일"
+msgstr "키 바인딩 프로필"
 
 #: src/config.h:41 src/config.h:60
 msgid "Latin"
@@ -403,7 +405,7 @@ msgstr "설정되지 않음"
 
 #: src/config.h:178
 msgid "Number candidate of Triggers To Show Candidate Window"
-msgstr "후보 창을 보이기 위한 후보의 수"
+msgstr "후보 창을 표시할 트리거 후보 수"
 
 #: src/config.h:292
 msgid "Oasys100J"
@@ -439,7 +441,7 @@ msgstr "오른쪽 엄지 키"
 
 #: src/config.h:652
 msgid "Ro key for kana layout"
-msgstr "가나 배열 용 Ro 키"
+msgstr "가나 자판용 Ro 키"
 
 #: src/engine.cpp:67 src/config.h:77
 msgid "Romaji"
@@ -483,23 +485,23 @@ msgstr "이전 세그먼트 선택"
 
 #: src/config.h:223 src/config.h:236
 msgid "Show candidates label"
-msgstr "후보 레이블 보이기"
+msgstr "후보 레이블 표시"
 
 #: src/config.h:232
 msgid "Show conversion mode"
-msgstr "변환 모드 보이기"
+msgstr "변환 모드 표시"
 
 #: src/config.h:228
 msgid "Show input mode"
-msgstr "입력 모드 보이기"
+msgstr "입력 모드 표시"
 
 #: src/config.h:234
 msgid "Show period style"
-msgstr "문장부호 스타일 보이기"
+msgstr "문장부호 스타일 표시"
 
 #: src/config.h:230
 msgid "Show typing method"
-msgstr "타이핑 방식 보이기"
+msgstr "입력 방식 표시"
 
 #: src/config.h:503
 msgid "Shrink segment"

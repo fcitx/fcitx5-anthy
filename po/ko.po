@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-03-25 00:02-0700\n"
-"PO-Revision-Date: 2020-03-24 17:29+0000\n"
+"POT-Creation-Date: 2020-04-03 00:02-0700\n"
+"PO-Revision-Date: 2020-04-03 05:39+0000\n"
 "Last-Translator: MarongHappy <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/fcitx/fcitx/language/ko/)\n"
 "Language: ko\n"
@@ -387,19 +387,19 @@ msgstr "마이크로소프트 IME"
 
 #: src/fcitx-anthy.desc:313
 msgid "Move Caret First"
-msgstr "커서를 맨 앞으로 옮기기"
+msgstr "커서를 맨 앞으로 이동"
 
 #: src/fcitx-anthy.desc:328
 msgid "Move caret backward"
-msgstr "커서를 뒤로 옮기기"
+msgstr "커서를 뒤로 이동"
 
 #: src/fcitx-anthy.desc:323
 msgid "Move caret forward"
-msgstr "커서를 앞으로 옮기기"
+msgstr "커서를 앞으로 이동"
 
 #: src/fcitx-anthy.desc:318
 msgid "Move caret last"
-msgstr "커서를 맨 뒤로 옮기기"
+msgstr "커서를 맨 뒤로 이동"
 
 #: src/imengine.cpp:591 src/fcitx-anthy.desc:47
 msgid "Multi segment"

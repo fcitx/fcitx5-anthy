@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-04-03 00:02-0700\n"
-"PO-Revision-Date: 2020-04-03 05:39+0000\n"
+"POT-Creation-Date: 2020-04-04 00:02-0700\n"
+"PO-Revision-Date: 2020-04-03 14:25+0000\n"
 "Last-Translator: MarongHappy <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/fcitx/fcitx/language/ko/)\n"
 "Language: ko\n"
@@ -229,7 +229,7 @@ msgstr "기본값"
 
 #: src/fcitx-anthy.desc:278
 msgid "Delete"
-msgstr "지우기"
+msgstr "삭제"
 
 #: src/fcitx-anthy.desc:468 src/fcitx-anthy.desc:503
 msgid "Dict admin"
@@ -435,7 +435,7 @@ msgstr "니콜라-J"
 
 #: src/fcitx-anthy.desc:17
 msgid "Number candidate of Triggers To Show Candidate Window"
-msgstr "후보 창을 표시할 트리거 후보 수"
+msgstr "후보 창을 표시할 트리거의 후보 번호"
 
 #: src/fcitx-anthy.desc:175
 msgid "Oasys100J"

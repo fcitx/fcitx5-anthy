@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-04-03 00:02-0700\n"
+"POT-Creation-Date: 2020-04-04 00:01-0700\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: MarongHappy <daemul72@gmail.com>, 2020\n"
 "Language-Team: Korean (https://www.transifex.com/fcitx/teams/12005/ko/)\n"
@@ -517,7 +517,7 @@ msgstr "단일 세그먼트 즉시 입력"
 
 #: src/config.h:210
 msgid "Space type"
-msgstr "공백 종류"
+msgstr "공백 유형"
 
 #: src/config.h:207
 msgid "Symbol style"
@@ -525,7 +525,7 @@ msgstr "기호 스타일"
 
 #: src/config.h:212
 msgid "Ten key type"
-msgstr "숫자키 형식"
+msgstr "숫자키 유형"
 
 #: src/engine.cpp:69
 msgid "Thumb shift"

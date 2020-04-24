@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-04-04 00:02-0700\n"
-"PO-Revision-Date: 2020-04-03 14:25+0000\n"
+"POT-Creation-Date: 2020-04-24 00:02-0700\n"
+"PO-Revision-Date: 2020-04-24 04:56+0000\n"
 "Last-Translator: MarongHappy <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/fcitx/fcitx/language/ko/)\n"
 "Language: ko\n"
@@ -204,23 +204,23 @@ msgstr "구석 괄호와 전자 슬래시"
 #: src/fcitx-anthy.desc:138 src/fcitx-anthy.desc:152 src/fcitx-anthy.desc:164
 #: src/fcitx-anthy.desc:178
 msgid "Custom"
-msgstr "사용자 설정"
+msgstr "사용자 지정"
 
 #: src/fcitx-anthy.desc:193
 msgid "Custom Kana Table"
-msgstr "사용자 카나 표"
+msgstr "사용자 지정 카나 표"
 
 #: src/fcitx-anthy.desc:183
 msgid "Custom Key Binding"
-msgstr "사용자 키 바인딩"
+msgstr "사용자 지정 키 바인딩"
 
 #: src/fcitx-anthy.desc:198
 msgid "Custom Nicola Table"
-msgstr "사용자 니콜라 표"
+msgstr "사용자 지정 니콜라 표"
 
 #: src/fcitx-anthy.desc:188
 msgid "Custom Romaji Table"
-msgstr "사용자 로마자 표"
+msgstr "사용자 지정 로마자 표"
 
 #: src/fcitx-anthy.desc:132 src/fcitx-anthy.desc:145 src/fcitx-anthy.desc:159
 #: src/fcitx-anthy.desc:171

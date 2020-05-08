@@ -1,3 +1,10 @@
+/*
+ *  Copyright (C) 2004 - 2005 Hiroyuki Ikezoe <poincare@ikezoe.net>
+ *  Copyright (C) 2004 - 2005 Takuro Ashie <ashie@homa.ne.jp>
+ *  SPDX-FileCopyrightText: 2012 CSSlayer <wengxt@gmail.com>
+ *
+ *  SPDX-License-Identifier: GPL-2.0-or-later
+ */
 
 #ifndef FOREACH_ACTION
 

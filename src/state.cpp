@@ -2,26 +2,14 @@
 /*
  *  Copyright (C) 2004 - 2005 Hiroyuki Ikezoe <poincare@ikezoe.net>
  *  Copyright (C) 2004 - 2005 Takuro Ashie <ashie@homa.ne.jp>
- *  Copyright (C) 2012 CSSlayer
+ *  SPDX-FileCopyrightText: 2012 CSSlayer <wengxt@gmail.com>
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2, or (at your option)
- *  any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  SPDX-License-Identifier: GPL-2.0-or-later
  */
 
 /*
  * The original code is scim_uim_imengine.cpp in scim-uim-0.1.3.
- * Copyright (C) 2004 James Su <suzhe@tsinghua.org.cn>
+ * SPDX-FileCopyrightText: 2004 James Su <suzhe@tsinghua.org.cn>
  */
 
 #ifdef HAVE_CONFIG_H

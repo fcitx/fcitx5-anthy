@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-04-24 00:02-0700\n"
+"POT-Creation-Date: 2020-05-09 00:01-0700\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: MarongHappy <daemul72@gmail.com>, 2020\n"
 "Language-Team: Korean (https://www.transifex.com/fcitx/teams/12005/ko/)\n"
@@ -22,24 +22,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/state.cpp:327
+#: src/state.cpp:315
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
 
-#: src/config.h:275
+#: src/config.h:264
 msgid "101kana"
 msgstr "101가나"
 
-#: src/config.h:636
+#: src/config.h:625
 msgid "Add Word"
 msgstr "단어 추가"
 
-#: src/config.h:657
+#: src/config.h:646
 msgid "Add word"
 msgstr "단어 추가"
 
-#: src/config.h:218
+#: src/config.h:207
 msgid "Allow split"
 msgstr "나누기 허용"
 
@@ -47,554 +47,554 @@ msgstr "나누기 허용"
 msgid "Anthy"
 msgstr "Anthy"
 
-#: src/config.h:247 src/config.h:262
+#: src/config.h:236 src/config.h:251
 msgid "Atok"
 msgstr "ATOK"
 
-#: src/config.h:263
+#: src/config.h:252
 msgid "Azik"
 msgstr "Azik"
 
-#: src/config.h:407
+#: src/config.h:396
 msgid "BackSpace"
 msgstr "백스페이스"
 
-#: src/config.h:443
+#: src/config.h:432
 msgid "Cancel"
 msgstr "취소"
 
-#: src/config.h:449
+#: src/config.h:438
 msgid "Cancel all"
 msgstr "모두 취소"
 
-#: src/config.h:377
+#: src/config.h:366
 msgid "Cancel pseudo ascii mode"
 msgstr "가상 아스키 모드 취소"
 
-#: src/config.h:174
+#: src/config.h:163
 msgid "Candidate List Layout"
 msgstr "후보 목록 자판"
 
-#: src/config.h:570
+#: src/config.h:559
 msgid "Candidates Page Down"
 msgstr "후보 페이지 아래로"
 
-#: src/config.h:564
+#: src/config.h:553
 msgid "Candidates Page Up"
 msgstr "후보 페이지 위로"
 
-#: src/config.h:248 src/config.h:263
+#: src/config.h:237 src/config.h:252
 msgid "Canna"
 msgstr "칸나"
 
-#: src/config.h:323
+#: src/config.h:312
 msgid "Circle input mode"
 msgstr "입력 모드 순환"
 
-#: src/config.h:329
+#: src/config.h:318
 msgid "Circle kana mode"
 msgstr "가나 모드 순환"
 
-#: src/config.h:335
+#: src/config.h:324
 msgid "Circle latin and hiragana mode"
 msgstr "로마자 및 히라가나 모드 순환"
 
-#: src/config.h:341
+#: src/config.h:330
 msgid "Circle typing method"
 msgstr "원형 입력 방식"
 
-#: src/config.h:669
+#: src/config.h:658
 msgid "Command"
 msgstr "명령"
 
-#: src/config.h:419
+#: src/config.h:408
 msgid "Commit"
 msgstr "입력완료"
 
-#: src/config.h:425
+#: src/config.h:414
 msgid "Commit Reverse Learn"
 msgstr "재변환 확인"
 
-#: src/config.h:527
+#: src/config.h:516
 msgid "Commit first segement reverse learn"
 msgstr "첫 세그먼트 원래 문자열 입력"
 
-#: src/config.h:515
+#: src/config.h:504
 msgid "Commit first segment"
 msgstr "첫 세그먼트 입력"
 
-#: src/config.h:533
+#: src/config.h:522
 msgid "Commit selected segement reverse learn"
 msgstr "선택한 세그먼트 원래 문자열 입력"
 
-#: src/config.h:521
+#: src/config.h:510
 msgid "Commit selected segment"
 msgstr "선택한 세그먼트 입력"
 
-#: src/config.h:200
+#: src/config.h:189
 msgid "Conversion mode"
 msgstr "변환 모드"
 
-#: src/config.h:431
+#: src/config.h:420
 msgid "Convert"
 msgstr "변환"
 
-#: src/config.h:600
+#: src/config.h:589
 msgid "Convert To Half"
 msgstr "반각으로 변환"
 
-#: src/config.h:606
+#: src/config.h:595
 msgid "Convert To Half Katakana"
 msgstr "반각 가타가나로 변환"
 
-#: src/config.h:588
+#: src/config.h:577
 msgid "Convert To Hiragana"
 msgstr "히라가나로 변환"
 
-#: src/config.h:594
+#: src/config.h:583
 msgid "Convert To Katakana"
 msgstr "가타가나로 변환"
 
-#: src/config.h:618
+#: src/config.h:607
 msgid "Convert To Latin"
 msgstr "로마자로 변환"
 
-#: src/config.h:612
+#: src/config.h:601
 msgid "Convert To Wide Latin"
 msgstr "전각 로마자로 변환"
 
-#: src/engine.cpp:75
+#: src/engine.cpp:64
 msgid "Convert as you type (Multi segment)"
 msgstr "입력 중 변환 (다중 세그먼트)"
 
-#: src/engine.cpp:76
+#: src/engine.cpp:65
 msgid "Convert as you type (Single segment)"
 msgstr "입력 중 변환 (단일 세그먼트)"
 
-#: src/config.h:582
+#: src/config.h:571
 msgid "Convert char type backward"
 msgstr "이전 문자형식으로 변환"
 
-#: src/config.h:576
+#: src/config.h:565
 msgid "Convert char type forward"
 msgstr "다음 문자형식으로 변환"
 
-#: src/config.h:54
+#: src/config.h:43
 msgid "Corner bracket and Middle Dot"
 msgstr "구석 괄호와 가운데점"
 
-#: src/config.h:55
+#: src/config.h:44
 msgid "Corner bracket and wide slash"
 msgstr "구석 괄호와 전자 슬래시"
 
-#: src/config.h:249 src/config.h:264 src/config.h:277 src/config.h:293
+#: src/config.h:238 src/config.h:253 src/config.h:266 src/config.h:282
 msgid "Custom"
 msgstr "사용자 지정"
 
-#: src/config.h:314
+#: src/config.h:303
 msgid "Custom Kana Table"
 msgstr "사용자 지정 카나 표"
 
-#: src/config.h:310
+#: src/config.h:299
 msgid "Custom Key Binding"
 msgstr "사용자 지정 키 바인딩"
 
-#: src/config.h:316
+#: src/config.h:305
 msgid "Custom Nicola Table"
 msgstr "사용자 지정 니콜라 표"
 
-#: src/config.h:312
+#: src/config.h:301
 msgid "Custom Romaji Table"
 msgstr "사용자 지정 로마자 표"
 
-#: src/config.h:247 src/config.h:262 src/config.h:275 src/config.h:290
+#: src/config.h:236 src/config.h:251 src/config.h:264 src/config.h:279
 msgid "Default"
 msgstr "기본값"
 
-#: src/config.h:413
+#: src/config.h:402
 msgid "Delete"
 msgstr "삭제"
 
-#: src/config.h:630 src/config.h:659
+#: src/config.h:619 src/config.h:648
 msgid "Dict admin"
 msgstr "사전 관리"
 
-#: src/engine.cpp:62
+#: src/engine.cpp:51
 msgid "Direct input"
 msgstr "직접 입력"
 
-#: src/config.h:187
+#: src/config.h:176
 msgid "Entering the pseudo ASCII input mode with capital letters"
 msgstr "대문자로 가상 ASCII 입력 모드 들어가기"
 
-#: src/config.h:509
+#: src/config.h:498
 msgid "Expand segment"
 msgstr "세그먼트 늘이기"
 
-#: src/config.h:82 src/config.h:91
+#: src/config.h:71 src/config.h:80
 msgid "Follow mode"
 msgstr "팔로우 모드"
 
-#: src/config.h:663
+#: src/config.h:652
 msgid "General"
 msgstr "일반"
 
-#: src/config.h:90
+#: src/config.h:79
 msgid "Half"
 msgstr "반각"
 
-#: src/config.h:41
+#: src/config.h:30
 msgid "Half Katakana"
 msgstr "반각 가타가나"
 
-#: src/config.h:371
+#: src/config.h:360
 msgid "Half Katakana mode"
 msgstr "반각 가타가나 모드"
 
-#: src/engine.cpp:61
+#: src/engine.cpp:50
 msgid "Half width katakana"
 msgstr "반각 가타가나"
 
-#: src/engine.cpp:59 src/config.h:40
+#: src/engine.cpp:48 src/config.h:29
 msgid "Hiragana"
 msgstr "히라가나"
 
-#: src/config.h:359
+#: src/config.h:348
 msgid "Hiragana mode"
 msgstr "히라가나 모드"
 
-#: src/config.h:28
+#: src/config.h:17
 msgid "Horizontal"
 msgstr "가로"
 
-#: src/config.h:195
+#: src/config.h:184
 msgid "Input mode"
 msgstr "입력 모드"
 
-#: src/config.h:389
+#: src/config.h:378
 msgid "Insert Alternative space"
 msgstr "대체 공백 입력"
 
-#: src/config.h:395
+#: src/config.h:384
 msgid "Insert Half Space"
 msgstr "반각 공백 입력"
 
-#: src/config.h:184
+#: src/config.h:173
 msgid "Insert a blank with a blank key"
 msgstr "공백 키로 공백 삽입"
 
-#: src/config.h:383
+#: src/config.h:372
 msgid "Insert space"
 msgstr "공백 입력"
 
-#: src/config.h:401
+#: src/config.h:390
 msgid "Insert wide space"
 msgstr "전각 공백 입력"
 
-#: src/config.h:665
+#: src/config.h:654
 msgid "Interface"
 msgstr "인터페이스"
 
-#: src/config.h:52 src/config.h:60
+#: src/config.h:41 src/config.h:49
 msgid "Japanese"
 msgstr "일본어"
 
-#: src/engine.cpp:68 src/config.h:77
+#: src/engine.cpp:57 src/config.h:66
 msgid "Kana"
 msgstr "카나"
 
-#: src/config.h:305
+#: src/config.h:294
 msgid "Kana Table"
 msgstr "가나 표"
 
-#: src/engine.cpp:60 src/config.h:40
+#: src/engine.cpp:49 src/config.h:29
 msgid "Katakana"
 msgstr "가타가나"
 
-#: src/config.h:365
+#: src/config.h:354
 msgid "Katakana mode"
 msgstr "가타가나 모드"
 
-#: src/config.h:668
+#: src/config.h:657
 msgid "Key"
 msgstr "키"
 
-#: src/config.h:667
+#: src/config.h:656
 msgid "Key Profile"
 msgstr "키 프로필"
 
-#: src/config.h:299
+#: src/config.h:288
 msgid "Key binding profile"
 msgstr "키 바인딩 프로필"
 
-#: src/config.h:41 src/config.h:60
+#: src/config.h:30 src/config.h:49
 msgid "Latin"
 msgstr "로마자"
 
-#: src/config.h:347
+#: src/config.h:336
 msgid "Latin mode"
 msgstr "로마자 모드"
 
-#: src/config.h:217
+#: src/config.h:206
 msgid "Learn on auto commit"
 msgstr "자동 입력 완료 방법 배우기"
 
-#: src/config.h:215
+#: src/config.h:204
 msgid "Learn on manual commit"
 msgstr "수동 입력 완료 방법 배우기"
 
-#: src/config.h:642
+#: src/config.h:631
 msgid "Left thumb key"
 msgstr "왼쪽 엄지 키"
 
-#: src/config.h:248 src/config.h:263
+#: src/config.h:237 src/config.h:252
 msgid "MS IME"
 msgstr "마이크로소프트 IME"
 
-#: src/config.h:473
-msgid "Move caret backword"
-msgstr "커서를 뒤로 이동"
+#: src/config.h:462
+msgid "Move caret backward"
+msgstr ""
 
-#: src/config.h:455
+#: src/config.h:444
 msgid "Move caret first"
 msgstr "커서를 맨 앞으로 이동"
 
-#: src/config.h:467
+#: src/config.h:456
 msgid "Move caret forward"
 msgstr "커서를 앞으로 이동"
 
-#: src/config.h:461
+#: src/config.h:450
 msgid "Move caret last"
 msgstr "커서를 맨 뒤로 이동"
 
-#: src/engine.cpp:73 src/config.h:70
+#: src/engine.cpp:62 src/config.h:59
 msgid "Multi segment"
 msgstr "다중 세그먼트"
 
-#: src/config.h:72
+#: src/config.h:61
 msgid "Multi segment immediate"
 msgstr "다중 세그먼트 즉시 입력"
 
-#: src/engine.cpp:69 src/config.h:78
+#: src/engine.cpp:58 src/config.h:67
 msgid "Nicola"
 msgstr "니콜라"
 
-#: src/config.h:307
+#: src/config.h:296
 msgid "Nicola Table"
 msgstr "니콜라 표"
 
-#: src/config.h:653
+#: src/config.h:642
 msgid "Nicola time"
 msgstr "니콜라 시간"
 
-#: src/config.h:290
+#: src/config.h:279
 msgid "Nicola-A"
 msgstr "니콜라-A"
 
-#: src/config.h:291
+#: src/config.h:280
 msgid "Nicola-F"
 msgstr "니콜라-F"
 
-#: src/config.h:291
+#: src/config.h:280
 msgid "Nicola-J"
 msgstr "니콜라-J"
 
-#: src/config.h:27
+#: src/config.h:16
 msgid "Not Set"
 msgstr "설정되지 않음"
 
-#: src/config.h:178
+#: src/config.h:167
 msgid "Number candidate of Triggers To Show Candidate Window"
 msgstr "후보 창을 표시할 트리거 후보 수"
 
-#: src/config.h:292
+#: src/config.h:281
 msgid "Oasys100J"
 msgstr "Oasys100J"
 
-#: src/config.h:172
+#: src/config.h:161
 msgid "Page size"
 msgstr "페이지 크기"
 
-#: src/config.h:204
+#: src/config.h:193
 msgid "Period style"
 msgstr "문장부호 스타일"
 
-#: src/config.h:437
+#: src/config.h:426
 msgid "Predict"
 msgstr "예측"
 
-#: src/config.h:181
+#: src/config.h:170
 msgid "Predict on input"
 msgstr "입력예측 사용"
 
-#: src/config.h:277
+#: src/config.h:266
 msgid "Quick Kana"
 msgstr "빠른 가나"
 
-#: src/config.h:624
+#: src/config.h:613
 msgid "Reconvert"
 msgstr "재변환"
 
-#: src/config.h:648
+#: src/config.h:637
 msgid "Right thumb key"
 msgstr "오른쪽 엄지 키"
 
-#: src/config.h:652
+#: src/config.h:641
 msgid "Ro key for kana layout"
 msgstr "가나 자판용 Ro 키"
 
-#: src/engine.cpp:67 src/config.h:77
+#: src/engine.cpp:56 src/config.h:66
 msgid "Romaji"
 msgstr "로마자"
 
-#: src/config.h:302
+#: src/config.h:291
 msgid "Romaji Table"
 msgstr "로마자 표"
 
-#: src/config.h:539
+#: src/config.h:528
 msgid "Select first candidate"
 msgstr "첫 후보 선택"
 
-#: src/config.h:479
+#: src/config.h:468
 msgid "Select first segment"
 msgstr "첫번째 세그먼트 선택"
 
-#: src/config.h:545
+#: src/config.h:534
 msgid "Select last candidate"
 msgstr "마지막 후보 선택"
 
-#: src/config.h:485
+#: src/config.h:474
 msgid "Select last segment"
 msgstr "마지막 세그먼트 선택"
 
-#: src/config.h:551
+#: src/config.h:540
 msgid "Select next candidate"
 msgstr "다음 후보 선택"
 
-#: src/config.h:491
+#: src/config.h:480
 msgid "Select next segment"
 msgstr "다음 세그먼트 선택"
 
-#: src/config.h:558
+#: src/config.h:547
 msgid "Select prev candidate"
 msgstr "이전 후보 선택"
 
-#: src/config.h:497
+#: src/config.h:486
 msgid "Select prev segment"
 msgstr "이전 세그먼트 선택"
 
-#: src/config.h:223 src/config.h:236
+#: src/config.h:212 src/config.h:225
 msgid "Show candidates label"
 msgstr "후보 레이블 표시"
 
-#: src/config.h:232
+#: src/config.h:221
 msgid "Show conversion mode"
 msgstr "변환 모드 표시"
 
-#: src/config.h:228
+#: src/config.h:217
 msgid "Show input mode"
 msgstr "입력 모드 표시"
 
-#: src/config.h:234
+#: src/config.h:223
 msgid "Show period style"
 msgstr "문장부호 스타일 표시"
 
-#: src/config.h:230
+#: src/config.h:219
 msgid "Show typing method"
 msgstr "입력 방식 표시"
 
-#: src/config.h:503
+#: src/config.h:492
 msgid "Shrink segment"
 msgstr "세그먼트 줄이기"
 
-#: src/engine.cpp:74 src/config.h:71
+#: src/engine.cpp:63 src/config.h:60
 msgid "Single segment"
 msgstr "단일 세그먼트"
 
-#: src/config.h:73
+#: src/config.h:62
 msgid "Single segment immediate"
 msgstr "단일 세그먼트 즉시 입력"
 
-#: src/config.h:210
+#: src/config.h:199
 msgid "Space type"
 msgstr "공백 유형"
 
-#: src/config.h:207
+#: src/config.h:196
 msgid "Symbol style"
 msgstr "기호 스타일"
 
-#: src/config.h:212
+#: src/config.h:201
 msgid "Ten key type"
 msgstr "숫자키 유형"
 
-#: src/engine.cpp:69
+#: src/engine.cpp:58
 msgid "Thumb shift"
 msgstr "엄지 시프트"
 
-#: src/config.h:292
+#: src/config.h:281
 msgid "Tron Dvorak"
 msgstr "Tron 드보락"
 
-#: src/config.h:293
+#: src/config.h:282
 msgid "Tron Qwerty JP"
 msgstr "Tron 쿼티 일본판"
 
-#: src/config.h:197
+#: src/config.h:186
 msgid "Typing method"
 msgstr "타이핑 방식"
 
-#: src/config.h:221
+#: src/config.h:210
 msgid "Use direct key on predict"
 msgstr "예측 시 방향키 사용"
 
-#: src/config.h:192
+#: src/config.h:181
 msgid "Use half-width characters for numbers"
 msgstr "숫자에 반각 문자 사용"
 
-#: src/config.h:189
+#: src/config.h:178
 msgid "Use half-width characters for symbols"
 msgstr "기호에 반각 문자 사용"
 
-#: src/config.h:28
+#: src/config.h:17
 msgid "Vertial"
 msgstr "세로"
 
-#: src/config.h:248 src/config.h:264
+#: src/config.h:237 src/config.h:253
 msgid "Vje Delta"
 msgstr "VACS 일본어입력기 삼각주판 (VJE Delta)"
 
-#: src/config.h:249 src/config.h:264
+#: src/config.h:238 src/config.h:253
 msgid "WNN"
 msgstr "WNN 일본어 입력기"
 
-#: src/config.h:82 src/config.h:90
+#: src/config.h:71 src/config.h:79
 msgid "Wide"
 msgstr "전각"
 
-#: src/config.h:42
+#: src/config.h:31
 msgid "Wide Latin"
 msgstr "전각 로마자"
 
-#: src/config.h:53
+#: src/config.h:42
 msgid "Wide bracket and wide slash"
 msgstr "전자 괄호와 전자 슬래시"
 
-#: src/engine.cpp:63 src/config.h:59
+#: src/engine.cpp:52 src/config.h:48
 msgid "Wide latin"
 msgstr "전각 로마자"
 
-#: src/config.h:61
+#: src/config.h:50
 msgid "Wide latin Japanese"
 msgstr "전각 로마자 일본어"
 
-#: src/config.h:353
+#: src/config.h:342
 msgid "Wide latin mode"
 msgstr "전각 로마자 모드"
 
-#: src/config.h:276
+#: src/config.h:265
 msgid "tsuki-2-203-101"
 msgstr "tsuki-2-203-101"
 
-#: src/config.h:276
+#: src/config.h:265
 msgid "tsuki-2-203-106"
 msgstr "tsuki-2-203-106"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2019-11-05 00:01-0800\n"
+"POT-Creation-Date: 2020-05-09 00:01-0700\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: scootergrisen, 2019\n"
 "Language-Team: Danish (https://www.transifex.com/fcitx/teams/12005/da/)\n"
@@ -19,24 +19,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/state.cpp:327
+#: src/state.cpp:315
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d/%d)"
 
-#: src/config.h:275
+#: src/config.h:264
 msgid "101kana"
 msgstr "101kana"
 
-#: src/config.h:636
+#: src/config.h:625
 msgid "Add Word"
 msgstr "Tilføj ord"
 
-#: src/config.h:657
+#: src/config.h:646
 msgid "Add word"
 msgstr "Tilføj ord"
 
-#: src/config.h:218
+#: src/config.h:207
 msgid "Allow split"
 msgstr "Tillad opdeling"
 
@@ -44,554 +44,554 @@ msgstr "Tillad opdeling"
 msgid "Anthy"
 msgstr "Anthy"
 
-#: src/config.h:247 src/config.h:262
+#: src/config.h:236 src/config.h:251
 msgid "Atok"
 msgstr "Atok"
 
-#: src/config.h:263
+#: src/config.h:252
 msgid "Azik"
 msgstr "Azik"
 
-#: src/config.h:407
+#: src/config.h:396
 msgid "BackSpace"
 msgstr "BackSpace"
 
-#: src/config.h:443
+#: src/config.h:432
 msgid "Cancel"
 msgstr "Annuller"
 
-#: src/config.h:449
+#: src/config.h:438
 msgid "Cancel all"
 msgstr "Annuller alt"
 
-#: src/config.h:377
+#: src/config.h:366
 msgid "Cancel pseudo ascii mode"
 msgstr "Annuller pseudo ascii-tilstand"
 
-#: src/config.h:174
+#: src/config.h:163
 msgid "Candidate List Layout"
 msgstr "Layout for kandidatliste"
 
-#: src/config.h:570
+#: src/config.h:559
 msgid "Candidates Page Down"
 msgstr "Page Down for kandidater"
 
-#: src/config.h:564
+#: src/config.h:553
 msgid "Candidates Page Up"
 msgstr "Page Up for kandidater"
 
-#: src/config.h:248 src/config.h:263
+#: src/config.h:237 src/config.h:252
 msgid "Canna"
 msgstr "Canna"
 
-#: src/config.h:323
+#: src/config.h:312
 msgid "Circle input mode"
 msgstr "Cirkel inputtilstand"
 
-#: src/config.h:329
+#: src/config.h:318
 msgid "Circle kana mode"
 msgstr "Cirkel kana-tilstand"
 
-#: src/config.h:335
+#: src/config.h:324
 msgid "Circle latin and hiragana mode"
 msgstr "Cirkel latinsk- og hiragana-tilstand"
 
-#: src/config.h:341
+#: src/config.h:330
 msgid "Circle typing method"
 msgstr "Cirkel skrivemetode"
 
-#: src/config.h:669
+#: src/config.h:658
 msgid "Command"
 msgstr "Kommando"
 
-#: src/config.h:419
+#: src/config.h:408
 msgid "Commit"
 msgstr "Udfør"
 
-#: src/config.h:425
+#: src/config.h:414
 msgid "Commit Reverse Learn"
 msgstr "Udfør omvendt lær"
 
-#: src/config.h:527
+#: src/config.h:516
 msgid "Commit first segement reverse learn"
 msgstr "Udfør første segment omvendt lær"
 
-#: src/config.h:515
+#: src/config.h:504
 msgid "Commit first segment"
 msgstr "Udfør første segment"
 
-#: src/config.h:533
+#: src/config.h:522
 msgid "Commit selected segement reverse learn"
 msgstr "Udfør valgte segment omvendt lær"
 
-#: src/config.h:521
+#: src/config.h:510
 msgid "Commit selected segment"
 msgstr "Udfør valgte segment"
 
-#: src/config.h:200
+#: src/config.h:189
 msgid "Conversion mode"
 msgstr "Konverteringstilstand"
 
-#: src/config.h:431
+#: src/config.h:420
 msgid "Convert"
 msgstr "Konverter"
 
-#: src/config.h:600
+#: src/config.h:589
 msgid "Convert To Half"
 msgstr "Konverter til halv"
 
-#: src/config.h:606
+#: src/config.h:595
 msgid "Convert To Half Katakana"
 msgstr "Konverter til halv Katakana"
 
-#: src/config.h:588
+#: src/config.h:577
 msgid "Convert To Hiragana"
 msgstr "Konverter til Hiragana"
 
-#: src/config.h:594
+#: src/config.h:583
 msgid "Convert To Katakana"
 msgstr "Konverter til Katakana"
 
-#: src/config.h:618
+#: src/config.h:607
 msgid "Convert To Latin"
 msgstr "Konverter til latinsk"
 
-#: src/config.h:612
+#: src/config.h:601
 msgid "Convert To Wide Latin"
 msgstr "Konverter til bred latinsk"
 
-#: src/engine.cpp:75
+#: src/engine.cpp:64
 msgid "Convert as you type (Multi segment)"
 msgstr "Konverter efterhånden som du skriver (multisegment)"
 
-#: src/engine.cpp:76
+#: src/engine.cpp:65
 msgid "Convert as you type (Single segment)"
 msgstr "Konverter efterhånden som du skriver (ét segment)"
 
-#: src/config.h:582
+#: src/config.h:571
 msgid "Convert char type backward"
 msgstr "Konverter tegntype baglæns"
 
-#: src/config.h:576
+#: src/config.h:565
 msgid "Convert char type forward"
 msgstr "Konverter tegntype fremad"
 
-#: src/config.h:54
+#: src/config.h:43
 msgid "Corner bracket and Middle Dot"
 msgstr "Hjørneparentes og bred midterprik"
 
-#: src/config.h:55
+#: src/config.h:44
 msgid "Corner bracket and wide slash"
 msgstr "Hjørneparentes og bred skråstreg"
 
-#: src/config.h:249 src/config.h:264 src/config.h:277 src/config.h:293
+#: src/config.h:238 src/config.h:253 src/config.h:266 src/config.h:282
 msgid "Custom"
 msgstr "Tilpasset"
 
-#: src/config.h:314
+#: src/config.h:303
 msgid "Custom Kana Table"
 msgstr "Tilpasset Kana-tabel"
 
-#: src/config.h:310
+#: src/config.h:299
 msgid "Custom Key Binding"
 msgstr "Tilpasset tastebinding"
 
-#: src/config.h:316
+#: src/config.h:305
 msgid "Custom Nicola Table"
 msgstr "Tilpasset Nicola-tabel"
 
-#: src/config.h:312
+#: src/config.h:301
 msgid "Custom Romaji Table"
 msgstr "Tilpasset Romaji-tabel"
 
-#: src/config.h:247 src/config.h:262 src/config.h:275 src/config.h:290
+#: src/config.h:236 src/config.h:251 src/config.h:264 src/config.h:279
 msgid "Default"
 msgstr "Standard"
 
-#: src/config.h:413
+#: src/config.h:402
 msgid "Delete"
 msgstr "Slet"
 
-#: src/config.h:630 src/config.h:659
+#: src/config.h:619 src/config.h:648
 msgid "Dict admin"
 msgstr "Ordsbogsadministration"
 
-#: src/engine.cpp:62
+#: src/engine.cpp:51
 msgid "Direct input"
 msgstr "Direkte input"
 
-#: src/config.h:187
+#: src/config.h:176
 msgid "Entering the pseudo ASCII input mode with capital letters"
 msgstr "Indtaster pseudo-ASCII-inputtilstanden med store bogstaver"
 
-#: src/config.h:509
+#: src/config.h:498
 msgid "Expand segment"
 msgstr "Forstør segment"
 
-#: src/config.h:82 src/config.h:91
+#: src/config.h:71 src/config.h:80
 msgid "Follow mode"
 msgstr "Følg tilstand"
 
-#: src/config.h:663
+#: src/config.h:652
 msgid "General"
 msgstr "Generelt"
 
-#: src/config.h:90
+#: src/config.h:79
 msgid "Half"
 msgstr "Halv"
 
-#: src/config.h:41
+#: src/config.h:30
 msgid "Half Katakana"
 msgstr "Halv Katakana"
 
-#: src/config.h:371
+#: src/config.h:360
 msgid "Half Katakana mode"
 msgstr "Halv Katakana-tilstand"
 
-#: src/engine.cpp:61
+#: src/engine.cpp:50
 msgid "Half width katakana"
 msgstr "Katakana med halv bredde"
 
-#: src/engine.cpp:59 src/config.h:40
+#: src/engine.cpp:48 src/config.h:29
 msgid "Hiragana"
 msgstr "Hiragana"
 
-#: src/config.h:359
+#: src/config.h:348
 msgid "Hiragana mode"
 msgstr "Hiragana-tilstand"
 
-#: src/config.h:28
+#: src/config.h:17
 msgid "Horizontal"
 msgstr "Vandret"
 
-#: src/config.h:195
+#: src/config.h:184
 msgid "Input mode"
 msgstr "Inputtilstand"
 
-#: src/config.h:389
+#: src/config.h:378
 msgid "Insert Alternative space"
 msgstr "Indsæt alternativt mellemrum"
 
-#: src/config.h:395
+#: src/config.h:384
 msgid "Insert Half Space"
 msgstr "Indsæt halvt mellemrum"
 
-#: src/config.h:184
+#: src/config.h:173
 msgid "Insert a blank with a blank key"
 msgstr "Indsæt en tom med en tom tast"
 
-#: src/config.h:383
+#: src/config.h:372
 msgid "Insert space"
 msgstr "Indsæt mellemrum"
 
-#: src/config.h:401
+#: src/config.h:390
 msgid "Insert wide space"
 msgstr "Indsæt bredt mellemrum"
 
-#: src/config.h:665
+#: src/config.h:654
 msgid "Interface"
 msgstr "Grænseflade"
 
-#: src/config.h:52 src/config.h:60
+#: src/config.h:41 src/config.h:49
 msgid "Japanese"
 msgstr "Japansk"
 
-#: src/engine.cpp:68 src/config.h:77
+#: src/engine.cpp:57 src/config.h:66
 msgid "Kana"
 msgstr "Kana"
 
-#: src/config.h:305
+#: src/config.h:294
 msgid "Kana Table"
 msgstr "Kana-tabel"
 
-#: src/engine.cpp:60 src/config.h:40
+#: src/engine.cpp:49 src/config.h:29
 msgid "Katakana"
 msgstr "Katakana"
 
-#: src/config.h:365
+#: src/config.h:354
 msgid "Katakana mode"
 msgstr "Katakana-tilstand"
 
-#: src/config.h:668
+#: src/config.h:657
 msgid "Key"
 msgstr "Tast"
 
-#: src/config.h:667
+#: src/config.h:656
 msgid "Key Profile"
 msgstr "Nøgleprofil"
 
-#: src/config.h:299
+#: src/config.h:288
 msgid "Key binding profile"
 msgstr "Tastebindingsprofil"
 
-#: src/config.h:41 src/config.h:60
+#: src/config.h:30 src/config.h:49
 msgid "Latin"
 msgstr "Latinsk"
 
-#: src/config.h:347
+#: src/config.h:336
 msgid "Latin mode"
 msgstr "Latinsk tilstand"
 
-#: src/config.h:217
+#: src/config.h:206
 msgid "Learn on auto commit"
 msgstr "Lær ved automatisk udfør"
 
-#: src/config.h:215
+#: src/config.h:204
 msgid "Learn on manual commit"
 msgstr "Lær ved manuel udfør"
 
-#: src/config.h:642
+#: src/config.h:631
 msgid "Left thumb key"
 msgstr "Tast til venstre tommelfinger"
 
-#: src/config.h:248 src/config.h:263
+#: src/config.h:237 src/config.h:252
 msgid "MS IME"
 msgstr "MS IME"
 
-#: src/config.h:473
-msgid "Move caret backword"
-msgstr "Flyt markør baglæns"
+#: src/config.h:462
+msgid "Move caret backward"
+msgstr ""
 
-#: src/config.h:455
+#: src/config.h:444
 msgid "Move caret first"
 msgstr "Flyt markør forrest"
 
-#: src/config.h:467
+#: src/config.h:456
 msgid "Move caret forward"
 msgstr "Flyt markør fremad"
 
-#: src/config.h:461
+#: src/config.h:450
 msgid "Move caret last"
 msgstr "Flyt markør sidst"
 
-#: src/engine.cpp:73 src/config.h:70
+#: src/engine.cpp:62 src/config.h:59
 msgid "Multi segment"
 msgstr "Multisegment"
 
-#: src/config.h:72
+#: src/config.h:61
 msgid "Multi segment immediate"
 msgstr "Multisegment immediate"
 
-#: src/engine.cpp:69 src/config.h:78
+#: src/engine.cpp:58 src/config.h:67
 msgid "Nicola"
 msgstr "Nicola"
 
-#: src/config.h:307
+#: src/config.h:296
 msgid "Nicola Table"
 msgstr "Nicola-tabel"
 
-#: src/config.h:653
+#: src/config.h:642
 msgid "Nicola time"
 msgstr "Nicola-tid"
 
-#: src/config.h:290
+#: src/config.h:279
 msgid "Nicola-A"
 msgstr "Nicola-A"
 
-#: src/config.h:291
+#: src/config.h:280
 msgid "Nicola-F"
 msgstr "Nicola-F"
 
-#: src/config.h:291
+#: src/config.h:280
 msgid "Nicola-J"
 msgstr "Nicola-J"
 
-#: src/config.h:27
+#: src/config.h:16
 msgid "Not Set"
 msgstr "Ikke sat"
 
-#: src/config.h:178
+#: src/config.h:167
 msgid "Number candidate of Triggers To Show Candidate Window"
 msgstr "Antal kandidater af udløsere før kandidatvindue vises"
 
-#: src/config.h:292
+#: src/config.h:281
 msgid "Oasys100J"
 msgstr "Oasys100J"
 
-#: src/config.h:172
+#: src/config.h:161
 msgid "Page size"
 msgstr "Sidestørrelse"
 
-#: src/config.h:204
+#: src/config.h:193
 msgid "Period style"
 msgstr "Punktumstil"
 
-#: src/config.h:437
+#: src/config.h:426
 msgid "Predict"
 msgstr "Forudse"
 
-#: src/config.h:181
+#: src/config.h:170
 msgid "Predict on input"
 msgstr "Forudse ved input"
 
-#: src/config.h:277
+#: src/config.h:266
 msgid "Quick Kana"
 msgstr "Hurtig Kana"
 
-#: src/config.h:624
+#: src/config.h:613
 msgid "Reconvert"
 msgstr "Konverter igen"
 
-#: src/config.h:648
+#: src/config.h:637
 msgid "Right thumb key"
 msgstr "Tast til højre tommelfinger"
 
-#: src/config.h:652
+#: src/config.h:641
 msgid "Ro key for kana layout"
 msgstr "Ro-tast til kana-layout"
 
-#: src/engine.cpp:67 src/config.h:77
+#: src/engine.cpp:56 src/config.h:66
 msgid "Romaji"
 msgstr "Romaji"
 
-#: src/config.h:302
+#: src/config.h:291
 msgid "Romaji Table"
 msgstr "Romaji-tabel"
 
-#: src/config.h:539
+#: src/config.h:528
 msgid "Select first candidate"
 msgstr "Vælg første kandidat"
 
-#: src/config.h:479
+#: src/config.h:468
 msgid "Select first segment"
 msgstr "Vælg første segment"
 
-#: src/config.h:545
+#: src/config.h:534
 msgid "Select last candidate"
 msgstr "Vælg sidste kandidat"
 
-#: src/config.h:485
+#: src/config.h:474
 msgid "Select last segment"
 msgstr "Vælg sidste segment"
 
-#: src/config.h:551
+#: src/config.h:540
 msgid "Select next candidate"
 msgstr "Vælg næste kandidat"
 
-#: src/config.h:491
+#: src/config.h:480
 msgid "Select next segment"
 msgstr "Vælg næste segment"
 
-#: src/config.h:558
+#: src/config.h:547
 msgid "Select prev candidate"
 msgstr "Vælg forrige kandidat"
 
-#: src/config.h:497
+#: src/config.h:486
 msgid "Select prev segment"
 msgstr "Vælg forrige segment"
 
-#: src/config.h:223 src/config.h:236
+#: src/config.h:212 src/config.h:225
 msgid "Show candidates label"
 msgstr "Vis kandidatetiket"
 
-#: src/config.h:232
+#: src/config.h:221
 msgid "Show conversion mode"
 msgstr "Vis konverteringstilstand"
 
-#: src/config.h:228
+#: src/config.h:217
 msgid "Show input mode"
 msgstr "Vis inputtilstand"
 
-#: src/config.h:234
+#: src/config.h:223
 msgid "Show period style"
 msgstr "Vis punktumstil"
 
-#: src/config.h:230
+#: src/config.h:219
 msgid "Show typing method"
 msgstr "Vis skrivemetode"
 
-#: src/config.h:503
+#: src/config.h:492
 msgid "Shrink segment"
 msgstr "Sammentræk segment"
 
-#: src/engine.cpp:74 src/config.h:71
+#: src/engine.cpp:63 src/config.h:60
 msgid "Single segment"
 msgstr "Ét segment"
 
-#: src/config.h:73
+#: src/config.h:62
 msgid "Single segment immediate"
 msgstr "Ét segment immediate"
 
-#: src/config.h:210
+#: src/config.h:199
 msgid "Space type"
 msgstr "Mellemrumstype"
 
-#: src/config.h:207
+#: src/config.h:196
 msgid "Symbol style"
 msgstr "Symbolstil"
 
-#: src/config.h:212
+#: src/config.h:201
 msgid "Ten key type"
 msgstr "Ten-tastetype"
 
-#: src/engine.cpp:69
+#: src/engine.cpp:58
 msgid "Thumb shift"
 msgstr "Skift til tommelfinger"
 
-#: src/config.h:292
+#: src/config.h:281
 msgid "Tron Dvorak"
 msgstr "Tron Dvorak"
 
-#: src/config.h:293
+#: src/config.h:282
 msgid "Tron Qwerty JP"
 msgstr "Tron Qwerty JP"
 
-#: src/config.h:197
+#: src/config.h:186
 msgid "Typing method"
 msgstr "Skrivemetode"
 
-#: src/config.h:221
+#: src/config.h:210
 msgid "Use direct key on predict"
 msgstr "Brug direkte tast ved forudse"
 
-#: src/config.h:192
+#: src/config.h:181
 msgid "Use half-width characters for numbers"
 msgstr "Brug tegn med halv bredde til tal"
 
-#: src/config.h:189
+#: src/config.h:178
 msgid "Use half-width characters for symbols"
 msgstr "Brug tegn med halv bredde til symboler"
 
-#: src/config.h:28
+#: src/config.h:17
 msgid "Vertial"
 msgstr "Lodret"
 
-#: src/config.h:248 src/config.h:264
+#: src/config.h:237 src/config.h:253
 msgid "Vje Delta"
 msgstr "Vje Delta"
 
-#: src/config.h:249 src/config.h:264
+#: src/config.h:238 src/config.h:253
 msgid "WNN"
 msgstr "WNN"
 
-#: src/config.h:82 src/config.h:90
+#: src/config.h:71 src/config.h:79
 msgid "Wide"
 msgstr "Bred"
 
-#: src/config.h:42
+#: src/config.h:31
 msgid "Wide Latin"
 msgstr "Bred latinsk"
 
-#: src/config.h:53
+#: src/config.h:42
 msgid "Wide bracket and wide slash"
 msgstr "Bred parentes og bred skråstreg"
 
-#: src/engine.cpp:63 src/config.h:59
+#: src/engine.cpp:52 src/config.h:48
 msgid "Wide latin"
 msgstr "Bred latinsk"
 
-#: src/config.h:61
+#: src/config.h:50
 msgid "Wide latin Japanese"
 msgstr "Bred latinsk japansk"
 
-#: src/config.h:353
+#: src/config.h:342
 msgid "Wide latin mode"
 msgstr "Bred latinsk tilstand"
 
-#: src/config.h:276
+#: src/config.h:265
 msgid "tsuki-2-203-101"
 msgstr "tsuki-2-203-101"
 
-#: src/config.h:276
+#: src/config.h:265
 msgid "tsuki-2-203-106"
 msgstr "tsuki-2-203-106"

@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# scootergrisen, 2017,2019
+# scootergrisen, 2017,2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2019-11-05 00:02-0800\n"
-"PO-Revision-Date: 2019-11-04 08:35+0000\n"
+"POT-Creation-Date: 2020-05-11 00:02-0700\n"
+"PO-Revision-Date: 2020-05-10 11:51+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/fcitx/fcitx/language/da/)\n"
 "Language: da\n"
@@ -385,19 +385,19 @@ msgstr "MS IME"
 
 #: src/fcitx-anthy.desc:313
 msgid "Move Caret First"
-msgstr "Flyt indsætningstegn først"
+msgstr "Flyt markør først"
 
 #: src/fcitx-anthy.desc:328
 msgid "Move caret backward"
-msgstr "Flyt indsætningstegn baglæns"
+msgstr "Flyt markør baglæns"
 
 #: src/fcitx-anthy.desc:323
 msgid "Move caret forward"
-msgstr "Flyt indsætningstegn fremad"
+msgstr "Flyt markør fremad"
 
 #: src/fcitx-anthy.desc:318
 msgid "Move caret last"
-msgstr "Flyt indsætningstegn sidste"
+msgstr "Flyt markør sidste"
 
 #: src/imengine.cpp:591 src/fcitx-anthy.desc:47
 msgid "Multi segment"

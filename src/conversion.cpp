@@ -213,7 +213,7 @@ void Conversion::updatePreedit() {
 
         preedit.append(it->string(), static_cast<int>(seg_id) == curSegment_
                                          ? fcitx::TextFormatFlag::HighLight
-                                         : fcitx::TextFormatFlag::None);
+                                         : fcitx::TextFormatFlag::NoFlag);
     }
 
     if (state_.supportClientPreedit()) {

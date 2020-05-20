@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-05-09 00:01-0700\n"
+"POT-Creation-Date: 2020-05-20 00:02-0700\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: MarongHappy <daemul72@gmail.com>, 2020\n"
 "Language-Team: Korean (https://www.transifex.com/fcitx/teams/12005/ko/)\n"
@@ -353,7 +353,7 @@ msgstr "마이크로소프트 IME"
 
 #: src/config.h:462
 msgid "Move caret backward"
-msgstr ""
+msgstr "커서를 뒤로 이동"
 
 #: src/config.h:444
 msgid "Move caret first"

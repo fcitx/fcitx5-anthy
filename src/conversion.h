@@ -93,8 +93,7 @@ private:
 
     // convertors
     Reading &reading_;
-    std::unique_ptr<anthy_context, decltype(&anthy_release_context)>
-        anthyContext_;
+    fcitx::UniqueCPtr<anthy_context, anthy_release_context> anthyContext_;
 
     // status variables
     ConversionSegments segments_;

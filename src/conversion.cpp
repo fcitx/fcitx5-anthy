@@ -41,8 +41,7 @@ void ConversionSegment::setReadingLength(unsigned int len) {
 // Conversion Class
 //
 Conversion::Conversion(AnthyState &anthy, Reading &reading)
-    : state_(anthy), reading_(reading),
-      anthyContext_(anthy_create_context(), &anthy_release_context),
+    : state_(anthy), reading_(reading), anthyContext_(anthy_create_context()),
       startId_(0), curSegment_(-1), predicting_(false) {
     anthy_context_set_encoding(anthyContext_.get(), ANTHY_UTF8_ENCODING);
 }

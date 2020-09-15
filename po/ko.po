@@ -6,15 +6,15 @@
 # csslayer <wengxt@gmail.com>, 2017
 # Bon Keun Seo <scobyseo@gmail.com>, 2017
 # heavyuser <heavyuser73@gmail.com>, 2018
-# MarongHappy <daemul72@gmail.com>, 2020
+# JungHee Lee <daemul72@gmail.com>, 2020
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-05-20 00:02-0700\n"
+"POT-Creation-Date: 2020-09-15 00:03-0700\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: MarongHappy <daemul72@gmail.com>, 2020\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2020\n"
 "Language-Team: Korean (https://www.transifex.com/fcitx/teams/12005/ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -401,7 +401,7 @@ msgstr "니콜라-J"
 
 #: src/config.h:16
 msgid "Not Set"
-msgstr "설정되지 않음"
+msgstr "지정되지 않음"
 
 #: src/config.h:167
 msgid "Number candidate of Triggers To Show Candidate Window"

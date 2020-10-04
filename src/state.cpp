@@ -256,7 +256,7 @@ void AnthyState::selectCandidateNoDirect(unsigned int item) {
     if (auto candList = ic_->inputPanel().candidateList()) {
         if (cursorPos_ >= 0 && cursorPos_ < candList->size()) {
             auto commonCandList =
-                static_cast<fcitx::CommonCandidateList *>(candList);
+                std::static_pointer_cast<fcitx::CommonCandidateList>(candList);
             commonCandList->setGlobalCursorIndex(cursorPos_);
             commonCandList->setPage(cursorPos_ / *config().general->pageSize);
         }
@@ -1046,7 +1046,7 @@ bool AnthyState::action_select_prev_candidate() {
     if (auto candList = ic_->inputPanel().candidateList()) {
         if (candList->size() > cursorPos_ && cursorPos_ >= 0) {
             auto commonCandList =
-                static_cast<fcitx::CommonCandidateList *>(candList);
+                std::static_pointer_cast<fcitx::CommonCandidateList>(candList);
             commonCandList->setGlobalCursorIndex(cursorPos_);
             commonCandList->setPage(cursorPos_ / *config().general->pageSize);
         }

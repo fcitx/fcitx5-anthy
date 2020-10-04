@@ -29,12 +29,12 @@ FCITX_CONFIG_ENUM_NAME_WITH_I18N(CandidateLayoutHint, N_("Not Set"),
 }
 
 enum class InputMode {
-  HIRAGANA,
-  KATAKANA,
-  HALF_KATAKANA,
-  LATIN,
-  WIDE_LATIN,
-  LAST
+    HIRAGANA,
+    KATAKANA,
+    HALF_KATAKANA,
+    LATIN,
+    WIDE_LATIN,
+    LAST
 };
 
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(InputMode, N_("Hiragana"), N_("Katakana"),
@@ -42,11 +42,11 @@ FCITX_CONFIG_ENUM_NAME_WITH_I18N(InputMode, N_("Hiragana"), N_("Katakana"),
                                  N_("Wide Latin"));
 
 enum class SymbolStyle {
-  JAPANESE,
-  WIDEBRACKET_WIDESLASH,
-  CORNERBRACKET_MIDDLEDOT,
-  CORNERBRACKET_WIDESLASH,
-  LAST
+    JAPANESE,
+    WIDEBRACKET_WIDESLASH,
+    CORNERBRACKET_MIDDLEDOT,
+    CORNERBRACKET_WIDESLASH,
+    LAST
 };
 
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(SymbolStyle, N_("Japanese"),
@@ -61,10 +61,10 @@ FCITX_CONFIG_ENUM_NAME_WITH_I18N(PeriodCommaStyle, N_("Wide latin"),
                                  N_("Wide latin Japanese"));
 
 enum class ConversionMode {
-  MULTI_SEGMENT,
-  SINGLE_SEGMENT,
-  MULTI_SEGMENT_IMMEDIATE,
-  SINGLE_SEGMENT_IMMEDIATE
+    MULTI_SEGMENT,
+    SINGLE_SEGMENT,
+    MULTI_SEGMENT_IMMEDIATE,
+    SINGLE_SEGMENT_IMMEDIATE
 };
 
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(ConversionMode, N_("Multi segment"),
@@ -82,9 +82,9 @@ enum class SpaceType { FOLLOWMODE, WIDE };
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(SpaceType, N_("Follow mode"), N_("Wide"));
 
 enum class TenKeyType {
-  WIDE,
-  HALF,
-  FOLLOWMODE,
+    WIDE,
+    HALF,
+    FOLLOWMODE,
 };
 
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(TenKeyType, N_("Wide"), N_("Half"),
@@ -92,78 +92,78 @@ FCITX_CONFIG_ENUM_NAME_WITH_I18N(TenKeyType, N_("Wide"), N_("Half"),
 
 struct AnthyKeyProfile {
 
-  fcitx::KeyList hk_CONVERT;
-  fcitx::KeyList hk_PREDICT;
-  // candidates keys
-  fcitx::KeyList hk_CANDIDATES_PAGE_UP;
-  fcitx::KeyList hk_CANDIDATES_PAGE_DOWN;
-  fcitx::KeyList hk_SELECT_FIRST_CANDIDATE;
-  fcitx::KeyList hk_SELECT_LAST_CANDIDATE;
-  fcitx::KeyList hk_SELECT_NEXT_CANDIDATE;
-  fcitx::KeyList hk_SELECT_PREV_CANDIDATE;
-  fcitx::KeyList hk_SELECT_NEXT_CANDIDATE_ALTER;
-  fcitx::KeyList hk_SELECT_PREV_CANDIDATE_ALTER;
+    fcitx::KeyList hk_CONVERT;
+    fcitx::KeyList hk_PREDICT;
+    // candidates keys
+    fcitx::KeyList hk_CANDIDATES_PAGE_UP;
+    fcitx::KeyList hk_CANDIDATES_PAGE_DOWN;
+    fcitx::KeyList hk_SELECT_FIRST_CANDIDATE;
+    fcitx::KeyList hk_SELECT_LAST_CANDIDATE;
+    fcitx::KeyList hk_SELECT_NEXT_CANDIDATE;
+    fcitx::KeyList hk_SELECT_PREV_CANDIDATE;
+    fcitx::KeyList hk_SELECT_NEXT_CANDIDATE_ALTER;
+    fcitx::KeyList hk_SELECT_PREV_CANDIDATE_ALTER;
 
-  // segment keys
-  fcitx::KeyList hk_SELECT_FIRST_SEGMENT;
-  fcitx::KeyList hk_SELECT_LAST_SEGMENT;
-  fcitx::KeyList hk_SELECT_NEXT_SEGMENT;
-  fcitx::KeyList hk_SELECT_PREV_SEGMENT;
-  fcitx::KeyList hk_SHRINK_SEGMENT;
-  fcitx::KeyList hk_EXPAND_SEGMENT;
-  fcitx::KeyList hk_COMMIT_FIRST_SEGMENT;
-  fcitx::KeyList hk_COMMIT_SELECTED_SEGMENT;
-  fcitx::KeyList hk_COMMIT_FIRST_SEGMENT_REVERSE_LEARN;
-  fcitx::KeyList hk_COMMIT_SELECTED_SEGMENT_REVERSE_LEARN;
+    // segment keys
+    fcitx::KeyList hk_SELECT_FIRST_SEGMENT;
+    fcitx::KeyList hk_SELECT_LAST_SEGMENT;
+    fcitx::KeyList hk_SELECT_NEXT_SEGMENT;
+    fcitx::KeyList hk_SELECT_PREV_SEGMENT;
+    fcitx::KeyList hk_SHRINK_SEGMENT;
+    fcitx::KeyList hk_EXPAND_SEGMENT;
+    fcitx::KeyList hk_COMMIT_FIRST_SEGMENT;
+    fcitx::KeyList hk_COMMIT_SELECTED_SEGMENT;
+    fcitx::KeyList hk_COMMIT_FIRST_SEGMENT_REVERSE_LEARN;
+    fcitx::KeyList hk_COMMIT_SELECTED_SEGMENT_REVERSE_LEARN;
 
-  // direct convert keys
-  fcitx::KeyList hk_CONV_CHAR_TYPE_FORWARD;
-  fcitx::KeyList hk_CONV_CHAR_TYPE_BACKWARD;
-  fcitx::KeyList hk_CONV_TO_HIRAGANA;
-  fcitx::KeyList hk_CONV_TO_KATAKANA;
-  fcitx::KeyList hk_CONV_TO_HALF;
-  fcitx::KeyList hk_CONV_TO_HALF_KATAKANA;
-  fcitx::KeyList hk_CONV_TO_LATIN;
-  fcitx::KeyList hk_CONV_TO_WIDE_LATIN;
+    // direct convert keys
+    fcitx::KeyList hk_CONV_CHAR_TYPE_FORWARD;
+    fcitx::KeyList hk_CONV_CHAR_TYPE_BACKWARD;
+    fcitx::KeyList hk_CONV_TO_HIRAGANA;
+    fcitx::KeyList hk_CONV_TO_KATAKANA;
+    fcitx::KeyList hk_CONV_TO_HALF;
+    fcitx::KeyList hk_CONV_TO_HALF_KATAKANA;
+    fcitx::KeyList hk_CONV_TO_LATIN;
+    fcitx::KeyList hk_CONV_TO_WIDE_LATIN;
 
-  // pseudo ascii mode
-  fcitx::KeyList hk_CANCEL_PSEUDO_ASCII_MODE;
+    // pseudo ascii mode
+    fcitx::KeyList hk_CANCEL_PSEUDO_ASCII_MODE;
 
-  // caret keys
-  fcitx::KeyList hk_MOVE_CARET_FIRST;
-  fcitx::KeyList hk_MOVE_CARET_LAST;
-  fcitx::KeyList hk_MOVE_CARET_FORWARD;
-  fcitx::KeyList hk_MOVE_CARET_BACKWARD;
+    // caret keys
+    fcitx::KeyList hk_MOVE_CARET_FIRST;
+    fcitx::KeyList hk_MOVE_CARET_LAST;
+    fcitx::KeyList hk_MOVE_CARET_FORWARD;
+    fcitx::KeyList hk_MOVE_CARET_BACKWARD;
 
-  // edit keys
-  fcitx::KeyList hk_BACKSPACE;
-  fcitx::KeyList hk_DELETE;
-  fcitx::KeyList hk_COMMIT;
-  fcitx::KeyList hk_COMMIT_REVERSE_LEARN;
-  fcitx::KeyList hk_CANCEL;
-  fcitx::KeyList hk_CANCEL_ALL;
-  fcitx::KeyList hk_INSERT_SPACE;
-  fcitx::KeyList hk_INSERT_ALT_SPACE;
-  fcitx::KeyList hk_INSERT_HALF_SPACE;
-  fcitx::KeyList hk_INSERT_WIDE_SPACE;
+    // edit keys
+    fcitx::KeyList hk_BACKSPACE;
+    fcitx::KeyList hk_DELETE;
+    fcitx::KeyList hk_COMMIT;
+    fcitx::KeyList hk_COMMIT_REVERSE_LEARN;
+    fcitx::KeyList hk_CANCEL;
+    fcitx::KeyList hk_CANCEL_ALL;
+    fcitx::KeyList hk_INSERT_SPACE;
+    fcitx::KeyList hk_INSERT_ALT_SPACE;
+    fcitx::KeyList hk_INSERT_HALF_SPACE;
+    fcitx::KeyList hk_INSERT_WIDE_SPACE;
 
-  // mode keys
-  fcitx::KeyList hk_CIRCLE_INPUT_MODE;
-  fcitx::KeyList hk_CIRCLE_KANA_MODE;
-  fcitx::KeyList hk_CIRCLE_LATIN_HIRAGANA_MODE;
-  fcitx::KeyList hk_CIRCLE_TYPING_METHOD;
-  fcitx::KeyList hk_LATIN_MODE;
-  fcitx::KeyList hk_WIDE_LATIN_MODE;
-  fcitx::KeyList hk_HIRAGANA_MODE;
-  fcitx::KeyList hk_KATAKANA_MODE;
-  fcitx::KeyList hk_HALF_KATAKANA_MODE;
+    // mode keys
+    fcitx::KeyList hk_CIRCLE_INPUT_MODE;
+    fcitx::KeyList hk_CIRCLE_KANA_MODE;
+    fcitx::KeyList hk_CIRCLE_LATIN_HIRAGANA_MODE;
+    fcitx::KeyList hk_CIRCLE_TYPING_METHOD;
+    fcitx::KeyList hk_LATIN_MODE;
+    fcitx::KeyList hk_WIDE_LATIN_MODE;
+    fcitx::KeyList hk_HIRAGANA_MODE;
+    fcitx::KeyList hk_KATAKANA_MODE;
+    fcitx::KeyList hk_HALF_KATAKANA_MODE;
 
-  // dict keys
-  fcitx::KeyList hk_DICT_ADMIN;
-  fcitx::KeyList hk_ADD_WORD;
+    // dict keys
+    fcitx::KeyList hk_DICT_ADMIN;
+    fcitx::KeyList hk_ADD_WORD;
 
-  // reconvert
-  fcitx::KeyList hk_RECONVERT;
+    // reconvert
+    fcitx::KeyList hk_RECONVERT;
 };
 
 FCITX_CONFIGURATION(
@@ -236,27 +236,27 @@ FCITX_CONFIGURATION(
         this, "ShowSymbolStyle", _("Show candidates label"), false};);
 
 enum class KeyBindingProfile {
-  Default,
-  Atok,
-  Canna,
-  MSIME,
-  VjeDelta,
-  WNN,
-  Custom
+    Default,
+    Atok,
+    Canna,
+    MSIME,
+    VjeDelta,
+    WNN,
+    Custom
 };
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(KeyBindingProfile, N_("Default"), N_("Atok"),
                                  N_("Canna"), N_("MS IME"), N_("Vje Delta"),
                                  N_("WNN"), N_("Custom"));
 
 enum class RomajiTable {
-  Default,
-  Atok,
-  Azik,
-  Canna,
-  MSIME,
-  VjeDelta,
-  WNN,
-  Custom
+    Default,
+    Atok,
+    Azik,
+    Canna,
+    MSIME,
+    VjeDelta,
+    WNN,
+    Custom
 };
 
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(RomajiTable, N_("Default"), N_("Atok"),
@@ -264,12 +264,12 @@ FCITX_CONFIG_ENUM_NAME_WITH_I18N(RomajiTable, N_("Default"), N_("Atok"),
                                  N_("Vje Delta"), N_("WNN"), N_("Custom"));
 
 enum class KanaTable {
-  Default,
-  _101Kana,
-  Tsuki2_203_101,
-  Tsuki2_203_106,
-  QuickKana,
-  Custom,
+    Default,
+    _101Kana,
+    Tsuki2_203_101,
+    Tsuki2_203_106,
+    QuickKana,
+    Custom,
 };
 
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(KanaTable, N_("Default"), N_("101kana"),
@@ -277,14 +277,14 @@ FCITX_CONFIG_ENUM_NAME_WITH_I18N(KanaTable, N_("Default"), N_("101kana"),
                                  N_("Quick Kana"), N_("Custom"));
 
 enum class NicolaTable {
-  Default,
-  Nicola_A,
-  Nicola_F,
-  Nicola_J,
-  Oasys100J,
-  TronDvorak,
-  TronQwertyJP,
-  Custom
+    Default,
+    Nicola_A,
+    Nicola_F,
+    Nicola_J,
+    Oasys100J,
+    TronDvorak,
+    TronQwertyJP,
+    Custom
 };
 
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(NicolaTable, N_("Default"), N_("Nicola-A"),

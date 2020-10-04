@@ -46,15 +46,15 @@ bool surrounding_get_anchor_pos_from_selection(
     uint cursor_pos, uint *anchor_pos);
 
 inline char get_ascii_code(const fcitx::Key &key) {
-  auto chr = fcitx::Key::keySymToUnicode(key.sym());
-  if (fcitx::charutils::isprint(chr)) {
-    return chr;
-  }
-  return 0;
+    auto chr = fcitx::Key::keySymToUnicode(key.sym());
+    if (fcitx::charutils::isprint(chr)) {
+        return chr;
+    }
+    return 0;
 }
 
 inline char get_ascii_code(const fcitx::KeyEvent &event) {
-  return get_ascii_code(event.rawKey());
+    return get_ascii_code(event.rawKey());
 }
 
 const fcitx::KeyList &selection_keys();

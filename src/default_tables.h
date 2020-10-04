@@ -20,38 +20,38 @@
 #define _FCITX5_ANTHY_DEFAULT_TABLES_H_
 
 struct ConvRule {
-  const char *string;
-  const char *result;
-  const char *cont;
+    const char *string;
+    const char *result;
+    const char *cont;
 };
 
 struct HiraganaKatakanaRule {
-  const char *hiragana;
-  const char *katakana;
-  const char *half_katakana;
+    const char *hiragana;
+    const char *katakana;
+    const char *half_katakana;
 };
 
 struct WideRule {
-  const char *code;
-  const char *wide;
+    const char *code;
+    const char *wide;
 };
 
 struct KeyCodeToCharRule {
-  unsigned int code;
-  const char *kana;
+    unsigned int code;
+    const char *kana;
 };
 
 struct VoicedConsonantRule {
-  const char *string;
-  const char *voiced;
-  const char *half_voiced;
+    const char *string;
+    const char *voiced;
+    const char *half_voiced;
 };
 
 struct NicolaRule {
-  const char *key;
-  const char *single;
-  const char *left_shift;
-  const char *right_shift;
+    const char *key;
+    const char *single;
+    const char *left_shift;
+    const char *right_shift;
 };
 
 // fundamental table

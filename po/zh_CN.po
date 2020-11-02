@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-05-27 00:02-0700\n"
+"POT-Creation-Date: 2020-11-02 14:17-0800\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: csslayer <wengxt@gmail.com>, 2020\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/fcitx/teams/12005/"
@@ -45,6 +45,10 @@ msgstr "允许分割"
 #: src/anthy.conf.in:3 src/anthy-addon.conf.in:3
 msgid "Anthy"
 msgstr "Anthy"
+
+#: org.fcitx.fcitx5-anthy.metainfo.xml.in:7
+msgid "Anthy for Fcitx 5"
+msgstr "Fcitx 5 的 Anthy 支持"
 
 #: src/config.h:236 src/config.h:251
 msgid "Atok"
@@ -254,7 +258,7 @@ msgstr "半角片假名模式"
 msgid "Half width katakana"
 msgstr "半角片假名"
 
-#: src/engine.cpp:48 src/config.h:29
+#: src/config.h:29 src/engine.cpp:48
 msgid "Hiragana"
 msgstr "平假名"
 
@@ -298,7 +302,11 @@ msgstr "界面"
 msgid "Japanese"
 msgstr "日语"
 
-#: src/engine.cpp:57 src/config.h:66
+#: org.fcitx.fcitx5-anthy.metainfo.xml.in:8
+msgid "Japanese input method based on Anthy"
+msgstr "基于 Anthy 的日语输入法"
+
+#: src/config.h:66 src/engine.cpp:57
 msgid "Kana"
 msgstr "假名"
 
@@ -306,7 +314,7 @@ msgstr "假名"
 msgid "Kana Table"
 msgstr "假名表"
 
-#: src/engine.cpp:49 src/config.h:29
+#: src/config.h:29 src/engine.cpp:49
 msgid "Katakana"
 msgstr "片假名"
 
@@ -366,7 +374,7 @@ msgstr "向前移动光标"
 msgid "Move caret last"
 msgstr "移动光标至结尾"
 
-#: src/engine.cpp:62 src/config.h:59
+#: src/config.h:59 src/engine.cpp:62
 msgid "Multi segment"
 msgstr "多段"
 
@@ -374,7 +382,7 @@ msgstr "多段"
 msgid "Multi segment immediate"
 msgstr "立即多段"
 
-#: src/engine.cpp:58 src/config.h:67
+#: src/config.h:67 src/engine.cpp:58
 msgid "Nicola"
 msgstr "尼古拉"
 
@@ -442,7 +450,7 @@ msgstr "右拇指键"
 msgid "Ro key for kana layout"
 msgstr "假名布局的 \"ロ\" 键"
 
-#: src/engine.cpp:56 src/config.h:66
+#: src/config.h:66 src/engine.cpp:56
 msgid "Romaji"
 msgstr "罗马音"
 
@@ -506,7 +514,7 @@ msgstr "显示输入方案"
 msgid "Shrink segment"
 msgstr "收起段落"
 
-#: src/engine.cpp:63 src/config.h:60
+#: src/config.h:60 src/engine.cpp:63
 msgid "Single segment"
 msgstr "单段"
 
@@ -578,7 +586,7 @@ msgstr "全角英文"
 msgid "Wide bracket and wide slash"
 msgstr "宽括号和宽斜杠"
 
-#: src/engine.cpp:52 src/config.h:48
+#: src/config.h:48 src/engine.cpp:52
 msgid "Wide latin"
 msgstr "全角英文"
 

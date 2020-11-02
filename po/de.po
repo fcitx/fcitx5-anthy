@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-05-09 00:01-0700\n"
+"POT-Creation-Date: 2020-11-02 14:17-0800\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: mar well <m.wellendorf@gmx.de>, 2018\n"
 "Language-Team: German (https://www.transifex.com/fcitx/teams/12005/de/)\n"
@@ -44,6 +44,10 @@ msgstr "Aufteilen erlauben"
 #: src/anthy.conf.in:3 src/anthy-addon.conf.in:3
 msgid "Anthy"
 msgstr "Anthy"
+
+#: org.fcitx.fcitx5-anthy.metainfo.xml.in:7
+msgid "Anthy for Fcitx 5"
+msgstr ""
 
 #: src/config.h:236 src/config.h:251
 msgid "Atok"
@@ -253,7 +257,7 @@ msgstr "Modus Halbbreite Katakana"
 msgid "Half width katakana"
 msgstr "Halbbreite Katakana"
 
-#: src/engine.cpp:48 src/config.h:29
+#: src/config.h:29 src/engine.cpp:48
 msgid "Hiragana"
 msgstr "Hiragana"
 
@@ -297,7 +301,11 @@ msgstr "Oberfläche"
 msgid "Japanese"
 msgstr "Japanisch"
 
-#: src/engine.cpp:57 src/config.h:66
+#: org.fcitx.fcitx5-anthy.metainfo.xml.in:8
+msgid "Japanese input method based on Anthy"
+msgstr ""
+
+#: src/config.h:66 src/engine.cpp:57
 msgid "Kana"
 msgstr "Kana"
 
@@ -305,7 +313,7 @@ msgstr "Kana"
 msgid "Kana Table"
 msgstr "Kana-Tabelle"
 
-#: src/engine.cpp:49 src/config.h:29
+#: src/config.h:29 src/engine.cpp:49
 msgid "Katakana"
 msgstr "Katakana"
 
@@ -365,7 +373,7 @@ msgstr "Eingabemarke nach vorn"
 msgid "Move caret last"
 msgstr "Eingabemarke ganz hinten"
 
-#: src/engine.cpp:62 src/config.h:59
+#: src/config.h:59 src/engine.cpp:62
 msgid "Multi segment"
 msgstr "Multisegment"
 
@@ -373,7 +381,7 @@ msgstr "Multisegment"
 msgid "Multi segment immediate"
 msgstr "Mehrere Satzteile sofort"
 
-#: src/engine.cpp:58 src/config.h:67
+#: src/config.h:67 src/engine.cpp:58
 msgid "Nicola"
 msgstr "Nicola"
 
@@ -441,7 +449,7 @@ msgstr "Rechte Daumentaste"
 msgid "Ro key for kana layout"
 msgstr "Ro-Taste für Kana-Belegung"
 
-#: src/engine.cpp:56 src/config.h:66
+#: src/config.h:66 src/engine.cpp:56
 msgid "Romaji"
 msgstr "Romaji"
 
@@ -505,7 +513,7 @@ msgstr "Schreibmethode anzeigen"
 msgid "Shrink segment"
 msgstr "Segment verkleinern"
 
-#: src/engine.cpp:63 src/config.h:60
+#: src/config.h:60 src/engine.cpp:63
 msgid "Single segment"
 msgstr "Einfaches Segment"
 
@@ -577,7 +585,7 @@ msgstr "Breites Latin"
 msgid "Wide bracket and wide slash"
 msgstr "Breite Klammern und breiter Schrägstrich"
 
-#: src/engine.cpp:52 src/config.h:48
+#: src/config.h:48 src/engine.cpp:52
 msgid "Wide latin"
 msgstr "Breites Latin"
 

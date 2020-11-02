@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-05-09 00:01-0700\n"
+"POT-Creation-Date: 2020-11-02 14:17-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,6 +38,10 @@ msgstr ""
 
 #: src/anthy.conf.in:3 src/anthy-addon.conf.in:3
 msgid "Anthy"
+msgstr ""
+
+#: org.fcitx.fcitx5-anthy.metainfo.xml.in:7
+msgid "Anthy for Fcitx 5"
 msgstr ""
 
 #: src/config.h:236 src/config.h:251
@@ -248,7 +252,7 @@ msgstr ""
 msgid "Half width katakana"
 msgstr ""
 
-#: src/engine.cpp:48 src/config.h:29
+#: src/config.h:29 src/engine.cpp:48
 msgid "Hiragana"
 msgstr ""
 
@@ -292,7 +296,11 @@ msgstr ""
 msgid "Japanese"
 msgstr ""
 
-#: src/engine.cpp:57 src/config.h:66
+#: org.fcitx.fcitx5-anthy.metainfo.xml.in:8
+msgid "Japanese input method based on Anthy"
+msgstr ""
+
+#: src/config.h:66 src/engine.cpp:57
 msgid "Kana"
 msgstr ""
 
@@ -300,7 +308,7 @@ msgstr ""
 msgid "Kana Table"
 msgstr ""
 
-#: src/engine.cpp:49 src/config.h:29
+#: src/config.h:29 src/engine.cpp:49
 msgid "Katakana"
 msgstr ""
 
@@ -360,7 +368,7 @@ msgstr ""
 msgid "Move caret last"
 msgstr ""
 
-#: src/engine.cpp:62 src/config.h:59
+#: src/config.h:59 src/engine.cpp:62
 msgid "Multi segment"
 msgstr ""
 
@@ -368,7 +376,7 @@ msgstr ""
 msgid "Multi segment immediate"
 msgstr ""
 
-#: src/engine.cpp:58 src/config.h:67
+#: src/config.h:67 src/engine.cpp:58
 msgid "Nicola"
 msgstr ""
 
@@ -436,7 +444,7 @@ msgstr ""
 msgid "Ro key for kana layout"
 msgstr ""
 
-#: src/engine.cpp:56 src/config.h:66
+#: src/config.h:66 src/engine.cpp:56
 msgid "Romaji"
 msgstr ""
 
@@ -500,7 +508,7 @@ msgstr ""
 msgid "Shrink segment"
 msgstr ""
 
-#: src/engine.cpp:63 src/config.h:60
+#: src/config.h:60 src/engine.cpp:63
 msgid "Single segment"
 msgstr ""
 
@@ -572,7 +580,7 @@ msgstr ""
 msgid "Wide bracket and wide slash"
 msgstr ""
 
-#: src/engine.cpp:52 src/config.h:48
+#: src/config.h:48 src/engine.cpp:52
 msgid "Wide latin"
 msgstr ""
 

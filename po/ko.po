@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-09-15 00:03-0700\n"
+"POT-Creation-Date: 2020-11-02 14:17-0800\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: JungHee Lee <daemul72@gmail.com>, 2020\n"
 "Language-Team: Korean (https://www.transifex.com/fcitx/teams/12005/ko/)\n"
@@ -46,6 +46,10 @@ msgstr "나누기 허용"
 #: src/anthy.conf.in:3 src/anthy-addon.conf.in:3
 msgid "Anthy"
 msgstr "Anthy"
+
+#: org.fcitx.fcitx5-anthy.metainfo.xml.in:7
+msgid "Anthy for Fcitx 5"
+msgstr ""
 
 #: src/config.h:236 src/config.h:251
 msgid "Atok"
@@ -255,7 +259,7 @@ msgstr "반각 가타가나 모드"
 msgid "Half width katakana"
 msgstr "반각 가타가나"
 
-#: src/engine.cpp:48 src/config.h:29
+#: src/config.h:29 src/engine.cpp:48
 msgid "Hiragana"
 msgstr "히라가나"
 
@@ -299,7 +303,11 @@ msgstr "인터페이스"
 msgid "Japanese"
 msgstr "일본어"
 
-#: src/engine.cpp:57 src/config.h:66
+#: org.fcitx.fcitx5-anthy.metainfo.xml.in:8
+msgid "Japanese input method based on Anthy"
+msgstr ""
+
+#: src/config.h:66 src/engine.cpp:57
 msgid "Kana"
 msgstr "카나"
 
@@ -307,7 +315,7 @@ msgstr "카나"
 msgid "Kana Table"
 msgstr "가나 표"
 
-#: src/engine.cpp:49 src/config.h:29
+#: src/config.h:29 src/engine.cpp:49
 msgid "Katakana"
 msgstr "가타가나"
 
@@ -367,7 +375,7 @@ msgstr "커서를 앞으로 이동"
 msgid "Move caret last"
 msgstr "커서를 맨 뒤로 이동"
 
-#: src/engine.cpp:62 src/config.h:59
+#: src/config.h:59 src/engine.cpp:62
 msgid "Multi segment"
 msgstr "다중 세그먼트"
 
@@ -375,7 +383,7 @@ msgstr "다중 세그먼트"
 msgid "Multi segment immediate"
 msgstr "다중 세그먼트 즉시 입력"
 
-#: src/engine.cpp:58 src/config.h:67
+#: src/config.h:67 src/engine.cpp:58
 msgid "Nicola"
 msgstr "니콜라"
 
@@ -443,7 +451,7 @@ msgstr "오른쪽 엄지 키"
 msgid "Ro key for kana layout"
 msgstr "가나 자판용 Ro 키"
 
-#: src/engine.cpp:56 src/config.h:66
+#: src/config.h:66 src/engine.cpp:56
 msgid "Romaji"
 msgstr "로마자"
 
@@ -507,7 +515,7 @@ msgstr "입력 방식 표시"
 msgid "Shrink segment"
 msgstr "세그먼트 줄이기"
 
-#: src/engine.cpp:63 src/config.h:60
+#: src/config.h:60 src/engine.cpp:63
 msgid "Single segment"
 msgstr "단일 세그먼트"
 
@@ -579,7 +587,7 @@ msgstr "전각 로마자"
 msgid "Wide bracket and wide slash"
 msgstr "전자 괄호와 전자 슬래시"
 
-#: src/engine.cpp:52 src/config.h:48
+#: src/config.h:48 src/engine.cpp:52
 msgid "Wide latin"
 msgstr "전각 로마자"
 

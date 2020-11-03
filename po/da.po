@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-11-02 14:17-0800\n"
+"POT-Creation-Date: 2020-11-03 00:02-0800\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: scootergrisen, 2020\n"
 "Language-Team: Danish (https://www.transifex.com/fcitx/teams/12005/da/)\n"
@@ -46,7 +46,7 @@ msgstr "Anthy"
 
 #: org.fcitx.fcitx5-anthy.metainfo.xml.in:7
 msgid "Anthy for Fcitx 5"
-msgstr ""
+msgstr "Anthy til Fcitx 5"
 
 #: src/config.h:236 src/config.h:251
 msgid "Atok"
@@ -256,7 +256,7 @@ msgstr "Halv Katakana-tilstand"
 msgid "Half width katakana"
 msgstr "Katakana med halv bredde"
 
-#: src/config.h:29 src/engine.cpp:48
+#: src/engine.cpp:48 src/config.h:29
 msgid "Hiragana"
 msgstr "Hiragana"
 
@@ -302,9 +302,9 @@ msgstr "Japansk"
 
 #: org.fcitx.fcitx5-anthy.metainfo.xml.in:8
 msgid "Japanese input method based on Anthy"
-msgstr ""
+msgstr "Japansk inputmetode baseret på Anthy"
 
-#: src/config.h:66 src/engine.cpp:57
+#: src/engine.cpp:57 src/config.h:66
 msgid "Kana"
 msgstr "Kana"
 
@@ -312,7 +312,7 @@ msgstr "Kana"
 msgid "Kana Table"
 msgstr "Kana-tabel"
 
-#: src/config.h:29 src/engine.cpp:49
+#: src/engine.cpp:49 src/config.h:29
 msgid "Katakana"
 msgstr "Katakana"
 
@@ -372,7 +372,7 @@ msgstr "Flyt markør fremad"
 msgid "Move caret last"
 msgstr "Flyt markør sidst"
 
-#: src/config.h:59 src/engine.cpp:62
+#: src/engine.cpp:62 src/config.h:59
 msgid "Multi segment"
 msgstr "Multisegment"
 
@@ -380,7 +380,7 @@ msgstr "Multisegment"
 msgid "Multi segment immediate"
 msgstr "Multisegment immediate"
 
-#: src/config.h:67 src/engine.cpp:58
+#: src/engine.cpp:58 src/config.h:67
 msgid "Nicola"
 msgstr "Nicola"
 
@@ -448,7 +448,7 @@ msgstr "Tast til højre tommelfinger"
 msgid "Ro key for kana layout"
 msgstr "Ro-tast til kana-layout"
 
-#: src/config.h:66 src/engine.cpp:56
+#: src/engine.cpp:56 src/config.h:66
 msgid "Romaji"
 msgstr "Romaji"
 
@@ -512,7 +512,7 @@ msgstr "Vis skrivemetode"
 msgid "Shrink segment"
 msgstr "Sammentræk segment"
 
-#: src/config.h:60 src/engine.cpp:63
+#: src/engine.cpp:63 src/config.h:60
 msgid "Single segment"
 msgstr "Ét segment"
 
@@ -584,7 +584,7 @@ msgstr "Bred latinsk"
 msgid "Wide bracket and wide slash"
 msgstr "Bred parentes og bred skråstreg"
 
-#: src/config.h:48 src/engine.cpp:52
+#: src/engine.cpp:52 src/config.h:48
 msgid "Wide latin"
 msgstr "Bred latinsk"
 

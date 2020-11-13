@@ -692,7 +692,7 @@ std::string Conversion::predictionString(int candidate_id) {
     std::string cand = buf;
 
     return cand;
-#else  /* HAS_ANTHY_PREDICTION */
+#else /* HAS_ANTHY_PREDICTION */
     return std::string();
 #endif /* HAS_ANTHY_PREDICTION */
 }

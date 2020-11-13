@@ -12,7 +12,15 @@ find_package(Fcitx5Core REQUIRED)
 find_package(Fcitx5Module REQUIRED COMPONENTS Clipboard)
 find_package(Gettext REQUIRED)
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(Anthy IMPORTED_TARGET "anthy" REQUIRED)
+
+pkg_check_modules(AnthyUnicode IMPORTED_TARGET "anthy-unicode")
+
+if (AnthyUnicode_FOUND)
+    set(ANTHY_TARGET PkgConfig::AnthyUnicode)
+else()
+    pkg_check_modules(Anthy IMPORTED_TARGET "anthy" REQUIRED)
+    set(ANTHY_TARGET PkgConfig::Anthy)
+endif()
 
 include("${FCITX_INSTALL_CMAKECONFIG_DIR}/Fcitx5Utils/Fcitx5CompilerSettings.cmake")
 add_definitions(-DFCITX_GETTEXT_DOMAIN=\"fcitx5-anthy\" -D_GNU_SOURCE)

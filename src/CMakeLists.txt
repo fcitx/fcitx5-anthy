@@ -17,7 +17,7 @@ set( fcitx_anthy_sources
     )
 
 add_library(anthy MODULE ${fcitx_anthy_sources})
-target_link_libraries(anthy Fcitx5::Core Fcitx5::Config PkgConfig::Anthy Fcitx5::Module::Clipboard)
+target_link_libraries(anthy Fcitx5::Core Fcitx5::Config ${ANTHY_TARGET} Fcitx5::Module::Clipboard)
 set_target_properties(anthy PROPERTIES PREFIX "")
 install(TARGETS anthy DESTINATION "${CMAKE_INSTALL_LIBDIR}/fcitx5")
 fcitx5_translate_desktop_file(anthy.conf.in anthy.conf)

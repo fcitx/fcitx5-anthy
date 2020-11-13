@@ -1,4 +1,3 @@
-include_directories (${ANTHY_INCLUDE_DIR})
 include_directories (${FCITX4_FCITX_INCLUDE_DIRS})
 include_directories (${FCITX4_FCITX_CONFIG_INCLUDE_DIRS})
 include_directories (${FCITX4_FCITX_UTILS_INCLUDE_DIRS})
@@ -24,4 +23,4 @@ add_definitions( -DLOCALEDIR=\"${CMAKE_INSTALL_PREFIX}/share/locale\" )
 
 fcitx_add_addon_full(anthy DESC SOURCES ${fcitx_anthy_sources}
   IM_CONFIG anthy.conf
-  LINK_LIBS ${ANTHY_LIBRARIES})
+  LINK_LIBS ${ANTHY_TARGET})

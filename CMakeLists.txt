@@ -1,11 +1,20 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.6)
 
 project(fcitx-anthy)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
-FIND_PACKAGE(Fcitx 4.2.9.2 REQUIRED)
-FIND_PACKAGE(Anthy REQUIRED)
+find_package(Fcitx 4.2.9.2 REQUIRED)
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(AnthyUnicode IMPORTED_TARGET "anthy-unicode")
+
+if (AnthyUnicode_FOUND)
+    set(ANTHY_TARGET PkgConfig::AnthyUnicode)
+else()
+    pkg_check_modules(Anthy IMPORTED_TARGET "anthy" REQUIRED)
+    set(ANTHY_TARGET PkgConfig::Anthy)
+endif()
 
 _fcitx_add_uninstall_target()
 

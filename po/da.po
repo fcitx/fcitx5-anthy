@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-11-03 00:02-0800\n"
+"POT-Creation-Date: 2020-11-14 00:02-0800\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: scootergrisen, 2020\n"
 "Language-Team: Danish (https://www.transifex.com/fcitx/teams/12005/da/)\n"
@@ -302,7 +302,7 @@ msgstr "Japansk"
 
 #: org.fcitx.fcitx5-anthy.metainfo.xml.in:8
 msgid "Japanese input method based on Anthy"
-msgstr "Japansk inputmetode baseret på Anthy"
+msgstr "Japansk-inputmetode baseret på Anthy"
 
 #: src/engine.cpp:57 src/config.h:66
 msgid "Kana"

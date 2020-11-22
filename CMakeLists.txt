@@ -33,6 +33,6 @@ add_subdirectory(icon)
 add_subdirectory(profile)
 
 fcitx5_translate_desktop_file(org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in
-    org.fcitx.Fcitx5.Adddon.Anthy.metainfo.xml XML)
+    org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml XML)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml" DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

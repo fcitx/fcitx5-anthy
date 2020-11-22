@@ -27,6 +27,7 @@ FCITX_DEFINE_LOG_CATEGORY(anthy_logcategory, "anthy");
 
 class AnthyFactory : public fcitx::AddonFactory {
     fcitx::AddonInstance *create(fcitx::AddonManager *manager) override {
+        fcitx::registerDomain("fcitx5-anthy", FCITX_INSTALL_LOCALEDIR);
         return new AnthyEngine(manager->instance());
     }
 };

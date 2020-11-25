@@ -24,7 +24,6 @@ endif()
 
 include("${FCITX_INSTALL_CMAKECONFIG_DIR}/Fcitx5Utils/Fcitx5CompilerSettings.cmake")
 add_definitions(-DFCITX_GETTEXT_DOMAIN=\"fcitx5-anthy\" -D_GNU_SOURCE)
-string(CONFIGURE ${FCITX_INSTALL_LOCALEDIR} LOCALEDIR ESCAPE_QUOTES)
 fcitx5_add_i18n_definition()
 
 add_subdirectory(po)

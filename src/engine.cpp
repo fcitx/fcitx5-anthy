@@ -419,8 +419,6 @@ void AnthyEngine::deactivate(const fcitx::InputMethodEntry &,
                              fcitx::InputContextEvent &event) {
     auto anthy = event.inputContext()->propertyFor(&factory_);
     anthy->autoCommit(event);
-    event.inputContext()->statusArea().clearGroup(
-        fcitx::StatusGroup::InputMethod);
 }
 
 void AnthyEngine::reset(const fcitx::InputMethodEntry &,

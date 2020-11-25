@@ -515,9 +515,7 @@ bool AnthyState::isSelectingCandidates() {
            ic_->inputPanel().candidateList()->size();
 }
 
-void AnthyState::deactivate() {
-    ic_->statusArea().clearGroup(fcitx::StatusGroup::InputMethod);
-}
+void AnthyState::deactivate() {}
 
 bool AnthyState::action_convert() {
     if (!preedit_.isPreediting())

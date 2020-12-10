@@ -1,0 +1,606 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the fcitx5-anthy package.
+#
+# Translators:
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2020
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fcitx5-anthy\n"
+"Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
+"POT-Creation-Date: 2020-12-10 01:11+0000\n"
+"PO-Revision-Date: 2017-12-26 07:08+0000\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2020\n"
+"Language-Team: Hebrew (https://www.transifex.com/fcitx/teams/12005/he/)\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % "
+"1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+
+#: src/state.cpp:315
+#, c-format
+msgid "(%d / %d)"
+msgstr ""
+
+#: src/config.h:264
+msgid "101kana"
+msgstr ""
+
+#: src/config.h:625
+msgid "Add Word"
+msgstr ""
+
+#: src/config.h:646
+msgid "Add word"
+msgstr ""
+
+#: src/config.h:207
+msgid "Allow split"
+msgstr ""
+
+#: src/anthy-addon.conf.in:3 src/anthy.conf.in:3
+msgid "Anthy"
+msgstr ""
+
+#: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:7
+msgid "Anthy for Fcitx 5"
+msgstr ""
+
+#: src/config.h:236 src/config.h:251
+msgid "Atok"
+msgstr ""
+
+#: src/config.h:252
+msgid "Azik"
+msgstr ""
+
+#: src/config.h:396
+msgid "BackSpace"
+msgstr ""
+
+#: src/config.h:432
+msgid "Cancel"
+msgstr "ביטול"
+
+#: src/config.h:438
+msgid "Cancel all"
+msgstr "לבטל הכול"
+
+#: src/config.h:366
+msgid "Cancel pseudo ascii mode"
+msgstr ""
+
+#: src/config.h:163
+msgid "Candidate List Layout"
+msgstr ""
+
+#: src/config.h:559
+msgid "Candidates Page Down"
+msgstr ""
+
+#: src/config.h:553
+msgid "Candidates Page Up"
+msgstr ""
+
+#: src/config.h:237 src/config.h:252
+msgid "Canna"
+msgstr ""
+
+#: src/config.h:312
+msgid "Circle input mode"
+msgstr ""
+
+#: src/config.h:318
+msgid "Circle kana mode"
+msgstr ""
+
+#: src/config.h:324
+msgid "Circle latin and hiragana mode"
+msgstr ""
+
+#: src/config.h:330
+msgid "Circle typing method"
+msgstr ""
+
+#: src/config.h:658
+msgid "Command"
+msgstr "פקודה"
+
+#: src/config.h:408
+msgid "Commit"
+msgstr ""
+
+#: src/config.h:414
+msgid "Commit Reverse Learn"
+msgstr ""
+
+#: src/config.h:516
+msgid "Commit first segement reverse learn"
+msgstr ""
+
+#: src/config.h:504
+msgid "Commit first segment"
+msgstr ""
+
+#: src/config.h:522
+msgid "Commit selected segement reverse learn"
+msgstr ""
+
+#: src/config.h:510
+msgid "Commit selected segment"
+msgstr ""
+
+#: src/config.h:189
+msgid "Conversion mode"
+msgstr ""
+
+#: src/config.h:420
+msgid "Convert"
+msgstr "המרה"
+
+#: src/config.h:589
+msgid "Convert To Half"
+msgstr ""
+
+#: src/config.h:595
+msgid "Convert To Half Katakana"
+msgstr ""
+
+#: src/config.h:577
+msgid "Convert To Hiragana"
+msgstr ""
+
+#: src/config.h:583
+msgid "Convert To Katakana"
+msgstr ""
+
+#: src/config.h:607
+msgid "Convert To Latin"
+msgstr ""
+
+#: src/config.h:601
+msgid "Convert To Wide Latin"
+msgstr ""
+
+#: src/engine.cpp:65
+msgid "Convert as you type (Multi segment)"
+msgstr ""
+
+#: src/engine.cpp:66
+msgid "Convert as you type (Single segment)"
+msgstr ""
+
+#: src/config.h:571
+msgid "Convert char type backward"
+msgstr ""
+
+#: src/config.h:565
+msgid "Convert char type forward"
+msgstr ""
+
+#: src/config.h:43
+msgid "Corner bracket and Middle Dot"
+msgstr ""
+
+#: src/config.h:44
+msgid "Corner bracket and wide slash"
+msgstr ""
+
+#: src/config.h:238 src/config.h:253 src/config.h:266 src/config.h:282
+msgid "Custom"
+msgstr ""
+
+#: src/config.h:303
+msgid "Custom Kana Table"
+msgstr ""
+
+#: src/config.h:299
+msgid "Custom Key Binding"
+msgstr ""
+
+#: src/config.h:305
+msgid "Custom Nicola Table"
+msgstr ""
+
+#: src/config.h:301
+msgid "Custom Romaji Table"
+msgstr ""
+
+#: src/config.h:236 src/config.h:251 src/config.h:264 src/config.h:279
+msgid "Default"
+msgstr ""
+
+#: src/config.h:402
+msgid "Delete"
+msgstr ""
+
+#: src/config.h:619 src/config.h:648
+msgid "Dict admin"
+msgstr ""
+
+#: src/engine.cpp:52
+msgid "Direct input"
+msgstr ""
+
+#: src/config.h:176
+msgid "Entering the pseudo ASCII input mode with capital letters"
+msgstr ""
+
+#: src/config.h:498
+msgid "Expand segment"
+msgstr ""
+
+#: src/config.h:71 src/config.h:80
+msgid "Follow mode"
+msgstr ""
+
+#: src/config.h:652
+msgid "General"
+msgstr ""
+
+#: src/config.h:79
+msgid "Half"
+msgstr ""
+
+#: src/config.h:30
+msgid "Half Katakana"
+msgstr ""
+
+#: src/config.h:360
+msgid "Half Katakana mode"
+msgstr ""
+
+#: src/engine.cpp:51
+msgid "Half width katakana"
+msgstr ""
+
+#: src/config.h:29 src/engine.cpp:49
+msgid "Hiragana"
+msgstr ""
+
+#: src/config.h:348
+msgid "Hiragana mode"
+msgstr ""
+
+#: src/config.h:17
+msgid "Horizontal"
+msgstr ""
+
+#: src/config.h:184
+msgid "Input mode"
+msgstr ""
+
+#: src/config.h:378
+msgid "Insert Alternative space"
+msgstr ""
+
+#: src/config.h:384
+msgid "Insert Half Space"
+msgstr ""
+
+#: src/config.h:173
+msgid "Insert a blank with a blank key"
+msgstr ""
+
+#: src/config.h:372
+msgid "Insert space"
+msgstr ""
+
+#: src/config.h:390
+msgid "Insert wide space"
+msgstr ""
+
+#: src/config.h:654
+msgid "Interface"
+msgstr ""
+
+#: src/config.h:41 src/config.h:49
+msgid "Japanese"
+msgstr ""
+
+#: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:8
+msgid "Japanese input method based on Anthy"
+msgstr ""
+
+#: src/config.h:66 src/engine.cpp:58
+msgid "Kana"
+msgstr ""
+
+#: src/config.h:294
+msgid "Kana Table"
+msgstr ""
+
+#: src/config.h:29 src/engine.cpp:50
+msgid "Katakana"
+msgstr ""
+
+#: src/config.h:354
+msgid "Katakana mode"
+msgstr ""
+
+#: src/config.h:657
+msgid "Key"
+msgstr ""
+
+#: src/config.h:656
+msgid "Key Profile"
+msgstr ""
+
+#: src/config.h:288
+msgid "Key binding profile"
+msgstr ""
+
+#: src/config.h:30 src/config.h:49
+msgid "Latin"
+msgstr ""
+
+#: src/config.h:336
+msgid "Latin mode"
+msgstr ""
+
+#: src/config.h:206
+msgid "Learn on auto commit"
+msgstr ""
+
+#: src/config.h:204
+msgid "Learn on manual commit"
+msgstr ""
+
+#: src/config.h:631
+msgid "Left thumb key"
+msgstr ""
+
+#: src/config.h:237 src/config.h:252
+msgid "MS IME"
+msgstr ""
+
+#: src/config.h:462
+msgid "Move caret backward"
+msgstr ""
+
+#: src/config.h:444
+msgid "Move caret first"
+msgstr ""
+
+#: src/config.h:456
+msgid "Move caret forward"
+msgstr ""
+
+#: src/config.h:450
+msgid "Move caret last"
+msgstr ""
+
+#: src/config.h:59 src/engine.cpp:63
+msgid "Multi segment"
+msgstr ""
+
+#: src/config.h:61
+msgid "Multi segment immediate"
+msgstr ""
+
+#: src/config.h:67 src/engine.cpp:59
+msgid "Nicola"
+msgstr ""
+
+#: src/config.h:296
+msgid "Nicola Table"
+msgstr ""
+
+#: src/config.h:642
+msgid "Nicola time"
+msgstr ""
+
+#: src/config.h:279
+msgid "Nicola-A"
+msgstr ""
+
+#: src/config.h:280
+msgid "Nicola-F"
+msgstr ""
+
+#: src/config.h:280
+msgid "Nicola-J"
+msgstr ""
+
+#: src/config.h:16
+msgid "Not Set"
+msgstr ""
+
+#: src/config.h:167
+msgid "Number candidate of Triggers To Show Candidate Window"
+msgstr ""
+
+#: src/config.h:281
+msgid "Oasys100J"
+msgstr ""
+
+#: src/config.h:161
+msgid "Page size"
+msgstr ""
+
+#: src/config.h:193
+msgid "Period style"
+msgstr ""
+
+#: src/config.h:426
+msgid "Predict"
+msgstr ""
+
+#: src/config.h:170
+msgid "Predict on input"
+msgstr ""
+
+#: src/config.h:266
+msgid "Quick Kana"
+msgstr ""
+
+#: src/config.h:613
+msgid "Reconvert"
+msgstr ""
+
+#: src/config.h:637
+msgid "Right thumb key"
+msgstr ""
+
+#: src/config.h:641
+msgid "Ro key for kana layout"
+msgstr ""
+
+#: src/config.h:66 src/engine.cpp:57
+msgid "Romaji"
+msgstr ""
+
+#: src/config.h:291
+msgid "Romaji Table"
+msgstr ""
+
+#: src/config.h:528
+msgid "Select first candidate"
+msgstr ""
+
+#: src/config.h:468
+msgid "Select first segment"
+msgstr ""
+
+#: src/config.h:534
+msgid "Select last candidate"
+msgstr ""
+
+#: src/config.h:474
+msgid "Select last segment"
+msgstr ""
+
+#: src/config.h:540
+msgid "Select next candidate"
+msgstr ""
+
+#: src/config.h:480
+msgid "Select next segment"
+msgstr ""
+
+#: src/config.h:547
+msgid "Select prev candidate"
+msgstr ""
+
+#: src/config.h:486
+msgid "Select prev segment"
+msgstr ""
+
+#: src/config.h:212 src/config.h:225
+msgid "Show candidates label"
+msgstr ""
+
+#: src/config.h:221
+msgid "Show conversion mode"
+msgstr ""
+
+#: src/config.h:217
+msgid "Show input mode"
+msgstr ""
+
+#: src/config.h:223
+msgid "Show period style"
+msgstr ""
+
+#: src/config.h:219
+msgid "Show typing method"
+msgstr ""
+
+#: src/config.h:492
+msgid "Shrink segment"
+msgstr ""
+
+#: src/config.h:60 src/engine.cpp:64
+msgid "Single segment"
+msgstr ""
+
+#: src/config.h:62
+msgid "Single segment immediate"
+msgstr ""
+
+#: src/config.h:199
+msgid "Space type"
+msgstr ""
+
+#: src/config.h:196
+msgid "Symbol style"
+msgstr ""
+
+#: src/config.h:201
+msgid "Ten key type"
+msgstr ""
+
+#: src/engine.cpp:59
+msgid "Thumb shift"
+msgstr ""
+
+#: src/config.h:281
+msgid "Tron Dvorak"
+msgstr ""
+
+#: src/config.h:282
+msgid "Tron Qwerty JP"
+msgstr ""
+
+#: src/config.h:186
+msgid "Typing method"
+msgstr ""
+
+#: src/config.h:210
+msgid "Use direct key on predict"
+msgstr ""
+
+#: src/config.h:181
+msgid "Use half-width characters for numbers"
+msgstr ""
+
+#: src/config.h:178
+msgid "Use half-width characters for symbols"
+msgstr ""
+
+#: src/config.h:17
+msgid "Vertial"
+msgstr ""
+
+#: src/config.h:237 src/config.h:253
+msgid "Vje Delta"
+msgstr ""
+
+#: src/config.h:238 src/config.h:253
+msgid "WNN"
+msgstr ""
+
+#: src/config.h:71 src/config.h:79
+msgid "Wide"
+msgstr ""
+
+#: src/config.h:31
+msgid "Wide Latin"
+msgstr ""
+
+#: src/config.h:42
+msgid "Wide bracket and wide slash"
+msgstr ""
+
+#: src/config.h:48 src/engine.cpp:53
+msgid "Wide latin"
+msgstr ""
+
+#: src/config.h:50
+msgid "Wide latin Japanese"
+msgstr ""
+
+#: src/config.h:342
+msgid "Wide latin mode"
+msgstr ""
+
+#: src/config.h:265
+msgid "tsuki-2-203-101"
+msgstr ""
+
+#: src/config.h:265
+msgid "tsuki-2-203-106"
+msgstr ""

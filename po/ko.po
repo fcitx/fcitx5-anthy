@@ -4,15 +4,18 @@
 #
 # Translators:
 # Bon Keun Seo <scobyseo@gmail.com>, 2017
-# MarongHappy <daemul72@gmail.com>, 2020
+# JungHee Lee <daemul72@gmail.com>, 2020
 # heavyuser <heavyuser73@gmail.com>, 2016
+# heavyuser <heavyuser73@gmail.com>, 2016
+# JungHee Lee <daemul72@gmail.com>, 2020
+# JungHee Lee <daemul72@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-04-24 00:02-0700\n"
-"PO-Revision-Date: 2020-04-24 04:56+0000\n"
-"Last-Translator: MarongHappy <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2020-12-26 20:26+0000\n"
+"PO-Revision-Date: 2020-12-26 04:30+0000\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/fcitx/fcitx/language/ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -435,7 +438,7 @@ msgstr "니콜라-J"
 
 #: src/fcitx-anthy.desc:17
 msgid "Number candidate of Triggers To Show Candidate Window"
-msgstr "후보 창을 표시할 트리거의 후보 번호"
+msgstr "후보 창을 표시할 전환 후보 수"
 
 #: src/fcitx-anthy.desc:175
 msgid "Oasys100J"

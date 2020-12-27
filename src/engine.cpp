@@ -17,7 +17,6 @@
 #include <fcitx/inputcontext.h>
 #include <fcitx/inputcontextmanager.h>
 #include <fcitx/userinterfacemanager.h>
-#include <libintl.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -45,114 +44,219 @@ struct AnthyStatus {
 #define UTF8_MIDDLE_DOT "\xE3\x83\xBB"
 #define UTF8_SLASH_WIDE "\xEF\xBC\x8F"
 
-const static AnthyStatus input_mode_status[] = {
-    {"", "\xe3\x81\x82", N_("Hiragana")},
-    {"", "\xe3\x82\xa2", N_("Katakana")},
-    {"", "\xef\xbd\xb1", N_("Half width katakana")},
-    {"", "A", N_("Direct input")},
-    {"", "\xef\xbc\xa1", N_("Wide latin")},
+constexpr std::array input_mode_status = {
+    AnthyStatus{"", "\xe3\x81\x82", N_("Hiragana")},
+    AnthyStatus{"", "\xe3\x82\xa2", N_("Katakana")},
+    AnthyStatus{"", "\xef\xbd\xb1", N_("Half width katakana")},
+    AnthyStatus{"", "A", N_("Direct input")},
+    AnthyStatus{"", "\xef\xbc\xa1", N_("Wide latin")},
 };
 
-AnthyStatus typing_method_status[] = {
-    {"", N_("Romaji"), N_("Romaji")},
-    {"", N_("Kana"), N_("Kana")},
-    {"", N_("Nicola"), N_("Thumb shift")},
+constexpr std::array typing_method_status = {
+    AnthyStatus{"", N_("Romaji"), N_("Romaji")},
+    AnthyStatus{"", N_("Kana"), N_("Kana")},
+    AnthyStatus{"", N_("Nicola"), N_("Thumb shift")},
 };
 
-AnthyStatus conversion_mode_status[] = {
-    {"", "\xE9\x80\xA3", N_("Multi segment")},
-    {"", "\xE5\x8D\x98", N_("Single segment")},
-    {"", "\xE9\x80\x90", N_("Convert as you type (Multi segment)")},
-    {"", "\xE9\x80\x90", N_("Convert as you type (Single segment)")},
+constexpr std::array conversion_mode_status = {
+    AnthyStatus{"", "\xE9\x80\xA3", N_("Multi segment")},
+    AnthyStatus{"", "\xE5\x8D\x98", N_("Single segment")},
+    AnthyStatus{"", "\xE9\x80\x90", N_("Convert as you type (Multi segment)")},
+    AnthyStatus{"", "\xE9\x80\x90", N_("Convert as you type (Single segment)")},
 };
 
-AnthyStatus period_style_status[] = {
-    {"anthy-period-wide-latin", "\xEF\xBC\x8C\xEF\xBC\x8E",
-     "\xEF\xBC\x8C\xEF\xBC\x8E"},
-    {"anthy-period-latin", ",.", ",."},
-    {"anthy-period-japanese", "\xE3\x80\x81\xE3\x80\x82",
-     "\xE3\x80\x81\xE3\x80\x82"},
-    {"anthy-period-wide-japanese", "\xEF\xBC\x8C\xE3\x80\x82",
-     "\xEF\xBC\x8C\xE3\x80\x82"},
+constexpr std::array period_style_status = {
+    AnthyStatus{"anthy-period-wide-latin", "\xEF\xBC\x8C\xEF\xBC\x8E",
+                "\xEF\xBC\x8C\xEF\xBC\x8E"},
+    AnthyStatus{"anthy-period-latin", ",.", ",."},
+    AnthyStatus{"anthy-period-japanese", "\xE3\x80\x81\xE3\x80\x82",
+                "\xE3\x80\x81\xE3\x80\x82"},
+    AnthyStatus{"anthy-period-wide-japanese", "\xEF\xBC\x8C\xE3\x80\x82",
+                "\xEF\xBC\x8C\xE3\x80\x82"},
 };
 
-AnthyStatus symbol_style_status[] = {
-    {"anthy-symbol",
-     UTF8_BRACKET_CORNER_BEGIN UTF8_BRACKET_CORNER_END UTF8_MIDDLE_DOT,
-     UTF8_BRACKET_CORNER_BEGIN UTF8_BRACKET_CORNER_END UTF8_MIDDLE_DOT},
-    {"anthy-symbol",
-     UTF8_BRACKET_CORNER_BEGIN UTF8_BRACKET_CORNER_END UTF8_SLASH_WIDE,
-     UTF8_BRACKET_CORNER_BEGIN UTF8_BRACKET_CORNER_END UTF8_SLASH_WIDE},
-    {"anthy-symbol",
-     UTF8_BRACKET_WIDE_BEGIN UTF8_BRACKET_WIDE_END UTF8_MIDDLE_DOT,
-     UTF8_BRACKET_WIDE_BEGIN UTF8_BRACKET_WIDE_END UTF8_MIDDLE_DOT},
-    {"anthy-symbol",
-     UTF8_BRACKET_WIDE_BEGIN UTF8_BRACKET_WIDE_END UTF8_SLASH_WIDE,
-     UTF8_BRACKET_WIDE_BEGIN UTF8_BRACKET_WIDE_END UTF8_SLASH_WIDE},
+constexpr std::array symbol_style_status = {
+    AnthyStatus{
+        "anthy-symbol",
+        UTF8_BRACKET_CORNER_BEGIN UTF8_BRACKET_CORNER_END UTF8_MIDDLE_DOT,
+        UTF8_BRACKET_CORNER_BEGIN UTF8_BRACKET_CORNER_END UTF8_MIDDLE_DOT},
+    AnthyStatus{
+        "anthy-symbol",
+        UTF8_BRACKET_CORNER_BEGIN UTF8_BRACKET_CORNER_END UTF8_SLASH_WIDE,
+        UTF8_BRACKET_CORNER_BEGIN UTF8_BRACKET_CORNER_END UTF8_SLASH_WIDE},
+    AnthyStatus{"anthy-symbol",
+                UTF8_BRACKET_WIDE_BEGIN UTF8_BRACKET_WIDE_END UTF8_MIDDLE_DOT,
+                UTF8_BRACKET_WIDE_BEGIN UTF8_BRACKET_WIDE_END UTF8_MIDDLE_DOT},
+    AnthyStatus{"anthy-symbol",
+                UTF8_BRACKET_WIDE_BEGIN UTF8_BRACKET_WIDE_END UTF8_SLASH_WIDE,
+                UTF8_BRACKET_WIDE_BEGIN UTF8_BRACKET_WIDE_END UTF8_SLASH_WIDE},
 };
 
-#define DEFINE_MENU(NAME, name, array)                                         \
-    auto name##Status(AnthyEngine *engine, fcitx::InputContext *ic) {          \
-        auto state = engine->state(ic);                                        \
-        auto mode = static_cast<int>(state->name());                           \
-        return (mode >= 0 &&                                                   \
-                static_cast<size_t>(mode) < FCITX_ARRAY_SIZE(array))           \
-                   ? &array[mode]                                              \
-                   : nullptr;                                                  \
-    }                                                                          \
-    class NAME##Action : public fcitx::Action {                                \
-    public:                                                                    \
-        NAME##Action(AnthyEngine *engine) : engine_(engine) {}                 \
-        std::string shortText(fcitx::InputContext *ic) const override {        \
-            if (auto status = name##Status(engine_, ic)) {                     \
-                return _(status->label);                                       \
-            }                                                                  \
-            return "";                                                         \
-        }                                                                      \
-        std::string longText(fcitx::InputContext *ic) const override {         \
-            if (auto status = name##Status(engine_, ic)) {                     \
-                return _(status->description);                                 \
-            }                                                                  \
-            return "";                                                         \
-        }                                                                      \
-        std::string icon(fcitx::InputContext *ic) const override {             \
-            if (auto status = name##Status(engine_, ic)) {                     \
-                return status->icon;                                           \
-            }                                                                  \
-            return "";                                                         \
-        }                                                                      \
-                                                                               \
-    private:                                                                   \
-        AnthyEngine *engine_;                                                  \
-    };                                                                         \
-    class NAME##SubAction : public fcitx::SimpleAction {                       \
-    public:                                                                    \
-        NAME##SubAction(AnthyEngine *engine, NAME mode)                        \
-            : engine_(engine), mode_(mode) {                                   \
-            setShortText(array[static_cast<int>(mode)].label);                 \
-            setLongText(_(array[static_cast<int>(mode)].description));         \
-            setIcon(array[static_cast<int>(mode)].icon);                       \
-            setCheckable(true);                                                \
-        }                                                                      \
-        bool isChecked(fcitx::InputContext *ic) const override {               \
-            auto state = engine_->state(ic);                                   \
-            return mode_ == state->name();                                     \
-        }                                                                      \
-        void activate(fcitx::InputContext *ic) override {                      \
-            auto state = engine_->state(ic);                                   \
-            state->set##NAME(mode_);                                           \
-        }                                                                      \
-                                                                               \
-    private:                                                                   \
-        AnthyEngine *engine_;                                                  \
-        NAME mode_;                                                            \
-    };
+template <typename ModeType>
+struct AnthyModeTraits;
 
-DEFINE_MENU(InputMode, inputMode, input_mode_status);
-DEFINE_MENU(TypingMethod, typingMethod, typing_method_status);
-DEFINE_MENU(ConversionMode, conversionMode, conversion_mode_status);
-DEFINE_MENU(PeriodCommaStyle, periodCommaStyle, period_style_status);
-DEFINE_MENU(SymbolStyle, symbolStyle, symbol_style_status);
+template <typename ModeType, auto value>
+struct AnthyStatusHelper {
+    static const AnthyStatus *status(ModeType mode) {
+        auto index = static_cast<int>(mode);
+        if (index < 0 || static_cast<size_t>(index) >= std::size(*value)) {
+            return nullptr;
+        }
+        return &(*value)[index];
+    }
+    static const char *icon(ModeType mode) {
+        if (auto *s = status(mode)) {
+            return s->icon;
+        }
+        return "";
+    }
+    static auto label(ModeType mode) {
+        if (auto *s = status(mode)) {
+            return s->label;
+        }
+        return "";
+    }
+    static auto description(ModeType mode) {
+        if (auto *s = status(mode)) {
+            return _(s->description);
+        }
+        return "";
+    }
+};
+
+template <>
+struct AnthyModeTraits<InputMode>
+    : AnthyStatusHelper<InputMode, &input_mode_status> {
+    static auto mode(AnthyState *state) { return state->inputMode(); }
+    static void setMode(AnthyState *state, InputMode mode) {
+        return state->setInputMode(mode);
+    }
+    static const char *icon(InputMode mode) {
+        if (auto *s = status(mode)) {
+            return s->icon;
+        }
+        return "";
+    }
+    static std::string label(InputMode mode) {
+        if (auto *s = status(mode)) {
+            return fcitx::stringutils::concat(s->label, " - ",
+                                              _(s->description));
+        }
+        return "";
+    }
+};
+
+template <>
+struct AnthyModeTraits<TypingMethod>
+    : AnthyStatusHelper<TypingMethod, &typing_method_status> {
+    static auto mode(AnthyState *state) { return state->typingMethod(); }
+    static void setMode(AnthyState *state, TypingMethod mode) {
+        return state->setTypingMethod(mode);
+    }
+    static auto label(TypingMethod mode) {
+        if (auto *s = status(mode)) {
+            return _(s->label);
+        }
+        return "";
+    }
+};
+
+template <>
+struct AnthyModeTraits<ConversionMode>
+    : AnthyStatusHelper<ConversionMode, &conversion_mode_status> {
+    static auto mode(AnthyState *state) { return state->conversionMode(); }
+    static void setMode(AnthyState *state, ConversionMode mode) {
+        return state->setConversionMode(mode);
+    }
+    static std::string label(ConversionMode mode) {
+        if (auto *s = status(mode)) {
+            return fcitx::stringutils::concat(s->label, " - ",
+                                              _(s->description));
+        }
+        return "";
+    }
+};
+
+template <>
+struct AnthyModeTraits<PeriodCommaStyle>
+    : AnthyStatusHelper<PeriodCommaStyle, &period_style_status> {
+    static auto mode(AnthyState *state) { return state->periodCommaStyle(); }
+    static void setMode(AnthyState *state, PeriodCommaStyle mode) {
+        return state->setPeriodCommaStyle(mode);
+    }
+};
+
+template <>
+struct AnthyModeTraits<SymbolStyle>
+    : AnthyStatusHelper<SymbolStyle, &symbol_style_status> {
+    static auto mode(AnthyState *state) { return state->symbolStyle(); }
+    static void setMode(AnthyState *state, SymbolStyle mode) {
+        return state->setSymbolStyle(mode);
+    }
+};
+
+template <typename ModeType>
+class AnthyAction : public fcitx::Action {
+public:
+    AnthyAction(AnthyEngine *engine) : engine_(engine) {}
+    std::string shortText(fcitx::InputContext *ic) const override {
+        auto state = engine_->state(ic);
+        auto mode = AnthyModeTraits<ModeType>::mode(state);
+        return AnthyModeTraits<ModeType>::label(mode);
+    }
+    std::string longText(fcitx::InputContext *ic) const override {
+        auto state = engine_->state(ic);
+        auto mode = AnthyModeTraits<ModeType>::mode(state);
+        return AnthyModeTraits<ModeType>::description(mode);
+    }
+    std::string icon(fcitx::InputContext *ic) const override {
+        auto state = engine_->state(ic);
+        auto mode = AnthyModeTraits<ModeType>::mode(state);
+        return AnthyModeTraits<ModeType>::icon(mode);
+    }
+
+private:
+    AnthyEngine *engine_;
+};
+
+template <typename ModeType>
+class AnthySubAction : public fcitx::SimpleAction {
+public:
+    AnthySubAction(AnthyEngine *engine, ModeType mode)
+        : engine_(engine), mode_(mode) {
+        setShortText(AnthyModeTraits<ModeType>::label(mode));
+        setLongText(AnthyModeTraits<ModeType>::description(mode));
+        setIcon(AnthyModeTraits<ModeType>::icon(mode));
+        setCheckable(true);
+    }
+    bool isChecked(fcitx::InputContext *ic) const override {
+        auto state = engine_->state(ic);
+        return mode_ == AnthyModeTraits<ModeType>::mode(state);
+    }
+    void activate(fcitx::InputContext *ic) override {
+        auto state = engine_->state(ic);
+        AnthyModeTraits<ModeType>::setMode(state, mode_);
+    }
+
+private:
+    AnthyEngine *engine_;
+    const ModeType mode_;
+};
+
+using InputModeAction = AnthyAction<InputMode>;
+using InputModeSubAction = AnthySubAction<InputMode>;
+
+using TypingMethodAction = AnthyAction<TypingMethod>;
+using TypingMethodSubAction = AnthySubAction<TypingMethod>;
+
+using ConversionModeAction = AnthyAction<ConversionMode>;
+using ConversionModeSubAction = AnthySubAction<ConversionMode>;
+
+using PeriodCommaStyleAction = AnthyAction<PeriodCommaStyle>;
+using PeriodCommaStyleSubAction = AnthySubAction<PeriodCommaStyle>;
+
+using SymbolStyleAction = AnthyAction<SymbolStyle>;
+using SymbolStyleSubAction = AnthySubAction<SymbolStyle>;
 
 AnthyEngine::AnthyEngine(fcitx::Instance *instance)
     : instance_(instance), factory_([this](fcitx::InputContext &ic) {
@@ -384,10 +488,8 @@ void AnthyEngine::reloadConfig() {
 
 std::string AnthyEngine::subMode(const fcitx::InputMethodEntry &,
                                  fcitx::InputContext &ic) {
-    if (auto status = inputModeStatus(this, &ic)) {
-        return _(status->description);
-    }
-    return "";
+    auto state = this->state(&ic);
+    return AnthyModeTraits<InputMode>::description(state->inputMode());
 }
 
 void AnthyEngine::activate(const fcitx::InputMethodEntry &,

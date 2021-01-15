@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the fcitx5-anthy package.
 #
 # Translators:
-# Omer I.S. <omeritzicschwartz@gmail.com>, 2020
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-12-10 01:11+0000\n"
+"POT-Creation-Date: 2021-01-15 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2020\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2021\n"
 "Language-Team: Hebrew (https://www.transifex.com/fcitx/teams/12005/he/)\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -31,11 +31,11 @@ msgstr ""
 
 #: src/config.h:625
 msgid "Add Word"
-msgstr ""
+msgstr "הוספת מילה"
 
 #: src/config.h:646
 msgid "Add word"
-msgstr ""
+msgstr "הוספת מילה"
 
 #: src/config.h:207
 msgid "Allow split"
@@ -165,11 +165,11 @@ msgstr ""
 msgid "Convert To Wide Latin"
 msgstr ""
 
-#: src/engine.cpp:65
+#: src/engine.cpp:64
 msgid "Convert as you type (Multi segment)"
 msgstr ""
 
-#: src/engine.cpp:66
+#: src/engine.cpp:65
 msgid "Convert as you type (Single segment)"
 msgstr ""
 
@@ -221,7 +221,7 @@ msgstr ""
 msgid "Dict admin"
 msgstr ""
 
-#: src/engine.cpp:52
+#: src/engine.cpp:51
 msgid "Direct input"
 msgstr ""
 
@@ -253,11 +253,11 @@ msgstr ""
 msgid "Half Katakana mode"
 msgstr ""
 
-#: src/engine.cpp:51
+#: src/engine.cpp:50
 msgid "Half width katakana"
 msgstr ""
 
-#: src/config.h:29 src/engine.cpp:49
+#: src/config.h:29 src/engine.cpp:48
 msgid "Hiragana"
 msgstr ""
 
@@ -305,7 +305,7 @@ msgstr ""
 msgid "Japanese input method based on Anthy"
 msgstr ""
 
-#: src/config.h:66 src/engine.cpp:58
+#: src/config.h:66 src/engine.cpp:57
 msgid "Kana"
 msgstr ""
 
@@ -313,7 +313,7 @@ msgstr ""
 msgid "Kana Table"
 msgstr ""
 
-#: src/config.h:29 src/engine.cpp:50
+#: src/config.h:29 src/engine.cpp:49
 msgid "Katakana"
 msgstr ""
 
@@ -373,7 +373,7 @@ msgstr ""
 msgid "Move caret last"
 msgstr ""
 
-#: src/config.h:59 src/engine.cpp:63
+#: src/config.h:59 src/engine.cpp:62
 msgid "Multi segment"
 msgstr ""
 
@@ -381,7 +381,7 @@ msgstr ""
 msgid "Multi segment immediate"
 msgstr ""
 
-#: src/config.h:67 src/engine.cpp:59
+#: src/config.h:67 src/engine.cpp:58
 msgid "Nicola"
 msgstr ""
 
@@ -449,7 +449,7 @@ msgstr ""
 msgid "Ro key for kana layout"
 msgstr ""
 
-#: src/config.h:66 src/engine.cpp:57
+#: src/config.h:66 src/engine.cpp:56
 msgid "Romaji"
 msgstr ""
 
@@ -513,7 +513,7 @@ msgstr ""
 msgid "Shrink segment"
 msgstr ""
 
-#: src/config.h:60 src/engine.cpp:64
+#: src/config.h:60 src/engine.cpp:63
 msgid "Single segment"
 msgstr ""
 
@@ -533,7 +533,7 @@ msgstr ""
 msgid "Ten key type"
 msgstr ""
 
-#: src/engine.cpp:59
+#: src/engine.cpp:58
 msgid "Thumb shift"
 msgstr ""
 
@@ -585,7 +585,7 @@ msgstr ""
 msgid "Wide bracket and wide slash"
 msgstr ""
 
-#: src/config.h:48 src/engine.cpp:53
+#: src/config.h:48 src/engine.cpp:52
 msgid "Wide latin"
 msgstr ""
 

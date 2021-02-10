@@ -4,18 +4,19 @@
 #
 # Translators:
 # Bon Keun Seo <scobyseo@gmail.com>, 2017
-# JungHee Lee <daemul72@gmail.com>, 2020
+# Bruce Lee <daemul72@gmail.com>, 2021
+# Bruce Lee <daemul72@gmail.com>, 2020
 # heavyuser <heavyuser73@gmail.com>, 2016
 # heavyuser <heavyuser73@gmail.com>, 2016
-# JungHee Lee <daemul72@gmail.com>, 2020
-# JungHee Lee <daemul72@gmail.com>, 2020
+# Bruce Lee <daemul72@gmail.com>, 2020
+# Bruce Lee <daemul72@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-12-26 20:26+0000\n"
-"PO-Revision-Date: 2020-12-26 04:30+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-02-10 20:26+0000\n"
+"PO-Revision-Date: 2021-02-10 14:43+0000\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/fcitx/fcitx/language/ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -374,11 +375,11 @@ msgstr "로마자 모드"
 
 #: src/fcitx-anthy.desc:79
 msgid "Learn on auto commit"
-msgstr "자동 입력 완료 방법 배우기"
+msgstr "자동 입력완료에 대해 배우기"
 
 #: src/fcitx-anthy.desc:74
 msgid "Learn on manual commit"
-msgstr "수동 입력 완료 방법 배우기"
+msgstr "수동 입력완료에 대해 배우기"
 
 #: src/fcitx-anthy.desc:478
 msgid "Left thumb key"

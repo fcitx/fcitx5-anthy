@@ -1,6 +1,7 @@
 [Addon]
 Name=Anthy
 Category=InputMethod
+Version=@PROJECT_VERSION@
 Library=anthy
 Type=SharedLibrary
 OnDemand=True

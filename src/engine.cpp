@@ -492,6 +492,17 @@ std::string AnthyEngine::subMode(const fcitx::InputMethodEntry &,
     return AnthyModeTraits<InputMode>::description(state->inputMode());
 }
 
+std::string AnthyEngine::subModeLabelImpl(const fcitx::InputMethodEntry &,
+                                          fcitx::InputContext &ic) {
+    auto state = this->state(&ic);
+
+    if (auto *s = AnthyStatusHelper<InputMode, &input_mode_status>::status(
+            state->inputMode())) {
+        return s->label;
+    }
+    return "";
+}
+
 void AnthyEngine::activate(const fcitx::InputMethodEntry &,
                            fcitx::InputContextEvent &event) {
     // Setup action.

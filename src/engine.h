@@ -26,7 +26,7 @@ FCITX_DECLARE_LOG_CATEGORY(anthy_logcategory);
 
 #define FCITX_ANTHY_DEBUG() FCITX_LOGC(anthy_logcategory, Debug)
 
-class AnthyEngine : public fcitx::InputMethodEngine {
+class AnthyEngine : public fcitx::InputMethodEngineV2 {
 public:
     AnthyEngine(fcitx::Instance *instance);
     ~AnthyEngine();
@@ -72,6 +72,9 @@ public:
     auto conversionModeAction() { return conversionModeAction_.get(); }
     auto periodStyleAction() { return periodStyleAction_.get(); }
     auto symbolStyleAction() { return symbolStyleAction_.get(); }
+
+    std::string subModeLabelImpl(const fcitx::InputMethodEntry &,
+                                 fcitx::InputContext &) override;
 
 private:
     std::string keyProfileName();

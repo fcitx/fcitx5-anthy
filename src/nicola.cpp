@@ -302,6 +302,11 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
             repeatCharKey_ = fcitx::Key();
         }
     } else if (isThumbKey(key.rawKey())) {
+        if (repeatThumbKey_.isValid() && !(key.rawKey() == repeatThumbKey_)) {
+            stop();
+            prevCharKey_ = prevThumbKey_ = repeatCharKey_ = repeatThumbKey_ =
+                fcitx::Key();
+        }
         if (prevThumbKey_.isValid()) {
             stop();
             emitKeyEvent(prevThumbKey_);
@@ -324,6 +329,11 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
             }
         }
     } else if (isCharKey(key)) {
+        if (repeatCharKey_.isValid() && key.rawKey() != repeatCharKey_) {
+            stop();
+            prevCharKey_ = prevThumbKey_ = repeatCharKey_ = repeatThumbKey_ =
+                fcitx::Key();
+        }
         if (prevCharKey_.isValid()) {
             stop();
             search(prevCharKey_, thumbKeyType(prevThumbKey_), result, raw);
@@ -359,8 +369,7 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
 
     FCITX_ANTHY_DEBUG() << "prev: " << prevCharKey_;
 
-    handleVoicedConsonant(result, pending);
-    return true;
+    return handleVoicedConsonant(result, pending);
 }
 
 bool NicolaConvertor::append(const std::string &str, std::string &result,

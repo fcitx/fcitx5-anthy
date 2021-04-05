@@ -354,6 +354,10 @@ NicolaConvertor::append (const KeyEvent & key,
         }
     }
     else if (is_thumb_key(key)) {
+        if (!m_repeat_thumb_key.empty() && !(key == m_repeat_thumb_key)) {
+            stop();
+            m_prev_char_key = m_prev_thumb_key = m_repeat_char_key = m_repeat_thumb_key = KeyEvent();
+        }
         if (!m_prev_thumb_key.empty()) {
             stop();
             emit_key_event(m_prev_thumb_key);
@@ -379,6 +383,10 @@ NicolaConvertor::append (const KeyEvent & key,
         }
     }
     else if (is_char_key (key)) {
+        if (!m_repeat_char_key.empty() && !(key == m_repeat_char_key)) {
+            stop();
+            m_prev_char_key = m_prev_thumb_key = m_repeat_char_key = m_repeat_thumb_key = KeyEvent();
+        }
         if (!m_prev_char_key.empty()) {
             stop();
             search (m_prev_char_key, get_thumb_key_type(m_prev_thumb_key), result, raw);
@@ -418,8 +426,7 @@ NicolaConvertor::append (const KeyEvent & key,
 
     FcitxLog(DEBUG, "prev:%s %d %d %d", __func__, m_prev_char_key.sym, m_prev_char_key.state, m_prev_char_key.is_release);
 
-    handle_voiced_consonant (result, pending);
-    return true;
+    return handle_voiced_consonant (result, pending);
 }
 
 bool

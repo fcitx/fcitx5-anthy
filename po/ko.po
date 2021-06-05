@@ -6,15 +6,15 @@
 # csslayer <wengxt@gmail.com>, 2017
 # Bon Keun Seo <scobyseo@gmail.com>, 2017
 # heavyuser <heavyuser73@gmail.com>, 2018
-# JungHee Lee <daemul72@gmail.com>, 2020
+# Jung Hee Lee <daemul72@gmail.com>, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-11-02 14:17-0800\n"
+"POT-Creation-Date: 2021-06-05 20:25+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2020\n"
+"Last-Translator: Jung Hee Lee <daemul72@gmail.com>, 2021\n"
 "Language-Team: Korean (https://www.transifex.com/fcitx/teams/12005/ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -43,11 +43,11 @@ msgstr "단어 추가"
 msgid "Allow split"
 msgstr "나누기 허용"
 
-#: src/anthy.conf.in:3 src/anthy-addon.conf.in:3
+#: src/anthy-addon.conf.in.in:3 src/anthy.conf.in:3
 msgid "Anthy"
 msgstr "Anthy"
 
-#: org.fcitx.fcitx5-anthy.metainfo.xml.in:7
+#: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:7
 msgid "Anthy for Fcitx 5"
 msgstr ""
 
@@ -303,7 +303,7 @@ msgstr "인터페이스"
 msgid "Japanese"
 msgstr "일본어"
 
-#: org.fcitx.fcitx5-anthy.metainfo.xml.in:8
+#: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:8
 msgid "Japanese input method based on Anthy"
 msgstr ""
 
@@ -345,11 +345,11 @@ msgstr "로마자 모드"
 
 #: src/config.h:206
 msgid "Learn on auto commit"
-msgstr "자동 입력 완료 방법 배우기"
+msgstr "자동 입력완료에 대해 알아보기"
 
 #: src/config.h:204
 msgid "Learn on manual commit"
-msgstr "수동 입력 완료 방법 배우기"
+msgstr "수동 입력완료에 대해 알아보기"
 
 #: src/config.h:631
 msgid "Left thumb key"

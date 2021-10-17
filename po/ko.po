@@ -4,17 +4,17 @@
 #
 # Translators:
 # csslayer <wengxt@gmail.com>, 2017
-# Bon Keun Seo <scobyseo@gmail.com>, 2017
 # heavyuser <heavyuser73@gmail.com>, 2018
-# Jung Hee Lee <daemul72@gmail.com>, 2021
+# 이정희 <daemul72@gmail.com>, 2021
+# Bon Keun Seo <scobyseo@gmail.com>, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2021-06-05 20:25+0000\n"
+"POT-Creation-Date: 2021-10-17 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: Jung Hee Lee <daemul72@gmail.com>, 2021\n"
+"Last-Translator: Bon Keun Seo <scobyseo@gmail.com>, 2021\n"
 "Language-Team: Korean (https://www.transifex.com/fcitx/teams/12005/ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr "Anthy"
 
 #: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:7
 msgid "Anthy for Fcitx 5"
-msgstr ""
+msgstr "Fcitx 5를 위한 Anthy"
 
 #: src/config.h:236 src/config.h:251
 msgid "Atok"
@@ -305,7 +305,7 @@ msgstr "일본어"
 
 #: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:8
 msgid "Japanese input method based on Anthy"
-msgstr ""
+msgstr "Anthy 기반 일본어 입력기"
 
 #: src/config.h:66 src/engine.cpp:57
 msgid "Kana"

@@ -416,6 +416,7 @@ public:
 
     void select(fcitx::InputContext *) const override {
         anthy_->actionSelectCandidate(idx_);
+        anthy_->updateUI();
     }
 
 private:

@@ -14,7 +14,7 @@
 
 namespace fcitx {
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(CandidateLayoutHint, N_("Not Set"),
-                                 N_("Vertial"), N_("Horizontal"));
+                                 N_("Vertical"), N_("Horizontal"));
 }
 
 enum class InputMode {
@@ -159,9 +159,10 @@ FCITX_CONFIGURATION(
     AnthyGeneralConfig,
     fcitx::Option<int, fcitx::IntConstrain> pageSize{
         this, "PageSize", _("Page size"), 10, fcitx::IntConstrain(3, 10)};
-    fcitx::Option<fcitx::CandidateLayoutHint> candidateLayout{
-        this, "CandidateLayout", _("Candidate List Layout"),
-        fcitx::CandidateLayoutHint::Vertical};
+    fcitx::OptionWithAnnotation<fcitx::CandidateLayoutHint,
+                                fcitx::CandidateLayoutHintI18NAnnotation>
+        candidateLayout{this, "CandidateLayout", _("Candidate List Layout"),
+                        fcitx::CandidateLayoutHint::Vertical};
     fcitx::Option<int, fcitx::IntConstrain> nTriggersToShowCandWin{
         this, "NTriggersToShowCandWin",
         _("Number candidate of Triggers To Show Candidate Window"), 2,

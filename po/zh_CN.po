@@ -4,15 +4,15 @@
 #
 # Translators:
 # Mingcong Bai <jeffbai@aosc.xyz>, 2018
-# csslayer <wengxt@gmail.com>, 2020
+# csslayer <wengxt@gmail.com>, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2021-11-25 20:24+0000\n"
+"POT-Creation-Date: 2021-12-04 15:32+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: csslayer <wengxt@gmail.com>, 2020\n"
+"Last-Translator: csslayer <wengxt@gmail.com>, 2021\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/fcitx/teams/12005/"
 "zh_CN/)\n"
 "Language: zh_CN\n"
@@ -564,7 +564,7 @@ msgstr "为符号使用半角字符"
 
 #: src/config.h:17
 msgid "Vertical"
-msgstr ""
+msgstr "竖排"
 
 #: src/config.h:238 src/config.h:254
 msgid "Vje Delta"

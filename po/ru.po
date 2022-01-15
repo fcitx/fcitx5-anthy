@@ -4,14 +4,15 @@
 #
 # Translators:
 # csslayer <wengxt@gmail.com>, 2017
+# Dmitry <dmitrydmitry761@gmail.com>, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2021-11-25 20:24+0000\n"
+"POT-Creation-Date: 2022-01-15 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: csslayer <wengxt@gmail.com>, 2017\n"
+"Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/fcitx/teams/12005/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +49,7 @@ msgstr "Anthy"
 
 #: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:7
 msgid "Anthy for Fcitx 5"
-msgstr ""
+msgstr "Anthy для Fcitx 5"
 
 #: src/config.h:237 src/config.h:252
 msgid "Atok"
@@ -120,7 +121,7 @@ msgstr "Ввести обратное обучение"
 
 #: src/config.h:517
 msgid "Commit first segement reverse learn"
-msgstr ""
+msgstr "Зафиксировать первый сегмент обратного обучения"
 
 #: src/config.h:505
 msgid "Commit first segment"
@@ -128,7 +129,7 @@ msgstr "Ввести первый сегмент"
 
 #: src/config.h:523
 msgid "Commit selected segement reverse learn"
-msgstr ""
+msgstr "Зафиксировать выбранный сегмент обратного обучения"
 
 #: src/config.h:511
 msgid "Commit selected segment"
@@ -228,7 +229,7 @@ msgstr "Прямой ввод"
 
 #: src/config.h:177
 msgid "Entering the pseudo ASCII input mode with capital letters"
-msgstr ""
+msgstr "Вход в режим ввода псевдо-ASCII с заглавными буквами"
 
 #: src/config.h:499
 msgid "Expand segment"
@@ -236,7 +237,7 @@ msgstr "Расширить сегмент"
 
 #: src/config.h:71 src/config.h:80
 msgid "Follow mode"
-msgstr ""
+msgstr "Режим следования"
 
 #: src/config.h:653
 msgid "General"
@@ -244,7 +245,7 @@ msgstr "Основной"
 
 #: src/config.h:79
 msgid "Half"
-msgstr ""
+msgstr "Половина"
 
 #: src/config.h:30
 msgid "Half Katakana"
@@ -284,7 +285,7 @@ msgstr "Вставить половинный пробел"
 
 #: src/config.h:174
 msgid "Insert a blank with a blank key"
-msgstr ""
+msgstr "Вставьте заготовку с пустым ключом"
 
 #: src/config.h:373
 msgid "Insert space"
@@ -304,7 +305,7 @@ msgstr "Японский"
 
 #: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:8
 msgid "Japanese input method based on Anthy"
-msgstr ""
+msgstr "Японский метод ввода на основе Anthy"
 
 #: src/config.h:66 src/engine.cpp:57
 msgid "Kana"
@@ -328,7 +329,7 @@ msgstr "Клавиша"
 
 #: src/config.h:657
 msgid "Key Profile"
-msgstr ""
+msgstr "Ключевой профиль"
 
 #: src/config.h:289
 msgid "Key binding profile"
@@ -360,11 +361,11 @@ msgstr "MS IME"
 
 #: src/config.h:463
 msgid "Move caret backward"
-msgstr ""
+msgstr "Переместить каретку назад"
 
 #: src/config.h:445
 msgid "Move caret first"
-msgstr ""
+msgstr "Сначала переместите каретку"
 
 #: src/config.h:457
 msgid "Move caret forward"
@@ -408,7 +409,7 @@ msgstr "Nicola-J"
 
 #: src/config.h:16
 msgid "Not Set"
-msgstr ""
+msgstr "Не задано"
 
 #: src/config.h:168
 msgid "Number candidate of Triggers To Show Candidate Window"
@@ -432,7 +433,7 @@ msgstr "Предсказать"
 
 #: src/config.h:171
 msgid "Predict on input"
-msgstr ""
+msgstr "Предсказывать при вводе"
 
 #: src/config.h:267
 msgid "Quick Kana"
@@ -488,7 +489,7 @@ msgstr "Выбрать предыдущее слово-кандидат"
 
 #: src/config.h:487
 msgid "Select prev segment"
-msgstr ""
+msgstr "Выбрать предыдущий сегмент"
 
 #: src/config.h:213 src/config.h:226
 msgid "Show candidates label"
@@ -524,7 +525,7 @@ msgstr "Одиночный сегмент немедленно"
 
 #: src/config.h:200
 msgid "Space type"
-msgstr ""
+msgstr "Тип пространства"
 
 #: src/config.h:197
 msgid "Symbol style"
@@ -532,7 +533,7 @@ msgstr "Стиль символа"
 
 #: src/config.h:202
 msgid "Ten key type"
-msgstr ""
+msgstr "Десять ключевых типов"
 
 #: src/engine.cpp:58
 msgid "Thumb shift"
@@ -556,15 +557,15 @@ msgstr "Использовать прямую клавишу для предск
 
 #: src/config.h:182
 msgid "Use half-width characters for numbers"
-msgstr ""
+msgstr "Используйте полуширинный режим для ввода чисел"
 
 #: src/config.h:179
 msgid "Use half-width characters for symbols"
-msgstr ""
+msgstr "Используйте полуширинный  режим для ввода символов"
 
 #: src/config.h:17
 msgid "Vertical"
-msgstr ""
+msgstr "Вертикально"
 
 #: src/config.h:238 src/config.h:254
 msgid "Vje Delta"
@@ -576,7 +577,7 @@ msgstr "WNN"
 
 #: src/config.h:71 src/config.h:79
 msgid "Wide"
-msgstr ""
+msgstr "Широко"
 
 #: src/config.h:31
 msgid "Wide Latin"

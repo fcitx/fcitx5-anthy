@@ -5,14 +5,15 @@
 # Translators:
 # csslayer <wengxt@gmail.com>, 2017
 # mar well <m.wellendorf@gmx.de>, 2018
+# Ettore Atalan <atalanttore@googlemail.com>, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2021-11-25 20:24+0000\n"
+"POT-Creation-Date: 2022-01-15 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: mar well <m.wellendorf@gmx.de>, 2018\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2022\n"
 "Language-Team: German (https://www.transifex.com/fcitx/teams/12005/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -235,7 +236,7 @@ msgstr "Segment vergrößern"
 
 #: src/config.h:71 src/config.h:80
 msgid "Follow mode"
-msgstr ""
+msgstr "Folgemodus"
 
 #: src/config.h:653
 msgid "General"
@@ -327,7 +328,7 @@ msgstr "Taste"
 
 #: src/config.h:657
 msgid "Key Profile"
-msgstr ""
+msgstr "Tastenprofil"
 
 #: src/config.h:289
 msgid "Key binding profile"
@@ -359,7 +360,7 @@ msgstr "MS IME"
 
 #: src/config.h:463
 msgid "Move caret backward"
-msgstr ""
+msgstr "Eingabemarke nach hinten"
 
 #: src/config.h:445
 msgid "Move caret first"
@@ -563,7 +564,7 @@ msgstr "Halbbreite Zeichen für Symbole benutzen"
 
 #: src/config.h:17
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikal"
 
 #: src/config.h:238 src/config.h:254
 msgid "Vje Delta"

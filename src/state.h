@@ -134,6 +134,7 @@ public:
     bool actionSelectCandidate(unsigned int i);
     void resetCursor(int cursor);
     void autoCommit(fcitx::InputContextEvent &event);
+    void selectCandidateNoDirect(unsigned int item);
 
 private:
     /* processing key event */
@@ -145,13 +146,12 @@ private:
     /* utility */
     void setPreedition();
     void setAuxString();
-    int setLookupTable();
+    std::shared_ptr<fcitx::CandidateList> setLookupTable();
     void unsetLookupTable();
     void installProperties();
     void setPeriodStyle(PeriodStyle period, CommaStyle comma);
     void setSymbolStyle(BracketStyle bracket, SlashStyle slash);
     bool isSelectingCandidates();
-    void selectCandidateNoDirect(unsigned int item);
     bool convertKana(CandidateType type);
 
     bool action_commit(bool learn, bool do_real_commit = true);

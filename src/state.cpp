@@ -241,14 +241,6 @@ void AnthyState::selectCandidateNoDirect(unsigned int item) {
     setPreedition();
 
     setLookupTable();
-    if (auto candList = ic_->inputPanel().candidateList()) {
-        if (cursorPos_ >= 0 && cursorPos_ < candList->size()) {
-            auto commonCandList =
-                std::static_pointer_cast<fcitx::CommonCandidateList>(candList);
-            commonCandList->setGlobalCursorIndex(cursorPos_);
-            commonCandList->setPage(cursorPos_ / *config().general->pageSize);
-        }
-    }
 
     // update aux string
     if (*config().general->showCandidatesLabel)
@@ -317,7 +309,7 @@ void AnthyState::setAuxString() {
     }
 }
 
-int AnthyState::setLookupTable() {
+std::shared_ptr<fcitx::CandidateList> AnthyState::setLookupTable() {
 
     // if (!is_selecting_candidates ()) {
     if (isRealtimeConversion() && preedit_.selectedSegment() < 0) {
@@ -332,7 +324,7 @@ int AnthyState::setLookupTable() {
     auto candList = preedit_.candidates();
 
     if (candList->size() == 0) {
-        return 0;
+        return nullptr;
     }
 
     // update preedit
@@ -343,23 +335,30 @@ int AnthyState::setLookupTable() {
         *config().general->nTriggersToShowCandWin > 0 &&
         (int)nConvKeyPressed_ >= *config().general->nTriggersToShowCandWin;
 
-    int len = candList->totalSize();
-
+    bool setCandidateList = true;
     if (!lookupTableVisible_ && (preedit_.isPredicting() || beyond_threshold)) {
         lookupTableVisible_ = true;
         nConvKeyPressed_ = 0;
+    } else if (!lookupTableVisible_) {
+        setCandidateList = false;
+    }
+
+    if (cursorPos_ >= 0 && cursorPos_ < candList->size()) {
+        candList->setGlobalCursorIndex(cursorPos_);
+        candList->setPage(cursorPos_ / *config().general->pageSize);
+    }
+    uiUpdate_ = true;
+
+    if (setCandidateList) {
+        ic_->inputPanel().setCandidateList(std::move(candList));
 
         if (*config().general->showCandidatesLabel) {
             setAuxString();
         }
-    } else if (!lookupTableVisible_) {
-        candList.reset();
+        return ic_->inputPanel().candidateList();
     }
-
-    ic_->inputPanel().setCandidateList(std::move(candList));
-    uiUpdate_ = true;
-
-    return len;
+    ic_->inputPanel().setCandidateList(nullptr);
+    return std::shared_ptr<fcitx::CandidateList>(candList.release());
 }
 
 void AnthyState::unsetLookupTable() {
@@ -1003,15 +1002,11 @@ bool AnthyState::action_select_next_candidate() {
         return false;
 
     // if (!is_selecting_candidates ())
-    int end = setLookupTable();
-
-    if (cursorPos_ >= end - 1)
-        cursorPos_ = 0;
-    else
-        cursorPos_++;
+    auto candList = setLookupTable();
     nConvKeyPressed_++;
-
-    selectCandidateNoDirect(cursorPos_);
+    if (candList) {
+        candList->toCursorMovable()->nextCandidate();
+    }
     return true;
 }
 
@@ -1019,26 +1014,11 @@ bool AnthyState::action_select_prev_candidate() {
     if (!preedit_.isConverting())
         return false;
     // if (!is_selecting_candidates ())
-    int end = setLookupTable();
-
-    if (end < 0)
-        end = 0;
-    if (cursorPos_ == 0)
-        cursorPos_ = end - 1;
-    else
-        cursorPos_--;
+    auto candList = setLookupTable();
     nConvKeyPressed_++;
-
-    if (auto candList = ic_->inputPanel().candidateList()) {
-        if (candList->size() > cursorPos_ && cursorPos_ >= 0) {
-            auto commonCandList =
-                std::static_pointer_cast<fcitx::CommonCandidateList>(candList);
-            commonCandList->setGlobalCursorIndex(cursorPos_);
-            commonCandList->setPage(cursorPos_ / *config().general->pageSize);
-        }
+    if (candList) {
+        candList->toCursorMovable()->prevCandidate();
     }
-
-    selectCandidateNoDirect(cursorPos_);
 
     return true;
 }
@@ -1078,9 +1058,9 @@ bool AnthyState::action_candidates_page_up() {
     if (!lookupTableVisible_)
         return false;
 
-    if (cursorPos_ - *config().general->pageSize >= 0) {
-        cursorPos_ -= *config().general->pageSize;
-        selectCandidateNoDirect(cursorPos_);
+    if (auto pageable = ic_->inputPanel().candidateList()->toPageable();
+        pageable && pageable->hasPrev()) {
+        pageable->prev();
     }
 
     return true;
@@ -1094,11 +1074,9 @@ bool AnthyState::action_candidates_page_down() {
     if (!lookupTableVisible_)
         return false;
 
-    int end = ic_->inputPanel().candidateList()->toBulk()->totalSize();
-
-    if (cursorPos_ + *config().general->pageSize < end) {
-        cursorPos_ += *config().general->pageSize;
-        selectCandidateNoDirect(cursorPos_);
+    if (auto pageable = ic_->inputPanel().candidateList()->toPageable();
+        pageable && pageable->hasNext()) {
+        pageable->next();
     }
 
     return true;

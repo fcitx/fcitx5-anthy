@@ -424,15 +424,47 @@ private:
     int idx_;
 };
 
+class AnthyCandidateList : public fcitx::CommonCandidateList {
+public:
+    AnthyCandidateList(AnthyState &anthy) : anthy_(anthy) {}
+
+    void prev() override {
+        fcitx::CommonCandidateList::prev();
+        syncCursor();
+    }
+    void next() override {
+        fcitx::CommonCandidateList::next();
+        syncCursor();
+    }
+    void prevCandidate() override {
+        fcitx::CommonCandidateList::prevCandidate();
+        syncCursor();
+    }
+    void nextCandidate() override {
+        fcitx::CommonCandidateList::nextCandidate();
+        syncCursor();
+    }
+
+private:
+    void syncCursor() {
+        if (int index = globalCursorIndex(); index >= 0) {
+            anthy_.selectCandidateNoDirect(index);
+        }
+    }
+    AnthyState &anthy_;
+};
+
 //
 // candidates for a segment or prediction
 //
 std::unique_ptr<fcitx::CommonCandidateList>
 Conversion::candidates(int segment_id) {
-    auto table = std::make_unique<fcitx::CommonCandidateList>();
+    auto table = std::make_unique<AnthyCandidateList>(state_);
     table->setLayoutHint(*state_.config().general->candidateLayout);
     auto pageSize = *state_.config().general->pageSize;
     table->setPageSize(*state_.config().general->pageSize);
+    table->setCursorPositionAfterPaging(
+        fcitx::CursorPositionAfterPaging::SameAsLast);
     int selected = selectedCandidate();
 
     if (isPredicting()) {

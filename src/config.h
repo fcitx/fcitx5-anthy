@@ -407,7 +407,8 @@ FCITX_CONFIGURATION(
         this,
         "CommitKey",
         _("Commit"),
-        {fcitx::Key(FcitxKey_Return), fcitx::Key("Control+J")},
+        {fcitx::Key(FcitxKey_Return), fcitx::Key(FcitxKey_KP_Enter),
+         fcitx::Key("Control+J")},
         fcitx::KeyListConstrain(fcitx::KeyConstrainFlag::AllowModifierLess)};
     fcitx::KeyListOption hk_COMMIT_REVERSE_LEARN{
         this,
@@ -419,7 +420,8 @@ FCITX_CONFIGURATION(
         this,
         "ConvertKey",
         _("Convert"),
-        {fcitx::Key(FcitxKey_space), fcitx::Key(FcitxKey_Henkan)},
+        {fcitx::Key(FcitxKey_space), fcitx::Key(FcitxKey_KP_Space),
+         fcitx::Key(FcitxKey_Henkan), fcitx::Key(FcitxKey_Down)},
         fcitx::KeyListConstrain(fcitx::KeyConstrainFlag::AllowModifierLess)};
     fcitx::KeyListOption hk_PREDICT{
         this,
@@ -540,7 +542,8 @@ FCITX_CONFIGURATION(
         "SelectNextCandidateKey",
         _("Select next candidate"),
         {fcitx::Key(FcitxKey_space), fcitx::Key(FcitxKey_Tab),
-         fcitx::Key(FcitxKey_Henkan), fcitx::Key(FcitxKey_Down)},
+         fcitx::Key(FcitxKey_Henkan), fcitx::Key(FcitxKey_Down),
+         fcitx::Key(FcitxKey_KP_Space)},
         fcitx::KeyListConstrain(fcitx::KeyConstrainFlag::AllowModifierLess)};
     fcitx::KeyListOption hk_SELECT_PREV_CANDIDATE{
         this,

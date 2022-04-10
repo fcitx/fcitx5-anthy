@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2022-04-09 20:24+0000\n"
+"POT-Creation-Date: 2022-04-10 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (https://www.transifex.com/fcitx/teams/12005/ko/)\n"
@@ -29,7 +29,7 @@ msgstr "(%d / %d)"
 
 #: src/config.h:265
 msgid "101kana"
-msgstr "101가나"
+msgstr "101카나"
 
 #: src/config.h:629
 msgid "Add Word"
@@ -49,7 +49,7 @@ msgstr "Anthy"
 
 #: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:7
 msgid "Anthy for Fcitx 5"
-msgstr "Fcitx 5를 위한 Anthy"
+msgstr "Fcitx5용 Anthy"
 
 #: src/config.h:237 src/config.h:252
 msgid "Atok"
@@ -97,7 +97,7 @@ msgstr "입력 모드 순환"
 
 #: src/config.h:319
 msgid "Circle kana mode"
-msgstr "가나 모드 순환"
+msgstr "카나 모드 순환"
 
 #: src/config.h:325
 msgid "Circle latin and hiragana mode"
@@ -149,7 +149,7 @@ msgstr "반각으로 변환"
 
 #: src/config.h:599
 msgid "Convert To Half Katakana"
-msgstr "반각 가타가나로 변환"
+msgstr "반각 가타카나로 변환"
 
 #: src/config.h:581
 msgid "Convert To Hiragana"
@@ -157,7 +157,7 @@ msgstr "히라가나로 변환"
 
 #: src/config.h:587
 msgid "Convert To Katakana"
-msgstr "가타가나로 변환"
+msgstr "가타카나로 변환"
 
 #: src/config.h:611
 msgid "Convert To Latin"
@@ -249,15 +249,15 @@ msgstr "반각"
 
 #: src/config.h:30
 msgid "Half Katakana"
-msgstr "반각 가타가나"
+msgstr "반각 가타카나"
 
 #: src/config.h:361
 msgid "Half Katakana mode"
-msgstr "반각 가타가나 모드"
+msgstr "반각 가타카나 모드"
 
 #: src/engine.cpp:50
 msgid "Half width katakana"
-msgstr "반각 가타가나"
+msgstr "반각 가타카나"
 
 #: src/config.h:29 src/engine.cpp:48
 msgid "Hiragana"
@@ -277,11 +277,11 @@ msgstr "입력 모드"
 
 #: src/config.h:379
 msgid "Insert Alternative space"
-msgstr "대체 공백 입력"
+msgstr "대체 공백 삽입"
 
 #: src/config.h:385
 msgid "Insert Half Space"
-msgstr "반각 공백 입력"
+msgstr "반각 공백 삽입"
 
 #: src/config.h:174
 msgid "Insert a blank with a blank key"
@@ -289,11 +289,11 @@ msgstr "공백 키로 공백 삽입"
 
 #: src/config.h:373
 msgid "Insert space"
-msgstr "공백 입력"
+msgstr "공백 삽입"
 
 #: src/config.h:391
 msgid "Insert wide space"
-msgstr "전각 공백 입력"
+msgstr "전각 공백 삽입"
 
 #: src/config.h:658
 msgid "Interface"
@@ -313,15 +313,15 @@ msgstr "카나"
 
 #: src/config.h:295
 msgid "Kana Table"
-msgstr "가나 표"
+msgstr "카나 표"
 
 #: src/config.h:29 src/engine.cpp:49
 msgid "Katakana"
-msgstr "가타가나"
+msgstr "가타카나"
 
 #: src/config.h:355
 msgid "Katakana mode"
-msgstr "가타가나 모드"
+msgstr "가타카나 모드"
 
 #: src/config.h:661
 msgid "Key"
@@ -413,7 +413,7 @@ msgstr "지정되지 않음"
 
 #: src/config.h:168
 msgid "Number candidate of Triggers To Show Candidate Window"
-msgstr "후보 창을 표시할 트리거 후보 수"
+msgstr "후보 단어 창의 표시를 트리거한 키 입력 수"
 
 #: src/config.h:282
 msgid "Oasys100J"
@@ -437,7 +437,7 @@ msgstr "입력예측 사용"
 
 #: src/config.h:267
 msgid "Quick Kana"
-msgstr "빠른 가나"
+msgstr "빠른 카나"
 
 #: src/config.h:617
 msgid "Reconvert"
@@ -449,7 +449,7 @@ msgstr "오른쪽 엄지 키"
 
 #: src/config.h:645
 msgid "Ro key for kana layout"
-msgstr "가나 자판용 Ro 키"
+msgstr "카나 자판용 Ro 키"
 
 #: src/config.h:66 src/engine.cpp:56
 msgid "Romaji"

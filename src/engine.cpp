@@ -546,12 +546,14 @@ void AnthyEngine::deactivate(const fcitx::InputMethodEntry &,
                              fcitx::InputContextEvent &event) {
     auto anthy = event.inputContext()->propertyFor(&factory_);
     anthy->autoCommit(event);
+    anthy->updateUI();
 }
 
 void AnthyEngine::reset(const fcitx::InputMethodEntry &,
                         fcitx::InputContextEvent &event) {
     auto anthy = event.inputContext()->propertyFor(&factory_);
     anthy->reset();
+    anthy->updateUI();
 }
 
 FCITX_ADDON_FACTORY(AnthyFactory);

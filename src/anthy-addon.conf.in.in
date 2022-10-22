@@ -2,7 +2,7 @@
 Name=Anthy
 Category=InputMethod
 Version=@PROJECT_VERSION@
-Library=anthy
+Library=libanthy
 Type=SharedLibrary
 OnDemand=True
 Configurable=True

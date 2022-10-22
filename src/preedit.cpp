@@ -29,8 +29,6 @@ unsigned int Preedit::length() {
         return conversion_.length();
     else
         return reading_.length();
-
-    return 0;
 }
 
 /*
@@ -41,8 +39,6 @@ unsigned int Preedit::utf8Length() {
         return conversion_.utf8Length();
     else
         return reading_.utf8Length();
-
-    return 0;
 }
 
 std::string Preedit::string() {
@@ -69,8 +65,6 @@ std::string Preedit::string() {
             return reading_.getByChar();
         }
     }
-
-    return std::string();
 }
 
 void Preedit::updatePreedit() {
@@ -80,8 +74,10 @@ void Preedit::updatePreedit() {
         fcitx::Text preedit;
 
         std::string s = string();
-        if (!s.empty())
+        if (!s.empty()) {
             preedit.append(s);
+            preedit.setCursor(static_cast<int>(caretPos()));
+        }
 
         if (state_.supportClientPreedit()) {
             state_.inputContext()->inputPanel().setClientPreedit(preedit);

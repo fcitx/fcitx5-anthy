@@ -457,13 +457,13 @@ FCITX_CONFIGURATION(
         this,
         "MoveCaretForwardKey",
         _("Move caret forward"),
-        {fcitx::Key("Control+F"), fcitx::Key(FcitxKey_Left)},
+        {fcitx::Key("Control+F"), fcitx::Key(FcitxKey_Right)},
         fcitx::KeyListConstrain(fcitx::KeyConstrainFlag::AllowModifierLess)};
     fcitx::KeyListOption hk_MOVE_CARET_BACKWARD{
         this,
         "MoveCaretBackwardKey",
         _("Move caret backward"),
-        {fcitx::Key("Control+B"), fcitx::Key(FcitxKey_Right)},
+        {fcitx::Key("Control+B"), fcitx::Key(FcitxKey_Left)},
         fcitx::KeyListConstrain(fcitx::KeyConstrainFlag::AllowModifierLess)};
     fcitx::KeyListOption hk_SELECT_FIRST_SEGMENT{
         this,

@@ -8,7 +8,7 @@
 #include "engine.h"
 #include "action.h"
 #include "state.h"
-#include <errno.h>
+#include <cerrno>
 #include <fcitx-config/iniparser.h>
 #include <fcitx-utils/log.h>
 #include <fcitx-utils/standardpath.h>
@@ -17,12 +17,12 @@
 #include <fcitx/inputcontext.h>
 #include <fcitx/inputcontextmanager.h>
 #include <fcitx/userinterfacemanager.h>
-#include <stdio.h>
+#include <cstdio>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
-FCITX_DEFINE_LOG_CATEGORY(anthy_logcategory, "anthy");
+FCITX_DEFINE_LOG_CATEGORY(anthy_logcategory, "anthy")
 
 class AnthyFactory : public fcitx::AddonFactory {
     fcitx::AddonInstance *create(fcitx::AddonManager *manager) override {
@@ -198,7 +198,7 @@ struct AnthyModeTraits<SymbolStyle>
 template <typename ModeType>
 class AnthyAction : public fcitx::Action {
 public:
-    AnthyAction(AnthyEngine *engine) : engine_(engine) {}
+    explicit AnthyAction(AnthyEngine *engine) : engine_(engine) {}
     std::string shortText(fcitx::InputContext *ic) const override {
         auto state = engine_->state(ic);
         auto mode = AnthyModeTraits<ModeType>::mode(state);
@@ -300,49 +300,49 @@ AnthyEngine::AnthyEngine(fcitx::Instance *instance)
     type##Menu_.addAction(subModeActions_.back().get());
 
     _ADD_ACTION(InputMode::HIRAGANA, InputMode, inputMode,
-                "anthy-input-mode-hiragana");
+                "anthy-input-mode-hiragana")
     _ADD_ACTION(InputMode::KATAKANA, InputMode, inputMode,
-                "anthy-input-mode-katakana");
+                "anthy-input-mode-katakana")
     _ADD_ACTION(InputMode::HALF_KATAKANA, InputMode, inputMode,
-                "anthy-input-mode-half-katakana");
+                "anthy-input-mode-half-katakana")
     _ADD_ACTION(InputMode::LATIN, InputMode, inputMode,
-                "anthy-input-mode-latin");
+                "anthy-input-mode-latin")
     _ADD_ACTION(InputMode::WIDE_LATIN, InputMode, inputMode,
-                "anthy-input-mode-wide-latin");
+                "anthy-input-mode-wide-latin")
 
     _ADD_ACTION(TypingMethod::ROMAJI, TypingMethod, typingMethod,
-                "anthy-typing-method-romaji");
+                "anthy-typing-method-romaji")
     _ADD_ACTION(TypingMethod::KANA, TypingMethod, typingMethod,
-                "anthy-typing-method-kana");
+                "anthy-typing-method-kana")
     _ADD_ACTION(TypingMethod::NICOLA, TypingMethod, typingMethod,
-                "anthy-typing-method-nicola");
+                "anthy-typing-method-nicola")
 
     _ADD_ACTION(ConversionMode::MULTI_SEGMENT, ConversionMode, conversionMode,
-                "anthy-conversion-mode-multi");
+                "anthy-conversion-mode-multi")
     _ADD_ACTION(ConversionMode::SINGLE_SEGMENT, ConversionMode, conversionMode,
-                "anthy-conversion-mode-single");
+                "anthy-conversion-mode-single")
     _ADD_ACTION(ConversionMode::MULTI_SEGMENT_IMMEDIATE, ConversionMode,
-                conversionMode, "anthy-conversion-mode-multi-imm");
+                conversionMode, "anthy-conversion-mode-multi-imm")
     _ADD_ACTION(ConversionMode::SINGLE_SEGMENT_IMMEDIATE, ConversionMode,
-                conversionMode, "anthy-conversion-mode-single-imm");
+                conversionMode, "anthy-conversion-mode-single-imm")
 
     _ADD_ACTION(PeriodCommaStyle::WIDELATIN, PeriodCommaStyle, periodStyle,
-                "anthy-period-widelatin");
+                "anthy-period-widelatin")
     _ADD_ACTION(PeriodCommaStyle::LATIN, PeriodCommaStyle, periodStyle,
-                "anthy-period-latin");
+                "anthy-period-latin")
     _ADD_ACTION(PeriodCommaStyle::JAPANESE, PeriodCommaStyle, periodStyle,
-                "anthy-period-japanese");
+                "anthy-period-japanese")
     _ADD_ACTION(PeriodCommaStyle::WIDELATIN_JAPANESE, PeriodCommaStyle,
-                periodStyle, "anthy-period-widelatin-japanese");
+                periodStyle, "anthy-period-widelatin-japanese")
 
     _ADD_ACTION(SymbolStyle::JAPANESE, SymbolStyle, symbolStyle,
-                "anthy-symbol-japanese");
+                "anthy-symbol-japanese")
     _ADD_ACTION(SymbolStyle::WIDEBRACKET_WIDESLASH, SymbolStyle, symbolStyle,
-                "anthy-symbol-widebracket-wideslash");
+                "anthy-symbol-widebracket-wideslash")
     _ADD_ACTION(SymbolStyle::CORNERBRACKET_MIDDLEDOT, SymbolStyle, symbolStyle,
-                "anthy-symbol-cornerbracket-middledot");
+                "anthy-symbol-cornerbracket-middledot")
     _ADD_ACTION(SymbolStyle::CORNERBRACKET_WIDESLASH, SymbolStyle, symbolStyle,
-                "anthy-symbol-cornerbracket-wideslash");
+                "anthy-symbol-cornerbracket-wideslash")
 
     instance_->inputContextManager().registerProperty("anthyState", &factory_);
 
@@ -497,7 +497,7 @@ void AnthyEngine::reloadConfig() {
                 state->configure();
                 return true;
             });
-    };
+    }
 }
 
 std::string AnthyEngine::subMode(const fcitx::InputMethodEntry &,
@@ -556,4 +556,4 @@ void AnthyEngine::reset(const fcitx::InputMethodEntry &,
     anthy->updateUI();
 }
 
-FCITX_ADDON_FACTORY(AnthyFactory);
+FCITX_ADDON_FACTORY(AnthyFactory)

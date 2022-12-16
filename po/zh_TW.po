@@ -5,14 +5,15 @@
 # Translators:
 # csslayer <wengxt@gmail.com>, 2017
 # 黃柏諺 <s8321414@gmail.com>, 2017
+# Neko ◣ 0xFF, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2021-11-25 20:24+0000\n"
+"POT-Creation-Date: 2022-12-16 20:25+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2017\n"
+"Last-Translator: Neko ◣ 0xFF, 2022\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/fcitx/teams/12005/"
 "zh_TW/)\n"
 "Language: zh_TW\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/state.cpp:315
+#: src/state.cpp:307
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -30,11 +31,11 @@ msgstr "(%d / %d)"
 msgid "101kana"
 msgstr "101kana"
 
-#: src/config.h:626
+#: src/config.h:629
 msgid "Add Word"
 msgstr "新增單字"
 
-#: src/config.h:647
+#: src/config.h:650
 msgid "Add word"
 msgstr "新增單字"
 
@@ -48,7 +49,7 @@ msgstr "Anthy"
 
 #: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:7
 msgid "Anthy for Fcitx 5"
-msgstr ""
+msgstr "Fcitx 5 的 Anthy 支持"
 
 #: src/config.h:237 src/config.h:252
 msgid "Atok"
@@ -62,11 +63,11 @@ msgstr "Azik"
 msgid "BackSpace"
 msgstr "倒退鍵"
 
-#: src/config.h:433
+#: src/config.h:435
 msgid "Cancel"
 msgstr "取消"
 
-#: src/config.h:439
+#: src/config.h:441
 msgid "Cancel all"
 msgstr "取消全部"
 
@@ -78,11 +79,11 @@ msgstr "取消偽 ascii 模式"
 msgid "Candidate List Layout"
 msgstr "候選詞清單配置"
 
-#: src/config.h:560
+#: src/config.h:563
 msgid "Candidates Page Down"
 msgstr "候選字下一頁"
 
-#: src/config.h:554
+#: src/config.h:557
 msgid "Candidates Page Up"
 msgstr "候選字上一頁"
 
@@ -106,7 +107,7 @@ msgstr "圓圈拉丁與平假名模式"
 msgid "Circle typing method"
 msgstr "循環輸入方案"
 
-#: src/config.h:659
+#: src/config.h:662
 msgid "Command"
 msgstr "指令"
 
@@ -114,23 +115,23 @@ msgstr "指令"
 msgid "Commit"
 msgstr "提交"
 
-#: src/config.h:415
+#: src/config.h:416
 msgid "Commit Reverse Learn"
 msgstr "提交逆向學習"
 
-#: src/config.h:517
+#: src/config.h:519
 msgid "Commit first segement reverse learn"
 msgstr "提交第一段逆向學習"
 
-#: src/config.h:505
+#: src/config.h:507
 msgid "Commit first segment"
 msgstr "提交第一段"
 
-#: src/config.h:523
+#: src/config.h:525
 msgid "Commit selected segement reverse learn"
 msgstr "提交選中段逆向學習"
 
-#: src/config.h:511
+#: src/config.h:513
 msgid "Commit selected segment"
 msgstr "提交選中段"
 
@@ -138,31 +139,31 @@ msgstr "提交選中段"
 msgid "Conversion mode"
 msgstr "轉換模式"
 
-#: src/config.h:421
+#: src/config.h:422
 msgid "Convert"
 msgstr "轉換"
 
-#: src/config.h:590
+#: src/config.h:593
 msgid "Convert To Half"
 msgstr "轉換到半形"
 
-#: src/config.h:596
+#: src/config.h:599
 msgid "Convert To Half Katakana"
 msgstr "轉換到半形片假名"
 
-#: src/config.h:578
+#: src/config.h:581
 msgid "Convert To Hiragana"
 msgstr "轉換到平假名"
 
-#: src/config.h:584
+#: src/config.h:587
 msgid "Convert To Katakana"
 msgstr "轉換到片假名"
 
-#: src/config.h:608
+#: src/config.h:611
 msgid "Convert To Latin"
 msgstr "轉換到英文"
 
-#: src/config.h:602
+#: src/config.h:605
 msgid "Convert To Wide Latin"
 msgstr "轉換到全形英文"
 
@@ -174,21 +175,21 @@ msgstr "輸入時轉換（多段）"
 msgid "Convert as you type (Single segment)"
 msgstr "輸入時轉換（單段）"
 
-#: src/config.h:572
+#: src/config.h:575
 msgid "Convert char type backward"
 msgstr "向後轉換字元類型"
 
-#: src/config.h:566
+#: src/config.h:569
 msgid "Convert char type forward"
 msgstr "向前轉換字元類型"
 
 #: src/config.h:43
 msgid "Corner bracket and Middle Dot"
-msgstr ""
+msgstr "角括號和間隔號"
 
 #: src/config.h:44
 msgid "Corner bracket and wide slash"
-msgstr ""
+msgstr "書名號與寬斜線"
 
 #: src/config.h:239 src/config.h:254 src/config.h:267 src/config.h:283
 msgid "Custom"
@@ -218,7 +219,7 @@ msgstr "預設"
 msgid "Delete"
 msgstr "刪除"
 
-#: src/config.h:620 src/config.h:649
+#: src/config.h:623 src/config.h:652
 msgid "Dict admin"
 msgstr "詞典管理"
 
@@ -228,23 +229,23 @@ msgstr "直接輸入"
 
 #: src/config.h:177
 msgid "Entering the pseudo ASCII input mode with capital letters"
-msgstr ""
+msgstr "進入大寫字母偽ASCII輸入模式"
 
-#: src/config.h:499
+#: src/config.h:501
 msgid "Expand segment"
 msgstr "展開段落"
 
 #: src/config.h:71 src/config.h:80
 msgid "Follow mode"
-msgstr ""
+msgstr "跟随模式"
 
-#: src/config.h:653
+#: src/config.h:656
 msgid "General"
 msgstr "一般"
 
 #: src/config.h:79
 msgid "Half"
-msgstr ""
+msgstr "半形"
 
 #: src/config.h:30
 msgid "Half Katakana"
@@ -284,7 +285,7 @@ msgstr "插入半形空格"
 
 #: src/config.h:174
 msgid "Insert a blank with a blank key"
-msgstr ""
+msgstr "使用空白键插入空格"
 
 #: src/config.h:373
 msgid "Insert space"
@@ -294,7 +295,7 @@ msgstr "插入空格"
 msgid "Insert wide space"
 msgstr "插入全形空格"
 
-#: src/config.h:655
+#: src/config.h:658
 msgid "Interface"
 msgstr "介面"
 
@@ -304,7 +305,7 @@ msgstr "日語"
 
 #: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:8
 msgid "Japanese input method based on Anthy"
-msgstr ""
+msgstr "基於  Anthy 的日文輸入法"
 
 #: src/config.h:66 src/engine.cpp:57
 msgid "Kana"
@@ -322,13 +323,13 @@ msgstr "片假名"
 msgid "Katakana mode"
 msgstr "片假名模式"
 
-#: src/config.h:658
+#: src/config.h:661
 msgid "Key"
 msgstr "按鍵"
 
-#: src/config.h:657
+#: src/config.h:660
 msgid "Key Profile"
-msgstr ""
+msgstr "按鍵設定"
 
 #: src/config.h:289
 msgid "Key binding profile"
@@ -350,7 +351,7 @@ msgstr "自動提交時記錄輸入歷史"
 msgid "Learn on manual commit"
 msgstr "手動提交時記錄輸入歷史"
 
-#: src/config.h:632
+#: src/config.h:635
 msgid "Left thumb key"
 msgstr "左拇指鍵"
 
@@ -358,19 +359,19 @@ msgstr "左拇指鍵"
 msgid "MS IME"
 msgstr "微軟輸入法引擎"
 
-#: src/config.h:463
+#: src/config.h:465
 msgid "Move caret backward"
-msgstr ""
+msgstr "向後移動插入符號"
 
-#: src/config.h:445
+#: src/config.h:447
 msgid "Move caret first"
-msgstr ""
+msgstr "移動插入符號到開頭"
 
-#: src/config.h:457
+#: src/config.h:459
 msgid "Move caret forward"
 msgstr "向前移動插入符號"
 
-#: src/config.h:451
+#: src/config.h:453
 msgid "Move caret last"
 msgstr "移動插入符號到結尾"
 
@@ -380,7 +381,7 @@ msgstr "多段"
 
 #: src/config.h:61
 msgid "Multi segment immediate"
-msgstr ""
+msgstr "立即多段"
 
 #: src/config.h:67 src/engine.cpp:58
 msgid "Nicola"
@@ -390,25 +391,25 @@ msgstr "尼古拉"
 msgid "Nicola Table"
 msgstr "尼古拉表"
 
-#: src/config.h:643
+#: src/config.h:646
 msgid "Nicola time"
 msgstr "尼古拉時間"
 
 #: src/config.h:280
 msgid "Nicola-A"
-msgstr ""
+msgstr "Nicola-A"
 
 #: src/config.h:281
 msgid "Nicola-F"
-msgstr ""
+msgstr "Nicola-F"
 
 #: src/config.h:281
 msgid "Nicola-J"
-msgstr ""
+msgstr "Nicola-J"
 
 #: src/config.h:16
 msgid "Not Set"
-msgstr ""
+msgstr "尚未設置"
 
 #: src/config.h:168
 msgid "Number candidate of Triggers To Show Candidate Window"
@@ -416,7 +417,7 @@ msgstr "觸發顯示候選字視窗的按鍵次數"
 
 #: src/config.h:282
 msgid "Oasys100J"
-msgstr ""
+msgstr "Oasys100J"
 
 #: src/config.h:161
 msgid "Page size"
@@ -426,27 +427,27 @@ msgstr "頁面大小"
 msgid "Period style"
 msgstr "逗號風格"
 
-#: src/config.h:427
+#: src/config.h:429
 msgid "Predict"
 msgstr "預測"
 
 #: src/config.h:171
 msgid "Predict on input"
-msgstr ""
+msgstr "預測輸入"
 
 #: src/config.h:267
 msgid "Quick Kana"
-msgstr ""
+msgstr "速成假名"
 
-#: src/config.h:614
+#: src/config.h:617
 msgid "Reconvert"
 msgstr "重新轉換"
 
-#: src/config.h:638
+#: src/config.h:641
 msgid "Right thumb key"
 msgstr "右拇指鍵"
 
-#: src/config.h:642
+#: src/config.h:645
 msgid "Ro key for kana layout"
 msgstr "假名佈局的 ロ 鍵"
 
@@ -458,59 +459,59 @@ msgstr "羅馬音"
 msgid "Romaji Table"
 msgstr "羅馬字表"
 
-#: src/config.h:529
+#: src/config.h:531
 msgid "Select first candidate"
 msgstr "選擇第一個候選詞"
 
-#: src/config.h:469
+#: src/config.h:471
 msgid "Select first segment"
 msgstr "選擇第一段"
 
-#: src/config.h:535
+#: src/config.h:537
 msgid "Select last candidate"
 msgstr "選擇最後一個候選詞"
 
-#: src/config.h:475
+#: src/config.h:477
 msgid "Select last segment"
 msgstr "選擇最後一段"
 
-#: src/config.h:541
+#: src/config.h:543
 msgid "Select next candidate"
 msgstr "選擇下一個候選詞"
 
-#: src/config.h:481
+#: src/config.h:483
 msgid "Select next segment"
 msgstr "選擇下一段"
 
-#: src/config.h:548
+#: src/config.h:551
 msgid "Select prev candidate"
 msgstr "選擇前一個候選詞"
 
-#: src/config.h:487
+#: src/config.h:489
 msgid "Select prev segment"
-msgstr ""
+msgstr "選擇上一段"
 
 #: src/config.h:213 src/config.h:226
 msgid "Show candidates label"
-msgstr ""
+msgstr "顯示候選詞標籤"
 
 #: src/config.h:222
 msgid "Show conversion mode"
-msgstr ""
+msgstr "顯示轉換模式"
 
 #: src/config.h:218
 msgid "Show input mode"
-msgstr ""
+msgstr "顯示輸入模式"
 
 #: src/config.h:224
 msgid "Show period style"
-msgstr ""
+msgstr "顯示逗號樣式"
 
 #: src/config.h:220
 msgid "Show typing method"
-msgstr ""
+msgstr "顯示輸入方式"
 
-#: src/config.h:493
+#: src/config.h:495
 msgid "Shrink segment"
 msgstr "收起段落"
 
@@ -520,11 +521,11 @@ msgstr "單段"
 
 #: src/config.h:62
 msgid "Single segment immediate"
-msgstr ""
+msgstr "立即單段"
 
 #: src/config.h:200
 msgid "Space type"
-msgstr ""
+msgstr "空格輸入"
 
 #: src/config.h:197
 msgid "Symbol style"
@@ -532,7 +533,7 @@ msgstr "符號樣式"
 
 #: src/config.h:202
 msgid "Ten key type"
-msgstr ""
+msgstr "十鍵輸入"
 
 #: src/engine.cpp:58
 msgid "Thumb shift"
@@ -540,11 +541,11 @@ msgstr "移位拇指"
 
 #: src/config.h:282
 msgid "Tron Dvorak"
-msgstr ""
+msgstr "Tron Dvorak"
 
 #: src/config.h:283
 msgid "Tron Qwerty JP"
-msgstr ""
+msgstr "Tron Qwerty JP"
 
 #: src/config.h:187
 msgid "Typing method"
@@ -556,15 +557,15 @@ msgstr "使用預編輯直接發送鍵"
 
 #: src/config.h:182
 msgid "Use half-width characters for numbers"
-msgstr ""
+msgstr "為數字使用半形字符"
 
 #: src/config.h:179
 msgid "Use half-width characters for symbols"
-msgstr ""
+msgstr "為符號使用半形字符"
 
 #: src/config.h:17
 msgid "Vertical"
-msgstr ""
+msgstr "縱向"
 
 #: src/config.h:238 src/config.h:254
 msgid "Vje Delta"
@@ -576,7 +577,7 @@ msgstr "我的名字叫中野（WNN）"
 
 #: src/config.h:71 src/config.h:79
 msgid "Wide"
-msgstr ""
+msgstr "全形"
 
 #: src/config.h:31
 msgid "Wide Latin"
@@ -600,8 +601,8 @@ msgstr "全形英文模式"
 
 #: src/config.h:266
 msgid "tsuki-2-203-101"
-msgstr ""
+msgstr "tsuki-2-203-101"
 
 #: src/config.h:266
 msgid "tsuki-2-203-106"
-msgstr ""
+msgstr "tsuki-2-203-106"

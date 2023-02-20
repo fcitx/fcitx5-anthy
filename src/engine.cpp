@@ -381,6 +381,8 @@ std::string AnthyEngine::romajiTableName() {
         "msime.sty", "vje-delta.sty",
         "wnn.sty",   *config().keyProfile->romajiFundamentalTable};
 
+    static_assert(FCITX_ARRAY_SIZE(key_profile) ==
+                  static_cast<int>(RomajiTable::Custom) + 1);
     auto profile = static_cast<int>(*config().keyProfile->romajiTableEnum);
 
     return key_profile[profile];
@@ -395,6 +397,8 @@ std::string AnthyEngine::kanaTableName() {
         "qkana.sty",
         *config().keyProfile->kanaFundamentalTable};
 
+    static_assert(FCITX_ARRAY_SIZE(key_profile) ==
+                  static_cast<int>(KanaTable::Custom) + 1);
     auto profile = static_cast<int>(*config().keyProfile->kanaTableEnum);
 
     return key_profile[profile];
@@ -406,11 +410,13 @@ std::string AnthyEngine::nicolaTableName() {
         "nicola-a.sty",
         "nicola-f.sty",
         "nicola-j.sty",
-        "oasys100j.sty"
+        "oasys100j.sty",
         "tron-dvorak.sty",
         "tron-qwerty-jp.sty",
         *config().keyProfile->nicolaFundamentalTable};
 
+    static_assert(FCITX_ARRAY_SIZE(key_profile) ==
+                  static_cast<int>(NicolaTable::Custom) + 1);
     auto profile = static_cast<int>(*config().keyProfile->nicolaTableEnum);
 
     return key_profile[profile];
@@ -451,10 +457,12 @@ void AnthyEngine::reloadConfig() {
     customRomajiTable_.clear();
     const char *section_romaji = "RomajiTable/FundamentalTable";
     filename = fullFileName(romajiTableName());
-    FCITX_ANTHY_DEBUG() << "Romaji: " << filename;
-    if (!filename.empty() && style.load(filename)) {
-        customRomajiTableLoaded_ = true;
-        customRomajiTable_ = style.key2kanaTable(section_romaji);
+    if (!filename.empty()) {
+        FCITX_ANTHY_DEBUG() << "Try loading romaji table: " << filename;
+        if (style.load(filename)) {
+            customRomajiTableLoaded_ = true;
+            customRomajiTable_ = style.key2kanaTable(section_romaji);
+        }
     }
 
     // load custom kana table
@@ -463,17 +471,23 @@ void AnthyEngine::reloadConfig() {
     const char *section_kana = "KanaTable/FundamentalTable";
     filename = fullFileName(kanaTableName());
     if (!filename.empty() && style.load(filename)) {
-        customKanaTableLoaded_ = true;
-        customRomajiTable_ = style.key2kanaTable(section_kana);
+        FCITX_ANTHY_DEBUG() << "Try loading kana table: " << filename;
+        if (style.load(filename)) {
+            customKanaTableLoaded_ = true;
+            customKanaTable_ = style.key2kanaTable(section_kana);
+        }
     }
 
     customNicolaTableLoaded_ = false;
     customNicolaTable_.clear();
     const char *section_nicola = "NICOLATable/FundamentalTable";
     filename = fullFileName(nicolaTableName());
-    if (!filename.empty() && style.load(filename)) {
-        customNicolaTableLoaded_ = true;
-        customNicolaTable_ = style.key2kanaTable(section_nicola);
+    if (!filename.empty()) {
+        FCITX_ANTHY_DEBUG() << "Try loading nicola table: " << filename;
+        if (style.load(filename)) {
+            customNicolaTableLoaded_ = true;
+            customNicolaTable_ = style.key2kanaTable(section_nicola);
+        }
     }
 
     if (factory_.registered()) {

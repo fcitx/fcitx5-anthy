@@ -28,7 +28,8 @@ bool key_is_keypad(const fcitx::Key &key);
 std::string keypad_to_string(const fcitx::KeyEvent &key);
 void launch_program(std::string command);
 
-bool surrounding_get_safe_delta(unsigned int from, unsigned int to, int32_t *delta);
+bool surrounding_get_safe_delta(unsigned int from, unsigned int to,
+                                int32_t *delta);
 
 bool surrounding_get_anchor_pos_from_selection(
     const std::string &surrounding_text, const std::string &selected_text,

@@ -71,15 +71,17 @@ void Preedit::updatePreedit() {
     if (isConverting()) {
         conversion_.updatePreedit();
     } else {
+        bool useClientPreedit = state_.supportClientPreedit();
         fcitx::Text preedit;
 
         std::string s = string();
         if (!s.empty()) {
-            preedit.append(s);
+            preedit.append(s, useClientPreedit ? fcitx::TextFormatFlag::Underline
+                                               : fcitx::TextFormatFlag::NoFlag);
             preedit.setCursor(static_cast<int>(caretPos()));
         }
 
-        if (state_.supportClientPreedit()) {
+        if (useClientPreedit) {
             state_.inputContext()->inputPanel().setClientPreedit(preedit);
         } else {
             state_.inputContext()->inputPanel().setPreedit(preedit);

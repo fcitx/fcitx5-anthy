@@ -556,4 +556,16 @@ void AnthyEngine::reset(const fcitx::InputMethodEntry &,
     anthy->updateUI();
 }
 
+void AnthyEngine::invokeActionImpl(const fcitx::InputMethodEntry &entry,
+                                   fcitx::InvokeActionEvent &event) {
+    const int cursor = event.cursor();
+    if (event.action() != fcitx::InvokeActionEvent::Action::LeftClick || cursor < 0) {
+        return InputMethodEngineV3::invokeActionImpl(entry, event);
+    }
+    event.filter();
+    auto anthy = event.inputContext()->propertyFor(&factory_);
+    anthy->movePreeditCaret(event.cursor());
+    anthy->updateUI();
+}
+
 FCITX_ADDON_FACTORY(AnthyFactory)

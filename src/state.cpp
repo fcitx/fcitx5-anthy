@@ -226,6 +226,7 @@ bool AnthyState::processKeyEvent(const fcitx::KeyEvent &key) {
 
 void AnthyState::movePreeditCaret(unsigned int pos) {
     preedit_.setCaretPosByChar(pos);
+    setPreedition();
     // TODO
 }
 
@@ -1511,7 +1512,7 @@ void AnthyState::configure() {
 void AnthyState::updateAuxString(const std::string &str) {
     fcitx::Text aux;
     aux.append(str);
-    ic_->inputPanel().setAuxUp(std::move(aux));
+    ic_->inputPanel().setAuxUp(aux);
     uiUpdate_ = true;
 }
 

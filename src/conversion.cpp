@@ -203,6 +203,7 @@ void Conversion::updatePreedit() {
     fcitx::Text preedit;
     unsigned int seg_id;
     ConversionSegments::iterator it;
+    bool useClientPreedit = state_.supportClientPreedit();
     for (it = segments_.begin(), seg_id = 0; it != segments_.end();
          it++, seg_id++) {
         // create attribute for this segment
@@ -210,13 +211,16 @@ void Conversion::updatePreedit() {
             continue;
         }
 
-        preedit.append(it->string(), static_cast<int>(seg_id) == curSegment_
-                                         ? fcitx::TextFormatFlag::HighLight
-                                         : fcitx::TextFormatFlag::NoFlag);
+        preedit.append(it->string(), fcitx::TextFormatFlags {
+            useClientPreedit ? fcitx::TextFormatFlag::Underline
+                             : fcitx::TextFormatFlag::NoFlag,
+            static_cast<int>(seg_id) == curSegment_ ? fcitx::TextFormatFlag::HighLight
+                                                    : fcitx::TextFormatFlag::NoFlag
+        });
     }
     preedit.setCursor(static_cast<int>(segmentPosition()));
 
-    if (state_.supportClientPreedit()) {
+    if (useClientPreedit) {
         state_.inputContext()->inputPanel().setClientPreedit(preedit);
     } else {
         state_.inputContext()->inputPanel().setPreedit(preedit);

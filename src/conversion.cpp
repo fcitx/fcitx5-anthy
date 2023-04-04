@@ -214,6 +214,7 @@ void Conversion::updatePreedit() {
                                          ? fcitx::TextFormatFlag::HighLight
                                          : fcitx::TextFormatFlag::NoFlag);
     }
+    preedit.setCursor(static_cast<int>(segmentPosition()));
 
     if (state_.supportClientPreedit()) {
         state_.inputContext()->inputPanel().setClientPreedit(preedit);

@@ -26,7 +26,7 @@ FCITX_DECLARE_LOG_CATEGORY(anthy_logcategory);
 
 #define FCITX_ANTHY_DEBUG() FCITX_LOGC(anthy_logcategory, Debug)
 
-class AnthyEngine : public fcitx::InputMethodEngineV2 {
+class AnthyEngine : public fcitx::InputMethodEngineV3 {
 public:
     AnthyEngine(fcitx::Instance *instance);
     ~AnthyEngine();
@@ -41,6 +41,8 @@ public:
                     fcitx::InputContextEvent &event) override;
     void reset(const fcitx::InputMethodEntry &,
                fcitx::InputContextEvent &) override;
+    void invokeActionImpl(const fcitx::InputMethodEntry &entry,
+                          fcitx::InvokeActionEvent &event) override;
 
     const fcitx::Configuration *getConfig() const override { return &config_; }
     void setConfig(const fcitx::RawConfig &config) override {

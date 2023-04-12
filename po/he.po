@@ -3,16 +3,17 @@
 # This file is distributed under the same license as the fcitx5-anthy package.
 #
 # Translators:
-# Omer I.S. <omeritzicschwartz@gmail.com>, 2021
+# 63f334ffc0709ba0fc2361b80bf3c0f0_00ffd1e <ab96c93ca0ac55ba7fa06385427e60dd_878890>, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2021-11-25 20:24+0000\n"
+"POT-Creation-Date: 2023-04-12 14:26+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>, 2021\n"
-"Language-Team: Hebrew (https://www.transifex.com/fcitx/teams/12005/he/)\n"
+"Last-Translator: 63f334ffc0709ba0fc2361b80bf3c0f0_00ffd1e "
+"<ab96c93ca0ac55ba7fa06385427e60dd_878890>, 2021\n"
+"Language-Team: Hebrew (https://app.transifex.com/fcitx/teams/12005/he/)\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % "
 "1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
-#: src/state.cpp:315
+#: src/state.cpp:307
 #, c-format
 msgid "(%d / %d)"
 msgstr ""
@@ -29,11 +30,11 @@ msgstr ""
 msgid "101kana"
 msgstr ""
 
-#: src/config.h:626
+#: src/config.h:629
 msgid "Add Word"
 msgstr "הוספת מילה"
 
-#: src/config.h:647
+#: src/config.h:650
 msgid "Add word"
 msgstr "הוספת מילה"
 
@@ -61,11 +62,11 @@ msgstr ""
 msgid "BackSpace"
 msgstr ""
 
-#: src/config.h:433
+#: src/config.h:435
 msgid "Cancel"
 msgstr "ביטול"
 
-#: src/config.h:439
+#: src/config.h:441
 msgid "Cancel all"
 msgstr "לבטל הכול"
 
@@ -77,11 +78,11 @@ msgstr ""
 msgid "Candidate List Layout"
 msgstr ""
 
-#: src/config.h:560
+#: src/config.h:563
 msgid "Candidates Page Down"
 msgstr ""
 
-#: src/config.h:554
+#: src/config.h:557
 msgid "Candidates Page Up"
 msgstr ""
 
@@ -105,7 +106,7 @@ msgstr ""
 msgid "Circle typing method"
 msgstr ""
 
-#: src/config.h:659
+#: src/config.h:662
 msgid "Command"
 msgstr "פקודה"
 
@@ -113,23 +114,23 @@ msgstr "פקודה"
 msgid "Commit"
 msgstr ""
 
-#: src/config.h:415
+#: src/config.h:416
 msgid "Commit Reverse Learn"
 msgstr ""
 
-#: src/config.h:517
+#: src/config.h:519
 msgid "Commit first segement reverse learn"
 msgstr ""
 
-#: src/config.h:505
+#: src/config.h:507
 msgid "Commit first segment"
 msgstr ""
 
-#: src/config.h:523
+#: src/config.h:525
 msgid "Commit selected segement reverse learn"
 msgstr ""
 
-#: src/config.h:511
+#: src/config.h:513
 msgid "Commit selected segment"
 msgstr ""
 
@@ -137,31 +138,31 @@ msgstr ""
 msgid "Conversion mode"
 msgstr ""
 
-#: src/config.h:421
+#: src/config.h:422
 msgid "Convert"
 msgstr "המרה"
 
-#: src/config.h:590
+#: src/config.h:593
 msgid "Convert To Half"
 msgstr ""
 
-#: src/config.h:596
+#: src/config.h:599
 msgid "Convert To Half Katakana"
 msgstr ""
 
-#: src/config.h:578
+#: src/config.h:581
 msgid "Convert To Hiragana"
 msgstr ""
 
-#: src/config.h:584
+#: src/config.h:587
 msgid "Convert To Katakana"
 msgstr ""
 
-#: src/config.h:608
+#: src/config.h:611
 msgid "Convert To Latin"
 msgstr ""
 
-#: src/config.h:602
+#: src/config.h:605
 msgid "Convert To Wide Latin"
 msgstr ""
 
@@ -173,11 +174,11 @@ msgstr ""
 msgid "Convert as you type (Single segment)"
 msgstr ""
 
-#: src/config.h:572
+#: src/config.h:575
 msgid "Convert char type backward"
 msgstr ""
 
-#: src/config.h:566
+#: src/config.h:569
 msgid "Convert char type forward"
 msgstr ""
 
@@ -217,7 +218,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: src/config.h:620 src/config.h:649
+#: src/config.h:623 src/config.h:652
 msgid "Dict admin"
 msgstr ""
 
@@ -229,7 +230,7 @@ msgstr ""
 msgid "Entering the pseudo ASCII input mode with capital letters"
 msgstr ""
 
-#: src/config.h:499
+#: src/config.h:501
 msgid "Expand segment"
 msgstr ""
 
@@ -237,7 +238,7 @@ msgstr ""
 msgid "Follow mode"
 msgstr ""
 
-#: src/config.h:653
+#: src/config.h:656
 msgid "General"
 msgstr ""
 
@@ -293,7 +294,7 @@ msgstr ""
 msgid "Insert wide space"
 msgstr ""
 
-#: src/config.h:655
+#: src/config.h:658
 msgid "Interface"
 msgstr ""
 
@@ -321,11 +322,11 @@ msgstr ""
 msgid "Katakana mode"
 msgstr ""
 
-#: src/config.h:658
+#: src/config.h:661
 msgid "Key"
 msgstr ""
 
-#: src/config.h:657
+#: src/config.h:660
 msgid "Key Profile"
 msgstr ""
 
@@ -349,7 +350,7 @@ msgstr ""
 msgid "Learn on manual commit"
 msgstr ""
 
-#: src/config.h:632
+#: src/config.h:635
 msgid "Left thumb key"
 msgstr ""
 
@@ -357,19 +358,19 @@ msgstr ""
 msgid "MS IME"
 msgstr ""
 
-#: src/config.h:463
+#: src/config.h:465
 msgid "Move caret backward"
 msgstr ""
 
-#: src/config.h:445
+#: src/config.h:447
 msgid "Move caret first"
 msgstr ""
 
-#: src/config.h:457
+#: src/config.h:459
 msgid "Move caret forward"
 msgstr ""
 
-#: src/config.h:451
+#: src/config.h:453
 msgid "Move caret last"
 msgstr ""
 
@@ -389,7 +390,7 @@ msgstr ""
 msgid "Nicola Table"
 msgstr ""
 
-#: src/config.h:643
+#: src/config.h:646
 msgid "Nicola time"
 msgstr ""
 
@@ -425,7 +426,7 @@ msgstr ""
 msgid "Period style"
 msgstr ""
 
-#: src/config.h:427
+#: src/config.h:429
 msgid "Predict"
 msgstr ""
 
@@ -437,15 +438,15 @@ msgstr ""
 msgid "Quick Kana"
 msgstr ""
 
-#: src/config.h:614
+#: src/config.h:617
 msgid "Reconvert"
 msgstr ""
 
-#: src/config.h:638
+#: src/config.h:641
 msgid "Right thumb key"
 msgstr ""
 
-#: src/config.h:642
+#: src/config.h:645
 msgid "Ro key for kana layout"
 msgstr ""
 
@@ -457,35 +458,35 @@ msgstr ""
 msgid "Romaji Table"
 msgstr ""
 
-#: src/config.h:529
+#: src/config.h:531
 msgid "Select first candidate"
 msgstr ""
 
-#: src/config.h:469
+#: src/config.h:471
 msgid "Select first segment"
 msgstr ""
 
-#: src/config.h:535
+#: src/config.h:537
 msgid "Select last candidate"
 msgstr ""
 
-#: src/config.h:475
+#: src/config.h:477
 msgid "Select last segment"
 msgstr ""
 
-#: src/config.h:541
+#: src/config.h:543
 msgid "Select next candidate"
 msgstr ""
 
-#: src/config.h:481
+#: src/config.h:483
 msgid "Select next segment"
 msgstr ""
 
-#: src/config.h:548
+#: src/config.h:551
 msgid "Select prev candidate"
 msgstr ""
 
-#: src/config.h:487
+#: src/config.h:489
 msgid "Select prev segment"
 msgstr ""
 
@@ -509,7 +510,7 @@ msgstr ""
 msgid "Show typing method"
 msgstr ""
 
-#: src/config.h:493
+#: src/config.h:495
 msgid "Shrink segment"
 msgstr ""
 

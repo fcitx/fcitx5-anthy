@@ -12,6 +12,7 @@
 #include <fcitx-config/iniparser.h>
 #include <fcitx-utils/log.h>
 #include <fcitx-utils/standardpath.h>
+#include <fcitx-utils/stringutils.h>
 #include <fcitx/addonfactory.h>
 #include <fcitx/addonmanager.h>
 #include <fcitx/inputcontext.h>
@@ -262,6 +263,23 @@ AnthyEngine::AnthyEngine(fcitx::Instance *instance)
     : instance_(instance), factory_([this](fcitx::InputContext &ic) {
           return new AnthyState(&ic, this, instance_);
       }) {
+    anthy_set_logger([](int level, const char *msg) {
+        FCITX_UNUSED(level);
+        FCITX_ANTHY_INFO() << "Anthy: " << msg;
+    }, 0);
+#ifdef __ANDROID__
+    const auto &sp = fcitx::StandardPath::global();
+    std::string anthy_conf = sp.locate(fcitx::StandardPath::Type::Data, "anthy/anthy-unicode.conf");
+    std::string anthy_prefix = fcitx::fs::dirName(anthy_conf);
+    // "CONFFILE" must be overridden first to change main config file path
+    anthy_conf_override("CONFFILE", anthy_conf.c_str());
+    // "prefix" must be set before using "${prefix}" in other values
+    anthy_conf_override("prefix", anthy_prefix.c_str());
+    anthy_conf_override("ANTHYDIR", "${prefix}/");
+    anthy_conf_override("DIC_FILE", "${prefix}/anthy.dic");
+    // save anthy data (primarily input history) to /sdcard/Android/data/<pkg>/files/data/anthy
+    anthy_conf_override("XDG_CONFIG_HOME", sp.userDirectory(fcitx::StandardPath::Type::Data).c_str());
+#endif
     if (anthy_init()) {
         throw std::runtime_error("Failed to init anthy library.");
     }

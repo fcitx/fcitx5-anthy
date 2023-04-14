@@ -25,6 +25,7 @@
 FCITX_DECLARE_LOG_CATEGORY(anthy_logcategory);
 
 #define FCITX_ANTHY_DEBUG() FCITX_LOGC(anthy_logcategory, Debug)
+#define FCITX_ANTHY_INFO() FCITX_LOGC(anthy_logcategory, Info)
 
 class AnthyEngine : public fcitx::InputMethodEngineV3 {
 public:

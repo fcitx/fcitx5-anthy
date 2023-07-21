@@ -57,7 +57,6 @@ void ReadingSegment::split(ReadingSegments &segments) {
     to_half(half, kana);
     bool same_with_raw = half == raw;
 
-    std::string::iterator it;
     for (unsigned int i = 0; i < fcitx::utf8::length(kana); i++) {
         std::string c = util::utf8_string_substr(kana, i, 1);
         ReadingSegment seg;
@@ -599,7 +598,7 @@ void Reading::setTypingMethod(TypingMethod method) {
     }
 }
 
-TypingMethod Reading::typingMethod() {
+TypingMethod Reading::typingMethod() const {
     if (key2kana_ == &nicola_)
         return TypingMethod::NICOLA;
     else
@@ -610,25 +609,29 @@ void Reading::setPeriodStyle(PeriodStyle style) {
     key2kanaTables_.setPeriodStyle(style);
 }
 
-PeriodStyle Reading::periodStyle() { return key2kanaTables_.periodStyle(); }
+PeriodStyle Reading::periodStyle() const {
+    return key2kanaTables_.periodStyle();
+}
 
 void Reading::setCommaStyle(CommaStyle style) {
     key2kanaTables_.setCommaStyle(style);
 }
 
-CommaStyle Reading::commaStyle() { return key2kanaTables_.commaStyle(); }
+CommaStyle Reading::commaStyle() const { return key2kanaTables_.commaStyle(); }
 
 void Reading::setBracketStyle(BracketStyle style) {
     key2kanaTables_.setBracketStyle(style);
 }
 
-BracketStyle Reading::bracketStyle() { return key2kanaTables_.bracketStyle(); }
+BracketStyle Reading::bracketStyle() const {
+    return key2kanaTables_.bracketStyle();
+}
 
 void Reading::setSlashStyle(SlashStyle style) {
     key2kanaTables_.setSlashStyle(style);
 }
 
-SlashStyle Reading::slashStyle() { return key2kanaTables_.slashStyle(); }
+SlashStyle Reading::slashStyle() const { return key2kanaTables_.slashStyle(); }
 
 void Reading::setSymbolHalf(bool half) { key2kanaTables_.setSymbolHalf(half); }
 

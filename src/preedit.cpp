@@ -279,33 +279,33 @@ void Preedit::clear(int segment_id) {
  */
 void Preedit::setInputMode(InputMode mode) { inputMode_ = mode; }
 
-InputMode Preedit::inputMode() { return inputMode_; }
+InputMode Preedit::inputMode() const { return inputMode_; }
 
 void Preedit::setTypingMethod(TypingMethod method) {
     reading_.setTypingMethod(method);
 }
 
-TypingMethod Preedit::typingMethod() { return reading_.typingMethod(); }
+TypingMethod Preedit::typingMethod() const { return reading_.typingMethod(); }
 
 void Preedit::setPeriodStyle(PeriodStyle style) {
     reading_.setPeriodStyle(style);
 }
 
-PeriodStyle Preedit::periodStyle() { return reading_.periodStyle(); }
+PeriodStyle Preedit::periodStyle() const { return reading_.periodStyle(); }
 
 void Preedit::setCommaStyle(CommaStyle style) { reading_.setCommaStyle(style); }
 
-CommaStyle Preedit::commaStyle() { return reading_.commaStyle(); }
+CommaStyle Preedit::commaStyle() const { return reading_.commaStyle(); }
 
 void Preedit::setBracketStyle(BracketStyle style) {
     reading_.setBracketStyle(style);
 }
 
-BracketStyle Preedit::bracketStyle() { return reading_.bracketStyle(); }
+BracketStyle Preedit::bracketStyle() const { return reading_.bracketStyle(); }
 
 void Preedit::setSlashStyle(SlashStyle style) { reading_.setSlashStyle(style); }
 
-SlashStyle Preedit::slashStyle() { return reading_.slashStyle(); }
+SlashStyle Preedit::slashStyle() const { return reading_.slashStyle(); }
 
 void Preedit::setSymbolHalf(bool half) { reading_.setSymbolHalf(half); }
 

@@ -19,6 +19,7 @@
 #include "key2kana_table.h"
 #include "preedit.h"
 #include <anthy/anthy.h>
+#include <fcitx/inputcontextproperty.h>
 #include <fcitx/inputmethodengine.h>
 #include <fcitx/instance.h>
 #include <fcitx/menu.h>
@@ -30,6 +31,10 @@ public:
                fcitx::Instance *instance);
     ~AnthyState();
 
+    bool needCopy() const override { return true; }
+
+    void copyTo(fcitx::InputContextProperty *) override;
+
     void configure();
     void saveConfig() { engine_->saveConfig(); }
 
@@ -38,7 +43,6 @@ public:
     void selectCandidate(unsigned int item);
     void reset();
     void deactivate();
-    void init();
 
     auto inputContext() { return ic_; }
 
@@ -109,24 +113,18 @@ public:
     */
 
 public:
-    TypingMethod typingMethod();
-    InputMode inputMode();
-    ConversionMode conversionMode() {
-        return *config().general->conversionMode;
-    }
-    PeriodCommaStyle periodCommaStyle() {
-        return *config().general->periodCommaStyle;
-    }
-    SymbolStyle symbolStyle() { return *config().general->symbolStyle; }
-    void setInputMode(InputMode mode);
-    void setConversionMode(ConversionMode mode);
-    void setTypingMethod(TypingMethod method);
-    void setPeriodCommaStyle(PeriodCommaStyle period);
-    void setSymbolStyle(SymbolStyle symbol);
+    TypingMethod typingMethod() const;
+    InputMode inputMode() const;
+    // Only input mode is per-state.
+    void setInputMode(InputMode mode, bool propagate = false);
+    void syncConversionMode();
+    void syncTypingMethod();
+    void syncPeriodCommaStyle();
+    void syncSymbolStyle();
     void updateUI();
 
     int pseudoAsciiMode();
-    AnthyConfig &config() { return engine_->config(); }
+    const AnthyConfig &config() const { return engine_->config(); }
     auto engine() { return engine_; }
     fcitx::Instance *instance() { return instance_; }
     bool supportClientPreedit();
@@ -148,9 +146,6 @@ private:
     void setAuxString();
     std::shared_ptr<fcitx::CandidateList> setLookupTable();
     void unsetLookupTable();
-    void installProperties();
-    void setPeriodStyle(PeriodStyle period, CommaStyle comma);
-    void setSymbolStyle(BracketStyle bracket, SlashStyle slash);
     bool isSelectingCandidates();
     bool convertKana(CandidateType type);
 

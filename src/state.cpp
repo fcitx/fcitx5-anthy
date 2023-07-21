@@ -12,6 +12,8 @@
  * SPDX-FileCopyrightText: 2004 James Su <suzhe@tsinghua.org.cn>
  */
 
+#include <fcitx/inputcontextmanager.h>
+#include <fcitx/inputcontextproperty.h>
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -265,22 +267,6 @@ void AnthyState::reset() {
     setPreedition();
 }
 
-void AnthyState::init() {
-    ic_->inputPanel().reset();
-    if (preeditVisible_) {
-        setPreedition();
-    }
-
-    if (lookupTableVisible_ && isSelectingCandidates()) {
-        if (*config().general->showCandidatesLabel) {
-            setAuxString();
-        }
-        setLookupTable();
-    }
-
-    installProperties();
-}
-
 bool AnthyState::supportClientPreedit() {
     return ic_->capabilityFlags().test(fcitx::CapabilityFlag::Preedit);
 }
@@ -371,11 +357,10 @@ void AnthyState::unsetLookupTable() {
     ic_->inputPanel().setAuxUp(fcitx::Text());
 }
 
-void AnthyState::setPeriodCommaStyle(PeriodCommaStyle period) {
-    config().general.mutableValue()->periodCommaStyle.setValue(period);
+void AnthyState::syncPeriodCommaStyle() {
     engine_->periodStyleAction()->update(ic_);
 
-    switch (period) {
+    switch (engine_->periodCommaStyle()) {
     case PeriodCommaStyle::WIDELATIN:
         preedit_.setCommaStyle(CommaStyle::WIDE);
         preedit_.setPeriodStyle(PeriodStyle::WIDE);
@@ -396,10 +381,9 @@ void AnthyState::setPeriodCommaStyle(PeriodCommaStyle period) {
     }
 }
 
-void AnthyState::setSymbolStyle(SymbolStyle symbol) {
-    config().general.mutableValue()->symbolStyle.setValue(symbol);
+void AnthyState::syncSymbolStyle() {
     engine_->symbolStyleAction()->update(ic_);
-    switch (symbol) {
+    switch (engine_->symbolStyle()) {
     case SymbolStyle::WIDEBRACKET_WIDESLASH:
         preedit_.setBracketStyle(BracketStyle::JAPANESE);
         preedit_.setSlashStyle(SlashStyle::WIDE);
@@ -420,19 +404,8 @@ void AnthyState::setSymbolStyle(SymbolStyle symbol) {
     }
 }
 
-void AnthyState::installProperties() {
-    if (*config().general->showCandidatesLabel) {
-        setInputMode(inputMode());
-    }
-    setConversionMode(*config().general->conversionMode);
-    setTypingMethod(typingMethod());
-    setPeriodCommaStyle(periodCommaStyle());
-    setSymbolStyle(symbolStyle());
-}
-
-void AnthyState::setInputMode(InputMode mode) {
+void AnthyState::setInputMode(InputMode mode, bool propagate) {
     if (mode != inputMode()) {
-        config().general.mutableValue()->inputMode.setValue(mode);
         preedit_.setInputMode(mode);
         setPreedition();
     }
@@ -444,70 +417,22 @@ void AnthyState::setInputMode(InputMode mode) {
     if (ic_->hasFocus() && instance_->inputMethod(ic_) == "anthy") {
         instance_->showInputMethodInformation(ic_);
     }
+    if (propagate && engine_->propertyFactory().registered()) {
+        ic_->updateProperty(&engine_->propertyFactory());
+    }
 }
 
-void AnthyState::setConversionMode(ConversionMode mode) {
-    config().general.mutableValue()->conversionMode.setValue(mode);
-
+void AnthyState::syncConversionMode() {
     engine_->conversionModeAction()->update(ic_);
 }
 
-void AnthyState::setTypingMethod(TypingMethod method) {
-    if (method != typingMethod()) {
-        preedit_.setTypingMethod(method);
+void AnthyState::syncTypingMethod() {
+    if (preedit_.typingMethod() != engine_->typingMethod()) {
+        preedit_.setTypingMethod(engine_->typingMethod());
         preedit_.setPseudoAsciiMode(pseudoAsciiMode());
     }
 
-    config().general.mutableValue()->typingMethod.setValue(method);
     engine_->typingMethodAction()->update(ic_);
-}
-
-void AnthyState::setPeriodStyle(PeriodStyle period, CommaStyle comma) {
-    std::string label;
-
-    switch (comma) {
-    case CommaStyle::JAPANESE:
-        label = "\xE3\x80\x81";
-        break;
-    case CommaStyle::WIDE:
-        label = "\xEF\xBC\x8C";
-        break;
-    case CommaStyle::HALF:
-        label = ",";
-        break;
-    default:
-        break;
-    }
-
-    switch (period) {
-    case PeriodStyle::JAPANESE:
-        label += "\xE3\x80\x82";
-        break;
-    case PeriodStyle::WIDE:
-        label += "\xEF\xBC\x8E";
-        break;
-    case PeriodStyle::HALF:
-        label += ".";
-        break;
-    default:
-        break;
-    }
-
-    if (period != preedit_.periodStyle()) {
-        preedit_.setPeriodStyle(period);
-    }
-    if (comma != preedit_.commaStyle()) {
-        preedit_.setCommaStyle(comma);
-    }
-}
-
-void AnthyState::setSymbolStyle(BracketStyle bracket, SlashStyle slash) {
-    if (bracket != preedit_.bracketStyle()) {
-        preedit_.setBracketStyle(bracket);
-    }
-    if (slash != preedit_.slashStyle()) {
-        preedit_.setSlashStyle(slash);
-    }
 }
 
 bool AnthyState::isSelectingCandidates() {
@@ -1111,7 +1036,7 @@ bool AnthyState::action_circle_input_mode() {
 
     mode = cycle_enum(mode, InputMode::LAST);
 
-    setInputMode(mode);
+    setInputMode(mode, /*propagate=*/true);
     saveConfig();
 
     return true;
@@ -1123,8 +1048,7 @@ bool AnthyState::action_circle_typing_method() {
     method = typingMethod();
     method = cycle_enum(method, TypingMethod::NICOLA);
 
-    setTypingMethod(method);
-    saveConfig();
+    engine_->setTypingMethod(method);
 
     return true;
 }
@@ -1150,8 +1074,7 @@ bool AnthyState::action_circle_kana_mode() {
         }
     }
 
-    setInputMode(mode);
-    saveConfig();
+    setInputMode(mode, /*propagate=*/true);
 
     return true;
 }
@@ -1165,39 +1088,33 @@ bool AnthyState::action_circle_latin_hiragana_mode() {
         mode = InputMode::LATIN;
     }
 
-    setInputMode(mode);
-    saveConfig();
+    setInputMode(mode, /*propagate=*/true);
 
     return true;
 }
 
 bool AnthyState::action_latin_mode() {
-    setInputMode(InputMode::LATIN);
-    saveConfig();
+    setInputMode(InputMode::LATIN, /*propagate=*/true);
     return true;
 }
 
 bool AnthyState::action_wide_latin_mode() {
-    setInputMode(InputMode::WIDE_LATIN);
-    saveConfig();
+    setInputMode(InputMode::WIDE_LATIN, /*propagate=*/true);
     return true;
 }
 
 bool AnthyState::action_hiragana_mode() {
-    setInputMode(InputMode::HIRAGANA);
-    saveConfig();
+    setInputMode(InputMode::HIRAGANA, /*propagate=*/true);
     return true;
 }
 
 bool AnthyState::action_katakana_mode() {
-    setInputMode(InputMode::KATAKANA);
-    saveConfig();
+    setInputMode(InputMode::KATAKANA, /*propagate=*/true);
     return true;
 }
 
 bool AnthyState::action_half_katakana_mode() {
-    setInputMode(InputMode::HALF_KATAKANA);
-    saveConfig();
+    setInputMode(InputMode::HALF_KATAKANA, /*propagate=*/true);
     return true;
 }
 
@@ -1421,18 +1338,22 @@ bool AnthyState::action_launch_dict_admin_tool() {
     return true;
 }
 
-TypingMethod AnthyState::typingMethod() { return preedit_.typingMethod(); }
+TypingMethod AnthyState::typingMethod() const {
+    return preedit_.typingMethod();
+}
 
-InputMode AnthyState::inputMode() { return preedit_.inputMode(); }
+InputMode AnthyState::inputMode() const { return preedit_.inputMode(); }
 
 bool AnthyState::isSingleSegment() {
-    return (conversionMode() == ConversionMode::SINGLE_SEGMENT ||
-            conversionMode() == ConversionMode::SINGLE_SEGMENT_IMMEDIATE);
+    return (engine_->conversionMode() == ConversionMode::SINGLE_SEGMENT ||
+            engine_->conversionMode() ==
+                ConversionMode::SINGLE_SEGMENT_IMMEDIATE);
 }
 
 bool AnthyState::isRealtimeConversion() {
-    return (conversionMode() == ConversionMode::MULTI_SEGMENT_IMMEDIATE ||
-            conversionMode() == ConversionMode::SINGLE_SEGMENT_IMMEDIATE);
+    return (
+        engine_->conversionMode() == ConversionMode::MULTI_SEGMENT_IMMEDIATE ||
+        engine_->conversionMode() == ConversionMode::SINGLE_SEGMENT_IMMEDIATE);
 }
 
 int AnthyState::pseudoAsciiMode() {
@@ -1468,6 +1389,11 @@ void AnthyState::commitString(const std::string &str) {
         actions_[name] = Action(name, *hk, f);                                 \
     }
 
+void AnthyState::copyTo(fcitx::InputContextProperty *property) {
+    AnthyState *other = static_cast<AnthyState *>(property);
+    other->setInputMode(inputMode());
+}
+
 void AnthyState::configure() {
     auto keyProfile = engine_->keyProfile();
 
@@ -1493,20 +1419,11 @@ void AnthyState::configure() {
     preedit_.setNumberHalf(*config().general->romajiHalfNumber);
 
     // set input mode
-    preedit_.setInputMode(*config().general->inputMode);
-
-    // set typing method and pseudo ASCII mode
-    preedit_.setTypingMethod(*config().general->typingMethod);
-    preedit_.setPseudoAsciiMode(pseudoAsciiMode());
-
-    // set period style
-    setPeriodCommaStyle(*config().general->periodCommaStyle);
-
-    // set symbol style
-    setSymbolStyle(*config().general->symbolStyle);
-
-    // setup toolbar
-    installProperties();
+    setInputMode(*config().general->inputMode);
+    syncConversionMode();
+    syncTypingMethod();
+    syncPeriodCommaStyle();
+    syncSymbolStyle();
 }
 
 void AnthyState::updateAuxString(const std::string &str) {

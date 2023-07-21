@@ -76,17 +76,17 @@ public:
 
     // preferences
     void setInputMode(InputMode mode);
-    InputMode inputMode();
+    InputMode inputMode() const;
     void setTypingMethod(TypingMethod method);
-    TypingMethod typingMethod();
+    TypingMethod typingMethod() const;
     void setPeriodStyle(PeriodStyle style);
-    PeriodStyle periodStyle();
+    PeriodStyle periodStyle() const;
     void setCommaStyle(CommaStyle style);
-    CommaStyle commaStyle();
+    CommaStyle commaStyle() const;
     void setBracketStyle(BracketStyle style);
-    BracketStyle bracketStyle();
+    BracketStyle bracketStyle() const;
     void setSlashStyle(SlashStyle style);
-    SlashStyle slashStyle();
+    SlashStyle slashStyle() const;
     void setSymbolHalf(bool half);
     void setNumberHalf(bool half);
     void setPseudoAsciiMode(int mode);

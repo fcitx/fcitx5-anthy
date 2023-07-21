@@ -8,4 +8,6 @@
 #include "key2kana_base.h"
 #include "state.h"
 
-AnthyConfig &Key2KanaConvertorBase::config() { return state_.config(); }
+const AnthyConfig &Key2KanaConvertorBase::config() const {
+    return state_.config();
+}

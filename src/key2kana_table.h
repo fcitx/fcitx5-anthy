@@ -96,13 +96,13 @@ public:
     void setBracketStyle(BracketStyle style);
     void setSlashStyle(SlashStyle style);
 
-    TypingMethod typingMethod() { return typingMethod_; }
-    bool symbol_is_half() { return useHalfSymbol_; }
-    bool isNumberHalf() { return useHalfNumber_; }
-    PeriodStyle periodStyle() { return periodStyle_; }
-    CommaStyle commaStyle() { return commaStyle_; }
-    BracketStyle bracketStyle() { return bracketStyle_; }
-    SlashStyle slashStyle() { return slashStyle_; }
+    TypingMethod typingMethod() const { return typingMethod_; }
+    bool symbol_is_half() const { return useHalfSymbol_; }
+    bool isNumberHalf() const { return useHalfNumber_; }
+    PeriodStyle periodStyle() const { return periodStyle_; }
+    CommaStyle commaStyle() const { return commaStyle_; }
+    BracketStyle bracketStyle() const { return bracketStyle_; }
+    SlashStyle slashStyle() const { return slashStyle_; }
 
 private:
     void resetTables();

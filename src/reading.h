@@ -70,15 +70,15 @@ public:
     void moveCaret(int step, bool allow_split = false);
 
     void setTypingMethod(TypingMethod method);
-    TypingMethod typingMethod();
+    TypingMethod typingMethod() const;
     void setPeriodStyle(PeriodStyle style);
-    PeriodStyle periodStyle();
+    PeriodStyle periodStyle() const;
     void setCommaStyle(CommaStyle style);
-    CommaStyle commaStyle();
+    CommaStyle commaStyle() const;
     void setBracketStyle(BracketStyle style);
-    BracketStyle bracketStyle();
+    BracketStyle bracketStyle() const;
     void setSlashStyle(SlashStyle style);
-    SlashStyle slashStyle();
+    SlashStyle slashStyle() const;
     void setSymbolHalf(bool half);
     bool isSymbolHalf();
     void setNumberHalf(bool half);

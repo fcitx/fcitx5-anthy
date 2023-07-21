@@ -41,7 +41,7 @@ public:
     bool isCaseSensitive() { return caseSensitive_; }
 
 protected:
-    AnthyConfig &config();
+    const AnthyConfig &config() const;
 
     AnthyState &state_;
     bool caseSensitive_;

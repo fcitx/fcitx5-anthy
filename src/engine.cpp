@@ -130,7 +130,7 @@ struct AnthyModeTraits<InputMode>
     : AnthyStatusHelper<InputMode, &input_mode_status> {
     static auto mode(AnthyState *state) { return state->inputMode(); }
     static void setMode(AnthyState *state, InputMode mode) {
-        return state->setInputMode(mode);
+        return state->setInputMode(mode, /*propagate=*/true);
     }
     static const char *icon(InputMode mode) {
         if (auto *s = status(mode)) {
@@ -152,7 +152,7 @@ struct AnthyModeTraits<TypingMethod>
     : AnthyStatusHelper<TypingMethod, &typing_method_status> {
     static auto mode(AnthyState *state) { return state->typingMethod(); }
     static void setMode(AnthyState *state, TypingMethod mode) {
-        return state->setTypingMethod(mode);
+        return state->engine()->setTypingMethod(mode);
     }
     static auto label(TypingMethod mode) {
         if (auto *s = status(mode)) {
@@ -165,9 +165,11 @@ struct AnthyModeTraits<TypingMethod>
 template <>
 struct AnthyModeTraits<ConversionMode>
     : AnthyStatusHelper<ConversionMode, &conversion_mode_status> {
-    static auto mode(AnthyState *state) { return state->conversionMode(); }
+    static auto mode(AnthyState *state) {
+        return state->engine()->conversionMode();
+    }
     static void setMode(AnthyState *state, ConversionMode mode) {
-        return state->setConversionMode(mode);
+        return state->engine()->setConversionMode(mode);
     }
     static std::string label(ConversionMode mode) {
         if (auto *s = status(mode)) {
@@ -181,18 +183,22 @@ struct AnthyModeTraits<ConversionMode>
 template <>
 struct AnthyModeTraits<PeriodCommaStyle>
     : AnthyStatusHelper<PeriodCommaStyle, &period_style_status> {
-    static auto mode(AnthyState *state) { return state->periodCommaStyle(); }
+    static auto mode(AnthyState *state) {
+        return state->engine()->periodCommaStyle();
+    }
     static void setMode(AnthyState *state, PeriodCommaStyle mode) {
-        return state->setPeriodCommaStyle(mode);
+        return state->engine()->setPeriodCommaStyle(mode);
     }
 };
 
 template <>
 struct AnthyModeTraits<SymbolStyle>
     : AnthyStatusHelper<SymbolStyle, &symbol_style_status> {
-    static auto mode(AnthyState *state) { return state->symbolStyle(); }
+    static auto mode(AnthyState *state) {
+        return state->engine()->symbolStyle();
+    }
     static void setMode(AnthyState *state, SymbolStyle mode) {
-        return state->setSymbolStyle(mode);
+        return state->engine()->setSymbolStyle(mode);
     }
 };
 
@@ -451,7 +457,10 @@ std::string AnthyEngine::fullFileName(const std::string &name) {
 
 void AnthyEngine::reloadConfig() {
     fcitx::readAsIni(config_, "conf/anthy.conf");
+    populateConfig();
+}
 
+void AnthyEngine::populateConfig() {
     std::string file;
 
     StyleFile style;
@@ -508,6 +517,10 @@ void AnthyEngine::reloadConfig() {
         }
     }
 
+    populateOptionToState();
+}
+
+void AnthyEngine::populateOptionToState() {
     if (factory_.registered()) {
         instance_->inputContextManager().foreach(
             [this](fcitx::InputContext *ic) {

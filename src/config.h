@@ -182,7 +182,7 @@ FCITX_CONFIGURATION(
         this, "RomajiHalfNumber", _("Use half-width characters for numbers"),
         true};
     fcitx::OptionWithAnnotation<InputMode, InputModeI18NAnnotation> inputMode{
-        this, "InputMode", _("Input mode"), InputMode::HIRAGANA};
+        this, "InputMode", _("Initial Input mode"), InputMode::HIRAGANA};
     fcitx::OptionWithAnnotation<TypingMethod, TypingMethodI18NAnnotation>
         typingMethod{this, "TypingMethod", _("Typing method"),
                      TypingMethod::ROMAJI};

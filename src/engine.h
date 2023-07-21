@@ -8,6 +8,7 @@
 #define _FCITX5_ANTHY_ENGINE_H_
 
 #include "action.h"
+#include "config.h"
 #include "key2kana_table.h"
 #include "style_file.h"
 #include <anthy/anthy.h>
@@ -55,7 +56,7 @@ public:
     void saveConfig() { fcitx::safeSaveAsIni(config_, "conf/anthy.conf"); }
 
     auto state(fcitx::InputContext *ic) { return ic->propertyFor(&factory_); }
-    auto &config() { return config_; }
+    auto &config() const { return config_; }
     auto keyProfile() { return keyProfileFileLoaded_ ? &keyProfile_ : nullptr; }
     auto customRomajiTable() {
         return customRomajiTableLoaded_ ? &customRomajiTable_ : nullptr;
@@ -79,7 +80,48 @@ public:
     std::string subModeLabelImpl(const fcitx::InputMethodEntry &,
                                  fcitx::InputContext &) override;
 
+    const auto &propertyFactory() const { return factory_; }
+
+    ConversionMode conversionMode() const {
+        return *config_.general->conversionMode;
+    }
+    PeriodCommaStyle periodCommaStyle() const {
+        return *config_.general->periodCommaStyle;
+    }
+    SymbolStyle symbolStyle() { return *config_.general->symbolStyle; }
+    TypingMethod typingMethod() { return *config_.general->typingMethod; }
+
+    void setPeriodCommaStyle(PeriodCommaStyle period) {
+        setAndPopulateOption(config_.general.mutableValue()->periodCommaStyle,
+                             period);
+    }
+
+    void setSymbolStyle(SymbolStyle symbol) {
+        setAndPopulateOption(config_.general.mutableValue()->symbolStyle,
+                             symbol);
+    }
+
+    void setConversionMode(ConversionMode mode) {
+        setAndPopulateOption(config_.general.mutableValue()->conversionMode,
+                             mode);
+    }
+
+    void setTypingMethod(TypingMethod method) {
+        setAndPopulateOption(config_.general.mutableValue()->typingMethod,
+                             method);
+    }
+
 private:
+    void populateConfig();
+    void populateOptionToState();
+
+    template <typename OptionT, typename ValueT>
+    void setAndPopulateOption(OptionT &option, const ValueT &value) {
+        option.setValue(value);
+        saveConfig();
+        populateOptionToState();
+    }
+
     std::string keyProfileName();
     std::string romajiTableName();
     std::string kanaTableName();

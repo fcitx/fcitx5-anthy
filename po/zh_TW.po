@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2022-12-16 20:25+0000\n"
+"POT-Creation-Date: 2023-07-21 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: Neko ◣ 0xFF, 2022\n"
-"Language-Team: Chinese (Taiwan) (https://www.transifex.com/fcitx/teams/12005/"
+"Language-Team: Chinese (Taiwan) (https://app.transifex.com/fcitx/teams/12005/"
 "zh_TW/)\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/state.cpp:307
+#: src/state.cpp:294
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -167,11 +167,11 @@ msgstr "轉換到英文"
 msgid "Convert To Wide Latin"
 msgstr "轉換到全形英文"
 
-#: src/engine.cpp:64
+#: src/engine.cpp:65
 msgid "Convert as you type (Multi segment)"
 msgstr "輸入時轉換（多段）"
 
-#: src/engine.cpp:65
+#: src/engine.cpp:66
 msgid "Convert as you type (Single segment)"
 msgstr "輸入時轉換（單段）"
 
@@ -223,7 +223,7 @@ msgstr "刪除"
 msgid "Dict admin"
 msgstr "詞典管理"
 
-#: src/engine.cpp:51
+#: src/engine.cpp:52
 msgid "Direct input"
 msgstr "直接輸入"
 
@@ -255,11 +255,11 @@ msgstr "半形片假名"
 msgid "Half Katakana mode"
 msgstr "半形片假名模式"
 
-#: src/engine.cpp:50
+#: src/engine.cpp:51
 msgid "Half width katakana"
 msgstr "半形片假名"
 
-#: src/config.h:29 src/engine.cpp:48
+#: src/config.h:29 src/engine.cpp:49
 msgid "Hiragana"
 msgstr "平假名"
 
@@ -272,8 +272,8 @@ msgid "Horizontal"
 msgstr "橫向"
 
 #: src/config.h:185
-msgid "Input mode"
-msgstr "輸入模式"
+msgid "Initial Input mode"
+msgstr ""
 
 #: src/config.h:379
 msgid "Insert Alternative space"
@@ -307,7 +307,7 @@ msgstr "日語"
 msgid "Japanese input method based on Anthy"
 msgstr "基於  Anthy 的日文輸入法"
 
-#: src/config.h:66 src/engine.cpp:57
+#: src/config.h:66 src/engine.cpp:58
 msgid "Kana"
 msgstr "假名"
 
@@ -315,7 +315,7 @@ msgstr "假名"
 msgid "Kana Table"
 msgstr "假名表"
 
-#: src/config.h:29 src/engine.cpp:49
+#: src/config.h:29 src/engine.cpp:50
 msgid "Katakana"
 msgstr "片假名"
 
@@ -375,7 +375,7 @@ msgstr "向前移動插入符號"
 msgid "Move caret last"
 msgstr "移動插入符號到結尾"
 
-#: src/config.h:59 src/engine.cpp:62
+#: src/config.h:59 src/engine.cpp:63
 msgid "Multi segment"
 msgstr "多段"
 
@@ -383,7 +383,7 @@ msgstr "多段"
 msgid "Multi segment immediate"
 msgstr "立即多段"
 
-#: src/config.h:67 src/engine.cpp:58
+#: src/config.h:67 src/engine.cpp:59
 msgid "Nicola"
 msgstr "尼古拉"
 
@@ -451,7 +451,7 @@ msgstr "右拇指鍵"
 msgid "Ro key for kana layout"
 msgstr "假名佈局的 ロ 鍵"
 
-#: src/config.h:66 src/engine.cpp:56
+#: src/config.h:66 src/engine.cpp:57
 msgid "Romaji"
 msgstr "羅馬音"
 
@@ -515,7 +515,7 @@ msgstr "顯示輸入方式"
 msgid "Shrink segment"
 msgstr "收起段落"
 
-#: src/config.h:60 src/engine.cpp:63
+#: src/config.h:60 src/engine.cpp:64
 msgid "Single segment"
 msgstr "單段"
 
@@ -535,7 +535,7 @@ msgstr "符號樣式"
 msgid "Ten key type"
 msgstr "十鍵輸入"
 
-#: src/engine.cpp:58
+#: src/engine.cpp:59
 msgid "Thumb shift"
 msgstr "移位拇指"
 
@@ -587,7 +587,7 @@ msgstr "全形英文"
 msgid "Wide bracket and wide slash"
 msgstr "全形括弧與斜線"
 
-#: src/config.h:48 src/engine.cpp:52
+#: src/config.h:48 src/engine.cpp:53
 msgid "Wide latin"
 msgstr "全形英文"
 

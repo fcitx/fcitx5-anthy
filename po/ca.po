@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2021-11-25 20:24+0000\n"
+"POT-Creation-Date: 2023-07-21 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: csslayer <wengxt@gmail.com>, 2017\n"
-"Language-Team: Catalan (https://www.transifex.com/fcitx/teams/12005/ca/)\n"
+"Language-Team: Catalan (https://app.transifex.com/fcitx/teams/12005/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/state.cpp:315
+#: src/state.cpp:294
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -28,11 +28,11 @@ msgstr "(%d / %d)"
 msgid "101kana"
 msgstr "101kana"
 
-#: src/config.h:626
+#: src/config.h:629
 msgid "Add Word"
 msgstr "Afegeix una paraula"
 
-#: src/config.h:647
+#: src/config.h:650
 msgid "Add word"
 msgstr "Afegeix una parula"
 
@@ -60,11 +60,11 @@ msgstr "Azik"
 msgid "BackSpace"
 msgstr "Retrocés"
 
-#: src/config.h:433
+#: src/config.h:435
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: src/config.h:439
+#: src/config.h:441
 msgid "Cancel all"
 msgstr "Cancel·la-ho tot"
 
@@ -76,11 +76,11 @@ msgstr "Cancel·la el mode pseudo ascii"
 msgid "Candidate List Layout"
 msgstr "Disposició de la llista de candidates"
 
-#: src/config.h:560
+#: src/config.h:563
 msgid "Candidates Page Down"
 msgstr "Candidata pàgina avall"
 
-#: src/config.h:554
+#: src/config.h:557
 msgid "Candidates Page Up"
 msgstr "Candidata pàgina amunt"
 
@@ -104,7 +104,7 @@ msgstr "Mode llatí i hiragana cercle"
 msgid "Circle typing method"
 msgstr "Mètode d'escriptura cercle"
 
-#: src/config.h:659
+#: src/config.h:662
 msgid "Command"
 msgstr "Ordre"
 
@@ -112,23 +112,23 @@ msgstr "Ordre"
 msgid "Commit"
 msgstr "Envia"
 
-#: src/config.h:415
+#: src/config.h:416
 msgid "Commit Reverse Learn"
 msgstr "Envia aprèn revertit"
 
-#: src/config.h:517
+#: src/config.h:519
 msgid "Commit first segement reverse learn"
 msgstr ""
 
-#: src/config.h:505
+#: src/config.h:507
 msgid "Commit first segment"
 msgstr "Envia el primer segment"
 
-#: src/config.h:523
+#: src/config.h:525
 msgid "Commit selected segement reverse learn"
 msgstr ""
 
-#: src/config.h:511
+#: src/config.h:513
 msgid "Commit selected segment"
 msgstr "Envia el segment seleccionat"
 
@@ -136,47 +136,47 @@ msgstr "Envia el segment seleccionat"
 msgid "Conversion mode"
 msgstr "Mode de conversió"
 
-#: src/config.h:421
+#: src/config.h:422
 msgid "Convert"
 msgstr "Converteix"
 
-#: src/config.h:590
+#: src/config.h:593
 msgid "Convert To Half"
 msgstr "Converteix a mig"
 
-#: src/config.h:596
+#: src/config.h:599
 msgid "Convert To Half Katakana"
 msgstr "Converteix a mig katakana"
 
-#: src/config.h:578
+#: src/config.h:581
 msgid "Convert To Hiragana"
 msgstr "Converteix a hiragana"
 
-#: src/config.h:584
+#: src/config.h:587
 msgid "Convert To Katakana"
 msgstr "Converteix a katakana"
 
-#: src/config.h:608
+#: src/config.h:611
 msgid "Convert To Latin"
 msgstr "Converteix a llatí"
 
-#: src/config.h:602
+#: src/config.h:605
 msgid "Convert To Wide Latin"
 msgstr "Converteix a llatí ample"
 
-#: src/engine.cpp:64
+#: src/engine.cpp:65
 msgid "Convert as you type (Multi segment)"
 msgstr "Convertiu quan escriviu (Segment múltiple)"
 
-#: src/engine.cpp:65
+#: src/engine.cpp:66
 msgid "Convert as you type (Single segment)"
 msgstr "Converteix a mesura que escriviu (Segment únic)"
 
-#: src/config.h:572
+#: src/config.h:575
 msgid "Convert char type backward"
 msgstr "Converteix el tipus de caràcter enrere"
 
-#: src/config.h:566
+#: src/config.h:569
 msgid "Convert char type forward"
 msgstr "Converteix el tipus de caràcter endavant"
 
@@ -216,11 +216,11 @@ msgstr "Predeterminat"
 msgid "Delete"
 msgstr "Esborra"
 
-#: src/config.h:620 src/config.h:649
+#: src/config.h:623 src/config.h:652
 msgid "Dict admin"
 msgstr "Administrador de dictat"
 
-#: src/engine.cpp:51
+#: src/engine.cpp:52
 msgid "Direct input"
 msgstr "Entrada directa"
 
@@ -228,7 +228,7 @@ msgstr "Entrada directa"
 msgid "Entering the pseudo ASCII input mode with capital letters"
 msgstr ""
 
-#: src/config.h:499
+#: src/config.h:501
 msgid "Expand segment"
 msgstr "Expandeix el segment"
 
@@ -236,7 +236,7 @@ msgstr "Expandeix el segment"
 msgid "Follow mode"
 msgstr ""
 
-#: src/config.h:653
+#: src/config.h:656
 msgid "General"
 msgstr "General"
 
@@ -252,11 +252,11 @@ msgstr "Mitja katakana"
 msgid "Half Katakana mode"
 msgstr "Mode katakana mig"
 
-#: src/engine.cpp:50
+#: src/engine.cpp:51
 msgid "Half width katakana"
 msgstr "Katakana mitja amplada"
 
-#: src/config.h:29 src/engine.cpp:48
+#: src/config.h:29 src/engine.cpp:49
 msgid "Hiragana"
 msgstr "Hiragana"
 
@@ -269,8 +269,8 @@ msgid "Horizontal"
 msgstr "Horitzontal"
 
 #: src/config.h:185
-msgid "Input mode"
-msgstr "Mode d'entrada"
+msgid "Initial Input mode"
+msgstr ""
 
 #: src/config.h:379
 msgid "Insert Alternative space"
@@ -292,7 +292,7 @@ msgstr "Insereix un espai"
 msgid "Insert wide space"
 msgstr "Insereix un espai ample"
 
-#: src/config.h:655
+#: src/config.h:658
 msgid "Interface"
 msgstr "Interfície"
 
@@ -304,7 +304,7 @@ msgstr "Japonès"
 msgid "Japanese input method based on Anthy"
 msgstr ""
 
-#: src/config.h:66 src/engine.cpp:57
+#: src/config.h:66 src/engine.cpp:58
 msgid "Kana"
 msgstr "Kana"
 
@@ -312,7 +312,7 @@ msgstr "Kana"
 msgid "Kana Table"
 msgstr "Taula kana"
 
-#: src/config.h:29 src/engine.cpp:49
+#: src/config.h:29 src/engine.cpp:50
 msgid "Katakana"
 msgstr "Katakana"
 
@@ -320,11 +320,11 @@ msgstr "Katakana"
 msgid "Katakana mode"
 msgstr "Mode katakana"
 
-#: src/config.h:658
+#: src/config.h:661
 msgid "Key"
 msgstr "Tecla"
 
-#: src/config.h:657
+#: src/config.h:660
 msgid "Key Profile"
 msgstr ""
 
@@ -348,7 +348,7 @@ msgstr "Aprèn a l'enviament automàtic"
 msgid "Learn on manual commit"
 msgstr "Aprèn a l'enviament manual"
 
-#: src/config.h:632
+#: src/config.h:635
 msgid "Left thumb key"
 msgstr "Tecla polze esquerre"
 
@@ -356,23 +356,23 @@ msgstr "Tecla polze esquerre"
 msgid "MS IME"
 msgstr "MS IME"
 
-#: src/config.h:463
+#: src/config.h:465
 msgid "Move caret backward"
 msgstr ""
 
-#: src/config.h:445
+#: src/config.h:447
 msgid "Move caret first"
 msgstr ""
 
-#: src/config.h:457
+#: src/config.h:459
 msgid "Move caret forward"
 msgstr "Mou el cursor endavant"
 
-#: src/config.h:451
+#: src/config.h:453
 msgid "Move caret last"
 msgstr "Mou el cursor a l'últim"
 
-#: src/config.h:59 src/engine.cpp:62
+#: src/config.h:59 src/engine.cpp:63
 msgid "Multi segment"
 msgstr "Segment múltiple"
 
@@ -380,7 +380,7 @@ msgstr "Segment múltiple"
 msgid "Multi segment immediate"
 msgstr "Multi segment immediat"
 
-#: src/config.h:67 src/engine.cpp:58
+#: src/config.h:67 src/engine.cpp:59
 msgid "Nicola"
 msgstr "Nicola"
 
@@ -388,7 +388,7 @@ msgstr "Nicola"
 msgid "Nicola Table"
 msgstr "Taula nicola"
 
-#: src/config.h:643
+#: src/config.h:646
 msgid "Nicola time"
 msgstr "Temps nicola"
 
@@ -424,7 +424,7 @@ msgstr "Mida de la pàgina"
 msgid "Period style"
 msgstr "Estil de punt"
 
-#: src/config.h:427
+#: src/config.h:429
 msgid "Predict"
 msgstr "Prediu"
 
@@ -436,19 +436,19 @@ msgstr ""
 msgid "Quick Kana"
 msgstr "Kana ràpid"
 
-#: src/config.h:614
+#: src/config.h:617
 msgid "Reconvert"
 msgstr "Reconverteix"
 
-#: src/config.h:638
+#: src/config.h:641
 msgid "Right thumb key"
 msgstr "Tecla polze dret"
 
-#: src/config.h:642
+#: src/config.h:645
 msgid "Ro key for kana layout"
 msgstr "Tecla ro per a la disposició kana"
 
-#: src/config.h:66 src/engine.cpp:56
+#: src/config.h:66 src/engine.cpp:57
 msgid "Romaji"
 msgstr "Romaji"
 
@@ -456,35 +456,35 @@ msgstr "Romaji"
 msgid "Romaji Table"
 msgstr "Taula Romaji"
 
-#: src/config.h:529
+#: src/config.h:531
 msgid "Select first candidate"
 msgstr "Selecciona la primera candidata"
 
-#: src/config.h:469
+#: src/config.h:471
 msgid "Select first segment"
 msgstr "Selecciona el primer segment"
 
-#: src/config.h:535
+#: src/config.h:537
 msgid "Select last candidate"
 msgstr "Selecciona l'última candidata"
 
-#: src/config.h:475
+#: src/config.h:477
 msgid "Select last segment"
 msgstr "Selecciona l'últim segment"
 
-#: src/config.h:541
+#: src/config.h:543
 msgid "Select next candidate"
 msgstr "Selecciona la candidata següent"
 
-#: src/config.h:481
+#: src/config.h:483
 msgid "Select next segment"
 msgstr "Selecciona el segment següent"
 
-#: src/config.h:548
+#: src/config.h:551
 msgid "Select prev candidate"
 msgstr "Selecciona la candidata prèvia"
 
-#: src/config.h:487
+#: src/config.h:489
 msgid "Select prev segment"
 msgstr ""
 
@@ -508,11 +508,11 @@ msgstr "Mostra l'estil de punt"
 msgid "Show typing method"
 msgstr "Mostra el mètode d'escriptura"
 
-#: src/config.h:493
+#: src/config.h:495
 msgid "Shrink segment"
 msgstr "Encongeix el segment"
 
-#: src/config.h:60 src/engine.cpp:63
+#: src/config.h:60 src/engine.cpp:64
 msgid "Single segment"
 msgstr "Segment únic"
 
@@ -532,7 +532,7 @@ msgstr "Estil de símbol"
 msgid "Ten key type"
 msgstr ""
 
-#: src/engine.cpp:58
+#: src/engine.cpp:59
 msgid "Thumb shift"
 msgstr "Alternança amb el polze"
 
@@ -584,7 +584,7 @@ msgstr "Llatí ample"
 msgid "Wide bracket and wide slash"
 msgstr "Parèntesi ample i barra inclinada ampla"
 
-#: src/config.h:48 src/engine.cpp:52
+#: src/config.h:48 src/engine.cpp:53
 msgid "Wide latin"
 msgstr "Llatí ample"
 

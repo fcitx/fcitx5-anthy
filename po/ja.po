@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2022-01-07 20:24+0000\n"
+"POT-Creation-Date: 2023-07-21 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2022\n"
-"Language-Team: Japanese (https://www.transifex.com/fcitx/teams/12005/ja/)\n"
+"Language-Team: Japanese (https://app.transifex.com/fcitx/teams/12005/ja/)\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/state.cpp:315
+#: src/state.cpp:294
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -30,11 +30,11 @@ msgstr "(%d / %d)"
 msgid "101kana"
 msgstr "101カナ"
 
-#: src/config.h:626
+#: src/config.h:629
 msgid "Add Word"
 msgstr "単語を追加"
 
-#: src/config.h:647
+#: src/config.h:650
 msgid "Add word"
 msgstr "単語の追加"
 
@@ -62,11 +62,11 @@ msgstr "AZIK"
 msgid "BackSpace"
 msgstr "バックスペース"
 
-#: src/config.h:433
+#: src/config.h:435
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: src/config.h:439
+#: src/config.h:441
 msgid "Cancel all"
 msgstr "全てキャンセル"
 
@@ -78,11 +78,11 @@ msgstr "一時アスキーモードをやめる"
 msgid "Candidate List Layout"
 msgstr "候補リストのレイアウト"
 
-#: src/config.h:560
+#: src/config.h:563
 msgid "Candidates Page Down"
 msgstr "前のページへ"
 
-#: src/config.h:554
+#: src/config.h:557
 msgid "Candidates Page Up"
 msgstr "次のページへ"
 
@@ -106,7 +106,7 @@ msgstr "英数とかなモード循環"
 msgid "Circle typing method"
 msgstr "入力方式循環"
 
-#: src/config.h:659
+#: src/config.h:662
 msgid "Command"
 msgstr "コマンド"
 
@@ -114,23 +114,23 @@ msgstr "コマンド"
 msgid "Commit"
 msgstr "確定"
 
-#: src/config.h:415
+#: src/config.h:416
 msgid "Commit Reverse Learn"
 msgstr "再変換の確定"
 
-#: src/config.h:517
+#: src/config.h:519
 msgid "Commit first segement reverse learn"
 msgstr "再変換した最初の文節を確定"
 
-#: src/config.h:505
+#: src/config.h:507
 msgid "Commit first segment"
 msgstr "最初の文節を確定"
 
-#: src/config.h:523
+#: src/config.h:525
 msgid "Commit selected segement reverse learn"
 msgstr "再変換した選択済み文節を確定"
 
-#: src/config.h:511
+#: src/config.h:513
 msgid "Commit selected segment"
 msgstr "選択文節を確定"
 
@@ -138,47 +138,47 @@ msgstr "選択文節を確定"
 msgid "Conversion mode"
 msgstr "変換モード"
 
-#: src/config.h:421
+#: src/config.h:422
 msgid "Convert"
 msgstr "変換"
 
-#: src/config.h:590
+#: src/config.h:593
 msgid "Convert To Half"
 msgstr "半角変換"
 
-#: src/config.h:596
+#: src/config.h:599
 msgid "Convert To Half Katakana"
 msgstr "半角カタカナ変換"
 
-#: src/config.h:578
+#: src/config.h:581
 msgid "Convert To Hiragana"
 msgstr "ひらがな変換"
 
-#: src/config.h:584
+#: src/config.h:587
 msgid "Convert To Katakana"
 msgstr "カタカナ変換"
 
-#: src/config.h:608
+#: src/config.h:611
 msgid "Convert To Latin"
 msgstr "英数変換"
 
-#: src/config.h:602
+#: src/config.h:605
 msgid "Convert To Wide Latin"
 msgstr "全角英数変換"
 
-#: src/engine.cpp:64
+#: src/engine.cpp:65
 msgid "Convert as you type (Multi segment)"
 msgstr "逐次変換(連文節)"
 
-#: src/engine.cpp:65
+#: src/engine.cpp:66
 msgid "Convert as you type (Single segment)"
 msgstr "逐次変換(単文節)"
 
-#: src/config.h:572
+#: src/config.h:575
 msgid "Convert char type backward"
 msgstr "前の文字種に変換"
 
-#: src/config.h:566
+#: src/config.h:569
 msgid "Convert char type forward"
 msgstr "次の文字種に変換"
 
@@ -218,11 +218,11 @@ msgstr "デフォルト"
 msgid "Delete"
 msgstr "削除"
 
-#: src/config.h:620 src/config.h:649
+#: src/config.h:623 src/config.h:652
 msgid "Dict admin"
 msgstr "辞書の編集"
 
-#: src/engine.cpp:51
+#: src/engine.cpp:52
 msgid "Direct input"
 msgstr "直接入力"
 
@@ -230,7 +230,7 @@ msgstr "直接入力"
 msgid "Entering the pseudo ASCII input mode with capital letters"
 msgstr "大文字で疑似ASCII入力モードに入る"
 
-#: src/config.h:499
+#: src/config.h:501
 msgid "Expand segment"
 msgstr "文節を伸ばす"
 
@@ -238,7 +238,7 @@ msgstr "文節を伸ばす"
 msgid "Follow mode"
 msgstr "フォローモード"
 
-#: src/config.h:653
+#: src/config.h:656
 msgid "General"
 msgstr "全般"
 
@@ -254,11 +254,11 @@ msgstr "半角カタカナ"
 msgid "Half Katakana mode"
 msgstr "半角カタカナモード"
 
-#: src/engine.cpp:50
+#: src/engine.cpp:51
 msgid "Half width katakana"
 msgstr "半角カタカナ"
 
-#: src/config.h:29 src/engine.cpp:48
+#: src/config.h:29 src/engine.cpp:49
 msgid "Hiragana"
 msgstr "ひらがな"
 
@@ -271,8 +271,8 @@ msgid "Horizontal"
 msgstr "横"
 
 #: src/config.h:185
-msgid "Input mode"
-msgstr "入力モード"
+msgid "Initial Input mode"
+msgstr ""
 
 #: src/config.h:379
 msgid "Insert Alternative space"
@@ -294,7 +294,7 @@ msgstr "空白を挿入"
 msgid "Insert wide space"
 msgstr "全角スペースの挿入"
 
-#: src/config.h:655
+#: src/config.h:658
 msgid "Interface"
 msgstr "インターフェイス"
 
@@ -306,7 +306,7 @@ msgstr "日本語"
 msgid "Japanese input method based on Anthy"
 msgstr "Anthyに基づく日本語入力メソッド"
 
-#: src/config.h:66 src/engine.cpp:57
+#: src/config.h:66 src/engine.cpp:58
 msgid "Kana"
 msgstr "かな"
 
@@ -314,7 +314,7 @@ msgstr "かな"
 msgid "Kana Table"
 msgstr "カナ配列"
 
-#: src/config.h:29 src/engine.cpp:49
+#: src/config.h:29 src/engine.cpp:50
 msgid "Katakana"
 msgstr "カタカナ"
 
@@ -322,11 +322,11 @@ msgstr "カタカナ"
 msgid "Katakana mode"
 msgstr "カタカナモード"
 
-#: src/config.h:658
+#: src/config.h:661
 msgid "Key"
 msgstr "キー"
 
-#: src/config.h:657
+#: src/config.h:660
 msgid "Key Profile"
 msgstr "キーのプロファイル"
 
@@ -350,7 +350,7 @@ msgstr "自動学習"
 msgid "Learn on manual commit"
 msgstr "手動学習"
 
-#: src/config.h:632
+#: src/config.h:635
 msgid "Left thumb key"
 msgstr "左親指キー"
 
@@ -358,23 +358,23 @@ msgstr "左親指キー"
 msgid "MS IME"
 msgstr "MS IME"
 
-#: src/config.h:463
+#: src/config.h:465
 msgid "Move caret backward"
 msgstr "後ろにキャレットを移動"
 
-#: src/config.h:445
+#: src/config.h:447
 msgid "Move caret first"
 msgstr "最初にキャレットを移動"
 
-#: src/config.h:457
+#: src/config.h:459
 msgid "Move caret forward"
 msgstr "前方へ移動"
 
-#: src/config.h:451
+#: src/config.h:453
 msgid "Move caret last"
 msgstr "最後へ移動"
 
-#: src/config.h:59 src/engine.cpp:62
+#: src/config.h:59 src/engine.cpp:63
 msgid "Multi segment"
 msgstr "連文節"
 
@@ -382,7 +382,7 @@ msgstr "連文節"
 msgid "Multi segment immediate"
 msgstr "逐次変換 (連文節)"
 
-#: src/config.h:67 src/engine.cpp:58
+#: src/config.h:67 src/engine.cpp:59
 msgid "Nicola"
 msgstr "Nicola"
 
@@ -390,7 +390,7 @@ msgstr "Nicola"
 msgid "Nicola Table"
 msgstr "Nicola配列"
 
-#: src/config.h:643
+#: src/config.h:646
 msgid "Nicola time"
 msgstr "Nicola時間"
 
@@ -426,7 +426,7 @@ msgstr "候補ウィンドウの項目数"
 msgid "Period style"
 msgstr "句読点のスタイル"
 
-#: src/config.h:427
+#: src/config.h:429
 msgid "Predict"
 msgstr "予測"
 
@@ -438,19 +438,19 @@ msgstr "入力を予測する"
 msgid "Quick Kana"
 msgstr "Quick かな"
 
-#: src/config.h:614
+#: src/config.h:617
 msgid "Reconvert"
 msgstr "再変換"
 
-#: src/config.h:638
+#: src/config.h:641
 msgid "Right thumb key"
 msgstr "右親指キー"
 
-#: src/config.h:642
+#: src/config.h:645
 msgid "Ro key for kana layout"
 msgstr "かなレイアウト用の「ろ」キー"
 
-#: src/config.h:66 src/engine.cpp:56
+#: src/config.h:66 src/engine.cpp:57
 msgid "Romaji"
 msgstr "ローマ字"
 
@@ -458,35 +458,35 @@ msgstr "ローマ字"
 msgid "Romaji Table"
 msgstr "ローマ字配列"
 
-#: src/config.h:529
+#: src/config.h:531
 msgid "Select first candidate"
 msgstr "最初の候補に移動"
 
-#: src/config.h:469
+#: src/config.h:471
 msgid "Select first segment"
 msgstr "最初の文節を選択"
 
-#: src/config.h:535
+#: src/config.h:537
 msgid "Select last candidate"
 msgstr "最後の候補に移動"
 
-#: src/config.h:475
+#: src/config.h:477
 msgid "Select last segment"
 msgstr "最後の文節を選択"
 
-#: src/config.h:541
+#: src/config.h:543
 msgid "Select next candidate"
 msgstr "次の候補に移動"
 
-#: src/config.h:481
+#: src/config.h:483
 msgid "Select next segment"
 msgstr "次の文節を選択"
 
-#: src/config.h:548
+#: src/config.h:551
 msgid "Select prev candidate"
 msgstr "前の候補に移動"
 
-#: src/config.h:487
+#: src/config.h:489
 msgid "Select prev segment"
 msgstr "前の文節を選択"
 
@@ -510,11 +510,11 @@ msgstr "句読点のスタイルを表示"
 msgid "Show typing method"
 msgstr "入力方式を表示"
 
-#: src/config.h:493
+#: src/config.h:495
 msgid "Shrink segment"
 msgstr "文節を縮める"
 
-#: src/config.h:60 src/engine.cpp:63
+#: src/config.h:60 src/engine.cpp:64
 msgid "Single segment"
 msgstr "単文節"
 
@@ -534,7 +534,7 @@ msgstr "記号のスタイル"
 msgid "Ten key type"
 msgstr "テンキータイプ"
 
-#: src/engine.cpp:58
+#: src/engine.cpp:59
 msgid "Thumb shift"
 msgstr "親指シフト"
 
@@ -586,7 +586,7 @@ msgstr "全角英数"
 msgid "Wide bracket and wide slash"
 msgstr "全角かぎかっことスラッシュ"
 
-#: src/config.h:48 src/engine.cpp:52
+#: src/config.h:48 src/engine.cpp:53
 msgid "Wide latin"
 msgstr "全角英数"
 

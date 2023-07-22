@@ -4,15 +4,15 @@
 #
 # Translators:
 # csslayer <wengxt@gmail.com>, 2017
-# Dmitry <dmitrydmitry761@gmail.com>, 2022
+# Dmitry <dmitrydmitry761@gmail.com>, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-07-21 20:24+0000\n"
+"POT-Creation-Date: 2023-07-22 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2022\n"
+"Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2023\n"
 "Language-Team: Russian (https://app.transifex.com/fcitx/teams/12005/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -149,7 +149,7 @@ msgstr "Конвертировать в Half"
 
 #: src/config.h:599
 msgid "Convert To Half Katakana"
-msgstr "Конвертировать в половинную катакана"
+msgstr "Конвертировать в половинную Катакану"
 
 #: src/config.h:581
 msgid "Convert To Hiragana"
@@ -157,7 +157,7 @@ msgstr "Конвертировать в хирагана"
 
 #: src/config.h:587
 msgid "Convert To Katakana"
-msgstr "Конвертировать в катакана"
+msgstr "Конвертировать в Катакану"
 
 #: src/config.h:611
 msgid "Convert To Latin"
@@ -197,7 +197,7 @@ msgstr "Пользовательский"
 
 #: src/config.h:304
 msgid "Custom Kana Table"
-msgstr "Пользовательская таблица Kana"
+msgstr "Пользовательская таблица Кана"
 
 #: src/config.h:300
 msgid "Custom Key Binding"
@@ -253,11 +253,11 @@ msgstr "Половинная катакана"
 
 #: src/config.h:361
 msgid "Half Katakana mode"
-msgstr "Режим половинной катакана"
+msgstr "Режим половинной Катаканы"
 
 #: src/engine.cpp:51
 msgid "Half width katakana"
-msgstr "Полуширинная катакана"
+msgstr "Полуширинная Катакана"
 
 #: src/config.h:29 src/engine.cpp:49
 msgid "Hiragana"
@@ -273,7 +273,7 @@ msgstr "Горизонтально"
 
 #: src/config.h:185
 msgid "Initial Input mode"
-msgstr ""
+msgstr "Начальный режим ввода"
 
 #: src/config.h:379
 msgid "Insert Alternative space"
@@ -309,11 +309,11 @@ msgstr "Японский метод ввода на основе Anthy"
 
 #: src/config.h:66 src/engine.cpp:58
 msgid "Kana"
-msgstr "Kana"
+msgstr "Кана"
 
 #: src/config.h:295
 msgid "Kana Table"
-msgstr "Таблица "
+msgstr "Таблица Кана"
 
 #: src/config.h:29 src/engine.cpp:50
 msgid "Katakana"
@@ -321,7 +321,7 @@ msgstr "Катакана"
 
 #: src/config.h:355
 msgid "Katakana mode"
-msgstr "Режим катакана"
+msgstr "Режим Катакана"
 
 #: src/config.h:661
 msgid "Key"
@@ -341,7 +341,7 @@ msgstr "Латынь"
 
 #: src/config.h:337
 msgid "Latin mode"
-msgstr "Режим латыни"
+msgstr "Режим Латиницы"
 
 #: src/config.h:207
 msgid "Learn on auto commit"
@@ -437,7 +437,7 @@ msgstr "Предсказывать при вводе"
 
 #: src/config.h:267
 msgid "Quick Kana"
-msgstr "Быстрая Kana"
+msgstr "Быстрая Кана"
 
 #: src/config.h:617
 msgid "Reconvert"

@@ -76,8 +76,9 @@ void Preedit::updatePreedit() {
 
         std::string s = string();
         if (!s.empty()) {
-            preedit.append(s, useClientPreedit ? fcitx::TextFormatFlag::Underline
-                                               : fcitx::TextFormatFlag::NoFlag);
+            preedit.append(s, useClientPreedit
+                                  ? fcitx::TextFormatFlag::Underline
+                                  : fcitx::TextFormatFlag::NoFlag);
             preedit.setCursor(static_cast<int>(caretPos()));
         }
 

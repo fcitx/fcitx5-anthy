@@ -177,7 +177,7 @@ bool Key2KanaConvertor::append(const std::string &str, std::string &result,
             if (!tables[j])
                 continue;
 
-            Key2KanaRules &rules = tables[j]->table();
+            const Key2KanaRules &rules = tables[j]->table();
 
             for (unsigned int i = 0; i < rules.size(); i++) {
                 /* matching */

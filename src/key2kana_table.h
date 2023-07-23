@@ -49,7 +49,7 @@ public:
     void load(std::string sequence, std::vector<std::string> result);
 
     const std::string &sequence() const;
-    std::string result(unsigned int idx);
+    std::string result(unsigned int idx) const;
 
     void clear();
 
@@ -67,7 +67,7 @@ public:
     Key2KanaTable(std::string name, NicolaRule *table);
     FCITX_INLINE_DEFINE_DEFAULT_DTOR_AND_MOVE_WITHOUT_SPEC(Key2KanaTable)
 
-    Key2KanaRules &table() { return rules_; }
+    const Key2KanaRules &table() const { return rules_; }
 
     void appendRule(std::string sequence, std::vector<std::string> result);
     void appendRule(std::string sequence, std::string result, std::string cont);

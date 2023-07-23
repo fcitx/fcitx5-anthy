@@ -105,7 +105,7 @@ Key2KanaRule::~Key2KanaRule() {}
 
 const std::string &Key2KanaRule::sequence() const { return sequence_; }
 
-std::string Key2KanaRule::result(unsigned int idx) {
+std::string Key2KanaRule::result(unsigned int idx) const {
     if (idx < result_.size())
         return result_[idx];
 
@@ -229,7 +229,7 @@ void Key2KanaTableSet::setSlashStyle(SlashStyle style) {
 }
 
 static void create_voiced_consonant_table(Key2KanaTable &table,
-                                          Key2KanaTable &fund_table) {
+                                          const Key2KanaTable &fund_table) {
     table.clear();
 
     const std::string sonant_mark = std::string("\xE3\x82\x9B");
@@ -237,8 +237,8 @@ static void create_voiced_consonant_table(Key2KanaTable &table,
     std::vector<std::string> sonant_mark_list;
     std::vector<std::string> half_sonant_mark_list;
 
-    Key2KanaRules::iterator it;
-    Key2KanaRules &rules = fund_table.table();
+    Key2KanaRules::const_iterator it;
+    const Key2KanaRules &rules = fund_table.table();
     for (it = rules.begin(); it != rules.end(); it++) {
         std::string result = it->result(0);
         if (result == sonant_mark)

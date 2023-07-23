@@ -211,12 +211,13 @@ void Conversion::updatePreedit() {
             continue;
         }
 
-        preedit.append(it->string(), fcitx::TextFormatFlags {
-            useClientPreedit ? fcitx::TextFormatFlag::Underline
-                             : fcitx::TextFormatFlag::NoFlag,
-            static_cast<int>(seg_id) == curSegment_ ? fcitx::TextFormatFlag::HighLight
-                                                    : fcitx::TextFormatFlag::NoFlag
-        });
+        preedit.append(it->string(),
+                       fcitx::TextFormatFlags{
+                           useClientPreedit ? fcitx::TextFormatFlag::Underline
+                                            : fcitx::TextFormatFlag::NoFlag,
+                           static_cast<int>(seg_id) == curSegment_
+                               ? fcitx::TextFormatFlag::HighLight
+                               : fcitx::TextFormatFlag::NoFlag});
     }
     preedit.setCursor(static_cast<int>(segmentPosition()));
 

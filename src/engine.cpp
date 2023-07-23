@@ -9,6 +9,7 @@
 #include "action.h"
 #include "state.h"
 #include <cerrno>
+#include <cstdio>
 #include <fcitx-config/iniparser.h>
 #include <fcitx-utils/log.h>
 #include <fcitx-utils/standardpath.h>
@@ -18,7 +19,6 @@
 #include <fcitx/inputcontext.h>
 #include <fcitx/inputcontextmanager.h>
 #include <fcitx/userinterfacemanager.h>
-#include <cstdio>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -269,13 +269,16 @@ AnthyEngine::AnthyEngine(fcitx::Instance *instance)
     : instance_(instance), factory_([this](fcitx::InputContext &ic) {
           return new AnthyState(&ic, this, instance_);
       }) {
-    anthy_set_logger([](int level, const char *msg) {
-        FCITX_UNUSED(level);
-        FCITX_ANTHY_INFO() << "Anthy: " << msg;
-    }, 0);
+    anthy_set_logger(
+        [](int level, const char *msg) {
+            FCITX_UNUSED(level);
+            FCITX_ANTHY_INFO() << "Anthy: " << msg;
+        },
+        0);
 #ifdef __ANDROID__
     const auto &sp = fcitx::StandardPath::global();
-    std::string anthy_conf = sp.locate(fcitx::StandardPath::Type::Data, "anthy/anthy-unicode.conf");
+    std::string anthy_conf =
+        sp.locate(fcitx::StandardPath::Type::Data, "anthy/anthy-unicode.conf");
     std::string anthy_prefix = fcitx::fs::dirName(anthy_conf);
     // "CONFFILE" must be overridden first to change main config file path
     anthy_conf_override("CONFFILE", anthy_conf.c_str());
@@ -283,8 +286,11 @@ AnthyEngine::AnthyEngine(fcitx::Instance *instance)
     anthy_conf_override("prefix", anthy_prefix.c_str());
     anthy_conf_override("ANTHYDIR", "${prefix}/");
     anthy_conf_override("DIC_FILE", "${prefix}/anthy.dic");
-    // save anthy data (primarily input history) to /sdcard/Android/data/<pkg>/files/data/anthy
-    anthy_conf_override("XDG_CONFIG_HOME", sp.userDirectory(fcitx::StandardPath::Type::Data).c_str());
+    // save anthy data (primarily input history) to
+    // /sdcard/Android/data/<pkg>/files/data/anthy
+    anthy_conf_override(
+        "XDG_CONFIG_HOME",
+        sp.userDirectory(fcitx::StandardPath::Type::Data).c_str());
 #endif
     if (anthy_init()) {
         throw std::runtime_error("Failed to init anthy library.");
@@ -590,7 +596,8 @@ void AnthyEngine::reset(const fcitx::InputMethodEntry &,
 void AnthyEngine::invokeActionImpl(const fcitx::InputMethodEntry &entry,
                                    fcitx::InvokeActionEvent &event) {
     const int cursor = event.cursor();
-    if (event.action() != fcitx::InvokeActionEvent::Action::LeftClick || cursor < 0) {
+    if (event.action() != fcitx::InvokeActionEvent::Action::LeftClick ||
+        cursor < 0) {
         return InputMethodEngineV3::invokeActionImpl(entry, event);
     }
     event.filter();

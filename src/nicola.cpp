@@ -75,12 +75,12 @@ void NicolaConvertor::search(const fcitx::Key &key, NicolaShiftType shift_type,
     else
         str1 = fcitx::charutils::tolower(util::get_ascii_code(key));
 
-    std::vector<Key2KanaTable *> &tables = tables_.get_tables();
+    const std::vector<Key2KanaTable *> &tables = tables_.get_tables();
     for (unsigned int j = 0; j < tables.size(); j++) {
         if (!tables[j])
             continue;
 
-        Key2KanaRules &rules = tables[j]->table();
+        const Key2KanaRules &rules = tables[j]->table();
 
         for (unsigned int i = 0; i < rules.size(); i++) {
             std::string str2 = rules[i].sequence();

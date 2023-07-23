@@ -85,7 +85,7 @@ public:
     Key2KanaTableSet();
     virtual ~Key2KanaTableSet();
 
-    std::vector<Key2KanaTable *> &get_tables() { return allTables_; };
+    const std::vector<Key2KanaTable *> &get_tables() const { return allTables_; };
 
     void setTypingMethod(TypingMethod method,
                          Key2KanaTable *fundamental_table = nullptr);

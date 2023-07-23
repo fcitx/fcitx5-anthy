@@ -172,7 +172,7 @@ bool Key2KanaConvertor::append(const std::string &str, std::string &result,
         }
 
     } else {
-        std::vector<Key2KanaTable *> &tables = tables_.get_tables();
+        const std::vector<Key2KanaTable *> &tables = tables_.get_tables();
         for (unsigned int j = 0; j < tables.size(); j++) {
             if (!tables[j])
                 continue;

@@ -5,14 +5,15 @@
 # Translators:
 # Mingcong Bai <jeffbai@aosc.xyz>, 2018
 # csslayer <wengxt@gmail.com>, 2021
+# Lau YeeYu, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-07-21 20:24+0000\n"
+"POT-Creation-Date: 2023-07-23 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: csslayer <wengxt@gmail.com>, 2021\n"
+"Last-Translator: Lau YeeYu, 2023\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/fcitx/teams/12005/"
 "zh_CN/)\n"
 "Language: zh_CN\n"
@@ -272,7 +273,7 @@ msgstr "横向"
 
 #: src/config.h:185
 msgid "Initial Input mode"
-msgstr ""
+msgstr "初始输入模式"
 
 #: src/config.h:379
 msgid "Insert Alternative space"

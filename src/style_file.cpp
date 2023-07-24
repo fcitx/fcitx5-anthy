@@ -6,12 +6,11 @@
  *  SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-#include <fcitx-utils/log.h>
-#include <fstream>
-
-#include "key2kana_table.h"
 #include "style_file.h"
 #include <fcitx-utils/charutils.h>
+#include <fcitx-utils/log.h>
+#include <fcitx-utils/stringutils.h>
+#include <fstream>
 
 namespace {
 const int MAX_LINE_LENGTH = 4096;
@@ -52,33 +51,25 @@ std::string unescape(const std::string &str) {
 
 StyleLine::StyleLine(StyleFile *style_file, std::string line)
     : styleFile_(style_file), line_(std::move(line)),
-      type_(StyleLineType::UNKNOWN) {}
+      type_(StyleLineType::UNKNOWN) {
+
+    auto trimmed = fcitx::stringutils::trimView(line_);
+    if (trimmed.length() == 0) {
+        type_ = StyleLineType::SPACE;
+    } else if (trimmed[0] == '#') {
+        type_ = StyleLineType::COMMENT;
+    } else if (trimmed.front() == '[' && trimmed.back() == ']') {
+        type_ = StyleLineType::SECTION;
+    } else {
+        type_ = StyleLineType::KEY;
+    }
+}
 
 StyleLine::~StyleLine() {}
 
-StyleLineType StyleLine::type() {
-    if (type_ != StyleLineType::UNKNOWN) {
-        return type_;
-    }
+StyleLineType StyleLine::type() const { return type_; }
 
-    auto line = fcitx::stringutils::trim(line_);
-    if (line.length() == 0) {
-        type_ = StyleLineType::SPACE;
-        return type_;
-    } else if (line[0] == '#') {
-        type_ = StyleLineType::COMMENT;
-        return type_;
-
-    } else if (line.front() == '[' && line.back() == ']') {
-        type_ = StyleLineType::SECTION;
-        return type_;
-    }
-
-    type_ = StyleLineType::KEY;
-    return type_;
-}
-
-bool StyleLine::get_section(std::string &section) {
+bool StyleLine::get_section(std::string &section) const {
     if (type() != StyleLineType::SECTION) {
         return false;
     }
@@ -92,7 +83,7 @@ bool StyleLine::get_section(std::string &section) {
     return true;
 }
 
-bool StyleLine::get_key(std::string &key) {
+bool StyleLine::get_key(std::string &key) const {
     if (type() != StyleLineType::KEY)
         return false;
 
@@ -126,7 +117,7 @@ bool StyleLine::get_key(std::string &key) {
     return true;
 }
 
-static int get_value_position(std::string &str) {
+static int get_value_position(std::string_view str) {
     unsigned int spos;
     for (spos = 0; spos < str.length(); spos++) {
         if (str[spos] == '\\') {
@@ -147,7 +138,7 @@ static int get_value_position(std::string &str) {
     return spos;
 }
 
-bool StyleLine::get_value(std::string &value) {
+bool StyleLine::get_value(std::string &value) const {
     if (type() != StyleLineType::KEY)
         return false;
 
@@ -159,7 +150,7 @@ bool StyleLine::get_value(std::string &value) {
     return true;
 }
 
-bool StyleLine::get_value_array(std::vector<std::string> &value) {
+bool StyleLine::get_value_array(std::vector<std::string> &value) const {
     if (type() != StyleLineType::KEY)
         return false;
 
@@ -244,9 +235,8 @@ void StyleFile::clear() {
 const std::string &StyleFile::title() const { return title_; }
 
 bool StyleFile::getString(std::string &value, std::string section,
-                          std::string key) {
-    StyleSections::iterator it;
-    for (it = sections_.begin(); it != sections_.end(); it++) {
+                          std::string key) const {
+    for (auto it = sections_.begin(); it != sections_.end(); it++) {
         if (it->size() <= 0)
             continue;
 
@@ -256,8 +246,7 @@ bool StyleFile::getString(std::string &value, std::string section,
         if (s != section)
             continue;
 
-        StyleLines::iterator lit;
-        for (lit = it->begin(); lit != it->end(); lit++) {
+        for (auto lit = it->begin(); lit != it->end(); lit++) {
             lit->get_key(k);
             if (k == key) {
                 lit->get_value(value);
@@ -270,14 +259,13 @@ bool StyleFile::getString(std::string &value, std::string section,
 }
 
 bool StyleFile::getStringArray(std::vector<std::string> &value,
-                               std::string section, std::string key) {
-    StyleLines *lines = findSection(section);
+                               std::string section, std::string key) const {
+    const StyleLines *lines = findSection(section);
     if (!lines)
         return false;
 
     // find entry
-    StyleLines::iterator lit;
-    for (lit = lines->begin(); lit != lines->end(); lit++) {
+    for (auto lit = lines->begin(); lit != lines->end(); lit++) {
         std::string k;
         lit->get_key(k);
         if (k == key) {
@@ -290,13 +278,12 @@ bool StyleFile::getStringArray(std::vector<std::string> &value,
 }
 
 bool StyleFile::getKeyList(std::vector<std::string> &keys,
-                           std::string section) {
-    StyleLines *lines = findSection(section);
+                           std::string section) const {
+    const StyleLines *lines = findSection(section);
     if (!lines)
         return false;
 
-    StyleLines::iterator lit;
-    for (lit = lines->begin(); lit != lines->end(); lit++) {
+    for (auto lit = lines->begin(); lit != lines->end(); lit++) {
         if (lit->type() != StyleLineType::KEY)
             continue;
 
@@ -305,23 +292,6 @@ bool StyleFile::getKeyList(std::vector<std::string> &keys,
         keys.push_back(key);
     }
     return true;
-}
-
-Key2KanaTable StyleFile::key2kanaTable(std::string section) {
-    Key2KanaTable table(title());
-
-    std::vector<std::string> keys;
-    bool success = getKeyList(keys, section);
-    if (success) {
-        std::vector<std::string>::iterator it;
-        for (it = keys.begin(); it != keys.end(); it++) {
-            std::vector<std::string> array;
-            getStringArray(array, section, *it);
-            table.appendRule(*it, array);
-        }
-    }
-
-    return table;
 }
 
 void StyleFile::setupDefaultEntries() {
@@ -334,10 +304,9 @@ void StyleFile::setupDefaultEntries() {
     newsec.push_back(StyleLine(this, str.c_str()));
 }
 
-StyleLines *StyleFile::findSection(const std::string &section) {
+const StyleLines *StyleFile::findSection(const std::string &section) const {
     // find section
-    StyleSections::iterator it;
-    for (it = sections_.begin(); it != sections_.end(); it++) {
+    for (auto it = sections_.begin(); it != sections_.end(); it++) {
         if (it->size() <= 0)
             continue;
 

@@ -1,6 +1,10 @@
+add_library(stylefile STATIC style_file.cpp)
+set_target_properties(stylefile PROPERTIES POSITION_INDEPENDENT_CODE ON)
+target_link_libraries(stylefile Fcitx5::Utils Fcitx5::Config)
+target_include_directories(stylefile PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>")
+
 set( fcitx_anthy_sources
      action.cpp
-     style_file.cpp
      conversion.cpp
      default_tables.cpp
      engine.cpp
@@ -17,7 +21,7 @@ set( fcitx_anthy_sources
     )
 
 add_library(anthy MODULE ${fcitx_anthy_sources})
-target_link_libraries(anthy Fcitx5::Core Fcitx5::Config ${ANTHY_TARGET} Fcitx5::Module::Clipboard)
+target_link_libraries(anthy Fcitx5::Core Fcitx5::Config ${ANTHY_TARGET} Fcitx5::Module::Clipboard stylefile)
 install(TARGETS anthy DESTINATION "${CMAKE_INSTALL_LIBDIR}/fcitx5")
 fcitx5_translate_desktop_file(anthy.conf.in anthy.conf)
 configure_file(anthy-addon.conf.in.in anthy-addon.conf.in)

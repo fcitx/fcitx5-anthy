@@ -7,6 +7,7 @@
  */
 
 #include "key2kana_table.h"
+#include "style_file.h"
 
 // fundamental table
 static Key2KanaTable romaji_table(("DefaultRomajiTable"),
@@ -150,6 +151,20 @@ Key2KanaTable::Key2KanaTable(std::string name, NicolaRule *table)
                    table[i].single ? table[i].single : "",
                    table[i].left_shift ? table[i].left_shift : "",
                    table[i].right_shift ? table[i].right_shift : "");
+    }
+}
+
+Key2KanaTable::Key2KanaTable(std::string section, const StyleFile &styleFile)
+    : Key2KanaTable(styleFile.title()) {
+    std::vector<std::string> keys;
+    bool success = styleFile.getKeyList(keys, section);
+    if (success) {
+        std::vector<std::string>::iterator it;
+        for (it = keys.begin(); it != keys.end(); it++) {
+            std::vector<std::string> array;
+            styleFile.getStringArray(array, section, *it);
+            appendRule(*it, array);
+        }
     }
 }
 

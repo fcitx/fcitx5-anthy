@@ -1,0 +1,5 @@
+configure_file(testdir.h.in ${CMAKE_CURRENT_BINARY_DIR}/testdir.h @ONLY)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+add_executable(teststylefile teststylefile.cpp)
+target_link_libraries(teststylefile stylefile Fcitx5::Core)
+add_test(teststylefile teststylefile)

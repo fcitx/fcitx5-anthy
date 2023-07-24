@@ -8,6 +8,7 @@
 #include "engine.h"
 #include "action.h"
 #include "state.h"
+#include "style_file.h"
 #include <cerrno>
 #include <cstdio>
 #include <fcitx-config/iniparser.h>
@@ -494,7 +495,7 @@ void AnthyEngine::populateConfig() {
         FCITX_ANTHY_DEBUG() << "Try loading romaji table: " << filename;
         if (style.load(filename)) {
             customRomajiTableLoaded_ = true;
-            customRomajiTable_ = style.key2kanaTable(section_romaji);
+            customRomajiTable_ = Key2KanaTable(section_romaji, style);
         }
     }
 
@@ -507,7 +508,7 @@ void AnthyEngine::populateConfig() {
         FCITX_ANTHY_DEBUG() << "Try loading kana table: " << filename;
         if (style.load(filename)) {
             customKanaTableLoaded_ = true;
-            customKanaTable_ = style.key2kanaTable(section_kana);
+            customKanaTable_ = Key2KanaTable(section_kana, style);
         }
     }
 
@@ -519,7 +520,7 @@ void AnthyEngine::populateConfig() {
         FCITX_ANTHY_DEBUG() << "Try loading nicola table: " << filename;
         if (style.load(filename)) {
             customNicolaTableLoaded_ = true;
-            customNicolaTable_ = style.key2kanaTable(section_nicola);
+            customNicolaTable_ = Key2KanaTable(section_nicola, style);
         }
     }
 

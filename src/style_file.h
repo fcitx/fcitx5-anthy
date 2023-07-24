@@ -8,10 +8,10 @@
 #ifndef _FCITX5_ANTHY_STYLE_FILE_H_
 #define _FCITX5_ANTHY_STYLE_FILE_H_
 
+#include <fcitx-utils/macros.h>
 #include <string>
 #include <vector>
 
-class Key2KanaTable;
 class StyleLine;
 class StyleSection;
 class StyleFile;
@@ -34,12 +34,12 @@ public:
     ~StyleLine();
 
 public:
-    StyleLineType type();
+    StyleLineType type() const;
     std::string line() { return line_; }
-    bool get_section(std::string &section);
-    bool get_key(std::string &key);
-    bool get_value(std::string &value);
-    bool get_value_array(std::vector<std::string> &value);
+    bool get_section(std::string &section) const;
+    bool get_key(std::string &key) const;
+    bool get_value(std::string &value) const;
+    bool get_value_array(std::vector<std::string> &value) const;
 
 private:
     StyleFile *styleFile_;
@@ -57,18 +57,16 @@ public:
 
     const std::string &title() const;
 
-    bool getKeyList(std::vector<std::string> &keys, std::string section);
-    bool getString(std::string &value, std::string section, std::string key);
+    bool getKeyList(std::vector<std::string> &keys, std::string section) const;
+    bool getString(std::string &value, std::string section,
+                   std::string key) const;
     bool getStringArray(std::vector<std::string> &value, std::string section,
-                        std::string key);
-
-public: // for getting specific data
-    Key2KanaTable key2kanaTable(std::string section);
+                        std::string key) const;
 
 private:
     void clear();
     void setupDefaultEntries();
-    StyleLines *findSection(const std::string &section);
+    const StyleLines *findSection(const std::string &section) const;
 
 private:
     std::string title_;

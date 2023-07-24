@@ -10,6 +10,8 @@
 
 #include "config.h"
 #include "default_tables.h"
+#include "style_file.h"
+#include <fcitx-utils/macros.h>
 #include <string>
 #include <vector>
 
@@ -65,6 +67,9 @@ public:
     Key2KanaTable(std::string name);
     Key2KanaTable(std::string name, ConvRule *table);
     Key2KanaTable(std::string name, NicolaRule *table);
+
+    Key2KanaTable(std::string section, const StyleFile &styleFile);
+
     FCITX_INLINE_DEFINE_DEFAULT_DTOR_AND_MOVE_WITHOUT_SPEC(Key2KanaTable)
 
     const Key2KanaRules &table() const { return rules_; }
@@ -85,7 +90,9 @@ public:
     Key2KanaTableSet();
     virtual ~Key2KanaTableSet();
 
-    const std::vector<Key2KanaTable *> &get_tables() const { return allTables_; };
+    const std::vector<Key2KanaTable *> &get_tables() const {
+        return allTables_;
+    };
 
     void setTypingMethod(TypingMethod method,
                          Key2KanaTable *fundamental_table = nullptr);

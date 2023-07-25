@@ -5,15 +5,15 @@
 # Translators:
 # csslayer <wengxt@gmail.com>, 2017
 # Takuro Onoue <kusanaginoturugi@gmail.com>, 2020
-# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2022
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-07-21 20:24+0000\n"
+"POT-Creation-Date: 2023-07-25 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2022\n"
+"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2023\n"
 "Language-Team: Japanese (https://app.transifex.com/fcitx/teams/12005/ja/)\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -166,11 +166,11 @@ msgstr "英数変換"
 msgid "Convert To Wide Latin"
 msgstr "全角英数変換"
 
-#: src/engine.cpp:65
+#: src/engine.cpp:66
 msgid "Convert as you type (Multi segment)"
 msgstr "逐次変換(連文節)"
 
-#: src/engine.cpp:66
+#: src/engine.cpp:67
 msgid "Convert as you type (Single segment)"
 msgstr "逐次変換(単文節)"
 
@@ -222,7 +222,7 @@ msgstr "削除"
 msgid "Dict admin"
 msgstr "辞書の編集"
 
-#: src/engine.cpp:52
+#: src/engine.cpp:53
 msgid "Direct input"
 msgstr "直接入力"
 
@@ -254,11 +254,11 @@ msgstr "半角カタカナ"
 msgid "Half Katakana mode"
 msgstr "半角カタカナモード"
 
-#: src/engine.cpp:51
+#: src/engine.cpp:52
 msgid "Half width katakana"
 msgstr "半角カタカナ"
 
-#: src/config.h:29 src/engine.cpp:49
+#: src/config.h:29 src/engine.cpp:50
 msgid "Hiragana"
 msgstr "ひらがな"
 
@@ -272,7 +272,7 @@ msgstr "横"
 
 #: src/config.h:185
 msgid "Initial Input mode"
-msgstr ""
+msgstr "初期入力モード"
 
 #: src/config.h:379
 msgid "Insert Alternative space"
@@ -306,7 +306,7 @@ msgstr "日本語"
 msgid "Japanese input method based on Anthy"
 msgstr "Anthyに基づく日本語入力メソッド"
 
-#: src/config.h:66 src/engine.cpp:58
+#: src/config.h:66 src/engine.cpp:59
 msgid "Kana"
 msgstr "かな"
 
@@ -314,7 +314,7 @@ msgstr "かな"
 msgid "Kana Table"
 msgstr "カナ配列"
 
-#: src/config.h:29 src/engine.cpp:50
+#: src/config.h:29 src/engine.cpp:51
 msgid "Katakana"
 msgstr "カタカナ"
 
@@ -374,7 +374,7 @@ msgstr "前方へ移動"
 msgid "Move caret last"
 msgstr "最後へ移動"
 
-#: src/config.h:59 src/engine.cpp:63
+#: src/config.h:59 src/engine.cpp:64
 msgid "Multi segment"
 msgstr "連文節"
 
@@ -382,7 +382,7 @@ msgstr "連文節"
 msgid "Multi segment immediate"
 msgstr "逐次変換 (連文節)"
 
-#: src/config.h:67 src/engine.cpp:59
+#: src/config.h:67 src/engine.cpp:60
 msgid "Nicola"
 msgstr "Nicola"
 
@@ -450,7 +450,7 @@ msgstr "右親指キー"
 msgid "Ro key for kana layout"
 msgstr "かなレイアウト用の「ろ」キー"
 
-#: src/config.h:66 src/engine.cpp:57
+#: src/config.h:66 src/engine.cpp:58
 msgid "Romaji"
 msgstr "ローマ字"
 
@@ -514,7 +514,7 @@ msgstr "入力方式を表示"
 msgid "Shrink segment"
 msgstr "文節を縮める"
 
-#: src/config.h:60 src/engine.cpp:64
+#: src/config.h:60 src/engine.cpp:65
 msgid "Single segment"
 msgstr "単文節"
 
@@ -534,7 +534,7 @@ msgstr "記号のスタイル"
 msgid "Ten key type"
 msgstr "テンキータイプ"
 
-#: src/engine.cpp:59
+#: src/engine.cpp:60
 msgid "Thumb shift"
 msgstr "親指シフト"
 
@@ -586,7 +586,7 @@ msgstr "全角英数"
 msgid "Wide bracket and wide slash"
 msgstr "全角かぎかっことスラッシュ"
 
-#: src/config.h:48 src/engine.cpp:53
+#: src/config.h:48 src/engine.cpp:54
 msgid "Wide latin"
 msgstr "全角英数"
 

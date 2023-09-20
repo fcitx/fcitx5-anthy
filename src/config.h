@@ -165,7 +165,7 @@ FCITX_CONFIGURATION(
                         fcitx::CandidateLayoutHint::Vertical};
     fcitx::Option<int, fcitx::IntConstrain> nTriggersToShowCandWin{
         this, "NTriggersToShowCandWin",
-        _("Number candidate of Triggers To Show Candidate Window"), 2,
+        _("Number of convert key presses to Show Candidate"), 2,
         fcitx::IntConstrain(0, 7)};
     fcitx::Option<bool> predictOnInput{this, "PredictOnInput",
                                        _("Predict on input"), false};

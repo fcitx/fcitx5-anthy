@@ -65,7 +65,8 @@ bool AnthyState::processKeyEventInput(const fcitx::KeyEvent &key) {
     if (*config().general->predictOnInput && key.isRelease() &&
         preedit_.isPreediting() && !preedit_.isConverting()) {
         preedit_.predict();
-        preedit_.candidates();
+        ic_->inputPanel().setCandidateList(preedit_.candidates());
+        uiUpdate_ = true;
     }
 
     if (!preedit_.canProcessKeyEvent(key)) {

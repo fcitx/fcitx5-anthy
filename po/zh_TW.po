@@ -7,15 +7,15 @@
 # 黃柏諺 <s8321414@gmail.com>, 2017
 # Neko ◣ 0xFF, 2022
 # Lau YeeYu, 2023
-# Haowei Hsu, 2023
+# Haowei Hsu <hwhsu1231@gmail.com>, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-08-07 20:24+0000\n"
+"POT-Creation-Date: 2023-09-20 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: Haowei Hsu, 2023\n"
+"Last-Translator: Haowei Hsu <hwhsu1231@gmail.com>, 2023\n"
 "Language-Team: Chinese (Taiwan) (https://app.transifex.com/fcitx/teams/12005/"
 "zh_TW/)\n"
 "Language: zh_TW\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/state.cpp:294
+#: src/state.cpp:295
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -414,8 +414,8 @@ msgid "Not Set"
 msgstr "尚未設置"
 
 #: src/config.h:168
-msgid "Number candidate of Triggers To Show Candidate Window"
-msgstr "觸發顯示候選字視窗的按鍵次數"
+msgid "Number of convert key presses to Show Candidate"
+msgstr ""
 
 #: src/config.h:282
 msgid "Oasys100J"

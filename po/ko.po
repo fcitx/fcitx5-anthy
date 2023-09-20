@@ -6,15 +6,15 @@
 # csslayer <wengxt@gmail.com>, 2017
 # heavyuser <heavyuser73@gmail.com>, 2018
 # Bon Keun Seo <scobyseo@gmail.com>, 2021
-# Junghee Lee <daemul72@gmail.com>, 2022
+# JungHee Lee <daemul72@gmail.com>, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-07-21 20:24+0000\n"
+"POT-Creation-Date: 2023-09-20 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (https://app.transifex.com/fcitx/teams/12005/ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/state.cpp:294
+#: src/state.cpp:295
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -167,11 +167,11 @@ msgstr "로마자로 변환"
 msgid "Convert To Wide Latin"
 msgstr "전각 로마자로 변환"
 
-#: src/engine.cpp:65
+#: src/engine.cpp:66
 msgid "Convert as you type (Multi segment)"
 msgstr "입력 중 변환 (다중 세그먼트)"
 
-#: src/engine.cpp:66
+#: src/engine.cpp:67
 msgid "Convert as you type (Single segment)"
 msgstr "입력 중 변환 (단일 세그먼트)"
 
@@ -223,7 +223,7 @@ msgstr "삭제"
 msgid "Dict admin"
 msgstr "사전 관리"
 
-#: src/engine.cpp:52
+#: src/engine.cpp:53
 msgid "Direct input"
 msgstr "직접 입력"
 
@@ -255,11 +255,11 @@ msgstr "반각 가타카나"
 msgid "Half Katakana mode"
 msgstr "반각 가타카나 모드"
 
-#: src/engine.cpp:51
+#: src/engine.cpp:52
 msgid "Half width katakana"
 msgstr "반각 가타카나"
 
-#: src/config.h:29 src/engine.cpp:49
+#: src/config.h:29 src/engine.cpp:50
 msgid "Hiragana"
 msgstr "히라가나"
 
@@ -307,7 +307,7 @@ msgstr "일본어"
 msgid "Japanese input method based on Anthy"
 msgstr "Anthy 기반 일본어 입력기"
 
-#: src/config.h:66 src/engine.cpp:58
+#: src/config.h:66 src/engine.cpp:59
 msgid "Kana"
 msgstr "카나"
 
@@ -315,7 +315,7 @@ msgstr "카나"
 msgid "Kana Table"
 msgstr "카나 표"
 
-#: src/config.h:29 src/engine.cpp:50
+#: src/config.h:29 src/engine.cpp:51
 msgid "Katakana"
 msgstr "가타카나"
 
@@ -375,7 +375,7 @@ msgstr "커서를 앞으로 이동"
 msgid "Move caret last"
 msgstr "커서를 맨 뒤로 이동"
 
-#: src/config.h:59 src/engine.cpp:63
+#: src/config.h:59 src/engine.cpp:64
 msgid "Multi segment"
 msgstr "다중 세그먼트"
 
@@ -383,7 +383,7 @@ msgstr "다중 세그먼트"
 msgid "Multi segment immediate"
 msgstr "다중 세그먼트 즉시 입력"
 
-#: src/config.h:67 src/engine.cpp:59
+#: src/config.h:67 src/engine.cpp:60
 msgid "Nicola"
 msgstr "니콜라"
 
@@ -412,8 +412,8 @@ msgid "Not Set"
 msgstr "설정되지 않음"
 
 #: src/config.h:168
-msgid "Number candidate of Triggers To Show Candidate Window"
-msgstr "후보 단어 창의 표시를 트리거한 키 입력 수"
+msgid "Number of convert key presses to Show Candidate"
+msgstr ""
 
 #: src/config.h:282
 msgid "Oasys100J"
@@ -451,7 +451,7 @@ msgstr "오른쪽 엄지 키"
 msgid "Ro key for kana layout"
 msgstr "카나 자판용 Ro 키"
 
-#: src/config.h:66 src/engine.cpp:57
+#: src/config.h:66 src/engine.cpp:58
 msgid "Romaji"
 msgstr "로마자"
 
@@ -515,7 +515,7 @@ msgstr "입력 방식 표시"
 msgid "Shrink segment"
 msgstr "세그먼트 줄이기"
 
-#: src/config.h:60 src/engine.cpp:64
+#: src/config.h:60 src/engine.cpp:65
 msgid "Single segment"
 msgstr "단일 세그먼트"
 
@@ -535,7 +535,7 @@ msgstr "기호 스타일"
 msgid "Ten key type"
 msgstr "숫자키 유형"
 
-#: src/engine.cpp:59
+#: src/engine.cpp:60
 msgid "Thumb shift"
 msgstr "엄지 시프트"
 
@@ -587,7 +587,7 @@ msgstr "전각 로마자"
 msgid "Wide bracket and wide slash"
 msgstr "전자 괄호와 전자 슬래시"
 
-#: src/config.h:48 src/engine.cpp:53
+#: src/config.h:48 src/engine.cpp:54
 msgid "Wide latin"
 msgstr "전각 로마자"
 

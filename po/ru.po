@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-07-22 20:24+0000\n"
+"POT-Creation-Date: 2023-09-20 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2023\n"
 "Language-Team: Russian (https://app.transifex.com/fcitx/teams/12005/ru/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: src/state.cpp:294
+#: src/state.cpp:295
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -167,11 +167,11 @@ msgstr "Конвертировать в латынь"
 msgid "Convert To Wide Latin"
 msgstr "Конвертировать в Wide Latin"
 
-#: src/engine.cpp:65
+#: src/engine.cpp:66
 msgid "Convert as you type (Multi segment)"
 msgstr "Конвертировать при печати (Множество сегментов)"
 
-#: src/engine.cpp:66
+#: src/engine.cpp:67
 msgid "Convert as you type (Single segment)"
 msgstr "Конвертировать при печати (Одиночный сегмент)"
 
@@ -223,7 +223,7 @@ msgstr "Удалить"
 msgid "Dict admin"
 msgstr "Администратор словарей"
 
-#: src/engine.cpp:52
+#: src/engine.cpp:53
 msgid "Direct input"
 msgstr "Прямой ввод"
 
@@ -255,11 +255,11 @@ msgstr "Половинная катакана"
 msgid "Half Katakana mode"
 msgstr "Режим половинной Катаканы"
 
-#: src/engine.cpp:51
+#: src/engine.cpp:52
 msgid "Half width katakana"
 msgstr "Полуширинная Катакана"
 
-#: src/config.h:29 src/engine.cpp:49
+#: src/config.h:29 src/engine.cpp:50
 msgid "Hiragana"
 msgstr "Хирагана"
 
@@ -307,7 +307,7 @@ msgstr "Японский"
 msgid "Japanese input method based on Anthy"
 msgstr "Японский метод ввода на основе Anthy"
 
-#: src/config.h:66 src/engine.cpp:58
+#: src/config.h:66 src/engine.cpp:59
 msgid "Kana"
 msgstr "Кана"
 
@@ -315,7 +315,7 @@ msgstr "Кана"
 msgid "Kana Table"
 msgstr "Таблица Кана"
 
-#: src/config.h:29 src/engine.cpp:50
+#: src/config.h:29 src/engine.cpp:51
 msgid "Katakana"
 msgstr "Катакана"
 
@@ -375,7 +375,7 @@ msgstr "Сдвинуть каретку вперед"
 msgid "Move caret last"
 msgstr "Сдвинуть каретку в последнюю очередь"
 
-#: src/config.h:59 src/engine.cpp:63
+#: src/config.h:59 src/engine.cpp:64
 msgid "Multi segment"
 msgstr "Множество сегментов"
 
@@ -383,7 +383,7 @@ msgstr "Множество сегментов"
 msgid "Multi segment immediate"
 msgstr "Множество сегментов немедленно"
 
-#: src/config.h:67 src/engine.cpp:59
+#: src/config.h:67 src/engine.cpp:60
 msgid "Nicola"
 msgstr "Nicola"
 
@@ -412,8 +412,8 @@ msgid "Not Set"
 msgstr "Не задано"
 
 #: src/config.h:168
-msgid "Number candidate of Triggers To Show Candidate Window"
-msgstr "Число переключений кандидатов для отображения окна кандидатов"
+msgid "Number of convert key presses to Show Candidate"
+msgstr ""
 
 #: src/config.h:282
 msgid "Oasys100J"
@@ -451,7 +451,7 @@ msgstr "Клавиша отступа справа"
 msgid "Ro key for kana layout"
 msgstr "Клавиша Ro для раскладки кана"
 
-#: src/config.h:66 src/engine.cpp:57
+#: src/config.h:66 src/engine.cpp:58
 msgid "Romaji"
 msgstr "Romaji"
 
@@ -515,7 +515,7 @@ msgstr "Показать метод печати"
 msgid "Shrink segment"
 msgstr "Сжать сегмент"
 
-#: src/config.h:60 src/engine.cpp:64
+#: src/config.h:60 src/engine.cpp:65
 msgid "Single segment"
 msgstr "Одиночный сегмент"
 
@@ -535,7 +535,7 @@ msgstr "Стиль символа"
 msgid "Ten key type"
 msgstr "Десять ключевых типов"
 
-#: src/engine.cpp:59
+#: src/engine.cpp:60
 msgid "Thumb shift"
 msgstr "Thumb shift"
 
@@ -587,7 +587,7 @@ msgstr "Wide latin"
 msgid "Wide bracket and wide slash"
 msgstr "Широкая скобка и широкая косая черта"
 
-#: src/config.h:48 src/engine.cpp:53
+#: src/config.h:48 src/engine.cpp:54
 msgid "Wide latin"
 msgstr "Wide latin"
 

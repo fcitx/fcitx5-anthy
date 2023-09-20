@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-07-25 20:24+0000\n"
+"POT-Creation-Date: 2023-09-20 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2023\n"
 "Language-Team: Japanese (https://app.transifex.com/fcitx/teams/12005/ja/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/state.cpp:294
+#: src/state.cpp:295
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -411,8 +411,8 @@ msgid "Not Set"
 msgstr "未設定"
 
 #: src/config.h:168
-msgid "Number candidate of Triggers To Show Candidate Window"
-msgstr "候補ウィンドウを表示するまでの候補数"
+msgid "Number of convert key presses to Show Candidate"
+msgstr ""
 
 #: src/config.h:282
 msgid "Oasys100J"

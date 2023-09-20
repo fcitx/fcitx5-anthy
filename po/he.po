@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-07-21 20:24+0000\n"
+"POT-Creation-Date: 2023-09-20 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: 63f334ffc0709ba0fc2361b80bf3c0f0_00ffd1e "
 "<ab96c93ca0ac55ba7fa06385427e60dd_878890>, 2021\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % "
 "1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
-#: src/state.cpp:294
+#: src/state.cpp:295
 #, c-format
 msgid "(%d / %d)"
 msgstr ""
@@ -166,11 +166,11 @@ msgstr ""
 msgid "Convert To Wide Latin"
 msgstr ""
 
-#: src/engine.cpp:65
+#: src/engine.cpp:66
 msgid "Convert as you type (Multi segment)"
 msgstr ""
 
-#: src/engine.cpp:66
+#: src/engine.cpp:67
 msgid "Convert as you type (Single segment)"
 msgstr ""
 
@@ -222,7 +222,7 @@ msgstr ""
 msgid "Dict admin"
 msgstr ""
 
-#: src/engine.cpp:52
+#: src/engine.cpp:53
 msgid "Direct input"
 msgstr ""
 
@@ -254,11 +254,11 @@ msgstr ""
 msgid "Half Katakana mode"
 msgstr ""
 
-#: src/engine.cpp:51
+#: src/engine.cpp:52
 msgid "Half width katakana"
 msgstr ""
 
-#: src/config.h:29 src/engine.cpp:49
+#: src/config.h:29 src/engine.cpp:50
 msgid "Hiragana"
 msgstr ""
 
@@ -306,7 +306,7 @@ msgstr ""
 msgid "Japanese input method based on Anthy"
 msgstr ""
 
-#: src/config.h:66 src/engine.cpp:58
+#: src/config.h:66 src/engine.cpp:59
 msgid "Kana"
 msgstr ""
 
@@ -314,7 +314,7 @@ msgstr ""
 msgid "Kana Table"
 msgstr ""
 
-#: src/config.h:29 src/engine.cpp:50
+#: src/config.h:29 src/engine.cpp:51
 msgid "Katakana"
 msgstr ""
 
@@ -374,7 +374,7 @@ msgstr ""
 msgid "Move caret last"
 msgstr ""
 
-#: src/config.h:59 src/engine.cpp:63
+#: src/config.h:59 src/engine.cpp:64
 msgid "Multi segment"
 msgstr ""
 
@@ -382,7 +382,7 @@ msgstr ""
 msgid "Multi segment immediate"
 msgstr ""
 
-#: src/config.h:67 src/engine.cpp:59
+#: src/config.h:67 src/engine.cpp:60
 msgid "Nicola"
 msgstr ""
 
@@ -411,7 +411,7 @@ msgid "Not Set"
 msgstr ""
 
 #: src/config.h:168
-msgid "Number candidate of Triggers To Show Candidate Window"
+msgid "Number of convert key presses to Show Candidate"
 msgstr ""
 
 #: src/config.h:282
@@ -450,7 +450,7 @@ msgstr ""
 msgid "Ro key for kana layout"
 msgstr ""
 
-#: src/config.h:66 src/engine.cpp:57
+#: src/config.h:66 src/engine.cpp:58
 msgid "Romaji"
 msgstr ""
 
@@ -514,7 +514,7 @@ msgstr ""
 msgid "Shrink segment"
 msgstr ""
 
-#: src/config.h:60 src/engine.cpp:64
+#: src/config.h:60 src/engine.cpp:65
 msgid "Single segment"
 msgstr ""
 
@@ -534,7 +534,7 @@ msgstr ""
 msgid "Ten key type"
 msgstr ""
 
-#: src/engine.cpp:59
+#: src/engine.cpp:60
 msgid "Thumb shift"
 msgstr ""
 
@@ -586,7 +586,7 @@ msgstr ""
 msgid "Wide bracket and wide slash"
 msgstr ""
 
-#: src/config.h:48 src/engine.cpp:53
+#: src/config.h:48 src/engine.cpp:54
 msgid "Wide latin"
 msgstr ""
 

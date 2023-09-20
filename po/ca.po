@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-07-21 20:24+0000\n"
+"POT-Creation-Date: 2023-09-20 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: csslayer <wengxt@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://app.transifex.com/fcitx/teams/12005/ca/)\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/state.cpp:294
+#: src/state.cpp:295
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
@@ -164,11 +164,11 @@ msgstr "Converteix a llatí"
 msgid "Convert To Wide Latin"
 msgstr "Converteix a llatí ample"
 
-#: src/engine.cpp:65
+#: src/engine.cpp:66
 msgid "Convert as you type (Multi segment)"
 msgstr "Convertiu quan escriviu (Segment múltiple)"
 
-#: src/engine.cpp:66
+#: src/engine.cpp:67
 msgid "Convert as you type (Single segment)"
 msgstr "Converteix a mesura que escriviu (Segment únic)"
 
@@ -220,7 +220,7 @@ msgstr "Esborra"
 msgid "Dict admin"
 msgstr "Administrador de dictat"
 
-#: src/engine.cpp:52
+#: src/engine.cpp:53
 msgid "Direct input"
 msgstr "Entrada directa"
 
@@ -252,11 +252,11 @@ msgstr "Mitja katakana"
 msgid "Half Katakana mode"
 msgstr "Mode katakana mig"
 
-#: src/engine.cpp:51
+#: src/engine.cpp:52
 msgid "Half width katakana"
 msgstr "Katakana mitja amplada"
 
-#: src/config.h:29 src/engine.cpp:49
+#: src/config.h:29 src/engine.cpp:50
 msgid "Hiragana"
 msgstr "Hiragana"
 
@@ -304,7 +304,7 @@ msgstr "Japonès"
 msgid "Japanese input method based on Anthy"
 msgstr ""
 
-#: src/config.h:66 src/engine.cpp:58
+#: src/config.h:66 src/engine.cpp:59
 msgid "Kana"
 msgstr "Kana"
 
@@ -312,7 +312,7 @@ msgstr "Kana"
 msgid "Kana Table"
 msgstr "Taula kana"
 
-#: src/config.h:29 src/engine.cpp:50
+#: src/config.h:29 src/engine.cpp:51
 msgid "Katakana"
 msgstr "Katakana"
 
@@ -372,7 +372,7 @@ msgstr "Mou el cursor endavant"
 msgid "Move caret last"
 msgstr "Mou el cursor a l'últim"
 
-#: src/config.h:59 src/engine.cpp:63
+#: src/config.h:59 src/engine.cpp:64
 msgid "Multi segment"
 msgstr "Segment múltiple"
 
@@ -380,7 +380,7 @@ msgstr "Segment múltiple"
 msgid "Multi segment immediate"
 msgstr "Multi segment immediat"
 
-#: src/config.h:67 src/engine.cpp:59
+#: src/config.h:67 src/engine.cpp:60
 msgid "Nicola"
 msgstr "Nicola"
 
@@ -409,8 +409,8 @@ msgid "Not Set"
 msgstr ""
 
 #: src/config.h:168
-msgid "Number candidate of Triggers To Show Candidate Window"
-msgstr "Nombre de candidates d'activació a mostrar a la finestra de candidates"
+msgid "Number of convert key presses to Show Candidate"
+msgstr ""
 
 #: src/config.h:282
 msgid "Oasys100J"
@@ -448,7 +448,7 @@ msgstr "Tecla polze dret"
 msgid "Ro key for kana layout"
 msgstr "Tecla ro per a la disposició kana"
 
-#: src/config.h:66 src/engine.cpp:57
+#: src/config.h:66 src/engine.cpp:58
 msgid "Romaji"
 msgstr "Romaji"
 
@@ -512,7 +512,7 @@ msgstr "Mostra el mètode d'escriptura"
 msgid "Shrink segment"
 msgstr "Encongeix el segment"
 
-#: src/config.h:60 src/engine.cpp:64
+#: src/config.h:60 src/engine.cpp:65
 msgid "Single segment"
 msgstr "Segment únic"
 
@@ -532,7 +532,7 @@ msgstr "Estil de símbol"
 msgid "Ten key type"
 msgstr ""
 
-#: src/engine.cpp:59
+#: src/engine.cpp:60
 msgid "Thumb shift"
 msgstr "Alternança amb el polze"
 
@@ -584,7 +584,7 @@ msgstr "Llatí ample"
 msgid "Wide bracket and wide slash"
 msgstr "Parèntesi ample i barra inclinada ampla"
 
-#: src/config.h:48 src/engine.cpp:53
+#: src/config.h:48 src/engine.cpp:54
 msgid "Wide latin"
 msgstr "Llatí ample"
 

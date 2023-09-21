@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-09-20 20:24+0000\n"
+"POT-Creation-Date: 2023-09-21 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: Haowei Hsu <hwhsu1231@gmail.com>, 2023\n"
 "Language-Team: Chinese (Taiwan) (https://app.transifex.com/fcitx/teams/12005/"
@@ -493,7 +493,7 @@ msgstr "選擇前一個候選詞"
 msgid "Select prev segment"
 msgstr "選擇上一段"
 
-#: src/config.h:213 src/config.h:226
+#: src/config.h:213
 msgid "Show candidates label"
 msgstr "顯示候選詞標籤"
 
@@ -508,6 +508,10 @@ msgstr "顯示輸入模式"
 #: src/config.h:224
 msgid "Show period style"
 msgstr "顯示逗號樣式"
+
+#: src/config.h:226
+msgid "Show symbol style"
+msgstr ""
 
 #: src/config.h:220
 msgid "Show typing method"

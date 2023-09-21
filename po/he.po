@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-09-20 20:24+0000\n"
+"POT-Creation-Date: 2023-09-21 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: 63f334ffc0709ba0fc2361b80bf3c0f0_00ffd1e "
 "<ab96c93ca0ac55ba7fa06385427e60dd_878890>, 2021\n"
@@ -490,7 +490,7 @@ msgstr ""
 msgid "Select prev segment"
 msgstr ""
 
-#: src/config.h:213 src/config.h:226
+#: src/config.h:213
 msgid "Show candidates label"
 msgstr ""
 
@@ -504,6 +504,10 @@ msgstr ""
 
 #: src/config.h:224
 msgid "Show period style"
+msgstr ""
+
+#: src/config.h:226
+msgid "Show symbol style"
 msgstr ""
 
 #: src/config.h:220

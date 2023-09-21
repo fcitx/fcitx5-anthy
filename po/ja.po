@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-09-20 20:24+0000\n"
+"POT-Creation-Date: 2023-09-21 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2023\n"
 "Language-Team: Japanese (https://app.transifex.com/fcitx/teams/12005/ja/)\n"
@@ -412,7 +412,7 @@ msgstr "未設定"
 
 #: src/config.h:168
 msgid "Number of convert key presses to Show Candidate"
-msgstr ""
+msgstr "候補を表示するまでの変換キーの押し下げ回数"
 
 #: src/config.h:282
 msgid "Oasys100J"
@@ -490,7 +490,7 @@ msgstr "前の候補に移動"
 msgid "Select prev segment"
 msgstr "前の文節を選択"
 
-#: src/config.h:213 src/config.h:226
+#: src/config.h:213
 msgid "Show candidates label"
 msgstr "候補のラベルを表示"
 
@@ -505,6 +505,10 @@ msgstr "入力モードを表示"
 #: src/config.h:224
 msgid "Show period style"
 msgstr "句読点のスタイルを表示"
+
+#: src/config.h:226
+msgid "Show symbol style"
+msgstr ""
 
 #: src/config.h:220
 msgid "Show typing method"

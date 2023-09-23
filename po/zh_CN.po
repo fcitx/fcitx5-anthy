@@ -4,14 +4,14 @@
 #
 # Translators:
 # Mingcong Bai <jeffbai@aosc.xyz>, 2018
-# csslayer <wengxt@gmail.com>, 2021
+# csslayer <wengxt@gmail.com>, 2023
 # Lau YeeYu, 2023
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-09-21 20:24+0000\n"
+"POT-Creation-Date: 2023-09-23 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: Lau YeeYu, 2023\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/fcitx/teams/12005/"
@@ -413,7 +413,7 @@ msgstr "未设定"
 
 #: src/config.h:168
 msgid "Number of convert key presses to Show Candidate"
-msgstr ""
+msgstr "显示候选词需要按下的转换键次数"
 
 #: src/config.h:282
 msgid "Oasys100J"
@@ -509,7 +509,7 @@ msgstr "显示逗号风格"
 
 #: src/config.h:226
 msgid "Show symbol style"
-msgstr ""
+msgstr "显示符号样式"
 
 #: src/config.h:220
 msgid "Show typing method"

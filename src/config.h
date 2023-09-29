@@ -222,8 +222,8 @@ FCITX_CONFIGURATION(
                                           _("Show conversion mode"), true};
     fcitx::Option<bool> showPeriodStyleLabel{this, "ShowPeriodStyle",
                                              _("Show period style"), false};
-    fcitx::Option<bool> showSymbolStyleLabel{
-        this, "ShowSymbolStyle", _("Show symbol style"), false};);
+    fcitx::Option<bool> showSymbolStyleLabel{this, "ShowSymbolStyle",
+                                             _("Show symbol style"), false};);
 
 enum class KeyBindingProfile {
     Default,

@@ -276,23 +276,23 @@ AnthyEngine::AnthyEngine(fcitx::Instance *instance)
             FCITX_ANTHY_INFO() << "Anthy: " << msg;
         },
         0);
-#ifdef __ANDROID__
-    const auto &sp = fcitx::StandardPath::global();
-    std::string anthy_conf =
-        sp.locate(fcitx::StandardPath::Type::Data, "anthy/anthy-unicode.conf");
-    std::string anthy_prefix = fcitx::fs::dirName(anthy_conf);
-    // "CONFFILE" must be overridden first to change main config file path
-    anthy_conf_override("CONFFILE", anthy_conf.c_str());
-    // "prefix" must be set before using "${prefix}" in other values
-    anthy_conf_override("prefix", anthy_prefix.c_str());
-    anthy_conf_override("ANTHYDIR", "${prefix}/");
-    anthy_conf_override("DIC_FILE", "${prefix}/anthy.dic");
-    // save anthy data (primarily input history) to
-    // /sdcard/Android/data/<pkg>/files/data/anthy
-    anthy_conf_override(
-        "XDG_CONFIG_HOME",
-        sp.userDirectory(fcitx::StandardPath::Type::Data).c_str());
-#endif
+    if constexpr (fcitx::isAndroid()) {
+        const auto &sp = fcitx::StandardPath::global();
+        std::string anthy_conf = sp.locate(fcitx::StandardPath::Type::Data,
+                                           "anthy/anthy-unicode.conf");
+        std::string anthy_prefix = fcitx::fs::dirName(anthy_conf);
+        // "CONFFILE" must be overridden first to change main config file path
+        anthy_conf_override("CONFFILE", anthy_conf.c_str());
+        // "prefix" must be set before using "${prefix}" in other values
+        anthy_conf_override("prefix", anthy_prefix.c_str());
+        anthy_conf_override("ANTHYDIR", "${prefix}/");
+        anthy_conf_override("DIC_FILE", "${prefix}/anthy.dic");
+        // save anthy data (primarily input history) to
+        // /sdcard/Android/data/<pkg>/files/data/anthy
+        anthy_conf_override(
+            "XDG_CONFIG_HOME",
+            sp.userDirectory(fcitx::StandardPath::Type::Data).c_str());
+    }
     if (anthy_init()) {
         throw std::runtime_error("Failed to init anthy library.");
     }

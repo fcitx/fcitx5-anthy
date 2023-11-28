@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-11-03 20:24+0000\n"
+"POT-Creation-Date: 2023-11-28 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2023\n"
 "Language-Team: Russian (https://app.transifex.com/fcitx/teams/12005/ru/)\n"
@@ -141,47 +141,47 @@ msgstr "Режим конвертации"
 
 #: src/config.h:422
 msgid "Convert"
-msgstr "Конвертировать"
+msgstr "Преобразовать"
 
 #: src/config.h:593
 msgid "Convert To Half"
-msgstr "Конвертировать в Half"
+msgstr "Преобразовать в половинную"
 
 #: src/config.h:599
 msgid "Convert To Half Katakana"
-msgstr "Конвертировать в половинную Катакану"
+msgstr "Преобразовать в половинную Катакану"
 
 #: src/config.h:581
 msgid "Convert To Hiragana"
-msgstr "Конвертировать в хирагана"
+msgstr "Преобразовать в Хирагану"
 
 #: src/config.h:587
 msgid "Convert To Katakana"
-msgstr "Конвертировать в Катакану"
+msgstr "Преобразовать в Катакану"
 
 #: src/config.h:611
 msgid "Convert To Latin"
-msgstr "Конвертировать в латынь"
+msgstr "Преобразовать в Latin"
 
 #: src/config.h:605
 msgid "Convert To Wide Latin"
-msgstr "Конвертировать в Wide Latin"
+msgstr "Преобразовать в Wide Latin"
 
 #: src/engine.cpp:66
 msgid "Convert as you type (Multi segment)"
-msgstr "Конвертировать при печати (Множество сегментов)"
+msgstr "Преобразование по мере ввода (Множество сегментов)"
 
 #: src/engine.cpp:67
 msgid "Convert as you type (Single segment)"
-msgstr "Конвертировать при печати (Одиночный сегмент)"
+msgstr "Преобразование по мере ввода (один сегмент)"
 
 #: src/config.h:575
 msgid "Convert char type backward"
-msgstr "Конвертировать тип символа назад"
+msgstr "Обратное преобразование типа символов"
 
 #: src/config.h:569
 msgid "Convert char type forward"
-msgstr "Конвертировать тип символа вперед"
+msgstr "Прямое преобразование типа символов"
 
 #: src/config.h:43
 msgid "Corner bracket and Middle Dot"
@@ -441,7 +441,7 @@ msgstr "Быстрая Кана"
 
 #: src/config.h:617
 msgid "Reconvert"
-msgstr "Переконвертировать"
+msgstr "Преобразовать повторно"
 
 #: src/config.h:641
 msgid "Right thumb key"

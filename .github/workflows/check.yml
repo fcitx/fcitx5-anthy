@@ -37,8 +37,15 @@ jobs:
         uses: fcitx/github-actions@cmake
         with:
           path: fcitx5
-          cmake-option: |
-            -DENABLE_KEYBOARD=Off -DENABLE_X11=Off -DENABLE_WAYLAND=Off -DENABLE_ENCHANT=Off -DENABLE_DBUS=Off -DENABLE_SERVER=Off -DENABLE_EMOJI=Off -DUSE_SYSTEMD=Off
+          cmake-option: >-
+            -DENABLE_KEYBOARD=Off
+            -DENABLE_X11=Off
+            -DENABLE_WAYLAND=Off
+            -DENABLE_ENCHANT=Off
+            -DENABLE_DBUS=Off
+            -DENABLE_SERVER=Off
+            -DENABLE_EMOJI=Off
+            -DUSE_SYSTEMD=Off
       - uses: actions/checkout@v4
         with:
           path: fcitx5-anthy

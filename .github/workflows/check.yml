@@ -31,12 +31,14 @@ jobs:
           pacman -Syu --noconfirm base-devel clang cmake ninja extra-cmake-modules libuv anthy
       - uses: actions/checkout@v4
         with:
+          repository: fcitx/fcitx5
           path: fcitx5
       - name: Build and Install fcitx5
         uses: fcitx/github-actions@cmake
         with:
           path: fcitx5
-          cmake-option: -DENABLE_KEYBOARD=Off -DENABLE_X11=Off -DENABLE_WAYLAND=Off -DENABLE_ENCHANT=Off -DENABLE_DBUS=Off -DENABLE_SERVER=Off -DENABLE_EMOJI -DUSE_SYSTEMD=Off
+          cmake-option: |
+            -DENABLE_KEYBOARD=Off -DENABLE_X11=Off -DENABLE_WAYLAND=Off -DENABLE_ENCHANT=Off -DENABLE_DBUS=Off -DENABLE_SERVER=Off -DENABLE_EMOJI -DUSE_SYSTEMD=Off
       - uses: actions/checkout@v4
         with:
           path: fcitx5-anthy

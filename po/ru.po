@@ -4,15 +4,15 @@
 #
 # Translators:
 # csslayer <wengxt@gmail.com>, 2017
-# Dmitry <dmitrydmitry761@gmail.com>, 2023
+# Dmitry <dmitrydmitry761@gmail.com>, 2024
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-11-28 20:24+0000\n"
+"POT-Creation-Date: 2024-04-16 20:26+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2023\n"
+"Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/fcitx/teams/12005/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -145,11 +145,11 @@ msgstr "Преобразовать"
 
 #: src/config.h:593
 msgid "Convert To Half"
-msgstr "Преобразовать в половинную"
+msgstr "Преобразовать в полуширинную"
 
 #: src/config.h:599
 msgid "Convert To Half Katakana"
-msgstr "Преобразовать в половинную Катакану"
+msgstr "Преобразовать в полуширинную Катакану"
 
 #: src/config.h:581
 msgid "Convert To Hiragana"
@@ -245,15 +245,15 @@ msgstr "Основной"
 
 #: src/config.h:79
 msgid "Half"
-msgstr "Половина"
+msgstr "Полуширинный"
 
 #: src/config.h:30
 msgid "Half Katakana"
-msgstr "Половинная катакана"
+msgstr "Полуширинная Катакана"
 
 #: src/config.h:361
 msgid "Half Katakana mode"
-msgstr "Режим половинной Катаканы"
+msgstr "Режим полуширинной Катаканы"
 
 #: src/engine.cpp:52
 msgid "Half width katakana"
@@ -281,7 +281,7 @@ msgstr "Вставить альтернативный пробел"
 
 #: src/config.h:385
 msgid "Insert Half Space"
-msgstr "Вставить половинный пробел"
+msgstr "Вставить полупробел"
 
 #: src/config.h:174
 msgid "Insert a blank with a blank key"

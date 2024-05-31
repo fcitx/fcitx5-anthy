@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2024-04-16 20:26+0000\n"
+"POT-Creation-Date: 2024-05-31 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/fcitx/teams/12005/ru/)\n"
@@ -81,11 +81,11 @@ msgstr "Расположение списка слов-кандидатов"
 
 #: src/config.h:563
 msgid "Candidates Page Down"
-msgstr "Страница кандидатов вниз"
+msgstr "Слово-кандидат на следующей странице"
 
 #: src/config.h:557
 msgid "Candidates Page Up"
-msgstr "Страница кандидатов вверх"
+msgstr "Слово-кандидат на предыдущей странице"
 
 #: src/config.h:238 src/config.h:253
 msgid "Canna"
@@ -413,7 +413,8 @@ msgstr "Не задано"
 
 #: src/config.h:168
 msgid "Number of convert key presses to Show Candidate"
-msgstr "Количество нажатий клавиш преобразования для отображения кандидата"
+msgstr ""
+"Количество нажатий клавиш преобразования для отображения слова-кандидата"
 
 #: src/config.h:282
 msgid "Oasys100J"
@@ -493,7 +494,7 @@ msgstr "Выбрать предыдущий сегмент"
 
 #: src/config.h:213
 msgid "Show candidates label"
-msgstr "Показать метку кандидата"
+msgstr "Показывать метку слов-кандидатов"
 
 #: src/config.h:222
 msgid "Show conversion mode"

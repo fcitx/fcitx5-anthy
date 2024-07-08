@@ -7,15 +7,16 @@
 # 黃柏諺 <s8321414@gmail.com>, 2017
 # Neko ◣ 0xFF, 2022
 # Haowei Hsu <hwhsu1231@gmail.com>, 2023
-# Lau YeeYu, 2023
+# Yiyu Liu, 2023
+# Kisaragi Hiu <flyingfeather1501@gmail.com>, 2024
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-09-23 20:24+0000\n"
+"POT-Creation-Date: 2024-07-08 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: Lau YeeYu, 2023\n"
+"Last-Translator: Kisaragi Hiu <flyingfeather1501@gmail.com>, 2024\n"
 "Language-Team: Chinese (Taiwan) (https://app.transifex.com/fcitx/teams/12005/"
 "zh_TW/)\n"
 "Language: zh_TW\n"
@@ -51,7 +52,7 @@ msgstr "Anthy"
 
 #: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:7
 msgid "Anthy for Fcitx 5"
-msgstr "Fcitx 5 的 Anthy 支持"
+msgstr "Fcitx 5 的 Anthy 支援"
 
 #: src/config.h:237 src/config.h:252
 msgid "Atok"
@@ -103,7 +104,7 @@ msgstr "循環假名模式"
 
 #: src/config.h:325
 msgid "Circle latin and hiragana mode"
-msgstr "圓圈拉丁與平假名模式"
+msgstr "循環拉丁與平假名模式"
 
 #: src/config.h:331
 msgid "Circle typing method"
@@ -307,7 +308,7 @@ msgstr "日語"
 
 #: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:8
 msgid "Japanese input method based on Anthy"
-msgstr "基於  Anthy 的日文輸入法"
+msgstr "基於 Anthy 的日文輸入法"
 
 #: src/config.h:66 src/engine.cpp:59
 msgid "Kana"

@@ -17,7 +17,7 @@ class AnthyConfig;
 class Key2KanaConvertorBase {
 public:
     Key2KanaConvertorBase(AnthyState &state)
-        : state_(state), caseSensitive_(true){};
+        : state_(state), caseSensitive_(true) {}
     virtual ~Key2KanaConvertorBase() = default;
 
     virtual bool canAppend(const fcitx::KeyEvent &key,

@@ -230,7 +230,7 @@ void NicolaConvertor::setAlarm(int time_msec) {
         time_msec = 1000;
 
     timer_ = state_.instance()->eventLoop().addTimeEvent(
-        CLOCK_MONOTONIC, fcitx::now(CLOCK_MONOTONIC) + time_msec * 1000, 0,
+        CLOCK_MONOTONIC, fcitx::now(CLOCK_MONOTONIC) + time_msec * 1000, 1,
         [this](fcitx::EventSourceTime *, uint64_t) {
             processTimeout();
             return true;

@@ -9,6 +9,7 @@
 
 #include <fcitx-config/configuration.h>
 #include <fcitx-config/enum.h>
+#include <fcitx-config/option.h>
 #include <fcitx-utils/i18n.h>
 #include <fcitx/candidatelist.h>
 
@@ -643,7 +644,8 @@ FCITX_CONFIGURATION(
         fcitx::KeyListConstrain(fcitx::KeyConstrainFlag::AllowModifierLess)};
     fcitx::Option<std::string> kanaLayoutRoKey{
         this, "KanaLayoutRoKey", _("Ro key for kana layout"), "ろ"};
-    fcitx::Option<int> nicolaTime{this, "NicolaTime", _("Nicola time"), 200};);
+    fcitx::Option<int, fcitx::IntConstrain> nicolaTime{
+        this, "NicolaTime", _("Nicola time"), 200, {5, 1000}};);
 
 FCITX_CONFIGURATION(AnthyCommnadConfig,
                     fcitx::Option<std::string> addWordCommand{

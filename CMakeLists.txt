@@ -12,7 +12,7 @@ option(ENABLE_TEST "Build Test" On)
 option(ENABLE_COVERAGE "Build the project with gcov support (Need ENABLE_TEST=On)" Off)
 
 find_package(Fcitx5Core 5.1.2 REQUIRED)
-find_package(Fcitx5Module REQUIRED COMPONENTS Clipboard)
+find_package(Fcitx5Module REQUIRED COMPONENTS Clipboard TestFrontend)
 find_package(Gettext REQUIRED)
 find_package(PkgConfig REQUIRED)
 

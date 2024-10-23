@@ -50,7 +50,7 @@ public:
     void setConfig(const fcitx::RawConfig &config) override {
         config_.load(config, true);
         saveConfig();
-        reloadConfig();
+        populateConfig();
     }
 
     void saveConfig() { fcitx::safeSaveAsIni(config_, "conf/anthy.conf"); }

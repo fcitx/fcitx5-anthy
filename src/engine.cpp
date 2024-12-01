@@ -276,7 +276,8 @@ AnthyEngine::AnthyEngine(fcitx::Instance *instance)
             FCITX_ANTHY_INFO() << "Anthy: " << msg;
         },
         0);
-    if constexpr (fcitx::isAndroid() || fcitx::isApple()) {
+    if constexpr (fcitx::isAndroid() || fcitx::isApple() ||
+                  fcitx::isEmscripten()) {
         const auto &sp = fcitx::StandardPath::global();
         std::string anthy_conf = sp.locate(fcitx::StandardPath::Type::Data,
                                            "anthy/anthy-unicode.conf");

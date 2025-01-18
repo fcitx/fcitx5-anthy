@@ -30,7 +30,8 @@ void scheduleEvent(EventDispatcher *dispatcher, Instance *instance) {
         auto *testfrontend = instance->addonManager().addon("testfrontend");
         auto uuid =
             testfrontend->call<ITestFrontend::createInputContext>("testapp");
-        auto ic = instance->inputContextManager().findByUUID(uuid);
+        auto *ic = instance->inputContextManager().findByUUID(uuid);
+        FCITX_ASSERT(ic);
 
         RawConfig config;
         config.setValueByPath("General/TypingMethod", "Nicola");

@@ -608,4 +608,4 @@ void AnthyEngine::invokeActionImpl(const fcitx::InputMethodEntry &entry,
     anthy->updateUI();
 }
 
-FCITX_ADDON_FACTORY(AnthyFactory)
+FCITX_ADDON_FACTORY_V2(anthy, AnthyFactory)

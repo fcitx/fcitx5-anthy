@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2023-09-21 20:24+0000\n"
+"POT-Creation-Date: 2025-05-18 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2023\n"
 "Language-Team: Japanese (https://app.transifex.com/fcitx/teams/12005/ja/)\n"
@@ -21,28 +21,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/state.cpp:295
+#: src/state.cpp:312
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
 
-#: src/config.h:265
+#: src/config.h:278
 msgid "101kana"
 msgstr "101カナ"
 
-#: src/config.h:629
+#: src/config.h:642
 msgid "Add Word"
 msgstr "単語を追加"
 
-#: src/config.h:650
+#: src/config.h:664
 msgid "Add word"
 msgstr "単語の追加"
 
-#: src/config.h:208
+#: src/config.h:221
 msgid "Allow split"
 msgstr "分割を許可"
 
-#: src/anthy-addon.conf.in.in:3 src/anthy.conf.in:3
+#: src/anthy-addon.conf.in.in:2 src/anthy.conf.in:2
 msgid "Anthy"
 msgstr "Anthy"
 
@@ -50,255 +50,259 @@ msgstr "Anthy"
 msgid "Anthy for Fcitx 5"
 msgstr "Anthy for Fcitx 5"
 
-#: src/config.h:237 src/config.h:252
+#: src/config.h:250 src/config.h:265
 msgid "Atok"
 msgstr "ATOK"
 
-#: src/config.h:253
+#: src/config.h:266
 msgid "Azik"
 msgstr "AZIK"
 
-#: src/config.h:397
+#: src/config.h:410
 msgid "BackSpace"
 msgstr "バックスペース"
 
-#: src/config.h:435
+#: src/config.h:215
+msgid "Behavior on a comma or a period"
+msgstr ""
+
+#: src/config.h:448
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: src/config.h:441
+#: src/config.h:454
 msgid "Cancel all"
 msgstr "全てキャンセル"
 
-#: src/config.h:367
+#: src/config.h:380
 msgid "Cancel pseudo ascii mode"
 msgstr "一時アスキーモードをやめる"
 
-#: src/config.h:164
+#: src/config.h:173
 msgid "Candidate List Layout"
 msgstr "候補リストのレイアウト"
 
-#: src/config.h:563
+#: src/config.h:576
 msgid "Candidates Page Down"
 msgstr "前のページへ"
 
-#: src/config.h:557
+#: src/config.h:570
 msgid "Candidates Page Up"
 msgstr "次のページへ"
 
-#: src/config.h:238 src/config.h:253
+#: src/config.h:251 src/config.h:266
 msgid "Canna"
 msgstr "Canna"
 
-#: src/config.h:313
+#: src/config.h:326
 msgid "Circle input mode"
 msgstr "入力モード循環"
 
-#: src/config.h:319
+#: src/config.h:332
 msgid "Circle kana mode"
 msgstr "かなモード循環"
 
-#: src/config.h:325
+#: src/config.h:338
 msgid "Circle latin and hiragana mode"
 msgstr "英数とかなモード循環"
 
-#: src/config.h:331
+#: src/config.h:344
 msgid "Circle typing method"
 msgstr "入力方式循環"
 
-#: src/config.h:662
+#: src/config.h:676
 msgid "Command"
 msgstr "コマンド"
 
-#: src/config.h:409
+#: src/config.h:89 src/config.h:422
 msgid "Commit"
 msgstr "確定"
 
-#: src/config.h:416
+#: src/config.h:429
 msgid "Commit Reverse Learn"
 msgstr "再変換の確定"
 
-#: src/config.h:519
+#: src/config.h:532
 msgid "Commit first segement reverse learn"
 msgstr "再変換した最初の文節を確定"
 
-#: src/config.h:507
+#: src/config.h:520
 msgid "Commit first segment"
 msgstr "最初の文節を確定"
 
-#: src/config.h:525
+#: src/config.h:538
 msgid "Commit selected segement reverse learn"
 msgstr "再変換した選択済み文節を確定"
 
-#: src/config.h:513
+#: src/config.h:526
 msgid "Commit selected segment"
 msgstr "選択文節を確定"
 
-#: src/config.h:190
+#: src/config.h:199
 msgid "Conversion mode"
 msgstr "変換モード"
 
-#: src/config.h:422
+#: src/config.h:88 src/config.h:435
 msgid "Convert"
 msgstr "変換"
 
-#: src/config.h:593
+#: src/config.h:606
 msgid "Convert To Half"
 msgstr "半角変換"
 
-#: src/config.h:599
+#: src/config.h:612
 msgid "Convert To Half Katakana"
 msgstr "半角カタカナ変換"
 
-#: src/config.h:581
+#: src/config.h:594
 msgid "Convert To Hiragana"
 msgstr "ひらがな変換"
 
-#: src/config.h:587
+#: src/config.h:600
 msgid "Convert To Katakana"
 msgstr "カタカナ変換"
 
-#: src/config.h:611
+#: src/config.h:624
 msgid "Convert To Latin"
 msgstr "英数変換"
 
-#: src/config.h:605
+#: src/config.h:618
 msgid "Convert To Wide Latin"
 msgstr "全角英数変換"
 
-#: src/engine.cpp:66
+#: src/engine.cpp:84
 msgid "Convert as you type (Multi segment)"
 msgstr "逐次変換(連文節)"
 
-#: src/engine.cpp:67
+#: src/engine.cpp:85
 msgid "Convert as you type (Single segment)"
 msgstr "逐次変換(単文節)"
 
-#: src/config.h:575
+#: src/config.h:588
 msgid "Convert char type backward"
 msgstr "前の文字種に変換"
 
-#: src/config.h:569
+#: src/config.h:582
 msgid "Convert char type forward"
 msgstr "次の文字種に変換"
 
-#: src/config.h:43
+#: src/config.h:47
 msgid "Corner bracket and Middle Dot"
 msgstr "中括弧と中点"
 
-#: src/config.h:44
+#: src/config.h:48
 msgid "Corner bracket and wide slash"
 msgstr "中括弧とスラッシュ"
 
-#: src/config.h:239 src/config.h:254 src/config.h:267 src/config.h:283
+#: src/config.h:252 src/config.h:267 src/config.h:280 src/config.h:296
 msgid "Custom"
 msgstr "カスタマイズ"
 
-#: src/config.h:304
+#: src/config.h:317
 msgid "Custom Kana Table"
 msgstr "独自のかな配列"
 
-#: src/config.h:300
+#: src/config.h:313
 msgid "Custom Key Binding"
 msgstr "独自のキーバインド"
 
-#: src/config.h:306
+#: src/config.h:319
 msgid "Custom Nicola Table"
 msgstr "独自のNicola配列"
 
-#: src/config.h:302
+#: src/config.h:315
 msgid "Custom Romaji Table"
 msgstr "独自のローマ字配列"
 
-#: src/config.h:237 src/config.h:252 src/config.h:265 src/config.h:280
+#: src/config.h:250 src/config.h:265 src/config.h:278 src/config.h:293
 msgid "Default"
 msgstr "デフォルト"
 
-#: src/config.h:403
+#: src/config.h:416
 msgid "Delete"
 msgstr "削除"
 
-#: src/config.h:623 src/config.h:652
+#: src/config.h:636 src/config.h:666
 msgid "Dict admin"
 msgstr "辞書の編集"
 
-#: src/engine.cpp:53
+#: src/engine.cpp:71
 msgid "Direct input"
 msgstr "直接入力"
 
-#: src/config.h:177
+#: src/config.h:186
 msgid "Entering the pseudo ASCII input mode with capital letters"
 msgstr "大文字で疑似ASCII入力モードに入る"
 
-#: src/config.h:501
+#: src/config.h:514
 msgid "Expand segment"
 msgstr "文節を伸ばす"
 
-#: src/config.h:71 src/config.h:80
+#: src/config.h:75 src/config.h:84
 msgid "Follow mode"
 msgstr "フォローモード"
 
-#: src/config.h:656
+#: src/config.h:670
 msgid "General"
 msgstr "全般"
 
-#: src/config.h:79
+#: src/config.h:83
 msgid "Half"
 msgstr "ハーフ"
 
-#: src/config.h:30
+#: src/config.h:34
 msgid "Half Katakana"
 msgstr "半角カタカナ"
 
-#: src/config.h:361
+#: src/config.h:374
 msgid "Half Katakana mode"
 msgstr "半角カタカナモード"
 
-#: src/engine.cpp:52
+#: src/engine.cpp:70
 msgid "Half width katakana"
 msgstr "半角カタカナ"
 
-#: src/config.h:29 src/engine.cpp:50
+#: src/config.h:33 src/engine.cpp:68
 msgid "Hiragana"
 msgstr "ひらがな"
 
-#: src/config.h:349
+#: src/config.h:362
 msgid "Hiragana mode"
 msgstr "ひらがなモード"
 
-#: src/config.h:17
+#: src/config.h:21
 msgid "Horizontal"
 msgstr "横"
 
-#: src/config.h:185
+#: src/config.h:194
 msgid "Initial Input mode"
 msgstr "初期入力モード"
 
-#: src/config.h:379
+#: src/config.h:392
 msgid "Insert Alternative space"
 msgstr "別幅空白の挿入"
 
-#: src/config.h:385
+#: src/config.h:398
 msgid "Insert Half Space"
 msgstr "半角スペースの挿入"
 
-#: src/config.h:174
+#: src/config.h:183
 msgid "Insert a blank with a blank key"
 msgstr "空白のキーで空白を挿入します"
 
-#: src/config.h:373
+#: src/config.h:386
 msgid "Insert space"
 msgstr "空白を挿入"
 
-#: src/config.h:391
+#: src/config.h:404
 msgid "Insert wide space"
 msgstr "全角スペースの挿入"
 
-#: src/config.h:658
+#: src/config.h:672
 msgid "Interface"
 msgstr "インターフェイス"
 
-#: src/config.h:41 src/config.h:49
+#: src/config.h:45 src/config.h:53
 msgid "Japanese"
 msgstr "日本語"
 
@@ -306,306 +310,310 @@ msgstr "日本語"
 msgid "Japanese input method based on Anthy"
 msgstr "Anthyに基づく日本語入力メソッド"
 
-#: src/config.h:66 src/engine.cpp:59
+#: src/config.h:70 src/engine.cpp:77
 msgid "Kana"
 msgstr "かな"
 
-#: src/config.h:295
+#: src/config.h:308
 msgid "Kana Table"
 msgstr "カナ配列"
 
-#: src/config.h:29 src/engine.cpp:51
+#: src/config.h:33 src/engine.cpp:69
 msgid "Katakana"
 msgstr "カタカナ"
 
-#: src/config.h:355
+#: src/config.h:368
 msgid "Katakana mode"
 msgstr "カタカナモード"
 
-#: src/config.h:661
+#: src/config.h:675
 msgid "Key"
 msgstr "キー"
 
-#: src/config.h:660
+#: src/config.h:674
 msgid "Key Profile"
 msgstr "キーのプロファイル"
 
-#: src/config.h:289
+#: src/config.h:302
 msgid "Key binding profile"
 msgstr "キーバインドのプロファイル"
 
-#: src/config.h:30 src/config.h:49
+#: src/config.h:34 src/config.h:53
 msgid "Latin"
 msgstr "英数"
 
-#: src/config.h:337
+#: src/config.h:350
 msgid "Latin mode"
 msgstr "英数モード"
 
-#: src/config.h:207
+#: src/config.h:220
 msgid "Learn on auto commit"
 msgstr "自動学習"
 
-#: src/config.h:205
+#: src/config.h:218
 msgid "Learn on manual commit"
 msgstr "手動学習"
 
-#: src/config.h:635
+#: src/config.h:648
 msgid "Left thumb key"
 msgstr "左親指キー"
 
-#: src/config.h:238 src/config.h:253
+#: src/config.h:251 src/config.h:266
 msgid "MS IME"
 msgstr "MS IME"
 
-#: src/config.h:465
+#: src/config.h:478
 msgid "Move caret backward"
 msgstr "後ろにキャレットを移動"
 
-#: src/config.h:447
+#: src/config.h:460
 msgid "Move caret first"
 msgstr "最初にキャレットを移動"
 
-#: src/config.h:459
+#: src/config.h:472
 msgid "Move caret forward"
 msgstr "前方へ移動"
 
-#: src/config.h:453
+#: src/config.h:466
 msgid "Move caret last"
 msgstr "最後へ移動"
 
-#: src/config.h:59 src/engine.cpp:64
+#: src/config.h:63 src/engine.cpp:82
 msgid "Multi segment"
 msgstr "連文節"
 
-#: src/config.h:61
+#: src/config.h:65
 msgid "Multi segment immediate"
 msgstr "逐次変換 (連文節)"
 
-#: src/config.h:67 src/engine.cpp:60
+#: src/config.h:71 src/engine.cpp:78
 msgid "Nicola"
 msgstr "Nicola"
 
-#: src/config.h:297
+#: src/config.h:310
 msgid "Nicola Table"
 msgstr "Nicola配列"
 
-#: src/config.h:646
+#: src/config.h:660
 msgid "Nicola time"
 msgstr "Nicola時間"
 
-#: src/config.h:280
+#: src/config.h:293
 msgid "Nicola-A"
 msgstr "Nicola-A"
 
-#: src/config.h:281
+#: src/config.h:294
 msgid "Nicola-F"
 msgstr "Nicola-F"
 
-#: src/config.h:281
+#: src/config.h:294
 msgid "Nicola-J"
 msgstr "Nicola-J"
 
-#: src/config.h:16
+#: src/config.h:88
+msgid "None"
+msgstr ""
+
+#: src/config.h:20
 msgid "Not Set"
 msgstr "未設定"
 
-#: src/config.h:168
+#: src/config.h:177
 msgid "Number of convert key presses to Show Candidate"
 msgstr "候補を表示するまでの変換キーの押し下げ回数"
 
-#: src/config.h:282
+#: src/config.h:295
 msgid "Oasys100J"
 msgstr "Oasys100J"
 
-#: src/config.h:161
+#: src/config.h:170
 msgid "Page size"
 msgstr "候補ウィンドウの項目数"
 
-#: src/config.h:194
+#: src/config.h:203
 msgid "Period style"
 msgstr "句読点のスタイル"
 
-#: src/config.h:429
+#: src/config.h:442
 msgid "Predict"
 msgstr "予測"
 
-#: src/config.h:171
+#: src/config.h:180
 msgid "Predict on input"
 msgstr "入力を予測する"
 
-#: src/config.h:267
+#: src/config.h:280
 msgid "Quick Kana"
 msgstr "Quick かな"
 
-#: src/config.h:617
+#: src/config.h:630
 msgid "Reconvert"
 msgstr "再変換"
 
-#: src/config.h:641
+#: src/config.h:654
 msgid "Right thumb key"
 msgstr "右親指キー"
 
-#: src/config.h:645
+#: src/config.h:658
 msgid "Ro key for kana layout"
 msgstr "かなレイアウト用の「ろ」キー"
 
-#: src/config.h:66 src/engine.cpp:58
+#: src/config.h:70 src/engine.cpp:76
 msgid "Romaji"
 msgstr "ローマ字"
 
-#: src/config.h:292
+#: src/config.h:305
 msgid "Romaji Table"
 msgstr "ローマ字配列"
 
-#: src/config.h:531
+#: src/config.h:544
 msgid "Select first candidate"
 msgstr "最初の候補に移動"
 
-#: src/config.h:471
+#: src/config.h:484
 msgid "Select first segment"
 msgstr "最初の文節を選択"
 
-#: src/config.h:537
+#: src/config.h:550
 msgid "Select last candidate"
 msgstr "最後の候補に移動"
 
-#: src/config.h:477
+#: src/config.h:490
 msgid "Select last segment"
 msgstr "最後の文節を選択"
 
-#: src/config.h:543
+#: src/config.h:556
 msgid "Select next candidate"
 msgstr "次の候補に移動"
 
-#: src/config.h:483
+#: src/config.h:496
 msgid "Select next segment"
 msgstr "次の文節を選択"
 
-#: src/config.h:551
+#: src/config.h:564
 msgid "Select prev candidate"
 msgstr "前の候補に移動"
 
-#: src/config.h:489
+#: src/config.h:502
 msgid "Select prev segment"
 msgstr "前の文節を選択"
 
-#: src/config.h:213
+#: src/config.h:226
 msgid "Show candidates label"
 msgstr "候補のラベルを表示"
 
-#: src/config.h:222
+#: src/config.h:235
 msgid "Show conversion mode"
 msgstr "変換モードを表示"
 
-#: src/config.h:218
+#: src/config.h:231
 msgid "Show input mode"
 msgstr "入力モードを表示"
 
-#: src/config.h:224
+#: src/config.h:237
 msgid "Show period style"
 msgstr "句読点のスタイルを表示"
 
-#: src/config.h:226
+#: src/config.h:239
 msgid "Show symbol style"
 msgstr ""
 
-#: src/config.h:220
+#: src/config.h:233
 msgid "Show typing method"
 msgstr "入力方式を表示"
 
-#: src/config.h:495
+#: src/config.h:508
 msgid "Shrink segment"
 msgstr "文節を縮める"
 
-#: src/config.h:60 src/engine.cpp:65
+#: src/config.h:64 src/engine.cpp:83
 msgid "Single segment"
 msgstr "単文節"
 
-#: src/config.h:62
+#: src/config.h:66
 msgid "Single segment immediate"
 msgstr "逐次変換 (単文節)"
 
-#: src/config.h:200
+#: src/config.h:209
 msgid "Space type"
 msgstr "スペースタイプ"
 
-#: src/config.h:197
+#: src/config.h:206
 msgid "Symbol style"
 msgstr "記号のスタイル"
 
-#: src/config.h:202
+#: src/config.h:211
 msgid "Ten key type"
 msgstr "テンキータイプ"
 
-#: src/engine.cpp:60
+#: src/engine.cpp:78
 msgid "Thumb shift"
 msgstr "親指シフト"
 
-#: src/config.h:282
+#: src/config.h:295
 msgid "Tron Dvorak"
 msgstr "Tron Dvorak"
 
-#: src/config.h:283
+#: src/config.h:296
 msgid "Tron Qwerty JP"
 msgstr "Tron Qwerty JP"
 
-#: src/config.h:187
+#: src/config.h:196
 msgid "Typing method"
 msgstr "入力方式"
 
-#: src/config.h:211
+#: src/config.h:224
 msgid "Use direct key on predict"
 msgstr "予測中に直接選択キーを使用する"
 
-#: src/config.h:182
+#: src/config.h:191
 msgid "Use half-width characters for numbers"
 msgstr "数字には半角文字を使用する"
 
-#: src/config.h:179
+#: src/config.h:188
 msgid "Use half-width characters for symbols"
 msgstr "シンボルには半角文字を使用する"
 
-#: src/config.h:17
+#: src/config.h:21
 msgid "Vertical"
 msgstr "縦"
 
-#: src/config.h:238 src/config.h:254
+#: src/config.h:251 src/config.h:267
 msgid "Vje Delta"
 msgstr "Vje Delta"
 
-#: src/config.h:239 src/config.h:254
+#: src/config.h:252 src/config.h:267
 msgid "WNN"
 msgstr "Wnn"
 
-#: src/config.h:71 src/config.h:79
+#: src/config.h:75 src/config.h:83
 msgid "Wide"
 msgstr "全角"
 
-#: src/config.h:31
+#: src/config.h:35
 msgid "Wide Latin"
 msgstr "全角英数"
 
-#: src/config.h:42
+#: src/config.h:46
 msgid "Wide bracket and wide slash"
 msgstr "全角かぎかっことスラッシュ"
 
-#: src/config.h:48 src/engine.cpp:54
+#: src/config.h:52 src/engine.cpp:72
 msgid "Wide latin"
 msgstr "全角英数"
 
-#: src/config.h:50
+#: src/config.h:54
 msgid "Wide latin Japanese"
 msgstr "全角英字と日本語"
 
-#: src/config.h:343
+#: src/config.h:356
 msgid "Wide latin mode"
 msgstr "全角英字モ－ド"
 
-#: src/config.h:266
+#: src/config.h:279
 msgid "tsuki-2-203-101"
 msgstr "tsuki-2-203-101"
 
-#: src/config.h:266
+#: src/config.h:279
 msgid "tsuki-2-203-106"
 msgstr "tsuki-2-203-106"

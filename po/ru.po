@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2024-05-31 20:24+0000\n"
+"POT-Creation-Date: 2025-05-18 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/fcitx/teams/12005/ru/)\n"
@@ -22,28 +22,28 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: src/state.cpp:295
+#: src/state.cpp:312
 #, c-format
 msgid "(%d / %d)"
 msgstr "(%d / %d)"
 
-#: src/config.h:265
+#: src/config.h:278
 msgid "101kana"
 msgstr "101kana"
 
-#: src/config.h:629
+#: src/config.h:642
 msgid "Add Word"
 msgstr "Добавить слово"
 
-#: src/config.h:650
+#: src/config.h:664
 msgid "Add word"
 msgstr "Добавить слово"
 
-#: src/config.h:208
+#: src/config.h:221
 msgid "Allow split"
 msgstr "Разрешать разделение"
 
-#: src/anthy-addon.conf.in.in:3 src/anthy.conf.in:3
+#: src/anthy-addon.conf.in.in:2 src/anthy.conf.in:2
 msgid "Anthy"
 msgstr "Anthy"
 
@@ -51,255 +51,259 @@ msgstr "Anthy"
 msgid "Anthy for Fcitx 5"
 msgstr "Anthy для Fcitx 5"
 
-#: src/config.h:237 src/config.h:252
+#: src/config.h:250 src/config.h:265
 msgid "Atok"
 msgstr "Atok"
 
-#: src/config.h:253
+#: src/config.h:266
 msgid "Azik"
 msgstr "Azik"
 
-#: src/config.h:397
+#: src/config.h:410
 msgid "BackSpace"
 msgstr "BackSpace"
 
-#: src/config.h:435
+#: src/config.h:215
+msgid "Behavior on a comma or a period"
+msgstr ""
+
+#: src/config.h:448
 msgid "Cancel"
 msgstr "Отмена"
 
-#: src/config.h:441
+#: src/config.h:454
 msgid "Cancel all"
 msgstr "Отменить все"
 
-#: src/config.h:367
+#: src/config.h:380
 msgid "Cancel pseudo ascii mode"
 msgstr "Отменить режим псевдо-ASCII"
 
-#: src/config.h:164
+#: src/config.h:173
 msgid "Candidate List Layout"
 msgstr "Расположение списка слов-кандидатов"
 
-#: src/config.h:563
+#: src/config.h:576
 msgid "Candidates Page Down"
 msgstr "Слово-кандидат на следующей странице"
 
-#: src/config.h:557
+#: src/config.h:570
 msgid "Candidates Page Up"
 msgstr "Слово-кандидат на предыдущей странице"
 
-#: src/config.h:238 src/config.h:253
+#: src/config.h:251 src/config.h:266
 msgid "Canna"
 msgstr "Canna"
 
-#: src/config.h:313
+#: src/config.h:326
 msgid "Circle input mode"
 msgstr "Круговой режим ввода"
 
-#: src/config.h:319
+#: src/config.h:332
 msgid "Circle kana mode"
 msgstr "Круговой режим кана"
 
-#: src/config.h:325
+#: src/config.h:338
 msgid "Circle latin and hiragana mode"
 msgstr "Круговой режим латыни и хирагана"
 
-#: src/config.h:331
+#: src/config.h:344
 msgid "Circle typing method"
 msgstr "Круговой метод печати"
 
-#: src/config.h:662
+#: src/config.h:676
 msgid "Command"
 msgstr "Команда"
 
-#: src/config.h:409
+#: src/config.h:89 src/config.h:422
 msgid "Commit"
 msgstr "Ввести"
 
-#: src/config.h:416
+#: src/config.h:429
 msgid "Commit Reverse Learn"
 msgstr "Ввести обратное обучение"
 
-#: src/config.h:519
+#: src/config.h:532
 msgid "Commit first segement reverse learn"
 msgstr "Зафиксировать первый сегмент обратного обучения"
 
-#: src/config.h:507
+#: src/config.h:520
 msgid "Commit first segment"
 msgstr "Ввести первый сегмент"
 
-#: src/config.h:525
+#: src/config.h:538
 msgid "Commit selected segement reverse learn"
 msgstr "Зафиксировать выбранный сегмент обратного обучения"
 
-#: src/config.h:513
+#: src/config.h:526
 msgid "Commit selected segment"
 msgstr "Ввести выбранный сегмент"
 
-#: src/config.h:190
+#: src/config.h:199
 msgid "Conversion mode"
 msgstr "Режим конвертации"
 
-#: src/config.h:422
+#: src/config.h:88 src/config.h:435
 msgid "Convert"
 msgstr "Преобразовать"
 
-#: src/config.h:593
+#: src/config.h:606
 msgid "Convert To Half"
 msgstr "Преобразовать в полуширинную"
 
-#: src/config.h:599
+#: src/config.h:612
 msgid "Convert To Half Katakana"
 msgstr "Преобразовать в полуширинную Катакану"
 
-#: src/config.h:581
+#: src/config.h:594
 msgid "Convert To Hiragana"
 msgstr "Преобразовать в Хирагану"
 
-#: src/config.h:587
+#: src/config.h:600
 msgid "Convert To Katakana"
 msgstr "Преобразовать в Катакану"
 
-#: src/config.h:611
+#: src/config.h:624
 msgid "Convert To Latin"
 msgstr "Преобразовать в Latin"
 
-#: src/config.h:605
+#: src/config.h:618
 msgid "Convert To Wide Latin"
 msgstr "Преобразовать в Wide Latin"
 
-#: src/engine.cpp:66
+#: src/engine.cpp:84
 msgid "Convert as you type (Multi segment)"
 msgstr "Преобразование по мере ввода (Множество сегментов)"
 
-#: src/engine.cpp:67
+#: src/engine.cpp:85
 msgid "Convert as you type (Single segment)"
 msgstr "Преобразование по мере ввода (один сегмент)"
 
-#: src/config.h:575
+#: src/config.h:588
 msgid "Convert char type backward"
 msgstr "Обратное преобразование типа символов"
 
-#: src/config.h:569
+#: src/config.h:582
 msgid "Convert char type forward"
 msgstr "Прямое преобразование типа символов"
 
-#: src/config.h:43
+#: src/config.h:47
 msgid "Corner bracket and Middle Dot"
 msgstr "Угловая скобка и средняя точка"
 
-#: src/config.h:44
+#: src/config.h:48
 msgid "Corner bracket and wide slash"
 msgstr "Угловая скобка и широкая косая черта"
 
-#: src/config.h:239 src/config.h:254 src/config.h:267 src/config.h:283
+#: src/config.h:252 src/config.h:267 src/config.h:280 src/config.h:296
 msgid "Custom"
 msgstr "Пользовательский"
 
-#: src/config.h:304
+#: src/config.h:317
 msgid "Custom Kana Table"
 msgstr "Пользовательская таблица Кана"
 
-#: src/config.h:300
+#: src/config.h:313
 msgid "Custom Key Binding"
 msgstr "Пользовательская привязка клавиш"
 
-#: src/config.h:306
+#: src/config.h:319
 msgid "Custom Nicola Table"
 msgstr "Пользовательская таблица Nicola"
 
-#: src/config.h:302
+#: src/config.h:315
 msgid "Custom Romaji Table"
 msgstr "Пользовательская таблица Romaji"
 
-#: src/config.h:237 src/config.h:252 src/config.h:265 src/config.h:280
+#: src/config.h:250 src/config.h:265 src/config.h:278 src/config.h:293
 msgid "Default"
 msgstr "По умолчанию"
 
-#: src/config.h:403
+#: src/config.h:416
 msgid "Delete"
 msgstr "Удалить"
 
-#: src/config.h:623 src/config.h:652
+#: src/config.h:636 src/config.h:666
 msgid "Dict admin"
 msgstr "Администратор словарей"
 
-#: src/engine.cpp:53
+#: src/engine.cpp:71
 msgid "Direct input"
 msgstr "Прямой ввод"
 
-#: src/config.h:177
+#: src/config.h:186
 msgid "Entering the pseudo ASCII input mode with capital letters"
 msgstr "Вход в режим ввода псевдо-ASCII с заглавными буквами"
 
-#: src/config.h:501
+#: src/config.h:514
 msgid "Expand segment"
 msgstr "Расширить сегмент"
 
-#: src/config.h:71 src/config.h:80
+#: src/config.h:75 src/config.h:84
 msgid "Follow mode"
 msgstr "Режим следования"
 
-#: src/config.h:656
+#: src/config.h:670
 msgid "General"
 msgstr "Основной"
 
-#: src/config.h:79
+#: src/config.h:83
 msgid "Half"
 msgstr "Полуширинный"
 
-#: src/config.h:30
+#: src/config.h:34
 msgid "Half Katakana"
 msgstr "Полуширинная Катакана"
 
-#: src/config.h:361
+#: src/config.h:374
 msgid "Half Katakana mode"
 msgstr "Режим полуширинной Катаканы"
 
-#: src/engine.cpp:52
+#: src/engine.cpp:70
 msgid "Half width katakana"
 msgstr "Полуширинная Катакана"
 
-#: src/config.h:29 src/engine.cpp:50
+#: src/config.h:33 src/engine.cpp:68
 msgid "Hiragana"
 msgstr "Хирагана"
 
-#: src/config.h:349
+#: src/config.h:362
 msgid "Hiragana mode"
 msgstr "Режим хирагана"
 
-#: src/config.h:17
+#: src/config.h:21
 msgid "Horizontal"
 msgstr "Горизонтально"
 
-#: src/config.h:185
+#: src/config.h:194
 msgid "Initial Input mode"
 msgstr "Начальный режим ввода"
 
-#: src/config.h:379
+#: src/config.h:392
 msgid "Insert Alternative space"
 msgstr "Вставить альтернативный пробел"
 
-#: src/config.h:385
+#: src/config.h:398
 msgid "Insert Half Space"
 msgstr "Вставить полупробел"
 
-#: src/config.h:174
+#: src/config.h:183
 msgid "Insert a blank with a blank key"
 msgstr "Вставьте заготовку с пустым ключом"
 
-#: src/config.h:373
+#: src/config.h:386
 msgid "Insert space"
 msgstr "Вставить пробел"
 
-#: src/config.h:391
+#: src/config.h:404
 msgid "Insert wide space"
 msgstr "Вставить широкий пробел"
 
-#: src/config.h:658
+#: src/config.h:672
 msgid "Interface"
 msgstr "Интерфейс"
 
-#: src/config.h:41 src/config.h:49
+#: src/config.h:45 src/config.h:53
 msgid "Japanese"
 msgstr "Японский"
 
@@ -307,307 +311,311 @@ msgstr "Японский"
 msgid "Japanese input method based on Anthy"
 msgstr "Японский метод ввода на основе Anthy"
 
-#: src/config.h:66 src/engine.cpp:59
+#: src/config.h:70 src/engine.cpp:77
 msgid "Kana"
 msgstr "Кана"
 
-#: src/config.h:295
+#: src/config.h:308
 msgid "Kana Table"
 msgstr "Таблица Кана"
 
-#: src/config.h:29 src/engine.cpp:51
+#: src/config.h:33 src/engine.cpp:69
 msgid "Katakana"
 msgstr "Катакана"
 
-#: src/config.h:355
+#: src/config.h:368
 msgid "Katakana mode"
 msgstr "Режим Катакана"
 
-#: src/config.h:661
+#: src/config.h:675
 msgid "Key"
 msgstr "Клавиша"
 
-#: src/config.h:660
+#: src/config.h:674
 msgid "Key Profile"
 msgstr "Профиль клавиши"
 
-#: src/config.h:289
+#: src/config.h:302
 msgid "Key binding profile"
 msgstr "Профиль привязки ключа"
 
-#: src/config.h:30 src/config.h:49
+#: src/config.h:34 src/config.h:53
 msgid "Latin"
 msgstr "Латынь"
 
-#: src/config.h:337
+#: src/config.h:350
 msgid "Latin mode"
 msgstr "Режим Латиницы"
 
-#: src/config.h:207
+#: src/config.h:220
 msgid "Learn on auto commit"
 msgstr "Учиться на автоматическом вводе"
 
-#: src/config.h:205
+#: src/config.h:218
 msgid "Learn on manual commit"
 msgstr "Учиться на ручном вводе"
 
-#: src/config.h:635
+#: src/config.h:648
 msgid "Left thumb key"
 msgstr "Левая клавиша большого пальца"
 
-#: src/config.h:238 src/config.h:253
+#: src/config.h:251 src/config.h:266
 msgid "MS IME"
 msgstr "MS IME"
 
-#: src/config.h:465
+#: src/config.h:478
 msgid "Move caret backward"
 msgstr "Переместить каретку назад"
 
-#: src/config.h:447
+#: src/config.h:460
 msgid "Move caret first"
 msgstr "Сначала переместите каретку"
 
-#: src/config.h:459
+#: src/config.h:472
 msgid "Move caret forward"
 msgstr "Сдвинуть каретку вперед"
 
-#: src/config.h:453
+#: src/config.h:466
 msgid "Move caret last"
 msgstr "Сдвинуть каретку в последнюю очередь"
 
-#: src/config.h:59 src/engine.cpp:64
+#: src/config.h:63 src/engine.cpp:82
 msgid "Multi segment"
 msgstr "Множество сегментов"
 
-#: src/config.h:61
+#: src/config.h:65
 msgid "Multi segment immediate"
 msgstr "Множество сегментов немедленно"
 
-#: src/config.h:67 src/engine.cpp:60
+#: src/config.h:71 src/engine.cpp:78
 msgid "Nicola"
 msgstr "Nicola"
 
-#: src/config.h:297
+#: src/config.h:310
 msgid "Nicola Table"
 msgstr "Таблица Nicola"
 
-#: src/config.h:646
+#: src/config.h:660
 msgid "Nicola time"
 msgstr "Время Nicola"
 
-#: src/config.h:280
+#: src/config.h:293
 msgid "Nicola-A"
 msgstr "Nicola-A"
 
-#: src/config.h:281
+#: src/config.h:294
 msgid "Nicola-F"
 msgstr "Nicola-F"
 
-#: src/config.h:281
+#: src/config.h:294
 msgid "Nicola-J"
 msgstr "Nicola-J"
 
-#: src/config.h:16
+#: src/config.h:88
+msgid "None"
+msgstr ""
+
+#: src/config.h:20
 msgid "Not Set"
 msgstr "Не задано"
 
-#: src/config.h:168
+#: src/config.h:177
 msgid "Number of convert key presses to Show Candidate"
 msgstr ""
 "Количество нажатий клавиш преобразования для отображения слова-кандидата"
 
-#: src/config.h:282
+#: src/config.h:295
 msgid "Oasys100J"
 msgstr "Oasys100J"
 
-#: src/config.h:161
+#: src/config.h:170
 msgid "Page size"
 msgstr "Размер страницы"
 
-#: src/config.h:194
+#: src/config.h:203
 msgid "Period style"
 msgstr "Стиль периода"
 
-#: src/config.h:429
+#: src/config.h:442
 msgid "Predict"
 msgstr "Предсказать"
 
-#: src/config.h:171
+#: src/config.h:180
 msgid "Predict on input"
 msgstr "Предсказывать при вводе"
 
-#: src/config.h:267
+#: src/config.h:280
 msgid "Quick Kana"
 msgstr "Быстрая Кана"
 
-#: src/config.h:617
+#: src/config.h:630
 msgid "Reconvert"
 msgstr "Преобразовать повторно"
 
-#: src/config.h:641
+#: src/config.h:654
 msgid "Right thumb key"
 msgstr "Правая клавиша большого пальца"
 
-#: src/config.h:645
+#: src/config.h:658
 msgid "Ro key for kana layout"
 msgstr "Клавиша Ro для раскладки кана"
 
-#: src/config.h:66 src/engine.cpp:58
+#: src/config.h:70 src/engine.cpp:76
 msgid "Romaji"
 msgstr "Romaji"
 
-#: src/config.h:292
+#: src/config.h:305
 msgid "Romaji Table"
 msgstr "Таблица Romaji"
 
-#: src/config.h:531
+#: src/config.h:544
 msgid "Select first candidate"
 msgstr "Выбрать первое слово-кандидат"
 
-#: src/config.h:471
+#: src/config.h:484
 msgid "Select first segment"
 msgstr "Выбрать первый сегмент"
 
-#: src/config.h:537
+#: src/config.h:550
 msgid "Select last candidate"
 msgstr "Выбрать последнее слово-кандидат"
 
-#: src/config.h:477
+#: src/config.h:490
 msgid "Select last segment"
 msgstr "Выбрать последний сегмент"
 
-#: src/config.h:543
+#: src/config.h:556
 msgid "Select next candidate"
 msgstr "Выбрать следующее слово-кандидат"
 
-#: src/config.h:483
+#: src/config.h:496
 msgid "Select next segment"
 msgstr "Выбрать следующий сегмент"
 
-#: src/config.h:551
+#: src/config.h:564
 msgid "Select prev candidate"
 msgstr "Выбрать предыдущее слово-кандидат"
 
-#: src/config.h:489
+#: src/config.h:502
 msgid "Select prev segment"
 msgstr "Выбрать предыдущий сегмент"
 
-#: src/config.h:213
+#: src/config.h:226
 msgid "Show candidates label"
 msgstr "Показывать метку слов-кандидатов"
 
-#: src/config.h:222
+#: src/config.h:235
 msgid "Show conversion mode"
 msgstr "Показать режим конвертации"
 
-#: src/config.h:218
+#: src/config.h:231
 msgid "Show input mode"
 msgstr "Показать режим ввода"
 
-#: src/config.h:224
+#: src/config.h:237
 msgid "Show period style"
 msgstr "Показать стиль периода"
 
-#: src/config.h:226
+#: src/config.h:239
 msgid "Show symbol style"
 msgstr "Показать стиль символа"
 
-#: src/config.h:220
+#: src/config.h:233
 msgid "Show typing method"
 msgstr "Показать метод печати"
 
-#: src/config.h:495
+#: src/config.h:508
 msgid "Shrink segment"
 msgstr "Сжать сегмент"
 
-#: src/config.h:60 src/engine.cpp:65
+#: src/config.h:64 src/engine.cpp:83
 msgid "Single segment"
 msgstr "Одиночный сегмент"
 
-#: src/config.h:62
+#: src/config.h:66
 msgid "Single segment immediate"
 msgstr "Одиночный сегмент немедленно"
 
-#: src/config.h:200
+#: src/config.h:209
 msgid "Space type"
 msgstr "Тип пространства"
 
-#: src/config.h:197
+#: src/config.h:206
 msgid "Symbol style"
 msgstr "Стиль символа"
 
-#: src/config.h:202
+#: src/config.h:211
 msgid "Ten key type"
 msgstr "Десять ключевых типов"
 
-#: src/engine.cpp:60
+#: src/engine.cpp:78
 msgid "Thumb shift"
 msgstr "Thumb shift"
 
-#: src/config.h:282
+#: src/config.h:295
 msgid "Tron Dvorak"
 msgstr "Tron Dvorak"
 
-#: src/config.h:283
+#: src/config.h:296
 msgid "Tron Qwerty JP"
 msgstr "Tron Qwerty JP"
 
-#: src/config.h:187
+#: src/config.h:196
 msgid "Typing method"
 msgstr "Режим печати"
 
-#: src/config.h:211
+#: src/config.h:224
 msgid "Use direct key on predict"
 msgstr "Использовать прямую клавишу для предсказания"
 
-#: src/config.h:182
+#: src/config.h:191
 msgid "Use half-width characters for numbers"
 msgstr "Используйте полуширинный режим для ввода чисел"
 
-#: src/config.h:179
+#: src/config.h:188
 msgid "Use half-width characters for symbols"
 msgstr "Используйте полуширинный  режим для ввода символов"
 
-#: src/config.h:17
+#: src/config.h:21
 msgid "Vertical"
 msgstr "Вертикально"
 
-#: src/config.h:238 src/config.h:254
+#: src/config.h:251 src/config.h:267
 msgid "Vje Delta"
 msgstr "Vje Delta"
 
-#: src/config.h:239 src/config.h:254
+#: src/config.h:252 src/config.h:267
 msgid "WNN"
 msgstr "WNN"
 
-#: src/config.h:71 src/config.h:79
+#: src/config.h:75 src/config.h:83
 msgid "Wide"
 msgstr "Широко"
 
-#: src/config.h:31
+#: src/config.h:35
 msgid "Wide Latin"
 msgstr "Wide latin"
 
-#: src/config.h:42
+#: src/config.h:46
 msgid "Wide bracket and wide slash"
 msgstr "Широкая скобка и широкая косая черта"
 
-#: src/config.h:48 src/engine.cpp:54
+#: src/config.h:52 src/engine.cpp:72
 msgid "Wide latin"
 msgstr "Wide latin"
 
-#: src/config.h:50
+#: src/config.h:54
 msgid "Wide latin Japanese"
 msgstr "Японский Wide latin"
 
-#: src/config.h:343
+#: src/config.h:356
 msgid "Wide latin mode"
 msgstr "Режим Wide latin"
 
-#: src/config.h:266
+#: src/config.h:279
 msgid "tsuki-2-203-101"
 msgstr "tsuki-2-203-101"
 
-#: src/config.h:266
+#: src/config.h:279
 msgid "tsuki-2-203-106"
 msgstr "tsuki-2-203-106"

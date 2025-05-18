@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2025-04-22 20:24+0000\n"
+"POT-Creation-Date: 2025-05-18 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: hoanghuy309 <hoanghuy309@gmail.com>, 2025\n"
 "Language-Team: Vietnamese (https://app.transifex.com/fcitx/teams/12005/vi/)\n"
@@ -19,24 +19,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/state.cpp:295
+#: src/state.cpp:312
 #, c-format
 msgid "(%d / %d)"
 msgstr ""
 
-#: src/config.h:266
+#: src/config.h:278
 msgid "101kana"
 msgstr ""
 
-#: src/config.h:630
+#: src/config.h:642
 msgid "Add Word"
 msgstr ""
 
-#: src/config.h:652
+#: src/config.h:664
 msgid "Add word"
 msgstr ""
 
-#: src/config.h:209
+#: src/config.h:221
 msgid "Allow split"
 msgstr "Cho phép chia"
 
@@ -48,255 +48,259 @@ msgstr ""
 msgid "Anthy for Fcitx 5"
 msgstr ""
 
-#: src/config.h:238 src/config.h:253
+#: src/config.h:250 src/config.h:265
 msgid "Atok"
 msgstr ""
 
-#: src/config.h:254
+#: src/config.h:266
 msgid "Azik"
 msgstr ""
 
-#: src/config.h:398
+#: src/config.h:410
 msgid "BackSpace"
 msgstr ""
 
-#: src/config.h:436
+#: src/config.h:215
+msgid "Behavior on a comma or a period"
+msgstr ""
+
+#: src/config.h:448
 msgid "Cancel"
 msgstr ""
 
-#: src/config.h:442
+#: src/config.h:454
 msgid "Cancel all"
 msgstr "Hủy bỏ tất cả"
 
-#: src/config.h:368
+#: src/config.h:380
 msgid "Cancel pseudo ascii mode"
 msgstr ""
 
-#: src/config.h:165
+#: src/config.h:173
 msgid "Candidate List Layout"
 msgstr ""
 
-#: src/config.h:564
+#: src/config.h:576
 msgid "Candidates Page Down"
 msgstr ""
 
-#: src/config.h:558
+#: src/config.h:570
 msgid "Candidates Page Up"
 msgstr ""
 
-#: src/config.h:239 src/config.h:254
+#: src/config.h:251 src/config.h:266
 msgid "Canna"
 msgstr ""
 
-#: src/config.h:314
+#: src/config.h:326
 msgid "Circle input mode"
 msgstr ""
 
-#: src/config.h:320
+#: src/config.h:332
 msgid "Circle kana mode"
 msgstr ""
 
-#: src/config.h:326
+#: src/config.h:338
 msgid "Circle latin and hiragana mode"
 msgstr ""
 
-#: src/config.h:332
+#: src/config.h:344
 msgid "Circle typing method"
 msgstr ""
 
-#: src/config.h:664
+#: src/config.h:676
 msgid "Command"
 msgstr ""
 
-#: src/config.h:410
+#: src/config.h:89 src/config.h:422
 msgid "Commit"
 msgstr ""
 
-#: src/config.h:417
+#: src/config.h:429
 msgid "Commit Reverse Learn"
 msgstr ""
 
-#: src/config.h:520
+#: src/config.h:532
 msgid "Commit first segement reverse learn"
 msgstr ""
 
-#: src/config.h:508
+#: src/config.h:520
 msgid "Commit first segment"
 msgstr ""
 
-#: src/config.h:526
+#: src/config.h:538
 msgid "Commit selected segement reverse learn"
 msgstr ""
 
-#: src/config.h:514
+#: src/config.h:526
 msgid "Commit selected segment"
 msgstr ""
 
-#: src/config.h:191
+#: src/config.h:199
 msgid "Conversion mode"
 msgstr ""
 
-#: src/config.h:423
+#: src/config.h:88 src/config.h:435
 msgid "Convert"
 msgstr ""
 
-#: src/config.h:594
+#: src/config.h:606
 msgid "Convert To Half"
 msgstr ""
 
-#: src/config.h:600
+#: src/config.h:612
 msgid "Convert To Half Katakana"
 msgstr ""
 
-#: src/config.h:582
+#: src/config.h:594
 msgid "Convert To Hiragana"
 msgstr ""
 
-#: src/config.h:588
+#: src/config.h:600
 msgid "Convert To Katakana"
 msgstr ""
 
-#: src/config.h:612
+#: src/config.h:624
 msgid "Convert To Latin"
 msgstr ""
 
-#: src/config.h:606
+#: src/config.h:618
 msgid "Convert To Wide Latin"
 msgstr ""
 
-#: src/engine.cpp:66
+#: src/engine.cpp:84
 msgid "Convert as you type (Multi segment)"
 msgstr ""
 
-#: src/engine.cpp:67
+#: src/engine.cpp:85
 msgid "Convert as you type (Single segment)"
 msgstr ""
 
-#: src/config.h:576
+#: src/config.h:588
 msgid "Convert char type backward"
 msgstr ""
 
-#: src/config.h:570
+#: src/config.h:582
 msgid "Convert char type forward"
 msgstr ""
 
-#: src/config.h:44
+#: src/config.h:47
 msgid "Corner bracket and Middle Dot"
 msgstr ""
 
-#: src/config.h:45
+#: src/config.h:48
 msgid "Corner bracket and wide slash"
 msgstr ""
 
-#: src/config.h:240 src/config.h:255 src/config.h:268 src/config.h:284
+#: src/config.h:252 src/config.h:267 src/config.h:280 src/config.h:296
 msgid "Custom"
 msgstr ""
 
-#: src/config.h:305
+#: src/config.h:317
 msgid "Custom Kana Table"
 msgstr ""
 
-#: src/config.h:301
+#: src/config.h:313
 msgid "Custom Key Binding"
 msgstr "Ràng Buộc phím Tùy Chỉnh"
 
-#: src/config.h:307
+#: src/config.h:319
 msgid "Custom Nicola Table"
 msgstr ""
 
-#: src/config.h:303
+#: src/config.h:315
 msgid "Custom Romaji Table"
 msgstr ""
 
-#: src/config.h:238 src/config.h:253 src/config.h:266 src/config.h:281
+#: src/config.h:250 src/config.h:265 src/config.h:278 src/config.h:293
 msgid "Default"
 msgstr "Mặc định"
 
-#: src/config.h:404
+#: src/config.h:416
 msgid "Delete"
 msgstr ""
 
-#: src/config.h:624 src/config.h:654
+#: src/config.h:636 src/config.h:666
 msgid "Dict admin"
 msgstr ""
 
-#: src/engine.cpp:53
+#: src/engine.cpp:71
 msgid "Direct input"
 msgstr ""
 
-#: src/config.h:178
+#: src/config.h:186
 msgid "Entering the pseudo ASCII input mode with capital letters"
 msgstr ""
 
-#: src/config.h:502
+#: src/config.h:514
 msgid "Expand segment"
 msgstr ""
 
-#: src/config.h:72 src/config.h:81
+#: src/config.h:75 src/config.h:84
 msgid "Follow mode"
 msgstr ""
 
-#: src/config.h:658
+#: src/config.h:670
 msgid "General"
 msgstr ""
 
-#: src/config.h:80
+#: src/config.h:83
 msgid "Half"
 msgstr ""
 
-#: src/config.h:31
+#: src/config.h:34
 msgid "Half Katakana"
 msgstr ""
 
-#: src/config.h:362
+#: src/config.h:374
 msgid "Half Katakana mode"
 msgstr ""
 
-#: src/engine.cpp:52
+#: src/engine.cpp:70
 msgid "Half width katakana"
 msgstr ""
 
-#: src/config.h:30 src/engine.cpp:50
+#: src/config.h:33 src/engine.cpp:68
 msgid "Hiragana"
 msgstr ""
 
-#: src/config.h:350
+#: src/config.h:362
 msgid "Hiragana mode"
 msgstr ""
 
-#: src/config.h:18
+#: src/config.h:21
 msgid "Horizontal"
 msgstr ""
 
-#: src/config.h:186
+#: src/config.h:194
 msgid "Initial Input mode"
 msgstr ""
 
-#: src/config.h:380
+#: src/config.h:392
 msgid "Insert Alternative space"
 msgstr ""
 
-#: src/config.h:386
+#: src/config.h:398
 msgid "Insert Half Space"
 msgstr ""
 
-#: src/config.h:175
+#: src/config.h:183
 msgid "Insert a blank with a blank key"
 msgstr "Chèn một chỗ trống với một phím trống"
 
-#: src/config.h:374
+#: src/config.h:386
 msgid "Insert space"
 msgstr ""
 
-#: src/config.h:392
+#: src/config.h:404
 msgid "Insert wide space"
 msgstr ""
 
-#: src/config.h:660
+#: src/config.h:672
 msgid "Interface"
 msgstr ""
 
-#: src/config.h:42 src/config.h:50
+#: src/config.h:45 src/config.h:53
 msgid "Japanese"
 msgstr "Tiếng Nhật"
 
@@ -304,306 +308,310 @@ msgstr "Tiếng Nhật"
 msgid "Japanese input method based on Anthy"
 msgstr ""
 
-#: src/config.h:67 src/engine.cpp:59
+#: src/config.h:70 src/engine.cpp:77
 msgid "Kana"
 msgstr ""
 
-#: src/config.h:296
+#: src/config.h:308
 msgid "Kana Table"
 msgstr ""
 
-#: src/config.h:30 src/engine.cpp:51
+#: src/config.h:33 src/engine.cpp:69
 msgid "Katakana"
 msgstr ""
 
-#: src/config.h:356
+#: src/config.h:368
 msgid "Katakana mode"
 msgstr ""
 
-#: src/config.h:663
+#: src/config.h:675
 msgid "Key"
 msgstr "Phím"
 
-#: src/config.h:662
+#: src/config.h:674
 msgid "Key Profile"
 msgstr "Hồ Sơ Phím"
 
-#: src/config.h:290
+#: src/config.h:302
 msgid "Key binding profile"
 msgstr "Hồ sơ ràng buộc phím"
 
-#: src/config.h:31 src/config.h:50
+#: src/config.h:34 src/config.h:53
 msgid "Latin"
 msgstr ""
 
-#: src/config.h:338
+#: src/config.h:350
 msgid "Latin mode"
 msgstr ""
 
-#: src/config.h:208
+#: src/config.h:220
 msgid "Learn on auto commit"
 msgstr ""
 
-#: src/config.h:206
+#: src/config.h:218
 msgid "Learn on manual commit"
 msgstr ""
 
-#: src/config.h:636
+#: src/config.h:648
 msgid "Left thumb key"
 msgstr ""
 
-#: src/config.h:239 src/config.h:254
+#: src/config.h:251 src/config.h:266
 msgid "MS IME"
 msgstr ""
 
-#: src/config.h:466
+#: src/config.h:478
 msgid "Move caret backward"
 msgstr ""
 
-#: src/config.h:448
+#: src/config.h:460
 msgid "Move caret first"
 msgstr ""
 
-#: src/config.h:460
+#: src/config.h:472
 msgid "Move caret forward"
 msgstr ""
 
-#: src/config.h:454
+#: src/config.h:466
 msgid "Move caret last"
 msgstr ""
 
-#: src/config.h:60 src/engine.cpp:64
+#: src/config.h:63 src/engine.cpp:82
 msgid "Multi segment"
 msgstr ""
 
-#: src/config.h:62
+#: src/config.h:65
 msgid "Multi segment immediate"
 msgstr ""
 
-#: src/config.h:68 src/engine.cpp:60
+#: src/config.h:71 src/engine.cpp:78
 msgid "Nicola"
 msgstr ""
 
-#: src/config.h:298
+#: src/config.h:310
 msgid "Nicola Table"
 msgstr ""
 
-#: src/config.h:648
+#: src/config.h:660
 msgid "Nicola time"
 msgstr ""
 
-#: src/config.h:281
+#: src/config.h:293
 msgid "Nicola-A"
 msgstr ""
 
-#: src/config.h:282
+#: src/config.h:294
 msgid "Nicola-F"
 msgstr ""
 
-#: src/config.h:282
+#: src/config.h:294
 msgid "Nicola-J"
 msgstr ""
 
-#: src/config.h:17
+#: src/config.h:88
+msgid "None"
+msgstr ""
+
+#: src/config.h:20
 msgid "Not Set"
 msgstr ""
 
-#: src/config.h:169
+#: src/config.h:177
 msgid "Number of convert key presses to Show Candidate"
 msgstr ""
 
-#: src/config.h:283
+#: src/config.h:295
 msgid "Oasys100J"
 msgstr ""
 
-#: src/config.h:162
+#: src/config.h:170
 msgid "Page size"
 msgstr ""
 
-#: src/config.h:195
+#: src/config.h:203
 msgid "Period style"
 msgstr ""
 
-#: src/config.h:430
+#: src/config.h:442
 msgid "Predict"
 msgstr ""
 
-#: src/config.h:172
+#: src/config.h:180
 msgid "Predict on input"
 msgstr ""
 
-#: src/config.h:268
+#: src/config.h:280
 msgid "Quick Kana"
 msgstr ""
 
-#: src/config.h:618
+#: src/config.h:630
 msgid "Reconvert"
 msgstr ""
 
-#: src/config.h:642
+#: src/config.h:654
 msgid "Right thumb key"
 msgstr ""
 
-#: src/config.h:646
+#: src/config.h:658
 msgid "Ro key for kana layout"
 msgstr ""
 
-#: src/config.h:67 src/engine.cpp:58
+#: src/config.h:70 src/engine.cpp:76
 msgid "Romaji"
 msgstr ""
 
-#: src/config.h:293
+#: src/config.h:305
 msgid "Romaji Table"
 msgstr ""
 
-#: src/config.h:532
+#: src/config.h:544
 msgid "Select first candidate"
 msgstr "Chọn ứng viên đầu tiên"
 
-#: src/config.h:472
+#: src/config.h:484
 msgid "Select first segment"
 msgstr "Chọn phân đoạn đầu"
 
-#: src/config.h:538
+#: src/config.h:550
 msgid "Select last candidate"
 msgstr "Chọn ứng viên cuối cùng"
 
-#: src/config.h:478
+#: src/config.h:490
 msgid "Select last segment"
 msgstr "Chọn phân đoạn cuối"
 
-#: src/config.h:544
+#: src/config.h:556
 msgid "Select next candidate"
 msgstr "Chọn ứng viên tiếp theo"
 
-#: src/config.h:484
+#: src/config.h:496
 msgid "Select next segment"
 msgstr "Chọn phân đoạn tiếp theo"
 
-#: src/config.h:552
+#: src/config.h:564
 msgid "Select prev candidate"
 msgstr ""
 
-#: src/config.h:490
+#: src/config.h:502
 msgid "Select prev segment"
 msgstr "Chọn phân đoạn trước"
 
-#: src/config.h:214
+#: src/config.h:226
 msgid "Show candidates label"
 msgstr ""
 
-#: src/config.h:223
+#: src/config.h:235
 msgid "Show conversion mode"
 msgstr ""
 
-#: src/config.h:219
+#: src/config.h:231
 msgid "Show input mode"
 msgstr ""
 
-#: src/config.h:225
+#: src/config.h:237
 msgid "Show period style"
 msgstr ""
 
-#: src/config.h:227
+#: src/config.h:239
 msgid "Show symbol style"
 msgstr ""
 
-#: src/config.h:221
+#: src/config.h:233
 msgid "Show typing method"
 msgstr ""
 
-#: src/config.h:496
+#: src/config.h:508
 msgid "Shrink segment"
 msgstr ""
 
-#: src/config.h:61 src/engine.cpp:65
+#: src/config.h:64 src/engine.cpp:83
 msgid "Single segment"
 msgstr ""
 
-#: src/config.h:63
+#: src/config.h:66
 msgid "Single segment immediate"
 msgstr ""
 
-#: src/config.h:201
+#: src/config.h:209
 msgid "Space type"
 msgstr ""
 
-#: src/config.h:198
+#: src/config.h:206
 msgid "Symbol style"
 msgstr ""
 
-#: src/config.h:203
+#: src/config.h:211
 msgid "Ten key type"
 msgstr "Mười loại phím"
 
-#: src/engine.cpp:60
+#: src/engine.cpp:78
 msgid "Thumb shift"
 msgstr ""
 
-#: src/config.h:283
+#: src/config.h:295
 msgid "Tron Dvorak"
 msgstr ""
 
-#: src/config.h:284
+#: src/config.h:296
 msgid "Tron Qwerty JP"
 msgstr ""
 
-#: src/config.h:188
+#: src/config.h:196
 msgid "Typing method"
 msgstr ""
 
-#: src/config.h:212
+#: src/config.h:224
 msgid "Use direct key on predict"
 msgstr "Dùng phím trực tiếp trên dự đoán"
 
-#: src/config.h:183
+#: src/config.h:191
 msgid "Use half-width characters for numbers"
 msgstr ""
 
-#: src/config.h:180
+#: src/config.h:188
 msgid "Use half-width characters for symbols"
 msgstr ""
 
-#: src/config.h:18
+#: src/config.h:21
 msgid "Vertical"
 msgstr ""
 
-#: src/config.h:239 src/config.h:255
+#: src/config.h:251 src/config.h:267
 msgid "Vje Delta"
 msgstr ""
 
-#: src/config.h:240 src/config.h:255
+#: src/config.h:252 src/config.h:267
 msgid "WNN"
 msgstr ""
 
-#: src/config.h:72 src/config.h:80
+#: src/config.h:75 src/config.h:83
 msgid "Wide"
 msgstr ""
 
-#: src/config.h:32
+#: src/config.h:35
 msgid "Wide Latin"
 msgstr ""
 
-#: src/config.h:43
+#: src/config.h:46
 msgid "Wide bracket and wide slash"
 msgstr ""
 
-#: src/config.h:49 src/engine.cpp:54
+#: src/config.h:52 src/engine.cpp:72
 msgid "Wide latin"
 msgstr ""
 
-#: src/config.h:51
+#: src/config.h:54
 msgid "Wide latin Japanese"
 msgstr ""
 
-#: src/config.h:344
+#: src/config.h:356
 msgid "Wide latin mode"
 msgstr ""
 
-#: src/config.h:267
+#: src/config.h:279
 msgid "tsuki-2-203-101"
 msgstr ""
 
-#: src/config.h:267
+#: src/config.h:279
 msgid "tsuki-2-203-106"
 msgstr ""

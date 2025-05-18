@@ -21,7 +21,6 @@
 #include <fcitx-utils/log.h>
 #include <fcitx-utils/macros.h>
 #include <fcitx-utils/misc.h>
-#include <fcitx-utils/standardpath.h>
 #include <fcitx-utils/standardpaths.h>
 #include <fcitx-utils/stringutils.h>
 #include <fcitx/action.h>
@@ -297,8 +296,8 @@ AnthyEngine::AnthyEngine(fcitx::Instance *instance)
         0);
     if constexpr (fcitx::isAndroid() || fcitx::isApple() ||
                   fcitx::isEmscripten()) {
-        const auto &sp = fcitx::StandardPath::global();
-        std::string anthy_conf = sp.locate(fcitx::StandardPath::Type::Data,
+        const auto &sp = fcitx::StandardPaths::global();
+        std::string anthy_conf = sp.locate(fcitx::StandardPathsType::Data,
                                            "anthy/anthy-unicode.conf");
         std::string anthy_prefix = fcitx::fs::dirName(anthy_conf);
         // "CONFFILE" must be overridden first to change main config file path
@@ -311,7 +310,7 @@ AnthyEngine::AnthyEngine(fcitx::Instance *instance)
         // /sdcard/Android/data/<pkg>/files/data/anthy
         anthy_conf_override(
             "XDG_CONFIG_HOME",
-            sp.userDirectory(fcitx::StandardPath::Type::Data).c_str());
+            sp.userDirectory(fcitx::StandardPathsType::Data).string().c_str());
     }
     if (anthy_init()) {
         throw std::runtime_error("Failed to init anthy library.");
@@ -477,8 +476,8 @@ std::string AnthyEngine::fullFileName(const std::string &name) {
     if (name.empty()) {
         return {};
     }
-    return fcitx::StandardPath::global().locate(
-        fcitx::StandardPath::Type::PkgData,
+    return fcitx::StandardPaths::global().locate(
+        fcitx::StandardPathsType::PkgData,
         fcitx::stringutils::joinPath("anthy", name));
 }
 

@@ -10,6 +10,12 @@
 
 #include "reading.h"
 #include <anthy/anthy.h>
+#include <fcitx-utils/macros.h>
+#include <fcitx-utils/misc.h>
+#include <fcitx/candidatelist.h>
+#include <memory>
+#include <string>
+#include <vector>
 
 class AnthyState;
 
@@ -41,7 +47,7 @@ private:
     int candidateId_;
     unsigned int readingLen_;
 };
-typedef std::vector<ConversionSegment> ConversionSegments;
+using ConversionSegments = std::vector<ConversionSegment>;
 
 class Conversion {
 public:
@@ -71,7 +77,7 @@ public:
     std::string
     segmentString(int segment_id = -1,
                   int candidate_id = FCITX_ANTHY_LAST_SPECIAL_CANDIDATE);
-    int selectedSegment();
+    int selectedSegment() const;
     void selectSegment(int segment_id);
     int segmentSize(int segment_id = -1);
     void resizeSegment(int relative_size, int segment_id = -1);
@@ -88,7 +94,6 @@ private:
     std::string predictionString(int candidate_id);
     void joingAllSegments();
 
-private:
     AnthyState &state_;
 
     // convertors

@@ -5,16 +5,20 @@
  */
 #include "style_file.h"
 #include "testdir.h"
+#include <cstddef>
 #include <fcitx-utils/log.h>
+#include <string>
+#include <string_view>
+#include <tuple>
 #include <vector>
 
 int main() {
     StyleFile style;
     style.load(TESTING_SOURCE_DIR "/profile/101kana.sty");
     FCITX_ASSERT(style.title() == "101英語キーボード用かな配列");
-    std::vector<std::string> keys;
-    std::string section = "KanaTable/FundamentalTable";
-    FCITX_ASSERT(style.getKeyList(keys, section));
+    constexpr std::string_view section = "KanaTable/FundamentalTable";
+    auto keys = style.getKeyList(section);
+    FCITX_ASSERT(keys);
     std::vector<std::tuple<std::string, std::vector<std::string>>>
         expectedValues = {
             {"~", {"ろ"}},     {"1", {"ぬ"}},     {"2", {"", "ふ"}},
@@ -50,13 +54,13 @@ int main() {
             {"M", {"も"}},     {"?", {"・"}},
 
         };
-    FCITX_ASSERT(expectedValues.size() == keys.size());
-    for (size_t i = 0; i < keys.size(); i++) {
-        FCITX_ASSERT(keys[i] == std::get<0>(expectedValues[i]))
-            << keys[i] << " " << expectedValues[i];
-        std::vector<std::string> values;
-        FCITX_ASSERT(style.getStringArray(values, section, keys[i]));
-        FCITX_ASSERT(values == std::get<1>(expectedValues[i]));
+    FCITX_ASSERT(expectedValues.size() == keys->size());
+    for (size_t i = 0; i < keys->size(); i++) {
+        FCITX_ASSERT((*keys)[i] == std::get<0>(expectedValues[i]))
+            << (*keys)[i] << " " << expectedValues[i];
+        auto values = style.getStringArray(section, (*keys)[i]);
+        FCITX_ASSERT(values);
+        FCITX_ASSERT(*values == std::get<1>(expectedValues[i]));
     }
 
     return 0;

@@ -8,11 +8,20 @@
  */
 
 #include "key2kana.h"
-#include "engine.h"
+#include "config.h"
+#include "key2kana_base.h"
+#include "key2kana_table.h"
 #include "state.h"
 #include "utils.h"
 #include <fcitx-utils/charutils.h>
+#include <fcitx-utils/key.h>
+#include <fcitx-utils/keysym.h>
 #include <fcitx-utils/utf8.h>
+#include <fcitx/event.h>
+#include <fcitx/inputmethodmanager.h>
+#include <fcitx/instance.h>
+#include <string>
+#include <vector>
 
 Key2KanaConvertor::Key2KanaConvertor(AnthyState &anthy,
                                      Key2KanaTableSet &tables)
@@ -27,8 +36,9 @@ Key2KanaConvertor::~Key2KanaConvertor() {}
 bool Key2KanaConvertor::canAppend(const fcitx::KeyEvent &key,
                                   bool ignore_space) {
     // ignore key release.
-    if (key.isRelease())
+    if (key.isRelease()) {
         return false;
+    }
 
     auto state = key.rawKey().states();
     // ignore short cut keys of apllication.
@@ -39,19 +49,22 @@ bool Key2KanaConvertor::canAppend(const fcitx::KeyEvent &key,
 
     auto chr = util::get_ascii_code(key);
     if (fcitx::charutils::isprint(chr) &&
-        (ignore_space || !fcitx::charutils::isspace(chr)))
+        (ignore_space || !fcitx::charutils::isspace(chr))) {
         return true;
+    }
 
-    if (util::key_is_keypad(key.rawKey()))
+    if (util::key_is_keypad(key.rawKey())) {
         return true;
+    }
 
     return false;
 }
 
 bool Key2KanaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
                                std::string &pending, std::string &raw) {
-    if (!canAppend(key))
+    if (!canAppend(key)) {
         return false;
+    }
 
     lastKey_ = key.rawKey();
 
@@ -82,8 +95,9 @@ bool Key2KanaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
             }
             result += wide;
         } else {
-            if (!pending_.empty())
+            if (!pending_.empty()) {
                 retval = true; /* commit prev pending */
+            }
             result = wide;
         }
 
@@ -92,10 +106,8 @@ bool Key2KanaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
 
         return retval;
 
-    } else {
-        // the key isn't keypad
-        return append(raw, result, pending);
-    }
+    } // the key isn't keypad
+    return append(raw, result, pending);
 }
 
 static int split_string_list(std::vector<std::string> &vec,
@@ -103,7 +115,8 @@ static int split_string_list(std::vector<std::string> &vec,
     int count = 0;
 
     std::string temp;
-    std::string::const_iterator bg, ed;
+    std::string::const_iterator bg;
+    std::string::const_iterator ed;
 
     vec.clear();
 
@@ -112,41 +125,48 @@ static int split_string_list(std::vector<std::string> &vec,
 
     while (bg != str.end() && ed != str.end()) {
         for (; ed != str.end(); ++ed) {
-            if (*ed == ',')
+            if (*ed == ',') {
                 break;
+            }
         }
         temp.assign(bg, ed);
         vec.push_back(temp);
         ++count;
 
-        if (ed != str.end())
+        if (ed != str.end()) {
             bg = ++ed;
+        }
     }
     return count;
 }
 
-bool CheckLayout(void *) {
-    // TODO
-    return false;
+bool CheckLayout(fcitx::Instance *instance) {
+    const auto &group = instance->inputMethodManager().currentGroup();
+    std::string layout = group.layoutFor("anthy");
+    if (layout.empty()) {
+        layout = group.defaultLayout();
+    }
+
+    return layout == "jp" || layout.starts_with("jp-");
 }
 
 bool Key2KanaConvertor::append(const std::string &str, std::string &result,
                                std::string &pending) {
-    std::string widestr = str;
-    std::string matching_str = pending_ + widestr;
+    std::string matching_str = pending_ + str;
     Key2KanaRule exact_match;
     bool has_partial_match = false;
     bool retval = false;
 
-    if (pseudoAsciiMode_ != 0 && processPseudoAsciiMode(widestr)) {
-        pending_ += widestr;
+    if (pseudoAsciiMode_ != 0 && processPseudoAsciiMode(str)) {
+        pending_ += str;
         pending = pending_;
         return false;
     }
     if (!caseSensitive_) {
         std::string half = matching_str;
-        for (unsigned int i = 0; i < half.length(); i++)
+        for (unsigned int i = 0; i < half.length(); i++) {
             half[i] = fcitx::charutils::tolower(half[i]);
+        }
         matching_str = half;
     }
 
@@ -154,7 +174,7 @@ bool Key2KanaConvertor::append(const std::string &str, std::string &result,
     if ((state_.typingMethod() == TypingMethod::KANA) &&
         (CheckLayout(state_.instance())) &&
         (lastKey_.sym() == FcitxKey_backslash) &&
-        (!(lastKey_.code() == 132 || lastKey_.code() == 133)) &&
+        (lastKey_.code() != 132 && lastKey_.code() != 133) &&
         (!config().key->kanaLayoutRoKey->empty())) {
         // Special treatment for Kana "Ro" key.
         // This code is a temporary solution. It doesn't care some minor cases.
@@ -165,36 +185,30 @@ bool Key2KanaConvertor::append(const std::string &str, std::string &result,
         result = kana_ro_rule.result(0);
         pending_.clear();
         exactMatch_.clear();
-        if (matching_str == "\\") {
-            return false;
-        } else {
-            return true;
+        return matching_str != "\\";
+    }
+    const std::vector<Key2KanaTable *> &tables = tables_.get_tables();
+    for (auto *table : tables) {
+        if (!table) {
+            continue;
         }
 
-    } else {
-        const std::vector<Key2KanaTable *> &tables = tables_.get_tables();
-        for (unsigned int j = 0; j < tables.size(); j++) {
-            if (!tables[j])
-                continue;
-
-            const Key2KanaRules &rules = tables[j]->table();
-
-            for (unsigned int i = 0; i < rules.size(); i++) {
-                /* matching */
-                std::string seq = rules[i].sequence();
-                if (!caseSensitive_) {
-                    for (unsigned int j = 0; j < seq.length(); j++)
-                        seq[j] = fcitx::charutils::tolower(seq[j]);
+        for (const auto &rule : table->table()) {
+            /* matching */
+            std::string seq = rule.sequence();
+            if (!caseSensitive_) {
+                for (unsigned int j = 0; j < seq.length(); j++) {
+                    seq[j] = fcitx::charutils::tolower(seq[j]);
                 }
-                std::string romaji = seq;
-                if (romaji.find(matching_str) == 0) {
-                    if (romaji.length() == matching_str.length()) {
-                        /* exact match */
-                        exact_match = rules[i];
-                    } else {
-                        /* partial match */
-                        has_partial_match = true;
-                    }
+            }
+            std::string romaji = seq;
+            if (romaji.find(matching_str) == 0) {
+                if (romaji.length() == matching_str.length()) {
+                    /* exact match */
+                    exact_match = rule;
+                } else {
+                    /* partial match */
+                    has_partial_match = true;
                 }
             }
         }
@@ -204,14 +218,15 @@ bool Key2KanaConvertor::append(const std::string &str, std::string &result,
     if (has_partial_match) {
         exactMatch_ = exact_match;
         result.clear();
-        pending_ += widestr;
+        pending_ += str;
         pending = pending_;
 
     } else if (!exact_match.isEmpty()) {
-        if (!exact_match.result(1).empty())
+        if (!exact_match.result(1).empty()) {
             exactMatch_ = exact_match;
-        else
+        } else {
             exactMatch_.clear();
+        }
         pending_ = exact_match.result(1);
         result = exact_match.result(0);
         pending = pending_;
@@ -234,11 +249,11 @@ bool Key2KanaConvertor::append(const std::string &str, std::string &result,
         } else {
             if (!pending_.empty()) {
                 retval = true; /* commit prev pending */
-                pending_ = widestr;
+                pending_ = str;
                 pending = pending_;
 
             } else {
-                result = widestr;
+                result = str;
                 pending.clear();
                 pending_.clear();
             }
@@ -274,12 +289,13 @@ std::string Key2KanaConvertor::flushPending() {
     return result;
 }
 
-void Key2KanaConvertor::resetPending(const std::string &,
+void Key2KanaConvertor::resetPending(const std::string & /*result*/,
                                      const std::string &raw) {
     lastKey_ = fcitx::Key();
 
     for (unsigned int i = 0; i < fcitx::utf8::length(raw); i++) {
-        std::string res, pend;
+        std::string res;
+        std::string pend;
         append(util::utf8_string_substr(raw, i, 1), res, pend);
     }
 }
@@ -298,8 +314,9 @@ bool Key2KanaConvertor::processPseudoAsciiMode(const std::string &wstr) {
 }
 
 void Key2KanaConvertor::resetPseudoAsciiMode() {
-    if (isInPseudoAsciiMode_)
+    if (isInPseudoAsciiMode_) {
         pending_.clear();
+    }
     isInPseudoAsciiMode_ = false;
 }
 

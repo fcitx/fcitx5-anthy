@@ -6,15 +6,26 @@
  *  SPDX-License-Identifier: GPL-2.0-or-later
  */
 
+#include "utils.h"
+#include "default_tables.h"
+#include "fcitx-utils/keysym.h"
+#include <algorithm>
+#include <cstddef>
+#include <cstdint>
+#include <cstdlib>
+#include <fcitx-utils/key.h>
+#include <fcitx-utils/macros.h>
+#include <fcitx-utils/misc.h>
+#include <fcitx-utils/stringutils.h>
 #include <fcitx-utils/utf8.h>
+#include <fcitx/event.h>
 #include <limits>
+#include <string>
+#include <string_view>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
-#include "default_tables.h"
-#include "utils.h"
-#include <fcitx-utils/stringutils.h>
+#include <vector>
 
 std::string util::utf8_string_substr(const std::string &s, size_t start,
                                      size_t len) {
@@ -24,50 +35,31 @@ std::string util::utf8_string_substr(const std::string &s, size_t start,
     return result;
 }
 
-bool util::match_key_event(const fcitx::KeyList &hotkey, const fcitx::Key &_key,
+bool util::match_key_event(const fcitx::KeyList &list, const fcitx::Key &key,
                            fcitx::KeyStates ignore_mask) {
-    fcitx::Key key = fcitx::Key(_key.sym(), _key.states() & ~ignore_mask);
-    return key.checkKeyList(hotkey);
-}
-
-void util::split_string(std::string &str, std::vector<std::string> &str_list,
-                        char *delim, int num) {
-    std::string::size_type start = 0, end;
-
-    for (int i = 0; (num > 0 && i < num) || start < str.length(); i++) {
-        end = str.find(delim, start);
-        if ((num > 0 && i == num - 1) || (end == std::string::npos))
-            end = str.length();
-
-        if (start < str.length()) {
-            str_list.push_back(str.substr(start, end - start));
-            start = end + strlen(delim);
-        } else {
-            str_list.push_back(std::string());
-        }
-    }
+    fcitx::Key normKey = fcitx::Key(key.sym(), key.states() & ~ignore_mask);
+    return normKey.checkKeyList(list);
 }
 
 std::string util::convert_to_wide(const std::string &str) {
     std::string wide;
-    for (unsigned int i = 0; i < str.length(); i++) {
-        int c = str[i];
+    for (const auto c : str) {
         char cc[2];
         cc[0] = c;
         cc[1] = '\0';
         bool found = false;
 
-        for (unsigned int j = 0; fcitx_anthy_wide_table[j].code; j++) {
-            if (fcitx_anthy_wide_table[j].code &&
-                *fcitx_anthy_wide_table[j].code == c) {
-                wide += fcitx_anthy_wide_table[j].wide;
+        for (const auto &item : fcitx_anthy_wide_table) {
+            if (item.code == cc) {
+                wide += item.wide;
                 found = true;
                 break;
             }
         }
 
-        if (!found)
+        if (!found) {
             wide += cc;
+        }
     }
     return wide;
 }
@@ -78,43 +70,41 @@ std::string util::convert_to_half(const std::string &str) {
         std::string wide = util::utf8_string_substr(str, i, 1);
         bool found = false;
 
-        for (unsigned int j = 0; fcitx_anthy_wide_table[j].code; j++) {
-            if (fcitx_anthy_wide_table[j].wide &&
-                wide == fcitx_anthy_wide_table[j].wide) {
-                half += fcitx_anthy_wide_table[j].code;
+        for (const auto &item : fcitx_anthy_wide_table) {
+            if (wide == item.wide) {
+                half += item.code;
                 found = true;
                 break;
             }
         }
 
-        if (!found)
+        if (!found) {
             half += wide;
+        }
     }
     return half;
 }
 
 std::string util::convert_to_katakana(const std::string &hira, bool half) {
     std::string kata;
-    for (unsigned int i = 0; i < fcitx::utf8::length(hira); i++) {
-        std::string tmpwide;
+    for (auto chr : fcitx::utf8::MakeUTF8StringViewRange(hira)) {
         bool found = false;
 
-        HiraganaKatakanaRule *table = fcitx_anthy_hiragana_katakana_table;
-
-        for (unsigned int j = 0; table[j].hiragana; j++) {
-            tmpwide = table[j].hiragana;
-            if (util::utf8_string_substr(hira, i, 1) == tmpwide) {
-                if (half)
-                    kata += table[j].half_katakana;
-                else
-                    kata += table[j].katakana;
+        for (const auto &item : fcitx_anthy_hiragana_katakana_table) {
+            if (chr == item.hiragana) {
+                if (half) {
+                    kata += item.half_katakana;
+                } else {
+                    kata += item.katakana;
+                }
                 found = true;
                 break;
             }
         }
 
-        if (!found)
-            kata += util::utf8_string_substr(hira, i, 1);
+        if (!found) {
+            kata += chr;
+        }
     }
     return kata;
 }
@@ -198,28 +188,30 @@ std::string util::keypad_to_string(const fcitx::KeyEvent &key) {
     return raw;
 }
 
-void util::launch_program(std::string command) {
-    if (command.empty())
+void util::launch_program(std::string_view command) {
+    if (command.empty()) {
         return;
+    }
 
     /* split string */
     auto array = fcitx::stringutils::split(command, FCITX_WHITESPACE);
 
-    if (array.size() <= 0)
+    if (array.size() <= 0) {
         return;
+    }
 
     fcitx::startProcess(array);
 }
 
 bool util::surrounding_get_safe_delta(uint from, uint to, int32_t *delta) {
     const int64_t kInt32AbsMax =
-        llabs(static_cast<int64_t>(std::numeric_limits<int32_t>::max()));
+        std::llabs(static_cast<int64_t>(std::numeric_limits<int32_t>::max()));
     const int64_t kInt32AbsMin =
-        llabs(static_cast<int64_t>(std::numeric_limits<int32_t>::min()));
+        std::llabs(static_cast<int64_t>(std::numeric_limits<int32_t>::min()));
     const int64_t kInt32SafeAbsMax = std::min(kInt32AbsMax, kInt32AbsMin);
 
     const int64_t diff = static_cast<int64_t>(from) - static_cast<int64_t>(to);
-    if (llabs(diff) > kInt32SafeAbsMax) {
+    if (std::llabs(diff) > kInt32SafeAbsMax) {
         return false;
     }
 

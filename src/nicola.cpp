@@ -8,11 +8,23 @@
  */
 
 #include "nicola.h"
+#include "config.h"
+#include "default_tables.h"
 #include "engine.h"
+#include "key2kana_base.h"
+#include "key2kana_table.h"
 #include "state.h"
 #include "utils.h"
+#include <algorithm>
+#include <cstdint>
 #include <fcitx-utils/charutils.h>
+#include <fcitx-utils/eventloopinterface.h>
+#include <fcitx-utils/key.h>
+#include <fcitx-utils/keysym.h>
 #include <fcitx-utils/log.h>
+#include <fcitx/event.h>
+#include <string>
+#include <vector>
 
 void NicolaTimeoutFunc(void *arg) {
     NicolaConvertor *convertor = (NicolaConvertor *)arg;
@@ -59,8 +71,9 @@ bool NicolaConvertor::canAppend(const fcitx::KeyEvent &key, bool ignore_space) {
         return true;
     }
 
-    if (isThumbKey(key.rawKey()))
+    if (isThumbKey(key.rawKey())) {
         return true;
+    }
 
     return false;
 }
@@ -70,20 +83,22 @@ void NicolaConvertor::search(const fcitx::Key &key, NicolaShiftType shift_type,
     raw = util::get_ascii_code(key);
 
     std::string str1;
-    if (isCaseSensitive())
+    if (isCaseSensitive()) {
         str1 = raw;
-    else
+    } else {
         str1 = fcitx::charutils::tolower(util::get_ascii_code(key));
+    }
 
     const std::vector<Key2KanaTable *> &tables = tables_.get_tables();
     for (unsigned int j = 0; j < tables.size(); j++) {
-        if (!tables[j])
+        if (!tables[j]) {
             continue;
+        }
 
         const Key2KanaRules &rules = tables[j]->table();
 
-        for (unsigned int i = 0; i < rules.size(); i++) {
-            std::string str2 = rules[i].sequence();
+        for (const auto &rule : rules) {
+            std::string str2 = rule.sequence();
 
             for (unsigned int k = 0; !isCaseSensitive() && k < str2.length();
                  k++) {
@@ -93,13 +108,13 @@ void NicolaConvertor::search(const fcitx::Key &key, NicolaShiftType shift_type,
             if (str1 == str2) {
                 switch (shift_type) {
                 case FCITX_ANTHY_NICOLA_SHIFT_RIGHT:
-                    result = rules[i].result(2);
+                    result = rule.result(2);
                     break;
                 case FCITX_ANTHY_NICOLA_SHIFT_LEFT:
-                    result = rules[i].result(1);
+                    result = rule.result(1);
                     break;
                 default:
-                    result = rules[i].result(0);
+                    result = rule.result(0);
                     break;
                 }
                 break;
@@ -114,14 +129,15 @@ void NicolaConvertor::search(const fcitx::Key &key, NicolaShiftType shift_type,
 
 bool NicolaConvertor::handleVoicedConsonant(std::string &result,
                                             std::string &pending) {
-    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
+    const auto &table = fcitx_anthy_voiced_consonant_table;
 
-    if (result.empty())
+    if (result.empty()) {
         return false;
+    }
 
     if (pending_.empty()) {
-        for (unsigned int i = 0; table[i].string; i++) {
-            if (result == table[i].string) {
+        for (const auto &item : table) {
+            if (result == item.string) {
                 pending = pending_ = result;
                 result = std::string();
                 return false;
@@ -130,9 +146,9 @@ bool NicolaConvertor::handleVoicedConsonant(std::string &result,
 
     } else if (result == "\xE3\x82\x9B") {
         // voiced consonant
-        for (unsigned int i = 0; table[i].string; i++) {
-            if (pending_ == table[i].string) {
-                result = table[i].voiced;
+        for (const auto &item : table) {
+            if (pending_ == item.string) {
+                result = item.voiced;
                 pending_ = std::string();
                 return false;
             }
@@ -141,9 +157,9 @@ bool NicolaConvertor::handleVoicedConsonant(std::string &result,
 
     } else if (result == "\xE3\x82\x9C") {
         // half voiced consonant
-        for (unsigned int i = 0; table[i].string; i++) {
-            if (pending_ == table[i].string) {
-                result = table[i].half_voiced;
+        for (const auto &item : table) {
+            if (pending_ == item.string) {
+                result = item.half_voiced;
                 pending_ = std::string();
                 return false;
             }
@@ -152,8 +168,8 @@ bool NicolaConvertor::handleVoicedConsonant(std::string &result,
 
     } else {
         pending_ = std::string();
-        for (unsigned int i = 0; table[i].string; i++) {
-            if (result == table[i].string) {
+        for (const auto &item : table) {
+            if (result == item.string) {
                 pending = pending_ = result;
                 result = std::string();
                 return true;
@@ -166,18 +182,12 @@ bool NicolaConvertor::handleVoicedConsonant(std::string &result,
 }
 
 bool NicolaConvertor::isCharKey(const fcitx::KeyEvent &key) {
-    if (!isThumbKey(key.rawKey()) &&
-        fcitx::charutils::isprint(util::get_ascii_code(key)))
-        return true;
-    else
-        return false;
+    return !isThumbKey(key.rawKey()) &&
+           fcitx::charutils::isprint(util::get_ascii_code(key));
 }
 
 bool NicolaConvertor::isThumbKey(const fcitx::Key &key) {
-    if (isLeftThumbKey(key) || isRightThumbKey(key))
-        return true;
-
-    return false;
+    return isLeftThumbKey(key) || isRightThumbKey(key);
 }
 
 bool NicolaConvertor::isLeftThumbKey(const fcitx::Key &key) {
@@ -191,12 +201,13 @@ bool NicolaConvertor::isRightThumbKey(const fcitx::Key &key) {
 }
 
 NicolaShiftType NicolaConvertor::thumbKeyType(const fcitx::Key &key) {
-    if (isLeftThumbKey(key))
+    if (isLeftThumbKey(key)) {
         return FCITX_ANTHY_NICOLA_SHIFT_LEFT;
-    else if (isRightThumbKey(key))
+    }
+    if (isRightThumbKey(key)) {
         return FCITX_ANTHY_NICOLA_SHIFT_RIGHT;
-    else
-        return FCITX_ANTHY_NICOLA_SHIFT_NONE;
+    }
+    return FCITX_ANTHY_NICOLA_SHIFT_NONE;
 }
 
 bool NicolaConvertor::emitKeyEvent(const fcitx::Key &key) {
@@ -224,13 +235,10 @@ void NicolaConvertor::processTimeout() {
 }
 
 void NicolaConvertor::setAlarm(int time_msec) {
-    if (time_msec < 5)
-        time_msec = 5;
-    if (time_msec > 1000)
-        time_msec = 1000;
+    uint64_t time = std::clamp(time_msec, 5, 1000);
 
     timer_ = state_.instance()->eventLoop().addTimeEvent(
-        CLOCK_MONOTONIC, fcitx::now(CLOCK_MONOTONIC) + time_msec * 1000, 1,
+        CLOCK_MONOTONIC, fcitx::now(CLOCK_MONOTONIC) + (time * 1000), 1,
         [this](fcitx::EventSourceTime *, uint64_t) {
             processTimeout();
             return true;
@@ -296,9 +304,9 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
             }
             prevThumbKey_ = fcitx::Key();
         }
-        if (isThumbKey(key.rawKey()))
+        if (isThumbKey(key.rawKey())) {
             repeatThumbKey_ = fcitx::Key();
-        else if (key.rawKey() == repeatCharKey_) {
+        } else if (key.rawKey() == repeatCharKey_) {
             repeatCharKey_ = fcitx::Key();
         }
     } else if (isThumbKey(key.rawKey())) {
@@ -363,8 +371,9 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
             stop();
             emitKeyEvent(prevThumbKey_);
         }
-        if (emitKeyEvent(key))
+        if (emitKeyEvent(key)) {
             return true;
+        }
     }
 
     FCITX_ANTHY_DEBUG() << "prev: " << prevCharKey_;
@@ -372,9 +381,9 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
     return handleVoicedConsonant(result, pending);
 }
 
-bool NicolaConvertor::append(const std::string &str, std::string &result,
-                             std::string &) {
-    result = str;
+bool NicolaConvertor::append(const std::string &raw, std::string &result,
+                             std::string & /*pending*/) {
+    result = raw;
     pending_ = std::string();
 
     return false;
@@ -395,13 +404,13 @@ std::string NicolaConvertor::pending() const { return pending_; }
 std::string NicolaConvertor::flushPending() { return std::string(); }
 
 void NicolaConvertor::resetPending(const std::string &result,
-                                   const std::string &) {
-    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
+                                   const std::string & /*raw*/) {
+    const auto &table = fcitx_anthy_voiced_consonant_table;
 
     pending_ = std::string();
 
-    for (unsigned int i = 0; table[i].string; i++) {
-        if (result == table[i].string) {
+    for (const auto &item : table) {
+        if (result == item.string) {
             pending_ = result;
             return;
         }

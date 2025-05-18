@@ -9,7 +9,10 @@
 #define _FCITX5_ANTHY_ACTION_H_
 
 #include <fcitx-config/option.h>
+#include <fcitx-utils/key.h>
+#include <fcitx-utils/macros.h>
 #include <fcitx/event.h>
+#include <functional>
 #include <string>
 
 #define ACTION_CONFIG_CIRCLE_INPUT_MODE_KEY "CircleInputModeKey"
@@ -92,18 +95,16 @@
 
 class AnthyState;
 
-typedef bool (AnthyState::*PMF)();
-
 class Action {
 
 public:
     Action();
-    Action(const std::string &name, const fcitx::KeyList &hotkey, PMF pmf);
+    Action(std::string name, const fcitx::KeyList &hotkey,
+           std::function<bool()> pmf);
     FCITX_INLINE_DEFINE_DEFAULT_DTOR_AND_MOVE_WITHOUT_SPEC(Action);
 
-public:
-    bool perform(AnthyState *performer);
-    bool perform(AnthyState *performer, const fcitx::KeyEvent &key);
+    bool perform();
+    bool perform(const fcitx::KeyEvent &key);
 
     // bool operator<(const Action &b) { return name_ < b.name_; }
 
@@ -113,7 +114,7 @@ public:
 
 private:
     std::string name_;
-    PMF performFunction_;
+    std::function<bool()> performFunction_;
     const fcitx::KeyList *keyBindings_;
 };
 

@@ -8,10 +8,16 @@
 #ifndef _FCITX5_ANTHY_PREEDIT_H_
 #define _FCITX5_ANTHY_PREEDIT_H_
 
+#include "config.h"
 #include "conversion.h"
+#include "key2kana_table.h"
 #include "reading.h"
 #include <anthy/anthy.h>
+#include <fcitx-utils/key.h>
 #include <fcitx/candidatelist.h>
+#include <fcitx/event.h>
+#include <memory>
+#include <string>
 
 #define FCITX_ANTHY_PSEUDO_ASCII_TRIGGERED_CAPITALIZED (1 << 0)
 #define FCITX_ANTHY_PSEUDO_ASCII_TRIGGERED_COUPLE_OF_CAPITAL (1 << 1)
@@ -48,7 +54,7 @@ public:
                  bool single_segment = false);
     void convert(const std::string &source, bool single_segment = false);
     void revert();
-    void commit(int segment_id = -1, bool lean = true);
+    void commit(int segment_id = -1, bool learn = true);
 
     // for prediction
     void predict();
@@ -69,7 +75,7 @@ public:
     // for handling the caret
     unsigned int caretPos();
     void setCaretPosByChar(unsigned int pos);
-    void moveCaret(int len);
+    void moveCaret(int step);
 
     // clear all or part of the string.
     void clear(int segment_id = -1);
@@ -94,9 +100,8 @@ public:
     void resetPseudoAsciiMode();
 
 private:
-    bool isCommaOrPeriod(const std::string &str);
+    bool isCommaOrPeriod(const std::string &str) const;
 
-private:
     AnthyState &state_;
 
     // converter objects

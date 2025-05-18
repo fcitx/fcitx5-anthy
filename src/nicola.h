@@ -10,7 +10,10 @@
 #define __FCITX_ANTHY_NICOLA_H__
 
 #include <fcitx-utils/event.h>
+#include <fcitx-utils/key.h>
+#include <fcitx/event.h>
 #include <stdint.h>
+#include <string>
 #include <sys/time.h>
 
 #include "key2kana_base.h"
@@ -42,8 +45,6 @@ public:
     std::string flushPending() override;
     void resetPending(const std::string &result,
                       const std::string &raw) override;
-
-public:
     void processTimeout();
 
 private:

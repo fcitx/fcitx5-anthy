@@ -9,16 +9,18 @@
 #define _FCITX5_ANTHY_STYLE_FILE_H_
 
 #include <fcitx-utils/macros.h>
+#include <optional>
 #include <string>
+#include <string_view>
 #include <vector>
 
 class StyleLine;
 class StyleSection;
 class StyleFile;
 
-typedef std::vector<StyleLine> StyleLines;
-typedef std::vector<StyleLines> StyleSections;
-typedef std::vector<StyleFile> StyleFiles;
+using StyleLines = std::vector<StyleLine>;
+using StyleSections = std::vector<StyleLines>;
+using StyleFiles = std::vector<StyleFile>;
 
 enum class StyleLineType {
     UNKNOWN,
@@ -33,13 +35,12 @@ public:
     StyleLine(StyleFile *style_file, std::string line);
     ~StyleLine();
 
-public:
     StyleLineType type() const;
     std::string line() { return line_; }
-    bool get_section(std::string &section) const;
-    bool get_key(std::string &key) const;
-    bool get_value(std::string &value) const;
-    bool get_value_array(std::vector<std::string> &value) const;
+    std::string get_section() const;
+    std::string get_key() const;
+    std::string get_value() const;
+    std::vector<std::string> get_value_array() const;
 
 private:
     StyleFile *styleFile_;
@@ -52,23 +53,22 @@ public:
     StyleFile();
     FCITX_INLINE_DEFINE_DEFAULT_DTOR_AND_MOVE_WITHOUT_SPEC(StyleFile);
 
-public:
     bool load(const std::string &filename);
 
     const std::string &title() const;
 
-    bool getKeyList(std::vector<std::string> &keys, std::string section) const;
-    bool getString(std::string &value, std::string section,
-                   std::string key) const;
-    bool getStringArray(std::vector<std::string> &value, std::string section,
-                        std::string key) const;
+    std::optional<std::vector<std::string>>
+    getKeyList(std::string_view section) const;
+    std::optional<std::string> getString(std::string_view section,
+                                         std::string_view key) const;
+    std::optional<std::vector<std::string>>
+    getStringArray(std::string_view section, std::string_view key) const;
 
 private:
     void clear();
     void setupDefaultEntries();
-    const StyleLines *findSection(const std::string &section) const;
+    const StyleLines *findSection(std::string_view section) const;
 
-private:
     std::string title_;
     StyleSections sections_;
 };

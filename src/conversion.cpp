@@ -6,12 +6,23 @@
  *
  */
 #include "conversion.h"
+#include "reading.h"
 #include "state.h"
 #include "utils.h"
+#include <algorithm>
+#include <anthy/anthy.h>
+#include <cstddef>
 #include <fcitx-utils/charutils.h>
 #include <fcitx-utils/log.h>
+#include <fcitx-utils/textformatflags.h>
 #include <fcitx-utils/utf8.h>
+#include <fcitx/candidatelist.h>
 #include <fcitx/inputpanel.h>
+#include <fcitx/text.h>
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
 
 static void rotateCase(std::string &str);
 
@@ -20,7 +31,8 @@ static void rotateCase(std::string &str);
 //
 ConversionSegment::ConversionSegment(std::string str, int cand_id,
                                      unsigned int reading_len)
-    : string_(str), candidateId_(cand_id), readingLen_(reading_len) {}
+    : string_(std::move(str)), candidateId_(cand_id), readingLen_(reading_len) {
+}
 
 const std::string &ConversionSegment::string() const { return string_; }
 
@@ -29,7 +41,7 @@ int ConversionSegment::candidateId() const { return candidateId_; }
 unsigned int ConversionSegment::readingLength() const { return readingLen_; }
 
 void ConversionSegment::set(std::string str, int cand_id) {
-    string_ = str;
+    string_ = std::move(str);
     candidateId_ = cand_id;
 }
 
@@ -53,8 +65,9 @@ Conversion::~Conversion() = default;
 //
 void Conversion::convert(std::string source, CandidateType ctype,
                          bool single_segment) {
-    if (isConverting())
+    if (isConverting()) {
         return;
+    }
 
     clear();
 
@@ -64,17 +77,19 @@ void Conversion::convert(std::string source, CandidateType ctype,
     struct anthy_conv_stat conv_stat;
     anthy_get_stat(anthyContext_.get(), &conv_stat);
     if (conv_stat.nr_segment <= 0) {
-        dest = source;
+        dest = std::move(source);
         anthy_set_string(anthyContext_.get(), dest.c_str());
     }
 
-    if (single_segment)
+    if (single_segment) {
         joingAllSegments();
+    }
 
     // get information about conversion string
     anthy_get_stat(anthyContext_.get(), &conv_stat);
-    if (conv_stat.nr_segment <= 0)
+    if (conv_stat.nr_segment <= 0) {
         return;
+    }
 
     // select first segment
     curSegment_ = 0;
@@ -108,10 +123,11 @@ void Conversion::predict() {
 
     struct anthy_prediction_stat ps;
     anthy_get_prediction_stat(anthyContext_.get(), &ps);
-    if (ps.nr_prediction > 0)
+    if (ps.nr_prediction > 0) {
         predicting_ = true;
-    else
+    } else {
         anthy_reset_context(anthyContext_.get());
+    }
 #endif /* HAS_ANTHY_PREDICTION */
 }
 
@@ -139,8 +155,7 @@ void Conversion::clear(int segment_id) {
         int new_start_segment_id = startId_ + segment_id + 1;
         if (curSegment_ >= 0) {
             curSegment_ -= new_start_segment_id - startId_;
-            if (curSegment_ < 0)
-                curSegment_ = 0;
+            curSegment_ = std::max(curSegment_, 0);
         }
 
         // adjust offset
@@ -156,16 +171,18 @@ void Conversion::clear(int segment_id) {
 }
 
 void Conversion::commit(int segment_id, bool learn) {
-    if (!isConverting())
+    if (!isConverting()) {
         return;
+    }
 
     // learn
     for (unsigned int i = startId_; learn && i < segments_.size() &&
                                     (segment_id < 0 || (int)i <= segment_id);
          i++) {
-        if (segments_[i].candidateId() >= 0)
+        if (segments_[i].candidateId() >= 0) {
             anthy_commit_segment(anthyContext_.get(), i,
                                  segments_[i].candidateId());
+        }
     }
 
     clear(segment_id);
@@ -180,22 +197,25 @@ bool Conversion::isPredicting() const { return predicting_; }
 
 std::string Conversion::get() const {
     std::string str;
-    for (auto it = segments_.begin(); it != segments_.end(); it++)
+    for (auto it = segments_.begin(); it != segments_.end(); it++) {
         str += it->string();
+    }
     return str;
 }
 
 unsigned int Conversion::length() const {
     unsigned int len = 0;
-    for (auto it = segments_.begin(); it != segments_.end(); it++)
+    for (auto it = segments_.begin(); it != segments_.end(); it++) {
         len += it->string().length();
+    }
     return len;
 }
 
 unsigned int Conversion::utf8Length() const {
     unsigned int len = 0;
-    for (auto it = segments_.begin(); it != segments_.end(); it++)
+    for (auto it = segments_.begin(); it != segments_.end(); it++) {
         len += fcitx::utf8::length(it->string());
+    }
     return len;
 }
 
@@ -232,8 +252,9 @@ void Conversion::updatePreedit() {
 // segments of the converted sentence
 //
 int Conversion::nrSegments() {
-    if (!isConverting())
+    if (!isConverting()) {
         return 0;
+    }
 
     struct anthy_conv_stat conv_stat;
     anthy_get_stat(anthyContext_.get(), &conv_stat);
@@ -243,24 +264,25 @@ int Conversion::nrSegments() {
 
 std::string Conversion::segmentString(int segment_id, int candidate_id) {
     if (segment_id < 0) {
-        if (curSegment_ < 0)
-            return std::string();
-        else
-            segment_id = curSegment_;
+        if (curSegment_ < 0) {
+            return {};
+        }
+        segment_id = curSegment_;
     }
 
     struct anthy_conv_stat conv_stat;
     anthy_get_stat(anthyContext_.get(), &conv_stat);
 
-    if (conv_stat.nr_segment <= 0)
-        return std::string();
+    if (conv_stat.nr_segment <= 0) {
+        return {};
+    }
 
     if (startId_ < 0 || startId_ >= conv_stat.nr_segment) {
-        return std::string(); // error
+        return {}; // error
     }
 
     if (segment_id < 0 || segment_id + startId_ >= conv_stat.nr_segment) {
-        return std::string(); // error
+        return {}; // error
     }
 
     // character position of the head of segment.
@@ -273,10 +295,11 @@ std::string Conversion::segmentString(int segment_id, int candidate_id) {
 
     int real_seg = segment_id + startId_;
     int cand;
-    if (candidate_id <= FCITX_ANTHY_LAST_SPECIAL_CANDIDATE)
+    if (candidate_id <= FCITX_ANTHY_LAST_SPECIAL_CANDIDATE) {
         cand = segments_[segment_id].candidateId();
-    else
+    } else {
         cand = candidate_id;
+    }
 
     // get information of this segment
     struct anthy_segment_stat seg_stat;
@@ -302,11 +325,12 @@ std::string Conversion::segmentString(int segment_id, int candidate_id) {
     return segment_str;
 }
 
-int Conversion::selectedSegment() { return curSegment_; }
+int Conversion::selectedSegment() const { return curSegment_; }
 
 void Conversion::selectSegment(int segment_id) {
-    if (!isConverting())
+    if (!isConverting()) {
         return;
+    }
 
     if (segment_id < 0) {
         curSegment_ = -1;
@@ -330,22 +354,24 @@ void Conversion::selectSegment(int segment_id) {
 }
 
 int Conversion::segmentSize(int segment_id) {
-    if (!isConverting())
+    if (!isConverting()) {
         return -1;
+    }
 
     struct anthy_conv_stat conv_stat;
     anthy_get_stat(anthyContext_.get(), &conv_stat);
 
     if (segment_id < 0) {
-        if (curSegment_ < 0)
+        if (curSegment_ < 0) {
             return -1;
-        else
-            segment_id = curSegment_;
+        }
+        segment_id = curSegment_;
     }
     int real_segment_id = segment_id + startId_;
 
-    if (real_segment_id >= conv_stat.nr_segment)
+    if (real_segment_id >= conv_stat.nr_segment) {
         return -1;
+    }
 
     struct anthy_segment_stat seg_stat;
     anthy_get_segment_stat(anthyContext_.get(), real_segment_id, &seg_stat);
@@ -354,10 +380,12 @@ int Conversion::segmentSize(int segment_id) {
 }
 
 void Conversion::resizeSegment(int relative_size, int segment_id) {
-    if (isPredicting())
+    if (isPredicting()) {
         return;
-    if (!isConverting())
+    }
+    if (!isConverting()) {
         return;
+    }
 
     struct anthy_conv_stat conv_stat;
     anthy_get_stat(anthyContext_.get(), &conv_stat);
@@ -365,19 +393,19 @@ void Conversion::resizeSegment(int relative_size, int segment_id) {
     int real_segment_id;
 
     if (segment_id < 0) {
-        if (curSegment_ < 0)
+        if (curSegment_ < 0) {
             return;
-        else
-            segment_id = curSegment_;
+        }
+        segment_id = curSegment_;
         real_segment_id = segment_id + startId_;
     } else {
         real_segment_id = segment_id + startId_;
-        if (curSegment_ > segment_id)
-            curSegment_ = segment_id;
+        curSegment_ = std::min(curSegment_, segment_id);
     }
 
-    if (real_segment_id >= conv_stat.nr_segment)
+    if (real_segment_id >= conv_stat.nr_segment) {
         return;
+    }
 
     // do resize
     anthy_resize_segment(anthyContext_.get(), real_segment_id, relative_size);
@@ -397,10 +425,10 @@ void Conversion::resizeSegment(int relative_size, int segment_id) {
 
 unsigned int Conversion::segmentPosition(int segment_id) {
     if (segment_id < 0) {
-        if (curSegment_ < 0)
+        if (curSegment_ < 0) {
             return length();
-        else
-            segment_id = curSegment_;
+        }
+        segment_id = curSegment_;
     }
 
     unsigned int pos = 0;
@@ -420,7 +448,7 @@ public:
         setText(fcitx::Text(std::move(str)));
     }
 
-    void select(fcitx::InputContext *) const override {
+    void select(fcitx::InputContext * /*inputContext*/) const override {
         anthy_->actionSelectCandidate(idx_);
         anthy_->updateUI();
     }
@@ -475,15 +503,15 @@ Conversion::candidates(int segment_id) {
 
     if (isPredicting()) {
 #ifdef HAS_ANTHY_PREDICTION
-        std::string str;
         struct anthy_prediction_stat ps;
 
         anthy_get_prediction_stat(anthyContext_.get(), &ps);
 
         for (int i = 0; i < ps.nr_prediction; i++) {
             int len = anthy_get_prediction(anthyContext_.get(), i, nullptr, 0);
-            if (len <= 0)
+            if (len <= 0) {
                 continue;
+            }
 
             std::vector<char> buf;
             buf.resize(len + 1);
@@ -496,19 +524,21 @@ Conversion::candidates(int segment_id) {
         struct anthy_conv_stat conv_stat;
         anthy_get_stat(anthyContext_.get(), &conv_stat);
 
-        if (conv_stat.nr_segment <= 0)
+        if (conv_stat.nr_segment <= 0) {
             return nullptr;
+        }
 
         if (segment_id < 0) {
-            if (curSegment_ < 0)
+            if (curSegment_ < 0) {
                 return nullptr;
-            else
-                segment_id = curSegment_;
+            }
+            segment_id = curSegment_;
         }
         int real_segment_id = segment_id + startId_;
 
-        if (real_segment_id >= conv_stat.nr_segment)
+        if (real_segment_id >= conv_stat.nr_segment) {
             return nullptr;
+        }
 
         struct anthy_segment_stat seg_stat;
         anthy_get_segment_stat(anthyContext_.get(), real_segment_id, &seg_stat);
@@ -516,8 +546,9 @@ Conversion::candidates(int segment_id) {
         for (int i = 0; i < seg_stat.nr_candidate; i++) {
             int len = anthy_get_segment(anthyContext_.get(), real_segment_id, i,
                                         nullptr, 0);
-            if (len <= 0)
+            if (len <= 0) {
                 continue;
+            }
 
             std::vector<char> buf;
             buf.resize(len + 1);
@@ -544,14 +575,15 @@ int Conversion::selectedCandidate(int segment_id) {
 
         anthy_get_prediction_stat(anthyContext_.get(), &ps);
 
-        if (ps.nr_prediction <= 0)
+        if (ps.nr_prediction <= 0) {
             return -1;
+        }
 
         if (segment_id < 0) {
-            if (curSegment_ < 0)
+            if (curSegment_ < 0) {
                 return -1;
-            else
-                segment_id = curSegment_;
+            }
+            segment_id = curSegment_;
         } else if (segment_id >= ps.nr_prediction) {
             return -1;
         }
@@ -564,14 +596,15 @@ int Conversion::selectedCandidate(int segment_id) {
 
         anthy_get_stat(anthyContext_.get(), &cs);
 
-        if (cs.nr_segment <= 0)
+        if (cs.nr_segment <= 0) {
             return -1;
+        }
 
         if (segment_id < 0) {
-            if (curSegment_ < 0)
+            if (curSegment_ < 0) {
                 return -1;
-            else
-                segment_id = curSegment_;
+            }
+            segment_id = curSegment_;
         } else if (segment_id >= cs.nr_segment) {
             return -1;
         }
@@ -585,14 +618,16 @@ int Conversion::selectedCandidate(int segment_id) {
 void Conversion::selectCandidate(int candidate_id, int segment_id) {
     if (isPredicting()) {
 #ifdef HAS_ANTHY_PREDICTION
-        if (candidate_id < FCITX_ANTHY_CANDIDATE_DEFAULT)
+        if (candidate_id < FCITX_ANTHY_CANDIDATE_DEFAULT) {
             return;
+        }
 
         struct anthy_prediction_stat ps;
         anthy_get_prediction_stat(anthyContext_.get(), &ps);
 
-        if (ps.nr_prediction <= 0)
+        if (ps.nr_prediction <= 0) {
             return;
+        }
 
         if (!isConverting()) {
             curSegment_ = 0;
@@ -606,25 +641,28 @@ void Conversion::selectCandidate(int candidate_id, int segment_id) {
 #endif /* HAS_ANTHY_PREDICTION */
 
     } else if (isConverting()) {
-        if (candidate_id <= FCITX_ANTHY_LAST_SPECIAL_CANDIDATE)
+        if (candidate_id <= FCITX_ANTHY_LAST_SPECIAL_CANDIDATE) {
             return;
+        }
 
         struct anthy_conv_stat conv_stat;
         anthy_get_stat(anthyContext_.get(), &conv_stat);
 
-        if (conv_stat.nr_segment <= 0)
+        if (conv_stat.nr_segment <= 0) {
             return;
+        }
 
         if (segment_id < 0) {
-            if (curSegment_ < 0)
+            if (curSegment_ < 0) {
                 return;
-            else
-                segment_id = curSegment_;
+            }
+            segment_id = curSegment_;
         }
         int real_segment_id = segment_id + startId_;
 
-        if (segment_id >= conv_stat.nr_segment)
+        if (segment_id >= conv_stat.nr_segment) {
             return;
+        }
 
         struct anthy_segment_stat seg_stat;
         anthy_get_segment_stat(anthyContext_.get(), real_segment_id, &seg_stat);
@@ -656,8 +694,9 @@ std::string Conversion::readingSubstr(int segment_id, int candidate_id,
     int prev_cand = 0;
     std::string string;
 
-    if (segment_id < (int)segments_.size())
+    if (segment_id < (int)segments_.size()) {
         prev_cand = segments_[segment_id].candidateId();
+    }
 
     switch ((CandidateType)candidate_id) {
     case FCITX_ANTHY_CANDIDATE_LATIN:
@@ -710,19 +749,22 @@ std::string Conversion::readingSubstr(int segment_id, int candidate_id,
 
 std::string Conversion::predictionString(int candidate_id) {
 #ifdef HAS_ANTHY_PREDICTION
-    if (!isPredicting())
+    if (!isPredicting()) {
         return std::string();
+    }
 
     struct anthy_prediction_stat ps;
     anthy_get_prediction_stat(anthyContext_.get(), &ps);
 
-    if (ps.nr_prediction <= 0)
+    if (ps.nr_prediction <= 0) {
         return std::string();
+    }
 
     int len =
         anthy_get_prediction(anthyContext_.get(), candidate_id, nullptr, 0);
-    if (len <= 0)
+    if (len <= 0) {
         return std::string();
+    }
 
     char buf[len + 1];
     anthy_get_prediction(anthyContext_.get(), candidate_id, buf, len + 1);
@@ -742,10 +784,11 @@ void Conversion::joingAllSegments() {
         anthy_get_stat(anthyContext_.get(), &conv_stat);
         int nr_seg = conv_stat.nr_segment - startId_;
 
-        if (nr_seg > 1)
+        if (nr_seg > 1) {
             anthy_resize_segment(anthyContext_.get(), startId_, 1);
-        else
+        } else {
             break;
+        }
     } while (true);
 }
 
@@ -763,15 +806,18 @@ static void rotateCase(std::string &str) {
 
     if (is_mixed) {
         // Anthy -> anthy, anThy -> anthy
-        for (unsigned int i = 0; i < str.length(); i++)
+        for (unsigned int i = 0; i < str.length(); i++) {
             str[i] = fcitx::charutils::tolower(str[i]);
-    } else if (isupper(str[0])) {
+        }
+    } else if (fcitx::charutils::isupper(str[0])) {
         // ANTHY -> Anthy
-        for (unsigned int i = 1; i < str.length(); i++)
+        for (unsigned int i = 1; i < str.length(); i++) {
             str[i] = fcitx::charutils::tolower(str[i]);
+        }
     } else {
         // anthy -> ANTHY
-        for (unsigned int i = 0; i < str.length(); i++)
+        for (unsigned int i = 0; i < str.length(); i++) {
             str[i] = fcitx::charutils::toupper(str[i]);
+        }
     }
 }

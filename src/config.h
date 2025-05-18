@@ -11,7 +11,10 @@
 #include <fcitx-config/enum.h>
 #include <fcitx-config/option.h>
 #include <fcitx-utils/i18n.h>
+#include <fcitx-utils/key.h>
+#include <fcitx-utils/keysym.h>
 #include <fcitx/candidatelist.h>
+#include <string>
 
 namespace fcitx {
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(CandidateLayoutHint, N_("Not Set"),
@@ -79,6 +82,11 @@ enum class TenKeyType {
 
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(TenKeyType, N_("Wide"), N_("Half"),
                                  N_("Follow mode"));
+
+enum class PeriodBehavior { None, Convert, Commit };
+
+FCITX_CONFIG_ENUM_NAME_WITH_I18N(PeriodBehavior, N_("None"), N_("Convert"),
+                                 N_("Commit"));
 
 struct AnthyKeyProfile {
 
@@ -202,6 +210,10 @@ FCITX_CONFIGURATION(
     fcitx::OptionWithAnnotation<TenKeyType, TenKeyTypeI18NAnnotation>
         tenKeyType{this, "TenKeyType", _("Ten key type"),
                    TenKeyType::FOLLOWMODE};
+    fcitx::OptionWithAnnotation<PeriodBehavior, PeriodBehaviorI18NAnnotation>
+        periodBehavior{this, "PeriodBehavior",
+                       _("Behavior on a comma or a period"),
+                       PeriodBehavior::None};
     fcitx::Option<bool> learnOnManualCommit{this, "LearnOnManualCommit",
                                             _("Learn on manual commit"), true};
     fcitx::Option<bool> learnOnAutoCommit{this, "LearnOnAutoCommit",

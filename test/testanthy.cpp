@@ -6,19 +6,21 @@
  */
 #include "testdir.h"
 #include "testfrontend_public.h"
+#include <fcitx-config/rawconfig.h>
 #include <fcitx-utils/eventdispatcher.h>
+#include <fcitx-utils/key.h>
 #include <fcitx-utils/log.h>
-#include <fcitx-utils/standardpath.h>
+#include <fcitx-utils/macros.h>
 #include <fcitx-utils/testing.h>
 #include <fcitx/addonmanager.h>
+#include <fcitx/inputmethodgroup.h>
 #include <fcitx/inputmethodmanager.h>
 #include <fcitx/instance.h>
-#include <iostream>
 
 using namespace fcitx;
 
 void scheduleEvent(EventDispatcher *dispatcher, Instance *instance) {
-    dispatcher->schedule([dispatcher, instance]() {
+    dispatcher->schedule([instance]() {
         auto *anthy = instance->addonManager().addon("anthy", true);
         FCITX_ASSERT(anthy);
 

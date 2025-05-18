@@ -12,7 +12,9 @@
 #include "default_tables.h"
 #include "style_file.h"
 #include <fcitx-utils/macros.h>
+#include <span>
 #include <string>
+#include <string_view>
 #include <vector>
 
 enum class PeriodStyle {
@@ -65,10 +67,10 @@ private:
 class Key2KanaTable {
 public:
     Key2KanaTable(std::string name);
-    Key2KanaTable(std::string name, ConvRule *table);
+    Key2KanaTable(std::string name, std::span<const ConvRule> table);
     Key2KanaTable(std::string name, NicolaRule *table);
 
-    Key2KanaTable(std::string section, const StyleFile &styleFile);
+    Key2KanaTable(std::string_view section, const StyleFile &styleFile);
 
     FCITX_INLINE_DEFINE_DEFAULT_DTOR_AND_MOVE_WITHOUT_SPEC(Key2KanaTable)
 
@@ -114,7 +116,6 @@ public:
 private:
     void resetTables();
 
-private:
     std::string name_;
 
     // tables

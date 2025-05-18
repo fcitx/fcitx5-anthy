@@ -7,7 +7,14 @@
  */
 
 #include "key2kana_table.h"
+#include "config.h"
+#include "default_tables.h"
 #include "style_file.h"
+#include <span>
+#include <string>
+#include <string_view>
+#include <utility>
+#include <vector>
 
 // fundamental table
 static Key2KanaTable romaji_table(("DefaultRomajiTable"),
@@ -107,8 +114,9 @@ Key2KanaRule::~Key2KanaRule() {}
 const std::string &Key2KanaRule::sequence() const { return sequence_; }
 
 std::string Key2KanaRule::result(unsigned int idx) const {
-    if (idx < result_.size())
+    if (idx < result_.size()) {
         return result_[idx];
+    }
 
     return std::string();
 }
@@ -119,15 +127,18 @@ void Key2KanaRule::clear() {
 }
 
 bool Key2KanaRule::isEmpty() {
-    if (!sequence_.empty())
+    if (!sequence_.empty()) {
         return false;
+    }
 
-    if (result_.empty())
+    if (result_.empty()) {
         return true;
+    }
 
-    for (unsigned int i = 0; i < result_.size(); i++) {
-        if (!result_[i].empty())
+    for (const auto &i : result_) {
+        if (!i.empty()) {
             return false;
+        }
     }
 
     return true;
@@ -135,12 +146,11 @@ bool Key2KanaRule::isEmpty() {
 
 Key2KanaTable::Key2KanaTable(std::string name) : name_(std::move(name)) {}
 
-Key2KanaTable::Key2KanaTable(std::string name, ConvRule *table)
+Key2KanaTable::Key2KanaTable(std::string name, std::span<const ConvRule> table)
     : name_(std::move(name)) {
-    for (unsigned int i = 0; table[i].string; i++) {
-        appendRule(table[i].string ? table[i].string : "",
-                   table[i].result ? table[i].result : "",
-                   table[i].cont ? table[i].cont : "");
+    for (const auto &item : table) {
+        appendRule(std::string{item.string}, std::string{item.result},
+                   std::string{item.cont});
     }
 }
 
@@ -154,16 +164,14 @@ Key2KanaTable::Key2KanaTable(std::string name, NicolaRule *table)
     }
 }
 
-Key2KanaTable::Key2KanaTable(std::string section, const StyleFile &styleFile)
+Key2KanaTable::Key2KanaTable(std::string_view section,
+                             const StyleFile &styleFile)
     : Key2KanaTable(styleFile.title()) {
-    std::vector<std::string> keys;
-    bool success = styleFile.getKeyList(keys, section);
-    if (success) {
-        std::vector<std::string>::iterator it;
-        for (it = keys.begin(); it != keys.end(); it++) {
-            std::vector<std::string> array;
-            styleFile.getStringArray(array, section, *it);
-            appendRule(*it, array);
+    if (auto keys = styleFile.getKeyList(section)) {
+        for (const auto &key : *keys) {
+            if (auto array = styleFile.getStringArray(section, key)) {
+                appendRule(key, std::move(*array));
+            }
         }
     }
 }
@@ -186,16 +194,16 @@ void Key2KanaTable::appendRule(std::string sequence, std::string normal,
                                std::string left_shift,
                                std::string right_shift) {
     std::vector<std::string> list;
-    list.push_back(normal);
-    list.push_back(left_shift);
-    list.push_back(right_shift);
+    list.push_back(std::move(normal));
+    list.push_back(std::move(left_shift));
+    list.push_back(std::move(right_shift));
     appendRule(std::move(sequence), std::move(list));
 }
 
 void Key2KanaTable::clear() { rules_.clear(); }
 
 Key2KanaTableSet::Key2KanaTableSet()
-    : name_(""), fundamentalTable_(nullptr),
+    : fundamentalTable_(nullptr),
       voicedConsonantTable_(Key2KanaTable("voiced consonant table")),
       additionalTable_(nullptr), typingMethod_(TypingMethod::ROMAJI),
       periodStyle_(PeriodStyle::JAPANESE), commaStyle_(CommaStyle::JAPANESE),
@@ -256,30 +264,30 @@ static void create_voiced_consonant_table(Key2KanaTable &table,
     const Key2KanaRules &rules = fund_table.table();
     for (it = rules.begin(); it != rules.end(); it++) {
         std::string result = it->result(0);
-        if (result == sonant_mark)
+        if (result == sonant_mark) {
             sonant_mark_list.push_back(it->sequence());
-        else if (result == half_sonant_mark)
+        } else if (result == half_sonant_mark) {
             half_sonant_mark_list.push_back(it->sequence());
+        }
     }
 
-    VoicedConsonantRule *templ = fcitx_anthy_voiced_consonant_table;
+    const auto &templ = fcitx_anthy_voiced_consonant_table;
 
-    for (unsigned int i = 0; templ[i].string; i++) {
-        if (templ[i].voiced && *templ[i].voiced) {
+    for (const auto &item : templ) {
+        if (!item.voiced.empty()) {
             std::vector<std::string>::iterator it;
             for (it = sonant_mark_list.begin(); it != sonant_mark_list.end();
                  it++) {
-                table.appendRule(std::string(templ[i].string) + *it,
-                                 std::string(templ[i].voiced), std::string());
+                table.appendRule(std::string(item.string) + *it,
+                                 std::string(item.voiced), std::string());
             }
         }
-        if (templ[i].half_voiced && *templ[i].half_voiced) {
+        if (!item.half_voiced.empty()) {
             std::vector<std::string>::iterator it;
             for (it = half_sonant_mark_list.begin();
                  it != half_sonant_mark_list.end(); it++) {
-                table.appendRule(std::string(templ[i].string) + *it,
-                                 std::string(templ[i].half_voiced),
-                                 std::string());
+                table.appendRule(std::string(item.string) + *it,
+                                 std::string(item.half_voiced), std::string());
             }
         }
     }
@@ -293,36 +301,41 @@ void Key2KanaTableSet::resetTables() {
     bool is_nicola = typingMethod_ == TypingMethod::NICOLA;
 
     // symbols table
-    if (useHalfSymbol_)
+    if (useHalfSymbol_) {
         allTables_.push_back(&half_symbol_table);
-    else
+    } else {
         allTables_.push_back(&wide_symbol_table);
+    }
 
     // numbers table
-    if (useHalfNumber_)
+    if (useHalfNumber_) {
         allTables_.push_back(&half_number_table);
-    else
+    } else {
         allTables_.push_back(&wide_number_table);
+    }
 
     if (is_romaji || is_kana) {
         switch (periodStyle_) {
         case PeriodStyle::JAPANESE:
-            if (is_romaji)
+            if (is_romaji) {
                 allTables_.push_back(&romaji_ja_period_table);
-            else
+            } else {
                 allTables_.push_back(&kana_ja_period_table);
+            }
             break;
         case PeriodStyle::WIDE:
-            if (is_romaji)
+            if (is_romaji) {
                 allTables_.push_back(&romaji_wide_period_table);
-            else
+            } else {
                 allTables_.push_back(&kana_wide_period_table);
+            }
             break;
         case PeriodStyle::HALF:
-            if (is_romaji)
+            if (is_romaji) {
                 allTables_.push_back(&romaji_half_period_table);
-            else
+            } else {
                 allTables_.push_back(&kana_half_period_table);
+            }
             break;
         default:
             break;
@@ -332,22 +345,25 @@ void Key2KanaTableSet::resetTables() {
     if (is_romaji || is_kana) {
         switch (commaStyle_) {
         case CommaStyle::JAPANESE:
-            if (is_romaji)
+            if (is_romaji) {
                 allTables_.push_back(&romaji_ja_comma_table);
-            else
+            } else {
                 allTables_.push_back(&kana_ja_comma_table);
+            }
             break;
         case CommaStyle::WIDE:
-            if (is_romaji)
+            if (is_romaji) {
                 allTables_.push_back(&romaji_wide_comma_table);
-            else
+            } else {
                 allTables_.push_back(&kana_wide_comma_table);
+            }
             break;
         case CommaStyle::HALF:
-            if (is_romaji)
+            if (is_romaji) {
                 allTables_.push_back(&romaji_half_comma_table);
-            else
+            } else {
                 allTables_.push_back(&kana_half_comma_table);
+            }
             break;
         default:
             break;
@@ -357,16 +373,20 @@ void Key2KanaTableSet::resetTables() {
     if (is_romaji || is_kana) {
         switch (bracketStyle_) {
         case BracketStyle::JAPANESE:
-            if (is_romaji)
+            if (is_romaji) {
                 allTables_.push_back(&romaji_ja_bracket_table);
-            else
+            } else {
                 allTables_.push_back(&kana_ja_bracket_table);
+            }
             break;
         case BracketStyle::WIDE:
-            if (is_romaji)
-                allTables_.push_back(&romaji_wide_bracket_table);
-            else
+            if (is_romaji) {
+                {
+                    allTables_.push_back(&romaji_wide_bracket_table);
+                }
+            } else {
                 allTables_.push_back(&kana_wide_bracket_table);
+            }
             break;
         default:
             break;
@@ -376,16 +396,18 @@ void Key2KanaTableSet::resetTables() {
     if (is_romaji || is_kana) {
         switch (slashStyle_) {
         case SlashStyle::JAPANESE:
-            if (is_romaji)
+            if (is_romaji) {
                 allTables_.push_back(&romaji_ja_slash_table);
-            else
+            } else {
                 allTables_.push_back(&kana_ja_slash_table);
+            }
             break;
         case SlashStyle::WIDE:
-            if (is_romaji)
+            if (is_romaji) {
                 allTables_.push_back(&romaji_wide_slash_table);
-            else
+            } else {
                 allTables_.push_back(&kana_wide_slash_table);
+            }
             break;
         default:
             break;

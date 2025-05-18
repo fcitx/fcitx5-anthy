@@ -8,9 +8,13 @@
 #ifndef _FCITX5_ANTHY_UTILS_H_
 #define _FCITX5_ANTHY_UTILS_H_
 
+#include <cstddef>
+#include <cstdint>
 #include <fcitx-utils/charutils.h>
+#include <fcitx-utils/key.h>
 #include <fcitx/event.h>
 #include <string>
+#include <string_view>
 
 namespace util {
 
@@ -18,15 +22,13 @@ std::string utf8_string_substr(const std::string &s, size_t start, size_t len);
 
 bool match_key_event(const fcitx::KeyList &list, const fcitx::Key &key,
                      fcitx::KeyStates ignore_mask = fcitx::KeyStates());
-void split_string(std::string &str, std::vector<std::string> &str_list,
-                  char *delim, int num);
 std::string convert_to_wide(const std::string &str);
 std::string convert_to_half(const std::string &str);
 std::string convert_to_katakana(const std::string &hira, bool half = false);
 
 bool key_is_keypad(const fcitx::Key &key);
 std::string keypad_to_string(const fcitx::KeyEvent &key);
-void launch_program(std::string command);
+void launch_program(std::string_view command);
 
 bool surrounding_get_safe_delta(unsigned int from, unsigned int to,
                                 int32_t *delta);

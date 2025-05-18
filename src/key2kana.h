@@ -14,6 +14,7 @@
 #include <fcitx-utils/key.h>
 #include <fcitx/event.h>
 #include <string>
+#include <string_view>
 
 class AnthyState;
 
@@ -26,6 +27,8 @@ public:
                    bool ignore_space = false) override;
     bool append(const fcitx::KeyEvent &key, std::string &result,
                 std::string &pending, std::string &raw) override;
+    bool append(std::string_view str, std::string &result,
+                std::string &pending) override;
     void clear() override;
 
     bool isPending() const override;
@@ -35,13 +38,10 @@ public:
                       const std::string &raw) override;
     void setPseudoAsciiMode(int mode) { pseudoAsciiMode_ = mode; }
     bool isPseudoAsciiMode() const { return isInPseudoAsciiMode_; }
-    bool processPseudoAsciiMode(const std::string &wstr) override;
+    bool processPseudoAsciiMode(std::string_view wstr) override;
     void resetPseudoAsciiMode() override;
 
 private:
-    bool append(const std::string &str, std::string &result,
-                std::string &pending) override;
-
     Key2KanaTableSet &tables_;
 
     // state

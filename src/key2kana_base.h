@@ -11,6 +11,7 @@
 
 #include <fcitx/event.h>
 #include <string>
+#include <string_view>
 
 class AnthyState;
 class AnthyConfig;
@@ -25,7 +26,7 @@ public:
                            bool ignore_space = false) = 0;
     virtual bool append(const fcitx::KeyEvent &key, std::string &result,
                         std::string &pending, std::string &raw) = 0;
-    virtual bool append(const std::string &raw, std::string &result,
+    virtual bool append(std::string_view raw, std::string &result,
                         std::string &pending) = 0;
     virtual void clear() = 0;
 
@@ -36,7 +37,7 @@ public:
                               const std::string &raw) = 0;
 
     virtual void resetPseudoAsciiMode() {}
-    virtual bool processPseudoAsciiMode(const std::string & /*unused*/) {
+    virtual bool processPseudoAsciiMode(std::string_view /*unused*/) {
         return false;
     }
 

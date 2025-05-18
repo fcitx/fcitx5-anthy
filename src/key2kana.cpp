@@ -16,11 +16,13 @@
 #include <fcitx-utils/charutils.h>
 #include <fcitx-utils/key.h>
 #include <fcitx-utils/keysym.h>
+#include <fcitx-utils/stringutils.h>
 #include <fcitx-utils/utf8.h>
 #include <fcitx/event.h>
 #include <fcitx/inputmethodmanager.h>
 #include <fcitx/instance.h>
 #include <string>
+#include <string_view>
 #include <vector>
 
 Key2KanaConvertor::Key2KanaConvertor(AnthyState &anthy,
@@ -150,9 +152,9 @@ bool CheckLayout(fcitx::Instance *instance) {
     return layout == "jp" || layout.starts_with("jp-");
 }
 
-bool Key2KanaConvertor::append(const std::string &str, std::string &result,
+bool Key2KanaConvertor::append(std::string_view str, std::string &result,
                                std::string &pending) {
-    std::string matching_str = pending_ + str;
+    std::string matching_str = fcitx::stringutils::concat(pending_, str);
     Key2KanaRule exact_match;
     bool has_partial_match = false;
     bool retval = false;
@@ -293,19 +295,18 @@ void Key2KanaConvertor::resetPending(const std::string & /*result*/,
                                      const std::string &raw) {
     lastKey_ = fcitx::Key();
 
-    for (unsigned int i = 0; i < fcitx::utf8::length(raw); i++) {
+    for (auto chr : fcitx::utf8::MakeUTF8StringViewRange(raw)) {
         std::string res;
         std::string pend;
-        append(util::utf8_string_substr(raw, i, 1), res, pend);
+        append(chr, res, pend);
     }
 }
 
-bool Key2KanaConvertor::processPseudoAsciiMode(const std::string &wstr) {
-    for (unsigned int i = 0; i < wstr.length(); i++) {
-        if (fcitx::charutils::isupper(wstr[i]) ||
-            fcitx::charutils::isspace(wstr[i])) {
+bool Key2KanaConvertor::processPseudoAsciiMode(std::string_view wstr) {
+    for (auto chr : wstr) {
+        if (fcitx::charutils::isupper(chr) || fcitx::charutils::isspace(chr)) {
             isInPseudoAsciiMode_ = true;
-        } else if (wstr[i] & 0x80) {
+        } else if (chr & 0x80) {
             isInPseudoAsciiMode_ = false;
         }
     }

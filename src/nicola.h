@@ -10,10 +10,13 @@
 #define __FCITX_ANTHY_NICOLA_H__
 
 #include <fcitx-utils/event.h>
+#include <fcitx-utils/eventloopinterface.h>
 #include <fcitx-utils/key.h>
 #include <fcitx/event.h>
+#include <memory>
 #include <stdint.h>
 #include <string>
+#include <string_view>
 #include <sys/time.h>
 
 #include "key2kana_base.h"
@@ -36,7 +39,7 @@ public:
                    bool ignore_space = false) override;
     bool append(const fcitx::KeyEvent &key, std::string &result,
                 std::string &pending, std::string &raw) override;
-    bool append(const std::string &raw, std::string &result,
+    bool append(std::string_view raw, std::string &result,
                 std::string &pending) override;
     void clear() override;
 
@@ -62,7 +65,6 @@ private:
     bool stop();
     int thumbKey(const fcitx::KeyEvent &key);
 
-private:
     Key2KanaTableSet &tables_;
 
     // state

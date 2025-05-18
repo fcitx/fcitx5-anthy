@@ -11,6 +11,7 @@
 #include "key2kana_base.h"
 #include <fcitx/event.h>
 #include <string>
+#include <string_view>
 
 class AnthyState;
 
@@ -23,7 +24,7 @@ public:
                    bool ignore_space = false) override;
     bool append(const fcitx::KeyEvent &key, std::string &result,
                 std::string &pending, std::string &raw) override;
-    bool append(const std::string &raw, std::string &result,
+    bool append(std::string_view raw, std::string &result,
                 std::string &pending) override;
     void clear() override;
 

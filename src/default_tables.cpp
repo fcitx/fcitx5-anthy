@@ -723,19 +723,28 @@ const std::array<VoicedConsonantRule, 20> fcitx_anthy_voiced_consonant_table = {
     {"へ", "べ", "ぺ"},
     {"ほ", "ぼ", "ぽ"}};
 
-KeyCodeToCharRule fcitx_anthy_keypad_table[] = {
-    {FcitxKey_KP_Equal, "="},    {FcitxKey_KP_Multiply, "*"},
-    {FcitxKey_KP_Add, "+"},      {FcitxKey_KP_Separator, ","},
-    {FcitxKey_KP_Subtract, "-"}, {FcitxKey_KP_Decimal, "."},
-    {FcitxKey_KP_Divide, "/"},   {FcitxKey_KP_0, "0"},
-    {FcitxKey_KP_1, "1"},        {FcitxKey_KP_2, "2"},
-    {FcitxKey_KP_3, "3"},        {FcitxKey_KP_4, "4"},
-    {FcitxKey_KP_5, "5"},        {FcitxKey_KP_6, "6"},
-    {FcitxKey_KP_7, "7"},        {FcitxKey_KP_8, "8"},
-    {FcitxKey_KP_9, "9"},        {0, nullptr}};
+const std::array<KeyCodeToCharRule, 17> fcitx_anthy_keypad_table = {
+    KeyCodeToCharRule{FcitxKey_KP_Equal, "="},
+    {FcitxKey_KP_Multiply, "*"},
+    {FcitxKey_KP_Add, "+"},
+    {FcitxKey_KP_Separator, ","},
+    {FcitxKey_KP_Subtract, "-"},
+    {FcitxKey_KP_Decimal, "."},
+    {FcitxKey_KP_Divide, "/"},
+    {FcitxKey_KP_0, "0"},
+    {FcitxKey_KP_1, "1"},
+    {FcitxKey_KP_2, "2"},
+    {FcitxKey_KP_3, "3"},
+    {FcitxKey_KP_4, "4"},
+    {FcitxKey_KP_5, "5"},
+    {FcitxKey_KP_6, "6"},
+    {FcitxKey_KP_7, "7"},
+    {FcitxKey_KP_8, "8"},
+    {FcitxKey_KP_9, "9"},
+};
 
-KeyCodeToCharRule fcitx_anthy_kana_table[] = {
-    {FcitxKey_kana_fullstop, "。"},
+const std::array<KeyCodeToCharRule, 69> fcitx_anthy_kana_table = {
+    KeyCodeToCharRule{FcitxKey_kana_fullstop, "。"},
     {FcitxKey_kana_openingbracket, "「"},
     {FcitxKey_kana_closingbracket, "」"},
     {FcitxKey_kana_comma, "、"},
@@ -803,12 +812,11 @@ KeyCodeToCharRule fcitx_anthy_kana_table[] = {
     {FcitxKey_kana_WA, "わ"},
     {FcitxKey_kana_N, "ん"},
     {FcitxKey_voicedsound, "゛"},
-    {FcitxKey_semivoicedsound, "゜"},
-    {0, nullptr}};
+    {FcitxKey_semivoicedsound, "゜"}};
 
-NicolaRule fcitx_anthy_nicola_table[] = {
+const std::array<NicolaRule, 102> fcitx_anthy_nicola_table = {
     // no modifiered keys
-    {"1", "１", "？", "！"},
+    NicolaRule{"1", "１", "？", "！"},
     {"2", "２", "／", "゛"},
     {"3", "３", "〜", "＃"},
     {"4", "４", "「", "＄"},
@@ -921,6 +929,4 @@ NicolaRule fcitx_anthy_nicola_table[] = {
     {"<", "ぺ", "ぺ", "む"},
     {">", "ぽ", "ぼ", "わ"},
     {"?", "・", "ゎ", "ぉ"},
-
-    {nullptr, nullptr, nullptr, nullptr},
 };

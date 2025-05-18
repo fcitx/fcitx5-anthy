@@ -154,13 +154,12 @@ Key2KanaTable::Key2KanaTable(std::string name, std::span<const ConvRule> table)
     }
 }
 
-Key2KanaTable::Key2KanaTable(std::string name, NicolaRule *table)
+Key2KanaTable::Key2KanaTable(std::string name,
+                             std::span<const NicolaRule> table)
     : name_(std::move(name)) {
-    for (unsigned int i = 0; table[i].key; i++) {
-        appendRule(table[i].key ? table[i].key : "",
-                   table[i].single ? table[i].single : "",
-                   table[i].left_shift ? table[i].left_shift : "",
-                   table[i].right_shift ? table[i].right_shift : "");
+    for (const auto &item : table) {
+        appendRule(std::string{item.key}, std::string{item.single},
+                   std::string{item.left_shift}, std::string{item.right_shift});
     }
 }
 

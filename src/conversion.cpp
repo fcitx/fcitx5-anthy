@@ -314,11 +314,12 @@ std::string Conversion::segmentString(int segment_id, int candidate_id) {
         int len =
             anthy_get_segment(anthyContext_.get(), real_seg, cand, nullptr, 0);
         if (len > 0) {
-            char buf[len + 1];
-            anthy_get_segment(anthyContext_.get(), real_seg, cand, buf,
+            std::vector<char> buf;
+            buf.resize(len + 1);
+            anthy_get_segment(anthyContext_.get(), real_seg, cand, buf.data(),
                               len + 1);
-            buf[len] = '\0';
-            segment_str = buf;
+            buf.back() = '\0';
+            segment_str = buf.data();
         }
     }
 
@@ -750,27 +751,29 @@ std::string Conversion::readingSubstr(int segment_id, int candidate_id,
 std::string Conversion::predictionString(int candidate_id) {
 #ifdef HAS_ANTHY_PREDICTION
     if (!isPredicting()) {
-        return std::string();
+        return {};
     }
 
     struct anthy_prediction_stat ps;
     anthy_get_prediction_stat(anthyContext_.get(), &ps);
 
     if (ps.nr_prediction <= 0) {
-        return std::string();
+        return {};
     }
 
     int len =
         anthy_get_prediction(anthyContext_.get(), candidate_id, nullptr, 0);
     if (len <= 0) {
-        return std::string();
+        return {};
     }
 
-    char buf[len + 1];
-    anthy_get_prediction(anthyContext_.get(), candidate_id, buf, len + 1);
-    buf[len] = '\0';
+    std::vector<char> buf;
+    buf.resize(len + 1);
+    anthy_get_prediction(anthyContext_.get(), candidate_id, buf.data(),
+                         len + 1);
+    buf.back() = '\0';
 
-    std::string cand = buf;
+    std::string cand = buf.data();
 
     return cand;
 #else  /* HAS_ANTHY_PREDICTION */

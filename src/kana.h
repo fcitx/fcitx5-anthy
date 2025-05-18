@@ -8,9 +8,9 @@
 #ifndef _FCITX5_ANTHY_KANA_H_
 #define _FCITX5_ANTHY_KANA_H_
 
-#include "default_tables.h"
 #include "key2kana_base.h"
-#include "key2kana_table.h"
+#include <fcitx/event.h>
+#include <string>
 
 class AnthyState;
 

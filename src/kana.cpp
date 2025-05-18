@@ -6,17 +6,21 @@
  *
  */
 #include "kana.h"
+#include "config.h"
 #include "default_tables.h"
-#include "engine.h"
+#include "key2kana_base.h"
 #include "state.h"
 #include "utils.h"
+#include <fcitx-utils/keysym.h>
+#include <fcitx/event.h>
+#include <string>
+#include <string_view>
 
-static bool has_voiced_consonant(std::string str) {
-    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
+static bool has_voiced_consonant(std::string_view str) {
+    const auto &table = fcitx_anthy_voiced_consonant_table;
 
-    for (unsigned int i = 0; table[i].string; i++) {
-        if (!strcmp(str.c_str(), table[i].string) && table[i].voiced &&
-            *table[i].voiced) {
+    for (const auto &item : table) {
+        if (item.string == str && !item.voiced.empty()) {
             return true;
         }
     }
@@ -24,12 +28,11 @@ static bool has_voiced_consonant(std::string str) {
     return false;
 }
 
-static bool has_half_voiced_consonant(std::string str) {
-    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
+static bool has_half_voiced_consonant(std::string_view str) {
+    const auto &table = fcitx_anthy_voiced_consonant_table;
 
-    for (unsigned int i = 0; table[i].string; i++) {
-        if (!strcmp(str.c_str(), table[i].string) && table[i].half_voiced &&
-            *table[i].half_voiced) {
+    for (const auto &item : table) {
+        if (item.string == str && !item.half_voiced.empty()) {
             return true;
         }
     }
@@ -37,26 +40,28 @@ static bool has_half_voiced_consonant(std::string str) {
     return false;
 }
 
-std::string to_voiced_consonant(std::string str) {
-    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
+std::string to_voiced_consonant(std::string_view str) {
+    const auto &table = fcitx_anthy_voiced_consonant_table;
 
-    for (unsigned int i = 0; table[i].string; i++) {
-        if (!strcmp(str.c_str(), table[i].string))
-            return std::string(table[i].voiced);
+    for (const auto &item : table) {
+        if (str == item.string) {
+            return std::string(item.voiced);
+        }
     }
 
-    return str;
+    return std::string{str};
 }
 
-std::string to_half_voiced_consonant(std::string str) {
-    VoicedConsonantRule *table = fcitx_anthy_voiced_consonant_table;
+std::string to_half_voiced_consonant(std::string_view str) {
+    const auto &table = fcitx_anthy_voiced_consonant_table;
 
-    for (unsigned int i = 0; table[i].string; i++) {
-        if (!strcmp(str.c_str(), table[i].string))
-            return std::string(table[i].half_voiced);
+    for (const auto &item : table) {
+        if (item.string == str) {
+            return std::string(item.half_voiced);
+        }
     }
 
-    return str;
+    return std::string{str};
 }
 
 KanaConvertor::KanaConvertor(AnthyState &anthy)
@@ -64,10 +69,12 @@ KanaConvertor::KanaConvertor(AnthyState &anthy)
 
 KanaConvertor::~KanaConvertor() {}
 
-bool KanaConvertor::canAppend(const fcitx::KeyEvent &key, bool) {
+bool KanaConvertor::canAppend(const fcitx::KeyEvent &key,
+                              bool /*ignore_space*/) {
     // ignore key release.
-    if (key.isRelease())
+    if (key.isRelease()) {
         return false;
+    }
 
     auto states = key.rawKey().states();
     // ignore short cut keys of application.
@@ -106,10 +113,11 @@ bool KanaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
 
         for (unsigned int i = 0; table[i].code; i++) {
             if (table[i].code == sym) {
-                if (ten_key_type == TenKeyType::WIDE)
+                if (ten_key_type == TenKeyType::WIDE) {
                     result = util::convert_to_wide(table[i].kana);
-                else
+                } else {
                     result = table[i].kana;
+                }
                 raw = table[i].kana;
 
                 return false;
@@ -140,7 +148,7 @@ bool KanaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
     // kana key code
     for (unsigned int i = 0; table[i].code; i++) {
         if (table[i].code == sym) {
-            bool retval = pending_.empty() ? false : true;
+            bool retval = !pending_.empty();
 
             if (has_voiced_consonant(table[i].kana)) {
                 result = std::string();
@@ -163,9 +171,9 @@ bool KanaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
     return append(raw, result, pending);
 }
 
-bool KanaConvertor::append(const std::string &str, std::string &result,
-                           std::string &) {
-    result = str;
+bool KanaConvertor::append(const std::string &raw, std::string &result,
+                           std::string & /*pending*/) {
+    result = raw;
     pending_ = std::string();
 
     return false;
@@ -182,6 +190,7 @@ std::string KanaConvertor::flushPending() { return std::string(); }
 void KanaConvertor::resetPending(const std::string &result,
                                  const std::string &) {
     pending_ = std::string();
-    if (has_voiced_consonant(result))
+    if (has_voiced_consonant(result)) {
         pending_ = result;
+    }
 }

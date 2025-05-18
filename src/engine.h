@@ -10,18 +10,25 @@
 #include "action.h"
 #include "config.h"
 #include "key2kana_table.h"
-#include "style_file.h"
 #include <anthy/anthy.h>
 #include <fcitx-config/enum.h>
 #include <fcitx-config/iniparser.h>
+#include <fcitx-config/rawconfig.h>
 #include <fcitx-utils/i18n.h>
+#include <fcitx-utils/log.h>
+#include <fcitx/action.h>
+#include <fcitx/addoninstance.h>
 #include <fcitx/addonmanager.h>
 #include <fcitx/candidatelist.h>
+#include <fcitx/event.h>
 #include <fcitx/inputcontext.h>
 #include <fcitx/inputcontextproperty.h>
 #include <fcitx/inputmethodengine.h>
 #include <fcitx/instance.h>
 #include <fcitx/menu.h>
+#include <memory>
+#include <string>
+#include <vector>
 
 FCITX_DECLARE_LOG_CATEGORY(anthy_logcategory);
 
@@ -35,14 +42,14 @@ public:
     void keyEvent(const fcitx::InputMethodEntry &entry,
                   fcitx::KeyEvent &keyEvent) override;
     void reloadConfig() override;
-    std::string subMode(const fcitx::InputMethodEntry &,
-                        fcitx::InputContext &) override;
-    void activate(const fcitx::InputMethodEntry &,
-                  fcitx::InputContextEvent &) override;
+    std::string subMode(const fcitx::InputMethodEntry & /*entry*/,
+                        fcitx::InputContext & /*inputContext*/) override;
+    void activate(const fcitx::InputMethodEntry & /*entry*/,
+                  fcitx::InputContextEvent & /*event*/) override;
     void deactivate(const fcitx::InputMethodEntry &entry,
                     fcitx::InputContextEvent &event) override;
-    void reset(const fcitx::InputMethodEntry &,
-               fcitx::InputContextEvent &) override;
+    void reset(const fcitx::InputMethodEntry & /*entry*/,
+               fcitx::InputContextEvent & /*event*/) override;
     void invokeActionImpl(const fcitx::InputMethodEntry &entry,
                           fcitx::InvokeActionEvent &event) override;
 
@@ -70,15 +77,15 @@ public:
 
     FCITX_ADDON_DEPENDENCY_LOADER(clipboard, instance_->addonManager());
 
-    bool constructed() { return constructed_; }
+    bool constructed() const { return constructed_; }
     auto inputModeAction() { return inputModeAction_.get(); }
     auto typingMethodAction() { return typingMethodAction_.get(); }
     auto conversionModeAction() { return conversionModeAction_.get(); }
     auto periodStyleAction() { return periodStyleAction_.get(); }
     auto symbolStyleAction() { return symbolStyleAction_.get(); }
 
-    std::string subModeLabelImpl(const fcitx::InputMethodEntry &,
-                                 fcitx::InputContext &) override;
+    std::string subModeLabelImpl(const fcitx::InputMethodEntry & /*unused*/,
+                                 fcitx::InputContext & /*unused*/) override;
 
     const auto &propertyFactory() const { return factory_; }
 
@@ -88,8 +95,8 @@ public:
     PeriodCommaStyle periodCommaStyle() const {
         return *config_.general->periodCommaStyle;
     }
-    SymbolStyle symbolStyle() { return *config_.general->symbolStyle; }
-    TypingMethod typingMethod() { return *config_.general->typingMethod; }
+    SymbolStyle symbolStyle() const { return *config_.general->symbolStyle; }
+    TypingMethod typingMethod() const { return *config_.general->typingMethod; }
 
     void setPeriodCommaStyle(PeriodCommaStyle period) {
         setAndPopulateOption(config_.general.mutableValue()->periodCommaStyle,
@@ -122,10 +129,10 @@ private:
         populateOptionToState();
     }
 
-    std::string keyProfileName();
-    std::string romajiTableName();
-    std::string kanaTableName();
-    std::string nicolaTableName();
+    std::string keyProfileName() const;
+    std::string romajiTableName() const;
+    std::string kanaTableName() const;
+    std::string nicolaTableName() const;
     std::string fullFileName(const std::string &name);
 
     bool constructed_ = false;

@@ -8,10 +8,12 @@
 #ifndef _FCITX5_ANTHY_DEFAULT_TABLES_H_
 #define _FCITX5_ANTHY_DEFAULT_TABLES_H_
 
+#include <array>
+#include <string_view>
 struct ConvRule {
-    const char *string;
-    const char *result;
-    const char *cont;
+    std::string_view string;
+    std::string_view result;
+    std::string_view cont;
 };
 
 struct HiraganaKatakanaRule {
@@ -21,8 +23,8 @@ struct HiraganaKatakanaRule {
 };
 
 struct WideRule {
-    const char *code;
-    const char *wide;
+    std::string_view code;
+    std::string_view wide;
 };
 
 struct KeyCodeToCharRule {
@@ -31,9 +33,9 @@ struct KeyCodeToCharRule {
 };
 
 struct VoicedConsonantRule {
-    const char *string;
-    const char *voiced;
-    const char *half_voiced;
+    std::string_view string;
+    std::string_view voiced;
+    std::string_view half_voiced;
 };
 
 struct NicolaRule {
@@ -44,53 +46,55 @@ struct NicolaRule {
 };
 
 // fundamental table
-extern ConvRule fcitx_anthy_romaji_typing_rule[];
-extern ConvRule fcitx_anthy_romaji_double_consonant_rule[];
-extern ConvRule fcitx_anthy_kana_typing_rule[];
-extern ConvRule fcitx_anthy_kana_voiced_consonant_rule[];
+extern const std::array<ConvRule, 286> fcitx_anthy_romaji_typing_rule;
+extern const std::array<ConvRule, 18> fcitx_anthy_romaji_double_consonant_rule;
+extern const std::array<ConvRule, 89> fcitx_anthy_kana_typing_rule;
+extern const std::array<ConvRule, 45> fcitx_anthy_kana_voiced_consonant_rule;
 
 // symbol & number
-extern ConvRule fcitx_anthy_half_symbol_rule[];
-extern ConvRule fcitx_anthy_wide_symbol_rule[];
-extern ConvRule fcitx_anthy_half_number_rule[];
-extern ConvRule fcitx_anthy_wide_number_rule[];
+extern const std::array<ConvRule, 32> fcitx_anthy_half_symbol_rule;
+extern const std::array<ConvRule, 32> fcitx_anthy_wide_symbol_rule;
+extern const std::array<ConvRule, 10> fcitx_anthy_half_number_rule;
+extern const std::array<ConvRule, 10> fcitx_anthy_wide_number_rule;
 
 // period table
-extern ConvRule fcitx_anthy_romaji_ja_period_rule[];
-extern ConvRule fcitx_anthy_romaji_wide_period_rule[];
-extern ConvRule fcitx_anthy_romaji_half_period_rule[];
+extern const std::array<ConvRule, 1> fcitx_anthy_romaji_ja_period_rule;
+extern const std::array<ConvRule, 1> fcitx_anthy_romaji_wide_period_rule;
+extern const std::array<ConvRule, 1> fcitx_anthy_romaji_half_period_rule;
 
-extern ConvRule fcitx_anthy_kana_ja_period_rule[];
-extern ConvRule fcitx_anthy_kana_wide_period_rule[];
-extern ConvRule fcitx_anthy_kana_half_period_rule[];
+extern const std::array<ConvRule, 1> fcitx_anthy_kana_ja_period_rule;
+extern const std::array<ConvRule, 1> fcitx_anthy_kana_wide_period_rule;
+extern const std::array<ConvRule, 1> fcitx_anthy_kana_half_period_rule;
 
 // comma table
-extern ConvRule fcitx_anthy_romaji_ja_comma_rule[];
-extern ConvRule fcitx_anthy_romaji_wide_comma_rule[];
-extern ConvRule fcitx_anthy_romaji_half_comma_rule[];
+extern const std::array<ConvRule, 1> fcitx_anthy_romaji_ja_comma_rule;
+extern const std::array<ConvRule, 1> fcitx_anthy_romaji_wide_comma_rule;
+extern const std::array<ConvRule, 1> fcitx_anthy_romaji_half_comma_rule;
 
-extern ConvRule fcitx_anthy_kana_ja_comma_rule[];
-extern ConvRule fcitx_anthy_kana_wide_comma_rule[];
-extern ConvRule fcitx_anthy_kana_half_comma_rule[];
+extern const std::array<ConvRule, 1> fcitx_anthy_kana_ja_comma_rule;
+extern const std::array<ConvRule, 1> fcitx_anthy_kana_wide_comma_rule;
+extern const std::array<ConvRule, 1> fcitx_anthy_kana_half_comma_rule;
 
 // bracket table
-extern ConvRule fcitx_anthy_romaji_ja_bracket_rule[];
-extern ConvRule fcitx_anthy_romaji_wide_bracket_rule[];
+extern const std::array<ConvRule, 2> fcitx_anthy_romaji_ja_bracket_rule;
+extern const std::array<ConvRule, 2> fcitx_anthy_romaji_wide_bracket_rule;
 
-extern ConvRule fcitx_anthy_kana_ja_bracket_rule[];
-extern ConvRule fcitx_anthy_kana_wide_bracket_rule[];
+extern const std::array<ConvRule, 2> fcitx_anthy_kana_ja_bracket_rule;
+extern const std::array<ConvRule, 2> fcitx_anthy_kana_wide_bracket_rule;
 
 // slash table
-extern ConvRule fcitx_anthy_romaji_ja_slash_rule[];
-extern ConvRule fcitx_anthy_romaji_wide_slash_rule[];
+extern const std::array<ConvRule, 1> fcitx_anthy_romaji_ja_slash_rule;
+extern const std::array<ConvRule, 1> fcitx_anthy_romaji_wide_slash_rule;
 
-extern ConvRule fcitx_anthy_kana_ja_slash_rule[];
-extern ConvRule fcitx_anthy_kana_wide_slash_rule[];
+extern const std::array<ConvRule, 1> fcitx_anthy_kana_ja_slash_rule;
+extern const std::array<ConvRule, 1> fcitx_anthy_kana_wide_slash_rule;
 
 // misc
-extern HiraganaKatakanaRule fcitx_anthy_hiragana_katakana_table[];
-extern WideRule fcitx_anthy_wide_table[];
-extern VoicedConsonantRule fcitx_anthy_voiced_consonant_table[];
+extern const std::array<HiraganaKatakanaRule, 118>
+    fcitx_anthy_hiragana_katakana_table;
+extern const std::array<WideRule, 94> fcitx_anthy_wide_table;
+extern const std::array<VoicedConsonantRule, 20>
+    fcitx_anthy_voiced_consonant_table;
 
 // key code
 extern KeyCodeToCharRule fcitx_anthy_keypad_table[];

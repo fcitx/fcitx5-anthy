@@ -9,9 +9,11 @@
 #ifndef _FCITX5_ANTHY_KEY2KANA_H_
 #define _FCITX5_ANTHY_KEY2KANA_H_
 
-#include "default_tables.h"
 #include "key2kana_base.h"
 #include "key2kana_table.h"
+#include <fcitx-utils/key.h>
+#include <fcitx/event.h>
+#include <string>
 
 class AnthyState;
 
@@ -32,7 +34,7 @@ public:
     void resetPending(const std::string &result,
                       const std::string &raw) override;
     void setPseudoAsciiMode(int mode) { pseudoAsciiMode_ = mode; }
-    bool isPseudoAsciiMode() { return isInPseudoAsciiMode_; }
+    bool isPseudoAsciiMode() const { return isInPseudoAsciiMode_; }
     bool processPseudoAsciiMode(const std::string &wstr) override;
     void resetPseudoAsciiMode() override;
 
@@ -40,7 +42,6 @@ private:
     bool append(const std::string &str, std::string &result,
                 std::string &pending) override;
 
-private:
     Key2KanaTableSet &tables_;
 
     // state

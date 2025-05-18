@@ -7,22 +7,41 @@
 
 #include "engine.h"
 #include "action.h"
+#include "config.h"
+#include "key2kana_table.h"
 #include "state.h"
 #include "style_file.h"
-#include <cerrno>
+#include <anthy/anthy.h>
+#include <array>
 #include <cstdio>
 #include <fcitx-config/iniparser.h>
+#include <fcitx-utils/fs.h>
+#include <fcitx-utils/i18n.h>
+#include <fcitx-utils/key.h>
 #include <fcitx-utils/log.h>
+#include <fcitx-utils/macros.h>
+#include <fcitx-utils/misc.h>
 #include <fcitx-utils/standardpath.h>
+#include <fcitx-utils/standardpaths.h>
 #include <fcitx-utils/stringutils.h>
+#include <fcitx/action.h>
 #include <fcitx/addonfactory.h>
+#include <fcitx/addoninstance.h>
 #include <fcitx/addonmanager.h>
+#include <fcitx/event.h>
 #include <fcitx/inputcontext.h>
 #include <fcitx/inputcontextmanager.h>
+#include <fcitx/inputmethodengine.h>
+#include <fcitx/inputmethodentry.h>
+#include <fcitx/statusarea.h>
 #include <fcitx/userinterfacemanager.h>
+#include <memory>
+#include <stdexcept>
+#include <string>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <utility>
 
 FCITX_DEFINE_LOG_CATEGORY(anthy_logcategory, "anthy")
 
@@ -131,16 +150,16 @@ struct AnthyModeTraits<InputMode>
     : AnthyStatusHelper<InputMode, &input_mode_status> {
     static auto mode(AnthyState *state) { return state->inputMode(); }
     static void setMode(AnthyState *state, InputMode mode) {
-        return state->setInputMode(mode, /*propagate=*/true);
+        state->setInputMode(mode, /*propagate=*/true);
     }
     static const char *icon(InputMode mode) {
-        if (auto *s = status(mode)) {
+        if (const auto *s = status(mode)) {
             return s->icon;
         }
         return "";
     }
     static std::string label(InputMode mode) {
-        if (auto *s = status(mode)) {
+        if (const auto *s = status(mode)) {
             return fcitx::stringutils::concat(s->label, " - ",
                                               _(s->description));
         }
@@ -153,10 +172,10 @@ struct AnthyModeTraits<TypingMethod>
     : AnthyStatusHelper<TypingMethod, &typing_method_status> {
     static auto mode(AnthyState *state) { return state->typingMethod(); }
     static void setMode(AnthyState *state, TypingMethod mode) {
-        return state->engine()->setTypingMethod(mode);
+        state->engine()->setTypingMethod(mode);
     }
     static auto label(TypingMethod mode) {
-        if (auto *s = status(mode)) {
+        if (const auto *s = status(mode)) {
             return _(s->label);
         }
         return "";
@@ -170,10 +189,10 @@ struct AnthyModeTraits<ConversionMode>
         return state->engine()->conversionMode();
     }
     static void setMode(AnthyState *state, ConversionMode mode) {
-        return state->engine()->setConversionMode(mode);
+        state->engine()->setConversionMode(mode);
     }
     static std::string label(ConversionMode mode) {
-        if (auto *s = status(mode)) {
+        if (const auto *s = status(mode)) {
             return fcitx::stringutils::concat(s->label, " - ",
                                               _(s->description));
         }
@@ -188,7 +207,7 @@ struct AnthyModeTraits<PeriodCommaStyle>
         return state->engine()->periodCommaStyle();
     }
     static void setMode(AnthyState *state, PeriodCommaStyle mode) {
-        return state->engine()->setPeriodCommaStyle(mode);
+        state->engine()->setPeriodCommaStyle(mode);
     }
 };
 
@@ -199,7 +218,7 @@ struct AnthyModeTraits<SymbolStyle>
         return state->engine()->symbolStyle();
     }
     static void setMode(AnthyState *state, SymbolStyle mode) {
-        return state->engine()->setSymbolStyle(mode);
+        state->engine()->setSymbolStyle(mode);
     }
 };
 
@@ -208,17 +227,17 @@ class AnthyAction : public fcitx::Action {
 public:
     explicit AnthyAction(AnthyEngine *engine) : engine_(engine) {}
     std::string shortText(fcitx::InputContext *ic) const override {
-        auto state = engine_->state(ic);
+        auto *state = engine_->state(ic);
         auto mode = AnthyModeTraits<ModeType>::mode(state);
         return AnthyModeTraits<ModeType>::label(mode);
     }
     std::string longText(fcitx::InputContext *ic) const override {
-        auto state = engine_->state(ic);
+        auto *state = engine_->state(ic);
         auto mode = AnthyModeTraits<ModeType>::mode(state);
         return AnthyModeTraits<ModeType>::description(mode);
     }
     std::string icon(fcitx::InputContext *ic) const override {
-        auto state = engine_->state(ic);
+        auto *state = engine_->state(ic);
         auto mode = AnthyModeTraits<ModeType>::mode(state);
         return AnthyModeTraits<ModeType>::icon(mode);
     }
@@ -238,11 +257,11 @@ public:
         setCheckable(true);
     }
     bool isChecked(fcitx::InputContext *ic) const override {
-        auto state = engine_->state(ic);
+        auto *state = engine_->state(ic);
         return mode_ == AnthyModeTraits<ModeType>::mode(state);
     }
     void activate(fcitx::InputContext *ic) override {
-        auto state = engine_->state(ic);
+        auto *state = engine_->state(ic);
         AnthyModeTraits<ModeType>::setMode(state, mode_);
     }
 
@@ -383,9 +402,9 @@ AnthyEngine::AnthyEngine(fcitx::Instance *instance)
 
 AnthyEngine::~AnthyEngine() { anthy_quit(); }
 
-void AnthyEngine::keyEvent(const fcitx::InputMethodEntry &,
+void AnthyEngine::keyEvent(const fcitx::InputMethodEntry & /*entry*/,
                            fcitx::KeyEvent &keyEvent) {
-    auto anthy = keyEvent.inputContext()->propertyFor(&factory_);
+    auto *anthy = keyEvent.inputContext()->propertyFor(&factory_);
     auto result = anthy->processKeyEvent(keyEvent);
     anthy->updateUI();
     if (result) {
@@ -393,7 +412,7 @@ void AnthyEngine::keyEvent(const fcitx::InputMethodEntry &,
     }
 }
 
-std::string AnthyEngine::keyProfileName() {
+std::string AnthyEngine::keyProfileName() const {
     const std::string key_profile[] = {"",
                                        "atok.sty",
                                        "canna.sty",
@@ -406,7 +425,7 @@ std::string AnthyEngine::keyProfileName() {
     return key_profile[profile];
 }
 
-std::string AnthyEngine::romajiTableName() {
+std::string AnthyEngine::romajiTableName() const {
     const std::string key_profile[] = {
         "",          "atok.sty",
         "azik.sty",  "canna.sty",
@@ -420,7 +439,7 @@ std::string AnthyEngine::romajiTableName() {
     return key_profile[profile];
 }
 
-std::string AnthyEngine::kanaTableName() {
+std::string AnthyEngine::kanaTableName() const {
     const std::string key_profile[] = {
         "",
         "101kana.sty",
@@ -436,7 +455,7 @@ std::string AnthyEngine::kanaTableName() {
     return key_profile[profile];
 }
 
-std::string AnthyEngine::nicolaTableName() {
+std::string AnthyEngine::nicolaTableName() const {
     const std::string key_profile[] = {
         "",
         "nicola-a.sty",
@@ -469,8 +488,6 @@ void AnthyEngine::reloadConfig() {
 }
 
 void AnthyEngine::populateConfig() {
-    std::string file;
-
     StyleFile style;
     // load key bindings
     keyProfileFileLoaded_ = false;
@@ -481,7 +498,9 @@ void AnthyEngine::populateConfig() {
     do {                                                                       \
         std::string str = (ACTION_CONFIG_##key##_KEY);                         \
         std::string keystr;                                                    \
-        style.getString(keystr, "KeyBindings", str);                           \
+        if (auto value = style.getString("KeyBindings", str)) {                \
+            keystr = std::move(*value);                                        \
+        }                                                                      \
         keyProfile_.hk_##key = fcitx::Key::keyListFromString(keystr);          \
     } while (0)
 #include "action_defs.h"
@@ -532,31 +551,33 @@ void AnthyEngine::populateOptionToState() {
     if (factory_.registered()) {
         instance_->inputContextManager().foreach(
             [this](fcitx::InputContext *ic) {
-                auto state = this->state(ic);
+                auto *state = this->state(ic);
                 state->configure();
                 return true;
             });
     }
 }
 
-std::string AnthyEngine::subMode(const fcitx::InputMethodEntry &,
+std::string AnthyEngine::subMode(const fcitx::InputMethodEntry & /*entry*/,
                                  fcitx::InputContext &ic) {
-    auto state = this->state(&ic);
+    auto *state = this->state(&ic);
     return AnthyModeTraits<InputMode>::description(state->inputMode());
 }
 
-std::string AnthyEngine::subModeLabelImpl(const fcitx::InputMethodEntry &,
-                                          fcitx::InputContext &ic) {
-    auto state = this->state(&ic);
+std::string
+AnthyEngine::subModeLabelImpl(const fcitx::InputMethodEntry & /*unused*/,
+                              fcitx::InputContext &ic) {
+    auto *state = this->state(&ic);
 
-    if (auto *s = AnthyStatusHelper<InputMode, &input_mode_status>::status(
-            state->inputMode())) {
+    if (const auto *s =
+            AnthyStatusHelper<InputMode, &input_mode_status>::status(
+                state->inputMode())) {
         return s->label;
     }
     return "";
 }
 
-void AnthyEngine::activate(const fcitx::InputMethodEntry &,
+void AnthyEngine::activate(const fcitx::InputMethodEntry & /*entry*/,
                            fcitx::InputContextEvent &event) {
     // Setup action.
     if (*config_.interface->showInputModeLabel) {
@@ -581,16 +602,16 @@ void AnthyEngine::activate(const fcitx::InputMethodEntry &,
     }
 }
 
-void AnthyEngine::deactivate(const fcitx::InputMethodEntry &,
+void AnthyEngine::deactivate(const fcitx::InputMethodEntry & /*entry*/,
                              fcitx::InputContextEvent &event) {
-    auto anthy = event.inputContext()->propertyFor(&factory_);
+    auto *anthy = event.inputContext()->propertyFor(&factory_);
     anthy->autoCommit(event);
     anthy->updateUI();
 }
 
-void AnthyEngine::reset(const fcitx::InputMethodEntry &,
+void AnthyEngine::reset(const fcitx::InputMethodEntry & /*entry*/,
                         fcitx::InputContextEvent &event) {
-    auto anthy = event.inputContext()->propertyFor(&factory_);
+    auto *anthy = event.inputContext()->propertyFor(&factory_);
     anthy->reset();
     anthy->updateUI();
 }
@@ -600,10 +621,11 @@ void AnthyEngine::invokeActionImpl(const fcitx::InputMethodEntry &entry,
     const int cursor = event.cursor();
     if (event.action() != fcitx::InvokeActionEvent::Action::LeftClick ||
         cursor < 0) {
-        return InputMethodEngineV3::invokeActionImpl(entry, event);
+        InputMethodEngineV3::invokeActionImpl(entry, event);
+        return;
     }
     event.filter();
-    auto anthy = event.inputContext()->propertyFor(&factory_);
+    auto *anthy = event.inputContext()->propertyFor(&factory_);
     anthy->movePreeditCaret(event.cursor());
     anthy->updateUI();
 }

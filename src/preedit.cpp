@@ -7,13 +7,27 @@
  */
 
 #include "preedit.h"
-#include "engine.h"
+#include "config.h"
+#include "conversion.h"
+#include "default_tables.h"
+#include "key2kana_table.h"
+#include "reading.h"
 #include "state.h"
 #include "utils.h"
+#include <array>
+#include <fcitx-utils/key.h>
+#include <fcitx-utils/textformatflags.h>
+#include <fcitx/candidatelist.h>
+#include <fcitx/event.h>
 #include <fcitx/inputpanel.h>
+#include <fcitx/text.h>
+#include <memory>
+#include <string>
 
-static ConvRule *get_period_rule(TypingMethod method, PeriodStyle period);
-static ConvRule *get_comma_rule(TypingMethod method, CommaStyle period);
+static const std::array<ConvRule, 1> *get_period_rule(TypingMethod method,
+                                                      PeriodStyle period);
+static const std::array<ConvRule, 1> *get_comma_rule(TypingMethod method,
+                                                     CommaStyle period);
 
 Preedit::Preedit(AnthyState &anthy)
     : state_(anthy), reading_(anthy), conversion_(state_, reading_),
@@ -25,45 +39,45 @@ Preedit::~Preedit() {}
  * getting status
  */
 unsigned int Preedit::length() {
-    if (isConverting())
+    if (isConverting()) {
         return conversion_.length();
-    else
-        return reading_.length();
+    }
+    return reading_.length();
 }
 
 /*
  * getting status
  */
 unsigned int Preedit::utf8Length() {
-    if (isConverting())
+    if (isConverting()) {
         return conversion_.utf8Length();
-    else
-        return reading_.utf8Length();
+    }
+    return reading_.utf8Length();
 }
 
 std::string Preedit::string() {
     if (isConverting()) {
         return conversion_.get();
-    } else if (!source_.empty()) {
+    }
+    if (!source_.empty()) {
         return source_;
-    } else {
-        switch (inputMode_) {
-        case InputMode::KATAKANA:
-            return util::convert_to_katakana(reading_.getByChar());
+    }
+    switch (inputMode_) {
+    case InputMode::KATAKANA:
+        return util::convert_to_katakana(reading_.getByChar());
 
-        case InputMode::HALF_KATAKANA:
-            return util::convert_to_katakana(reading_.getByChar(), true);
+    case InputMode::HALF_KATAKANA:
+        return util::convert_to_katakana(reading_.getByChar(), true);
 
-        case InputMode::LATIN:
-            return reading_.getRawByChar();
+    case InputMode::LATIN:
+        return reading_.getRawByChar();
 
-        case InputMode::WIDE_LATIN:
-            return util::convert_to_wide(reading_.getRawByChar());
+    case InputMode::WIDE_LATIN:
+        return util::convert_to_wide(reading_.getRawByChar());
 
-        case InputMode::HIRAGANA:
-        default:
-            return reading_.getByChar();
-        }
+    case InputMode::HIRAGANA:
+    default:
+        return reading_.getByChar();
     }
 }
 
@@ -91,12 +105,8 @@ void Preedit::updatePreedit() {
 }
 
 bool Preedit::isPreediting() {
-    if (reading_.length() > 0 || conversion_.isConverting() ||
-        !source_.empty()) {
-        return true;
-    } else {
-        return false;
-    }
+    return reading_.length() > 0 || conversion_.isConverting() ||
+           !source_.empty();
 }
 
 bool Preedit::isConverting() { return conversion_.isConverting(); }
@@ -113,13 +123,29 @@ bool Preedit::canProcessKeyEvent(const fcitx::KeyEvent &key) {
 }
 
 bool Preedit::processKeyEvent(const fcitx::KeyEvent &key) {
-    if (!reading_.canProcesKeyEvent(key))
+    if (!reading_.canProcesKeyEvent(key)) {
         return false;
+    }
 
     bool retval = reading_.processKeyEvent(key);
 
     if (inputMode_ == InputMode::LATIN || inputMode_ == InputMode::WIDE_LATIN) {
         return true;
+    }
+    // auto convert
+    unsigned int len = reading_.length();
+    if (len > 0) {
+        std::string str = reading_.getRawByChar(len - 1, 1);
+        if (isCommaOrPeriod(str)) {
+            if (*state_.config().general->periodBehavior ==
+                    PeriodBehavior::Convert &&
+                length() > 1) {
+                convert();
+            } else if (*state_.config().general->periodBehavior ==
+                       PeriodBehavior::Commit) {
+                return true;
+            }
+        }
     }
 
     return retval;
@@ -134,8 +160,9 @@ bool Preedit::append(const fcitx::Key &key, const std::string &string) {
 }
 
 void Preedit::erase(bool backward) {
-    if (reading_.utf8Length() <= 0)
+    if (reading_.utf8Length() <= 0) {
         return;
+    }
 
     // cancel conversion
     revert();
@@ -144,12 +171,15 @@ void Preedit::erase(bool backward) {
     TypingMethod method = typingMethod();
     bool allow_split = method == TypingMethod::ROMAJI &&
                        *state_.config().general->romajiAllowSplit;
-    if (backward && reading_.caretPosByChar() == 0)
+    if (backward && reading_.caretPosByChar() == 0) {
         return;
-    if (!backward && reading_.caretPosByChar() >= reading_.utf8Length())
+    }
+    if (!backward && reading_.caretPosByChar() >= reading_.utf8Length()) {
         return;
-    if (backward)
+    }
+    if (backward) {
         reading_.moveCaret(-1, allow_split);
+    }
     reading_.erase(reading_.caretPosByChar(), 1, allow_split);
 }
 
@@ -159,10 +189,11 @@ void Preedit::finish() { reading_.finish(); }
  * manipulating conversion string
  */
 void Preedit::convert(CandidateType type, bool single_segment) {
-    if (source_.empty())
+    if (source_.empty()) {
         conversion_.convert(type, single_segment);
-    else
+    } else {
         conversion_.convert(source_, single_segment);
+    }
 }
 
 void Preedit::convert(const std::string &source, bool single_segment) {
@@ -173,10 +204,12 @@ void Preedit::convert(const std::string &source, bool single_segment) {
 void Preedit::revert() { conversion_.clear(); }
 
 void Preedit::commit(int segment_id, bool learn) {
-    if (conversion_.isConverting())
+    if (conversion_.isConverting()) {
         conversion_.commit(segment_id, learn);
-    if (!conversion_.isConverting())
+    }
+    if (!conversion_.isConverting()) {
         clear();
+    }
 }
 
 int Preedit::nrSegments() { return conversion_.nrSegments(); }
@@ -221,29 +254,29 @@ void Preedit::selectCandidate(int candidate_id, int segment_id) {
 unsigned int Preedit::caretPos() {
     if (isConverting()) {
         return conversion_.segmentPosition();
-    } else {
-        if (inputMode() == InputMode::HALF_KATAKANA) {
-            // FIXME! It's ad-hoc
-            std::string substr;
-            substr = reading_.getByChar(0, reading_.caretPosByChar(),
-                                        FCITX_ANTHY_STRING_HALF_KATAKANA);
-            return substr.length();
-        } else {
-            return reading_.caretPos();
-        }
     }
+    if (inputMode() == InputMode::HALF_KATAKANA) {
+        // FIXME! It's ad-hoc
+        std::string substr;
+        substr = reading_.getByChar(0, reading_.caretPosByChar(),
+                                    FCITX_ANTHY_STRING_HALF_KATAKANA);
+        return substr.length();
+    }
+    return reading_.caretPos();
 }
 
 void Preedit::setCaretPosByChar(unsigned int pos) {
-    if (isConverting())
+    if (isConverting()) {
         return;
+    }
 
     reading_.setCaretPosByChar(pos);
 }
 
 void Preedit::moveCaret(int step) {
-    if (isConverting())
+    if (isConverting()) {
         return;
+    }
 
     TypingMethod method = typingMethod();
     bool allow_split = method == TypingMethod::ROMAJI &&
@@ -320,24 +353,26 @@ bool Preedit::isPseudoAsciiMode() { return reading_.isPseudoAsciiMode(); }
 
 void Preedit::resetPseudoAsciiMode() { reading_.resetPseudoAsciiMode(); }
 
-bool Preedit::isCommaOrPeriod(const std::string &str) {
+bool Preedit::isCommaOrPeriod(const std::string &str) const {
     TypingMethod typing = typingMethod();
     PeriodStyle period = periodStyle();
     CommaStyle comma = commaStyle();
 
-    ConvRule *period_rule = get_period_rule(typing, period);
-    ConvRule *comma_rule = get_comma_rule(typing, comma);
+    const auto *period_rule = get_period_rule(typing, period);
+    const auto *comma_rule = get_comma_rule(typing, comma);
 
-    for (unsigned int i = 0; period_rule && period_rule[i].string; i++) {
-        if (period_rule[i].string &&
-            !strcmp(period_rule[i].string, str.c_str())) {
-            return true;
+    if (period_rule) {
+        for (const auto &item : *period_rule) {
+            if (item.string == str) {
+                return true;
+            }
         }
     }
-    for (unsigned int i = 0; comma_rule && comma_rule[i].string; i++) {
-        if (comma_rule[i].string &&
-            !strcmp(comma_rule[i].string, str.c_str())) {
-            return true;
+    if (comma_rule) {
+        for (const auto &item : *comma_rule) {
+            if (item.string == str) {
+                return true;
+            }
         }
     }
 
@@ -347,17 +382,18 @@ bool Preedit::isCommaOrPeriod(const std::string &str) {
 /*
  * utilities
  */
-static ConvRule *get_period_rule(TypingMethod method, PeriodStyle period) {
+static const std::array<ConvRule, 1> *get_period_rule(TypingMethod method,
+                                                      PeriodStyle period) {
     switch (method) {
     case TypingMethod::KANA:
         switch (period) {
         case PeriodStyle::WIDE:
-            return fcitx_anthy_kana_wide_period_rule;
+            return &fcitx_anthy_kana_wide_period_rule;
         case PeriodStyle::HALF:
-            return fcitx_anthy_kana_half_period_rule;
+            return &fcitx_anthy_kana_half_period_rule;
         case PeriodStyle::JAPANESE:
         default:
-            return fcitx_anthy_kana_ja_period_rule;
+            return &fcitx_anthy_kana_ja_period_rule;
         };
         break;
 
@@ -365,12 +401,12 @@ static ConvRule *get_period_rule(TypingMethod method, PeriodStyle period) {
     default:
         switch (period) {
         case PeriodStyle::WIDE:
-            return fcitx_anthy_romaji_wide_period_rule;
+            return &fcitx_anthy_romaji_wide_period_rule;
         case PeriodStyle::HALF:
-            return fcitx_anthy_romaji_half_period_rule;
+            return &fcitx_anthy_romaji_half_period_rule;
         case PeriodStyle::JAPANESE:
         default:
-            return fcitx_anthy_romaji_ja_period_rule;
+            return &fcitx_anthy_romaji_ja_period_rule;
         };
         break;
     };
@@ -378,17 +414,18 @@ static ConvRule *get_period_rule(TypingMethod method, PeriodStyle period) {
     return nullptr;
 }
 
-static ConvRule *get_comma_rule(TypingMethod method, CommaStyle period) {
+static const std::array<ConvRule, 1> *get_comma_rule(TypingMethod method,
+                                                     CommaStyle period) {
     switch (method) {
     case TypingMethod::KANA:
         switch (period) {
         case CommaStyle::WIDE:
-            return fcitx_anthy_kana_wide_comma_rule;
+            return &fcitx_anthy_kana_wide_comma_rule;
         case CommaStyle::HALF:
-            return fcitx_anthy_kana_half_comma_rule;
+            return &fcitx_anthy_kana_half_comma_rule;
         case CommaStyle::JAPANESE:
         default:
-            return fcitx_anthy_kana_ja_comma_rule;
+            return &fcitx_anthy_kana_ja_comma_rule;
         };
         break;
 
@@ -396,12 +433,12 @@ static ConvRule *get_comma_rule(TypingMethod method, CommaStyle period) {
     default:
         switch (period) {
         case CommaStyle::WIDE:
-            return fcitx_anthy_romaji_wide_comma_rule;
+            return &fcitx_anthy_romaji_wide_comma_rule;
         case CommaStyle::HALF:
-            return fcitx_anthy_romaji_half_comma_rule;
+            return &fcitx_anthy_romaji_half_comma_rule;
         case CommaStyle::JAPANESE:
         default:
-            return fcitx_anthy_romaji_ja_comma_rule;
+            return &fcitx_anthy_romaji_ja_comma_rule;
         };
         break;
     };

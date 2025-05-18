@@ -15,15 +15,22 @@
 #ifndef _FCITX5_ANTHY_STATE_H_
 #define _FCITX5_ANTHY_STATE_H_
 
+#include "action.h"
+#include "config.h"
+#include "conversion.h"
 #include "engine.h"
-#include "key2kana_table.h"
 #include "preedit.h"
 #include <anthy/anthy.h>
+#include <fcitx-utils/key.h>
+#include <fcitx/candidatelist.h>
+#include <fcitx/event.h>
 #include <fcitx/inputcontextproperty.h>
 #include <fcitx/inputmethodengine.h>
 #include <fcitx/instance.h>
 #include <fcitx/menu.h>
-#include <map>
+#include <memory>
+#include <string>
+#include <vector>
 
 class AnthyState : public fcitx::InputContextProperty {
 public:
@@ -33,7 +40,7 @@ public:
 
     bool needCopy() const override { return true; }
 
-    void copyTo(fcitx::InputContextProperty *) override;
+    void copyTo(fcitx::InputContextProperty *property) override;
 
     void configure();
     void saveConfig() { engine_->saveConfig(); }
@@ -46,7 +53,6 @@ public:
 
     auto inputContext() { return ic_; }
 
-public:
     /* actions */
     bool action_convert();
     bool action_predict();
@@ -106,13 +112,12 @@ public:
     bool action_half_katakana_mode();
     bool action_cancel_pseudo_ascii_mode();
 
-    bool action_add_word();
-    bool action_launch_dict_admin_tool();
+    bool action_add_word() const;
+    bool action_launch_dict_admin_tool() const;
     /*
     void   actoin_register_word               ();
     */
 
-public:
     TypingMethod typingMethod() const;
     InputMode inputMode() const;
     // Only input mode is per-state.
@@ -123,7 +128,7 @@ public:
     void syncSymbolStyle();
     void updateUI();
 
-    int pseudoAsciiMode();
+    int pseudoAsciiMode() const;
     const AnthyConfig &config() const { return engine_->config(); }
     auto engine() { return engine_; }
     fcitx::Instance *instance() { return instance_; }
@@ -154,12 +159,10 @@ private:
     bool isSingleSegment();
     bool isRealtimeConversion();
 
-private: // FIXME!
-    bool isNicolaThumbShiftKey(const fcitx::KeyEvent &key);
+    bool isNicolaThumbShiftKey(const fcitx::KeyEvent &key) const;
     void commitString(const std::string &str);
     void updateAuxString(const std::string &str);
 
-private:
     fcitx::InputContext *ic_;
     AnthyEngine *engine_;
     fcitx::Instance *instance_;

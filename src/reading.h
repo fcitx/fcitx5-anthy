@@ -9,24 +9,29 @@
 #ifndef __FCITX_ANTHY_READING_H__
 #define __FCITX_ANTHY_READING_H__
 
-#include "engine.h"
+#include "config.h"
 #include "kana.h"
 #include "key2kana.h"
+#include "key2kana_base.h"
+#include "key2kana_table.h"
 #include "nicola.h"
+#include <fcitx/event.h>
+#include <string>
+#include <vector>
 
 class AnthyState;
 
-typedef enum {
+enum StringType {
     FCITX_ANTHY_STRING_LATIN,
     FCITX_ANTHY_STRING_WIDE_LATIN,
     FCITX_ANTHY_STRING_HIRAGANA,
     FCITX_ANTHY_STRING_KATAKANA,
     FCITX_ANTHY_STRING_HALF_KATAKANA,
-} StringType;
+};
 
 class Reading;
 class ReadingSegment;
-typedef std::vector<ReadingSegment> ReadingSegments;
+using ReadingSegments = std::vector<ReadingSegment>;
 
 class ReadingSegment {
     friend class Reading;
@@ -91,7 +96,6 @@ private:
     void resetPending();
     void splitSegment(unsigned int seg_id);
 
-private:
     AnthyState &state_;
 
     // tables

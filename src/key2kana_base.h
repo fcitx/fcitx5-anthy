@@ -10,6 +10,7 @@
 #define _FCITX5_ANTHY_KEY2KANA_BASE_H_
 
 #include <fcitx/event.h>
+#include <string>
 
 class AnthyState;
 class AnthyConfig;
@@ -35,10 +36,12 @@ public:
                               const std::string &raw) = 0;
 
     virtual void resetPseudoAsciiMode() {}
-    virtual bool processPseudoAsciiMode(const std::string &) { return false; }
+    virtual bool processPseudoAsciiMode(const std::string & /*unused*/) {
+        return false;
+    }
 
     void setCaseSensitive(bool sensitive) { caseSensitive_ = sensitive; }
-    bool isCaseSensitive() { return caseSensitive_; }
+    bool isCaseSensitive() const { return caseSensitive_; }
 
 protected:
     const AnthyConfig &config() const;

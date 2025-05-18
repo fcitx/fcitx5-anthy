@@ -7,10 +7,17 @@
  */
 
 #include "style_file.h"
+#include <cstddef>
 #include <fcitx-utils/charutils.h>
 #include <fcitx-utils/log.h>
+#include <fcitx-utils/macros.h>
 #include <fcitx-utils/stringutils.h>
 #include <fstream>
+#include <optional>
+#include <string>
+#include <string_view>
+#include <utility>
+#include <vector>
 
 namespace {
 const int MAX_LINE_LENGTH = 4096;
@@ -40,8 +47,9 @@ std::string unescape(const std::string &str) {
     for (unsigned int i = 0; i < dest.size(); i++) {
         if (dest[i] == '\\') {
             dest.erase(i, 1);
-            if (i < dest.size() && dest[i] == '\\')
+            if (i < dest.size() && dest[i] == '\\') {
                 i++;
+            }
         }
     }
 
@@ -69,29 +77,29 @@ StyleLine::~StyleLine() {}
 
 StyleLineType StyleLine::type() const { return type_; }
 
-bool StyleLine::get_section(std::string &section) const {
+std::string StyleLine::get_section() const {
+    std::string section;
     if (type() != StyleLineType::SECTION) {
-        return false;
+        return section;
     }
 
     auto result = fcitx::stringutils::trim(line_);
     // remove [ and ]
     result.pop_back();
     result = result.substr(1);
-    section = std::move(result);
-
-    return true;
+    return result;
 }
 
-bool StyleLine::get_key(std::string &key) const {
-    if (type() != StyleLineType::KEY)
-        return false;
+std::string StyleLine::get_key() const {
+    std::string key;
+    if (type() != StyleLineType::KEY) {
+        return key;
+    }
 
     // skip space ahead.
     auto spos = line_.find_first_not_of(FCITX_WHITESPACE);
     if (spos == std::string::npos) {
-        key = std::string();
-        return true;
+        return key;
     }
     size_t epos = spos;
 
@@ -104,17 +112,21 @@ bool StyleLine::get_key(std::string &key) const {
             break;
         }
     }
-    for (--epos; epos >= spos && fcitx::charutils::isspace(line_[epos]); epos--)
+    for (--epos; epos >= spos && fcitx::charutils::isspace(line_[epos]);
+         epos--) {
         ;
-    if (!fcitx::charutils::isspace(line_[epos]))
+    }
+    if (!fcitx::charutils::isspace(line_[epos])) {
         epos++;
+    }
 
     if (spos < epos && epos <= line_.length()) {
         key = unescape(line_.substr(spos, epos - spos));
-    } else
+    } else {
         key = std::string();
+    }
 
-    return true;
+    return key;
 }
 
 static int get_value_position(std::string_view str) {
@@ -128,32 +140,34 @@ static int get_value_position(std::string_view str) {
             break;
         }
     }
-    if (spos >= str.length())
+    if (spos >= str.length()) {
         return true;
-    else
-        spos++;
-    for (; spos < str.length() && fcitx::charutils::isspace(str[spos]); spos++)
-        ;
+    }
+    spos++;
+    for (; spos < str.length() && fcitx::charutils::isspace(str[spos]);
+         spos++) {
+    }
 
     return spos;
 }
 
-bool StyleLine::get_value(std::string &value) const {
-    if (type() != StyleLineType::KEY)
-        return false;
+std::string StyleLine::get_value() const {
+    std::string value;
+    if (type() != StyleLineType::KEY) {
+        return value;
+    }
 
     unsigned int spos = get_value_position(line_);
     unsigned int epos = line_.length();
 
-    value = unescape(line_.substr(spos, epos - spos));
-
-    return true;
+    return unescape(line_.substr(spos, epos - spos));
 }
 
-bool StyleLine::get_value_array(std::vector<std::string> &value) const {
-    if (type() != StyleLineType::KEY)
-        return false;
-
+std::vector<std::string> StyleLine::get_value_array() const {
+    std::vector<std::string> value;
+    if (type() != StyleLineType::KEY) {
+        return value;
+    }
     unsigned int spos = get_value_position(line_);
     unsigned int epos = line_.length();
 
@@ -166,17 +180,18 @@ bool StyleLine::get_value_array(std::vector<std::string> &value) const {
 
         if (i == epos || line_[i] == ',') {
             std::string str;
-            if (head_of_element == epos)
+            if (head_of_element == epos) {
                 str = std::string();
-            else
+            } else {
                 str = unescape(
                     line_.substr(head_of_element, i - head_of_element));
+            }
             value.push_back(str);
             head_of_element = i + 1;
         }
     }
 
-    return true;
+    return value;
 }
 
 StyleFile::StyleFile() { setupDefaultEntries(); }
@@ -186,20 +201,22 @@ bool StyleFile::load(const std::string &filename) {
     setupDefaultEntries();
 
     std::ifstream in_file(filename);
-    if (!in_file)
+    if (!in_file) {
         return false;
+    }
 
     clear();
 
     sections_.push_back(StyleLines());
-    StyleLines *section = &sections_[0];
+    StyleLines *section = sections_.data();
     unsigned int section_id = 0;
 
     char buf[MAX_LINE_LENGTH];
     do {
         in_file.getline(buf, MAX_LINE_LENGTH);
-        if (in_file.eof())
+        if (in_file.eof()) {
             break;
+        }
 
         std::string dest = buf;
         StyleLine line(this, dest);
@@ -214,10 +231,8 @@ bool StyleFile::load(const std::string &filename) {
         section->push_back(line);
 
         if (section_id == 0) {
-            std::string key;
-            line.get_key(key);
-            if (key == "Title") {
-                line.get_value(title_);
+            if (line.get_key() == "Title") {
+                title_ = line.get_value();
             }
         }
     } while (!in_file.eof());
@@ -234,64 +249,61 @@ void StyleFile::clear() {
 
 const std::string &StyleFile::title() const { return title_; }
 
-bool StyleFile::getString(std::string &value, std::string section,
-                          std::string key) const {
-    for (auto it = sections_.begin(); it != sections_.end(); it++) {
-        if (it->size() <= 0)
+std::optional<std::string> StyleFile::getString(std::string_view section,
+                                                std::string_view key) const {
+    for (const auto &lines : sections_) {
+        if (lines.empty()) {
             continue;
+        }
 
-        std::string s, k;
-        (*it)[0].get_section(s);
-
-        if (s != section)
+        if (lines[0].get_section() != section) {
             continue;
+        }
 
-        for (auto lit = it->begin(); lit != it->end(); lit++) {
-            lit->get_key(k);
-            if (k == key) {
-                lit->get_value(value);
-                return true;
+        for (const auto &line : lines) {
+            if (line.get_key() == key) {
+                return line.get_value();
             }
         }
     }
 
-    return false;
+    return std::nullopt;
 }
 
-bool StyleFile::getStringArray(std::vector<std::string> &value,
-                               std::string section, std::string key) const {
+std::optional<std::vector<std::string>>
+StyleFile::getStringArray(std::string_view section,
+                          std::string_view key) const {
     const StyleLines *lines = findSection(section);
-    if (!lines)
-        return false;
+    if (!lines) {
+        return std::nullopt;
+    }
 
     // find entry
-    for (auto lit = lines->begin(); lit != lines->end(); lit++) {
-        std::string k;
-        lit->get_key(k);
-        if (k == key) {
-            lit->get_value_array(value);
-            return true;
+    for (const auto &line : *lines) {
+        if (line.get_key() == key) {
+            return line.get_value_array();
         }
     }
 
-    return false;
+    return std::nullopt;
 }
 
-bool StyleFile::getKeyList(std::vector<std::string> &keys,
-                           std::string section) const {
+std::optional<std::vector<std::string>>
+StyleFile::getKeyList(std::string_view section) const {
     const StyleLines *lines = findSection(section);
-    if (!lines)
-        return false;
-
-    for (auto lit = lines->begin(); lit != lines->end(); lit++) {
-        if (lit->type() != StyleLineType::KEY)
-            continue;
-
-        std::string key;
-        lit->get_key(key);
-        keys.push_back(key);
+    if (!lines) {
+        return std::nullopt;
     }
-    return true;
+
+    std::vector<std::string> keys;
+    for (const auto &line : *lines) {
+        if (line.type() != StyleLineType::KEY) {
+            continue;
+        }
+
+        keys.push_back(line.get_key());
+    }
+    return {std::move(keys)};
 }
 
 void StyleFile::setupDefaultEntries() {
@@ -301,20 +313,19 @@ void StyleFile::setupDefaultEntries() {
     sections_.push_back(StyleLines());
     StyleLines &newsec = sections_.back();
     std::string str = std::string("Title") + std::string("=") + escape(title_);
-    newsec.push_back(StyleLine(this, str.c_str()));
+    newsec.push_back(StyleLine(this, str));
 }
 
-const StyleLines *StyleFile::findSection(const std::string &section) const {
+const StyleLines *StyleFile::findSection(std::string_view section) const {
     // find section
-    for (auto it = sections_.begin(); it != sections_.end(); it++) {
-        if (it->size() <= 0)
+    for (const auto &lines : sections_) {
+        if (lines.empty()) {
             continue;
+        }
 
-        std::string s;
-        (*it)[0].get_section(s);
-
-        if (s == section)
-            return &(*it);
+        if (lines[0].get_section() == section) {
+            return &lines;
+        }
     }
 
     return nullptr;

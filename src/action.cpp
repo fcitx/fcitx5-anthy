@@ -9,29 +9,37 @@
 #include "action.h"
 #include "utils.h"
 #include <fcitx-config/option.h>
+#include <fcitx-utils/key.h>
+#include <fcitx-utils/keysym.h>
+#include <fcitx/event.h>
+#include <functional>
+#include <string>
+#include <utility>
 
-Action::Action()
-    : name_(""), performFunction_(nullptr), keyBindings_(nullptr) {}
+Action::Action() : performFunction_(nullptr), keyBindings_(nullptr) {}
 
-Action::Action(const std::string &name, const fcitx::KeyList &hotkey, PMF pmf)
-    : name_(name), performFunction_(pmf), keyBindings_(&hotkey) {}
+Action::Action(std::string name, const fcitx::KeyList &hotkey,
+               std::function<bool()> pmf)
+    : name_(std::move(name)), performFunction_(std::move(pmf)),
+      keyBindings_(&hotkey) {}
 
-bool Action::perform(AnthyState *performer) {
+bool Action::perform() {
     if (performFunction_) {
-        return (performer->*performFunction_)();
+        return performFunction_();
     }
 
     return false;
 }
 
-bool Action::perform(AnthyState *performer, const fcitx::KeyEvent &key) {
-    if (!performFunction_)
+bool Action::perform(const fcitx::KeyEvent &key) {
+    if (!performFunction_) {
         return false;
+    }
 
     if (!matchKeyEvent(key)) {
         return false;
     }
-    return (performer->*performFunction_)();
+    return performFunction_();
 }
 
 bool Action::matchKeyEvent(const fcitx::KeyEvent &key) {

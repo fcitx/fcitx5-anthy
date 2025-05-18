@@ -12,28 +12,39 @@
  * SPDX-FileCopyrightText: 2004 James Su <suzhe@tsinghua.org.cn>
  */
 
+#include "state.h"
+#include "action.h"
+#include "config.h"
+#include "conversion.h"
+#include "engine.h"
+#include "key2kana_table.h"
+#include "preedit.h"
+#include "utils.h"
+#include <algorithm>
+#include <clipboard_public.h>
+#include <cstdint>
+#include <cstdio>
+#include <cstdlib>
+#include <fcitx-utils/capabilityflags.h>
+#include <fcitx-utils/i18n.h>
+#include <fcitx-utils/key.h>
+#include <fcitx-utils/keysym.h>
+#include <fcitx-utils/log.h>
+#include <fcitx/candidatelist.h>
+#include <fcitx/event.h>
+#include <fcitx/inputcontext.h>
 #include <fcitx/inputcontextmanager.h>
 #include <fcitx/inputcontextproperty.h>
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#include <errno.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <unistd.h>
-
-#include "engine.h"
-#include "state.h"
-#include "utils.h"
-
-#include <fcitx-utils/log.h>
-#include <fcitx/inputcontext.h>
 #include <fcitx/inputpanel.h>
 #include <fcitx/statusarea.h>
-
-#include <clipboard_public.h>
-#include <fcitx-utils/standardpath.h>
+#include <fcitx/text.h>
+#include <fcitx/userinterface.h>
+#include <functional>
+#include <memory>
+#include <string>
+#include <sys/types.h>
+#include <unistd.h>
+#include <utility>
 
 AnthyState::AnthyState(fcitx::InputContext *ic, AnthyEngine *engine,
                        fcitx::Instance *instance)
@@ -46,9 +57,10 @@ AnthyState::AnthyState(fcitx::InputContext *ic, AnthyEngine *engine,
 AnthyState::~AnthyState() {}
 
 // FIXME!
-bool AnthyState::isNicolaThumbShiftKey(const fcitx::KeyEvent &key) {
-    if (typingMethod() != TypingMethod::NICOLA)
+bool AnthyState::isNicolaThumbShiftKey(const fcitx::KeyEvent &key) const {
+    if (typingMethod() != TypingMethod::NICOLA) {
         return false;
+    }
 
     if (util::match_key_event(*config().key->leftThumbKeys, key.rawKey(),
                               fcitx::KeyStates(0xFFFF)) ||
@@ -103,10 +115,10 @@ bool AnthyState::processKeyEventInput(const fcitx::KeyEvent &key) {
 }
 
 bool AnthyState::processKeyEventLookupKeybind(const fcitx::KeyEvent &key) {
-    decltype(actions_)::iterator it;
 
-    if (key.isRelease())
+    if (key.isRelease()) {
         return false;
+    }
 
     lastKey_ = key.rawKey();
 
@@ -116,17 +128,16 @@ bool AnthyState::processKeyEventLookupKeybind(const fcitx::KeyEvent &key) {
     if (pseudoAsciiMode() != 0 &&
         *config().general->romajiPseudoAsciiBlankBehavior &&
         preedit_.isPseudoAsciiMode()) {
-        it = std::find_if(actions_.begin(), actions_.end(),
-                          [](const Action &action) {
-                              return action.name() == "INSERT_SPACE";
-                          });
-        if (it != actions_.end() && it->perform(this, key)) {
+        auto it = std::ranges::find_if(actions_, [](const Action &action) {
+            return action.name() == "INSERT_SPACE";
+        });
+        if (it != actions_.end() && it->perform(key)) {
             return true;
         }
     }
 
-    for (it = actions_.begin(); it != actions_.end(); it++) {
-        if (it->perform(this, key)) {
+    for (auto &action : actions_) {
+        if (action.perform(key)) {
             lastKey_ = fcitx::Key();
             return true;
         }
@@ -148,31 +159,32 @@ bool AnthyState::processKeyEventLookupKeybind(const fcitx::KeyEvent &key) {
 }
 
 bool AnthyState::processKeyEventLatinMode(const fcitx::KeyEvent &key) {
-    if (key.isRelease())
+    if (key.isRelease()) {
         return false;
+    }
 
     if (util::key_is_keypad(key.rawKey())) {
         std::string wide;
         auto str = util::keypad_to_string(key);
-        if (*config().general->tenKeyType == TenKeyType::WIDE)
+        if (*config().general->tenKeyType == TenKeyType::WIDE) {
             wide = util::convert_to_wide(str);
-        else
+        } else {
             wide = str;
+        }
         if (!wide.empty()) {
             commitString(wide);
             return true;
-        } else {
-            return false;
         }
-    } else {
-        // for Multi/Dead key
         return false;
-    }
+
+    } // for Multi/Dead key
+    return false;
 }
 
 bool AnthyState::processKeyEventWideLatinMode(const fcitx::KeyEvent &key) {
-    if (key.isRelease())
+    if (key.isRelease()) {
         return false;
+    }
 
     std::string wide;
     auto str = util::keypad_to_string(key);
@@ -194,13 +206,15 @@ bool AnthyState::processKeyEvent(const fcitx::KeyEvent &key) {
     // FIXME!
     // for NICOLA thumb shift key
     if (typingMethod() == TypingMethod::NICOLA && isNicolaThumbShiftKey(key)) {
-        if (processKeyEventInput(key))
+        if (processKeyEventInput(key)) {
             return true;
+        }
     }
 
     // lookup user defined key bindings
-    if (processKeyEventLookupKeybind(key))
+    if (processKeyEventLookupKeybind(key)) {
         return true;
+    }
 
     if (key.rawKey().isDigit() && ic_->inputPanel().candidateList() &&
         ic_->inputPanel().candidateList()->size()) {
@@ -208,23 +222,23 @@ bool AnthyState::processKeyEvent(const fcitx::KeyEvent &key) {
     }
 
     // for Latin mode
-    if (preedit_.inputMode() == InputMode::LATIN)
+    if (preedit_.inputMode() == InputMode::LATIN) {
         return processKeyEventLatinMode(key);
+    }
 
     // for wide Latin mode
-    if (preedit_.inputMode() == InputMode::WIDE_LATIN)
+    if (preedit_.inputMode() == InputMode::WIDE_LATIN) {
         return processKeyEventWideLatinMode(key);
+    }
 
     // for other mode
     if (typingMethod() != TypingMethod::NICOLA || !isNicolaThumbShiftKey(key)) {
-        if (processKeyEventInput(key))
+        if (processKeyEventInput(key)) {
             return true;
+        }
     }
 
-    if (preedit_.isPreediting())
-        return true;
-    else
-        return false;
+    return preedit_.isPreediting();
 }
 
 void AnthyState::movePreeditCaret(unsigned int pos) {
@@ -234,8 +248,9 @@ void AnthyState::movePreeditCaret(unsigned int pos) {
 }
 
 void AnthyState::selectCandidateNoDirect(unsigned int item) {
-    if (preedit_.isPredicting() && !preedit_.isConverting())
+    if (preedit_.isPredicting() && !preedit_.isConverting()) {
         action_predict();
+    }
 
     // update lookup table
     cursorPos_ = item;
@@ -247,8 +262,9 @@ void AnthyState::selectCandidateNoDirect(unsigned int item) {
     setLookupTable();
 
     // update aux string
-    if (*config().general->showCandidatesLabel)
+    if (*config().general->showCandidatesLabel) {
         setAuxString();
+    }
 }
 
 void AnthyState::selectCandidate(unsigned int item) {
@@ -287,10 +303,11 @@ void AnthyState::updateUI() {
 
 void AnthyState::setAuxString() {
     if (!ic_->inputPanel().candidateList() ||
-        !ic_->inputPanel().candidateList()->size())
+        !ic_->inputPanel().candidateList()->size()) {
         return;
+    }
 
-    if (auto bulk = ic_->inputPanel().candidateList()->toBulk()) {
+    if (auto *bulk = ic_->inputPanel().candidateList()->toBulk()) {
         char buf[256];
         sprintf(buf, _("(%d / %d)"), cursorPos_ + 1, bulk->totalSize());
         updateAuxString(buf);
@@ -303,8 +320,9 @@ std::shared_ptr<fcitx::CandidateList> AnthyState::setLookupTable() {
     if (isRealtimeConversion() && preedit_.selectedSegment() < 0) {
         // select latest segment
         int n = preedit_.nrSegments();
-        if (n < 1)
+        if (n < 1) {
             return 0;
+        }
         preedit_.selectSegment(n - 1);
     }
 
@@ -444,8 +462,9 @@ bool AnthyState::isSelectingCandidates() {
 void AnthyState::deactivate() {}
 
 bool AnthyState::action_convert() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
+    }
 
     if (!preedit_.isConverting()) {
         // show conversion string
@@ -461,14 +480,17 @@ bool AnthyState::action_convert() {
 }
 
 bool AnthyState::action_predict() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
+    }
 
-    if (preedit_.isConverting())
+    if (preedit_.isConverting()) {
         return false;
+    }
 
-    if (!preedit_.isPredicting())
+    if (!preedit_.isPredicting()) {
         preedit_.predict();
+    }
 
     preedit_.selectCandidate(0);
     setPreedition();
@@ -487,8 +509,9 @@ bool AnthyState::action_revert() {
         return true;
     }
 
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
+    }
 
     if (!preedit_.isConverting()) {
         reset();
@@ -507,26 +530,31 @@ bool AnthyState::action_revert() {
 }
 
 bool AnthyState::action_cancel_all() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
+    }
 
     reset();
     return true;
 }
 
 bool AnthyState::action_commit(bool learn, bool do_real_commit) {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
+    }
 
     if (preedit_.isConverting()) {
-        if (do_real_commit)
+        if (do_real_commit) {
             commitString(preedit_.string());
-        if (learn)
+        }
+        if (learn) {
             preedit_.commit();
+        }
     } else {
         preedit_.finish();
-        if (do_real_commit)
+        if (do_real_commit) {
             commitString(preedit_.string());
+        }
     }
 
     reset();
@@ -543,13 +571,15 @@ bool AnthyState::action_commit_reverse_preference() {
 }
 
 bool AnthyState::action_back() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
+    }
 
     if (preedit_.isConverting()) {
         action_revert();
-        if (!isRealtimeConversion())
+        if (!isRealtimeConversion()) {
             return true;
+        }
     }
 
     preedit_.erase();
@@ -568,13 +598,15 @@ bool AnthyState::action_back() {
 }
 
 bool AnthyState::action_delete() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
+    }
 
     if (preedit_.isConverting()) {
         action_revert();
-        if (!isRealtimeConversion())
+        if (!isRealtimeConversion()) {
             return true;
+        }
     }
 
     preedit_.erase(false);
@@ -594,20 +626,19 @@ bool AnthyState::action_delete() {
 
 bool AnthyState::action_insert_space() {
     std::string str;
-    bool is_wide = false, retval = false;
+    bool is_wide = false;
+    bool retval = false;
 
     if (preedit_.isPreediting() &&
-        !*config().general->romajiPseudoAsciiBlankBehavior)
+        !*config().general->romajiPseudoAsciiBlankBehavior) {
         return false;
+    }
 
     if (*config().general->spaceType == SpaceType::FOLLOWMODE) {
-        InputMode mode = inputMode();
-        if (mode == InputMode::LATIN || mode == InputMode::HALF_KATAKANA ||
-            preedit_.isPseudoAsciiMode()) {
-            is_wide = false;
-        } else {
-            is_wide = true;
-        }
+        const InputMode mode = inputMode();
+        is_wide =
+            (mode != InputMode::LATIN && mode != InputMode::HALF_KATAKANA &&
+             !preedit_.isPseudoAsciiMode());
     } else if (*config().general->spaceType == SpaceType::WIDE) {
         is_wide = true;
     }
@@ -641,16 +672,14 @@ bool AnthyState::action_insert_space() {
 bool AnthyState::action_insert_alternative_space() {
     bool is_wide = false;
 
-    if (preedit_.isPreediting())
+    if (preedit_.isPreediting()) {
         return false;
+    }
 
     if (*config().general->spaceType == SpaceType::FOLLOWMODE) {
-        InputMode mode = inputMode();
-        if (mode == InputMode::LATIN || mode == InputMode::HALF_KATAKANA) {
-            is_wide = true;
-        } else {
-            is_wide = false;
-        }
+        const InputMode mode = inputMode();
+        is_wide =
+            (mode == InputMode::LATIN || mode == InputMode::HALF_KATAKANA);
     } else if (*config().general->spaceType != SpaceType::WIDE) {
         is_wide = true;
     }
@@ -658,10 +687,11 @@ bool AnthyState::action_insert_alternative_space() {
     if (is_wide) {
         commitString("\xE3\x80\x80");
         return true;
-    } else if (typingMethod() == TypingMethod::NICOLA || // FIXME! it's a ad-hoc
-                                                         // solution.
-               (lastKey_.sym() != FcitxKey_space &&
-                lastKey_.sym() != FcitxKey_KP_Space)) {
+    }
+    if (typingMethod() == TypingMethod::NICOLA || // FIXME! it's a ad-hoc
+                                                  // solution.
+        (lastKey_.sym() != FcitxKey_space &&
+         lastKey_.sym() != FcitxKey_KP_Space)) {
         commitString(" ");
         return true;
     }
@@ -670,8 +700,9 @@ bool AnthyState::action_insert_alternative_space() {
 }
 
 bool AnthyState::action_insert_half_space() {
-    if (preedit_.isPreediting())
+    if (preedit_.isPreediting()) {
         return false;
+    }
 
     if (lastKey_.sym() != FcitxKey_space &&
         lastKey_.sym() != FcitxKey_KP_Space) {
@@ -683,8 +714,9 @@ bool AnthyState::action_insert_half_space() {
 }
 
 bool AnthyState::action_insert_wide_space() {
-    if (preedit_.isPreediting())
+    if (preedit_.isPreediting()) {
         return false;
+    }
 
     commitString("\xE3\x80\x80");
 
@@ -692,10 +724,12 @@ bool AnthyState::action_insert_wide_space() {
 }
 
 bool AnthyState::action_move_caret_backward() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
-    if (preedit_.isConverting())
+    }
+    if (preedit_.isConverting()) {
         return false;
+    }
 
     preedit_.moveCaret(-1);
     setPreedition();
@@ -704,10 +738,12 @@ bool AnthyState::action_move_caret_backward() {
 }
 
 bool AnthyState::action_move_caret_forward() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
-    if (preedit_.isConverting())
+    }
+    if (preedit_.isConverting()) {
         return false;
+    }
 
     preedit_.moveCaret(1);
     setPreedition();
@@ -716,10 +752,12 @@ bool AnthyState::action_move_caret_forward() {
 }
 
 bool AnthyState::action_move_caret_first() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
-    if (preedit_.isConverting())
+    }
+    if (preedit_.isConverting()) {
         return false;
+    }
 
     preedit_.setCaretPosByChar(0);
     setPreedition();
@@ -728,10 +766,12 @@ bool AnthyState::action_move_caret_first() {
 }
 
 bool AnthyState::action_move_caret_last() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
-    if (preedit_.isConverting())
+    }
+    if (preedit_.isConverting()) {
         return false;
+    }
 
     preedit_.setCaretPosByChar(preedit_.utf8Length());
     setPreedition();
@@ -740,16 +780,18 @@ bool AnthyState::action_move_caret_last() {
 }
 
 bool AnthyState::action_select_prev_segment() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
+    }
 
     unsetLookupTable();
 
     int idx = preedit_.selectedSegment();
     if (idx - 1 < 0) {
         int n = preedit_.nrSegments();
-        if (n <= 0)
+        if (n <= 0) {
             return false;
+        }
         preedit_.selectSegment(n - 1);
     } else {
         preedit_.selectSegment(idx - 1);
@@ -760,8 +802,9 @@ bool AnthyState::action_select_prev_segment() {
 }
 
 bool AnthyState::action_select_next_segment() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
+    }
 
     unsetLookupTable();
 
@@ -770,12 +813,14 @@ bool AnthyState::action_select_next_segment() {
         preedit_.selectSegment(0);
     } else {
         int n = preedit_.nrSegments();
-        if (n <= 0)
+        if (n <= 0) {
             return false;
-        if (idx + 1 >= n)
+        }
+        if (idx + 1 >= n) {
             preedit_.selectSegment(0);
-        else
+        } else {
             preedit_.selectSegment(idx + 1);
+        }
     }
     setPreedition();
 
@@ -783,8 +828,9 @@ bool AnthyState::action_select_next_segment() {
 }
 
 bool AnthyState::action_select_first_segment() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
+    }
 
     unsetLookupTable();
 
@@ -795,12 +841,14 @@ bool AnthyState::action_select_first_segment() {
 }
 
 bool AnthyState::action_select_last_segment() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
+    }
 
     int n = preedit_.nrSegments();
-    if (n <= 0)
+    if (n <= 0) {
         return false;
+    }
 
     unsetLookupTable();
 
@@ -811,8 +859,9 @@ bool AnthyState::action_select_last_segment() {
 }
 
 bool AnthyState::action_shrink_segment() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
+    }
 
     unsetLookupTable();
 
@@ -823,8 +872,9 @@ bool AnthyState::action_shrink_segment() {
 }
 
 bool AnthyState::action_expand_segment() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
+    }
 
     unsetLookupTable();
 
@@ -838,18 +888,18 @@ bool AnthyState::action_commit_first_segment() {
     if (!preedit_.isConverting()) {
         if (preedit_.isPreediting()) {
             return action_commit(*config().general->learnOnManualCommit);
-        } else {
-            return false;
         }
+        return false;
     }
 
     unsetLookupTable();
 
     commitString(preedit_.segmentString(0));
-    if (*config().general->learnOnManualCommit)
+    if (*config().general->learnOnManualCommit) {
         preedit_.commit(0);
-    else
+    } else {
         preedit_.clear(0);
+    }
 
     setPreedition();
 
@@ -860,19 +910,20 @@ bool AnthyState::action_commit_selected_segment() {
     if (!preedit_.isConverting()) {
         if (preedit_.isPreediting()) {
             return action_commit(*config().general->learnOnManualCommit);
-        } else {
-            return false;
         }
+        return false;
     }
 
     unsetLookupTable();
 
-    for (int i = 0; i <= preedit_.selectedSegment(); i++)
+    for (int i = 0; i <= preedit_.selectedSegment(); i++) {
         commitString(preedit_.segmentString(i));
-    if (*config().general->learnOnManualCommit)
+    }
+    if (*config().general->learnOnManualCommit) {
         preedit_.commit(preedit_.selectedSegment());
-    else
+    } else {
         preedit_.clear(preedit_.selectedSegment());
+    }
 
     setPreedition();
 
@@ -883,18 +934,18 @@ bool AnthyState::action_commit_first_segment_reverse_preference() {
     if (!preedit_.isConverting()) {
         if (preedit_.isPreediting()) {
             return action_commit(!*config().general->learnOnManualCommit);
-        } else {
-            return false;
         }
+        return false;
     }
 
     unsetLookupTable();
 
     commitString(preedit_.segmentString(0));
-    if (!*config().general->learnOnManualCommit)
+    if (!*config().general->learnOnManualCommit) {
         preedit_.commit(0);
-    else
+    } else {
         preedit_.clear(0);
+    }
 
     setPreedition();
 
@@ -905,19 +956,20 @@ bool AnthyState::action_commit_selected_segment_reverse_preference() {
     if (!preedit_.isConverting()) {
         if (preedit_.isPreediting()) {
             return action_commit(!*config().general->learnOnManualCommit);
-        } else {
-            return false;
         }
+        return false;
     }
 
     unsetLookupTable();
 
-    for (int i = 0; i <= preedit_.selectedSegment(); i++)
+    for (int i = 0; i <= preedit_.selectedSegment(); i++) {
         commitString(preedit_.segmentString(i));
-    if (!*config().general->learnOnManualCommit)
+    }
+    if (!*config().general->learnOnManualCommit) {
         preedit_.commit(preedit_.selectedSegment());
-    else
+    } else {
         preedit_.clear(preedit_.selectedSegment());
+    }
 
     setPreedition();
 
@@ -925,8 +977,9 @@ bool AnthyState::action_commit_selected_segment_reverse_preference() {
 }
 
 bool AnthyState::action_select_next_candidate() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
+    }
 
     // if (!is_selecting_candidates ())
     auto candList = setLookupTable();
@@ -938,8 +991,9 @@ bool AnthyState::action_select_next_candidate() {
 }
 
 bool AnthyState::action_select_prev_candidate() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
+    }
     // if (!is_selecting_candidates ())
     auto candList = setLookupTable();
     nConvKeyPressed_++;
@@ -951,10 +1005,12 @@ bool AnthyState::action_select_prev_candidate() {
 }
 
 bool AnthyState::action_select_first_candidate() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
-    if (!isSelectingCandidates())
+    }
+    if (!isSelectingCandidates()) {
         return false;
+    }
 
     cursorPos_ = 0;
     nConvKeyPressed_++;
@@ -963,14 +1019,15 @@ bool AnthyState::action_select_first_candidate() {
 }
 
 bool AnthyState::action_select_last_candidate() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
-    if (!isSelectingCandidates())
+    }
+    if (!isSelectingCandidates()) {
         return false;
+    }
 
     int end = ic_->inputPanel().candidateList()->toBulk()->totalSize() - 1;
-    if (end < 0)
-        end = 0;
+    end = std::max(end, 0);
     cursorPos_ = end;
     nConvKeyPressed_++;
     selectCandidateNoDirect(cursorPos_);
@@ -978,14 +1035,17 @@ bool AnthyState::action_select_last_candidate() {
 }
 
 bool AnthyState::action_candidates_page_up() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
-    if (!isSelectingCandidates())
+    }
+    if (!isSelectingCandidates()) {
         return false;
-    if (!lookupTableVisible_)
+    }
+    if (!lookupTableVisible_) {
         return false;
+    }
 
-    if (auto pageable = ic_->inputPanel().candidateList()->toPageable();
+    if (auto *pageable = ic_->inputPanel().candidateList()->toPageable();
         pageable && pageable->hasPrev()) {
         pageable->prev();
     }
@@ -994,14 +1054,17 @@ bool AnthyState::action_candidates_page_up() {
 }
 
 bool AnthyState::action_candidates_page_down() {
-    if (!preedit_.isConverting())
+    if (!preedit_.isConverting()) {
         return false;
-    if (!isSelectingCandidates())
+    }
+    if (!isSelectingCandidates()) {
         return false;
-    if (!lookupTableVisible_)
+    }
+    if (!lookupTableVisible_) {
         return false;
+    }
 
-    if (auto pageable = ic_->inputPanel().candidateList()->toPageable();
+    if (auto *pageable = ic_->inputPanel().candidateList()->toPageable();
         pageable && pageable->hasNext()) {
         pageable->next();
     }
@@ -1011,15 +1074,17 @@ bool AnthyState::action_candidates_page_down() {
 
 bool AnthyState::actionSelectCandidate(unsigned int i) {
     // FIXME! m_lookup_table_visible should be set as true also on predicting
-    if (!lookupTableVisible_ && !preedit_.isPredicting())
+    if (!lookupTableVisible_ && !preedit_.isPredicting()) {
         return false;
+    }
 
     if (preedit_.isPredicting() && !preedit_.isConverting() &&
         *config().general->useDirectKeyOnPredict) {
         ic_->inputPanel().setCandidateList(preedit_.candidates());
         selectCandidate(i);
         return true;
-    } else if (preedit_.isConverting() && isSelectingCandidates()) {
+    }
+    if (preedit_.isConverting() && isSelectingCandidates()) {
         selectCandidate(i);
         return true;
     }
@@ -1120,10 +1185,12 @@ bool AnthyState::action_half_katakana_mode() {
 }
 
 bool AnthyState::action_cancel_pseudo_ascii_mode() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
-    if (!preedit_.isPseudoAsciiMode())
+    }
+    if (!preedit_.isPseudoAsciiMode()) {
         return false;
+    }
 
     preedit_.resetPseudoAsciiMode();
 
@@ -1131,11 +1198,13 @@ bool AnthyState::action_cancel_pseudo_ascii_mode() {
 }
 
 bool AnthyState::convertKana(CandidateType type) {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
+    }
 
-    if (preedit_.isReconverting())
+    if (preedit_.isReconverting()) {
         return false;
+    }
 
     unsetLookupTable();
 
@@ -1183,8 +1252,9 @@ bool AnthyState::action_convert_to_wide_latin() {
 }
 
 bool AnthyState::action_convert_char_type_forward() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
+    }
 
     unsetLookupTable();
 
@@ -1228,8 +1298,9 @@ bool AnthyState::action_convert_char_type_forward() {
 }
 
 bool AnthyState::action_convert_char_type_backward() {
-    if (!preedit_.isPreediting())
+    if (!preedit_.isPreediting()) {
         return false;
+    }
 
     unsetLookupTable();
 
@@ -1273,8 +1344,9 @@ bool AnthyState::action_convert_char_type_backward() {
 }
 
 bool AnthyState::action_reconvert() {
-    if (preedit_.isPreediting())
+    if (preedit_.isPreediting()) {
         return false;
+    }
 
     if (!ic_->capabilityFlags().test(fcitx::CapabilityFlag::SurroundingText)) {
         return true;
@@ -1327,13 +1399,13 @@ bool AnthyState::action_reconvert() {
     return true;
 }
 
-bool AnthyState::action_add_word() {
+bool AnthyState::action_add_word() const {
     util::launch_program(*config().command->addWordCommand);
 
     return true;
 }
 
-bool AnthyState::action_launch_dict_admin_tool() {
+bool AnthyState::action_launch_dict_admin_tool() const {
     util::launch_program(*config().command->dictAdminCommand);
 
     return true;
@@ -1357,13 +1429,14 @@ bool AnthyState::isRealtimeConversion() {
         engine_->conversionMode() == ConversionMode::SINGLE_SEGMENT_IMMEDIATE);
 }
 
-int AnthyState::pseudoAsciiMode() {
+int AnthyState::pseudoAsciiMode() const {
     int retval = 0;
     TypingMethod m = typingMethod();
 
     if (m == TypingMethod::ROMAJI) {
-        if (*config().general->romajiPseudoAsciiMode)
+        if (*config().general->romajiPseudoAsciiMode) {
             retval |= FCITX_ANTHY_PSEUDO_ASCII_TRIGGERED_CAPITALIZED;
+        }
     }
 
     return retval;
@@ -1391,12 +1464,12 @@ void AnthyState::commitString(const std::string &str) {
     }
 
 void AnthyState::copyTo(fcitx::InputContextProperty *property) {
-    AnthyState *other = static_cast<AnthyState *>(property);
+    auto *other = static_cast<AnthyState *>(property);
     other->setInputMode(inputMode());
 }
 
 void AnthyState::configure() {
-    auto keyProfile = engine_->keyProfile();
+    auto *keyProfile = engine_->keyProfile();
 
     // clear old actions
     actions_.clear();
@@ -1408,9 +1481,8 @@ void AnthyState::configure() {
             hk = &keyProfile->hk_##KEY;                                        \
         } else                                                                 \
             hk = &*config().key->hk_##KEY;                                     \
-        PMF f;                                                                 \
-        f = &AnthyState::func;                                                 \
-        actions_.emplace_back(name, *hk, f);                                   \
+        actions_.emplace_back(name, *hk,                                       \
+                              std::bind_front(&AnthyState::func, this));       \
     }
 #include "action_defs.h"
 #undef FOREACH_ACTION
@@ -1435,10 +1507,11 @@ void AnthyState::updateAuxString(const std::string &str) {
 }
 
 void AnthyState::resetCursor(int cursor) {
-    if (cursor >= 0)
+    if (cursor >= 0) {
         cursorPos_ = cursor;
-    else
+    } else {
         cursor = 0;
+    }
 }
 
 void AnthyState::autoCommit(fcitx::InputContextEvent &event) {

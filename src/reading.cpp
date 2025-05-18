@@ -33,12 +33,11 @@ static std::string_view find_romaji(std::string_view c) {
     return {};
 }
 
-static void to_half(std::string &dest, std::string &src) {
+static void to_half(std::string &dest, std::string_view src) {
     const auto &table = fcitx_anthy_wide_table;
 
-    for (unsigned int i = 0; i < fcitx::utf8::length(src); i++) {
+    for (auto kana : fcitx::utf8::MakeUTF8StringViewRange(src)) {
         bool found = false;
-        std::string kana = util::utf8_string_substr(src, i, 1);
         for (const auto &item : table) {
             if (kana == item.wide) {
                 dest += item.code;
@@ -63,8 +62,7 @@ void ReadingSegment::split(ReadingSegments &segments) {
     to_half(half, kana);
     bool same_with_raw = half == raw;
 
-    for (unsigned int i = 0; i < fcitx::utf8::length(kana); i++) {
-        std::string c = util::utf8_string_substr(kana, i, 1);
+    for (auto c : fcitx::utf8::MakeUTF8StringViewRange(kana)) {
         ReadingSegment seg;
         seg.kana = c;
         if (same_with_raw) {

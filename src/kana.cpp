@@ -154,7 +154,7 @@ bool KanaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
     return append(raw, result, pending);
 }
 
-bool KanaConvertor::append(const std::string &raw, std::string &result,
+bool KanaConvertor::append(std::string_view raw, std::string &result,
                            std::string & /*pending*/) {
     result = raw;
     pending_ = std::string();

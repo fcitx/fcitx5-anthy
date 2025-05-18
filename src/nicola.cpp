@@ -24,6 +24,7 @@
 #include <fcitx-utils/log.h>
 #include <fcitx/event.h>
 #include <string>
+#include <string_view>
 #include <vector>
 
 void NicolaTimeoutFunc(void *arg) {
@@ -381,7 +382,7 @@ bool NicolaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
     return handleVoicedConsonant(result, pending);
 }
 
-bool NicolaConvertor::append(const std::string &raw, std::string &result,
+bool NicolaConvertor::append(std::string_view raw, std::string &result,
                              std::string & /*pending*/) {
     result = raw;
     pending_ = std::string();

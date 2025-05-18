@@ -10,6 +10,7 @@
 
 #include <array>
 #include <string_view>
+
 struct ConvRule {
     std::string_view string;
     std::string_view result;
@@ -17,9 +18,9 @@ struct ConvRule {
 };
 
 struct HiraganaKatakanaRule {
-    const char *hiragana;
-    const char *katakana;
-    const char *half_katakana;
+    std::string_view hiragana;
+    std::string_view katakana;
+    std::string_view half_katakana;
 };
 
 struct WideRule {
@@ -29,7 +30,7 @@ struct WideRule {
 
 struct KeyCodeToCharRule {
     unsigned int code;
-    const char *kana;
+    std::string_view kana;
 };
 
 struct VoicedConsonantRule {
@@ -39,10 +40,10 @@ struct VoicedConsonantRule {
 };
 
 struct NicolaRule {
-    const char *key;
-    const char *single;
-    const char *left_shift;
-    const char *right_shift;
+    std::string_view key;
+    std::string_view single;
+    std::string_view left_shift;
+    std::string_view right_shift;
 };
 
 // fundamental table
@@ -97,10 +98,10 @@ extern const std::array<VoicedConsonantRule, 20>
     fcitx_anthy_voiced_consonant_table;
 
 // key code
-extern KeyCodeToCharRule fcitx_anthy_keypad_table[];
-extern KeyCodeToCharRule fcitx_anthy_kana_table[];
+extern const std::array<KeyCodeToCharRule, 17> fcitx_anthy_keypad_table;
+extern const std::array<KeyCodeToCharRule, 69> fcitx_anthy_kana_table;
 
 // nicola
-extern NicolaRule fcitx_anthy_nicola_table[];
+extern const std::array<NicolaRule, 102> fcitx_anthy_nicola_table;
 
 #endif // _FCITX5_ANTHY_DEFAULT_TABLES_H_

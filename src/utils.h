@@ -22,7 +22,7 @@ std::string utf8_string_substr(const std::string &s, size_t start, size_t len);
 
 bool match_key_event(const fcitx::KeyList &list, const fcitx::Key &key,
                      fcitx::KeyStates ignore_mask = fcitx::KeyStates());
-std::string convert_to_wide(const std::string &str);
+std::string convert_to_wide(std::string_view str);
 std::string convert_to_half(const std::string &str);
 std::string convert_to_katakana(const std::string &hira, bool half = false);
 

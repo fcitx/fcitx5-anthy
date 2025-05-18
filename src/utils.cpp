@@ -41,7 +41,7 @@ bool util::match_key_event(const fcitx::KeyList &list, const fcitx::Key &key,
     return normKey.checkKeyList(list);
 }
 
-std::string util::convert_to_wide(const std::string &str) {
+std::string util::convert_to_wide(std::string_view str) {
     std::string wide;
     for (const auto c : str) {
         char cc[2];
@@ -66,8 +66,7 @@ std::string util::convert_to_wide(const std::string &str) {
 
 std::string util::convert_to_half(const std::string &str) {
     std::string half;
-    for (unsigned int i = 0; i < fcitx::utf8::length(str); i++) {
-        std::string wide = util::utf8_string_substr(str, i, 1);
+    for (auto wide : fcitx::utf8::MakeUTF8StringViewRange(str)) {
         bool found = false;
 
         for (const auto &item : fcitx_anthy_wide_table) {

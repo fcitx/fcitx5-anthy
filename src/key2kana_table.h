@@ -68,7 +68,7 @@ class Key2KanaTable {
 public:
     Key2KanaTable(std::string name);
     Key2KanaTable(std::string name, std::span<const ConvRule> table);
-    Key2KanaTable(std::string name, NicolaRule *table);
+    Key2KanaTable(std::string name, std::span<const NicolaRule> table);
 
     Key2KanaTable(std::string_view section, const StyleFile &styleFile);
 

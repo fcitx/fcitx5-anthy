@@ -84,48 +84,31 @@ bool KanaConvertor::canAppend(const fcitx::KeyEvent &key,
     }
 
     auto sym = key.rawKey().sym();
-    if (sym == FcitxKey_overline ||
-        (sym >= FcitxKey_kana_fullstop && sym <= FcitxKey_semivoicedsound)) {
-        return true;
-    }
-
-#if 0
-    if (key.code == SCIM_KEY_KP_Equal ||
-        (key.code >= SCIM_KEY_KP_Multiply &&
-         key.code <= SCIM_KEY_KP_9))
-    {
-        return true;
-    }
-#endif
-
-    return false;
+    return sym == FcitxKey_overline ||
+           (sym >= FcitxKey_kana_fullstop && sym <= FcitxKey_semivoicedsound);
 }
 
 bool KanaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
                            std::string &pending, std::string &raw) {
-    KeyCodeToCharRule *table = fcitx_anthy_keypad_table;
-
     auto sym = key.rawKey().sym();
     // handle keypad code
     if (sym == FcitxKey_KP_Equal ||
         (sym >= FcitxKey_KP_Multiply && sym <= FcitxKey_KP_9)) {
         TenKeyType ten_key_type = *config().general->tenKeyType;
 
-        for (unsigned int i = 0; table[i].code; i++) {
-            if (table[i].code == sym) {
+        for (const auto &item : fcitx_anthy_keypad_table) {
+            if (item.code == sym) {
                 if (ten_key_type == TenKeyType::WIDE) {
-                    result = util::convert_to_wide(table[i].kana);
+                    result = util::convert_to_wide(item.kana);
                 } else {
-                    result = table[i].kana;
+                    result = item.kana;
                 }
-                raw = table[i].kana;
+                raw = item.kana;
 
                 return false;
             }
         }
     }
-
-    table = fcitx_anthy_kana_table;
 
     // handle voiced sound
     if (sym == FcitxKey_voicedsound && !pending_.empty() &&
@@ -146,16 +129,16 @@ bool KanaConvertor::append(const fcitx::KeyEvent &key, std::string &result,
     }
 
     // kana key code
-    for (unsigned int i = 0; table[i].code; i++) {
-        if (table[i].code == sym) {
+    for (const auto &item : fcitx_anthy_kana_table) {
+        if (item.code == sym) {
             bool retval = !pending_.empty();
 
-            if (has_voiced_consonant(table[i].kana)) {
+            if (has_voiced_consonant(item.kana)) {
                 result = std::string();
-                pending = table[i].kana;
-                pending_ = table[i].kana;
+                pending = item.kana;
+                pending_ = item.kana;
             } else {
-                result = table[i].kana;
+                result = item.kana;
                 pending_ = std::string();
             }
             raw = util::get_ascii_code(key);
@@ -188,7 +171,7 @@ std::string KanaConvertor::pending() const { return pending_; }
 std::string KanaConvertor::flushPending() { return std::string(); }
 
 void KanaConvertor::resetPending(const std::string &result,
-                                 const std::string &) {
+                                 const std::string & /*raw*/) {
     pending_ = std::string();
     if (has_voiced_consonant(result)) {
         pending_ = result;

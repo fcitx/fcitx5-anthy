@@ -4,15 +4,15 @@
 #
 # Translators:
 # csslayer <wengxt@gmail.com>, 2017
-# Dmitry <dmitrydmitry761@gmail.com>, 2024
+# Dmitry <dmitrydmitry761@gmail.com>, 2025
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2025-05-18 20:24+0000\n"
+"POT-Creation-Date: 2025-05-19 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2024\n"
+"Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2025\n"
 "Language-Team: Russian (https://app.transifex.com/fcitx/teams/12005/ru/)\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "BackSpace"
 
 #: src/config.h:215
 msgid "Behavior on a comma or a period"
-msgstr ""
+msgstr "Поведение в отношении запятой или точки"
 
 #: src/config.h:448
 msgid "Cancel"
@@ -413,7 +413,7 @@ msgstr "Nicola-J"
 
 #: src/config.h:88
 msgid "None"
-msgstr ""
+msgstr "Нет"
 
 #: src/config.h:20
 msgid "Not Set"

@@ -4,16 +4,16 @@
 #
 # Translators:
 # Mingcong Bai <jeffbai@aosc.xyz>, 2018
-# csslayer <wengxt@gmail.com>, 2023
 # Yiyu Liu, 2023
+# csslayer <wengxt@gmail.com>, 2025
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2025-05-18 20:24+0000\n"
+"POT-Creation-Date: 2025-05-24 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: Yiyu Liu, 2023\n"
+"Last-Translator: csslayer <wengxt@gmail.com>, 2025\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/fcitx/teams/12005/"
 "zh_CN/)\n"
 "Language: zh_CN\n"
@@ -65,7 +65,7 @@ msgstr "退格"
 
 #: src/config.h:215
 msgid "Behavior on a comma or a period"
-msgstr ""
+msgstr "逗号和句号的行为"
 
 #: src/config.h:448
 msgid "Cancel"
@@ -413,7 +413,7 @@ msgstr "尼古拉-J"
 
 #: src/config.h:88
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: src/config.h:20
 msgid "Not Set"

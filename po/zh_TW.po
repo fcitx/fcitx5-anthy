@@ -7,16 +7,16 @@
 # 黃柏諺 <s8321414@gmail.com>, 2017
 # neko_0xff <zangmenhsu@yahoo.co.jp>, 2022
 # Haowei Hsu, 2023
-# Yiyu Liu, 2023
 # Kisaragi Hiu <flyingfeather1501@gmail.com>, 2024
+# Yiyu Liu, 2025
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2025-05-18 20:24+0000\n"
+"POT-Creation-Date: 2025-05-31 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
-"Last-Translator: Kisaragi Hiu <flyingfeather1501@gmail.com>, 2024\n"
+"Last-Translator: Yiyu Liu, 2025\n"
 "Language-Team: Chinese (Taiwan) (https://app.transifex.com/fcitx/teams/12005/"
 "zh_TW/)\n"
 "Language: zh_TW\n"
@@ -68,7 +68,7 @@ msgstr "倒退鍵"
 
 #: src/config.h:215
 msgid "Behavior on a comma or a period"
-msgstr ""
+msgstr "逗號和句號的行為"
 
 #: src/config.h:448
 msgid "Cancel"
@@ -416,7 +416,7 @@ msgstr "Nicola-J"
 
 #: src/config.h:88
 msgid "None"
-msgstr ""
+msgstr "無"
 
 #: src/config.h:20
 msgid "Not Set"

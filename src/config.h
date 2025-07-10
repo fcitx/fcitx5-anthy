@@ -70,9 +70,10 @@ enum class TypingMethod { ROMAJI, KANA, NICOLA };
 FCITX_CONFIG_ENUM_NAME_WITH_I18N(TypingMethod, N_("Romaji"), N_("Kana"),
                                  N_("Nicola"));
 
-enum class SpaceType { FOLLOWMODE, WIDE };
+enum class SpaceType { FOLLOWMODE, WIDE, HALF };
 
-FCITX_CONFIG_ENUM_NAME_WITH_I18N(SpaceType, N_("Follow mode"), N_("Wide"));
+FCITX_CONFIG_ENUM_NAME_WITH_I18N(SpaceType, N_("Follow mode"), N_("Wide"),
+                                 N_("Half"));
 
 enum class TenKeyType {
     WIDE,

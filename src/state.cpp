@@ -633,14 +633,24 @@ bool AnthyState::action_insert_space() {
         !*config().general->romajiPseudoAsciiBlankBehavior) {
         return false;
     }
-
-    if (*config().general->spaceType == SpaceType::FOLLOWMODE) {
+    // Determine whether to insert a wide space or half space based on
+    // configuration.
+    switch (*config().general->spaceType) {
+    case SpaceType::FOLLOWMODE: {
         const InputMode mode = inputMode();
+        // Insert wide space unless in LATIN, HALF_KATAKANA, or pseudo ASCII
+        // mode.
         is_wide =
             (mode != InputMode::LATIN && mode != InputMode::HALF_KATAKANA &&
              !preedit_.isPseudoAsciiMode());
-    } else if (*config().general->spaceType == SpaceType::WIDE) {
+        break;
+    }
+    case SpaceType::WIDE:
         is_wide = true;
+        break;
+    case SpaceType::HALF:
+        is_wide = false;
+        break;
     }
 
     if (is_wide) {

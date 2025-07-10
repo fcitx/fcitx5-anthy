@@ -19,8 +19,8 @@
 
 using namespace fcitx;
 
-void scheduleEvent(EventDispatcher *dispatcher, Instance *instance) {
-    dispatcher->schedule([instance]() {
+void setup(Instance *instance) {
+    instance->eventDispatcher().schedule([instance]() {
         auto *anthy = instance->addonManager().addon("anthy", true);
         FCITX_ASSERT(anthy);
 
@@ -29,6 +29,39 @@ void scheduleEvent(EventDispatcher *dispatcher, Instance *instance) {
         defaultGroup.inputMethodList().push_back(InputMethodGroupItem("anthy"));
         defaultGroup.setDefaultInputMethod("");
         instance->inputMethodManager().setGroup(defaultGroup);
+    });
+}
+
+void testSpace(Instance *instance) {
+    instance->eventDispatcher().schedule([instance]() {
+        auto *anthy = instance->addonManager().addon("anthy", true);
+        FCITX_ASSERT(anthy);
+        auto *testfrontend = instance->addonManager().addon("testfrontend");
+        auto uuid =
+            testfrontend->call<ITestFrontend::createInputContext>("testapp");
+        auto *ic = instance->inputContextManager().findByUUID(uuid);
+        FCITX_ASSERT(ic);
+
+        RawConfig config;
+        config.setValueByPath("General/SpaceType", "Wide");
+        anthy->setConfig(config);
+
+        testfrontend->call<ITestFrontend::pushCommitExpectation>("　");
+        FCITX_ASSERT(testfrontend->call<ITestFrontend::sendKeyEvent>(
+            uuid, Key("space"), false));
+
+        config.setValueByPath("General/SpaceType", "Half");
+        anthy->setConfig(config);
+
+        FCITX_ASSERT(!testfrontend->call<ITestFrontend::sendKeyEvent>(
+            uuid, Key("space"), false));
+    });
+}
+
+void testNicola(Instance *instance) {
+    instance->eventDispatcher().schedule([instance]() {
+        auto *anthy = instance->addonManager().addon("anthy", true);
+        FCITX_ASSERT(anthy);
         auto *testfrontend = instance->addonManager().addon("testfrontend");
         auto uuid =
             testfrontend->call<ITestFrontend::createInputContext>("testapp");
@@ -45,13 +78,11 @@ void scheduleEvent(EventDispatcher *dispatcher, Instance *instance) {
         testfrontend->call<ITestFrontend::keyEvent>(uuid, Key("a"), true);
         testfrontend->call<ITestFrontend::keyEvent>(uuid, Key("Muhenkan"),
                                                     true);
-
-        instance->exit();
     });
 }
 
 int main() {
-    setupTestingEnvironment(TESTING_BINARY_DIR, {TESTING_BINARY_DIR "/src"},
+    setupTestingEnvironment(TESTING_BINARY_DIR, {"bin"},
                             {TESTING_BINARY_DIR "/test"});
     // fcitx::Log::setLogRule("default=5,table=5,libime-table=5");
     char arg0[] = "testanthy";
@@ -61,9 +92,10 @@ int main() {
     fcitx::Log::setLogRule("default=5,anthy=5");
     Instance instance(FCITX_ARRAY_SIZE(argv), argv);
     instance.addonManager().registerDefaultLoader(nullptr);
-    EventDispatcher dispatcher;
-    dispatcher.attach(&instance.eventLoop());
-    scheduleEvent(&dispatcher, &instance);
+    setup(&instance);
+    testSpace(&instance);
+    testNicola(&instance);
+    instance.eventDispatcher().schedule([&instance]() { instance.exit(); });
     instance.exec();
 
     return 0;

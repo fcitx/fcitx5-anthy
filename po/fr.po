@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2025-09-11 20:24+0000\n"
+"POT-Creation-Date: 2025-09-12 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: Popolon_Github, 2025\n"
 "Language-Team: French (https://app.transifex.com/fcitx/teams/12005/fr/)\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: src/state.cpp:312
 #, c-format
 msgid "(%d / %d)"
-msgstr ""
+msgstr "(%d / %d)"
 
 #: src/config.h:279
 msgid "101kana"
@@ -39,7 +39,7 @@ msgstr "Ajouter un mot"
 
 #: src/config.h:222
 msgid "Allow split"
-msgstr ""
+msgstr "Permettre la division"
 
 #: src/anthy-addon.conf.in.in:2 src/anthy.conf.in:2
 msgid "Anthy"
@@ -63,7 +63,7 @@ msgstr ""
 
 #: src/config.h:216
 msgid "Behavior on a comma or a period"
-msgstr ""
+msgstr "Comportement avec une virgule ou un point"
 
 #: src/config.h:449
 msgid "Cancel"
@@ -75,7 +75,7 @@ msgstr "Tout annuler"
 
 #: src/config.h:381
 msgid "Cancel pseudo ascii mode"
-msgstr ""
+msgstr "Annuler le mode pseudo-ASCII"
 
 #: src/config.h:174
 msgid "Candidate List Layout"
@@ -95,19 +95,19 @@ msgstr "Canna"
 
 #: src/config.h:327
 msgid "Circle input mode"
-msgstr ""
+msgstr "Méthode de saisie Circle"
 
 #: src/config.h:333
 msgid "Circle kana mode"
-msgstr ""
+msgstr "Mode kana de Circle"
 
 #: src/config.h:339
 msgid "Circle latin and hiragana mode"
-msgstr ""
+msgstr "Mode latin et hiragana de Circle"
 
 #: src/config.h:345
 msgid "Circle typing method"
-msgstr ""
+msgstr "Méthode de frappe de Circle"
 
 #: src/config.h:677
 msgid "Command"
@@ -119,11 +119,11 @@ msgstr "Valider"
 
 #: src/config.h:430
 msgid "Commit Reverse Learn"
-msgstr ""
+msgstr "Apprentissage inverse lors de la validation"
 
 #: src/config.h:533
 msgid "Commit first segement reverse learn"
-msgstr ""
+msgstr "Apprentissage inverse lors de la validation du premier segment"
 
 #: src/config.h:521
 msgid "Commit first segment"
@@ -131,7 +131,7 @@ msgstr "Valider le premier segment"
 
 #: src/config.h:539
 msgid "Commit selected segement reverse learn"
-msgstr ""
+msgstr "Apprentissage inverse lors de la validation du segment sélectionné"
 
 #: src/config.h:527
 msgid "Commit selected segment"
@@ -171,19 +171,19 @@ msgstr "Convertir vers latin large"
 
 #: src/engine.cpp:84
 msgid "Convert as you type (Multi segment)"
-msgstr ""
+msgstr "Convertir durant la frappe (multi-segment)"
 
 #: src/engine.cpp:85
 msgid "Convert as you type (Single segment)"
-msgstr ""
+msgstr "Convertir durant la frappe (segment unique)"
 
 #: src/config.h:589
 msgid "Convert char type backward"
-msgstr ""
+msgstr "Convertir le type de caractère en arrière"
 
 #: src/config.h:583
 msgid "Convert char type forward"
-msgstr ""
+msgstr "Convertir le type de caractère en avant"
 
 #: src/config.h:47
 msgid "Corner bracket and Middle Dot"
@@ -195,11 +195,11 @@ msgstr ""
 
 #: src/config.h:253 src/config.h:268 src/config.h:281 src/config.h:297
 msgid "Custom"
-msgstr ""
+msgstr "Personnalisé"
 
 #: src/config.h:318
 msgid "Custom Kana Table"
-msgstr ""
+msgstr "Table kana personnalisée"
 
 #: src/config.h:314
 msgid "Custom Key Binding"
@@ -215,27 +215,27 @@ msgstr ""
 
 #: src/config.h:251 src/config.h:266 src/config.h:279 src/config.h:294
 msgid "Default"
-msgstr ""
+msgstr "Par défaut"
 
 #: src/config.h:417
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
 #: src/config.h:637 src/config.h:667
 msgid "Dict admin"
-msgstr ""
+msgstr "Admin de dict"
 
 #: src/engine.cpp:71
 msgid "Direct input"
-msgstr ""
+msgstr "Saisie directe"
 
 #: src/config.h:187
 msgid "Entering the pseudo ASCII input mode with capital letters"
-msgstr ""
+msgstr "Entrer dans le mode de saisie pseudo ASCII avec des lettres capitales"
 
 #: src/config.h:515
 msgid "Expand segment"
-msgstr ""
+msgstr "Étendre le segment"
 
 #: src/config.h:75 src/config.h:85
 msgid "Follow mode"
@@ -243,47 +243,47 @@ msgstr ""
 
 #: src/config.h:671
 msgid "General"
-msgstr ""
+msgstr "Général"
 
 #: src/config.h:76 src/config.h:84
 msgid "Half"
-msgstr ""
+msgstr "Demi"
 
 #: src/config.h:34
 msgid "Half Katakana"
-msgstr ""
+msgstr "Demi-katakana"
 
 #: src/config.h:375
 msgid "Half Katakana mode"
-msgstr ""
+msgstr "Mode demi-katakana"
 
 #: src/engine.cpp:70
 msgid "Half width katakana"
-msgstr ""
+msgstr "Katakana demi-largeur"
 
 #: src/config.h:33 src/engine.cpp:68
 msgid "Hiragana"
-msgstr ""
+msgstr "Hiragana"
 
 #: src/config.h:363
 msgid "Hiragana mode"
-msgstr ""
+msgstr "Mode hiragana"
 
 #: src/config.h:21
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 #: src/config.h:195
 msgid "Initial Input mode"
-msgstr ""
+msgstr "Mode de saisie initial"
 
 #: src/config.h:393
 msgid "Insert Alternative space"
-msgstr ""
+msgstr "Insérer un espace alternatif"
 
 #: src/config.h:399
 msgid "Insert Half Space"
-msgstr ""
+msgstr "Insérer un demi-espace"
 
 #: src/config.h:184
 msgid "Insert a blank with a blank key"
@@ -291,19 +291,19 @@ msgstr ""
 
 #: src/config.h:387
 msgid "Insert space"
-msgstr ""
+msgstr "Insérer un espace"
 
 #: src/config.h:405
 msgid "Insert wide space"
-msgstr ""
+msgstr "Insérer un espace large"
 
 #: src/config.h:673
 msgid "Interface"
-msgstr ""
+msgstr "Interface"
 
 #: src/config.h:45 src/config.h:53
 msgid "Japanese"
-msgstr ""
+msgstr "Japonais"
 
 #: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:8
 msgid "Japanese input method based on Anthy"
@@ -311,47 +311,47 @@ msgstr "Méthode de saisie du japonais basé sur Anthy"
 
 #: src/config.h:70 src/engine.cpp:77
 msgid "Kana"
-msgstr ""
+msgstr "Kana"
 
 #: src/config.h:309
 msgid "Kana Table"
-msgstr ""
+msgstr "Table kana"
 
 #: src/config.h:33 src/engine.cpp:69
 msgid "Katakana"
-msgstr ""
+msgstr "Katakana"
 
 #: src/config.h:369
 msgid "Katakana mode"
-msgstr ""
+msgstr "Mode katakana"
 
 #: src/config.h:676
 msgid "Key"
-msgstr ""
+msgstr "Touche"
 
 #: src/config.h:675
 msgid "Key Profile"
-msgstr ""
+msgstr "Profil de touche"
 
 #: src/config.h:303
 msgid "Key binding profile"
-msgstr ""
+msgstr "Profil d'assignation des touches"
 
 #: src/config.h:34 src/config.h:53
 msgid "Latin"
-msgstr ""
+msgstr "Latin"
 
 #: src/config.h:351
 msgid "Latin mode"
-msgstr ""
+msgstr "Mode latin"
 
 #: src/config.h:221
 msgid "Learn on auto commit"
-msgstr ""
+msgstr "Apprentissage pendant la validation automatique"
 
 #: src/config.h:219
 msgid "Learn on manual commit"
-msgstr ""
+msgstr "Apprentissage pendant la validation manuelle"
 
 #: src/config.h:649
 msgid "Left thumb key"
@@ -359,7 +359,7 @@ msgstr ""
 
 #: src/config.h:252 src/config.h:267
 msgid "MS IME"
-msgstr ""
+msgstr "MS IME"
 
 #: src/config.h:479
 msgid "Move caret backward"
@@ -379,43 +379,43 @@ msgstr ""
 
 #: src/config.h:63 src/engine.cpp:82
 msgid "Multi segment"
-msgstr ""
+msgstr "Mutli-segment"
 
 #: src/config.h:65
 msgid "Multi segment immediate"
-msgstr ""
+msgstr "Multi-segment immédiat"
 
 #: src/config.h:71 src/engine.cpp:78
 msgid "Nicola"
-msgstr ""
+msgstr "Nicola"
 
 #: src/config.h:311
 msgid "Nicola Table"
-msgstr ""
+msgstr "Table Nicola"
 
 #: src/config.h:661
 msgid "Nicola time"
-msgstr ""
+msgstr "Nicola time"
 
 #: src/config.h:294
 msgid "Nicola-A"
-msgstr ""
+msgstr "Nicola-A"
 
 #: src/config.h:295
 msgid "Nicola-F"
-msgstr ""
+msgstr "Nicola-F"
 
 #: src/config.h:295
 msgid "Nicola-J"
-msgstr ""
+msgstr "Nicola-J"
 
 #: src/config.h:89
 msgid "None"
-msgstr ""
+msgstr "Aucun"
 
 #: src/config.h:20
 msgid "Not Set"
-msgstr ""
+msgstr "Non définit"
 
 #: src/config.h:178
 msgid "Number of convert key presses to Show Candidate"
@@ -423,31 +423,31 @@ msgstr ""
 
 #: src/config.h:296
 msgid "Oasys100J"
-msgstr ""
+msgstr "Oasys100J"
 
 #: src/config.h:171
 msgid "Page size"
-msgstr ""
+msgstr "Taille de page"
 
 #: src/config.h:204
 msgid "Period style"
-msgstr ""
+msgstr "Style de point"
 
 #: src/config.h:443
 msgid "Predict"
-msgstr ""
+msgstr "Prédire"
 
 #: src/config.h:181
 msgid "Predict on input"
-msgstr ""
+msgstr "Prédire durant la saisie"
 
 #: src/config.h:281
 msgid "Quick Kana"
-msgstr ""
+msgstr "Quick Kana"
 
 #: src/config.h:631
 msgid "Reconvert"
-msgstr ""
+msgstr "Reconvertir"
 
 #: src/config.h:655
 msgid "Right thumb key"
@@ -455,59 +455,59 @@ msgstr ""
 
 #: src/config.h:659
 msgid "Ro key for kana layout"
-msgstr ""
+msgstr "Touche Ro pour la disposition kana"
 
 #: src/config.h:70 src/engine.cpp:76
 msgid "Romaji"
-msgstr ""
+msgstr "Rōmaji"
 
 #: src/config.h:306
 msgid "Romaji Table"
-msgstr ""
+msgstr "Table rōmaji"
 
 #: src/config.h:545
 msgid "Select first candidate"
-msgstr ""
+msgstr "Sélectionner la première proposition"
 
 #: src/config.h:485
 msgid "Select first segment"
-msgstr ""
+msgstr "Sélectionner le premier segment"
 
 #: src/config.h:551
 msgid "Select last candidate"
-msgstr ""
+msgstr "Sélectionner la dernière proposition"
 
 #: src/config.h:491
 msgid "Select last segment"
-msgstr ""
+msgstr "Sélectionner le dernier segment"
 
 #: src/config.h:557
 msgid "Select next candidate"
-msgstr ""
+msgstr "Sélectionner la proposition suivante"
 
 #: src/config.h:497
 msgid "Select next segment"
-msgstr ""
+msgstr "Sélectionner le segment suivant"
 
 #: src/config.h:565
 msgid "Select prev candidate"
-msgstr ""
+msgstr "Sélectionner la proposition précédente"
 
 #: src/config.h:503
 msgid "Select prev segment"
-msgstr ""
+msgstr "Sélectionner le segment précédent"
 
 #: src/config.h:227
 msgid "Show candidates label"
-msgstr ""
+msgstr "Montrer le label de la proposition"
 
 #: src/config.h:236
 msgid "Show conversion mode"
-msgstr ""
+msgstr "Afficher le mode de conversion"
 
 #: src/config.h:232
 msgid "Show input mode"
-msgstr ""
+msgstr "Afficher le mode de saisie"
 
 #: src/config.h:238
 msgid "Show period style"
@@ -515,31 +515,31 @@ msgstr ""
 
 #: src/config.h:240
 msgid "Show symbol style"
-msgstr ""
+msgstr "Afficher le style de symbole"
 
 #: src/config.h:234
 msgid "Show typing method"
-msgstr ""
+msgstr "Afficher la méthode de saisie"
 
 #: src/config.h:509
 msgid "Shrink segment"
-msgstr ""
+msgstr "Compresser le segment"
 
 #: src/config.h:64 src/engine.cpp:83
 msgid "Single segment"
-msgstr ""
+msgstr "Segment unique"
 
 #: src/config.h:66
 msgid "Single segment immediate"
-msgstr ""
+msgstr "Segment unique immédiat"
 
 #: src/config.h:210
 msgid "Space type"
-msgstr ""
+msgstr "Type d'espace"
 
 #: src/config.h:207
 msgid "Symbol style"
-msgstr ""
+msgstr "Type de symbole"
 
 #: src/config.h:212
 msgid "Ten key type"
@@ -551,47 +551,47 @@ msgstr ""
 
 #: src/config.h:296
 msgid "Tron Dvorak"
-msgstr ""
+msgstr "Tron Dvorak"
 
 #: src/config.h:297
 msgid "Tron Qwerty JP"
-msgstr ""
+msgstr "Tron Qwerty JP"
 
 #: src/config.h:197
 msgid "Typing method"
-msgstr ""
+msgstr "Méthode de frappe"
 
 #: src/config.h:225
 msgid "Use direct key on predict"
-msgstr ""
+msgstr "Utiliser la touche directement lors d'une prédiction"
 
 #: src/config.h:192
 msgid "Use half-width characters for numbers"
-msgstr ""
+msgstr "Utiliser des caractères demi-largeur pour les chiffres"
 
 #: src/config.h:189
 msgid "Use half-width characters for symbols"
-msgstr ""
+msgstr "Utiliser des caractères demi-largeur pour les symboles"
 
 #: src/config.h:21
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 #: src/config.h:252 src/config.h:268
 msgid "Vje Delta"
-msgstr ""
+msgstr "Vje Delta"
 
 #: src/config.h:253 src/config.h:268
 msgid "WNN"
-msgstr ""
+msgstr "WNN"
 
 #: src/config.h:75 src/config.h:84
 msgid "Wide"
-msgstr ""
+msgstr "Large"
 
 #: src/config.h:35
 msgid "Wide Latin"
-msgstr ""
+msgstr "Latin large"
 
 #: src/config.h:46
 msgid "Wide bracket and wide slash"
@@ -599,20 +599,20 @@ msgstr ""
 
 #: src/config.h:52 src/engine.cpp:72
 msgid "Wide latin"
-msgstr ""
+msgstr "Latin large"
 
 #: src/config.h:54
 msgid "Wide latin Japanese"
-msgstr ""
+msgstr "Japonais latin large"
 
 #: src/config.h:357
 msgid "Wide latin mode"
-msgstr ""
+msgstr "Mode latin large"
 
 #: src/config.h:280
 msgid "tsuki-2-203-101"
-msgstr ""
+msgstr "tsuki-2-203-101"
 
 #: src/config.h:280
 msgid "tsuki-2-203-106"
-msgstr ""
+msgstr "tsuki-2-203-106"

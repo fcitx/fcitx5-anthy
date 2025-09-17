@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-anthy\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2025-09-12 20:24+0000\n"
+"POT-Creation-Date: 2025-09-17 20:24+0000\n"
 "PO-Revision-Date: 2017-12-26 07:08+0000\n"
 "Last-Translator: Popolon_Github, 2025\n"
 "Language-Team: French (https://app.transifex.com/fcitx/teams/12005/fr/)\n"
@@ -59,7 +59,7 @@ msgstr "Azik"
 
 #: src/config.h:411
 msgid "BackSpace"
-msgstr ""
+msgstr "Retour arrière"
 
 #: src/config.h:216
 msgid "Behavior on a comma or a period"
@@ -203,15 +203,15 @@ msgstr "Table kana personnalisée"
 
 #: src/config.h:314
 msgid "Custom Key Binding"
-msgstr ""
+msgstr "Assignation de touches personnalisée"
 
 #: src/config.h:320
 msgid "Custom Nicola Table"
-msgstr ""
+msgstr "Table Nicola personnalisée"
 
 #: src/config.h:316
 msgid "Custom Romaji Table"
-msgstr ""
+msgstr "Table rōmaji personnalisée"
 
 #: src/config.h:251 src/config.h:266 src/config.h:279 src/config.h:294
 msgid "Default"
@@ -511,7 +511,7 @@ msgstr "Afficher le mode de saisie"
 
 #: src/config.h:238
 msgid "Show period style"
-msgstr ""
+msgstr "Montrer le style de point"
 
 #: src/config.h:240
 msgid "Show symbol style"
@@ -595,7 +595,7 @@ msgstr "Latin large"
 
 #: src/config.h:46
 msgid "Wide bracket and wide slash"
-msgstr ""
+msgstr "Crochet large et barre de division large"
 
 #: src/config.h:52 src/engine.cpp:72
 msgid "Wide latin"

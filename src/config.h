@@ -13,6 +13,7 @@
 #include <fcitx-utils/i18n.h>
 #include <fcitx-utils/key.h>
 #include <fcitx-utils/keysym.h>
+#include <fcitx-utils/misc.h>
 #include <fcitx/candidatelist.h>
 #include <string>
 
@@ -660,7 +661,7 @@ FCITX_CONFIGURATION(
     fcitx::Option<int, fcitx::IntConstrain> nicolaTime{
         this, "NicolaTime", _("Nicola time"), 200, {5, 1000}};);
 
-FCITX_CONFIGURATION(AnthyCommnadConfig,
+FCITX_CONFIGURATION(AnthyCommandConfig,
                     fcitx::Option<std::string> addWordCommand{
                         this, "AddWord", _("Add word"), "kasumi -a"};
                     fcitx::Option<std::string> dictAdminCommand{
@@ -674,6 +675,9 @@ FCITX_CONFIGURATION(
     fcitx::Option<AnthyKeyProfileConfig> keyProfile{this, "KeyProfile",
                                                     _("Key Profile")};
     fcitx::Option<AnthyKeyConfig> key{this, "Key", _("Key")};
-    fcitx::Option<AnthyCommnadConfig> command{this, "Command", _("Command")};);
+    fcitx::ConditionalHidden < fcitx::isAndroid() || fcitx::isApple() ||
+        fcitx::isEmscripten(),
+    fcitx::Option < AnthyCommandConfig >>
+        command{this, "Command", _("Command")};);
 
 #endif // _FCITX5_ANTHY_CONFIG_H_

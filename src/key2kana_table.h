@@ -75,6 +75,7 @@ public:
     FCITX_INLINE_DEFINE_DEFAULT_DTOR_AND_MOVE_WITHOUT_SPEC(Key2KanaTable)
 
     const Key2KanaRules &table() const { return rules_; }
+    const std::string &name() const { return name_; }
 
     void appendRule(std::string sequence, std::vector<std::string> result);
     void appendRule(std::string sequence, std::string result, std::string cont);

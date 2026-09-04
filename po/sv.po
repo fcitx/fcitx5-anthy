@@ -1,0 +1,617 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the fcitx5-anthy package.
+#
+# Translators:
+# Daniel Nylander <po@danielnylander.se>, 2026
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fcitx5-anthy\n"
+"Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
+"POT-Creation-Date: 2026-09-04 20:25+0000\n"
+"PO-Revision-Date: 2017-12-26 07:08+0000\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>, 2026\n"
+"Language-Team: Swedish (https://app.transifex.com/fcitx/teams/12005/sv/)\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/state.cpp:312
+#, c-format
+msgid "(%d / %d)"
+msgstr "(%d / %d)"
+
+#: src/config.h:21
+msgid "Not Set"
+msgstr "Inte inställt"
+
+#: src/config.h:22
+msgid "Vertical"
+msgstr "Vertikal"
+
+#: src/config.h:22
+msgid "Horizontal"
+msgstr "Horisontell"
+
+#: src/config.h:34 src/engine.cpp:68
+msgid "Hiragana"
+msgstr "Hiragana"
+
+#: src/config.h:34 src/engine.cpp:69
+msgid "Katakana"
+msgstr "Katakana"
+
+#: src/config.h:35
+msgid "Half Katakana"
+msgstr "Katakana med halv bredd"
+
+#: src/config.h:35 src/config.h:54
+msgid "Latin"
+msgstr "Latinsk"
+
+#: src/config.h:36
+msgid "Wide Latin"
+msgstr "Latinsk med full bredd"
+
+#: src/config.h:46 src/config.h:54
+msgid "Japanese"
+msgstr "Japanska"
+
+#: src/config.h:47
+msgid "Wide bracket and wide slash"
+msgstr "Bred hakparentes och brett snedstreck"
+
+#: src/config.h:48
+msgid "Corner bracket and Middle Dot"
+msgstr "Hörnhakparentes och mittpunkt"
+
+#: src/config.h:49
+msgid "Corner bracket and wide slash"
+msgstr "Hörnhakparentes och brett snedstreck"
+
+#: src/config.h:53 src/engine.cpp:72
+msgid "Wide latin"
+msgstr "Latinsk med full bredd"
+
+#: src/config.h:55
+msgid "Wide latin Japanese"
+msgstr "Japanska med latinsk fullbredd"
+
+#: src/config.h:64 src/engine.cpp:82
+msgid "Multi segment"
+msgstr "Flera segment"
+
+#: src/config.h:65 src/engine.cpp:83
+msgid "Single segment"
+msgstr "Ett segment"
+
+#: src/config.h:66
+msgid "Multi segment immediate"
+msgstr "Flera segment direkt"
+
+#: src/config.h:67
+msgid "Single segment immediate"
+msgstr "Ett segment direkt"
+
+#: src/config.h:71 src/engine.cpp:76
+msgid "Romaji"
+msgstr "Romaji"
+
+#: src/config.h:71 src/engine.cpp:77
+msgid "Kana"
+msgstr "Kana"
+
+#: src/config.h:72 src/engine.cpp:78
+msgid "Nicola"
+msgstr "Nicola"
+
+#: src/config.h:76 src/config.h:86
+msgid "Follow mode"
+msgstr "Följ läge"
+
+#: src/config.h:76 src/config.h:85
+msgid "Wide"
+msgstr "Full bredd"
+
+#: src/config.h:77 src/config.h:85
+msgid "Half"
+msgstr "Halv bredd"
+
+#: src/config.h:90
+msgid "None"
+msgstr "Ingen"
+
+#: src/config.h:90 src/config.h:437
+msgid "Convert"
+msgstr "Konvertera"
+
+#: src/config.h:91 src/config.h:424
+msgid "Commit"
+msgstr "Bekräfta"
+
+#: src/config.h:172
+msgid "Page size"
+msgstr "Sidstorlek"
+
+#: src/config.h:175
+msgid "Candidate List Layout"
+msgstr "Layout för kandidatlista"
+
+#: src/config.h:179
+msgid "Number of convert key presses to Show Candidate"
+msgstr "Antal tryck på konverteringstangenten för att visa kandidater"
+
+#: src/config.h:182
+msgid "Predict on input"
+msgstr "Förutsäg vid inmatning"
+
+#: src/config.h:185
+msgid "Insert a blank with a blank key"
+msgstr "Infoga ett blanksteg med blankstegstangenten"
+
+#: src/config.h:188
+msgid "Entering the pseudo ASCII input mode with capital letters"
+msgstr "Gå in i pseudo-ASCII-läge med versaler"
+
+#: src/config.h:190
+msgid "Use half-width characters for symbols"
+msgstr "Använd tecken med halv bredd för symboler"
+
+#: src/config.h:193
+msgid "Use half-width characters for numbers"
+msgstr "Använd tecken med halv bredd för siffror"
+
+#: src/config.h:196
+msgid "Initial Input mode"
+msgstr "Ursprungligt inmatningsläge"
+
+#: src/config.h:198
+msgid "Typing method"
+msgstr "Inmatningsmetod"
+
+#: src/config.h:201
+msgid "Conversion mode"
+msgstr "Konverteringsläge"
+
+#: src/config.h:205
+msgid "Period style"
+msgstr "Punktstil"
+
+#: src/config.h:208
+msgid "Symbol style"
+msgstr "Symbolstil"
+
+#: src/config.h:211
+msgid "Space type"
+msgstr "Mellanslagstyp"
+
+#: src/config.h:213
+msgid "Ten key type"
+msgstr "Typ av numeriskt tangentbord"
+
+#: src/config.h:217
+msgid "Behavior on a comma or a period"
+msgstr "Beteende vid komma eller punkt"
+
+#: src/config.h:220
+msgid "Learn on manual commit"
+msgstr "Lär vid manuell bekräftelse"
+
+#: src/config.h:222
+msgid "Learn on auto commit"
+msgstr "Lär vid automatisk bekräftelse"
+
+#: src/config.h:223
+msgid "Allow split"
+msgstr "Tillåt uppdelning"
+
+#: src/config.h:226
+msgid "Use direct key on predict"
+msgstr "Använd direktangent vid förutsägelse"
+
+#: src/config.h:228
+msgid "Show candidates label"
+msgstr "Visa kandidatetikett"
+
+#: src/config.h:233
+msgid "Show input mode"
+msgstr "Visa inmatningsläge"
+
+#: src/config.h:235
+msgid "Show typing method"
+msgstr "Visa inmatningsmetod"
+
+#: src/config.h:237
+msgid "Show conversion mode"
+msgstr "Visa konverteringsläge"
+
+#: src/config.h:239
+msgid "Show period style"
+msgstr "Visa punktstil"
+
+#: src/config.h:241
+msgid "Show symbol style"
+msgstr "Visa symbolstil"
+
+#: src/config.h:252 src/config.h:267 src/config.h:280 src/config.h:295
+msgid "Default"
+msgstr "Standard"
+
+#: src/config.h:252 src/config.h:267
+msgid "Atok"
+msgstr "Atok"
+
+#: src/config.h:253 src/config.h:268
+msgid "Canna"
+msgstr "Canna"
+
+#: src/config.h:253 src/config.h:268
+msgid "MS IME"
+msgstr "MS IME"
+
+#: src/config.h:253 src/config.h:269
+msgid "Vje Delta"
+msgstr "Vje Delta"
+
+#: src/config.h:254 src/config.h:269
+msgid "WNN"
+msgstr "WNN"
+
+#: src/config.h:254 src/config.h:269 src/config.h:282 src/config.h:298
+msgid "Custom"
+msgstr "Anpassad"
+
+#: src/config.h:268
+msgid "Azik"
+msgstr "Azik"
+
+#: src/config.h:280
+msgid "101kana"
+msgstr "101kana"
+
+#: src/config.h:281
+msgid "tsuki-2-203-101"
+msgstr "tsuki-2-203-101"
+
+#: src/config.h:281
+msgid "tsuki-2-203-106"
+msgstr "tsuki-2-203-106"
+
+#: src/config.h:282
+msgid "Quick Kana"
+msgstr "Snabb kana"
+
+#: src/config.h:295
+msgid "Nicola-A"
+msgstr "Nicola-A"
+
+#: src/config.h:296
+msgid "Nicola-F"
+msgstr "Nicola-F"
+
+#: src/config.h:296
+msgid "Nicola-J"
+msgstr "Nicola-J"
+
+#: src/config.h:297
+msgid "Oasys100J"
+msgstr "Oasys100J"
+
+#: src/config.h:297
+msgid "Tron Dvorak"
+msgstr "Tron Dvorak"
+
+#: src/config.h:298
+msgid "Tron Qwerty JP"
+msgstr "Tron Qwerty JP"
+
+#: src/config.h:304
+msgid "Key binding profile"
+msgstr "Tangentbindningsprofil"
+
+#: src/config.h:307
+msgid "Romaji Table"
+msgstr "Romaji-tabell"
+
+#: src/config.h:310
+msgid "Kana Table"
+msgstr "Kana-tabell"
+
+#: src/config.h:312
+msgid "Nicola Table"
+msgstr "Nicola-tabell"
+
+#: src/config.h:315
+msgid "Custom Key Binding"
+msgstr "Anpassad tangentbindning"
+
+#: src/config.h:317
+msgid "Custom Romaji Table"
+msgstr "Anpassad romaji-tabell"
+
+#: src/config.h:319
+msgid "Custom Kana Table"
+msgstr "Anpassad kana-tabell"
+
+#: src/config.h:321
+msgid "Custom Nicola Table"
+msgstr "Anpassad Nicola-tabell"
+
+#: src/config.h:328
+msgid "Circle input mode"
+msgstr "Växla inmatningsläge"
+
+#: src/config.h:334
+msgid "Circle kana mode"
+msgstr "Växla kana-läge"
+
+#: src/config.h:340
+msgid "Circle latin and hiragana mode"
+msgstr "Växla latinskt och hiragana-läge"
+
+#: src/config.h:346
+msgid "Circle typing method"
+msgstr "Växla inmatningsmetod"
+
+#: src/config.h:352
+msgid "Latin mode"
+msgstr "Latinskt läge"
+
+#: src/config.h:358
+msgid "Wide latin mode"
+msgstr "Latinskt läge med full bredd"
+
+#: src/config.h:364
+msgid "Hiragana mode"
+msgstr "Hiragana-läge"
+
+#: src/config.h:370
+msgid "Katakana mode"
+msgstr "Katakana-läge"
+
+#: src/config.h:376
+msgid "Half Katakana mode"
+msgstr "Katakana-läge med halv bredd"
+
+#: src/config.h:382
+msgid "Cancel pseudo ascii mode"
+msgstr "Avbryt pseudo-ASCII-läge"
+
+#: src/config.h:388
+msgid "Insert space"
+msgstr "Infoga mellanslag"
+
+#: src/config.h:394
+msgid "Insert Alternative space"
+msgstr "Infoga alternativt mellanslag"
+
+#: src/config.h:400
+msgid "Insert Half Space"
+msgstr "Infoga mellanslag med halv bredd"
+
+#: src/config.h:406
+msgid "Insert wide space"
+msgstr "Infoga mellanslag med full bredd"
+
+#: src/config.h:412
+msgid "BackSpace"
+msgstr "Backsteg"
+
+#: src/config.h:418
+msgid "Delete"
+msgstr "Ta bort"
+
+#: src/config.h:431
+msgid "Commit Reverse Learn"
+msgstr "Bekräfta och återkalla inlärning"
+
+#: src/config.h:444
+msgid "Predict"
+msgstr "Förutsäg"
+
+#: src/config.h:450
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: src/config.h:456
+msgid "Cancel all"
+msgstr "Avbryt allt"
+
+#: src/config.h:462
+msgid "Move caret first"
+msgstr "Flytta insättningspunkten till början"
+
+#: src/config.h:468
+msgid "Move caret last"
+msgstr "Flytta insättningspunkten till slutet"
+
+#: src/config.h:474
+msgid "Move caret forward"
+msgstr "Flytta insättningspunkten framåt"
+
+#: src/config.h:480
+msgid "Move caret backward"
+msgstr "Flytta insättningspunkten bakåt"
+
+#: src/config.h:486
+msgid "Select first segment"
+msgstr "Välj första segmentet"
+
+#: src/config.h:492
+msgid "Select last segment"
+msgstr "Välj sista segmentet"
+
+#: src/config.h:498
+msgid "Select next segment"
+msgstr "Välj nästa segment"
+
+#: src/config.h:504
+msgid "Select prev segment"
+msgstr "Välj föregående segment"
+
+#: src/config.h:510
+msgid "Shrink segment"
+msgstr "Förkorta segment"
+
+#: src/config.h:516
+msgid "Expand segment"
+msgstr "Utöka segment"
+
+#: src/config.h:522
+msgid "Commit first segment"
+msgstr "Bekräfta första segmentet"
+
+#: src/config.h:528
+msgid "Commit selected segment"
+msgstr "Bekräfta valt segment"
+
+#: src/config.h:534
+msgid "Commit first segement reverse learn"
+msgstr "Bekräfta första segmentet och återkalla inlärning"
+
+#: src/config.h:540
+msgid "Commit selected segement reverse learn"
+msgstr "Bekräfta valt segment och återkalla inlärning"
+
+#: src/config.h:546
+msgid "Select first candidate"
+msgstr "Välj första kandidaten"
+
+#: src/config.h:552
+msgid "Select last candidate"
+msgstr "Välj sista kandidaten"
+
+#: src/config.h:558
+msgid "Select next candidate"
+msgstr "Välj nästa kandidat"
+
+#: src/config.h:566
+msgid "Select prev candidate"
+msgstr "Välj föregående kandidat"
+
+#: src/config.h:572
+msgid "Candidates Page Up"
+msgstr "Kandidatlista sida upp"
+
+#: src/config.h:578
+msgid "Candidates Page Down"
+msgstr "Kandidatlista sida ned"
+
+#: src/config.h:584
+msgid "Convert char type forward"
+msgstr "Växla teckentyp framåt"
+
+#: src/config.h:590
+msgid "Convert char type backward"
+msgstr "Växla teckentyp bakåt"
+
+#: src/config.h:596
+msgid "Convert To Hiragana"
+msgstr "Konvertera till hiragana"
+
+#: src/config.h:602
+msgid "Convert To Katakana"
+msgstr "Konvertera till katakana"
+
+#: src/config.h:608
+msgid "Convert To Half"
+msgstr "Konvertera till halv bredd"
+
+#: src/config.h:614
+msgid "Convert To Half Katakana"
+msgstr "Konvertera till katakana med halv bredd"
+
+#: src/config.h:620
+msgid "Convert To Wide Latin"
+msgstr "Konvertera till latinsk fullbredd"
+
+#: src/config.h:626
+msgid "Convert To Latin"
+msgstr "Konvertera till latinsk"
+
+#: src/config.h:632
+msgid "Reconvert"
+msgstr "Konvertera igen"
+
+#: src/config.h:638 src/config.h:668
+msgid "Dict admin"
+msgstr "Ordboksadministration"
+
+#: src/config.h:644
+msgid "Add Word"
+msgstr "Lägg till ord"
+
+#: src/config.h:650
+msgid "Left thumb key"
+msgstr "Vänster tumtangent"
+
+#: src/config.h:656
+msgid "Right thumb key"
+msgstr "Höger tumtangent"
+
+#: src/config.h:660
+msgid "Ro key for kana layout"
+msgstr "Ro-tangent för kana-layout"
+
+#: src/config.h:662
+msgid "Nicola time"
+msgstr "Nicola-tid"
+
+#: src/config.h:666
+msgid "Add word"
+msgstr "Lägg till ord"
+
+#: src/config.h:672
+msgid "General"
+msgstr "Allmänt"
+
+#: src/config.h:674
+msgid "Interface"
+msgstr "Gränssnitt"
+
+#: src/config.h:676
+msgid "Key Profile"
+msgstr "Tangentprofil"
+
+#: src/config.h:677
+msgid "Key"
+msgstr "Tangent"
+
+#: src/config.h:681
+msgid "Command"
+msgstr "Kommando"
+
+#: src/engine.cpp:70
+msgid "Half width katakana"
+msgstr "Katakana med halv bredd"
+
+#: src/engine.cpp:71
+msgid "Direct input"
+msgstr "Direktinmatning"
+
+#: src/engine.cpp:78
+msgid "Thumb shift"
+msgstr "Tumskift"
+
+#: src/engine.cpp:84
+msgid "Convert as you type (Multi segment)"
+msgstr "Konvertera medan du skriver (flera segment)"
+
+#: src/engine.cpp:85
+msgid "Convert as you type (Single segment)"
+msgstr "Konvertera medan du skriver (ett segment)"
+
+#: src/anthy-addon.conf.in.in:2 src/anthy.conf.in:2
+msgid "Anthy"
+msgstr "Anthy"
+
+#: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:7
+msgid "Anthy for Fcitx 5"
+msgstr "Anthy för Fcitx 5"
+
+#: org.fcitx.Fcitx5.Addon.Anthy.metainfo.xml.in:8
+msgid "Japanese input method based on Anthy"
+msgstr "Japansk inmatningsmetod baserad på Anthy"

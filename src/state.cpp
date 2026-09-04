@@ -446,10 +446,8 @@ void AnthyState::syncConversionMode() {
 }
 
 void AnthyState::syncTypingMethod() {
-    if (preedit_.typingMethod() != engine_->typingMethod()) {
-        preedit_.setTypingMethod(engine_->typingMethod());
-        preedit_.setPseudoAsciiMode(pseudoAsciiMode());
-    }
+    preedit_.setTypingMethod(engine_->typingMethod());
+    preedit_.setPseudoAsciiMode(pseudoAsciiMode());
 
     engine_->typingMethodAction()->update(ic_);
 }

@@ -56,7 +56,7 @@ void test101kana() {
             {"V", {"", "ゐ"}}, {"B", {"", "こ"}}, {"N", {"み"}},
             {"M", {"も"}},     {"?", {"・"}},
 
-        };
+    };
     FCITX_ASSERT(expectedValues.size() == keys->size());
     for (size_t i = 0; i < keys->size(); i++) {
         FCITX_ASSERT((*keys)[i] == std::get<0>(expectedValues[i]))
@@ -152,7 +152,7 @@ void testwnn() {
             {"xdi", {"でぃ"}}, {"xdu", {"どぅ"}}, {"xde", {"でぇ"}},
             {"xdo", {"どぉ"}}, {"xwi", {"うぃ"}}, {"xwe", {"うぇ"}},
             {"xwo", {"うぉ"}},
-        };
+    };
     FCITX_ASSERT(expectedValues.size() == keys->size());
     for (size_t i = 0; i < keys->size(); i++) {
         FCITX_ASSERT((*keys)[i] == std::get<0>(expectedValues[i]))

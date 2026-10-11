@@ -397,6 +397,7 @@ AnthyEngine::AnthyEngine(fcitx::Instance *instance)
     instance_->inputContextManager().registerProperty("anthyState", &factory_);
 
     constructed_ = true;
+    updateActionHotkeys();
 }
 
 AnthyEngine::~AnthyEngine() { anthy_quit(); }
@@ -543,7 +544,26 @@ void AnthyEngine::populateConfig() {
         }
     }
 
+    updateActionHotkeys();
     populateOptionToState();
+}
+
+void AnthyEngine::updateActionHotkeys() {
+    if (!constructed_) {
+        return;
+    }
+
+    const auto *profile = keyProfile();
+#define SET_HOTKEY(KEY, NAME)                                                  \
+    instance_->userInterfaceManager().lookupAction(NAME)->setHotkey(           \
+        profile ? profile->hk_##KEY : *config_.key->hk_##KEY);
+
+    SET_HOTKEY(HIRAGANA_MODE, "anthy-input-mode-hiragana")
+    SET_HOTKEY(KATAKANA_MODE, "anthy-input-mode-katakana")
+    SET_HOTKEY(HALF_KATAKANA_MODE, "anthy-input-mode-half-katakana")
+    SET_HOTKEY(LATIN_MODE, "anthy-input-mode-latin")
+    SET_HOTKEY(WIDE_LATIN_MODE, "anthy-input-mode-wide-latin")
+#undef SET_HOTKEY
 }
 
 void AnthyEngine::populateOptionToState() {

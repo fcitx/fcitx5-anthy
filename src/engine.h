@@ -121,6 +121,7 @@ public:
 private:
     void populateConfig();
     void populateOptionToState();
+    void updateActionHotkeys();
 
     template <typename OptionT, typename ValueT>
     void setAndPopulateOption(OptionT &option, const ValueT &value) {

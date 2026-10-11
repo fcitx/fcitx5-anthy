@@ -219,6 +219,53 @@ void testVirtualConversion(Instance *instance) {
         ic->reset();
 
         config.setValueByPath("General/ConversionMode", "Multi segment");
+        config.setValueByPath("General/PredictOnInput", "True");
+        config.setValueByPath("General/UseDirectKeyOnPredict", "True");
+        anthy->setConfig(config);
+
+        // Earlier commits supply prediction history for this prefix.
+        auto startPrediction = [&]() {
+            type("ka", false);
+            send(FcitxKey_a, false, true);
+            FCITX_ASSERT(reading() == "か");
+            FCITX_ASSERT(hasCandidates());
+        };
+
+        // Virtual digits extend the reading instead of selecting a prediction.
+        startPrediction();
+        FCITX_ASSERT(send(FcitxKey_1));
+        FCITX_ASSERT(reading() == "か1");
+        FCITX_ASSERT(hasCandidates());
+        ic->reset();
+
+        // Virtual letters replace stale predictions with conversion candidates.
+        startPrediction();
+        type("na");
+        FCITX_ASSERT(reading() == "かな");
+        list = ic->inputPanel().candidateList();
+        FCITX_ASSERT(list && list->toBulk());
+        found = false;
+        for (int i = 0; i < list->toBulk()->totalSize(); i++) {
+            found |=
+                list->toBulk()->candidateFromAll(i).text().toString() == "仮名";
+        }
+        FCITX_ASSERT(found);
+        ic->reset();
+
+        // Physical digits still select predictions; selected text is committed
+        // when virtual typing resumes rather than being reverted to its prefix.
+        startPrediction();
+        auto prediction =
+            ic->inputPanel().candidateList()->candidate(0).text().toString();
+        FCITX_ASSERT(send(FcitxKey_1, false));
+        FCITX_ASSERT(reading() == prediction);
+        frontend->call<ITestFrontend::pushCommitExpectation>(prediction);
+        FCITX_ASSERT(send(FcitxKey_a));
+        FCITX_ASSERT(reading() == "あ");
+        FCITX_ASSERT(hasCandidates());
+        ic->reset();
+
+        config.setValueByPath("General/PredictOnInput", "False");
         anthy->setConfig(config);
     });
 }

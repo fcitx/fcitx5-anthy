@@ -206,9 +206,14 @@ bool AnthyState::processKeyEventWideLatinMode(const fcitx::KeyEvent &key) {
 bool AnthyState::processKeyEvent(const fcitx::KeyEvent &key) {
     if (!key.isRelease()) {
         virtualInput_ = key.isVirtual();
-        if (lookupTablePreview_) {
+        const bool clearPrediction = virtualInput_ && preedit_.isPredicting() &&
+                                     !preedit_.isConverting();
+        if (lookupTablePreview_ || clearPrediction) {
             // Keep typing (including digits) in the reading rather than
             // interpreting the preview as a keyboard candidate selection.
+            if (clearPrediction) {
+                preedit_.revert();
+            }
             unsetLookupTable();
             uiUpdate_ = true;
         }

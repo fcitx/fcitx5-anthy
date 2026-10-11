@@ -166,6 +166,23 @@ void Reading::finish() {
     }
 }
 
+std::string Reading::getForConversion() {
+    if (key2kana_ != &key2kanaNormal_ || !key2kana_->isPending()) {
+        return getByChar();
+    }
+
+    // Resolve pending romaji on a copy, so a trailing 'n' can suggest 'ん'
+    // while the user can still continue it as 'na', 'ni', etc.
+    auto converter = key2kanaNormal_;
+    auto pending = converter.flushPending();
+    std::string result;
+    for (unsigned int i = 0; i < segments_.size(); i++) {
+        result += i + 1 == segmentPos_ && !pending.empty() ? pending
+                                                           : segments_[i].kana;
+    }
+    return result;
+}
+
 void Reading::clear() {
     key2kanaNormal_.clear();
     kana_.clear();

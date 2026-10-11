@@ -63,6 +63,7 @@ public:
     std::string getByChar(unsigned int start = 0, int length = -1,
                           StringType type = FCITX_ANTHY_STRING_HIRAGANA);
     std::string getRawByChar(unsigned int start = 0, int length = -1);
+    std::string getForConversion();
     bool append(const fcitx::KeyEvent &key, const std::string &string);
     void erase(unsigned int start = 0, int length = -1,
                bool allow_split = false);

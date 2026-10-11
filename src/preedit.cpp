@@ -240,6 +240,16 @@ Preedit::candidates(int segment_id) {
     return conversion_.candidates(segment_id);
 }
 
+std::unique_ptr<fcitx::CommonCandidateList>
+Preedit::conversionCandidates(bool single_segment) {
+    // Preview conversion without finishing pending romaji or changing the
+    // reading. Recreate the same conversion when a candidate is selected.
+    conversion_.convert(reading_.getForConversion(), single_segment);
+    auto candidates = conversion_.candidates();
+    conversion_.clear();
+    return candidates;
+}
+
 int Preedit::selectedCandidate(int segment_id) {
     return conversion_.selectedCandidate(segment_id);
 }

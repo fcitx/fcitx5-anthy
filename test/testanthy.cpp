@@ -7,14 +7,17 @@
 #include "testdir.h"
 #include "testfrontend_public.h"
 #include <fcitx-config/rawconfig.h>
+#include <fcitx-utils/capabilityflags.h>
 #include <fcitx-utils/eventdispatcher.h>
 #include <fcitx-utils/key.h>
 #include <fcitx-utils/log.h>
 #include <fcitx-utils/macros.h>
 #include <fcitx-utils/testing.h>
 #include <fcitx/addonmanager.h>
+#include <fcitx/candidatelist.h>
 #include <fcitx/inputmethodgroup.h>
 #include <fcitx/inputmethodmanager.h>
+#include <fcitx/inputpanel.h>
 #include <fcitx/instance.h>
 
 using namespace fcitx;
@@ -81,6 +84,192 @@ void testNicola(Instance *instance) {
     });
 }
 
+void testVirtualConversion(Instance *instance) {
+    instance->eventDispatcher().schedule([instance]() {
+        auto *anthy = instance->addonManager().addon("anthy", true);
+        auto *frontend = instance->addonManager().addon("testfrontend");
+        auto uuid =
+            frontend->call<ITestFrontend::createInputContext>("testapp");
+        auto *ic = instance->inputContextManager().findByUUID(uuid);
+        ic->setCapabilityFlags(CapabilityFlag::Preedit);
+
+        RawConfig config;
+        config.setValueByPath("General/TypingMethod", "Romaji");
+        config.setValueByPath("General/ConversionMode", "Multi segment");
+        config.setValueByPath("General/PredictOnInput", "False");
+        config.setValueByPath("General/NTriggersToShowCandWin", "2");
+        anthy->setConfig(config);
+
+        auto send = [&](KeySym sym, bool virtualKey = true,
+                        bool release = false) {
+            return frontend->call<ITestFrontend::sendKeyEvent>(
+                uuid,
+                Key(sym, virtualKey ? KeyState::Virtual : KeyState::NoState),
+                release);
+        };
+        auto type = [&](const std::string &text, bool virtualKey = true) {
+            for (unsigned char c : text) {
+                FCITX_ASSERT(send(static_cast<KeySym>(c), virtualKey));
+            }
+        };
+        auto reading = [&]() {
+            return ic->inputPanel().clientPreedit().toString();
+        };
+        auto hasCandidates = [&]() {
+            auto list = ic->inputPanel().candidateList();
+            return list && list->size() > 0;
+        };
+        auto selectFirst = [&]() {
+            auto list = ic->inputPanel().candidateList();
+            FCITX_ASSERT(list && list->size() > 0);
+            frontend->call<ITestFrontend::pushCommitExpectation>(
+                list->candidate(0).text().toString());
+            list->candidate(0).select(ic);
+        };
+
+        // Press-only virtual keyboards get candidates without a space or
+        // release.
+        type("ka");
+        FCITX_ASSERT(reading() == "か");
+        FCITX_ASSERT(hasCandidates());
+        send(FcitxKey_a, true, true);
+        FCITX_ASSERT(reading() == "か");
+        type("na");
+        FCITX_ASSERT(reading() == "かな");
+        FCITX_ASSERT(hasCandidates());
+        selectFirst();
+        FCITX_ASSERT(reading().empty());
+        FCITX_ASSERT(!hasCandidates());
+
+        // A final 'n' is converted on selection without requiring a space.
+        type("nihon");
+        FCITX_ASSERT(reading() == "にほn");
+        auto list = ic->inputPanel().candidateList();
+        FCITX_ASSERT(list && list->toBulk());
+        bool found = false;
+        for (int i = 0; i < list->toBulk()->totalSize(); i++) {
+            const auto &candidate = list->toBulk()->candidateFromAll(i);
+            if (candidate.text().toString() == "日本") {
+                frontend->call<ITestFrontend::pushCommitExpectation>("日本");
+                candidate.select(ic);
+                found = true;
+                break;
+            }
+        }
+        FCITX_ASSERT(found);
+        FCITX_ASSERT(reading().empty());
+
+        // Previewing must not finish pending romaji (in particular, 'n').
+        type("kan");
+        FCITX_ASSERT(reading() == "かn");
+        type("a");
+        FCITX_ASSERT(reading() == "かな");
+        FCITX_ASSERT(send(FcitxKey_BackSpace));
+        FCITX_ASSERT(reading() == "か");
+        FCITX_ASSERT(hasCandidates());
+        FCITX_ASSERT(send(FcitxKey_BackSpace));
+        FCITX_ASSERT(reading().empty());
+        FCITX_ASSERT(!hasCandidates());
+
+        // Digits continue the reading instead of selecting a preview candidate.
+        type("ka1");
+        FCITX_ASSERT(reading() == "か1");
+        ic->reset();
+
+        // Switching to physical keys keeps the reading and restores manual
+        // conversion.
+        type("ka");
+        type("na", false);
+        FCITX_ASSERT(reading() == "かな");
+        FCITX_ASSERT(!hasCandidates());
+        ic->reset();
+        type("kana", false);
+        FCITX_ASSERT(!hasCandidates());
+        FCITX_ASSERT(send(FcitxKey_space, false));
+        FCITX_ASSERT(!hasCandidates());
+        FCITX_ASSERT(send(FcitxKey_space, false));
+        FCITX_ASSERT(hasCandidates());
+        ic->reset();
+
+        // A tap commits one segment and exposes candidates for the remaining
+        // text.
+        type("watashihanihongowohanashimasu");
+        selectFirst();
+        FCITX_ASSERT(!reading().empty());
+        FCITX_ASSERT(hasCandidates());
+        while (hasCandidates()) {
+            selectFirst();
+        }
+        FCITX_ASSERT(reading().empty());
+
+        config.setValueByPath("General/ConversionMode", "Single segment");
+        anthy->setConfig(config);
+        type("watashihanihongowohanashimasu");
+        selectFirst();
+        FCITX_ASSERT(reading().empty());
+        FCITX_ASSERT(!hasCandidates());
+
+        config.setValueByPath("General/ConversionMode",
+                              "Multi segment immediate");
+        anthy->setConfig(config);
+        type("kana");
+        FCITX_ASSERT(hasCandidates());
+        FCITX_ASSERT(send(FcitxKey_BackSpace));
+        FCITX_ASSERT(hasCandidates());
+        ic->reset();
+
+        config.setValueByPath("General/ConversionMode", "Multi segment");
+        config.setValueByPath("General/PredictOnInput", "True");
+        config.setValueByPath("General/UseDirectKeyOnPredict", "True");
+        anthy->setConfig(config);
+
+        // Earlier commits supply prediction history for this prefix.
+        auto startPrediction = [&]() {
+            type("ka", false);
+            send(FcitxKey_a, false, true);
+            FCITX_ASSERT(reading() == "か");
+            FCITX_ASSERT(hasCandidates());
+        };
+
+        // Virtual digits extend the reading instead of selecting a prediction.
+        startPrediction();
+        FCITX_ASSERT(send(FcitxKey_1));
+        FCITX_ASSERT(reading() == "か1");
+        FCITX_ASSERT(hasCandidates());
+        ic->reset();
+
+        // Virtual letters replace stale predictions with conversion candidates.
+        startPrediction();
+        type("na");
+        FCITX_ASSERT(reading() == "かな");
+        list = ic->inputPanel().candidateList();
+        FCITX_ASSERT(list && list->toBulk());
+        found = false;
+        for (int i = 0; i < list->toBulk()->totalSize(); i++) {
+            found |=
+                list->toBulk()->candidateFromAll(i).text().toString() == "仮名";
+        }
+        FCITX_ASSERT(found);
+        ic->reset();
+
+        // Physical digits still select predictions; selected text is committed
+        // when virtual typing resumes rather than being reverted to its prefix.
+        startPrediction();
+        auto prediction =
+            ic->inputPanel().candidateList()->candidate(0).text().toString();
+        FCITX_ASSERT(send(FcitxKey_1, false));
+        FCITX_ASSERT(reading() == prediction);
+        frontend->call<ITestFrontend::pushCommitExpectation>(prediction);
+        FCITX_ASSERT(send(FcitxKey_a));
+        FCITX_ASSERT(reading() == "あ");
+        FCITX_ASSERT(hasCandidates());
+        ic->reset();
+
+        config.setValueByPath("General/PredictOnInput", "False");
+        anthy->setConfig(config);
+    });
+}
+
 int main() {
     setupTestingEnvironment(TESTING_BINARY_DIR, {"bin"},
                             {TESTING_BINARY_DIR "/test"});
@@ -94,6 +283,7 @@ int main() {
     instance.addonManager().registerDefaultLoader(nullptr);
     setup(&instance);
     testSpace(&instance);
+    testVirtualConversion(&instance);
     testNicola(&instance);
     instance.eventDispatcher().schedule([&instance]() { instance.exit(); });
     instance.exec();

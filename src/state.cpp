@@ -74,8 +74,9 @@ bool AnthyState::isNicolaThumbShiftKey(const fcitx::KeyEvent &key) const {
 
 bool AnthyState::processKeyEventInput(const fcitx::KeyEvent &key) {
     // prediction while typing
-    if (*config().general->predictOnInput && key.isRelease() &&
-        preedit_.isPreediting() && !preedit_.isConverting()) {
+    if (*config().general->predictOnInput && !key.isVirtual() &&
+        key.isRelease() && preedit_.isPreediting() &&
+        !preedit_.isConverting()) {
         preedit_.predict();
         ic_->inputPanel().setCandidateList(preedit_.candidates());
         uiUpdate_ = true;
@@ -203,6 +204,20 @@ bool AnthyState::processKeyEventWideLatinMode(const fcitx::KeyEvent &key) {
 }
 
 bool AnthyState::processKeyEvent(const fcitx::KeyEvent &key) {
+    if (!key.isRelease()) {
+        virtualInput_ = key.isVirtual();
+        const bool clearPrediction = virtualInput_ && preedit_.isPredicting() &&
+                                     !preedit_.isConverting();
+        if (lookupTablePreview_ || clearPrediction) {
+            // Keep typing (including digits) in the reading rather than
+            // interpreting the preview as a keyboard candidate selection.
+            if (clearPrediction) {
+                preedit_.revert();
+            }
+            unsetLookupTable();
+            uiUpdate_ = true;
+        }
+    }
     // FIXME!
     // for NICOLA thumb shift key
     if (typingMethod() == TypingMethod::NICOLA && isNicolaThumbShiftKey(key)) {
@@ -248,6 +263,12 @@ void AnthyState::movePreeditCaret(unsigned int pos) {
 }
 
 void AnthyState::selectCandidateNoDirect(unsigned int item) {
+    if (lookupTablePreview_) {
+        lookupTablePreview_ = false;
+        preedit_.finish();
+        preedit_.convert(FCITX_ANTHY_CANDIDATE_DEFAULT, isSingleSegment());
+        lookupTableVisible_ = true;
+    }
     if (preedit_.isPredicting() && !preedit_.isConverting()) {
         action_predict();
     }
@@ -295,6 +316,18 @@ void AnthyState::setPreedition() {
 
 void AnthyState::updateUI() {
     if (uiUpdate_) {
+        if (virtualInput_ && preedit_.isPreediting() &&
+            !preedit_.isConverting() && !preedit_.isPredicting() &&
+            inputMode() == InputMode::HIRAGANA &&
+            !preedit_.isPseudoAsciiMode()) {
+            auto candidates = preedit_.conversionCandidates(isSingleSegment());
+            lookupTablePreview_ = candidates && candidates->size() > 0;
+            ic_->inputPanel().setCandidateList(std::move(candidates));
+        } else if (virtualInput_ && isRealtimeConversion() &&
+                   preedit_.isConverting() &&
+                   !ic_->inputPanel().candidateList()) {
+            setLookupTable();
+        }
         uiUpdate_ = false;
         ic_->updateUserInterface(fcitx::UserInterfaceComponent::InputPanel);
         ic_->updatePreedit();
@@ -342,7 +375,8 @@ std::shared_ptr<fcitx::CandidateList> AnthyState::setLookupTable() {
         (int)nConvKeyPressed_ >= *config().general->nTriggersToShowCandWin;
 
     bool setCandidateList = true;
-    if (!lookupTableVisible_ && (preedit_.isPredicting() || beyond_threshold)) {
+    if (!lookupTableVisible_ &&
+        (virtualInput_ || preedit_.isPredicting() || beyond_threshold)) {
         lookupTableVisible_ = true;
         nConvKeyPressed_ = 0;
     } else if (!lookupTableVisible_) {
@@ -370,6 +404,7 @@ std::shared_ptr<fcitx::CandidateList> AnthyState::setLookupTable() {
 void AnthyState::unsetLookupTable() {
     ic_->inputPanel().setCandidateList(nullptr);
     lookupTableVisible_ = false;
+    lookupTablePreview_ = false;
     nConvKeyPressed_ = 0;
     cursorPos_ = 0;
 
@@ -1081,6 +1116,9 @@ bool AnthyState::action_candidates_page_down() {
 }
 
 bool AnthyState::actionSelectCandidate(unsigned int i) {
+    if (lookupTablePreview_) {
+        selectCandidateNoDirect(i);
+    }
     // FIXME! m_lookup_table_visible should be set as true also on predicting
     if (!lookupTableVisible_ && !preedit_.isPredicting()) {
         return false;
@@ -1093,7 +1131,16 @@ bool AnthyState::actionSelectCandidate(unsigned int i) {
         return true;
     }
     if (preedit_.isConverting() && isSelectingCandidates()) {
-        selectCandidate(i);
+        if (virtualInput_) {
+            selectCandidateNoDirect(i);
+            action_commit_selected_segment();
+            if (preedit_.isConverting()) {
+                lookupTableVisible_ = true;
+                setLookupTable();
+            }
+        } else {
+            selectCandidate(i);
+        }
         return true;
     }
 

@@ -174,6 +174,8 @@ private:
     /* for candidates window */
     // FcitxCandidateWordList *m_lookup_table;
     bool lookupTableVisible_;
+    bool lookupTablePreview_ = false;
+    bool virtualInput_ = false;
     unsigned int nConvKeyPressed_;
 
     /* for toggling latin and wide latin */

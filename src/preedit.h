@@ -69,6 +69,8 @@ public:
 
     // candidates for a segment
     std::unique_ptr<fcitx::CommonCandidateList> candidates(int segment_id = -1);
+    std::unique_ptr<fcitx::CommonCandidateList>
+    conversionCandidates(bool single_segment);
     int selectedCandidate(int segment_id = -1);
     void selectCandidate(int candidate_id, int segment_id = -1);
 
